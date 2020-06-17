@@ -1,17 +1,17 @@
 # Site settings
 title: Website Title
-description: Website short description
+description: "by: Yongqiang Wei"
 baseurl: "" 
 #change the baseurl to "" if you are using it as your user GitHub Pages
-url: "https://yk-liu.github.io"  
+url: "https://Jueee.github.io"  
 
 
 # GitHub User settings
-username: Username
-github_username: github_username
+username: Wei Yongqiang
+github_username: Jueee
 user_description: user_description
-user_title: user_title
-email: 
+user_title: 每天进步一点点~~
+email: hellojue@foxmail.com
 
 # Blog Author settings
 author:
@@ -49,7 +49,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   
-permalink: none
+permalink: /:year/:month/:title/
 
 defaults:
   -
