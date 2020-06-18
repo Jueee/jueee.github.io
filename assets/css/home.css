@@ -290,7 +290,8 @@ sub,sup{
 }
 @media only screen and (min-width:550px){
     #about{
-        width:90%
+        width:90%;
+		margin-bottom: 120px;
     }
 }
 .user-details{
