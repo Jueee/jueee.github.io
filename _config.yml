@@ -1,5 +1,5 @@
 # Site settings
-title: Website Title
+title: "个人总结博客"
 description: "by: Yongqiang Wei"
 baseurl: "" 
 #change the baseurl to "" if you are using it as your user GitHub Pages
