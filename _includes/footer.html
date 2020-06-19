@@ -1,6 +1,6 @@
 <footer>
    <p style="margin-left: auto; margin-right: auto;"> 
-      &copy; {{ site.posts[-1].date | date: '%Y' }}-{{ site.time | date: '%Y' }}, {{ site.author.name }}. 本网站是开源的！ {% if page.edit %}<a href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io/commits/master/{{ page.path }}" > Version history</a>.{% endif %}  <a href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io/blob/master/LICENSE.md" target="_blank">许可文件</a>. <a href="{{site.url}}{{site.baseurl}}/info/disclaimer" target="_blank">免责声明</a>. 
+      &copy; {{ site.posts[-1].date | date: '%Y' }}-{{ site.time | date: '%Y' }}, {{ site.author.name }}.{% if page.edit %}<a href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io/commits/master/{{ page.path }}" > Version history</a>.{% endif %}  <a href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io/blob/master/LICENSE.md" target="_blank">许可文件</a>. <a href="{{site.url}}{{site.baseurl}}/info/disclaimer" target="_blank">免责声明</a>. 
    </p>
 	 {% if include.analytics == false %}
 	 {% else %}
