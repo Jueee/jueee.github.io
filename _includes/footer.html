@@ -7,5 +7,13 @@
    {% include clustrmap.html style="hiddenpng"%}
 	 {% endif %}
 </footer>
-
+<script>
+var _hmt = _hmt || [];
+(function() {
+   var hm = document.createElement("script");
+   hm.src = "https://hm.baidu.com/hm.js?{{site.baidu_tmid}}";
+   var s = document.getElementsByTagName("script")[0]; 
+   s.parentNode.insertBefore(hm, s);
+})();
+</script>
 <link rel="stylesheet" href="{{site.url}}{{site.baseurl}}/assets/css/footer.css" >
