@@ -27,9 +27,9 @@ author:
 
 mylink:
 - name: "docker 相关学习笔记"
-  address: https://github.com/Jueee/docker-doc
+  address: https://jueee.github.io/docker-doc/
 - name: "kubernetes 相关学习笔记"
-  address: https://github.com/Jueee/kubernetes-doc
+  address: https://jueee.github.io/kubernetes-doc/
 - name: "设计模式相关学习笔记"
   address: https://jueee.github.io/design-patterns/
 

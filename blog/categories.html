@@ -5,12 +5,12 @@ title: 分类索引
 <h1>{{ page.title }}</h1>
 
 <div class="container">
-  <h1>所有分类</h1>
+  <h2>所有分类</h2>
 	{% assign categories = site.categories | sort %}
 	{% for category in categories %}
 		<span class="site-tag">
 			<a href="{{site.url}}{{site.baseurl}}/blog/categories#{{ category [0] | slugify }}" style="text-decoration: none;" >
-				 <code class="highligher-rouge" style="font-size: {{ category | last | size  |  times: 2 | plus: 80  }}%">
+				 <code class="highligher-rouge" style="font-size: large">
 					<nobr>{{ category[0] | replace:'-', ' ' }} ({{ category | last | size }})</nobr>
 				 </code>
 			</a> &nbsp;
