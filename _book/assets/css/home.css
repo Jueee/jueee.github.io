@@ -306,7 +306,6 @@ sub,sup{
 }
 .lower{
     text-align:center;
-    font-size:60px;
     display:flex;
     flex-direction:row;
     flex-wrap:wrap;

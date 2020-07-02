@@ -25,6 +25,14 @@ author:
   linkedin:
   clustrmap:      
 
+mylink:
+- name: "docker 相关学习笔记"
+  address: https://github.com/Jueee/docker-doc
+- name: "kubernetes 相关学习笔记"
+  address: https://github.com/Jueee/kubernetes-doc
+- name: "设计模式相关学习笔记"
+  address: https://jueee.github.io/design-patterns/
+
 baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)

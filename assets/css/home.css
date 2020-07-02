@@ -295,9 +295,14 @@ sub,sup{
     }
 }
 .user-details{
-    text-align:center;
     margin:5px auto;
 		width:40%;
+}
+.user-details-home{
+    text-align:center;
+}
+.user-details-tag{
+    text-align:left;
 }
 .permlinks{
     margin:10px;
@@ -307,7 +312,6 @@ sub,sup{
 }
 .lower{
     text-align:center;
-    font-size:60px;
     display:flex;
     flex-direction:row;
     flex-wrap:wrap;

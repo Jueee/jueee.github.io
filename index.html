@@ -2,18 +2,44 @@
 layout: home
 ---
 <div class="user-details">
-<h2> 欢迎来到我的小世界~~ </h2>
-<p style="text-align: justify;"> 欲买桂花同载酒，终不似，少年游。 </p>
-<div class="analytics"  style="border: solid lightgrey; border-radius: 5px;">
-	<h3> 分析 </h3>
-	{% include clustrmap.html style="js" %}
-	<p> <small> If you are not seeing a map, please disable Ad block </small></p>
-</div>
+	<div class="user-details-home">
+		<h2> 欢迎来到我的小世界~~ </h2>
+		<p style="text-align: justify;"> 欲买桂花同载酒，终不似，少年游。 </p>
+		<div class="analytics"  style="border: solid lightgrey; border-radius: 5px;">
+			
+			{% include clustrmap.html style="js" %}
+			<p> <small> If you are not seeing a map, please disable Ad block </small></p>
+		</div>
+	</div>
+	<div class="user-details-tag">
+		<h3>所有分类</h3>
+		{% assign categories = site.categories | sort %}
+		{% for category in categories %}
+			<span class="site-tag">
+				<a href="{{site.url}}{{site.baseurl}}/blog/categories#{{ category [0] | slugify }}" style="text-decoration: none;" >
+					<code class="highligher-rouge" style="font-size:large">
+						<nobr>{{ category[0] | replace:'-', ' ' }} ({{ category | last | size }})</nobr>
+					</code>
+				</a> &nbsp;
+			</span>
+		{% endfor %}
+		<h3>所有标签</h3>
+		  {% assign tags = site.tags | sort %}
+		  {% for tag in tags %}
+			  <span class="site-tag">
+				  <a href="{{site.url}}{{site.baseurl}}/blog/tags#{{ tag[0] | slugify }}" style="text-decoration: none;" >
+					   <code class="highligher-rouge" style="font-size:large">
+						  <nobr>{{ tag[0] | replace:'-', ' ' }} ({{ tag | last | size }})</nobr>
+					   </code>
+				  </a> &nbsp;
+			  </span>
+		  {% endfor %}
+	  </div>
 </div>
 <div class="permlinks">
 <h2>近期文章</h2>
 <dl>
-	{% for post in site.posts limit:3 %}
+	{% for post in site.posts limit:5 %}
 	<dt><code>{{ post.date | date_to_string }} </code><i class="fas fa-angle-double-right" aria-hidden="true"></i><a href="{{ post.url }}">{{ post.title }}</a> &nbsp;{% include status-indicator.html status=post.status%}
 	{% if post.description %}
  <dd style="text-align: justify">{{ post.description | markdownify }}
@@ -23,10 +49,11 @@ layout: home
 	<p>... <a href="/blog">查看所有文章</a> </p>
 </dl>
 
-<h2>敬请期待</h2>
-<ul>
-	<li>Post 1</li>
-	<li>Post 2</li>
-</ul>
+<h2>相关链接</h2>
+<dl>
+	{% for post in site.mylink limit:3 %}
+	<dd><i class="fab fa-telegram-plane" aria-hidden="true"></i>&nbsp;<a href="{{ post.address }}" target="_blank">{{ post.name }}</a></dd>
+	{% endfor %}
+</dl>
 
 </div >
