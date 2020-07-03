@@ -32,6 +32,14 @@ mylink:
   address: https://jueee.github.io/kubernetes-doc/
 - name: "设计模式相关学习笔记"
   address: https://jueee.github.io/design-patterns/
+- name: "Effective Java 学习笔记"
+  address: https://jueee.github.io/effective-Java/
+- name: "Java 并发编程学习笔记"
+  address: https://jueee.github.io/ConcurrencyWithJava/
+- name: "Java 测试驱动开发学习笔记"
+  address: https://jueee.github.io/JavaTestDrivenDev/
+- name: "Java 8 函数式编程学习笔记"
+  address: https://jueee.github.io/Java8Lambdas/
 
 baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79
 # Support for LiveRe comments system.
