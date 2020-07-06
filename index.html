@@ -5,13 +5,23 @@ layout: home
 	<div class="user-details-home">
 		<h2> 欢迎来到我的小世界~~ </h2>
 		<p style="text-align: justify;"> 欲买桂花同载酒，终不似，少年游。 </p>
-		<div class="analytics"  style="border: solid lightgrey; border-radius: 5px;">
-			
-			{% include clustrmap.html style="js" %}
-			<p> <small> If you are not seeing a map, please disable Ad block </small></p>
-		</div>
 	</div>
 	<div class="user-details-tag">
+		<h3>学习笔记</h3>
+		<dl>
+			<table >
+			{% for post in site.gitpagelink %}
+			{% assign index_2 = forloop.index | modulo: 2 %}
+				{% if index_2 == 1 %}
+					{% if forloop.index == 1 %} <tr> {% else %} </tr><tr> {% endif %}
+				{% endif %}
+				<td><dd><i class="fab fa-telegram-plane" aria-hidden="true"></i>&nbsp;<a href="{{ post.address }}" target="_blank">{{ post.name }}</a></dd></td>
+				{% if forloop.size == forloop.index %}
+					{% if index_2 == 0 %}</tr>{% else %}<td></td></tr>{% endif %}
+				{% endif %}
+			{% endfor %}
+			</table>
+		</dl>
 		<h3>所有分类</h3>
 		{% assign categories = site.categories | sort %}
 		{% for category in categories %}
@@ -51,7 +61,7 @@ layout: home
 
 <h2>相关链接</h2>
 <dl>
-	{% for post in site.mylink limit:3 %}
+	{% for post in site.gitpagelink limit:3 %}
 	<dd><i class="fab fa-telegram-plane" aria-hidden="true"></i>&nbsp;<a href="{{ post.address }}" target="_blank">{{ post.name }}</a></dd>
 	{% endfor %}
 </dl>
