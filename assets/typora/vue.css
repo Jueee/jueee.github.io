@@ -216,11 +216,11 @@ code, tt {
 
 pre.highlight > code, tt {
 	margin: 0 2px;
-	padding: 2px 4px;
+	padding: 5px 10px;
 	display: block;
 	page-break-inside: avoid;
 	text-align: left;
-	overflow-x: scroll;
+	overflow-x: auto;
 	font-family: 'Ubuntu Mono', monospace !important;
 }
 

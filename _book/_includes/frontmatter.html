@@ -7,10 +7,10 @@
    <div id="info">
       <div id="date">
          {% if page.edit %}
-         <p><code>Posted</code>:  &nbsp; {{ page.date | date: '%B %d, %Y' }} </p>
-         <p><code>Edited</code>:  &nbsp; {{ page.edit | date: '%B %d, %Y' }} </p>
+         <p><code>Posted</code>:  &nbsp; {{ page.date | date: '%Y-%m-%d' }} </p>
+         <p><code>Edited</code>:  &nbsp; {{ page.edit | date: '%Y-%m-%d' }} </p>
          {% else %}
-         <p><code>Posted</code>:  &nbsp; {{ page.date | date: '%B %d, %Y' }} </p>
+         <p><code>Posted</code>:  &nbsp; {{ page.date | date: '%Y-%m-%d' }} </p>
          {% endif %}
          {% if page.status %}
          <p><code>Status</code>:  &nbsp; {% include status-indicator.html status=page.status%} </p>
