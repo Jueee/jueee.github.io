@@ -144,14 +144,14 @@ generate empty calendar
                {% if posted_day_sn == today_sn %}
                   {% if posted_year == year %}
                      {% assign activity = activity | plus: 1 %}
-                     {% assign today_date = post.date | date: "%b. %d, %Y" %}
+                     {% assign today_date = post.date | date: "%Y-%m-%d" %}
                   {% endif %}
                {% endif %}
 
                {% if edited_day_sn == today_sn %}
                   {% if edited_year == year %}
                      {% assign activity = activity | plus: 1 %}
-                     {% assign today_date = post.edit | date: "%b. %d, %Y" %}
+                     {% assign today_date = post.edit | date: "%Y-%m-%d" %}
                   {% endif %}
                {% endif %}
             {% endfor %}
@@ -199,7 +199,7 @@ generate empty calendar
 <dl class="posts">
 	 {% for post in site.posts %}
 		<dt>
-    <code>{{ post.date | date_to_string }}</code> <i class="fas fa-angle-double-right"></i> <a href="{{ post.url }}">{{ post.title }}</a>&nbsp;{% include status-indicator.html status=post.status%}
+    <code>{{ post.date | date: "%Y-%m-%d" }}</code> <i class="fas fa-angle-double-right"></i> <a href="{{ post.url }}">{{ post.title }}</a>&nbsp;{% include status-indicator.html status=post.status%}
     </dt>
     {% if post.description %}
  <dd style="text-align: justify">{{ post.description  | markdownify }}
