@@ -46,6 +46,11 @@ baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79
 # You can get your uid from https://livere.com/insight/myCode (General web site)
 livere_uid: MTAyMC81MDgwMC8yNzI4Mg==
 
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
+  
 # markdown
 markdown: kramdown
   
