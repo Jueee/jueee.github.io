@@ -71,13 +71,12 @@ defaults:
       mathjax: true
       mermaid: false
       highlight: false
-      numbering: true
+      numbering: false  # 文章标题前，是否有数字
       status: Completed
       layout: info
       protected: false
       commentable: true
       rss: true
-      numbering: true
 
 exclude:
  - LICENSE.md

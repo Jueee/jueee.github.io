@@ -99,7 +99,7 @@ body {
   overflow-y: auto;
 	overflow-x: auto;
   font-size: .875rem; /* 15px */
-  background-color: #1a222c;
+  background-color: #34495e;
 	color:white;
   -webkit-transition: all .3s ease-in-out;
           transition: all .3s ease-in-out;
@@ -112,10 +112,7 @@ body {
   }
 }
 
-/* Sidebar content */
-.sidebar a {
-  font-size: 20px
-}					
+/* Sidebar content */			
 .sidebar-item {
   padding: 1rem;
 }

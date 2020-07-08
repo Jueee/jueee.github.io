@@ -95,7 +95,7 @@ body {
   visibility: hidden;
   overflow-y: auto;
   font-size: .875rem; /* 15px */
-  background-color: #1a222c;
+  background-color: #34495e;
 	color:white;
   -webkit-transition: all .3s ease-in-out;
           transition: all .3s ease-in-out;

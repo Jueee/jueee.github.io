@@ -1,7 +1,7 @@
 ---
 title: sample-post
 layout: info
-Edit: 2018-11-14
+Edit: 2020-01-01
 toc: true
 commentable: false
 protected: true
