@@ -46,24 +46,15 @@ baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79
 # You can get your uid from https://livere.com/insight/myCode (General web site)
 livere_uid: MTAyMC81MDgwMC8yNzI4Mg==
 
-theme: jekyll-theme-cayman
-
-gems:
-  - jekyll-mentions
-  
-# markdown
-markdown: kramdown
-  
-kramdown:
-  input: GFM                            # use Github Flavored Markdown !important
-  syntax_highlighter_opts:
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-      start_line: 1
- 
-highlighter: rouge
+highlighter: pygments
+markdown: redcarpet
+redcarpet:
+  extensions:
+    - fenced_code_blocks
+    - no_intra_emphasis
+    - strikethrough
+    - autolink
+    - tables
     
 plugins:
   - jekyll-seo-tag
