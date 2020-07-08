@@ -46,15 +46,14 @@ baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79
 # You can get your uid from https://livere.com/insight/myCode (General web site)
 livere_uid: MTAyMC81MDgwMC8yNzI4Mg==
 
-highlighter: pygments
-markdown: redcarpet
-redcarpet:
-  extensions:
-    - fenced_code_blocks
-    - no_intra_emphasis
-    - strikethrough
-    - autolink
-    - tables
+highlighter: rouge
+# library used for syntax highlighting
+markdown: kramdown
+kramdown:
+ input: GFM
+ auto_ids: true
+ hard_wrap: false
+ syntax_highlighter: rouge
     
 plugins:
   - jekyll-seo-tag
