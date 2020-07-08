@@ -1,5 +1,5 @@
 # Site settings
-title: "个人总结博客"
+title: "个人总结笔记"
 description: "by: Yongqiang Wei"
 baseurl: "" 
 #change the baseurl to "" if you are using it as your user GitHub Pages
@@ -73,6 +73,7 @@ defaults:
       highlight: false
       numbering: true
       status: Completed
+      layout: info
       protected: false
       commentable: true
       rss: true

@@ -1,3 +1,13 @@
+---
+title: sample-post
+layout: info
+Edit: 2018-11-14
+toc: true
+commentable: false
+protected: true
+mathjax: true
+---
+
 # Careful!
 
 Don't use `[]` in YAML front matter. 
@@ -259,4 +269,4 @@ The Foot notes are like this
 
 [^that]: or, naturally, simple paragraphs.
 
-[linkid]: https://yk-liu.github.io	"Optional Title"
+[linkid]: https://yk-liu.github.io	"Optional Title "
