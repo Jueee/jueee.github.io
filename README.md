@@ -4,6 +4,7 @@
 
 | 模块                                                         | 主要用于                                               |
 | ------------------------------------------------------------ | ------------------------------------------------------ |
+| [Liquid](https://liquid.bootcss.com/)                        | 模板语言。                                             |
 | [百度计数](https://tongji.baidu.com/web/10000226881/overview/index) | 网站流量分析平台，收集网站访问数据等多种统计分析服务。 |
 | [不蒜子](http://busuanzi.ibruce.info/)                       | 实时展示博客访问数据。                                 |
 | [来必力（LiveRe）](https://www.livere.com/insight/communite) | 为网站文章加入评论系统，方便与其他人交互。             |

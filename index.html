@@ -9,7 +9,7 @@ layout: home
 	<div class="user-details-tag">
 		<h3>学习笔记</h3>
 		<dl>
-			<table >
+			<table style="width: 100%;">
 			{% for post in site.gitpagelink %}
 			{% assign index_2 = forloop.index | modulo: 2 %}
 				{% if index_2 == 1 %}
@@ -61,9 +61,18 @@ layout: home
 
 <h2>友情链接</h2>
 <dl>
-	{% for post in site.friendlylink limit:3 %}
-	<dd><i class="fab fa-telegram-plane" aria-hidden="true"></i>&nbsp;<a href="{{ post.address }}" target="_blank">{{ post.name }}</a></dd>
+	<table style="width: 100%;">
+	{% for post in site.friendlylink %}
+	{% assign index_2 = forloop.index | modulo: 2 %}
+		{% if index_2 == 1 %}
+			{% if forloop.index == 1 %} <tr> {% else %} </tr><tr> {% endif %}
+		{% endif %}
+		<td><i class="fab fa-telegram-plane" aria-hidden="true" style="margin: 10px 0px;"></i>&nbsp;<a href="{{ post.address }}" target="_blank">{{ post.name }}</a></td>
+		{% if forloop.size == forloop.index %}
+			{% if index_2 == 0 %}</tr>{% else %}<td></td></tr>{% endif %}
+		{% endif %}
 	{% endfor %}
+	</table>
 </dl>
 
 </div >

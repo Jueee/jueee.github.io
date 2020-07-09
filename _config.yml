@@ -44,8 +44,12 @@ gitpagelink:
 friendlylink:
 - name: "Liquid 模板语言"
   address: https://liquid.bootcss.com/
-- name: "kubernetes 相关学习笔记"
-  address: https://jueee.github.io/kubernetes-doc/
+- name: "百度统计"
+  address: https://tongji.baidu.com/web/10000226881/overview/index
+- name: "LiveRe评论系统"
+  address: https://www.livere.com/introduce
+- name: "百度搜索资源平台"
+  address: https://ziyuan.baidu.com/dashboard/index
 
 baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79
 # Support for LiveRe comments system.
