@@ -15,7 +15,7 @@ layout: home
 				{% if index_2 == 1 %}
 					{% if forloop.index == 1 %} <tr> {% else %} </tr><tr> {% endif %}
 				{% endif %}
-				<td><dd><i class="fab fa-telegram-plane" aria-hidden="true"></i>&nbsp;<a href="{{ post.address }}" target="_blank">{{ post.name }}</a></dd></td>
+				<td><i class="fab fa-telegram-plane" aria-hidden="true" style="margin: 10px 0px;"></i>&nbsp;<a href="{{ post.address }}" target="_blank">{{ post.name }}</a></td>
 				{% if forloop.size == forloop.index %}
 					{% if index_2 == 0 %}</tr>{% else %}<td></td></tr>{% endif %}
 				{% endif %}
@@ -59,9 +59,9 @@ layout: home
 	<p>... <a href="/blog">查看所有文章</a> </p>
 </dl>
 
-<h2>相关链接</h2>
+<h2>友情链接</h2>
 <dl>
-	{% for post in site.gitpagelink limit:3 %}
+	{% for post in site.friendlylink limit:3 %}
 	<dd><i class="fab fa-telegram-plane" aria-hidden="true"></i>&nbsp;<a href="{{ post.address }}" target="_blank">{{ post.name }}</a></dd>
 	{% endfor %}
 </dl>

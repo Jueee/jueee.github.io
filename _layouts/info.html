@@ -16,6 +16,7 @@
       {% endif %}
       <!-- link to responsive post.css -->
       <link rel="stylesheet" href="{{site.url}}{{site.baseurl}}/assets/css/post.css">
+      <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
    </head>
    <body>
       <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" checked>
@@ -42,13 +43,21 @@
                      {{page.title}}
                   </h1>
                </div>
+               <div>
+                  <p>
+                     <code>时间</code>: {{ page.date | date: '%Y-%m-%d' }} &nbsp;
+                     <code>分类</code>: <a href="{{site.url}}{{site.baseurl}}/blog/categories#{{ page.categories[0] | downcase }}" style="text-decoration: none;" >{{ page.categories}}</a> &nbsp;
+                     <span id="busuanzi_container_page_pv"><code>浏览量</code>：<span id="busuanzi_value_page_pv"></span></span> &nbsp;
+                  </p>
+               </div>
                <div id="info">
                   <div id="date">
                      {% if page.edit %}
-                     <p><code>Edited</code>:  &nbsp; {{ page.edit | date: '%Y-%m-%d' }} </p>
+                     <p><code>Edited</code>:  &nbsp; {{ page.edit }} </p>
                      {% endif %}
                   </div>
                </div>
+               <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=2)" width="100%" color=#987cb9 SIZE=10>
                <div id="content-container" style="text-align:justify">
                   {{ content }}			
                </div>
@@ -76,7 +85,6 @@
          </div>
       </div>
       <label for="sidebar-checkbox" class="sidebar-toggle"></label>
-      {% include footer.html %} 
    </body>
    {% if page.mermaid == true %}
    {% include markdown-enhancements/mermaid.html %}

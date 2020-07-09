@@ -1,6 +1,12 @@
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <footer>
-   <p style="margin-left: auto; margin-right: auto;"> 
-      &copy; {{ site.posts[-1].date | date: '%Y' }}-{{ site.time | date: '%Y' }}, {{ site.author.name }}.{% if page.edit %}<a href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io/commits/master/{{ page.path }}" > Version history</a>.{% endif %}  <a href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io/blob/master/LICENSE.md" target="_blank">许可文件</a>. <a href="{{site.url}}{{site.baseurl}}/info/disclaimer" target="_blank">免责声明</a>. 
+   <p style="margin-left: auto; margin-right: auto;font-size:0.8em;vertical-align: middle;"> 
+      &copy; {{ site.posts[-1].date | date: '%Y' }}-{{ site.time | date: '%Y' }}, {{ site.author.name }}.
+      {% if page.edit %}<a href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io/commits/master/{{ page.path }}" > Version history</a>.{% endif %}  
+      <span id="busuanzi_container_site_pv">总访问 <span id="busuanzi_value_site_pv"></span> 次.</span>
+      <span id="busuanzi_container_site_uv">总访客 <span id="busuanzi_value_site_uv"></span> 人.</span>
+      <a href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io/blob/master/LICENSE.md" target="_blank">许可文件</a>. 
+      <a href="{{site.url}}{{site.baseurl}}/info/disclaimer" target="_blank">免责声明</a>. 
    </p>
 	 {% if include.analytics == false %}
 	 {% else %}

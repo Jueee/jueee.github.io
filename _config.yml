@@ -41,6 +41,12 @@ gitpagelink:
 - name: "Java 8 函数式编程学习笔记"
   address: https://jueee.github.io/Java8Lambdas/
 
+friendlylink:
+- name: "Liquid 模板语言"
+  address: https://liquid.bootcss.com/
+- name: "kubernetes 相关学习笔记"
+  address: https://jueee.github.io/kubernetes-doc/
+
 baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)

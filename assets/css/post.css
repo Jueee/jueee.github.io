@@ -93,8 +93,8 @@ body {
   position: fixed;
   top: 0;
   bottom: 0;
-  left: -17rem;
-  width: 17rem;
+  left: -15rem;
+  width: 15rem;
   visibility: hidden;
   overflow-y: auto;
 	overflow-x: auto;
@@ -241,9 +241,9 @@ a.sidebar-nav-item:focus {
 #sidebar-checkbox:checked ~ .sidebar,
 #sidebar-checkbox:checked ~ .wrap,
 #sidebar-checkbox:checked ~ .sidebar-toggle {
-  -webkit-transform: translateX(17rem);
-      -ms-transform: translateX(17rem);
-          transform: translateX(17rem);
+  -webkit-transform: translateX(15rem);
+      -ms-transform: translateX(15rem);
+          transform: translateX(15rem);
 }
 @media only screen and (max-width: 450px) {
 #sidebar-checkbox:checked ~ .sidebar,
