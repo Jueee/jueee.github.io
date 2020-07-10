@@ -19,6 +19,7 @@
       <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
    </head>
    <body>
+      <script type="text/javascript" color="#34495e" opacity='0.3' zIndex="-2" count="149" src="{{site.url}}{{site.baseurl}}/assets/js/canvas-nest.min.js"></script>
       <input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox" checked>
       <!-- this is side bar -->
       <div class="sidebar" id="sidebar">
@@ -47,7 +48,7 @@
                   <p>
                      <code>时间</code>: {{ page.date | date: '%Y-%m-%d' }} &nbsp;
                      <code>分类</code>: <a href="{{site.url}}{{site.baseurl}}/blog/categories#{{ page.categories[0] | downcase }}" style="text-decoration: none;" >{{ page.categories}}</a> &nbsp;
-                     <span id="busuanzi_container_page_pv"><code>浏览量</code>：<span id="busuanzi_value_page_pv"></span></span> &nbsp;
+                     <code>浏览量</code>：<span id="busuanzi_value_page_pv"></span> &nbsp;
                   </p>
                </div>
                <div id="info">

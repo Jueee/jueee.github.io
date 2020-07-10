@@ -9,6 +9,7 @@
 | [不蒜子](http://busuanzi.ibruce.info/)                       | 实时展示博客访问数据。                                 |
 | [来必力（LiveRe）](https://www.livere.com/insight/communite) | 为网站文章加入评论系统，方便与其他人交互。             |
 | [Particle.js](https://github.com/VincentGarreau/particles.js) | 主页创建粒子。                                         |
+| [canvas-nest](https://github.com/hustcc/canvas-nest.js)      | 博客背景粒子。                                         |
 | [Search](https://github.com/christian-fei/Simple-Jekyll-Search) | 博客索引，标签索引                                     |
 | [Side bar](https://github.com/poole/lanyon)                  | 侧边栏                                                 |
 | [Table of content](https://github.com/allejo/jekyll-toc)     | 博客目录索引                                           |
