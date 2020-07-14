@@ -47,7 +47,10 @@
                <div>
                   <p>
                      <code>时间</code>: {{ page.date | date: '%Y-%m-%d' }} &nbsp;
-                     <code>分类</code>: <a href="{{site.url}}{{site.baseurl}}/blog/categories#{{ page.categories[0] | downcase }}" style="text-decoration: none;" >{{ page.categories}}</a> &nbsp;
+                     <code>分类</code>: 
+                     {% for page_categories in page.categories %}
+                        <a href="{{site.url}}{{site.baseurl}}/blog/categories#{{ page_categories | downcase }}" style="text-decoration: none;" >{{ page_categories }}</a> &nbsp;
+                     {% endfor %}
                      <code>浏览量</code>：<span id="busuanzi_value_page_pv"></span> &nbsp;
                   </p>
                </div>
