@@ -2,10 +2,11 @@
 layout: home
 ---
 <div class="user-details">
+	<!--
 	<div class="user-details-home">
-		<h2> 欢迎来到我的小世界~~ </h2>
+		<h3>学习笔记</h3>
 		<p style="text-align: justify;"> 欲买桂花同载酒，终不似，少年游。 </p>
-	</div>
+	</div>-->
 	<div class="user-details-tag">
 		<h3>学习笔记</h3>
 		<dl>
@@ -51,7 +52,7 @@ layout: home
 	  </div>
 </div>
 <div class="permlinks">
-<h2>近期文章</h2>
+<h3>近期文章</h3>
 <dl>
 	{% for post in site.posts limit:5 %}
 	<dt><code>{{ post.date | date: "%Y-%m-%d" }} </code><i class="fas fa-angle-double-right" aria-hidden="true"></i><a href="{{ post.url }}">{{ post.title }}</a> &nbsp;{% include status-indicator.html status=post.status%}
@@ -63,7 +64,7 @@ layout: home
 	<p>... <a href="/blog">查看所有文章</a> </p>
 </dl>
 
-<h2>友情链接</h2>
+<h3>友情链接</h3>
 <dl>
 	<table style="width: 100%;">
 	{% for post in site.friendlylink %}
