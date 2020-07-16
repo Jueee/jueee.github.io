@@ -114,6 +114,18 @@ redefine success, size: 1
 
 这说明热更新执行确实成功了。
 
+### 结合 jad/mc 命令使用
+
+```
+jad --source-only com.example.demo.arthas.user.UserController > /tmp/UserController.java
+mc /tmp/UserController.java -d /tmp
+redefine /tmp/com/example/demo/arthas/user/UserController.class
+```
+
+- jad命令反编译，然后可以用其它编译器，比如vim来修改源码
+- mc命令来内存编译修改过的代码
+- 用redefine命令加载新的字节码
+
 ### 热更新注意事项
 
 #### redefine 特别说明
