@@ -278,9 +278,6 @@ a.sidebar-nav-item:focus {
     line-height: 1.2;
 }
 
-.github-fork-ribbon:before {
-  background-color: #333;
-}
 .forkme{
   display: none;
 }

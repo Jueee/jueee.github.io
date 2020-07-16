@@ -4,7 +4,7 @@ description: "by: Yongqiang Wei"
 baseurl: "" 
 #change the baseurl to "" if you are using it as your user GitHub Pages
 url: "https://Jueee.github.io"  
-
+images_base: "https://github.com/Jueee/jueee.github.io/tree/master/assets/images"
 
 # GitHub User settings
 username: Wei Yongqiang
