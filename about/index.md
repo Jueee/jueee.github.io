@@ -1,6 +1,6 @@
 ---
 title: 关于
-layout: info
+layout: displayindex
 Edit: 2018-11-14
 toc: false
 commentable: false

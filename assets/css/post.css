@@ -273,3 +273,14 @@ a.sidebar-nav-item:focus {
   margin-right: 15%;
 }
 
+.github-fork-ribbon:before {
+  background-color: #333;
+}
+.forkme{
+  display: none;
+}
+@media (min-width: 1350px) {
+  .forkme{
+    display: inline;
+  }
+}

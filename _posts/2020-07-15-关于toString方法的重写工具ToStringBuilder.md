@@ -5,13 +5,13 @@ commentable: true
 Edit: 2020-07-06
 mathjax: true
 mermaid: true
-tags: Java Class Apache
-categories: Java
+tags: JavaClass Apache
+categories: JavaClass
 description: apache的commons-lang3的工具包里有一个ToStringBuilder类，这样在打日志的时候可以方便的打印出类实例中的各属性的值。
 
 ---
 
-apache 的 `commons-lang3` 的工具包里有一个 `ToStringBuilder` 类，这样在打日志的时候可以方便的打印出类实例中的各属性的值。
+Apache 的 `commons-lang3` 的工具包里有一个 `ToStringBuilder` 类，这样在打日志的时候可以方便的打印出类实例中的各属性的值。
 
 ### 依赖引入
 
