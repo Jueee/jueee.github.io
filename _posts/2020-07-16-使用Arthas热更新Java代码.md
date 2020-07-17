@@ -67,7 +67,7 @@ public class RedefineSuccess {
     }
 
     private static void printFlag() {
-        boolean flag = false;
+        boolean flag = true;
         if (flag) {
             System.out.println("flag is true.");
         } else {
