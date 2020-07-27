@@ -37,11 +37,21 @@ description: 在 GitLab 的 CI/CD 流程。
 
 ### 注册 runner
 
+#### Linux
+
+```
+k exec -it runner-gitlab-runner-74cf6f794b-22vln gitlab-runner register -n gitlab-managed-apps
+```
+
+#### Windows
+
 进入 `D:\GitLab-Runner` 目录执行命令：
 
 ```yml
 ./gitlab-runner.exe register
 ```
+
+#### 进行注册
 
 执行完后会进入一个交互式的配置流程，你需要回答以下问题：
 
