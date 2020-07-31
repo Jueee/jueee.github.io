@@ -1,5 +1,7 @@
 # 关于
 
+![](https://img.shields.io/badge/build-success-green)![](https://img.shields.io/badge/version-1.0-orange)![](https://img.shields.io/badge/author-Jueee-blue)
+
 本网站 （资源代码 [点击](https://github.com/Jueee/jueee.github.io)）用到了以下这些资源:
 
 | 模块                                                         | 主要用于                                               |
