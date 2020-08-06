@@ -2,9 +2,11 @@ import os,re,shutil
 import fileinput
 
 THIS_MONTH="2020-08"
+YEAR_NUM=THIS_MONTH.split("-")[0]
+MONTH_NUM=THIS_MONTH.split("-")[1]
 BLOG_PATH = os.path.dirname(__file__)+"/../../_posts"
 OLD_IMAGES_PATH = BLOG_PATH+"/"+"assets/"
-NEW_IMAGES_PATH= os.path.dirname(__file__)+"/../images/"+THIS_MONTH.split("-")[0]+"/"+THIS_MONTH.split("-")[1]+"/"
+NEW_IMAGES_PATH= os.path.dirname(__file__)+"/../images/"+YEAR_NUM+"/"+MONTH_NUM+"/"
 
 def getBlogAddress():
     blogs = []
@@ -38,7 +40,7 @@ def replaceFile(file,old_str,new_str):
 
 def replaceBolgs(blogs):
     for blog in blogs:
-        replaceFile(blog,"assets/1","/assets/images/2020/07/1")
+        replaceFile(blog,"assets/1","/assets/images/"+YEAR_NUM+"/"+MONTH_NUM+"/1")
 
 def moveImages():
     if not os.path.exists(NEW_IMAGES_PATH):

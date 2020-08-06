@@ -11,7 +11,7 @@ description: Arthas是阿里巴巴开源的Java应用诊断利器，本文介绍
 
 ---
 
-### `jad`命令介绍
+### jad 命令介绍
 
 jad 即 java decompiler，把 JVM 已加载类的字节码反编译成Java代码。
 
@@ -70,7 +70,7 @@ public interface ClassFileTransformer {
 
 在Arthas `jad`命令里，通过调用`cfr`来完成反编译。
 
-### `jad`命令的缺陷
+### jad 命令的缺陷
 
 99%的情况下，`jad`命令dump下来的字节码是准确的，除了一些极端情况。
 
