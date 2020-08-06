@@ -104,5 +104,15 @@ Next，选择 VMware虚拟机的 vmdk 文件：
 
 ![1596176189357](/assets/images/2020/07/1596176189357.png)
 
+### debian 设置网络
 
+问题描述：
+
+配置完/etc/networking/interfaces后，使用 /etc/init.d/networking restart 出现启动失败，根据提示输入systemctl status networking.service 发现不认识/etc/networking/interfaces中配置的虚拟网卡(或者是因为虚拟机的重新移动导致的设备不匹配问题等)
+
+解决方法：
+
+首先可以查看etc/udev/rules.d/70-persistent-net.rules 是否存在，如果存在，则删除 rm etc/udev/rules.d/70-persistent-net.rules，重启即可
+
+如果etc/udev/rules.d/70-persistent-net.rules 不存在，则ifconfig -a查看全部网卡，修改/etc/networking/interfaces中的网卡名和ifconfig -a命令显示的网卡名匹配，重启网络即可。
 
