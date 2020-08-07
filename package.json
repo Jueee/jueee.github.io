@@ -28,6 +28,7 @@
   "homepage": "https://theme-next.js.org",
   "dependencies": {
     "hexo": "5.0.0",
+    "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "1.0.0",
     "hexo-generator-feed": "2.2.0",
     "hexo-generator-index": "hexojs/hexo-generator-index",

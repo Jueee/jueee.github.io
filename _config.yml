@@ -89,3 +89,9 @@ sitemap:
     path: sitemap.xml
 baidusitemap:
     path: baidusitemap.xml
+    
+deploy:
+  type: git
+  repo:
+    github: https://github.com/Jueee/jueee.github.io.git
+  branch: master
