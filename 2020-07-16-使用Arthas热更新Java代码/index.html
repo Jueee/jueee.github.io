@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="5AUIVYTbHIAuz-eQtxSfZbWW5eg9_EVZMSQycIuXrG0">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="所谓的 Java 热更新是指在不重启项目的情况下实现代码的更新与替换。使用它可以实现不停机更新 Java 程序，尤其是对那些启动非常耗时的 Java 项目来说，更是效果显著。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Arthas 热更新 Java 代码">
+<meta property="og:url" content="https://jueee.github.io/2020-07-16-%E4%BD%BF%E7%94%A8Arthas%E7%83%AD%E6%9B%B4%E6%96%B0Java%E4%BB%A3%E7%A0%81/index.html">
+<meta property="og:site_name" content="Jueee的专栏">
+<meta property="og:description" content="所谓的 Java 热更新是指在不重启项目的情况下实现代码的更新与替换。使用它可以实现不停机更新 Java 程序，尤其是对那些启动非常耗时的 Java 项目来说，更是效果显著。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jueee.github.io/images/2020/07/1594883244673.png">
+<meta property="article:published_time" content="2020-07-16T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-08-07T04:27:40.804Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java诊断">
+<meta property="article:tag" content="Arthas">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jueee.github.io/images/2020/07/1594883244673.png">
+
+<link rel="canonical" href="https://jueee.github.io/2020-07-16-%E4%BD%BF%E7%94%A8Arthas%E7%83%AD%E6%9B%B4%E6%96%B0Java%E4%BB%A3%E7%A0%81/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>使用 Arthas 热更新 Java 代码 | Jueee的专栏</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jueee的专栏</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
+
+  </li>
+        
+            
+  <li class="menu-item menu-item-docs">
+
+    <a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Docs</a>
+
+  </li>
+
+
+      
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arthas-%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">Arthas 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Arthas%E8%B5%84%E6%96%99"><span class="nav-number">1.1.</span> <span class="nav-text">Arthas资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-Arthas"><span class="nav-number">1.2.</span> <span class="nav-text">下载 Arthas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-Arthas"><span class="nav-number">1.3.</span> <span class="nav-text">启动 Arthas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows-%E8%BF%90%E8%A1%8C"><span class="nav-number">1.4.</span> <span class="nav-text">Windows 运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E6%9B%B4%E6%96%B0-Java-%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">热更新 Java 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%AD%97%E8%8A%82%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">编译字节码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E7%83%AD%E6%9B%B4%E6%96%B0"><span class="nav-number">2.2.</span> <span class="nav-text">执行热更新</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E5%90%88-jad-mc-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">结合 jad&#x2F;mc 命令使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E6%9B%B4%E6%96%B0%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.</span> <span class="nav-text">热更新注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#redefine-%E7%89%B9%E5%88%AB%E8%AF%B4%E6%98%8E"><span class="nav-number">4.1.</span> <span class="nav-text">redefine 特别说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%99%90%E5%88%B6"><span class="nav-number">4.2.</span> <span class="nav-text">条件限制</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/logo.svg">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
+  </div>
+
+
+<div class="cc-license motion-element" itemprop="sponsor">
+  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
+</div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020-07-16-%E4%BD%BF%E7%94%A8Arthas%E7%83%AD%E6%9B%B4%E6%96%B0Java%E4%BB%A3%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/logo.svg">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jueee的专栏">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 Arthas 热更新 Java 代码<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2p1ZWVlLmdpdGh1Yi5pby9lZGl0L21hc3Rlci9zb3VyY2UvX3Bvc3RzLzIwMjAtMDctMTYt5L2/55SoQXJ0aGFz54Ot5pu05pawSmF2YeS7o+eggS5tZA==" title="编辑"><i class="fa fa-pen-nib"></i></span>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-16 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-16T00:00:00Z">2020-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/Java%E8%AF%8A%E6%96%AD/" itemprop="url" rel="index"><span itemprop="name">Java诊断</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2020-07-16-%E4%BD%BF%E7%94%A8Arthas%E7%83%AD%E6%9B%B4%E6%96%B0Java%E4%BB%A3%E7%A0%81/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020-07-16-使用Arthas热更新Java代码/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">所谓的 Java 热更新是指在不重启项目的情况下实现代码的更新与替换。使用它可以实现不停机更新 Java 程序，尤其是对那些启动非常耗时的 Java 项目来说，更是效果显著。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Arthas（阿尔萨斯）是 Alibaba 开源的一款 Java 诊断工具，使用它我们可以监控和排查 Java 程序，然而它还提供了非常实用的 Java 热更新功能。</p>
+<p>所谓的 Java 热更新是指在不重启项目的情况下实现代码的更新与替换。使用它可以实现不停机更新 Java 程序，尤其是对那些启动非常耗时的 Java 项目来说，更是效果显著。</p>
+<h3 id="Arthas-使用"><a href="#Arthas-使用" class="headerlink" title="Arthas 使用"></a>Arthas 使用</h3><h4 id="Arthas资料"><a href="#Arthas资料" class="headerlink" title="Arthas资料"></a>Arthas资料</h4><p>Github 地址：</p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFz"> https://github.com/alibaba/arthas<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>Arthas<br>用户文档：</p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9hbGliYWJhLmdpdGh1Yi5pby9hcnRoYXMv">https://alibaba.github.io/arthas/<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h4 id="下载-Arthas"><a href="#下载-Arthas" class="headerlink" title="下载 Arthas"></a>下载 Arthas</h4><p>首先，我们先把 Arthas 的 Jar 包下载到本地，它的下载地址是：</p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9hbGliYWJhLmdpdGh1Yi5pby9hcnRoYXMvYXJ0aGFzLWJvb3QuamFy">https://alibaba.github.io/arthas/arthas-boot.jar<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h4 id="启动-Arthas"><a href="#启动-Arthas" class="headerlink" title="启动 Arthas"></a>启动 Arthas</h4><p>我们只需要使用普通的 jar 包启动命令：<code>java -jar arthas-boot.jar</code> 来启动 Arthas 即可。</p>
+<h4 id="Windows-运行"><a href="#Windows-运行" class="headerlink" title="Windows 运行"></a>Windows 运行</h4><p>Windows 需要以管理员方式运行，bat 脚本如下：</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">%<span class="number">1</span> mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;<span class="built_in">cmd</span>.exe&quot;,&quot;/c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,<span class="number">1</span>)(window.close)&amp;&amp;<span class="keyword">exit</span></span><br><span class="line"><span class="built_in">cd</span> /d &quot;%~dp0&quot;</span><br><span class="line">java -jar arthas-boot.jar</span><br></pre></td></tr></table></figure>
+
+<h3 id="热更新-Java-代码"><a href="#热更新-Java-代码" class="headerlink" title="热更新 Java 代码"></a>热更新 Java 代码</h3><p>假如我们原来的代码是这样的：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> sample.redefine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedefineSuccess</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">            printFlag();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printFlag</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;flag is true.&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;flag is false.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们现在想要把 <code>flag</code> 变量改为 <code>false</code> 就可以这样来做：</p>
+<ol>
+<li>使用 Arthas 的内存编译工具将新的 Java 代码编译为字节码；</li>
+<li>使用 Arthas 的 <code>redefine</code> 命令实现热更新。</li>
+</ol>
+<h4 id="编译字节码"><a href="#编译字节码" class="headerlink" title="编译字节码"></a>编译字节码</h4><p>首先，我们需要将新的 Java 代码编译为字节码，我们可以通过 Arthas 提供的 <code>mc</code> 命令实现，<code>mc</code> 是 Memory Compiler（内存编译器）的缩写。</p>
+<p>实现示例如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">[arthas@<span class="number">10200</span>]$ mc C:/arthas-demo/src/main/java/sample/redefine/RedefineSuccess.java -d  E:</span><br><span class="line">Memory compiler output:</span><br><span class="line">E:\sample\redefine\RedefineSuccess.class</span><br><span class="line">Affect(row-cnt:<span class="number">1</span>) cost in <span class="number">500</span> ms.</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>-d</code> 表示编译文件的存放位置。</p>
+<blockquote>
+<p>小贴士：我们也可以使用 javac App.java 生成的字节码，它与此步骤执行的结果相同。</p>
+</blockquote>
+<h4 id="执行热更新"><a href="#执行热更新" class="headerlink" title="执行热更新"></a>执行热更新</h4><p>有了字节码文件之后，我们就可以使用 <code>redefine</code> 命令来实现热更新了，实现示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[arthas@10200]$ redefine e:&#x2F;sample&#x2F;redefine&#x2F;RedefineSuccess.class</span><br><span class="line">redefine success, size: 1</span><br></pre></td></tr></table></figure>
+
+<p>从上述结果可以看出，热更新执行成功，此时我们去控制台查看执行结果，如下图所示：</p>
+<p><img src="/images/2020/07/1594883244673.png" alt="1594883244673" loading="lazy"></p>
+<p>这说明热更新执行确实成功了。</p>
+<h3 id="结合-jad-mc-命令使用"><a href="#结合-jad-mc-命令使用" class="headerlink" title="结合 jad/mc 命令使用"></a>结合 jad/mc 命令使用</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jad --source-only com.example.demo.arthas.user.UserController &gt; &#x2F;tmp&#x2F;UserController.java</span><br><span class="line">mc &#x2F;tmp&#x2F;UserController.java -d &#x2F;tmp</span><br><span class="line">redefine &#x2F;tmp&#x2F;com&#x2F;example&#x2F;demo&#x2F;arthas&#x2F;user&#x2F;UserController.class</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>jad命令反编译，然后可以用其它编译器，比如vim来修改源码</li>
+<li>mc命令来内存编译修改过的代码</li>
+<li>用redefine命令加载新的字节码</li>
+</ul>
+<h3 id="热更新注意事项"><a href="#热更新注意事项" class="headerlink" title="热更新注意事项"></a>热更新注意事项</h3><h4 id="redefine-特别说明"><a href="#redefine-特别说明" class="headerlink" title="redefine 特别说明"></a>redefine 特别说明</h4><p><code>redefine</code>命令和<code>jad</code>/<code>watch</code>/<code>trace</code>/<code>monitor</code>/<code>tt</code>等命令会冲突。</p>
+<p>执行完<code>redefine</code>之后，如果再执行上面提到的命令，则会把<code>redefine</code>的字节码重置。 </p>
+<p>原因是jdk本身redefine和Retransform是不同的机制，同时使用两种机制来更新字节码，只有最后修改的会生效。</p>
+<h4 id="条件限制"><a href="#条件限制" class="headerlink" title="条件限制"></a>条件限制</h4><p>使用热更新功能有一些条件限制，我们只能用它来修改方法内部的一些业务代码，如果我们出现了以下任意一种情况，那么热更新就会执行失败：</p>
+<ol>
+<li>增加类属性（类字段）；</li>
+<li>增加或删除方法；</li>
+<li>替换正在运行的方法。</li>
+</ol>
+<p>最后一条我们需要单独说明一下，假如我们把上面的示例改为如下代码：</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> sample.redefine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedefineError</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">3</span>);</span><br><span class="line">            <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;flag is true.&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;flag is false.&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>那么此时我们再进行热更新操作修改 <code>flag</code> 的值，那么就会执行失败，因为我们替换的是正在运行中的方法，而我们正常示例中的代码之所以能成功，是因为我们在 <code>while</code> 无线循环中调用了另一个方法，而那个方法是被间歇性使用的，因此可以替换成功。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java%E8%AF%8A%E6%96%AD/" rel="tag"># Java诊断</a>
+              <a href="/tags/Arthas/" rel="tag"># Arthas</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020-07-14-%E4%BD%BF%E7%94%A8LFTP%E8%BF%9B%E8%A1%8CSFTP%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/" rel="prev" title="使用LFTP进行SFTP文件上传与下载">
+      <i class="fa fa-chevron-left"></i> 使用LFTP进行SFTP文件上传与下载
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020-07-24-%E4%BD%BF%E7%94%A8GitBook%E8%BF%9B%E8%A1%8C%E5%9B%A2%E9%98%9F%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C/" rel="next" title="使用 GitBook 进行团队文档协作">
+      使用 GitBook 进行团队文档协作 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2014 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div><div class="footer-custom">
+Theme source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLXRoZW1lLW5leHQ=">here</span><br>
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/next-theme/pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+    <div class="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://theme-next.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://jueee.github.io/2020-07-16-%E4%BD%BF%E7%94%A8Arthas%E7%83%AD%E6%9B%B4%E6%96%B0Java%E4%BB%A3%E7%A0%81/";
+    this.page.identifier = "2020-07-16-使用Arthas热更新Java代码/";
+    this.page.title = "使用 Arthas 热更新 Java 代码";
+    };
+  NexT.utils.loadComments('#disqus_thread', () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://theme-next.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+</body>
+</html>
