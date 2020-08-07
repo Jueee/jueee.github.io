@@ -1,5 +1,5 @@
-.jekyll-cache
-_site
-.sass-cache
-node_modules
-.DS_STORE
+yarn.lock
+package-lock.json
+node_modules/
+db.json
+public/
