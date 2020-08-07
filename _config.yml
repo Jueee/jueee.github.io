@@ -1,96 +1,91 @@
-# Site settings
-title: "个人总结笔记"
-description: "by: Yongqiang Wei"
-baseurl: "" 
-#change the baseurl to "" if you are using it as your user GitHub Pages
-url: "https://Jueee.github.io"  
+#################################################################
+###################### Hexo Configuration #######################
+#################################################################
 
-# GitHub User settings
-username: Wei Yongqiang
-github_username: Jueee
-user_description: user_description
-user_title: 每天进步一点点~~
-email: hellojue@foxmail.com
+# Site
+title: Jueee的专栏
+keywords: "Hexo, NexT"
+language: zh-CN
+timezone: UTC
 
-# Blog Author settings
-author:
-  name: "Yongqiang Wei"           
-  picture:        
-  email: "hellojue@foxmail.com"           
-  description: "努力跟上时代步伐的90后程序猿。"    
-  twitter:
-  facebook:
-  github: "https://github.com/Jueee"         
-  linkedin:
-  clustrmap:      
+# URL
+url: https://jueee.github.io/
+root: /
+permalink: :title/
+permalink_defaults:
 
-gitpagelink:
-- name: "docker 相关学习笔记"
-  address: https://jueee.github.io/docker-doc/
-- name: "kubernetes 相关学习笔记"
-  address: https://jueee.github.io/kubernetes-doc/
-- name: "设计模式相关学习笔记"
-  address: https://jueee.github.io/design-patterns/
-- name: "Effective Java 学习笔记"
-  address: https://jueee.github.io/effective-Java/
-- name: "Java 并发编程学习笔记"
-  address: https://jueee.github.io/ConcurrencyWithJava/
-- name: "Java 测试驱动开发学习笔记"
-  address: https://jueee.github.io/JavaTestDrivenDev/
-- name: "Java 8 函数式编程学习笔记"
-  address: https://jueee.github.io/Java8Lambdas/
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives/
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+  - 'robots.txt'
+  - animate/*
+  - highlight/*
 
-friendlylink:
-- name: "Liquid 模板语言"
-  address: https://liquid.bootcss.com/
-- name: "百度统计"
-  address: https://tongji.baidu.com/web/10000226881/overview/index
-- name: "LiveRe评论系统"
-  address: https://www.livere.com/introduce
-- name: "百度搜索资源平台"
-  address: https://ziyuan.baidu.com/dashboard/index
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link:
+  enable: true # Open external links in new tab
+  field: site # Apply to the whole site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: true
+  line_number: false
+  auto_detect: false
+  tab_replace: ''
 
-baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79
-# Support for LiveRe comments system.
-# You can get your uid from https://livere.com/insight/myCode (General web site)
-livere_uid: MTAyMC81MDgwMC8yNzI4Mg==
+# Home page setting
+index_generator:
+  per_page: 4
+  order_by: -date
 
-highlighter: rouge
-# library used for syntax highlighting
-markdown: kramdown
-kramdown:
- input: GFM
- auto_ids: true
- hard_wrap: false
- syntax_highlighter: rouge
-    
-plugins:
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  
-permalink: /:year/:month/:title/
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
 
-defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      toc: true
-      mathjax: true
-      mermaid: false
-      highlight: false
-      numbering: false  # 文章标题前，是否有数字
-      status: Completed
-      layout: info
-      protected: false
-      commentable: true
-      rss: true
+# Date / Time format
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
 
-exclude:
- - LICENSE.md
- - README.md
- - "*.cdf"
- - "*.nb"
- - "*.bk"
- - "*.draft.md"
+# Pagination
+per_page: 5
+pagination_dir: page
+
+# Extensions
+theme: next
+
+archive_generator:
+  per_page: 12
+  yearly: true
+  monthly: true
+  daily: false
+
+server:
+  port: 4000
+
+marked:
+  # For preserve original quotes in code blocks.
+  smartypants: false
+  lazyload: true
+
+search:
+  path: search.json
+  field: all
+# 自动生成sitemap
+sitemap:
+    path: sitemap.xml
+baidusitemap:
+    path: baidusitemap.xml
