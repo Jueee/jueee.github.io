@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jueee.github.io/"/>
-  <updated>2020-08-07T06:34:57.435Z</updated>
+  <updated>2020-08-07T08:17:35.123Z</updated>
   <id>https://jueee.github.io/</id>
   
   <author>
@@ -17,13 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>搭建hexo+github+hexo-theme-next主题博客</title>
-    <link href="https://jueee.github.io/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+hexo-theme-next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/"/>
-    <id>https://jueee.github.io/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+hexo-theme-next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/</id>
-    <published>2020-08-07T00:00:00.000Z</published>
-    <updated>2020-08-07T06:34:57.435Z</updated>
+    <title>hexo博客个性化设置</title>
+    <link href="https://jueee.github.io/2020-08-08-hexo%E5%8D%9A%E5%AE%A2%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE/"/>
+    <id>https://jueee.github.io/2020-08-08-hexo%E5%8D%9A%E5%AE%A2%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE/</id>
+    <published>2020-08-08T00:00:00.000Z</published>
+    <updated>2020-08-07T08:17:35.123Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="博客介绍"><a href="#博客介绍" class="headerlink" title="博客介绍"></a>博客介绍</h3><p>博客预览地址：<span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p><h3 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvdGhlbWUtbmV4dC1kb2Nz">https://github.com/next-theme/theme-next-docs<i class="fa fa-external-link-alt"></i></span></p><p>在本地安装：</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/theme-next-docs</span><br><span class="line">cd theme-next-docs</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure><p>生成：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx hexo generate</span><br></pre></td></tr></table></figure><p>运行：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx hexo server</span><br></pre></td></tr></table></figure><h3 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">https://github.com/next-theme/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p><h3 id="博客设置"><a href="#博客设置" class="headerlink" title="博客设置"></a>博客设置</h3><h4 id="创建categories"><a href="#创建categories" class="headerlink" title="创建categories"></a>创建categories</h4><ol><li><p><strong>新建一个页面，命名为categories。命令如下：</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx hexo new page categories</span><br></pre></td></tr></table></figure><p>在myBlog/source下会新生成一个新的文件夹categories<br>，在该文件夹下会有一个index.md文件。</p></li><li><p><strong>编辑categories文件夹下的index.md</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2020-08-07 10:29:47</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li><li><p><strong>在菜单中添加链接。</strong></p><p>编辑主题的 <code>_config.next.yml</code>，将menu中的 categories: /categories 注释去掉，如下:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">categories: &#x2F;categories&#x2F; || fa fa-fw fa-th</span><br></pre></td></tr></table></figure></li></ol><h4 id="添加sitemap"><a href="#添加sitemap" class="headerlink" title="添加sitemap"></a>添加sitemap</h4><p>站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知Google和其他搜索引擎。Googlebot等搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。</p><ol><li><p>安装插件：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure></li><li><p>在博客目录的_config.yml中添加如下代码：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 自动生成sitemap</span><br><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br><span class="line">baidusitemap:</span><br><span class="line">    path: baidusitemap.xml</span><br></pre></td></tr></table></figure></li><li><p>编译博客</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx hexo generate</span><br></pre></td></tr></table></figure></li><li><p>在你的博客根目录的public下面发现生成了sitemap.xml以及baidusitemap.xml就表示成功了。</p></li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="创建categories"><a href="#创建categories" class="headerlink" title="创建categories"></a>创建categories</h3><ol><li><p><strong>新建一个页面，命名为categories。命令如下：</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx hexo new page categories</span><br></pre></td></tr></table></figure><p>在myBlog/source下会新生成一个新的文件夹categories<br>，在该文件夹下会有一个index.md文件。</p></li><li><p><strong>编辑categories文件夹下的index.md</strong></p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2020-08-07 10:29:47</span><br><span class="line">type: &quot;categories&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure></li><li><p><strong>在菜单中添加链接。</strong></p><p>编辑主题的 <code>_config.next.yml</code>，将menu中的 categories: /categories 注释去掉，如下:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">categories: &#x2F;categories&#x2F; || fa fa-fw fa-th</span><br></pre></td></tr></table></figure></li></ol><h3 id="添加sitemap"><a href="#添加sitemap" class="headerlink" title="添加sitemap"></a>添加sitemap</h3><p>站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知Google和其他搜索引擎。Googlebot等搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。</p><ol><li><p>安装插件：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br></pre></td></tr></table></figure></li><li><p>在博客目录的_config.yml中添加如下代码：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 自动生成sitemap</span><br><span class="line">sitemap:</span><br><span class="line">    path: sitemap.xml</span><br><span class="line">baidusitemap:</span><br><span class="line">    path: baidusitemap.xml</span><br></pre></td></tr></table></figure></li><li><p>编译博客</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx hexo generate</span><br></pre></td></tr></table></figure></li><li><p>在你的博客根目录的public下面发现生成了sitemap.xml以及baidusitemap.xml就表示成功了。</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。
+    
+    </summary>
+    
+    
+      <category term="Blog" scheme="https://jueee.github.io/categories/Blog/"/>
+    
+    
+      <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
+    
+      <category term="Node.js" scheme="https://jueee.github.io/tags/Node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>搭建hexo+github+next主题博客</title>
+    <link href="https://jueee.github.io/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://jueee.github.io/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/</id>
+    <published>2020-08-07T00:00:00.000Z</published>
+    <updated>2020-08-07T08:20:15.293Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="博客介绍"><a href="#博客介绍" class="headerlink" title="博客介绍"></a>博客介绍</h3><p>博客预览地址：<span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p><h3 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvdGhlbWUtbmV4dC1kb2Nz">https://github.com/next-theme/theme-next-docs<i class="fa fa-external-link-alt"></i></span></p><p>在本地安装：</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/theme-next-docs</span><br><span class="line">cd theme-next-docs</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure><p>生成：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx hexo generate</span><br></pre></td></tr></table></figure><p>运行：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx hexo server</span><br></pre></td></tr></table></figure><h3 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">https://github.com/next-theme/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p><h3 id="发布到github-io"><a href="#发布到github-io" class="headerlink" title="发布到github.io"></a>发布到github.io</h3><p>在 hexo下的_config.yml文件中配置：</p><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:Jueee/jueee.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure><p>安装插件：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><p>打开你的git bash，输入<code>hexo d</code>就会将本次有改动的代码全部提交，没有改动的不会：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npx hexo g -d</span><br></pre></td></tr></table></figure><p>【注】部署这个命令一定要用git bash，否则会提示<code>Permission denied (publickey).</code></p><p>此时，会在项目中生成 <code>.deploy_git</code> 文件夹。</p><p>打开git bash，切换到hexo/.deploy_git，执行</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure><p>再绑定远程仓库</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add origin git@github.com:jueee&#x2F;jueee.github.io.git</span><br></pre></td></tr></table></figure><p>回到cmd命令行</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npx hexo g -d</span><br></pre></td></tr></table></figure><p>搞定了，成功提交了正确的博客内容。</p><h3 id="常用hexo命令"><a href="#常用hexo命令" class="headerlink" title="常用hexo命令"></a>常用hexo命令</h3><p>常见命令</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new &quot;postName&quot; #新建文章</span><br><span class="line">hexo new page &quot;pageName&quot; #新建页面</span><br><span class="line">hexo generate #生成静态页面至public目录</span><br><span class="line">hexo server #开启预览访问端口（默认端口4000，&#39;ctrl + c&#39;关闭server）</span><br><span class="line">hexo deploy #部署到GitHub</span><br><span class="line">hexo help  # 查看帮助</span><br><span class="line">hexo version  #查看Hexo的版本</span><br></pre></td></tr></table></figure><p>缩写：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo n &#x3D;&#x3D; hexo new</span><br><span class="line">hexo g &#x3D;&#x3D; hexo generate</span><br><span class="line">hexo s &#x3D;&#x3D; hexo server</span><br><span class="line">hexo d &#x3D;&#x3D; hexo deploy</span><br></pre></td></tr></table></figure><p>组合命令：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s -g #生成并本地预览</span><br><span class="line">hexo d -g #生成并上传</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -500,31 +525,6 @@
       <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
     
       <category term="LiveRe" scheme="https://jueee.github.io/tags/LiveRe/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为Jekyll博客系统增加百度统计</title>
-    <link href="https://jueee.github.io/2020-06-19-%E4%B8%BAJekyll%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%A2%9E%E5%8A%A0%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/"/>
-    <id>https://jueee.github.io/2020-06-19-%E4%B8%BAJekyll%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%A2%9E%E5%8A%A0%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1/</id>
-    <published>2020-06-19T00:00:00.000Z</published>
-    <updated>2020-08-07T03:12:10.217Z</updated>
-    
-    <content type="html"><![CDATA[<p>百度统计是网站用户行为分析平台，为 Jekyll 博客系统接入百度统计，可以很方便的查看博客的各种访问、统计数据。</p><h3 id="百度统计"><a href="#百度统计" class="headerlink" title="百度统计"></a>百度统计</h3><p>官网介绍</p><blockquote><p><span class="exturl" data-url="aHR0cHM6Ly90b25namkuYmFpZHUuY29tL3dlYi93ZWxjb21lL2xvZ2lu">https://tongji.baidu.com/web/welcome/login<i class="fa fa-external-link-alt"></i></span></p></blockquote><h3 id="域名设置"><a href="#域名设置" class="headerlink" title="域名设置"></a>域名设置</h3><p>在网站列表中，设置个人域名。</p><h3 id="代码设置"><a href="#代码设置" class="headerlink" title="代码设置"></a>代码设置</h3><p>在 <code>_config.yml</code> 文件中添加：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79</span><br></pre></td></tr></table></figure><p>在 <code>footer.html</code> 文件中添加：</p><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% raw %&#125;<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> _hmt = _hmt || [];</span></span><br><span class="line"><span class="javascript">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">   <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">&quot;script&quot;</span>);</span></span><br><span class="line"><span class="handlebars"><span class="xml">   hm.src = &quot;https://hm.baidu.com/hm.js?</span><span class="template-variable">&#123;&#123;<span class="name">site.baidu_tmid</span>&#125;&#125;</span><span class="xml">&quot;;</span></span></span><br><span class="line"><span class="javascript">   <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;script&quot;</span>)[<span class="number">0</span>]; </span></span><br><span class="line">   s.parentNode.insertBefore(hm, s);</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span>&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      百度统计是网站用户行为分析平台，为 Jekyll 博客系统接入百度统计，可以很方便的查看博客的各种访问、统计数据。
-    
-    </summary>
-    
-    
-      <category term="Blog" scheme="https://jueee.github.io/categories/Blog/"/>
-    
-    
-      <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
-    
-      <category term="Baidu" scheme="https://jueee.github.io/tags/Baidu/"/>
     
   </entry>
   
