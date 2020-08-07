@@ -93,5 +93,5 @@ baidusitemap:
 deploy:
   type: git
   repo:
-    github: https://github.com/Jueee/jueee.github.io.git
+    github: https://github.com/Jueee/jueee.github.io
   branch: master
