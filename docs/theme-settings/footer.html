@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-07T01:27:22.900Z">
 <meta property="article:modified_time" content="2020-08-07T01:27:22.900Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jueee">
 <meta property="article:tag" content="Hexo, NexT">
 <meta name="twitter:card" content="summary">
 
@@ -94,7 +94,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -138,7 +138,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,6 +149,11 @@
         <li class="menu-item menu-item-tags">
 
     <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
 
   </li>
         
@@ -223,9 +228,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="John Doe"
-      src="/images/logo.svg">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image" alt="Jueee"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">Jueee</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
@@ -267,6 +272,34 @@
   </div>
 
 
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java 学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程学习笔记</a>
+        </li>
+    </ul>
+  </div>
 <div class="cc-license motion-element" itemprop="sponsor">
   <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
 </div>
@@ -454,7 +487,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">Footer<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2p1ZWVlLmdpdGh1Yi5pby9lZGl0L21hc3Rlci9zb3VyY2UvZG9jcy90aGVtZS1zZXR0aW5ncy9mb290ZXIubWQ=" title="编辑"><i class="fa fa-pen-nib"></i></span>
+<h1 class="post-title" itemprop="name headline">Footer
 </h1>
 
 <div class="post-meta">
@@ -477,26 +510,38 @@
       
       <div class="post-body">
           <h3 id="Site-Footer-Setting"><a href="#Site-Footer-Setting" class="headerlink" title="Site Footer Setting"></a>Site Footer Setting</h3><h4 id="Site-Start-Time"><a href="#Site-Start-Time" class="headerlink" title="Site Start Time"></a>Site Start Time</h4><p>By default NexT shows current year in the footer like <code>© 2018</code>. You can configure it to show the time gap like <code>© 2015 - 2018</code> by editing values in <code>since</code> section in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">since:</span> <span class="number">2015</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml">footer:
+  since: 2015</code></pre>
 <h4 id="Site-Footer-Icon"><a href="#Site-Footer-Icon" class="headerlink" title="Site Footer Icon"></a>Site Footer Icon</h4><p>By default NexT shows red <code>heart</code> icon <a class="btn" href="#"><i class="fa fa-heart"></i></a> with animation between year and copyright information in the footer. You can configure it by editing values in <code>icon</code> section in <mark class="label primary">theme config file</mark>.</p>
 <div class="tabs" id="icon"><ul class="nav-tabs"><li class="tab active"><a href="#icon-1"><code>name</code></a></li><li class="tab"><a href="#icon-2"><code>animated</code></a></li><li class="tab"><a href="#icon-3"><code>color</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="icon-1"><p>The name of footer icon can be founded in <span class="exturl" data-url="aHR0cHM6Ly9mb250YXdlc29tZS5jb20v">Font Awesome<i class="fa fa-external-link-alt"></i></span> site. <code>heart</code> is recommended.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">icon:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="icon-2"><p>Set up animated of footer icon by changing the value of <code>icon.animated</code>:</p>
+<pre class=" language-yml"><code class="language-yml">footer:
+  icon:
+    name: fa fa-user</code></pre></div><div class="tab-pane" id="icon-2"><p>Set up animated of footer icon by changing the value of <code>icon.animated</code>:</p>
 <ul>
 <li><strong><code>true</code></strong> → Icon will be animated.</li>
 <li><code>false</code> → Icon will not be animated.</li>
 </ul>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">icon:</span></span><br><span class="line">    <span class="attr">animated:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="icon-3"><p>Set up color of footer icon by changing the value of <code>icon.color</code>. Please use Hex Code, and red (#ff0000) is recommended for <code>heart</code> icon.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">icon:</span></span><br><span class="line">    <span class="attr">color:</span> <span class="string">&quot;#808080&quot;</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml"><code class="language-yml">footer:
+  icon:
+    animated: false</code></pre></div><div class="tab-pane" id="icon-3"><p>Set up color of footer icon by changing the value of <code>icon.color</code>. Please use Hex Code, and red (#ff0000) is recommended for <code>heart</code> icon.</p>
+<pre class=" language-yml"><code class="language-yml">footer:
+  icon:
+    color: "#808080"</code></pre></div></div></div>
 
 <h4 id="Site-Copyright-Name"><a href="#Site-Copyright-Name" class="headerlink" title="Site Copyright Name"></a>Site Copyright Name</h4><p>By default NexT shows the name of <code>author</code> from <mark class="label info">site config file</mark>. You can configure it by editing values in <code>copyright</code> section in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">copyright:</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml">footer:
+  copyright:</code></pre>
 <h4 id="Site-Platform-Information"><a href="#Site-Platform-Information" class="headerlink" title="Site Platform Information"></a>Site Platform Information</h4><p>By default NexT shows Hexo and Theme &amp; scheme information like <code>Powered by Hexo &amp; NexT.Muse</code>. You can configure it by editing <code>powered</code> section in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">powered:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml">footer:
+  powered: true</code></pre>
 <h4 id="Site-Beian-Information"><a href="#Site-Beian-Information" class="headerlink" title="Site Beian Information"></a>Site Beian Information</h4><p>Beian information is for Chinese users. By default NexT will not show the information of beian. You can configure it by editing values in <code>beian</code> section in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">beian:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">icp:</span> <span class="string">京ICP备</span> <span class="number">1234567890</span><span class="string">号-1</span></span><br><span class="line">    <span class="attr">gongan_id:</span> <span class="number">1234567890</span></span><br><span class="line">    <span class="attr">gongan_num:</span> <span class="string">京公网安备</span> <span class="number">1234567890</span><span class="string">号</span></span><br><span class="line">    <span class="attr">gongan_icon_url:</span> <span class="string">/uploads/beian.png</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-yml"><code class="language-yml">footer:
+  beian:
+    enable: true
+    icp: 京ICP备 1234567890号-1
+    gongan_id: 1234567890
+    gongan_num: 京公网安备 1234567890号
+    gongan_icon_url: /uploads/beian.png</code></pre>
 
       </div>
       
@@ -567,10 +612,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
 </div><div class="footer-custom">
-Theme source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLXRoZW1lLW5leHQ=">here</span><br>
-Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://github.com/next-theme/hexo-theme-next" class="theme-link" rel="noopener" target="_blank">Hexo.NexT</a> v8.0.0</div>
 </div>
-
 
         
 

@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/docs/valine-2.png">
 <meta property="article:published_time" content="2020-08-07T01:27:22.909Z">
 <meta property="article:modified_time" content="2020-08-07T01:27:22.909Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jueee">
 <meta property="article:tag" content="Hexo, NexT">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jueee.github.io/images/docs/valine-1.png">
@@ -97,7 +97,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -141,7 +141,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -152,6 +152,11 @@
         <li class="menu-item menu-item-tags">
 
     <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
 
   </li>
         
@@ -226,9 +231,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="John Doe"
-      src="/images/logo.svg">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image" alt="Jueee"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">Jueee</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
@@ -270,6 +275,34 @@
   </div>
 
 
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java 学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程学习笔记</a>
+        </li>
+    </ul>
+  </div>
 <div class="cc-license motion-element" itemprop="sponsor">
   <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
 </div>
@@ -457,7 +490,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">Comment Systems<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2p1ZWVlLmdpdGh1Yi5pby9lZGl0L21hc3Rlci9zb3VyY2UvZG9jcy90aGlyZC1wYXJ0eS1zZXJ2aWNlcy9jb21tZW50cy5tZA==" title="编辑"><i class="fa fa-pen-nib"></i></span>
+<h1 class="post-title" itemprop="name headline">Comment Systems
 </h1>
 
 <div class="post-meta">
@@ -480,22 +513,42 @@
       
       <div class="post-body">
           <h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><h4 id="Multiple-Comment-System-Support"><a href="#Multiple-Comment-System-Support" class="headerlink" title="Multiple Comment System Support"></a>Multiple Comment System Support</h4><p>NexT allows you to enable multiple commenting systems at the same time. You can modify the following configuration to adjust the style or behavior of multiple commenting systems.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Multiple Comment System Support</span></span><br><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="comment"># Available values: tabs | buttons</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">tabs</span></span><br><span class="line">  <span class="comment"># Choose a comment system to be displayed by default</span></span><br><span class="line">  <span class="comment"># Available values: changyan | disqus | disqusjs | gitalk | livere | valine</span></span><br><span class="line">  <span class="attr">active:</span></span><br><span class="line">  <span class="comment"># Setting `true` means remembering the comment system selected by the visitor</span></span><br><span class="line">  <span class="attr">storage:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Lazyload all comment systems.</span></span><br><span class="line">  <span class="attr">lazyload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Modify icons and texts for any style, here are some examples</span></span><br><span class="line">  <span class="attr">nav:</span></span><br><span class="line">    <span class="comment">#disqus:</span></span><br><span class="line">    <span class="comment">#  text: Load Disqus</span></span><br><span class="line">    <span class="comment">#  order: -1</span></span><br><span class="line">    <span class="comment">#gitalk:</span></span><br><span class="line">    <span class="comment">#  order: -2</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Multiple Comment System Support
+comments:
+  # Available values: tabs | buttons
+  style: tabs
+  # Choose a comment system to be displayed by default
+  # Available values: changyan | disqus | disqusjs | gitalk | livere | valine
+  active:
+  # Setting `true` means remembering the comment system selected by the visitor
+  storage: true
+  # Lazyload all comment systems.
+  lazyload: false
+  # Modify icons and texts for any style, here are some examples
+  nav:
+    #disqus:
+    #  text: Load Disqus
+    #  order: -1
+    #gitalk:
+    #  order: -2</code></pre>
 <p>You can enable lazyload by setting value <code>comments.lazyload</code> to <code>true</code> in <mark class="label primary">theme config file</mark>. NexT uses IntersectionObserver to lazyload the comments, which is not supported by IE and most browsers released before 2017.</p>
 <iframe data-feature="intersectionobserver" src="https://caniuse.bitsofco.de/embed/index.html?feat=intersectionobserver&periods=current,past_1,past_2,past_3,past_4,past_5&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
 <p>If your blog readers are mostly using legacy browsers, please consider using <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3czYy9JbnRlcnNlY3Rpb25PYnNlcnZlci90cmVlL21hc3Rlci9wb2x5ZmlsbA==">Intersection Observer polyfill<i class="fa fa-external-link-alt"></i></span>.</p>
 <h4 id="How-to-Disable-Comments-on-Page"><a href="#How-to-Disable-Comments-on-Page" class="headerlink" title="How to Disable Comments on Page"></a>How to Disable Comments on Page</h4><p>When you enabled comment service like Disqus, all new page will have comment service automatically. If you want to disable it in one page, just add <code>comments</code> key to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZnJvbnQtbWF0dGVy">Front-matter<i class="fa fa-external-link-alt"></i></span> and set its value to <code>false</code>. Like following:</p>
-<figure class="highlight md"><figcaption><span>your-post.md</span></figcaption><table><tr><td class="code"><pre><span class="line">title: All tags</span><br><span class="line">type: &quot;tags&quot;</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-md"><code class="language-md">title: All tags
+type: "tags"
+comments: false
+---</code></pre>
 <h3 id="Disqus"><a href="#Disqus" class="headerlink" title="Disqus"></a>Disqus</h3><p>Disqus is a global comment system that improves discussion on websites and connects conversations across the web.</p>
 <ol>
 <li>Create an account and log into <span class="exturl" data-url="aHR0cHM6Ly9kaXNxdXMuY29tLw==">Disqus<i class="fa fa-external-link-alt"></i></span>. Once logged in, click the <code>GET STARTED</code> button on the homepage, then select <code>I want to install Disqus on my site</code> option and you will see the <code>Create a new site</code> interface.</li>
 <li>Enter your <code>Website Name</code>, which will serve as your Disqus shortname, and select a Category from the drop-down menu. Then click <code>Create Site</code> button.</li>
 <li>Choose <code>I don&#39;t see my platform listed, install manually with Universal Code</code>, configure Disqus for your site, and click <code>Complete Setup</code> button.</li>
-<li>Set the value <code>enable</code> to <code>true</code>, add the obtained Disqus shortname (<code>shortname</code>), and edit other configurations in <code>disqus</code> section in the <mark class="label primary">theme config file</mark> as following: <figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">disqus:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">shortname:</span> <span class="string">your-short-disqus-name</span></span><br><span class="line">  <span class="attr">count:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
+<li>Set the value <code>enable</code> to <code>true</code>, add the obtained Disqus shortname (<code>shortname</code>), and edit other configurations in <code>disqus</code> section in the <mark class="label primary">theme config file</mark> as following:<pre class=" language-yml"><code class="language-yml">disqus:
+  enable: false
+  shortname: your-short-disqus-name
+  count: true</code></pre>
 </li>
 </ol>
 <h3 id="DisqusJS"><a href="#DisqusJS" class="headerlink" title="DisqusJS"></a>DisqusJS</h3><p>Render Disqus comment component using Disqus API.</p>
@@ -503,8 +556,19 @@
 <li>Get your Disqus API Key from <span class="exturl" data-url="aHR0cHM6Ly9kaXNxdXMuY29tL2FwaS9hcHBsaWNhdGlvbnMv">Disqus API Application<i class="fa fa-external-link-alt"></i></span>.</li>
 <li>Go to the settings page of your Disqus Application, enter your domain in Settings → Domains.</li>
 <li>Get your Disqus Shortname from <span class="exturl" data-url="aHR0cHM6Ly9kaXNxdXMuY29tL2FkbWluL3NldHRpbmdzL2dlbmVyYWwv">General Settings - Disqus Admin<i class="fa fa-external-link-alt"></i></span>.</li>
-<li>Set the value <code>enable</code> to <code>true</code>, add the obtained Disqus API Key (<code>apikey</code>) and Shortname (<code>shortname</code>), and edit other configurations in <code>disqusjs</code> section in the <mark class="label primary">theme config file</mark> as following: <figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># DisqusJS</span></span><br><span class="line"><span class="comment"># Alternative Disqus - Render comment component using Disqus API</span></span><br><span class="line"><span class="comment"># Demo: https://suka.js.org/DisqusJS/</span></span><br><span class="line"><span class="attr">disqusjs:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># API Endpoint of Disqus API (https://disqus.com/api/)</span></span><br><span class="line">  <span class="comment"># leave api empty if you are able to connect to Disqus API</span></span><br><span class="line">  <span class="comment"># otherwise you need a reverse proxy for Disqus API</span></span><br><span class="line">  <span class="comment"># For example:</span></span><br><span class="line">  <span class="comment"># api: https://disqus.skk.moe/disqus/</span></span><br><span class="line">  <span class="attr">api:</span></span><br><span class="line">  <span class="attr">apikey:</span> <span class="comment"># register new application from https://disqus.com/api/applications/</span></span><br><span class="line">  <span class="attr">shortname:</span> <span class="comment"># See: https://disqus.com/admin/settings/general/</span></span><br></pre></td></tr></table></figure>
-
+<li>Set the value <code>enable</code> to <code>true</code>, add the obtained Disqus API Key (<code>apikey</code>) and Shortname (<code>shortname</code>), and edit other configurations in <code>disqusjs</code> section in the <mark class="label primary">theme config file</mark> as following:<pre class=" language-yml"><code class="language-yml"># DisqusJS
+# Alternative Disqus - Render comment component using Disqus API
+# Demo: https://suka.js.org/DisqusJS/
+disqusjs:
+  enable: false
+  # API Endpoint of Disqus API (https://disqus.com/api/)
+  # leave api empty if you are able to connect to Disqus API
+  # otherwise you need a reverse proxy for Disqus API
+  # For example:
+  # api: https://disqus.skk.moe/disqus/
+  api:
+  apikey: # register new application from https://disqus.com/api/applications/
+  shortname: # See: https://disqus.com/admin/settings/general/</code></pre>
 </li>
 </ol>
 <h3 id="LiveRe"><a href="#LiveRe" class="headerlink" title="LiveRe"></a>LiveRe</h3><p>LiveRe is a content platform based on social networking site reviews to help users communicate freely.</p>
@@ -514,8 +578,9 @@
 <li><p>Copy the <code>data-uid</code> field in the installation code to get your LiveRe UID.</p>
 </li>
 <li><p>Add the obtained LiveRe UID to the <code>livere_uid</code> section in the <mark class="label primary">theme config file</mark> as following:</p>
- <figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Support for LiveRe comments system.</span></span><br><span class="line"><span class="comment"># You can get your uid from https://livere.com/insight/myCode (General web site)</span></span><br><span class="line"><span class="attr">livere_uid:</span> <span class="string">your_uid</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Support for LiveRe comments system.
+# You can get your uid from https://livere.com/insight/myCode (General web site)
+livere_uid: your_uid</code></pre>
 </li>
 </ol>
 <h3 id="Gitalk"><a href="#Gitalk" class="headerlink" title="Gitalk"></a>Gitalk</h3><p>Gitalk is a modern comment component based on Github Issue and Preact.</p>
@@ -525,8 +590,20 @@
 <li><p>Create a repository you want to store Gitalk comments in your GitHub.</p>
 </li>
 <li><p>Set the value <code>enable</code> to <code>true</code>, add Client ID (<code>client_id</code>) and Client secret (<code>client_secret</code>) in step 1, add your Github username (<code>github_id</code> and <code>admin_user</code>) and the created repository name (<code>repo</code>) in step 2, and edit other configurations in <code>gitalk</code> section in the <mark class="label primary">theme config file</mark> as following:</p>
- <figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Gitalk</span></span><br><span class="line"><span class="comment"># Demo: https://gitalk.github.io</span></span><br><span class="line"><span class="attr">gitalk:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">github_id:</span>  <span class="comment"># Github repo owner</span></span><br><span class="line">  <span class="attr">repo:</span>  <span class="comment"># Repository name to store issues</span></span><br><span class="line">  <span class="attr">client_id:</span>  <span class="comment"># Github Application Client ID</span></span><br><span class="line">  <span class="attr">client_secret:</span>  <span class="comment"># Github Application Client Secret</span></span><br><span class="line">  <span class="attr">admin_user:</span>  <span class="comment"># GitHub repo owner and collaborators, only these guys can initialize github issues</span></span><br><span class="line">  <span class="attr">distraction_free_mode:</span> <span class="literal">true</span> <span class="comment"># Facebook-like distraction free mode</span></span><br><span class="line">  <span class="comment"># Gitalk&#x27;s display language depends on user&#x27;s browser or system environment</span></span><br><span class="line">  <span class="comment"># If you want everyone visiting your site to see a uniform language, you can set a force language value</span></span><br><span class="line">  <span class="comment"># Available value: en, es-ES, fr, ru, zh-CN, zh-TW</span></span><br><span class="line">  <span class="attr">language:</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Gitalk
+# Demo: https://gitalk.github.io
+gitalk:
+  enable: false
+  github_id:  # Github repo owner
+  repo:  # Repository name to store issues
+  client_id:  # Github Application Client ID
+  client_secret:  # Github Application Client Secret
+  admin_user:  # GitHub repo owner and collaborators, only these guys can initialize github issues
+  distraction_free_mode: true # Facebook-like distraction free mode
+  # Gitalk's display language depends on user's browser or system environment
+  # If you want everyone visiting your site to see a uniform language, you can set a force language value
+  # Available value: en, es-ES, fr, ru, zh-CN, zh-TW
+  language:</code></pre>
 </li>
 </ol>
 <div class="note warning"><p>Hexo has encode URLs by default since version 4.0: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL3B1bGwvMzcwOA==">PR 3708<i class="fa fa-external-link-alt"></i></span>.<br>Gitalk relies on the md5 value of the page path for tagging, and this may cause issues. It&#39;s recommended to upgrade Hexo to 4.0 (or later), NexT to 7.7.0 (or later) to use Gitalk.</p>
@@ -539,8 +616,20 @@
 <li><p>Go to the application you just created, select <code>Settings → App Keys</code> in the lower left corner, and you will see your APP ID and APP Key.<br> <img src="/images/docs/valine-2.png" alt="Valine" loading="lazy"></p>
 </li>
 <li><p>Set the value <code>enable</code> to <code>true</code>, add the obtained APP ID (<code>appId</code>) and APP Key (<code>appKey</code>), and edit other configurations in <code>valine</code> section in the <mark class="label primary">theme config file</mark> as following:</p>
- <figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">appId:</span>  <span class="comment"># your leancloud application appid</span></span><br><span class="line">  <span class="attr">appKey:</span>  <span class="comment"># your leancloud application appkey</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment"># gravatar style</span></span><br><span class="line">  <span class="attr">meta:</span> [<span class="string">nick</span>, <span class="string">mail</span>, <span class="string">link</span>] <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># pagination size</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors&#x27; for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">false</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Valine
+# For more information: https://valine.js.org, https://github.com/xCss/Valine
+valine:
+  enable: false
+  appId:  # your leancloud application appid
+  appKey:  # your leancloud application appkey
+  placeholder: Just go go # comment box placeholder
+  avatar: mm # gravatar style
+  meta: [nick, mail, link] # Custom comment header
+  pageSize: 10 # pagination size
+  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  comment_count: true # If false, comment count will only be displayed in post page, not in home page
+  recordIP: false # Whether to record the commenter IP
+  serverURLs: # When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</code></pre>
 </li>
 </ol>
 <h3 id="Changyan-China"><a href="#Changyan-China" class="headerlink" title="Changyan (China)"></a>Changyan (China)</h3><p>Changyan is the industry&#39;s leading social commenting system, supporting both PC and mobile access methods, providing a new way of commenting on websites. Changyan has a variety of common account login, triple filtering mechanism, real-time data statistics, fast data export, comprehensive support for mobile and other leading functions. It fully satisfies the needs of major websites for user login, comment, sharing, and review.</p>
@@ -548,8 +637,11 @@
 <li><p>Create an account or log into <span class="exturl" data-url="aHR0cHM6Ly9jaGFuZ3lhbi5rdWFpemhhbi5jb20v">Changyan<i class="fa fa-external-link-alt"></i></span>, then add your site to get APP ID and APP KEY.</p>
 </li>
 <li><p>Set the value <code>enable</code> to <code>true</code>, and add the obtained APP ID (<code>appid</code>) and APP KEY (<code>appkey</code>) to the <code>changyan</code> section in the <mark class="label primary">theme config file</mark> as following:</p>
- <figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># changyan</span></span><br><span class="line"><span class="attr">changyan:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">appid:</span></span><br><span class="line">  <span class="attr">appkey:</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># changyan
+changyan:
+  enable: false
+  appid:
+  appkey:</code></pre>
 </li>
 </ol>
 <div class="note warning"><p>Please note that you should fill in the ICP record number of your website in time. If not, or the record information is not correct, the comment service will be stopped after 13 days. <span class="exturl" data-url="aHR0cHM6Ly9jaGFuZ3lhbi5rdWFpemhhbi5jb20vaGVscC9vLWJlaWFuLmh0bWw=">Useful link<i class="fa fa-external-link-alt"></i></span></p>
@@ -624,10 +716,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
 </div><div class="footer-custom">
-Theme source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLXRoZW1lLW5leHQ=">here</span><br>
-Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://github.com/next-theme/hexo-theme-next" class="theme-link" rel="noopener" target="_blank">Hexo.NexT</a> v8.0.0</div>
 </div>
-
 
         
 

@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-07T03:06:01.034Z">
 <meta property="article:modified_time" content="2020-08-07T01:27:22.891Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jueee">
 <meta property="article:tag" content="Hexo, NexT">
 <meta name="twitter:card" content="summary">
 
@@ -94,7 +94,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -138,7 +138,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,6 +149,11 @@
         <li class="menu-item menu-item-tags">
 
     <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
 
   </li>
         
@@ -223,9 +228,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="John Doe"
-      src="/images/logo.svg">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image" alt="Jueee"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">Jueee</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
@@ -267,6 +272,34 @@
   </div>
 
 
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java 学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程学习笔记</a>
+        </li>
+    </ul>
+  </div>
 <div class="cc-license motion-element" itemprop="sponsor">
   <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
 </div>
@@ -470,7 +503,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">Tag Plugins<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2p1ZWVlLmdpdGh1Yi5pby9lZGl0L21hc3Rlci9zb3VyY2UvZG9jcy90YWctcGx1Z2lucy9pbmRleC5tZA==" title="编辑"><i class="fa fa-pen-nib"></i></span>
+<h1 class="post-title" itemprop="name headline">Tag Plugins
 </h1>
 
 <div class="post-meta">
@@ -507,20 +540,18 @@
 </ul>
 <p>These tag plugins are only available in the theme NexT. If you switch to other Hexo themes, they may cause rendering errors.</p>
 <h3 id="Centered-Quote"><a href="#Centered-Quote" class="headerlink" title="Centered Quote"></a>Centered Quote</h3><p>This tag will make a quote with two lines before and after it, and text quoted will be centered. When using centered quote, if we have multi-line text, and each line has a different length, the quote won&#39;t be symmetrical, so it&#39;s recommended to use when only have single line text. For example before article all after article to make a summary.</p>
-<h4 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h4><figure class="highlight html"><figcaption><span>center-quote.js</span></figcaption><table><tr><td class="code"><pre><span class="line">&#123;% centerquote %&#125;Something&#123;% endcenterquote %&#125;</span><br><span class="line"><span class="comment">&lt;!-- Tag Alias --&gt;</span></span><br><span class="line">&#123;% cq %&#125;Something&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;Elegant in code, simple in core&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
-
+<h4 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h4><pre class=" language-html"><code class="language-html"><span class="token entity" title="&#123;">&amp;#123;</span>% centerquote %<span class="token entity" title="&#125;">&amp;#125;</span>Something<span class="token entity" title="&#123;">&amp;#123;</span>% endcenterquote %<span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token comment" spellcheck="true">&lt;!-- Tag Alias --></span>
+<span class="token entity" title="&#123;">&amp;#123;</span>% cq %<span class="token entity" title="&#125;">&amp;#125;</span>Something<span class="token entity" title="&#123;">&amp;#123;</span>% endcq %<span class="token entity" title="&#125;">&amp;#125;</span></code></pre>
+<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><pre class=" language-md"><code class="language-md">&#123;% cq %&#125;Elegant in code, simple in core&#123;% endcq %&#125;</code></pre>
 <blockquote class="blockquote-center">
 <p>Elegant in code, simple in core</p>
 
 </blockquote>
 
-<h3 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h3><h4 id="Usage-1"><a href="#Usage-1" class="headerlink" title="Usage"></a>Usage</h4><figure class="highlight md"><figcaption><span>video.js</span></figcaption><table><tr><td class="code"><pre><span class="line">&#123;% video url %&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% video https://example.com/sample.mp4 %&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% video /path/to/your/video.mp4 %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h3><h4 id="Usage-1"><a href="#Usage-1" class="headerlink" title="Usage"></a>Usage</h4><pre class=" language-md"><code class="language-md">&#123;% video url %&#125;</code></pre>
+<h4 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h4><pre class=" language-md"><code class="language-md">&#123;% video https://example.com/sample.mp4 %&#125;</code></pre>
+<pre class=" language-md"><code class="language-md">&#123;% video /path/to/your/video.mp4 %&#125;</code></pre>
 
       </div>
       
@@ -590,10 +621,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
 </div><div class="footer-custom">
-Theme source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLXRoZW1lLW5leHQ=">here</span><br>
-Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://github.com/next-theme/hexo-theme-next" class="theme-link" rel="noopener" target="_blank">Hexo.NexT</a> v8.0.0</div>
 </div>
-
 
         
 

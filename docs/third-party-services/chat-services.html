@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-07T01:27:22.907Z">
 <meta property="article:modified_time" content="2020-08-07T01:27:22.907Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jueee">
 <meta property="article:tag" content="Hexo, NexT">
 <meta name="twitter:card" content="summary">
 
@@ -94,7 +94,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -138,7 +138,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,6 +149,11 @@
         <li class="menu-item menu-item-tags">
 
     <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
 
   </li>
         
@@ -223,9 +228,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="John Doe"
-      src="/images/logo.svg">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image" alt="Jueee"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">Jueee</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
@@ -267,6 +272,34 @@
   </div>
 
 
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java 学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程学习笔记</a>
+        </li>
+    </ul>
+  </div>
 <div class="cc-license motion-element" itemprop="sponsor">
   <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
 </div>
@@ -454,7 +487,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">Chat Services<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2p1ZWVlLmdpdGh1Yi5pby9lZGl0L21hc3Rlci9zb3VyY2UvZG9jcy90aGlyZC1wYXJ0eS1zZXJ2aWNlcy9jaGF0LXNlcnZpY2VzLm1k" title="编辑"><i class="fa fa-pen-nib"></i></span>
+<h1 class="post-title" itemprop="name headline">Chat Services
 </h1>
 
 <div class="post-meta">
@@ -478,13 +511,36 @@
       <div class="post-body">
           <h3 id="Chatra"><a href="#Chatra" class="headerlink" title="Chatra"></a>Chatra</h3><p><span class="exturl" data-url="aHR0cHM6Ly9jaGF0cmEuaW8v">Chatra<i class="fa fa-external-link-alt"></i></span> is a live chat messenger app for your website.</p>
 <div class="tabs" id="chatra"><ul class="nav-tabs"><li class="tab active"><a href="#chatra-1">Enable Chatra →</a></li><li class="tab"><a href="#chatra-2">Activate sidebar button</a></li></ul><div class="tab-content"><div class="tab-pane active" id="chatra-1"><p>Visit <span class="exturl" data-url="aHR0cHM6Ly9hcHAuY2hhdHJhLmlvL3NldHRpbmdzL2dlbmVyYWw=">Dashboard<i class="fa fa-external-link-alt"></i></span> to get your ChatraID.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Chatra Support</span></span><br><span class="line"><span class="comment"># See: https://chatra.io</span></span><br><span class="line"><span class="comment"># Dashboard: https://app.chatra.io/settings/general</span></span><br><span class="line"><span class="attr">chatra:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">async:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">id:</span> <span class="string">&lt;ChatraID&gt;</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="chatra-2"><p>After Chatra enabled, you can set <code>chat.enable</code> to <code>true</code> and set <code>chat.service</code> to <code>chatra</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># A button to open designated chat widget in sidebar.</span></span><br><span class="line"><span class="comment"># Firstly, you need enable the chat service you want to activate its sidebar button.</span></span><br><span class="line"><span class="attr">chat:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">service:</span> <span class="string">chatra</span></span><br><span class="line">  <span class="attr">icon:</span> <span class="string">fa</span> <span class="string">fa-comment</span></span><br><span class="line">  <span class="attr">text:</span> <span class="string">Chat</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml"><code class="language-yml"># Chatra Support
+# See: https://chatra.io
+# Dashboard: https://app.chatra.io/settings/general
+chatra:
+  enable: true
+  async: true
+  id: <ChatraID></code></pre></div><div class="tab-pane" id="chatra-2"><p>After Chatra enabled, you can set <code>chat.enable</code> to <code>true</code> and set <code>chat.service</code> to <code>chatra</code> in <mark class="label primary">theme config file</mark>.</p>
+<pre class=" language-yml"><code class="language-yml"># A button to open designated chat widget in sidebar.
+# Firstly, you need enable the chat service you want to activate its sidebar button.
+chat:
+  enable: true
+  service: chatra
+  icon: fa fa-comment
+  text: Chat</code></pre></div></div></div>
 
 <h3 id="Tidio"><a href="#Tidio" class="headerlink" title="Tidio"></a>Tidio</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cudGlkaW9jaGF0LmNvbS8=">Tidio<i class="fa fa-external-link-alt"></i></span> is a live chat messenger app for your website.</p>
 <div class="tabs" id="tidio"><ul class="nav-tabs"><li class="tab active"><a href="#tidio-1">Enable Tidio →</a></li><li class="tab"><a href="#tidio-2">Activate sidebar button</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tidio-1"><p>Visit <span class="exturl" data-url="aHR0cHM6Ly93d3cudGlkaW9jaGF0LmNvbS9wYW5lbC9kYXNoYm9hcmQ=">Dashboard<i class="fa fa-external-link-alt"></i></span> to get your Public Key.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tidio Support</span></span><br><span class="line"><span class="comment"># See: https://www.tidiochat.com</span></span><br><span class="line"><span class="comment"># Dashboard: https://www.tidiochat.com/panel/dashboard</span></span><br><span class="line"><span class="attr">tidio:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">key:</span> <span class="string">&lt;Publick</span> <span class="string">Key&gt;</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="tidio-2"><p>After Tidio enabled, you can set <code>chat.enable</code> to <code>true</code> and set <code>chat.service</code> to <code>tidio</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># A button to open designated chat widget in sidebar.</span></span><br><span class="line"><span class="comment"># Firstly, you need enable the chat service you want to activate its sidebar button.</span></span><br><span class="line"><span class="attr">chat:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">service:</span> <span class="string">tidio</span></span><br><span class="line">  <span class="attr">icon:</span> <span class="string">fa</span> <span class="string">fa-comment</span></span><br><span class="line">  <span class="attr">text:</span> <span class="string">Chat</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml"><code class="language-yml"># Tidio Support
+# See: https://www.tidiochat.com
+# Dashboard: https://www.tidiochat.com/panel/dashboard
+tidio:
+  enable: true
+  key: <Publick Key></code></pre></div><div class="tab-pane" id="tidio-2"><p>After Tidio enabled, you can set <code>chat.enable</code> to <code>true</code> and set <code>chat.service</code> to <code>tidio</code> in <mark class="label primary">theme config file</mark>.</p>
+<pre class=" language-yml"><code class="language-yml"># A button to open designated chat widget in sidebar.
+# Firstly, you need enable the chat service you want to activate its sidebar button.
+chat:
+  enable: true
+  service: tidio
+  icon: fa fa-comment
+  text: Chat</code></pre></div></div></div>
 
       </div>
       
@@ -555,10 +611,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
 </div><div class="footer-custom">
-Theme source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLXRoZW1lLW5leHQ=">here</span><br>
-Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://github.com/next-theme/hexo-theme-next" class="theme-link" rel="noopener" target="_blank">Hexo.NexT</a> v8.0.0</div>
 </div>
-
 
         
 

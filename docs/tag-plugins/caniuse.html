@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-07T01:27:22.889Z">
 <meta property="article:modified_time" content="2020-08-07T01:27:22.889Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jueee">
 <meta property="article:tag" content="Hexo, NexT">
 <meta name="twitter:card" content="summary">
 
@@ -94,7 +94,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -138,7 +138,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,6 +149,11 @@
         <li class="menu-item menu-item-tags">
 
     <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
 
   </li>
         
@@ -223,9 +228,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="John Doe"
-      src="/images/logo.svg">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image" alt="Jueee"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">Jueee</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
@@ -267,6 +272,34 @@
   </div>
 
 
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java 学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程学习笔记</a>
+        </li>
+    </ul>
+  </div>
 <div class="cc-license motion-element" itemprop="sponsor">
   <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
 </div>
@@ -470,7 +503,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">Caniuse<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2p1ZWVlLmdpdGh1Yi5pby9lZGl0L21hc3Rlci9zb3VyY2UvZG9jcy90YWctcGx1Z2lucy9jYW5pdXNlLm1k" title="编辑"><i class="fa fa-pen-nib"></i></span>
+<h1 class="post-title" itemprop="name headline">Caniuse
 </h1>
 
 <div class="post-meta">
@@ -492,22 +525,22 @@
       
       
       <div class="post-body">
-          <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><figure class="highlight md"><figcaption><span>caniuse.js</span></figcaption><table><tr><td class="code"><pre><span class="line">&#123;% caniuse feature @ periods %&#125;</span><br><span class="line"><span class="xml"><span class="comment">&lt;!-- Tag Alias --&gt;</span></span></span><br><span class="line">&#123;% can feature @ periods %&#125;</span><br><span class="line"></span><br><span class="line">feature : Search for the feature you want on https://caniuse.com, then click on the hash sign to the left of the search result heading and you will get the unique name of this feature.</span><br><span class="line">periods : Select the browser versions to display. Supported values: past<span class="emphasis">_1, past_</span>2, past<span class="emphasis">_3, past_</span>4, past<span class="emphasis">_5, current, future_</span>3, future<span class="emphasis">_2, future_</span>1. If this value is empty, the default value &#x27;current&#x27; will be used.</span><br></pre></td></tr></table></figure>
+          <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class=" language-md"><code class="language-md">&#123;% caniuse feature @ periods %&#125;
+<!-- Tag Alias -->
+&#123;% can feature @ periods %&#125;
 
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Caniuse-without-periods"><a href="#Caniuse-without-periods" class="headerlink" title="Caniuse without periods"></a>Caniuse without periods</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% caniuse fetch %&#125;</span><br></pre></td></tr></table></figure>
-
+feature : Search for the feature you want on https://caniuse.com, then click on the hash sign to the left of the search result heading and you will get the unique name of this feature.
+periods : Select the browser versions to display. Supported values: past_1, past_2, past_3, past_4, past_5, current, future_3, future_2, future_1. If this value is empty, the default value 'current' will be used.</code></pre>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Caniuse-without-periods"><a href="#Caniuse-without-periods" class="headerlink" title="Caniuse without periods"></a>Caniuse without periods</h4><pre class=" language-md"><code class="language-md">&#123;% caniuse fetch %&#125;</code></pre>
 <iframe data-feature="fetch" src="https://caniuse.bitsofco.de/embed/index.html?feat=fetch&periods=current&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
-<h4 id="Caniuse-with-current-period"><a href="#Caniuse-with-current-period" class="headerlink" title="Caniuse with current period"></a>Caniuse with current period</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% caniuse sharedarraybuffer @ current %&#125;</span><br></pre></td></tr></table></figure>
-
+<h4 id="Caniuse-with-current-period"><a href="#Caniuse-with-current-period" class="headerlink" title="Caniuse with current period"></a>Caniuse with current period</h4><pre class=" language-md"><code class="language-md">&#123;% caniuse sharedarraybuffer @ current %&#125;</code></pre>
 <iframe data-feature="sharedarraybuffer" src="https://caniuse.bitsofco.de/embed/index.html?feat=sharedarraybuffer&periods=current&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
-<h4 id="Caniuse-with-future-periods"><a href="#Caniuse-with-future-periods" class="headerlink" title="Caniuse with future periods"></a>Caniuse with future periods</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% caniuse loading-lazy-attr @ future<span class="emphasis">_3,future_</span>2,future<span class="emphasis">_1 %&#125;</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="Caniuse-with-future-periods"><a href="#Caniuse-with-future-periods" class="headerlink" title="Caniuse with future periods"></a>Caniuse with future periods</h4><pre class=" language-md"><code class="language-md">&#123;% caniuse loading-lazy-attr @ future_3,future_2,future_1 %&#125;</code></pre>
 <iframe data-feature="loading-lazy-attr" src="https://caniuse.bitsofco.de/embed/index.html?feat=loading-lazy-attr&periods=future_3,future_2,future_1&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
-<h4 id="Caniuse-with-past-periods"><a href="#Caniuse-with-past-periods" class="headerlink" title="Caniuse with past periods"></a>Caniuse with past periods</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">&#123;% caniuse link-rel-modulepreload @ past<span class="emphasis">_1,past_</span>2,past<span class="emphasis">_3,past_</span>4,past<span class="emphasis">_5 %&#125;</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="Caniuse-with-past-periods"><a href="#Caniuse-with-past-periods" class="headerlink" title="Caniuse with past periods"></a>Caniuse with past periods</h4><pre class=" language-md"><code class="language-md">&#123;% caniuse link-rel-modulepreload @ past_1,past_2,past_3,past_4,past_5 %&#125;</code></pre>
 <iframe data-feature="link-rel-modulepreload" src="https://caniuse.bitsofco.de/embed/index.html?feat=link-rel-modulepreload&periods=past_1,past_2,past_3,past_4,past_5&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
       </div>
@@ -579,10 +612,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
 </div><div class="footer-custom">
-Theme source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLXRoZW1lLW5leHQ=">here</span><br>
-Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://github.com/next-theme/hexo-theme-next" class="theme-link" rel="noopener" target="_blank">Hexo.NexT</a> v8.0.0</div>
 </div>
-
 
         
 

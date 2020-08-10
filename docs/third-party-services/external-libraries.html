@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-07T01:27:22.910Z">
 <meta property="article:modified_time" content="2020-08-07T01:27:22.910Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jueee">
 <meta property="article:tag" content="Hexo, NexT">
 <meta name="twitter:card" content="summary">
 
@@ -94,7 +94,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -138,7 +138,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,6 +149,11 @@
         <li class="menu-item menu-item-tags">
 
     <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
 
   </li>
         
@@ -223,9 +228,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="John Doe"
-      src="/images/logo.svg">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image" alt="Jueee"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">Jueee</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
@@ -267,6 +272,34 @@
   </div>
 
 
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java 学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程学习笔记</a>
+        </li>
+    </ul>
+  </div>
 <div class="cc-license motion-element" itemprop="sponsor">
   <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
 </div>
@@ -454,7 +487,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">External Libraries<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2p1ZWVlLmdpdGh1Yi5pby9lZGl0L21hc3Rlci9zb3VyY2UvZG9jcy90aGlyZC1wYXJ0eS1zZXJ2aWNlcy9leHRlcm5hbC1saWJyYXJpZXMubWQ=" title="编辑"><i class="fa fa-pen-nib"></i></span>
+<h1 class="post-title" itemprop="name headline">External Libraries
 </h1>
 
 <div class="post-meta">
@@ -482,56 +515,106 @@
 </div>
 
 <div class="tabs" id="pjax"><ul class="nav-tabs"><li class="tab active"><a href="#pjax-1">NexT Config →</a></li><li class="tab"><a href="#pjax-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="pjax-1"><p>You can enable it by setting value <code>pjax</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Easily enable fast Ajax navigation on your website.</span></span><br><span class="line"><span class="comment"># For more information: https://github.com/next-theme/pjax</span></span><br><span class="line"><span class="attr">pjax:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="pjax-2"><p>If you want to use a different version from CDN, then need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">pjax:</span> <span class="string">//cdn.jsdelivr.net/gh/next-theme/pjax@0/pjax.min.js</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml"><code class="language-yml"># Easily enable fast Ajax navigation on your website.
+# For more information: https://github.com/next-theme/pjax
+pjax: true</code></pre></div><div class="tab-pane" id="pjax-2"><p>If you want to use a different version from CDN, then need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
+<pre class=" language-yml"><code class="language-yml">vendors:
+  ...
+  pjax: //cdn.jsdelivr.net/gh/next-theme/pjax@0/pjax.min.js
+  ...</code></pre></div></div></div>
 
 <h3 id="Fancybox"><a href="#Fancybox" class="headerlink" title="Fancybox"></a>Fancybox</h3><p>NexT supports the fancybox plugin, which is a jQuery lightbox script for displaying images, videos and more. Touch enabled, responsive and fully customizable.</p>
 <p>There is support for old version 2 and new version 3. Please, choose only any one variant, do not need to install both.</p>
 <div class="tabs" id="fancybox"><ul class="nav-tabs"><li class="tab active"><a href="#fancybox-1">Version 2.x</a></li><li class="tab"><a href="#fancybox-2">Version 3.x</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fancybox-1"><div class="tabs" id="fancybox1"><ul class="nav-tabs"><li class="tab active"><a href="#fancybox1-1">NexT Config →</a></li><li class="tab"><a href="#fancybox1-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fancybox1-1"><p>You can enable it by setting value <code>fancybox</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">fancybox:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="fancybox1-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
+<pre class=" language-yml">fancybox: true</code></pre></div><div class="tab-pane" id="fancybox1-2"><code class="language-yml">fancybox: true</code></pre></div><div class="tab-pane" id="fancybox1-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
 <p>You need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">jquery:</span> <span class="string">//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js</span></span><br><span class="line">  <span class="attr">fancybox:</span> <span class="string">//cdn.jsdelivr.net/npm/fancybox@2/dist/js/jquery.fancybox.pack.js</span></span><br><span class="line">  <span class="attr">fancybox_css:</span> <span class="string">//cdn.jsdelivr.net/npm/fancybox@2/dist/css/jquery.fancybox.min.css</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div></div><div class="tab-pane" id="fancybox-2"><div class="tabs" id="fancybox2"><ul class="nav-tabs"><li class="tab active"><a href="#fancybox2-1">NexT Config →</a></li><li class="tab"><a href="#fancybox2-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fancybox2-1"><p>You can enable it by setting value <code>fancybox</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">fancybox:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="fancybox2-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
+<pre><code class="yml">vendors:
+  ...
+  jquery: //cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
+  fancybox: //cdn.jsdelivr.net/npm/fancybox@2/dist/js/jquery.fancybox.pack.js
+  fancybox_css: //cdn.jsdelivr.net/npm/fancybox@2/dist/css/jquery.fancybox.min.css
+  ...</code></pre></div></div></div></div><div class="tab-pane" id="fancybox-2"><div class="tabs" id="fancybox2"><ul class="nav-tabs"><li class="tab active"><a href="#fancybox2-1">NexT Config →</a></li><li class="tab"><a href="#fancybox2-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fancybox2-1"><p>You can enable it by setting value <code>fancybox</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
+<pre class=" language-yml">fancybox: true</code></pre></div><div class="tab-pane" id="fancybox2-2"><code class="language-yml">fancybox: true</code></pre></div><div class="tab-pane" id="fancybox2-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
 <p>You need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">jquery:</span> <span class="string">//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js</span></span><br><span class="line">  <span class="attr">fancybox:</span> <span class="string">//cdn.jsdelivr.net/npm/fancybox@3/dist/js/jquery.fancybox.pack.js</span></span><br><span class="line">  <span class="attr">fancybox_css:</span> <span class="string">//cdn.jsdelivr.net/npm/fancybox@3/dist/css/jquery.fancybox.min.css</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div></div></div></div>
+<pre><code class="yml">vendors:
+  ...
+  jquery: //cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
+  fancybox: //cdn.jsdelivr.net/npm/fancybox@3/dist/js/jquery.fancybox.pack.js
+  fancybox_css: //cdn.jsdelivr.net/npm/fancybox@3/dist/css/jquery.fancybox.min.css
+  ...</code></pre></div></div></div></div></div></div>
 
 <h3 id="Medium-Zoom"><a href="#Medium-Zoom" class="headerlink" title="Medium Zoom"></a>Medium Zoom</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZyYW5jb2lzY2hhbGlmb3VyL21lZGl1bS16b29t">Medium Zoom<i class="fa fa-external-link-alt"></i></span> is a JavaScript library for zooming images like Medium.</p>
 <div class="tabs" id="medium-zoom"><ul class="nav-tabs"><li class="tab active"><a href="#medium-zoom-1">NexT Config →</a></li><li class="tab"><a href="#medium-zoom-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="medium-zoom-1"><p>You can enable it by setting value <code>mediumzoom</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># A JavaScript library for zooming images like Medium.</span></span><br><span class="line"><span class="attr">mediumzoom:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># A JavaScript library for zooming images like Medium.
+mediumzoom: true</code></pre>
 <div class="note warning"><p>Do not enable both <code>fancybox</code> and <code>mediumzoom</code>.</p>
 </div></div><div class="tab-pane" id="medium-zoom-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
 <p>You need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">mediumzoom:</span> <span class="string">https://cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml"><code class="language-yml">vendors:
+  ...
+  mediumzoom: https://cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js
+  ...</code></pre></div></div></div>
 
 <h3 id="Lazyload"><a href="#Lazyload" class="headerlink" title="Lazyload"></a>Lazyload</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0Fwb29ydlNheGVuYS9sb3phZC5qcw==">Lozad.js<i class="fa fa-external-link-alt"></i></span> is a lazy loader plugin in modern vanilla JavaScript. It delays loading of images in long web pages. Images outside of viewport will not be loaded before user scrolls to them. This is opposite of image preloading.</p>
 <div class="tabs" id="lazyload"><ul class="nav-tabs"><li class="tab active"><a href="#lazyload-1">NexT Config →</a></li><li class="tab"><a href="#lazyload-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="lazyload-1"><p>You can enable it by setting value <code>lazyload</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Vanilla JavaScript plugin for lazyloading images.</span></span><br><span class="line"><span class="attr">lazyload:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Vanilla JavaScript plugin for lazyloading images.
+lazyload: true</code></pre>
 <p>Then run the following command in <mark class="label info">site root dir</mark> to ensure that <code>lazyload</code> can be enabled or disabled correctly:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="lazyload-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
+<pre class=" language-bash">$ hexo clean</code></pre></div><div class="tab-pane" id="lazyload-2"><code class="language-bash">$ hexo clean</code></pre></div><div class="tab-pane" id="lazyload-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
 <p>You need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">lazyload:</span> <span class="string">//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre><code class="yml">vendors:
+  ...
+  lazyload: //cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js
+  ...</code></pre></div></div></div>
 
 <h3 id="Pangu-Autospace"><a href="#Pangu-Autospace" class="headerlink" title="Pangu Autospace"></a>Pangu Autospace</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3ZpbnRhL3Bhbmd1Lmpz">pangu.js<i class="fa fa-external-link-alt"></i></span> will automatically insert a blank space between all the Chinese characters and the hexagonal English numeric symbols on the page.</p>
 <div class="tabs" id="pangu"><ul class="nav-tabs"><li class="tab active"><a href="#pangu-1">NexT Config →</a></li><li class="tab"><a href="#pangu-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="pangu-1"><p>You can enable it by setting value <code>pangu</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Pangu Support</span></span><br><span class="line"><span class="attr">pangu:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="pangu-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
+<pre class=" language-yml"><code class="language-yml"># Pangu Support
+pangu: true</code></pre></div><div class="tab-pane" id="pangu-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
 <p>You need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="comment"># https://github.com/vinta/pangu.js</span></span><br><span class="line">  <span class="attr">pangu:</span> <span class="string">//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml"><code class="language-yml">vendors:
+  ...
+  # https://github.com/vinta/pangu.js
+  pangu: //cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js
+  ...</code></pre></div></div></div>
 
 <h3 id="Quicklink"><a href="#Quicklink" class="headerlink" title="Quicklink"></a>Quicklink</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dvb2dsZUNocm9tZUxhYnMvcXVpY2tsaW5r">Quicklink<i class="fa fa-external-link-alt"></i></span> is a JavaScript plugin that faster subsequent page-loads by prefetching in-viewport links during idle time. Chrome, Firefox, Edge are supported without polyfills.</p>
 <div class="tabs" id="quicklink"><ul class="nav-tabs"><li class="tab active"><a href="#quicklink-1">NexT Config →</a></li><li class="tab"><a href="#quicklink-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="quicklink-1"><p>You can enable it by setting value <code>quicklink.enable</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="string">...</span></span><br><span class="line"><span class="attr">quicklink:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">home:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">archive:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">delay:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">timeout:</span> <span class="number">3000</span></span><br><span class="line">  <span class="attr">priority:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">ignores:</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="quicklink-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
+<pre class=" language-yml"><code class="language-yml">...
+quicklink:
+  enable: true
+  home: true
+  archive: true
+  delay: true
+  timeout: 3000
+  priority: true
+  ignores:
+...</code></pre></div><div class="tab-pane" id="quicklink-2"><p>If you want to use a different version from CDN, please follow the instructions below.</p>
 <p>You need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">quicklink:</span> <span class="string">//cdn.jsdelivr.net/npm/quicklink@2/dist/quicklink.umd.js</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml"><code class="language-yml">vendors:
+  ...
+  quicklink: //cdn.jsdelivr.net/npm/quicklink@2/dist/quicklink.umd.js
+  ...</code></pre></div></div></div>
 
 <h3 id="Animation-Effect"><a href="#Animation-Effect" class="headerlink" title="Animation Effect"></a>Animation Effect</h3><p>NexT enables animation effect by default which is supported by Anime.js and Animate.css, so it will wait for JavaScript loaded to show content.<br>If you need speed you can set this section <code>enable</code> to <code>false</code> to disable it.</p>
 <p>Edit <mark class="label primary">theme config file</mark> and set the needed values under the <code>motion</code> to fit your demand. You can preview all Transition variants here: <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9hbmltYXRlLw==">NexT Animation Effect Preview<i class="fa fa-external-link-alt"></i></span>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Use Animate.css to animate everything.</span></span><br><span class="line"><span class="comment"># For more information: https://animate.style</span></span><br><span class="line"><span class="attr">motion:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">async:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="comment"># All available Transition variants: https://theme-next.js.org/animate/</span></span><br><span class="line">    <span class="attr">post_block:</span> <span class="string">fadeIn</span></span><br><span class="line">    <span class="attr">post_header:</span> <span class="string">fadeInDown</span></span><br><span class="line">    <span class="attr">post_body:</span> <span class="string">fadeInDown</span></span><br><span class="line">    <span class="attr">coll_header:</span> <span class="string">fadeInLeft</span></span><br><span class="line">    <span class="comment"># Only for Pisces | Gemini.</span></span><br><span class="line">    <span class="attr">sidebar:</span> <span class="string">fadeInUp</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Use Animate.css to animate everything.
+# For more information: https://animate.style
+motion:
+  enable: true
+  async: false
+  transition:
+    # All available Transition variants: https://theme-next.js.org/animate/
+    post_block: fadeIn
+    post_header: fadeInDown
+    post_body: fadeInDown
+    coll_header: fadeInLeft
+    # Only for Pisces | Gemini.
+    sidebar: fadeInUp</code></pre>
 <h3 id="Progress-Bar"><a href="#Progress-Bar" class="headerlink" title="Progress Bar"></a>Progress Bar</h3><p>Pace will automatically monitor your Ajax requests, event loop lag, document ready state and elements on your page to decide on the progress.</p>
 <div class="tabs" id="pace"><ul class="nav-tabs"><li class="tab active"><a href="#pace-1">NexT Config →</a></li><li class="tab"><a href="#pace-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="pace-1"><div class="tabs" id="pace1"><ul class="nav-tabs"><li class="tab active"><a href="#pace1-1"><code>pace</code></a></li><li class="tab"><a href="#pace1-2"><code>theme</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="pace1-1"><p>You can enable it by setting value <code>pace.enable</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">pace:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="pace1-2"><p>Pace includes a bunch of <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuaHVic3BvdC5jb20vcGFjZS9kb2NzL3dlbGNvbWUv">themes<i class="fa fa-external-link-alt"></i></span> to get you started. Just include the appropriate css file.</p>
+<pre class=" language-yml"><code class="language-yml">pace:
+  enable: true</code></pre></div><div class="tab-pane" id="pace1-2"><p>Pace includes a bunch of <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuaHVic3BvdC5jb20vcGFjZS9kb2NzL3dlbGNvbWUv">themes<i class="fa fa-external-link-alt"></i></span> to get you started. Just include the appropriate css file.</p>
 <ul>
 <li>pace-theme-big-counter</li>
 <li>pace-theme-bounce</li>
@@ -550,11 +633,19 @@
 <li>pace-theme-minimal</li>
 </ul>
 <p>By default NexT uses <code>minimal</code> theme (pace-theme-minimal). You can configure it by editing values in <code>pace.theme</code> section in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">pace:</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">minimal</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml">pace:
+  theme: minimal</code></pre>
 <div class="note info"><p>If you want to use the CDN, then need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">pace_css:</span> <span class="string">//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div></div></div><div class="tab-pane" id="pace-2"><p>If you want to use a different version from CDN, then need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">pace:</span> <span class="string">//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js</span></span><br><span class="line">  <span class="attr">pace_css:</span> <span class="string">//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml"><code class="language-yml">vendors:
+  ...
+  pace_css: //cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css
+  ...</code></pre>
+</div></div></div></div></div><div class="tab-pane" id="pace-2"><p>If you want to use a different version from CDN, then need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
+<pre class=" language-yml"><code class="language-yml">vendors:
+  ...
+  pace: //cdn.jsdelivr.net/npm/pace-js@1/pace.min.js
+  pace_css: //cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css
+  ...</code></pre></div></div></div>
 
 <h3 id="Canvas-Ribbon"><a href="#Canvas-Ribbon" class="headerlink" title="Canvas Ribbon"></a>Canvas Ribbon</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2h1c3RjYy9yaWJib24uanM=">canvas-ribbon.js<i class="fa fa-external-link-alt"></i></span> is a ribbon backgroud of website draw on canvas.</p>
 <div class="tabs" id="canvas_ribbon"><ul class="nav-tabs"><li class="tab active"><a href="#canvas_ribbon-1">NexT Config →</a></li><li class="tab"><a href="#canvas_ribbon-2">CDN Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="canvas_ribbon-1"><p>You can enable it by setting value <code>canvas_ribbon</code> to <code>true</code> in <mark class="label primary">theme config file</mark>. You can also configure the ribbon setting by editing values in <code>canvas_ribbon</code> section:</p>
@@ -563,8 +654,16 @@
 <li>alpha: The transparency of the ribbon.</li>
 <li>zIndex: The display level of the ribbon.</li>
 </ul>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">canvas_ribbon:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">size:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">alpha:</span> <span class="number">0.6</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="canvas_ribbon-2"><p>If you want to use a different version from CDN, then need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="comment"># https://github.com/hustcc/ribbon.js</span></span><br><span class="line">  <span class="attr">canvas_ribbon:</span> <span class="string">//cdn.jsdelivr.net/npm/ribbon.js@1/dist/ribbon.min.js</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml"><code class="language-yml">canvas_ribbon:
+  enable: true
+  size: 300
+  alpha: 0.6
+  zIndex: -1</code></pre></div><div class="tab-pane" id="canvas_ribbon-2"><p>If you want to use a different version from CDN, then need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
+<pre class=" language-yml"><code class="language-yml">vendors:
+  ...
+  # https://github.com/hustcc/ribbon.js
+  canvas_ribbon: //cdn.jsdelivr.net/npm/ribbon.js@1/dist/ribbon.min.js
+  ...</code></pre></div></div></div>
 
       </div>
       
@@ -635,10 +734,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
 </div><div class="footer-custom">
-Theme source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLXRoZW1lLW5leHQ=">here</span><br>
-Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://github.com/next-theme/hexo-theme-next" class="theme-link" rel="noopener" target="_blank">Hexo.NexT</a> v8.0.0</div>
 </div>
-
 
         
 

@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-07T01:27:22.919Z">
 <meta property="article:modified_time" content="2020-08-07T01:27:22.919Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jueee">
 <meta property="article:tag" content="Hexo, NexT">
 <meta name="twitter:card" content="summary">
 
@@ -94,7 +94,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -138,7 +138,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,6 +149,11 @@
         <li class="menu-item menu-item-tags">
 
     <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
 
   </li>
         
@@ -223,9 +228,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="John Doe"
-      src="/images/logo.svg">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image" alt="Jueee"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">Jueee</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
@@ -267,6 +272,34 @@
   </div>
 
 
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java 学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程学习笔记</a>
+        </li>
+    </ul>
+  </div>
 <div class="cc-license motion-element" itemprop="sponsor">
   <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
 </div>
@@ -392,7 +425,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">Troubleshooting<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2p1ZWVlLmdpdGh1Yi5pby9lZGl0L21hc3Rlci9zb3VyY2UvZG9jcy90cm91Ymxlc2hvb3RpbmcubWQ=" title="编辑"><i class="fa fa-pen-nib"></i></span>
+<h1 class="post-title" itemprop="name headline">Troubleshooting
 </h1>
 
 <div class="post-meta">
@@ -422,22 +455,35 @@
 <h3 id="Keep-Up-Indentation"><a href="#Keep-Up-Indentation" class="headerlink" title="Keep Up Indentation"></a>Keep Up Indentation</h3><p>When you edit any YAML configs, always need to keep up indents.<br>Currently, in all Hexo and NexT configuration files parameters uses <strong>2 spaces indents</strong> from parent option.</p>
 <p>For example, we want to change NexT scheme from standart <code>Muse</code> to <code>Gemini</code> and want to use <code>theme_config</code> feature with <a href="/docs/getting-started/configuration.html#theme-config">Alternate Theme Config</a>.</p>
 <div class="tabs" id="keep-up-indentation"><ul class="nav-tabs"><li class="tab active"><a href="#keep-up-indentation-1">NexT Config →</a></li><li class="tab"><a href="#keep-up-indentation-2">Hexo Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="keep-up-indentation-1"><p>We open <mark class="label primary">theme config file</mark> and under the «Scheme Settings» section copy next parameters:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Scheme Settings</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Muse</span></span><br><span class="line"><span class="comment">#scheme: Mist</span></span><br><span class="line"><span class="comment">#scheme: Pisces</span></span><br><span class="line"><span class="comment">#scheme: Gemini</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="keep-up-indentation-2"><p>Then we open <mark class="label info">site config file</mark> and paste these parameters under <code>theme_config</code> section:</p>
-<div class="tabs" id="2-spaces-indents"><ul class="nav-tabs"><li class="tab active"><a href="#2-spaces-indents-1"><mark class="label danger">Nothing Happen</mark></a></li><li class="tab"><a href="#2-spaces-indents-2"><mark class="label success">Working Normally</mark></a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-spaces-indents-1"><figure class="highlight yml"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#scheme: Muse</span></span><br><span class="line"><span class="comment">#scheme: Mist</span></span><br><span class="line"><span class="comment">#scheme: Pisces</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-yml"><code class="language-yml"># ---------------------------------------------------------------
+# Scheme Settings
+# ---------------------------------------------------------------
 
-<p>Nothing will happen here because indentation not keeped up. Hexo just can&#39;t read these parameters because subparameters (children parameters of <code>theme_config</code> parameter) does not exist. Let&#39;s see <a href="#2-spaces-indents-2">same configuration with indents</a>.</p></div><div class="tab-pane" id="2-spaces-indents-2"><figure class="highlight yml"><figcaption><span>hexo/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#scheme: Muse</span></span><br><span class="line">  <span class="comment">#scheme: Mist</span></span><br><span class="line">  <span class="comment">#scheme: Pisces</span></span><br><span class="line">  <span class="attr">scheme:</span> <span class="string">Gemini</span></span><br></pre></td></tr></table></figure>
+scheme: Muse
+#scheme: Mist
+#scheme: Pisces
+#scheme: Gemini</code></pre></div><div class="tab-pane" id="keep-up-indentation-2"><p>Then we open <mark class="label info">site config file</mark> and paste these parameters under <code>theme_config</code> section:</p>
+<div class="tabs" id="2-spaces-indents"><ul class="nav-tabs"><li class="tab active"><a href="#2-spaces-indents-1"><mark class="label danger">Nothing Happen</mark></a></li><li class="tab"><a href="#2-spaces-indents-2"><mark class="label success">Working Normally</mark></a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-spaces-indents-1"><pre class=" language-yml"><code class="language-yml">theme_config:
 
+<p>#scheme: Muse<br>#scheme: Mist<br>#scheme: Pisces<br>scheme: Gemini</code></pre></p>
+<p>Nothing will happen here because indentation not keeped up. Hexo just can&#39;t read these parameters because subparameters (children parameters of <code>theme_config</code> parameter) does not exist. Let&#39;s see <a href="#2-spaces-indents-2">same configuration with indents</a>.</p></div><div class="tab-pane" id="2-spaces-indents-2"><pre class=" language-yml"><code class="language-yml">theme_config:
+
+<p>  #scheme: Muse<br>  #scheme: Mist<br>  #scheme: Pisces<br>  scheme: Gemini</code></pre></p>
 <p>And here Hexo can read these parameters as <code>theme_config.scheme: Gemini</code> in same way, as NexT can read <code>scheme: Gemini</code> parameter. So, with 2 spaces indents from parent option(s) Hexo will load all NexT parameters and work fine.</p></div></div></div></div></div></div>
 
 <h3 id="Backtick-Code-Block-in-Tags"><a href="#Backtick-Code-Block-in-Tags" class="headerlink" title="Backtick Code Block in Tags"></a>Backtick Code Block in Tags</h3><p>For Hexo before version 4.0, when backtick code block(s) exists inside other tags (like <code>blockquote</code>, <code>note</code>, <code>tabs</code>), that code block will be generated as «undefined» string in HTML. There are several ways to resolve this:</p>
 <div class="tabs" id="backtick-code-block"><ul class="nav-tabs"><li class="tab active"><a href="#backtick-code-block-1"><mark class="label success">Tagged Code Block</mark></a></li><li class="tab"><a href="#backtick-code-block-2">HTML tags</a></li><li class="tab"><a href="#backtick-code-block-3">Bugfix for Backtick</a></li></ul><div class="tab-content"><div class="tab-pane active" id="backtick-code-block-1"><p>Instead of <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdGFnLXBsdWdpbnMjQmFja3RpY2stQ29kZS1CbG9jaw==">Backtick Code Block<i class="fa fa-external-link-alt"></i></span> you can also use tagged <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdGFnLXBsdWdpbnMjQ29kZS1CbG9jaw==">Code Block<i class="fa fa-external-link-alt"></i></span>.<br>But in rare cases standard code block can obtain errors inside other tags.</p></div><div class="tab-pane" id="backtick-code-block-2"><p>Use HTML tags instead of Hexo tags: <code>&lt;pre&gt;&lt;code&gt;</code>.<br>In this case you can&#39;t add code syntax highlighting.</p></div><div class="tab-pane" id="backtick-code-block-3"><p>Here is the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL3B1bGwvMjMyMQ==">PR with bugfix for backtick code block inside tags<i class="fa fa-external-link-alt"></i></span> (Submitted in 2016, merged three years later).<br>So, upgrade to Hexo 4.0 or higher, if you need to use backtick code block inside tags.</p>
 <div class="note danger"><p>Sometimes during generate you can see «<mark class="label danger">Error: Unmatched placeholder remains!</mark>» message.<br>This mean somewhere in your posts, blocks with tags was commented out with <code>{#</code> and <code>#}</code> symbols:</p>
-<div class="tabs" id="unmatched-placeholder-remains"><ul class="nav-tabs"><li class="tab active"><a href="#unmatched-placeholder-remains-1"><mark class="label danger">Error</mark></a></li><li class="tab"><a href="#unmatched-placeholder-remains-2"><mark class="label success">Success</mark></a></li></ul><div class="tab-content"><div class="tab-pane active" id="unmatched-placeholder-remains-1"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% raw %&#125;&#123;#</span><br><span class="line">&#123;% label error@Unmatched placeholder remains! %&#125;</span><br><span class="line">#&#125;&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="unmatched-placeholder-remains-2"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line">&#123;% label error@Unmatched placeholder remains! %&#125;</span><br><span class="line">&#123;% endraw %&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+<div class="tabs" id="unmatched-placeholder-remains"><ul class="nav-tabs"><li class="tab active"><a href="#unmatched-placeholder-remains-1"><mark class="label danger">Error</mark></a></li><li class="tab"><a href="#unmatched-placeholder-remains-2"><mark class="label success">Success</mark></a></li></ul><div class="tab-content"><div class="tab-pane active" id="unmatched-placeholder-remains-1"><pre><code>&amp;#123;% raw %&amp;#125;&amp;#123;#
+&amp;#123;% label error@Unmatched placeholder remains! %&amp;#125;
+#&amp;#125;&amp;#123;% endraw %&amp;#125;</code></pre></div><div class="tab-pane" id="unmatched-placeholder-remains-2"><pre><code>&amp;#123;% raw %&amp;#125;
+&amp;#123;% label error@Unmatched placeholder remains! %&amp;#125;
+&amp;#123;% endraw %&amp;#125;</code></pre></div></div></div>
 </div></div></div></div>
 
 <h3 id="TOC-Issues"><a href="#TOC-Issues" class="headerlink" title="TOC Issues"></a>TOC Issues</h3><p>Do not write a skip-level heading in the post. For example, a third-tier heading <code>###</code> followed by a <code>#####</code> is not recommended.<br>See: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0L2lzc3Vlcy84ODI=">https://github.com/theme-next/hexo-theme-next/issues/882<i class="fa fa-external-link-alt"></i></span></p>
 <p>If you are using <code>hexo-renderer-markdown-it</code>, it&#39;s recommended to install <code>markdown-it-named-headings</code> to make the TOC work correctly.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install markdown-it-named-headings</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> markdown-it-named-headings</code></pre>
 <p>See: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0L2lzc3Vlcy8xMTY4">https://github.com/theme-next/hexo-theme-next/issues/1168<i class="fa fa-external-link-alt"></i></span><br>Here is the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvLXJlbmRlcmVyLW1hcmtkb3duLWl0L3B1bGwvOTA=">PR with bugfix for default config<i class="fa fa-external-link-alt"></i></span> of <code>hexo-renderer-markdown-it</code> plugin.</p>
 <h3 id="Favicon-Set-but-Doesn-39-t-Work"><a href="#Favicon-Set-but-Doesn-39-t-Work" class="headerlink" title="Favicon Set but Doesn&#39;t Work"></a>Favicon Set but Doesn&#39;t Work</h3><p>Put your <code>favicon</code> under <mark class="label info">site's</mark> <code>source</code> dir. If you find that your Favicon doesn&#39;t work, please clean your browser&#39;s cache first and then visit your Favicon&#39;s URL directly, which should be <code>http(s)://your-domain.com/favicon.ico</code>.</p>
 <div class="note warning"><p>If your site is in a subdirectory please set it to <code>favicon: favicon.ico</code>.</p>
@@ -505,10 +551,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
 </div><div class="footer-custom">
-Theme source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLXRoZW1lLW5leHQ=">here</span><br>
-Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://github.com/next-theme/hexo-theme-next" class="theme-link" rel="noopener" target="_blank">Hexo.NexT</a> v8.0.0</div>
 </div>
-
 
         
 

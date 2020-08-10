@@ -32,7 +32,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-02-08T18:50:03.000Z">
 <meta property="article:modified_time" content="2020-08-07T01:27:22.903Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Jueee">
 <meta property="article:tag" content="Hexo, NexT">
 <meta name="twitter:card" content="summary">
 
@@ -94,7 +94,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -138,7 +138,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">22</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,6 +149,11 @@
         <li class="menu-item menu-item-tags">
 
     <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
 
   </li>
         
@@ -217,15 +222,43 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Support"><span class="nav-number">1.</span> <span class="nav-text">Cache Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Minify-Support"><span class="nav-number">2.</span> <span class="nav-text">Minify Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Text-Align"><span class="nav-number">3.</span> <span class="nav-text">Text Align</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mobile-Devices-Adaptation"><span class="nav-number">4.</span> <span class="nav-text">Mobile Devices Adaptation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Logo-Support"><span class="nav-number">5.</span> <span class="nav-text">Custom Logo Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Codeblock-Style"><span class="nav-number">6.</span> <span class="nav-text">Codeblock Style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Back-To-Top"><span class="nav-number">7.</span> <span class="nav-text">Back To Top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-Progress"><span class="nav-number">8.</span> <span class="nav-text">Reading Progress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bookmark"><span class="nav-number">9.</span> <span class="nav-text">Bookmark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub-Banner"><span class="nav-number">10.</span> <span class="nav-text">GitHub Banner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fonts-Customization"><span class="nav-number">11.</span> <span class="nav-text">Fonts Customization</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Support"><span class="nav-number">1.</span> <span class="nav-text">Cache Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Minify-Support"><span class="nav-number">2.</span> <span class="nav-text">Minify Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Text-Align"><span class="nav-number">3.</span> <span class="nav-text">Text Align</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mobile-Devices-Adaptation"><span class="nav-number">4.</span> <span class="nav-text">Mobile Devices Adaptation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Logo-Support"><span class="nav-number">5.</span> <span class="nav-text">Custom Logo Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Codeblock-Style"><span class="nav-number">6.</span> <span class="nav-text">Codeblock Style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Back-To-Top"><span class="nav-number">7.</span> <span class="nav-text">Back To Top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-Progress"><span class="nav-number">8.</span> <span class="nav-text">Reading Progress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bookmark"><span class="nav-number">9.</span> <span class="nav-text">Bookmark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub-Banner"><span class="nav-number">10.</span> <span class="nav-text">GitHub Banner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fonts-Customization"><span class="nav-number">11.</span> <span class="nav-text">Fonts Customization</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text"> to ).
+  headings:
+    external: true
+    family: Amita
+    size:
+
+  # Font settings for posts (.post-body).
+  posts:
+    external: true
+    family: Montserrat
+
+  # Font settings for  and code blocks.
+  codes:
+    external: true
+    family: PT Mono</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link"><span class="nav-number">0.0.0.1.</span> <span class="nav-text">).
+  headings:
+    external: true
+    family: Amita
+    size:
+
+  # Font settings for posts (.post-body).
+  posts:
+    external: true
+    family: Montserrat
+
+  # Font settings for  and code blocks.
+  codes:
+    external: true
+    family: PT Mono</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="John Doe"
-      src="/images/logo.svg">
-  <p class="site-author-name" itemprop="name">John Doe</p>
+    <img class="site-author-image" itemprop="image" alt="Jueee"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">Jueee</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap animated">
@@ -267,6 +300,34 @@
   </div>
 
 
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java 学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发学习笔记</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程学习笔记</a>
+        </li>
+    </ul>
+  </div>
 <div class="cc-license motion-element" itemprop="sponsor">
   <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
 </div>
@@ -454,7 +515,7 @@
     <div class="post-block" lang="zh-CN">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">Theme Settings<span class="exturl post-edit-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2p1ZWVlLmdpdGh1Yi5pby9lZGl0L21hc3Rlci9zb3VyY2UvZG9jcy90aGVtZS1zZXR0aW5ncy9pbmRleC5tZA==" title="编辑"><i class="fa fa-pen-nib"></i></span>
+<h1 class="post-title" itemprop="name headline">Theme Settings
 </h1>
 
 <div class="post-meta">
@@ -477,14 +538,15 @@
       <div class="post-body">
           <p>One of the guiding principles of NexT is to hide complex details and give you a simple but flexible config, so you can use it easily.</p>
 <h3 id="Cache-Support"><a href="#Cache-Support" class="headerlink" title="Cache Support"></a>Cache Support</h3><p>NexT v6+ allows to cache content generation. Set the value <code>enable</code> to <code>true</code> in <code>cache</code> section in <mark class="label primary">theme config file</mark> as following:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Allow to cache content generation. Introduced in NexT v6.0.0.</span></span><br><span class="line"><span class="attr">cache:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Allow to cache content generation. Introduced in NexT v6.0.0.
+cache:
+  enable: true</code></pre>
 <h3 id="Minify-Support"><a href="#Minify-Support" class="headerlink" title="Minify Support"></a>Minify Support</h3><div class="note info"><p>This feature is currently a bit simplistic, and we will further improve it in the future.</p>
 </div>
 
 <p>NexT allows to minify Hexo generation. Set the value <code>minify</code> to <code>true</code> in <mark class="label primary">theme config file</mark> as following:</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Remove unnecessary files after hexo generate.</span></span><br><span class="line"><span class="attr">minify:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Remove unnecessary files after hexo generate.
+minify: true</code></pre>
 <h3 id="Text-Align"><a href="#Text-Align" class="headerlink" title="Text Align"></a>Text Align</h3><p>NexT allows to customize the text alignment in posts / pages. The <code>text-align</code> CSS property sets the horizontal alignment of a block element or table-cell box.</p>
 <table>
 <thead>
@@ -526,47 +588,72 @@
 <td>Similar to <code>inherit</code>, but the values <code>start</code> and <code>end</code> are calculated according to the parent&#39;s direction and are replaced by the appropriate <code>left</code> or <code>right</code> value.</td>
 </tr>
 </tbody></table>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Set the text alignment in the posts.</span></span><br><span class="line"><span class="attr">text_align:</span></span><br><span class="line">  <span class="comment"># Available values: start | end | left | right | center | justify | justify-all | match-parent</span></span><br><span class="line">  <span class="attr">desktop:</span> <span class="string">justify</span></span><br><span class="line">  <span class="attr">mobile:</span> <span class="string">justify</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Set the text alignment in the posts.
+text_align:
+  # Available values: start | end | left | right | center | justify | justify-all | match-parent
+  desktop: justify
+  mobile: justify</code></pre>
 <h3 id="Mobile-Devices-Adaptation"><a href="#Mobile-Devices-Adaptation" class="headerlink" title="Mobile Devices Adaptation"></a>Mobile Devices Adaptation</h3><div class="tabs" id="mobile-adaptation"><ul class="nav-tabs"><li class="tab active"><a href="#mobile-adaptation-1"><code>mobile_layout_economy</code></a></li><li class="tab"><a href="#mobile-adaptation-2"><code>android_chrome_color</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="mobile-adaptation-1"><p>If you want to reduce padding/margin indents on devices with narrow width, you can enable it by setting value <code>mobile_layout_economy</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">mobile_layout_economy:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="mobile-adaptation-2"><p>By default NexT uses black-deep (<code>#222</code>) as the color of android Chrome header panel. You can configure it by editing values with Hex color in <code>android_chrome_color</code> section in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">android_chrome_color:</span> <span class="string">&quot;#222&quot;</span></span><br></pre></td></tr></table></figure></div></div></div>
+<pre class=" language-yml">mobile_layout_economy: true</code></pre></div><div class="tab-pane" id="mobile-adaptation-2"><p>By default NexT uses black-deep (<code>#222</code>) as the color of android Chrome header panel. You can configure it by editing values with Hex color in <code>android_chrome_color</code> section in <mark class="label primary"><code class="language-yml">mobile_layout_economy: true</code></pre></div><div class="tab-pane" id="mobile-adaptation-2"><p>By default NexT uses black-deep (<code>#222</code>) as the color of android Chrome header panel. You can configure it by editing values with Hex color in <code>android_chrome_color</code> section in <mark class="label primary">theme config file</mark>.</p>
+<pre><code class="yml">android_chrome_color: "#222"</code></pre></div></div></div>
 
 <h3 id="Custom-Logo-Support"><a href="#Custom-Logo-Support" class="headerlink" title="Custom Logo Support"></a>Custom Logo Support</h3><p>NexT supports the site logo personalization.</p>
 <p>You can enable it by adding images&#39;s url to <code>custom_logo</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_logo:</span> <span class="string">/uploads/custom-logo.jpg</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml">custom_logo: /uploads/custom-logo.jpg</code></pre>
 <div class="note danger"><p>Scheme Mist does not support custom logo setting.</p>
 </div>
 
 <h3 id="Codeblock-Style"><a href="#Codeblock-Style" class="headerlink" title="Codeblock Style"></a>Codeblock Style</h3><div class="tabs" id="codeblock"><ul class="nav-tabs"><li class="tab active"><a href="#codeblock-1"><code>theme</code></a></li><li class="tab"><a href="#codeblock-2"><code>copy_button</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="codeblock-1"><p>NexT uses the <span class="exturl" data-url="aHR0cHM6Ly9oaWdobGlnaHRqcy5vcmcv">Highlight.js<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cHM6Ly9wcmlzbWpzLmNvbS8=">Prism<i class="fa fa-external-link-alt"></i></span> package to support code highlight. Default style is <code>tomorrow</code> and there are more than 90 styles to choose.</p>
 <p>You can preview all available Code Highlight themes here: <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy9oaWdobGlnaHQv">NexT Highlight Theme Preview<i class="fa fa-external-link-alt"></i></span>. Change the value of <code>theme</code> and <code>prism</code> to choose the highlight style you like.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">tomorrow</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">tomorrow-night</span></span><br><span class="line">  <span class="attr">prism:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">prism</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">prism-dark</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml">codeblock:
+  # Code Highlight theme
+  # All available themes: https://theme-next.js.org/highlight/
+  theme:
+    light: tomorrow
+    dark: tomorrow-night
+  prism:
+    light: prism
+    dark: prism-dark</code></pre>
 <p>If Dark Mode is enabled, dark code highlighting themes will be available.</p></div><div class="tab-pane" id="codeblock-2"><p>NexT supports the copy-and-paste functionality of codeblock.</p>
 <div class="tabs" id="codeblock1"><ul class="nav-tabs"><li class="tab active"><a href="#codeblock1-1"><code>enable</code></a></li><li class="tab"><a href="#codeblock1-2"><code>style</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="codeblock1-1"><p>You can enable it by setting value <code>copy_button.enable</code> to <code>true</code> in <mark class="label primary">theme config file</mark>. By default NexT shows copy result of the copy-and-paste functionality.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="attr">copy_button:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="codeblock1-2"><p>With <code>style</code> option, you can change your copy button style.<br>There are three style available currently: <code>default</code> (Just leave it empty), <code>flat</code> and <code>mac</code>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="attr">copy_button:</span></span><br><span class="line">    <span class="attr">style:</span> <span class="string">flat</span></span><br></pre></td></tr></table></figure></div></div></div></div></div></div>
+<pre class=" language-yml"><code class="language-yml">codeblock:
+  copy_button:
+    enable: true</code></pre></div><div class="tab-pane" id="codeblock1-2"><p>With <code>style</code> option, you can change your copy button style.<br>There are three style available currently: <code>default</code> (Just leave it empty), <code>flat</code> and <code>mac</code>.</p>
+<pre class=" language-yml"><code class="language-yml">codeblock:
+  copy_button:
+    style: flat</code></pre></div></div></div></div></div></div>
 
-<h3 id="Back-To-Top"><a href="#Back-To-Top" class="headerlink" title="Back To Top"></a>Back To Top</h3><div class="tabs" id="b2t"><ul class="nav-tabs"><li class="tab active"><a href="#b2t-1"><code>enable</code></a></li><li class="tab"><a href="#b2t-2"><code>sidebar</code></a></li><li class="tab"><a href="#b2t-3"><code>scrollpercent</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="b2t-1"><figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">back2top:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>Set the value <code>back2top.enable</code> to <code>true</code> to display <code>Back to top</code> button.</p></div><div class="tab-pane" id="b2t-2"><figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">back2top:</span></span><br><span class="line">  <span class="comment"># Back to top in sidebar.</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>Set the value <code>back2top.sidebar</code> to <code>true</code> to put the button in sidebar.</p></div><div class="tab-pane" id="b2t-3"><figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">back2top:</span></span><br><span class="line">  <span class="comment"># Scroll percent label in b2t button.</span></span><br><span class="line">  <span class="attr">scrollpercent:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
+<h3 id="Back-To-Top"><a href="#Back-To-Top" class="headerlink" title="Back To Top"></a>Back To Top</h3><div class="tabs" id="b2t"><ul class="nav-tabs"><li class="tab active"><a href="#b2t-1"><code>enable</code></a></li><li class="tab"><a href="#b2t-2"><code>sidebar</code></a></li><li class="tab"><a href="#b2t-3"><code>scrollpercent</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="b2t-1"><pre class=" language-yml"><code class="language-yml">back2top:
+  enable: true</code></pre>
+<p>Set the value <code>back2top.enable</code> to <code>true</code> to display <code>Back to top</code> button.</p></div><div class="tab-pane" id="b2t-2"><pre class=" language-yml"><code class="language-yml">back2top:
+  # Back to top in sidebar.
+  sidebar: true</code></pre>
+<p>Set the value <code>back2top.sidebar</code> to <code>true</code> to put the button in sidebar.</p></div><div class="tab-pane" id="b2t-3"><pre class=" language-yml"><code class="language-yml">back2top:
+  # Scroll percent label in b2t button.
+  scrollpercent: true</code></pre>
 <p>Set the value <code>back2top.scrollpercent</code> to <code>true</code> to display scroll percent label in <code>Back to top</code> button.</p></div></div></div>
 
 <h3 id="Reading-Progress"><a href="#Reading-Progress" class="headerlink" title="Reading Progress"></a>Reading Progress</h3><p>NexT supports the page scroll reading progress indicator.</p>
 <p>You can enable it by setting value <code>reading_progress.enable</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">reading_progress:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">&quot;#37c6c0&quot;</span></span><br><span class="line">  <span class="attr">height:</span> <span class="string">2px</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml">reading_progress:
+  enable: true
+  color: "#37c6c0"
+  height: 2px</code></pre>
 <h3 id="Bookmark"><a href="#Bookmark" class="headerlink" title="Bookmark"></a>Bookmark</h3><p>Bookmark is a plugin that allow the users save their reading progress. Users could just click the bookmark icon (like 🔖) in left-top of the page to save the scroll position. And when they visit your blog in the next time, they can resume the last scroll position of each page automatically.</p>
 <p>You can enable it by setting value <code>bookmark.enable</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">bookmark:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Customize the color of the bookmark.</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">&quot;#222&quot;</span></span><br><span class="line">  <span class="comment"># If auto, save the reading progress when closing the page or clicking the bookmark-icon.</span></span><br><span class="line">  <span class="comment"># If manual, only save it by clicking the bookmark-icon.</span></span><br><span class="line">  <span class="attr">save:</span> <span class="string">auto</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml">bookmark:
+  enable: false
+  # Customize the color of the bookmark.
+  color: "#222"
+  # If auto, save the reading progress when closing the page or clicking the bookmark-icon.
+  # If manual, only save it by clicking the bookmark-icon.
+  save: auto</code></pre>
 <h3 id="GitHub-Banner"><a href="#GitHub-Banner" class="headerlink" title="GitHub Banner"></a>GitHub Banner</h3><p>NexT provides <code>Follow me on GitHub</code> banner in right-top corner.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Follow me on GitHub banner in right-top corner.</span></span><br><span class="line"><span class="attr">github_banner:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">permalink:</span> <span class="string">https://github.com/yourname</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">Follow</span> <span class="string">me</span> <span class="string">on</span> <span class="string">GitHub</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml"># Follow me on GitHub banner in right-top corner.
+github_banner:
+  enable: true
+  permalink: https://github.com/yourname
+  title: Follow me on GitHub</code></pre>
 <div class="tabs" id="github-banner"><ul class="nav-tabs"><li class="tab active"><a href="#github-banner-1"><code>permalink</code></a></li><li class="tab"><a href="#github-banner-2"><code>title</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="github-banner-1"><p><code>permalink</code> → is the specified link must have full url path.</p></div><div class="tab-pane" id="github-banner-2"><p><code>title</code> → is the title and aria-label name.</p></div></div></div>
 
 <p>You can set <code>enable</code> to <code>true</code> and add your own GitHub link.</p>
@@ -587,11 +674,53 @@
 <div class="note info"><p>To solve the unstable of <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9mb250cw==">Google Fonts API<i class="fa fa-external-link-alt"></i></span> in some countries, NexT supports custom URL of fonts library by setting <code>font.host</code>.<br>In addition, we noticed that for requests from certain websites, Google Fonts will return 403. At this time, it is necessary to use <code>font.host</code> to set up a mirror site.<br>Relevant issues: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0L2lzc3Vlcy82MTM=">#613<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0L2lzc3Vlcy8xMzMz">#1333<i class="fa fa-external-link-alt"></i></span></p>
 </div>
 
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="comment"># Use custom fonts families or not.</span></span><br><span class="line">  <span class="comment"># Depended options: `external` and `family`.</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Uri of fonts host, e.g. https://fonts.googleapis.com (Default).</span></span><br><span class="line">  <span class="attr">host:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font options:</span></span><br><span class="line">  <span class="comment"># `external: true` will load this font family from `host` above.</span></span><br><span class="line">  <span class="comment"># `family: Times New Roman`. Without any quotes.</span></span><br><span class="line">  <span class="comment"># `size: x.x`. Use `em` as unit. Default: 1 (16px)</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Global font settings used for all elements inside &lt;body&gt;.</span></span><br><span class="line">  <span class="attr">global:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Monda</span></span><br><span class="line">    <span class="attr">size:</span> <span class="number">1.125</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for site title (.site-title).</span></span><br><span class="line">  <span class="attr">title:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Lobster</span> <span class="string">Two</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for headlines (&lt;h1&gt; to &lt;h6&gt;).</span></span><br><span class="line">  <span class="attr">headings:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Amita</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for posts (.post-body).</span></span><br><span class="line">  <span class="attr">posts:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Montserrat</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for &lt;code&gt; and code blocks.</span></span><br><span class="line">  <span class="attr">codes:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">PT</span> <span class="string">Mono</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-yml"><code class="language-yml">font:
+  # Use custom fonts families or not.
+  # Depended options: `external` and `family`.
+  enable: true
 
+  # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).
+  host:
+
+  # Font options:
+  # `external: true` will load this font family from `host` above.
+  # `family: Times New Roman`. Without any quotes.
+  # `size: x.x`. Use `em` as unit. Default: 1 (16px)
+
+  # Global font settings used for all elements inside <body>.
+  global:
+    external: true
+    family: Monda
+    size: 1.125
+
+  # Font settings for site title (.site-title).
+  title:
+    external: true
+    family: Lobster Two
+    size:
+
+  # Font settings for headlines (<h1> to <h6>).
+  headings:
+    external: true
+    family: Amita
+    size:
+
+  # Font settings for posts (.post-body).
+  posts:
+    external: true
+    family: Montserrat
+
+  # Font settings for <code> and code blocks.
+  codes:
+    external: true
+    family: PT Mono</code></pre>
 <p>And you can apply multiple font families for each option. This is especially useful for those who often writes both Chinese and English.</p>
-<figure class="highlight yml"><figcaption><span>next/_config.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">title:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Roboto</span> <span class="string">Slab,</span> <span class="string">Noto</span> <span class="string">Serif</span> <span class="string">SC</span></span><br><span class="line">    <span class="attr">size:</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-yml"><code class="language-yml">font:
+  ...
+  title:
+    external: true
+    family: Roboto Slab, Noto Serif SC
+    size:</code></pre>
 <div class="note info"><p>According to the <span class="exturl" data-url="aHR0cHM6Ly93d3cudzMub3JnL1RSLzIwMTgvUkVDLWNzcy1mb250cy0zLTIwMTgwOTIwLyNwcm9wZGVmLWZvbnQtZmFtaWx5">CSS Fonts Module Level 3<i class="fa fa-external-link-alt"></i></span> spec:</p>
 <blockquote>
 <p>Font family names other than generic families must either be given quoted as strings, or unquoted as a sequence of one or more identifiers.</p>
@@ -600,8 +729,20 @@
 </div>
 
 <p>If you still need more customization, following change will cover Fonts Customization function. Edit <code>source/_data/variables.styl</code> in <mark class="label info">site root directory</mark> and add two varibles:</p>
-<figure class="highlight styl"><figcaption><span>hexo/source/_data/variables.styl</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">// Title Font, set it to font family you want.</span></span><br><span class="line"><span class="variable">$font</span>-family-headings = Georgia, sans</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set it to font family you want.</span></span><br><span class="line"><span class="variable">$font</span>-family-base = <span class="string">&quot;Microsoft YaHei&quot;</span>, Verdana, sans-serif</span><br><span class="line"></span><br><span class="line"><span class="comment">// Code Font.</span></span><br><span class="line"><span class="variable">$code</span>-<span class="attribute">font-family</span> = <span class="string">&quot;Input Mono&quot;</span>, <span class="string">&quot;PT Mono&quot;</span>, Consolas, Monaco, Menlo, monospace</span><br><span class="line"></span><br><span class="line"><span class="comment">// Font size of articles.</span></span><br><span class="line"><span class="variable">$font</span>-size-base = <span class="number">16px</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Font size of table and code.</span></span><br><span class="line"><span class="variable">$table</span>-<span class="attribute">font-size</span> = <span class="number">13px</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-styl"><code class="language-styl">// Title Font, set it to font family you want.
+$font-family-headings = Georgia, sans
 
+// Set it to font family you want.
+$font-family-base = "Microsoft YaHei", Verdana, sans-serif
+
+// Code Font.
+$code-font-family = "Input Mono", "PT Mono", Consolas, Monaco, Menlo, monospace
+
+// Font size of articles.
+$font-size-base = 16px
+
+// Font size of table and code.
+$table-font-size = 13px</code></pre>
 <p>Then uncomment <code>variable</code> under the <code>custom_file_path</code> section in <mark class="label primary">theme config file</mark>.</p>
 
       </div>
@@ -672,10 +813,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
 </div><div class="footer-custom">
-Theme source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLXRoZW1lLW5leHQ=">here</span><br>
-Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://github.com/next-theme/hexo-theme-next" class="theme-link" rel="noopener" target="_blank">Hexo.NexT</a> v8.0.0</div>
 </div>
-
 
         
 
