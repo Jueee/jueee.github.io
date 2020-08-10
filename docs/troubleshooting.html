@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -472,7 +467,7 @@
 <h3 id="Keep-Up-Indentation"><a href="#Keep-Up-Indentation" class="headerlink" title="Keep Up Indentation"></a>Keep Up Indentation</h3><p>When you edit any YAML configs, always need to keep up indents.<br>Currently, in all Hexo and NexT configuration files parameters uses <strong>2 spaces indents</strong> from parent option.</p>
 <p>For example, we want to change NexT scheme from standart <code>Muse</code> to <code>Gemini</code> and want to use <code>theme_config</code> feature with <a href="/docs/getting-started/configuration.html#theme-config">Alternate Theme Config</a>.</p>
 <div class="tabs" id="keep-up-indentation"><ul class="nav-tabs"><li class="tab active"><a href="#keep-up-indentation-1">NexT Config →</a></li><li class="tab"><a href="#keep-up-indentation-2">Hexo Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="keep-up-indentation-1"><p>We open <mark class="label primary">theme config file</mark> and under the «Scheme Settings» section copy next parameters:</p>
-<pre class=" language-yml"><code class="language-yml"># ---------------------------------------------------------------
+<pre class="language-yml" data-language="yml"><code class="language-yml"># ---------------------------------------------------------------
 # Scheme Settings
 # ---------------------------------------------------------------
 
@@ -480,10 +475,10 @@ scheme: Muse
 #scheme: Mist
 #scheme: Pisces
 #scheme: Gemini</code></pre></div><div class="tab-pane" id="keep-up-indentation-2"><p>Then we open <mark class="label info">site config file</mark> and paste these parameters under <code>theme_config</code> section:</p>
-<div class="tabs" id="2-spaces-indents"><ul class="nav-tabs"><li class="tab active"><a href="#2-spaces-indents-1"><mark class="label danger">Nothing Happen</mark></a></li><li class="tab"><a href="#2-spaces-indents-2"><mark class="label success">Working Normally</mark></a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-spaces-indents-1"><pre class=" language-yml"><code class="language-yml">theme_config:
+<div class="tabs" id="2-spaces-indents"><ul class="nav-tabs"><li class="tab active"><a href="#2-spaces-indents-1"><mark class="label danger">Nothing Happen</mark></a></li><li class="tab"><a href="#2-spaces-indents-2"><mark class="label success">Working Normally</mark></a></li></ul><div class="tab-content"><div class="tab-pane active" id="2-spaces-indents-1"><pre class="language-yml" data-language="yml"><code class="language-yml">theme_config:
 
 <p>#scheme: Muse<br>#scheme: Mist<br>#scheme: Pisces<br>scheme: Gemini</code></pre></p>
-<p>Nothing will happen here because indentation not keeped up. Hexo just can&#39;t read these parameters because subparameters (children parameters of <code>theme_config</code> parameter) does not exist. Let&#39;s see <a href="#2-spaces-indents-2">same configuration with indents</a>.</p></div><div class="tab-pane" id="2-spaces-indents-2"><pre class=" language-yml"><code class="language-yml">theme_config:
+<p>Nothing will happen here because indentation not keeped up. Hexo just can&#39;t read these parameters because subparameters (children parameters of <code>theme_config</code> parameter) does not exist. Let&#39;s see <a href="#2-spaces-indents-2">same configuration with indents</a>.</p></div><div class="tab-pane" id="2-spaces-indents-2"><pre class="language-yml" data-language="yml"><code class="language-yml">theme_config:
 
 <p>  #scheme: Muse<br>  #scheme: Mist<br>  #scheme: Pisces<br>  scheme: Gemini</code></pre></p>
 <p>And here Hexo can read these parameters as <code>theme_config.scheme: Gemini</code> in same way, as NexT can read <code>scheme: Gemini</code> parameter. So, with 2 spaces indents from parent option(s) Hexo will load all NexT parameters and work fine.</p></div></div></div></div></div></div>
@@ -491,16 +486,16 @@ scheme: Muse
 <h3 id="Backtick-Code-Block-in-Tags"><a href="#Backtick-Code-Block-in-Tags" class="headerlink" title="Backtick Code Block in Tags"></a>Backtick Code Block in Tags</h3><p>For Hexo before version 4.0, when backtick code block(s) exists inside other tags (like <code>blockquote</code>, <code>note</code>, <code>tabs</code>), that code block will be generated as «undefined» string in HTML. There are several ways to resolve this:</p>
 <div class="tabs" id="backtick-code-block"><ul class="nav-tabs"><li class="tab active"><a href="#backtick-code-block-1"><mark class="label success">Tagged Code Block</mark></a></li><li class="tab"><a href="#backtick-code-block-2">HTML tags</a></li><li class="tab"><a href="#backtick-code-block-3">Bugfix for Backtick</a></li></ul><div class="tab-content"><div class="tab-pane active" id="backtick-code-block-1"><p>Instead of <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdGFnLXBsdWdpbnMjQmFja3RpY2stQ29kZS1CbG9jaw==">Backtick Code Block<i class="fa fa-external-link-alt"></i></span> you can also use tagged <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdGFnLXBsdWdpbnMjQ29kZS1CbG9jaw==">Code Block<i class="fa fa-external-link-alt"></i></span>.<br>But in rare cases standard code block can obtain errors inside other tags.</p></div><div class="tab-pane" id="backtick-code-block-2"><p>Use HTML tags instead of Hexo tags: <code>&lt;pre&gt;&lt;code&gt;</code>.<br>In this case you can&#39;t add code syntax highlighting.</p></div><div class="tab-pane" id="backtick-code-block-3"><p>Here is the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL3B1bGwvMjMyMQ==">PR with bugfix for backtick code block inside tags<i class="fa fa-external-link-alt"></i></span> (Submitted in 2016, merged three years later).<br>So, upgrade to Hexo 4.0 or higher, if you need to use backtick code block inside tags.</p>
 <div class="note danger"><p>Sometimes during generate you can see «<mark class="label danger">Error: Unmatched placeholder remains!</mark>» message.<br>This mean somewhere in your posts, blocks with tags was commented out with <code>{#</code> and <code>#}</code> symbols:</p>
-<div class="tabs" id="unmatched-placeholder-remains"><ul class="nav-tabs"><li class="tab active"><a href="#unmatched-placeholder-remains-1"><mark class="label danger">Error</mark></a></li><li class="tab"><a href="#unmatched-placeholder-remains-2"><mark class="label success">Success</mark></a></li></ul><div class="tab-content"><div class="tab-pane active" id="unmatched-placeholder-remains-1"><pre><code>&amp;#123;% raw %&amp;#125;&amp;#123;#
-&amp;#123;% label error@Unmatched placeholder remains! %&amp;#125;
-#&amp;#125;&amp;#123;% endraw %&amp;#125;</code></pre></div><div class="tab-pane" id="unmatched-placeholder-remains-2"><pre><code>&amp;#123;% raw %&amp;#125;
-&amp;#123;% label error@Unmatched placeholder remains! %&amp;#125;
-&amp;#123;% endraw %&amp;#125;</code></pre></div></div></div>
+<div class="tabs" id="unmatched-placeholder-remains"><ul class="nav-tabs"><li class="tab active"><a href="#unmatched-placeholder-remains-1"><mark class="label danger">Error</mark></a></li><li class="tab"><a href="#unmatched-placeholder-remains-2"><mark class="label success">Success</mark></a></li></ul><div class="tab-content"><div class="tab-pane active" id="unmatched-placeholder-remains-1"><pre class="language-none"><code class="language-none">&#123;% raw %&#125;&#123;#
+&#123;% label error@Unmatched placeholder remains! %&#125;
+#&#125;&#123;% endraw %&#125;</code></pre></div><div class="tab-pane" id="unmatched-placeholder-remains-2"><pre class="language-none"><code class="language-none">&#123;% raw %&#125;
+&#123;% label error@Unmatched placeholder remains! %&#125;
+&#123;% endraw %&#125;</code></pre></div></div></div>
 </div></div></div></div>
 
 <h3 id="TOC-Issues"><a href="#TOC-Issues" class="headerlink" title="TOC Issues"></a>TOC Issues</h3><p>Do not write a skip-level heading in the post. For example, a third-tier heading <code>###</code> followed by a <code>#####</code> is not recommended.<br>See: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0L2lzc3Vlcy84ODI=">https://github.com/theme-next/hexo-theme-next/issues/882<i class="fa fa-external-link-alt"></i></span></p>
 <p>If you are using <code>hexo-renderer-markdown-it</code>, it&#39;s recommended to install <code>markdown-it-named-headings</code> to make the TOC work correctly.</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> markdown-it-named-headings</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> markdown-it-named-headings</code></pre>
 <p>See: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0L2lzc3Vlcy8xMTY4">https://github.com/theme-next/hexo-theme-next/issues/1168<i class="fa fa-external-link-alt"></i></span><br>Here is the <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvLXJlbmRlcmVyLW1hcmtkb3duLWl0L3B1bGwvOTA=">PR with bugfix for default config<i class="fa fa-external-link-alt"></i></span> of <code>hexo-renderer-markdown-it</code> plugin.</p>
 <h3 id="Favicon-Set-but-Doesn-39-t-Work"><a href="#Favicon-Set-but-Doesn-39-t-Work" class="headerlink" title="Favicon Set but Doesn&#39;t Work"></a>Favicon Set but Doesn&#39;t Work</h3><p>Put your <code>favicon</code> under <mark class="label info">site's</mark> <code>source</code> dir. If you find that your Favicon doesn&#39;t work, please clean your browser&#39;s cache first and then visit your Favicon&#39;s URL directly, which should be <code>http(s)://your-domain.com/favicon.ico</code>.</p>
 <div class="note warning"><p>If your site is in a subdirectory please set it to <code>favicon: favicon.ico</code>.</p>

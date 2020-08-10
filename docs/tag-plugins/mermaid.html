@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -542,21 +537,24 @@
       
       
       <div class="post-body">
-          <h3 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h3><pre class=" language-yml"><code class="language-yml"># Mermaid tag
+          <h3 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h3><pre class="language-yml" data-language="yml"><code class="language-yml"># Mermaid tag
 mermaid:
   enable: true
   # Available themes: default | dark | forest | neutral
   theme: forest</code></pre>
-<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class=" language-md"><code class="language-md">&#123;% mermaid type %&#125;
+
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class="language-md" data-language="md"><code class="language-md">&#123;% mermaid type %&#125;
 &#123;% endmermaid %&#125;
 
-type : type of the mermaid chart, visit https://github.com/mermaid-js/mermaid for more information.</code></pre>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><pre class=" language-md"><code class="language-md">&#123;% mermaid graph TD %&#125;
-A[Hard] -->|Text| B(Round)
-B --> C&#123;Decision&#125;
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
+type : type of the mermaid chart, visit https:&#x2F;&#x2F;github.com&#x2F;mermaid-js&#x2F;mermaid for more information.</code></pre>
+
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><pre class="language-md" data-language="md"><code class="language-md">&#123;% mermaid graph TD %&#125;
+A[Hard] --&gt;|Text| B(Round)
+B --&gt; C&#123;Decision&#125;
+C --&gt;|One| D[Result 1]
+C --&gt;|Two| E[Result 2]
 &#123;% endmermaid %&#125;</code></pre>
+
 <pre class="mermaid" style="text-align: center;">
 graph TD
 A[Hard] --&gt;|Text| B(Round)
@@ -565,16 +563,17 @@ C --&gt;|One| D[Result 1]
 C --&gt;|Two| E[Result 2]
 </pre>
 
-<pre class=" language-md"><code class="language-md">&#123;% mermaid sequenceDiagram %&#125;
-Alice->>John: Hello John, how are you?
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% mermaid sequenceDiagram %&#125;
+Alice-&gt;&gt;John: Hello John, how are you?
 loop Healthcheck
-    John->>John: Fight against hypochondria
+    John-&gt;&gt;John: Fight against hypochondria
 end
 Note right of John: Rational thoughts!
-John-->>Alice: Great!
-John->>Bob: How about you?
-Bob-->>John: Jolly good!
+John--&gt;&gt;Alice: Great!
+John-&gt;&gt;Bob: How about you?
+Bob--&gt;&gt;John: Jolly good!
 &#123;% endmermaid %&#125;</code></pre>
+
 <pre class="mermaid" style="text-align: center;">
 sequenceDiagram
 Alice-&gt;&gt;John: Hello John, how are you?
@@ -587,7 +586,7 @@ John-&gt;&gt;Bob: How about you?
 Bob--&gt;&gt;John: Jolly good!
 </pre>
 
-<pre class=" language-md"><code class="language-md">&#123;% mermaid gantt %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% mermaid gantt %&#125;
 section Section
 Completed :done,    des1, 2014-01-06,2014-01-08
 Active        :active,  des2, 2014-01-07, 3d
@@ -596,6 +595,7 @@ Parallel 2   :         des4, after des1, 1d
 Parallel 3   :         des5, after des3, 1d
 Parallel 4   :         des6, after des4, 1d
 &#123;% endmermaid %&#125;</code></pre>
+
 <pre class="mermaid" style="text-align: center;">
 gantt
 section Section
@@ -607,23 +607,24 @@ Parallel 3   :         des5, after des3, 1d
 Parallel 4   :         des6, after des4, 1d
 </pre>
 
-<pre class=" language-md"><code class="language-md">&#123;% mermaid classDiagram %&#125;
-Class01 <|-- AveryLongClass : Cool
-<<interface>> Class01
-Class09 --> C2 : Where am i?
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% mermaid classDiagram %&#125;
+Class01 &lt;|-- AveryLongClass : Cool
+&lt;&lt;interface&gt;&gt; Class01
+Class09 --&gt; C2 : Where am i?
 Class09 --* C3
-Class09 --|> Class07
+Class09 --|&gt; Class07
 Class07 : equals()
 Class07 : Object[] elementData
 Class01 : size()
 Class01 : int chimp
 Class01 : int gorilla
 class Class10 &#123;
-  <<service>>
+  &lt;&lt;service&gt;&gt;
   int id
   size()
 &#125;
 &#123;% endmermaid %&#125;</code></pre>
+
 <pre class="mermaid" style="text-align: center;">
 classDiagram
 Class01 &lt;|-- AveryLongClass : Cool
@@ -643,14 +644,15 @@ class Class10 {
 }
 </pre>
 
-<pre class=" language-md"><code class="language-md">&#123;% mermaid stateDiagram %&#125;
-[*] --> Still
-Still --> [*]
-Still --> Moving
-Moving --> Still
-Moving --> Crash
-Crash --> [*]
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% mermaid stateDiagram %&#125;
+[*] --&gt; Still
+Still --&gt; [*]
+Still --&gt; Moving
+Moving --&gt; Still
+Moving --&gt; Crash
+Crash --&gt; [*]
 &#123;% endmermaid %&#125;</code></pre>
+
 <pre class="mermaid" style="text-align: center;">
 stateDiagram
 [*] --&gt; Still
@@ -661,11 +663,12 @@ Moving --&gt; Crash
 Crash --&gt; [*]
 </pre>
 
-<pre class=" language-md"><code class="language-md">&#123;% mermaid pie %&#125;
-"Dogs" : 386
-"Cats" : 85
-"Rats" : 15
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% mermaid pie %&#125;
+&quot;Dogs&quot; : 386
+&quot;Cats&quot; : 85
+&quot;Rats&quot; : 15
 &#123;% endmermaid %&#125;</code></pre>
+
 <pre class="mermaid" style="text-align: center;">
 pie
 &quot;Dogs&quot; : 386
@@ -673,7 +676,7 @@ pie
 &quot;Rats&quot; : 15
 </pre>
 
-<pre class=" language-md"><code class="language-md">&#123;% mermaid journey %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% mermaid journey %&#125;
 title My working day
 section Go to work
   Make tea: 5: Me
@@ -683,6 +686,7 @@ section Go home
   Go downstairs: 5: Me
   Sit down: 3: Me
 &#123;% endmermaid %&#125;</code></pre>
+
 <pre class="mermaid" style="text-align: center;">
 journey
 title My working day

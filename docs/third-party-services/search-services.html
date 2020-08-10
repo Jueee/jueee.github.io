@@ -122,7 +122,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -146,6 +146,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -295,14 +296,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -328,9 +326,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -546,41 +541,43 @@
 <li><p>In the <code>API Keys</code> page, click the <code>All API Keys</code> button to switch to the corresponding tab. Then click the <code>New API Key</code> button to activate a pop-up box where you can setup authorizations and restrictions with a great level of precision. Enter <code>addObject</code>, <code>deleteObject</code>, <code>listIndexes</code>, <code>deleteIndex</code> features in ACL permissions that will be allowed for the given API key. And then click the <code>Create</code> button. Copy this newly created key to the clipboard, we call it a <code>High-privilege API key</code>.<br><img src="/images/docs/algolia-3.png" alt="Algolia API Keys 2" loading="lazy"><br><img src="/images/docs/algolia-4.png" alt="Algolia Configuring Records" loading="lazy"></p>
 </li>
 </ol></div><div class="tab-pane" id="algolia-search-3"><p>In your <mark class="label info">site config file</mark>, add the following configuration and replace the <code>applicationID</code> &amp; <code>apiKey</code> &amp; <code>indexName</code> with corresponding fields obtained at Algolia.</p>
-<pre class=" language-yml"><code class="language-yml">algolia:
-  applicationID: 'Application ID'
-  apiKey: 'Search-only API key'
-  indexName: 'indexName'
+<pre class="language-yml" data-language="yml"><code class="language-yml">algolia:
+  applicationID: &#39;Application ID&#39;
+  apiKey: &#39;Search-only API key&#39;
+  indexName: &#39;indexName&#39;
   chunkSize: 5000</code></pre></div><div class="tab-pane" id="algolia-search-4"><ol>
 <li><p>Algolia requires users to upload their search index data either manually or via provided APIs. Install and configure <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29uY2xldG9tL2hleG8tYWxnb2xpYQ==">Hexo Algolia<i class="fa fa-external-link-alt"></i></span> in your Hexo directory. This plugin will index your site and upload selected data to Algolia.</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> hexo-site
+ <pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> hexo-site
 $ <span class="token function">npm</span> <span class="token function">install</span> hexo-algolia</code></pre>
 </li>
 <li><p>Run the following command to upload index data, keep a weather eye out the output of the command.</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">export</span> HEXO_ALGOLIA_INDEXING_KEY<span class="token operator">=</span>High-privilege API key <span class="token comment" spellcheck="true"># Use Git Bash</span>
-<span class="token comment" spellcheck="true"># set HEXO_ALGOLIA_INDEXING_KEY=High-privilege API key # Use Windows command line</span>
+ <pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">export</span> <span class="token assign-left variable">HEXO_ALGOLIA_INDEXING_KEY</span><span class="token operator">=</span>High-privilege API key <span class="token comment"># Use Git Bash</span>
+<span class="token comment"># set HEXO_ALGOLIA_INDEXING_KEY=High-privilege API key # Use Windows command line</span>
 $ hexo clean
 $ hexo algolia</code></pre>
+
 <p> <img src="/images/docs/algolia-5.png" alt="Reload Index" loading="lazy"></p>
 </li>
 </ol></div><div class="tab-pane" id="algolia-search-5"><p>In <mark class="label primary">theme config file</mark>, turn on <code>enable</code> of <code>algolia_search</code>. At the same time, you need to <strong>turn off other search plugins</strong> like Local Search. You can also adjust the text in <code>labels</code> according to your needs.</p>
-<pre class=" language-yml"><code class="language-yml"># Algolia Search
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Algolia Search
 algolia_search:
   enable: true
   hits:
     per_page: 10
   labels:
     input_placeholder: Search for Posts
-    hits_empty: "We didn't find any results for the search: $&#123;query&#125;"
-    hits_stats: "$&#123;hits&#125; results found in $&#123;time&#125; ms"</code></pre>
+    hits_empty: &quot;We didn&#39;t find any results for the search: $&#123;query&#125;&quot;
+    hits_stats: &quot;$&#123;hits&#125; results found in $&#123;time&#125; ms&quot;</code></pre>
+
 <p>If you want to use a different version from CDN, please follow the instructions below.</p>
 <p>You need to <strong>set vendors</strong> in <mark class="label primary">theme config file</mark>:</p>
-<pre class=" language-yml"><code class="language-yml">vendors:
+<pre class="language-yml" data-language="yml"><code class="language-yml">vendors:
   ...
   # Algolia Search
-  # algolia_search: //cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
-  # instant_search: //cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js
-  algolia_search: //cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
-  instant_search: //cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js
+  # algolia_search: &#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;algoliasearch@4&#x2F;dist&#x2F;algoliasearch-lite.umd.js
+  # instant_search: &#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;instantsearch.js@4&#x2F;dist&#x2F;instantsearch.production.min.js
+  algolia_search: &#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;algoliasearch@4&#x2F;dist&#x2F;algoliasearch-lite.umd.js
+  instant_search: &#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;instantsearch.js@4&#x2F;dist&#x2F;instantsearch.production.min.js
   ...</code></pre></div></div></div>
 
 <div class="note danger"><p><strong>Known Issues</strong></p>
@@ -592,14 +589,14 @@ algolia_search:
 
 <h3 id="Local-Search"><a href="#Local-Search" class="headerlink" title="Local Search"></a>Local Search</h3><p>Local search no need any external 3rd-party services and can be extra indexed by search engines. That search method recommended for most users.</p>
 <div class="tabs" id="local-search"><ul class="nav-tabs"><li class="tab active"><a href="#local-search-1">Installation →</a></li><li class="tab"><a href="#local-search-2">Hexo Config →</a></li><li class="tab"><a href="#local-search-3">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="local-search-1"><p>Install <code>hexo-generator-searchdb</code> by executing the following command in <mark class="label info">site root dir</mark>:</p>
-<pre class=" language-bash">$ npm install hexo-generator-searchdb</code></pre></div><div class="tab-pane" id="local-search-2"><p>Edit <mark class="label info"><code class="language-bash">$ npm install hexo-generator-searchdb</code></pre></div><div class="tab-pane" id="local-search-2"><p>Edit <mark class="label info">site config file</mark> and add following content:</p>
-<pre><code class="yml">search:
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> hexo-generator-searchdb</code></pre></div><div class="tab-pane" id="local-search-2"><p>Edit <mark class="label info">site config file</mark> and add following content:</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">search:
   path: search.xml
   field: post
   format: html
   limit: 10000</code></pre></div><div class="tab-pane" id="local-search-3"><p>Edit <mark class="label primary">theme config file</mark> to enable Local Search:</p>
-<pre class=" language-yml"><code class="language-yml"># Local search
-# Dependencies: https://github.com/next-theme/hexo-generator-searchdb
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Local search
+# Dependencies: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;hexo-generator-searchdb
 local_search:
   enable: true
   # If auto, trigger search by changing input.
@@ -613,7 +610,7 @@ local_search:
   preload: false</code></pre></div></div></div>
 
 <h3 id="Swiftype-Search"><a href="#Swiftype-Search" class="headerlink" title="Swiftype Search"></a>Swiftype Search</h3><div class="tabs" id="swiftype-search"><ul class="nav-tabs"><li class="tab active"><a href="#swiftype-search-1">Sign up →</a></li><li class="tab"><a href="#swiftype-search-2">Create Search Engine →</a></li><li class="tab"><a href="#swiftype-search-3">Customize and Enable Search →</a></li><li class="tab"><a href="#swiftype-search-4">Get Key →</a></li><li class="tab"><a href="#swiftype-search-5">Search Field →</a></li><li class="tab"><a href="#swiftype-search-6">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="swiftype-search-1"><p>Go to <span class="exturl" data-url="aHR0cHM6Ly9zd2lmdHlwZS5jb20vdXNlcnMvc2lnbl91cA==">Swiftype Sign Page<i class="fa fa-external-link-alt"></i></span> to sign up.<br><img src="/images/docs/swiftype-1.png" alt="Swiftype Sign up" loading="lazy"></p></div><div class="tab-pane" id="swiftype-search-2"><p>After signing up create a new search engine and follow instructions.<br><img src="/images/docs/swiftype-2.png" alt="Swiftype Create Search Engine" loading="lazy"></p></div><div class="tab-pane" id="swiftype-search-3"><p>After creating choose <code>Integrate</code> → <code>Install Search</code> in the menu to customize with instructions. Then click <code>Active</code> button finally.<br><img src="/images/docs/swiftype-3.png" alt="Swiftype Customize And Enable Search" loading="lazy"></p></div><div class="tab-pane" id="swiftype-search-4"><p>Back to <code>INSTALL CODE</code> and copy your <code>swiftype_key</code>.<br><img src="/images/docs/swiftype-4.png" alt="Swiftype Get Key" loading="lazy"></p></div><div class="tab-pane" id="swiftype-search-5"><p>Click <code>Change Configuration</code> → <code>Search Field</code>, then follow the instructions.<br><img src="/images/docs/swiftype-5.png" alt="Swiftype Search Field" loading="lazy"></p></div><div class="tab-pane" id="swiftype-search-6"><p>Edit <mark class="label primary">theme config file</mark> and fill section <code>swiftype_key</code> with value of your key gets:</p>
-<pre class=" language-yml"><code class="language-yml"># Swiftype Search API Key
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Swiftype Search API Key
 swiftype_key: xxxxxxxxx</code></pre></div></div></div>
 
       </div>

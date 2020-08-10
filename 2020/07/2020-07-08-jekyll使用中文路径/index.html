@@ -112,7 +112,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -136,6 +136,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -285,14 +286,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -318,9 +316,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -426,13 +421,14 @@
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>修改 安装目录 <code>Ruby26-x64\lib\ruby\2.6.0\webrick\httpservlet</code> 下的 <code>filehandler.rb</code> 文件，建议先备份。</p>
 <p>找到下列两处，添加一句（+的一行为添加部分）</p>
 <p>第285行： </p>
-<pre class=" language-ruby"><code class="language-ruby">    path <span class="token operator">=</span> req<span class="token punctuation">.</span>path_info<span class="token punctuation">.</span>dup<span class="token punctuation">.</span><span class="token function">force_encoding</span><span class="token punctuation">(</span><span class="token constant">Encoding</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">"filesystem"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token operator">+</span> path<span class="token punctuation">.</span><span class="token function">force_encoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 加入编码</span>
-    <span class="token keyword">if</span> trailing_pathsep<span class="token operator">?</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>path_info<span class="token punctuation">)</span>       </code></pre>
+<pre class="language-ruby" data-language="ruby"><code class="language-ruby">path <span class="token operator">=</span> req<span class="token punctuation">.</span>path_info<span class="token punctuation">.</span>dup<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token constant">Encoding</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">"filesystem"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">+</span> path<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment"># 加入编码</span>
+<span class="token keyword">if</span> trailing_pathsep<span class="token operator">?</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>path_info<span class="token punctuation">)</span>       </code></pre>
 <p>第333行：</p>
-<pre class=" language-ruby"><code class="language-ruby">    <span class="token keyword">break</span> <span class="token keyword">if</span> base <span class="token operator">==</span> <span class="token string">"/"</span>
-    <span class="token operator">+</span> base<span class="token punctuation">.</span><span class="token function">force_encoding</span><span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#加入編碼</span>
-    <span class="token keyword">break</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>directory<span class="token operator">?</span><span class="token punctuation">(</span><span class="token builtin">File</span><span class="token punctuation">.</span><span class="token function">expand_path</span><span class="token punctuation">(</span>res<span class="token punctuation">.</span>filename <span class="token operator">+</span> base<span class="token punctuation">)</span><span class="token punctuation">)</span>  </code></pre>
+<pre class="language-ruby" data-language="ruby"><code class="language-ruby"><span class="token keyword">break</span> <span class="token keyword">if</span> base <span class="token operator">==</span> <span class="token string">"/"</span>
+<span class="token operator">+</span> base<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment">#加入編碼</span>
+<span class="token keyword">break</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>directory<span class="token operator">?</span><span class="token punctuation">(</span><span class="token builtin">File</span><span class="token punctuation">.</span>expand_path<span class="token punctuation">(</span>res<span class="token punctuation">.</span>filename <span class="token operator">+</span> base<span class="token punctuation">)</span><span class="token punctuation">)</span>  </code></pre>
+
 <p>修改完重新 jekyll serve 即可支持中文文件名。</p>
 
     </div>
@@ -453,10 +449,10 @@
       <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为Jekyll博客系统增加来必力评论系统</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加Jekyll博客访问量统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件canvas-nest.js</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件canvas-nest.js</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-博客添加Fork me on GitHub\" rel="bookmark">博客添加 Fork me on GitHub</a></div>
     </li>
   </ul>
 
@@ -478,8 +474,8 @@
       <i class="fa fa-chevron-left"></i> 使用rinetd实现端口转发重定向
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/2020-07-16-%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Fork%20me%20on%20GitHub/" rel="next" title="博客添加 Fork me on GitHub">
-      博客添加 Fork me on GitHub <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/2020-07-09-%E4%BD%BF%E7%94%A8%E4%B8%8D%E8%92%9C%E5%AD%90%E5%A2%9E%E5%8A%A0Jekyll%E5%8D%9A%E5%AE%A2%E8%AE%BF%E9%97%AE%E9%87%8F%E7%BB%9F%E8%AE%A1/" rel="next" title="使用不蒜子增加Jekyll博客访问量统计">
+      使用不蒜子增加Jekyll博客访问量统计 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

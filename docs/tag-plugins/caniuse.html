@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -542,22 +537,27 @@
       
       
       <div class="post-body">
-          <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class=" language-md"><code class="language-md">&#123;% caniuse feature @ periods %&#125;
-<!-- Tag Alias -->
+          <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class="language-md" data-language="md"><code class="language-md">&#123;% caniuse feature @ periods %&#125;
+&lt;!-- Tag Alias --&gt;
 &#123;% can feature @ periods %&#125;
 
-feature : Search for the feature you want on https://caniuse.com, then click on the hash sign to the left of the search result heading and you will get the unique name of this feature.
-periods : Select the browser versions to display. Supported values: past_1, past_2, past_3, past_4, past_5, current, future_3, future_2, future_1. If this value is empty, the default value 'current' will be used.</code></pre>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Caniuse-without-periods"><a href="#Caniuse-without-periods" class="headerlink" title="Caniuse without periods"></a>Caniuse without periods</h4><pre class=" language-md"><code class="language-md">&#123;% caniuse fetch %&#125;</code></pre>
+feature : Search for the feature you want on https:&#x2F;&#x2F;caniuse.com, then click on the hash sign to the left of the search result heading and you will get the unique name of this feature.
+periods : Select the browser versions to display. Supported values: past_1, past_2, past_3, past_4, past_5, current, future_3, future_2, future_1. If this value is empty, the default value &#39;current&#39; will be used.</code></pre>
+
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Caniuse-without-periods"><a href="#Caniuse-without-periods" class="headerlink" title="Caniuse without periods"></a>Caniuse without periods</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% caniuse fetch %&#125;</code></pre>
+
 <iframe data-feature="fetch" src="https://caniuse.bitsofco.de/embed/index.html?feat=fetch&periods=current&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
-<h4 id="Caniuse-with-current-period"><a href="#Caniuse-with-current-period" class="headerlink" title="Caniuse with current period"></a>Caniuse with current period</h4><pre class=" language-md"><code class="language-md">&#123;% caniuse sharedarraybuffer @ current %&#125;</code></pre>
+<h4 id="Caniuse-with-current-period"><a href="#Caniuse-with-current-period" class="headerlink" title="Caniuse with current period"></a>Caniuse with current period</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% caniuse sharedarraybuffer @ current %&#125;</code></pre>
+
 <iframe data-feature="sharedarraybuffer" src="https://caniuse.bitsofco.de/embed/index.html?feat=sharedarraybuffer&periods=current&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
-<h4 id="Caniuse-with-future-periods"><a href="#Caniuse-with-future-periods" class="headerlink" title="Caniuse with future periods"></a>Caniuse with future periods</h4><pre class=" language-md"><code class="language-md">&#123;% caniuse loading-lazy-attr @ future_3,future_2,future_1 %&#125;</code></pre>
+<h4 id="Caniuse-with-future-periods"><a href="#Caniuse-with-future-periods" class="headerlink" title="Caniuse with future periods"></a>Caniuse with future periods</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% caniuse loading-lazy-attr @ future_3,future_2,future_1 %&#125;</code></pre>
+
 <iframe data-feature="loading-lazy-attr" src="https://caniuse.bitsofco.de/embed/index.html?feat=loading-lazy-attr&periods=future_3,future_2,future_1&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
-<h4 id="Caniuse-with-past-periods"><a href="#Caniuse-with-past-periods" class="headerlink" title="Caniuse with past periods"></a>Caniuse with past periods</h4><pre class=" language-md"><code class="language-md">&#123;% caniuse link-rel-modulepreload @ past_1,past_2,past_3,past_4,past_5 %&#125;</code></pre>
+<h4 id="Caniuse-with-past-periods"><a href="#Caniuse-with-past-periods" class="headerlink" title="Caniuse with past periods"></a>Caniuse with past periods</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% caniuse link-rel-modulepreload @ past_1,past_2,past_3,past_4,past_5 %&#125;</code></pre>
+
 <iframe data-feature="link-rel-modulepreload" src="https://caniuse.bitsofco.de/embed/index.html?feat=link-rel-modulepreload&periods=past_1,past_2,past_3,past_4,past_5&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
       </div>

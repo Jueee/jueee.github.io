@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -459,33 +454,35 @@
       <div class="post-body">
           <p>Besides common <a href="/docs/theme-settings/">Theme Settings</a> and <a href="/docs/third-party-services/">Third-party Services</a>, NexT supports some advanced settings which makes NexT customizable.<br>Please note that those settings may lead to abnormal behavior if they are wrong. Change them only when you know for what they are.</p>
 <h3 id="CDN-Settings"><a href="#CDN-Settings" class="headerlink" title="CDN Settings"></a>CDN Settings</h3><p>This feature is located under <code>vendors</code> section in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">vendors:
+<pre class="language-yml" data-language="yml"><code class="language-yml">vendors:
   # The CDN provider of NexT internal scripts.
   # Available values: local | jsdelivr | unpkg
   internal: local
   # The default CDN provider of third-party plugins.
   # Available values: local | jsdelivr | unpkg | cdnjs
-  # Dependencies for `plugins: local`: https://github.com/next-theme/plugins
+  # Dependencies for &#96;plugins: local&#96;: https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;plugins
   plugins: jsdelivr
 
   # In the following settings, you can specify the CDN link for each plugin.
-  # If left blank, the default CDN provider set by `plugins` option will be used.
+  # If left blank, the default CDN provider set by &#96;plugins&#96; option will be used.
 
   # Anime.js
-  # For more information: https://animejs.com
+  # For more information: https:&#x2F;&#x2F;animejs.com
   anime:
 
   # Font Awesome
-  # For more information: https://fontawesome.com
+  # For more information: https:&#x2F;&#x2F;fontawesome.com
   fontawesome:
 
   ...</code></pre>
+
 <h4 id="Core-Plugins"><a href="#Core-Plugins" class="headerlink" title="Core Plugins"></a>Core Plugins</h4><p><code>internal: local</code> is used to set how to load the internal library, e.g. <code>source/js/utils.js</code>. The core plugins are loaded from your site by default, they are required by the basic functions of NexT. Set <code>internal</code> to <code>jsdelivr</code> or <code>unpkg</code> to load them from the corresponding CDN.</p>
 <div class="note info"><p>If your site is deployed to any free hosting service (Github, Gitlab, etc.), CDN links are recommended for core plugins. CDN usually has faster speeds and no traffic restrictions.</p>
 </div>
 
 <h4 id="Third-party-Plugins"><a href="#Third-party-Plugins" class="headerlink" title="Third-party Plugins"></a>Third-party Plugins</h4><p><code>plugins: jsdelivr</code> is used to set how to load the third-party plugins, e.g. <code>anime.js</code>. Third-party plugins are loaded from <span class="exturl" data-url="aHR0cHM6Ly93d3cuanNkZWxpdnIuY29tLw==">jsDelivr<i class="fa fa-external-link-alt"></i></span> CDN by default.<br>The reason that jsDelivr is chosen to deliver our third-party plugins is because it is fast everywhere, and jsDelivr has the valid ICP license issued by the Chinese government, it can be accessed in China pretty well. jsDelivr does not only provide mirrors for the files from npm packages, but also fetch from the GitHub releases! We could use the following link to reference the js files, just as other CDNs.</p>
-<pre><code>//cdn.jsdelivr.net/gh/user/repo@version/file</code></pre>
+<pre class="language-none"><code class="language-none">&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;user&#x2F;repo@version&#x2F;file</code></pre>
+
 <p>And it could automatically minify the JS and CSS files, even if you don&#39;t have the minified version. Just use the <code>filename.min.js</code> or the <code>filename.min.css</code> to replace the file above. For more information: <span class="exturl" data-url="aHR0cHM6Ly93d3cuanNkZWxpdnIuY29tL2ZlYXR1cmVz">https://www.jsdelivr.com/features<i class="fa fa-external-link-alt"></i></span></p>
 <p>And we also provide other optional CDNs, including the famous <span class="exturl" data-url="aHR0cHM6Ly91bnBrZy5jb20v">UNPKG<i class="fa fa-external-link-alt"></i></span> and <span class="exturl" data-url="aHR0cHM6Ly9jZG5qcy5jb20v">CDNJS<i class="fa fa-external-link-alt"></i></span>. Set <code>plugins</code> to <code>unpkg</code> or <code>cdnjs</code> to load them from different CDN provider.</p>
 <div class="note warning"><p>Particularly, if you are a Chinese blogger or most of your visits come from China, please note that <strong>the CDNJS is blocked in some parts of China</strong>, don&#39;t use it as your CDN provider.</p>
@@ -495,68 +492,79 @@
 </div>
 
 <p>And next part is the config of each library. Each config is in format of <code>libname: CDN URL</code>. For example:</p>
-<pre class=" language-yml"><code class="language-yml">anime: //unpkg.com/animejs@3.1.0/lib/anime.min.js</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">anime: &#x2F;&#x2F;unpkg.com&#x2F;animejs@3.1.0&#x2F;lib&#x2F;anime.min.js</code></pre>
+
 <p><strong>If you leave it blank, NexT will use the default CDN provider set by <code>plugins</code> option.</strong></p>
 <p>You can set it to a proper CDN URL, which can make the static assets of third-party plugins load faster. For example, if you want to set the CDN URL for <code>mediumzoom</code>, go to <mark class="label primary">theme config file</mark> and see:</p>
-<pre class=" language-yml"><code class="language-yml">vendors:
+<pre class="language-yml" data-language="yml"><code class="language-yml">vendors:
   # ...
   # Some contents...
   # ...
   mediumzoom: # Set or update mediumzoom CDN URL.</code></pre>
+
 <p>If you want to try the other CDNs not included in the available values of <code>plugins</code> option, you would better use the corresponding version. Versions in <code>_vendors.yml</code> are recommended by NexT. And if you need other versions you need to test them first.</p>
 <h3 id="Injects"><a href="#Injects" class="headerlink" title="Injects"></a>Injects</h3><p>We extended the Hexo filter and added <code>theme_inject</code>, so user can add the desired custom content to any injection point.</p>
-<h4 id="Synopsis"><a href="#Synopsis" class="headerlink" title="Synopsis"></a>Synopsis</h4><pre class=" language-js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>injects<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// ...</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="Synopsis"><a href="#Synopsis" class="headerlink" title="Synopsis"></a>Synopsis</h4><pre class="language-js" data-language="js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">injects</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <p>A injects argument will get passed into the function, so we can use it add custom code in <code>injectPoint</code> as following.</p>
 <p>For inject view:</p>
-<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// The name of same `injectPoint` suggest be unique. If same, it will override low priority configurations.</span>
-<span class="token comment" spellcheck="true">// `locals` and `options` is the same as partial https://hexo.io/docs/helpers#partial.</span>
-<span class="token comment" spellcheck="true">// `order` defines the order of injection, which by default depends on the priority of injection.</span>
-hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>injects<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// it will put code from this filePath into injectPoint.</span>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token comment">// The name of same `injectPoint` suggest be unique. If same, it will override low priority configurations.</span>
+<span class="token comment">// `locals` and `options` is the same as partial https://hexo.io/docs/helpers#partial.</span>
+<span class="token comment">// `order` defines the order of injection, which by default depends on the priority of injection.</span>
+hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">injects</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// it will put code from this filePath into injectPoint.</span>
   injects<span class="token punctuation">.</span><span class="token punctuation">[</span>injectPoint<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">file</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> filePath<span class="token punctuation">,</span> <span class="token punctuation">[</span>locals<span class="token punctuation">,</span> options<span class="token punctuation">,</span> order<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// it will put raw string as code into injectPoint.</span>
+  <span class="token comment">// it will put raw string as code into injectPoint.</span>
   injects<span class="token punctuation">.</span><span class="token punctuation">[</span>injectPoint<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">raw</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> raw<span class="token punctuation">,</span> <span class="token punctuation">[</span>locals<span class="token punctuation">,</span> options<span class="token punctuation">,</span> order<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <div class="note warning"><p>You have to note <code>filePath</code>, it must be absolute path or relative to <code>hexo_dir</code>.</p>
 </div>
 
 <p>For inject style:</p>
-<pre class=" language-js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>injects<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// it will put styleFile into injectPoint.</span>
+<pre class="language-js" data-language="js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">injects</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// it will put styleFile into injectPoint.</span>
   injects<span class="token punctuation">.</span><span class="token punctuation">[</span>injectPoint<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>styleFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <p>These are many <code>injectPoint</code>, defined in <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next/blob/master/scripts/events/lib/injects-point.js"><code>injects-point.js</code></a></p>
-<pre class=" language-js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  views<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'head'</span><span class="token punctuation">,</span> <span class="token string">'header'</span><span class="token punctuation">,</span> <span class="token string">'sidebar'</span><span class="token punctuation">,</span> <span class="token string">'postMeta'</span><span class="token punctuation">,</span> <span class="token string">'postBodyEnd'</span><span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">,</span> <span class="token string">'footer'</span><span class="token punctuation">,</span> <span class="token string">'bodyEnd'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  styles<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'variable'</span><span class="token punctuation">,</span> <span class="token string">'mixin'</span><span class="token punctuation">,</span> <span class="token string">'style'</span><span class="token punctuation">]</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-js" data-language="js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  views<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'head'</span><span class="token punctuation">,</span> <span class="token string">'header'</span><span class="token punctuation">,</span> <span class="token string">'sidebar'</span><span class="token punctuation">,</span> <span class="token string">'postMeta'</span><span class="token punctuation">,</span> <span class="token string">'postBodyEnd'</span><span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">,</span> <span class="token string">'footer'</span><span class="token punctuation">,</span> <span class="token string">'bodyEnd'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  styles<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'variable'</span><span class="token punctuation">,</span> <span class="token string">'mixin'</span><span class="token punctuation">,</span> <span class="token string">'style'</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span></code></pre>
+
 <p><code>custom_file_path</code> also uses this API, see <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0L2Jsb2IvbWFzdGVyL3NjcmlwdHMvZmlsdGVycy9kZWZhdWx0LWluamVjdHMuanM=">default-injects.js<i class="fa fa-external-link-alt"></i></span>. It will consume <code>custom</code> name in view inject points. So if you use <code>custom_file_path</code>, please not use <code>custom</code>.</p>
 <h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><p><strong>One:</strong> load a custom script. We can add it in <code>bodyEnd</code>.</p>
-<pre class=" language-js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>injects<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  injects<span class="token punctuation">.</span>bodyEnd<span class="token punctuation">.</span><span class="token function">raw</span><span class="token punctuation">(</span><span class="token string">'load-custom-js'</span><span class="token punctuation">,</span> <span class="token string">'&lt;script src="js-path-or-cdn.js">&lt;/script>'</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>cache<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-js" data-language="js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">injects</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  injects<span class="token punctuation">.</span>bodyEnd<span class="token punctuation">.</span><span class="token function">raw</span><span class="token punctuation">(</span><span class="token string">'load-custom-js'</span><span class="token punctuation">,</span> <span class="token string">'&lt;script src="js-path-or-cdn.js">&lt;/script>'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>cache<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <p><strong>Two:</strong> add a custom <code>my-favourite-food.njk</code> to sidebar.</p>
 <p>Step1: you should create <code>my-favourite-food.njk</code> in any path(e.g. <code>source/_data/</code>) as below. You can get variable from <code>hexo</code> or <code>local</code> defined in filter.</p>
-<pre class=" language-html"><code class="language-html"><span class="token entity" title="&#123;">&amp;#123;</span>% for food in foods %<span class="token entity" title="&#125;">&amp;#125;</span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span>food<span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token entity" title="&#123;">&amp;#123;</span>% endfor %<span class="token entity" title="&#125;">&amp;#125;</span></code></pre>
+<pre class="language-html" data-language="html"><code class="language-html">&#123;% for food in foods %&#125;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>&#123;&#123;food&#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+&#123;% endfor %&#125;</code></pre>
+
 <p>Step2: add filter to load it.</p>
-<pre class=" language-js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>injects<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  injects<span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span><span class="token function">file</span><span class="token punctuation">(</span><span class="token string">'my-favourite-food'</span><span class="token punctuation">,</span> <span class="token string">'source/_data/my-favourite-food.njk'</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    foods<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'orange'</span><span class="token punctuation">]</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-js" data-language="js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">injects</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  injects<span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span><span class="token function">file</span><span class="token punctuation">(</span><span class="token string">'my-favourite-food'</span><span class="token punctuation">,</span> <span class="token string">'source/_data/my-favourite-food.njk'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+    foods<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'orange'</span><span class="token punctuation">]</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <p><strong>Three:</strong> want to have big header, put <code>big-header.styl</code> to NexT.</p>
 <p>Of course, you need to create this file first(e.g. <code>source/_data/big-header.styl</code>).</p>
-<pre class=" language-css"><code class="language-css">h<span class="token number">1</span> &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
-  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">2</span>rem<span class="token punctuation">;</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">h1</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 2rem<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
 <p>And then add it in filter.</p>
-<pre class=" language-js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>injects<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<pre class="language-js" data-language="js"><code class="language-js">hexo<span class="token punctuation">.</span>extend<span class="token punctuation">.</span>filter<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'theme_inject'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">injects</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   injects<span class="token punctuation">.</span>style<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'source/_data/big-header.styl'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
 <h4 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h4><p>We also support hexo&#39;s plugin system, which makes it easy to extend functions without modifying the source code of the core module. You can see <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvcGx1Z2lucy5odG1sI1BsdWdpbg==">https://hexo.io/docs/plugins.html#Plugin<i class="fa fa-external-link-alt"></i></span> to learn how to create a plugin.</p>
 
       </div>

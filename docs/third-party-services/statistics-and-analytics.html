@@ -113,7 +113,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -137,6 +137,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -286,14 +287,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -319,9 +317,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -535,23 +530,24 @@
 <li><p>Create an account and log into <span class="exturl" data-url="aHR0cHM6Ly9hbmFseXRpY3MuZ29vZ2xlLmNvbS8=">Google Analytics<i class="fa fa-external-link-alt"></i></span>. <span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYW5hbHl0aWNzLz9obD1lbiN0b3BpYz0zNTQ0OTA2">More detailed documentation<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 <li><p>Edit <mark class="label primary">theme config file</mark> and fill <code>tracking_id</code> under section <code>google_analytics</code> with your Google track ID. Google track ID always starts with <code>UA-</code>.</p>
-<pre class=" language-yml"><code class="language-yml"># Google Analytics
+ <pre class="language-yml" data-language="yml"><code class="language-yml"># Google Analytics
 google_analytics:
-  tracking_id: UA-XXXXXXXX-X
-  only_pageview: false</code></pre>
+tracking_id: UA-XXXXXXXX-X
+only_pageview: false</code></pre>
 </li>
 <li><p>When field <code>only_pageview</code> is set to true, NexT will only send <code>pageview</code> event to Google Analytics.<br>The benefit of using this instead of <code>only_pageview: false</code> is reduce a external script on your site, which will give you better performance but no complete analytics function.</p>
 </li>
 </ol>
 <h4 id="Baidu-Analytics-China"><a href="#Baidu-Analytics-China" class="headerlink" title="Baidu Analytics (China)"></a>Baidu Analytics (China)</h4><div class="tabs" id="baidu-analytics"><ul class="nav-tabs"><li class="tab active"><a href="#baidu-analytics-1">Login →</a></li><li class="tab"><a href="#baidu-analytics-2">Script ID →</a></li><li class="tab"><a href="#baidu-analytics-3">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="baidu-analytics-1"><p>Login to <span class="exturl" data-url="aHR0cHM6Ly90b25namkuYmFpZHUuY29tLw==">Baidu Analytics<i class="fa fa-external-link-alt"></i></span> and locate to site code getting page.</p></div><div class="tab-pane" id="baidu-analytics-2"><p>Copy the script ID after <code>hm.js?</code>, like the following picture:<br><img src="/images/docs/analytics-baidu-id.png" alt="NexT Baidu Analytics" loading="lazy"></p></div><div class="tab-pane" id="baidu-analytics-3"><p>Edit <mark class="label primary">theme config file</mark> and change section <code>baidu_analytics</code> to your script ID.</p>
-<pre class=" language-yml"><code class="language-yml"># Baidu Analytics ID
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Baidu Analytics ID
 baidu_analytics: your_id</code></pre></div></div></div>
 
 <h4 id="Growingio-Analytics"><a href="#Growingio-Analytics" class="headerlink" title="Growingio Analytics"></a>Growingio Analytics</h4><p>Official documentation: <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdyb3dpbmdpby5jb20vc2RrLWludGVncmF0aW9uL3Nkay0yLngtZG9jcy8=">https://docs.growingio.com/sdk-integration/sdk-2.x-docs/<i class="fa fa-external-link-alt"></i></span></p>
 <h4 id="CNZZ-Analytics-China"><a href="#CNZZ-Analytics-China" class="headerlink" title="CNZZ Analytics (China)"></a>CNZZ Analytics (China)</h4><ol>
 <li>Create an account and log into <span class="exturl" data-url="aHR0cHM6Ly93d3cudW1lbmcuY29tLw==">CNZZ Analytics<i class="fa fa-external-link-alt"></i></span>. <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIudW1lbmcuY29tL2RvY3MvNjc5NjMvZGV0YWlsLzY4NjA5">More detailed documentation<i class="fa fa-external-link-alt"></i></span></li>
-<li>Set the value of section <code>cnzz_siteid</code> in <mark class="label primary">theme config file</mark> to your CNZZ site ID. You can find this ID in link or the auto-generated script.<pre class=" language-yml"><code class="language-yml"># CNZZ count
+<li>Set the value of section <code>cnzz_siteid</code> in <mark class="label primary">theme config file</mark> to your CNZZ site ID. You can find this ID in link or the auto-generated script. <pre class="language-yml" data-language="yml"><code class="language-yml"># CNZZ count
 #cnzz_siteid:</code></pre>
+
 </li>
 </ol>
 <div class="note info"><p>The script will show «Webmaster Statistics» and it&#39;s not elegant, so we used a <code>display: none;</code> to hide it.</p>
@@ -559,42 +555,42 @@ baidu_analytics: your_id</code></pre></div></div></div>
 
 <h3 id="Counting-Tools"><a href="#Counting-Tools" class="headerlink" title="Counting Tools"></a>Counting Tools</h3><h4 id="LeanCloud-China"><a href="#LeanCloud-China" class="headerlink" title="LeanCloud (China)"></a>LeanCloud (China)</h4><p>Adding article reading times counting to NexT theme. Documentation how to set the counter up and running safely aviable in <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by1sZWFuY2xvdWQtY291bnRlci1zZWN1cml0eQ==">hexo-leancloud-counter-security<i class="fa fa-external-link-alt"></i></span>.</p>
 <div class="tabs" id="leancloud-counter"><ul class="nav-tabs"><li class="tab active"><a href="#leancloud-counter-1">Installation →</a></li><li class="tab"><a href="#leancloud-counter-2">Hexo Config →</a></li><li class="tab"><a href="#leancloud-counter-3">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leancloud-counter-1"><p>Install <code>hexo-leancloud-counter-security</code> by executing the following command in <mark class="label info">site root dir</mark>:</p>
-<pre class=" language-bash">$ npm install hexo-leancloud-counter-security</code></pre></div><div class="tab-pane" id="leancloud-counter-2"><p>Edit <mark class="label info"><code class="language-bash">$ npm install hexo-leancloud-counter-security</code></pre></div><div class="tab-pane" id="leancloud-counter-2"><p>Edit <mark class="label info">site config file</mark> and add following content:</p>
-<pre><code class="yml">leancloud_counter_security:
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> hexo-leancloud-counter-security</code></pre></div><div class="tab-pane" id="leancloud-counter-2"><p>Edit <mark class="label info">site config file</mark> and add following content:</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">leancloud_counter_security:
   enable_sync: true
-  app_id: <your app id>
-  app_key: <your app key>
-  username: <your username> # Will be asked while deploying if is left blank
-  password: <your password> # Recommmended to be left blank. Will be asked while deploying if is left blank</code></pre></div><div class="tab-pane" id="leancloud-counter-3"><p>Edit <mark class="label primary">theme config file</mark> and fill options under <code>leancloud_visitors</code> section.</p>
-<pre class=" language-yml"><code class="language-yml"># Show number of visitors to each article.
-# You can visit https://leancloud.cn get AppID and AppKey.
+  app_id: &lt;your app id&gt;
+  app_key: &lt;your app key&gt;
+  username: &lt;your username&gt; # Will be asked while deploying if is left blank
+  password: &lt;your password&gt; # Recommmended to be left blank. Will be asked while deploying if is left blank</code></pre></div><div class="tab-pane" id="leancloud-counter-3"><p>Edit <mark class="label primary">theme config file</mark> and fill options under <code>leancloud_visitors</code> section.</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Show number of visitors to each article.
+# You can visit https:&#x2F;&#x2F;leancloud.cn get AppID and AppKey.
 leancloud_visitors:
   enable: true
-  app_id: #<app_id>
-  app_key: #<app_key>
+  app_id: #&lt;app_id&gt;
+  app_key: #&lt;app_key&gt;
   # Required for apps from CN region
-  server_url: # <your server url>
-  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
-  # If you don't care about security in lc counter and just want to use it directly
-  # (without hexo-leancloud-counter-security plugin), set the `security` to `false`.
+  server_url: # &lt;your server url&gt;
+  # Dependencies: https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-leancloud-counter-security
+  # If you don&#39;t care about security in lc counter and just want to use it directly
+  # (without hexo-leancloud-counter-security plugin), set the &#96;security&#96; to &#96;false&#96;.
   security: true</code></pre></div></div></div>
 
 <h4 id="Firebase"><a href="#Firebase" class="headerlink" title="Firebase"></a>Firebase</h4><p>Firebase Analytics provides the functionality of visitor statistics.</p>
 <div class="tabs" id="firestore"><ul class="nav-tabs"><li class="tab active"><a href="#firestore-1">Get apiKey & projectId →</a></li><li class="tab"><a href="#firestore-2">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="firestore-1"><p>Login to <span class="exturl" data-url="aHR0cHM6Ly9jb25zb2xlLmZpcmViYXNlLmdvb2dsZS5jb20vdS8wLw==">Firebase<i class="fa fa-external-link-alt"></i></span> to get apiKey and projectId. <span class="exturl" data-url="aHR0cHM6Ly9maXJlYmFzZS5nb29nbGUuY29tL2RvY3MvZmlyZXN0b3JlLw==">More detailed documentation<i class="fa fa-external-link-alt"></i></span></p></div><div class="tab-pane" id="firestore-2"><p>Edit <mark class="label primary">theme config file</mark> and add or change <code>firestore</code> section:</p>
-<pre class=" language-yml"><code class="language-yml">firestore:
+<pre class="language-yml" data-language="yml"><code class="language-yml">firestore:
   enable: true
   collection: articles #required, a string collection name to access firestore database
   apiKey: #required
   projectId: #required</code></pre></div></div></div>
 
 <h4 id="Busuanzi-Counting-China"><a href="#Busuanzi-Counting-China" class="headerlink" title="Busuanzi Counting (China)"></a>Busuanzi Counting (China)</h4><div class="tabs" id="busuanzi-counting"><ul class="nav-tabs"><li class="tab active"><a href="#busuanzi-counting-1">Global Settings →</a></li><li class="tab"><a href="#busuanzi-counting-2">Site UV Settings →</a></li><li class="tab"><a href="#busuanzi-counting-3">Site PV Settings →</a></li><li class="tab"><a href="#busuanzi-counting-4">Per-page PV Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="busuanzi-counting-1"><p>Edit <code>busuanzi_count</code> option in <mark class="label primary">theme config file</mark>.<br>When <code>enable: true</code>, global setting is enabled. If <code>total_visitors</code>, <code>total_views</code>, <code>post_views</code> are all <code>false</code>, Busuanzi only counts but never shows.</p></div><div class="tab-pane" id="busuanzi-counting-2"><p>When <code>total_visitors: true</code>, it will show site UV in footer. You can also use font-awesome by setting <code>total_visitors_icon</code> to the name of the icon.</p>
-<pre class=" language-yml"><code class="language-yml">busuanzi_count:
+<pre class="language-yml" data-language="yml"><code class="language-yml">busuanzi_count:
   total_visitors: true
   total_visitors_icon: fa fa-user</code></pre></div><div class="tab-pane" id="busuanzi-counting-3"><p>When <code>total_views: true</code>, it will show site UV in footer. You can also use font-awesome by setting <code>total_views_icon</code> to the name of the icon.</p>
-<pre class=" language-yml"><code class="language-yml">busuanzi_count:
+<pre class="language-yml" data-language="yml"><code class="language-yml">busuanzi_count:
   total_views: true
   total_views_icon: fa fa-user</code></pre></div><div class="tab-pane" id="busuanzi-counting-4"><p>When <code>post_views: true</code>, it will show page PV in post meta. You can also use font-awesome by setting <code>post_views_icon</code> to the name of the icon.</p>
-<pre class=" language-yml"><code class="language-yml">busuanzi_count:
+<pre class="language-yml" data-language="yml"><code class="language-yml">busuanzi_count:
   post_views: true
   post_views_icon: fa fa-user</code></pre></div></div></div>
 

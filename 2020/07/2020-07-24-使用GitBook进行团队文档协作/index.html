@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -428,53 +423,59 @@
 <li>GitBook CI <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dpdGJvb2tJTy9naXRib29rLWNsaQ==">https://github.com/GitbookIO/gitbook-cli<i class="fa fa-external-link-alt"></i></span> </li>
 <li>GitBook Editor <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2l0Ym9vay5jb20vZWRpdG9y">https://www.gitbook.com/editor<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
-<h3 id="GitLab-Runner配置"><a href="#GitLab-Runner配置" class="headerlink" title="GitLab Runner配置"></a>GitLab Runner配置</h3><h4 id="编辑-gitlab-ci-yml"><a href="#编辑-gitlab-ci-yml" class="headerlink" title="编辑 .gitlab-ci.yml"></a>编辑 .gitlab-ci.yml</h4><pre class=" language-yml"><code class="language-yml"># 定义 stages
+<h3 id="GitLab-Runner配置"><a href="#GitLab-Runner配置" class="headerlink" title="GitLab Runner配置"></a>GitLab Runner配置</h3><h4 id="编辑-gitlab-ci-yml"><a href="#编辑-gitlab-ci-yml" class="headerlink" title="编辑 .gitlab-ci.yml"></a>编辑 .gitlab-ci.yml</h4><pre class="language-yml" data-language="yml"><code class="language-yml"># 定义 stages
 stages:
   - build
 # 定义 job
 GenerateHTML:
   stage: build
   script:
-    - p=`pwd`
+    - p&#x3D;&#96;pwd&#96;
     - echo $p
     - gitbook build</code></pre>
+
 <p>gitlab 执行构建，会在文件夹下生成 _book 的目录。</p>
 <p>手工执行 gitbook serve 启动。</p>
 <p>打开 ip:4000 就可以查看文档了。</p>
-<h3 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h3><pre class=" language-ruby"><code class="language-ruby">$ gitbook init <span class="token comment" spellcheck="true"># 初始化一个仓库</span>
+<h3 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h3><pre class="language-ruby" data-language="ruby"><code class="language-ruby">$ gitbook init <span class="token comment"># 初始化一个仓库</span>
 
-$ gitbook install <span class="token comment" spellcheck="true"># 安装插件</span>
+$ gitbook install <span class="token comment"># 安装插件</span>
 
-$ gitbook serve <span class="token comment" spellcheck="true"># 本地预览</span>
+$ gitbook serve <span class="token comment"># 本地预览</span>
 
-$ gitbook serve <span class="token operator">--</span>port <span class="token number">8001</span> <span class="token comment" spellcheck="true"># 指定端口,默认4000</span>
+$ gitbook serve <span class="token operator">--</span>port <span class="token number">8001</span> <span class="token comment"># 指定端口,默认4000</span>
 
-$ gitbook build  <span class="token comment" spellcheck="true"># 输出一个静态网站</span>
+$ gitbook build  <span class="token comment"># 输出一个静态网站</span>
 
-$ gitbook pdf <span class="token comment" spellcheck="true"># 生成pdf文件</span>
+$ gitbook pdf <span class="token comment"># 生成pdf文件</span>
 
-$ gitbook help <span class="token comment" spellcheck="true"># 查看帮助</span></code></pre>
+$ gitbook help <span class="token comment"># 查看帮助</span></code></pre>
+
 <p>可以使用<code>--log=debug</code>和<code>--debug</code>来获得更详细的错误消息（堆栈跟踪）。例如：</p>
-<pre><code>$ gitbook build ./ --log=debug --debug</code></pre>
+<pre class="language-none"><code class="language-none">$ gitbook build .&#x2F; --log&#x3D;debug --debug</code></pre>
+
 <p>or</p>
-<pre><code>$ gitbook serve ./ --log=debug --debug</code></pre>
+<pre class="language-none"><code class="language-none">$ gitbook serve .&#x2F; --log&#x3D;debug --debug</code></pre>
+
 <h3 id="Docker容器化"><a href="#Docker容器化" class="headerlink" title="Docker容器化"></a>Docker容器化</h3><p><code>Dockerfile</code> 文件如下：</p>
-<pre><code>From node:10
+<pre class="language-none"><code class="language-none">From node:10
 
-LABEL version=$VERSION
+LABEL version&#x3D;$VERSION
 
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone
+ENV TZ&#x3D;Asia&#x2F;Shanghai
+RUN ln -snf &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;$TZ &#x2F;etc&#x2F;localtime &amp;&amp; echo $TZ &gt; &#x2F;etc&#x2F;timezone
 
-WORKDIR /gitbook
-COPY xxx_deploy /gitbook
+WORKDIR &#x2F;gitbook
+COPY xxx_deploy &#x2F;gitbook
 
-RUN npm install gitbook-cli -g &amp;&amp; gitbook fetch $&amp;#123;VERSION&amp;#125; &amp;&amp; npm cache clear --force &amp;&amp; rm -rf /tmp/*
+RUN npm install gitbook-cli -g &amp;&amp; gitbook fetch $&#123;VERSION&#125; &amp;&amp; npm cache clear --force &amp;&amp; rm -rf &#x2F;tmp&#x2F;*
 RUN gitbook build
 
 CMD [&quot;gitbook&quot;, &quot;serve&quot;,&quot;--port&quot;,&quot;4000&quot;]</code></pre>
+
 <h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><h4 id="windows更新报错"><a href="#windows更新报错" class="headerlink" title="windows更新报错"></a>windows更新报错</h4><p>gitbook的新版本，在windows下有个bug，当文件内容发生更新时，gitbook报错然后退出：</p>
-<pre><code>Error: EPERM: operation not permitted, open</code></pre>
+<pre class="language-none"><code class="language-none">Error: EPERM: operation not permitted, open</code></pre>
+
 <p>gitbook 官方已有bug，存在半年了，一直没有fix：</p>
 <ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dpdGJvb2tJTy9naXRib29rL2lzc3Vlcy8xMzc5">git serve can&#39;t restart when file changes<i class="fa fa-external-link-alt"></i></span></li>
@@ -487,78 +488,78 @@ CMD [&quot;gitbook&quot;, &quot;serve&quot;,&quot;--port&quot;,&quot;4000&quot;]
 </li>
 <li><p>不是办法的办法：</p>
 <p>新建一个 <code>run.bat</code> ，内容如下：</p>
-<pre class=" language-bash"><code class="language-bash"> @Echo off
- :Start
- call gitbook serve
- goto Start</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">@Echo off
+:Start
+call gitbook serve
+goto Start</code></pre>
+
 <p>每次崩溃之后立即重新启动一次，凑合着用吧。</p>
 </li>
 </ol>
 <h4 id="底部链接修改与隐藏"><a href="#底部链接修改与隐藏" class="headerlink" title="底部链接修改与隐藏"></a>底部链接修改与隐藏</h4><p>用 GitBook 生成的网页中，在左侧目录下方默认有一个 Published with GitBook 连接，可以将这个连接去掉，或者替换成其它连接。</p>
 <p>在 GitBook 站点目录创建 <code>_layouts-&gt;website-&gt;summary.html</code></p>
-<pre class=" language-html"><code class="language-html"><span class="token entity" title="&#123;">&amp;#123;</span>% raw %<span class="token entity" title="&#125;">&amp;#125;</span>
-<span class="token entity" title="&#123;">&amp;#123;</span>% macro articles(_articles) %<span class="token entity" title="&#125;">&amp;#125;</span>
-    <span class="token entity" title="&#123;">&amp;#123;</span>% for article in _articles %<span class="token entity" title="&#125;">&amp;#125;</span>
-        &lt;li class="chapter <span class="token entity" title="&#123;">&amp;#123;</span>% if article.path == file.path and not article.anchor %<span class="token entity" title="&#125;">&amp;#125;</span>active<span class="token entity" title="&#123;">&amp;#123;</span>% endif %<span class="token entity" title="&#125;">&amp;#125;</span>" data-level="<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span> article.level <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>" <span class="token entity" title="&#123;">&amp;#123;</span>% if article.path %<span class="token entity" title="&#125;">&amp;#125;</span>data-path="<span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span> article.path|resolveFile <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>"<span class="token entity" title="&#123;">&amp;#123;</span>% endif %<span class="token entity" title="&#125;">&amp;#125;</span>>
-            <span class="token entity" title="&#123;">&amp;#123;</span>% if article.path and getPageByPath(article.path) %<span class="token entity" title="&#125;">&amp;#125;</span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&amp;#123;&amp;#123; article.path|resolveFile &amp;#125;&amp;#125;&amp;#123;&amp;#123; article.anchor &amp;#125;&amp;#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-            <span class="token entity" title="&#123;">&amp;#123;</span>% elif article.url %<span class="token entity" title="&#125;">&amp;#125;</span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&amp;#123;&amp;#123; article.url &amp;#125;&amp;#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-            <span class="token entity" title="&#123;">&amp;#123;</span>% else %<span class="token entity" title="&#125;">&amp;#125;</span>
+<pre class="language-html" data-language="html"><code class="language-html">&#123;% raw %&#125;
+&#123;% macro articles(_articles) %&#125;
+    &#123;% for article in _articles %&#125;
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>chapter &#123;% if article.path == file.path and not article.anchor %&#125;active&#123;% endif %&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">data-level</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; article.level &#125;&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">&#123;%</span> <span class="token attr-name">if</span> <span class="token attr-name">article.path</span> <span class="token attr-name">%&#125;data-path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; article.path|resolveFile &#125;&#125;<span class="token punctuation">"</span></span><span class="token attr-name">&#123;%</span> <span class="token attr-name">endif</span> <span class="token attr-name">%&#125;</span><span class="token punctuation">></span></span>
+            &#123;% if article.path and getPageByPath(article.path) %&#125;
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; article.path|resolveFile &#125;&#125;&#123;&#123; article.anchor &#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            &#123;% elif article.url %&#125;
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; article.url &#125;&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            &#123;% else %&#125;
                 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>
-            <span class="token entity" title="&#123;">&amp;#123;</span>% endif %<span class="token entity" title="&#125;">&amp;#125;</span>
-                    <span class="token entity" title="&#123;">&amp;#123;</span>% if article.level != "0" and config.pluginsConfig['theme-default'].showLevel %<span class="token entity" title="&#125;">&amp;#125;</span>
-                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span> article.level <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b</span><span class="token punctuation">></span></span>
-                    <span class="token entity" title="&#123;">&amp;#123;</span>% endif %<span class="token entity" title="&#125;">&amp;#125;</span>
-                    <span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span> article.title <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
-            <span class="token entity" title="&#123;">&amp;#123;</span>% if article.path  or article.url %<span class="token entity" title="&#125;">&amp;#125;</span>
+            &#123;% endif %&#125;
+                    &#123;% if article.level != "0" and config.pluginsConfig['theme-default'].showLevel %&#125;
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b</span><span class="token punctuation">></span></span>&#123;&#123; article.level &#125;&#125;.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b</span><span class="token punctuation">></span></span>
+                    &#123;% endif %&#125;
+                    &#123;&#123; article.title &#125;&#125;
+            &#123;% if article.path  or article.url %&#125;
                 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
-            <span class="token entity" title="&#123;">&amp;#123;</span>% else %<span class="token entity" title="&#125;">&amp;#125;</span>
+            &#123;% else %&#125;
                 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
-            <span class="token entity" title="&#123;">&amp;#123;</span>% endif %<span class="token entity" title="&#125;">&amp;#125;</span>
+            &#123;% endif %&#125;
 
-            <span class="token entity" title="&#123;">&amp;#123;</span>% if article.articles.length > 0 %<span class="token entity" title="&#125;">&amp;#125;</span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>articles<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-                <span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span> articles(article.articles, file, config) <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
+            &#123;% if article.articles.length > 0 %&#125;
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>articles<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+                &#123;&#123; articles(article.articles, file, config) &#125;&#125;
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
-            <span class="token entity" title="&#123;">&amp;#123;</span>% endif %<span class="token entity" title="&#125;">&amp;#125;</span>
+            &#123;% endif %&#125;
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-    <span class="token entity" title="&#123;">&amp;#123;</span>% endfor %<span class="token entity" title="&#125;">&amp;#125;</span>
-<span class="token entity" title="&#123;">&amp;#123;</span>% endmacro %<span class="token entity" title="&#125;">&amp;#125;</span>
+    &#123;% endfor %&#125;
+&#123;% endmacro %&#125;
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>summary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token entity" title="&#123;">&amp;#123;</span>% set _divider = false %<span class="token entity" title="&#125;">&amp;#125;</span>
-    <span class="token entity" title="&#123;">&amp;#123;</span>% if config.links.sidebar  %<span class="token entity" title="&#125;">&amp;#125;</span>
-    <span class="token entity" title="&#123;">&amp;#123;</span>% for linkTitle, link in config.links.sidebar  %<span class="token entity" title="&#125;">&amp;#125;</span>
-        <span class="token entity" title="&#123;">&amp;#123;</span>% set _divider = true %<span class="token entity" title="&#125;">&amp;#125;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>summary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    &#123;% set _divider = false %&#125;
+    &#123;% if config.links.sidebar  %&#125;
+    &#123;% for linkTitle, link in config.links.sidebar  %&#125;
+        &#123;% set _divider = true %&#125;
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>&amp;#123;&amp;#123; link &amp;#125;&amp;#125;<span class="token punctuation">"</span></span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>custom-link<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span> linkTitle <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>&#123;&#123; link &#125;&#125;<span class="token punctuation">"</span></span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>custom-link<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#123;&#123; linkTitle &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-    <span class="token entity" title="&#123;">&amp;#123;</span>% endfor %<span class="token entity" title="&#125;">&amp;#125;</span>
-    <span class="token entity" title="&#123;">&amp;#123;</span>% endif %<span class="token entity" title="&#125;">&amp;#125;</span>
+    &#123;% endfor %&#125;
+    &#123;% endif %&#125;
 
-    <span class="token entity" title="&#123;">&amp;#123;</span>% if _divider %<span class="token entity" title="&#125;">&amp;#125;</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-    <span class="token entity" title="&#123;">&amp;#123;</span>% endif %<span class="token entity" title="&#125;">&amp;#125;</span>
+    &#123;% if _divider %&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    &#123;% endif %&#125;
 
-    <span class="token entity" title="&#123;">&amp;#123;</span>% for part in summary.parts %<span class="token entity" title="&#125;">&amp;#125;</span>
-        <span class="token entity" title="&#123;">&amp;#123;</span>% if part.title %<span class="token entity" title="&#125;">&amp;#125;</span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span> part.title <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-        <span class="token entity" title="&#123;">&amp;#123;</span>% elif not loop.first %<span class="token entity" title="&#125;">&amp;#125;</span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
-        <span class="token entity" title="&#123;">&amp;#123;</span>% endif %<span class="token entity" title="&#125;">&amp;#125;</span>
-        <span class="token entity" title="&#123;">&amp;#123;</span><span class="token entity" title="&#123;">&amp;#123;</span> articles(part.articles, file, config) <span class="token entity" title="&#125;">&amp;#125;</span><span class="token entity" title="&#125;">&amp;#125;</span>
-    <span class="token entity" title="&#123;">&amp;#123;</span>% endfor %<span class="token entity" title="&#125;">&amp;#125;</span>
+    &#123;% for part in summary.parts %&#125;
+        &#123;% if part.title %&#125;
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#123;&#123; part.title &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+        &#123;% elif not loop.first %&#125;
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+        &#123;% endif %&#125;
+        &#123;&#123; articles(part.articles, file, config) &#125;&#125;
+    &#123;% endfor %&#125;
 
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>divider<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
 
-    <span class="token comment" spellcheck="true">&lt;!--&lt;li>
+    <span class="token comment">&lt;!--&lt;li>
         &lt;a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            &amp;#123;&amp;#123; "GITBOOK_LINK"|t &amp;#125;&amp;#125;
+            &#123;&#123; "GITBOOK_LINK"|t &#125;&#125;
         &lt;/a>
     &lt;/li>--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
-<span class="token entity" title="&#123;">&amp;#123;</span>% endraw %<span class="token entity" title="&#125;">&amp;#125;</span></code></pre>
+<p><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span><br>&#123;% endraw %&#125;</code></pre>:hexoPostRenderEscape--&gt;</p>
 
     </div>
 
@@ -578,10 +579,10 @@ CMD [&quot;gitbook&quot;, &quot;serve&quot;,&quot;--port&quot;,&quot;4000&quot;]
       <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为Jekyll博客系统增加来必力评论系统</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加Jekyll博客访问量统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll使用中文路径</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll使用中文路径</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件canvas-nest.js</a></div>
     </li>
   </ul>
 

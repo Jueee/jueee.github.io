@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -533,11 +528,11 @@
 <div class="note warning"><p>Except for the required renderer, any other Hexo plugins are unnecessary and there is no need to manually import any JS or CSS files. If you have installed plugins such as <code>hexo-math</code> or <code>hexo-katex</code>, they may conflict with the built-in render engine of NexT.</p>
 </div>
 
-<h3 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h3><pre class=" language-yml"><code class="language-yml"># Math Formulas Render Support
+<h3 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h3><pre class="language-yml" data-language="yml"><code class="language-yml"># Math Formulas Render Support
 math:
-  # Default (true) will load mathjax / katex script on demand.
-  # That is it only render those page which has `mathjax: true` in Front-matter.
-  # If you set it to false, it will load mathjax / katex srcipt EVERY PAGE.
+  # Default (true) will load mathjax &#x2F; katex script on demand.
+  # That is it only render those page which has &#96;mathjax: true&#96; in Front-matter.
+  # If you set it to false, it will load mathjax &#x2F; katex srcipt EVERY PAGE.
   per_page: true
 
   # hexo-renderer-pandoc is recommended for MathJax.
@@ -547,8 +542,9 @@ math:
   # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) required for full Katex support.
   katex:
     enable: false
-    # See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex
+    # See: https:&#x2F;&#x2F;github.com&#x2F;KaTeX&#x2F;KaTeX&#x2F;tree&#x2F;master&#x2F;contrib&#x2F;copy-tex
     copy_tex: false</code></pre>
+
 <div class="note info"><p>The <code>per_page</code> option controls whether to render Math Equations every page.</p>
 <ul>
 <li><strong><code>true</code></strong> → Equations will be processed on demand. It will only render those posts which have <code>mathjax: true</code> in their Front-matter.</li>
@@ -557,21 +553,21 @@ math:
 <div class="note default"><p><strong>Examples with <code>per_page: true</code> option</strong></p>
 <ul>
 <li><p>This post will render the Math Equations</p>
-<pre class=" language-md"><code class="language-md">---
+  <pre class="language-md" data-language="md"><code class="language-md">---
 title: Will Render Math
-mathjax: true
----</code></pre>
+mathjax: true</li>
+<li><p>--</code></pre></p>
 </li>
 <li><p>This post will NOT render the Math Equations</p>
-<pre class=" language-md"><code class="language-md">---
+  <pre class="language-md" data-language="md"><code class="language-md">---
 title: Not Render Math
-mathjax: false
----</code></pre>
+mathjax: false</li>
+<li><p>--</code></pre></p>
 </li>
 <li><p>This post will NOT render the Math Equations either</p>
-<pre class=" language-md"><code class="language-md">---
-title: Not Render Math Either
----</code></pre>
+  <pre class="language-md" data-language="md"><code class="language-md">---
+title: Not Render Math Either</li>
+<li><p>--</code></pre></p>
 </li>
 </ul>
 </div></div>
@@ -589,19 +585,18 @@ title: Not Render Math Either
 <div class="note primary"><p><strong>Installation</strong></p>
 <ol>
 <li><p>Firstly, you need to uninstall the original renderer <code>hexo-renderer-marked</code>, and install one of the renderer above:</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">npm</span> un hexo-renderer-marked
+ <pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> un hexo-renderer-marked
 $ <span class="token function">npm</span> i hexo-renderer-pandoc</code></pre>
 </li>
 <li><p>In <mark class="label primary">theme config file</mark>, choose <code>mathjax</code> as render engine.</p>
-<pre class=" language-yml"><code class="language-yml">math:
-  ...
-  mathjax:
-    enable: true</code></pre>
+ <pre class="language-yml" data-language="yml"><code class="language-yml">math:
+...
+mathjax:
+ enable: true</code></pre>
 </li>
 <li><p>Run standard Hexo generate, deploy process or start the server:</p>
-<pre class=" language-bash"><code class="language-bash">$ hexo clean <span class="token operator">&amp;&amp;</span> hexo g -d
-<span class="token comment" spellcheck="true"># or hexo clean &amp;&amp; hexo s</span></code></pre>
-</li>
+ <pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo clean <span class="token operator">&amp;&amp;</span> hexo g -d
+<span class="token comment"># or hexo clean &amp;&amp; hexo s</span></code></pre></li>
 </ol>
 </div></div><div class="tab-pane" id="render-engines-2"><div class="note warning"><p><strong>Render Choosing</strong></p>
 <p>If you use KaTeX to render Math Equations, you can choose one of renderers below:</p>
@@ -610,9 +605,10 @@ $ <span class="token function">npm</span> i hexo-renderer-pandoc</code></pre>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvLXJlbmRlcmVyLW1hcmtkb3duLWl0">hexo-renderer-markdown-it<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <div class="tabs" id="hexo-renderer-markdown-it"><ul class="nav-tabs"><li class="tab"><a href="#hexo-renderer-markdown-it-1"><mark class="label warning">Chosen hexo-renderer-markdown-it?</mark></a></li></ul><div class="tab-content"><div class="tab-pane" id="hexo-renderer-markdown-it-1"><p>If you use <code>hexo-renderer-markdown-it</code>, you also need to add <code>markdown-it-katex</code> as its plugin:</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> i markdown-it-katex</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> i markdown-it-katex</code></pre>
+
 <p>And then in <mark class="label info">site config file</mark> you need to add <code>markdown-it-katex</code> as a plugin for <code>hexo-renderer-markdown-it</code>:</p>
-<pre class=" language-yml"><code class="language-yml"># config of hexo-renderer-markdown-it
+<pre class="language-yml" data-language="yml"><code class="language-yml"># config of hexo-renderer-markdown-it
 markdown:
   render:
     html: true
@@ -620,26 +616,25 @@ markdown:
     breaks: true
     linkify: true
     typographer: true
-    quotes: '“”‘’'
+    quotes: &#39;“”‘’&#39;
   plugins:
     - markdown-it-katex</code></pre></div></div></div></div>
 
 <div class="note primary"><p><strong>Installation</strong></p>
 <ol>
 <li><p>Firstly, you need to uninstall the original renderer <code>hexo-renderer-marked</code> and install one of selected by you renderer:</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">npm</span> un hexo-renderer-marked
-$ <span class="token function">npm</span> i hexo-renderer-markdown-it-plus <span class="token comment" spellcheck="true"># or hexo-renderer-markdown-it</span></code></pre>
+ <pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">npm</span> un hexo-renderer-marked
+$ <span class="token function">npm</span> i hexo-renderer-markdown-it-plus <span class="token comment"># or hexo-renderer-markdown-it</span></code></pre>
 </li>
 <li><p>In <mark class="label primary">theme config file</mark>, choose <code>katex</code> as render engine.</p>
-<pre class=" language-yml"><code class="language-yml">math:
-  ...
-  katex:
-    enable: true</code></pre>
+ <pre class="language-yml" data-language="yml"><code class="language-yml">math:
+...
+katex:
+ enable: true</code></pre>
 </li>
 <li><p>Run standard Hexo generate, deploy process or start the server:</p>
-<pre class=" language-bash"><code class="language-bash">$ hexo clean <span class="token operator">&amp;&amp;</span> hexo g -d
-<span class="token comment" spellcheck="true"># or hexo clean &amp;&amp; hexo s</span></code></pre>
-</li>
+ <pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo clean <span class="token operator">&amp;&amp;</span> hexo g -d
+<span class="token comment"># or hexo clean &amp;&amp; hexo s</span></code></pre></li>
 </ol>
 </div>
 
@@ -666,45 +661,54 @@ $ <span class="token function">npm</span> i hexo-renderer-markdown-it-plus <span
 <h4 id="Numbering-and-referring-equations-in-MathJax"><a href="#Numbering-and-referring-equations-in-MathJax" class="headerlink" title="Numbering and referring equations in MathJax"></a>Numbering and referring equations in MathJax</h4><p>In the new version of NexT, we have added feature to <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1hdGhqYXgub3JnL2VuL2xhdGVzdC9pbnB1dC90ZXgvZXFudW1iZXJzLmh0bWw=">automatic equation numbering<i class="fa fa-external-link-alt"></i></span> with opportunity to make reference to that equations. We briefly describe how to use this feature below.</p>
 <p>In general, to make the automatic equation numbering work, you have to wrap your LaTeX equations in <code>equation</code> environment. Using the plain old style (i.e., wrap an equation with two dollar signs in each side) will not work. How to refer to an equation? Just give a <code>\label&#123;&#125;</code> tag and then in your later text, use <code>\ref&#123;&#125;</code> or <code>\eqref&#123;&#125;</code> to refer it. Using <code>\eqref&#123;&#125;</code> is preferred since if you use <code>\ref&#123;&#125;</code>, there are no parentheses around the equation number. Below are some of the common scenarios for equation numbering.</p>
 <h4 id="Simple-Equation"><a href="#Simple-Equation" class="headerlink" title="Simple Equation"></a>Simple Equation</h4><p>For simple equations, use the following form to give a tag,</p>
-<pre class=" language-latex"><code class="language-latex"><span class="token equation string">$$</span><span class="token function selector">\begin</span><span class="token punctuation">&amp;</span>#123;equation<span class="token punctuation">&amp;</span>#125; <span class="token function selector">\label</span><span class="token punctuation">&amp;</span>#123;eq1<span class="token punctuation">&amp;</span>#125;
+<pre class="language-latex" data-language="latex"><code class="language-latex"><span class="token equation string">$$<span class="token equation-command regex">\begin</span>&#123;equation&#125; <span class="token equation-command regex">\label</span>&#123;eq1&#125;
 e=mc^2
-<span class="token function selector">\end</span><span class="token punctuation">&amp;</span>#123;equation<span class="token punctuation">&amp;</span>#125;<span class="token equation string">$$</span></code></pre>
+<span class="token equation-command regex">\end</span>&#123;equation&#125;$$</span></code></pre>
+
 <p>$$\begin{equation} \label{eq1}<br>e=mc^2<br>\end{equation}$$</p>
 <p>Then, you can refer to this equation in your text easily by using something like:</p>
-<pre class=" language-latex"><code class="language-latex">The famous matter-energy equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&amp;#123;eq1&amp;#125;$</span> proposed by Einstein...</code></pre>
+<pre class="language-latex" data-language="latex"><code class="language-latex">The famous matter-energy equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&#123;eq1&#125;$</span> proposed by Einstein...</code></pre>
+
 <p>The famous matter-energy equation $\eqref{eq1}$ proposed by Einstein...</p>
 <h4 id="Multi-line-Equation"><a href="#Multi-line-Equation" class="headerlink" title="Multi-line Equation"></a>Multi-line Equation</h4><p>For multi-line equations, inside the <code>equation</code> environment, you can use the <code>aligned</code> environment to split it into multiple lines:</p>
-<pre class=" language-latex"><code class="language-latex"><span class="token equation string">$$</span><span class="token function selector">\begin</span><span class="token punctuation">&amp;</span>#123;equation<span class="token punctuation">&amp;</span>#125; <span class="token function selector">\label</span><span class="token punctuation">&amp;</span>#123;eq2<span class="token punctuation">&amp;</span>#125;
-<span class="token function selector">\begin</span><span class="token punctuation">&amp;</span>#123;aligned<span class="token punctuation">&amp;</span>#125;
-a <span class="token punctuation">&amp;</span>= b + c <span class="token function selector">\\</span>
-  <span class="token punctuation">&amp;</span>= d + e + f + g <span class="token function selector">\\</span>
-  <span class="token punctuation">&amp;</span>= h + i
-<span class="token function selector">\end</span><span class="token punctuation">&amp;</span>#123;aligned<span class="token punctuation">&amp;</span>#125;
-<span class="token function selector">\end</span><span class="token punctuation">&amp;</span>#123;equation<span class="token punctuation">&amp;</span>#125;<span class="token equation string">$$</span></code></pre>
+<pre class="language-latex" data-language="latex"><code class="language-latex"><span class="token equation string">$$<span class="token equation-command regex">\begin</span>&#123;equation&#125; <span class="token equation-command regex">\label</span>&#123;eq2&#125;
+<span class="token equation-command regex">\begin</span>&#123;aligned&#125;
+a &amp;= b + c <span class="token equation-command regex">\\</span>
+  &amp;= d + e + f + g <span class="token equation-command regex">\\</span>
+  &amp;= h + i
+<span class="token equation-command regex">\end</span>&#123;aligned&#125;
+<span class="token equation-command regex">\end</span>&#123;equation&#125;$$</span></code></pre>
+
 <p>$$\begin{equation} \label{eq2}<br>\begin{aligned}<br>a &amp;= b + c \\<br>  &amp;= d + e + f + g \\<br>  &amp;= h + i<br>\end{aligned}<br>\end{equation}$$</p>
-<pre class=" language-latex"><code class="language-latex">Equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&amp;#123;eq2&amp;#125;$</span> is a multi-line equation.</code></pre>
+<pre class="language-latex" data-language="latex"><code class="language-latex">Equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&#123;eq2&#125;$</span> is a multi-line equation.</code></pre>
+
 <p>Equation $\eqref{eq2}$ is a multi-line equation.</p>
 <h4 id="Multiple-Aligned-Equations"><a href="#Multiple-Aligned-Equations" class="headerlink" title="Multiple Aligned Equations"></a>Multiple Aligned Equations</h4><p>We can use <code>align</code> environment to align multiple equations. Each of these equations will get its own numbers.</p>
-<pre class=" language-latex"><code class="language-latex"><span class="token equation string">$$</span><span class="token function selector">\begin</span><span class="token punctuation">&amp;</span>#123;align<span class="token punctuation">&amp;</span>#125;
-a <span class="token punctuation">&amp;</span>= b + c <span class="token function selector">\label</span><span class="token punctuation">&amp;</span>#123;eq3<span class="token punctuation">&amp;</span>#125; <span class="token function selector">\\</span>
-x <span class="token punctuation">&amp;</span>= yz <span class="token function selector">\label</span><span class="token punctuation">&amp;</span>#123;eq4<span class="token punctuation">&amp;</span>#125;<span class="token function selector">\\</span>
-l <span class="token punctuation">&amp;</span>= m - n <span class="token function selector">\label</span><span class="token punctuation">&amp;</span>#123;eq5<span class="token punctuation">&amp;</span>#125;
-<span class="token function selector">\end</span><span class="token punctuation">&amp;</span>#123;align<span class="token punctuation">&amp;</span>#125;<span class="token equation string">$$</span></code></pre>
+<pre class="language-latex" data-language="latex"><code class="language-latex"><span class="token equation string">$$<span class="token equation-command regex">\begin</span>&#123;align&#125;
+a &amp;= b + c <span class="token equation-command regex">\label</span>&#123;eq3&#125; <span class="token equation-command regex">\\</span>
+x &amp;= yz <span class="token equation-command regex">\label</span>&#123;eq4&#125;<span class="token equation-command regex">\\</span>
+l &amp;= m - n <span class="token equation-command regex">\label</span>&#123;eq5&#125;
+<span class="token equation-command regex">\end</span>&#123;align&#125;$$</span></code></pre>
+
 <p>$$\begin{align}<br>a &amp;= b + c \label{eq3} \\<br>x &amp;= yz \label{eq4}\\<br>l &amp;= m - n \label{eq5}<br>\end{align}$$</p>
-<pre class=" language-latex"><code class="language-latex">There are three aligned equations: equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&amp;#123;eq3&amp;#125;$</span>, equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&amp;#123;eq4&amp;#125;$</span> and equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&amp;#123;eq5&amp;#125;$</span>.</code></pre>
+<pre class="language-latex" data-language="latex"><code class="language-latex">There are three aligned equations: equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&#123;eq3&#125;$</span>, equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&#123;eq4&#125;$</span> and equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&#123;eq5&#125;$</span>.</code></pre>
+
 <p>There are three aligned equations: equation $\eqref{eq3}$, equation $\eqref{eq4}$ and equation $\eqref{eq5}$.</p>
 <p>Since <code>align</code> in and of itself is a complete equation environment (read <span class="exturl" data-url="aHR0cHM6Ly90ZXguc3RhY2tleGNoYW5nZS5jb20vcXVlc3Rpb25zLzk1NDAyL3doYXQtaXMtdGhlLWRpZmZlcmVuY2UtYmV0d2Vlbi1hbGlnbmVkLWluLWRpc3BsYXllZC1tb2RlLWFuZC1zdGFycmVkLWFsaWdu">here<i class="fa fa-external-link-alt"></i></span> about the difference between <code>aligned</code> and <code>align</code> in LaTeX). You do not need to wrap it with <code>equation</code> environment.</p>
 <h4 id="Exclude-equations-from-numbering"><a href="#Exclude-equations-from-numbering" class="headerlink" title="Exclude equations from numbering"></a>Exclude equations from numbering</h4><p>In the <code>align</code> environment, if you do not want to number one or some equations, just use <code>\nonumber</code> right behind these equations. Like the following:</p>
-<pre class=" language-latex"><code class="language-latex"><span class="token equation string">$$</span><span class="token function selector">\begin</span><span class="token punctuation">&amp;</span>#123;align<span class="token punctuation">&amp;</span>#125;
--4 + 5x <span class="token punctuation">&amp;</span>= 2+y <span class="token function selector">\nonumber</span>  <span class="token function selector">\\</span>
- w+2 <span class="token punctuation">&amp;</span>= -1+w <span class="token function selector">\\</span>
- ab <span class="token punctuation">&amp;</span>= cb
-<span class="token function selector">\end</span><span class="token punctuation">&amp;</span>#123;align<span class="token punctuation">&amp;</span>#125;<span class="token equation string">$$</span></code></pre>
+<pre class="language-latex" data-language="latex"><code class="language-latex"><span class="token equation string">$$<span class="token equation-command regex">\begin</span>&#123;align&#125;
+-4 + 5x &amp;= 2+y <span class="token equation-command regex">\nonumber</span>  <span class="token equation-command regex">\\</span>
+ w+2 &amp;= -1+w <span class="token equation-command regex">\\</span>
+ ab &amp;= cb
+<span class="token equation-command regex">\end</span>&#123;align&#125;$$</span></code></pre>
+
 <p>$$\begin{align}<br>-4 + 5x &amp;= 2+y \nonumber  \\<br> w+2 &amp;= -1+w \\<br> ab &amp;= cb<br>\end{align}$$</p>
 <h4 id="Use-tag-to-tag-equations"><a href="#Use-tag-to-tag-equations" class="headerlink" title="Use \tag to tag equations"></a>Use <code>\tag</code> to tag equations</h4><p>Sometimes, you want to use more «exotic» style to refer your equation. You can use <code>\tag&#123;&#125;</code> to achieve this. For example:</p>
-<pre class=" language-latex"><code class="language-latex"><span class="token equation string">$$</span>x+1<span class="token function selector">\over</span><span class="token function selector">\sqrt</span><span class="token punctuation">&amp;</span>#123;1-x^2<span class="token punctuation">&amp;</span>#125; <span class="token function selector">\tag</span><span class="token punctuation">&amp;</span>#123;i<span class="token punctuation">&amp;</span>#125;<span class="token function selector">\label</span><span class="token punctuation">&amp;</span>#123;eq_tag<span class="token punctuation">&amp;</span>#125;<span class="token equation string">$$</span></code></pre>
+<pre class="language-latex" data-language="latex"><code class="language-latex"><span class="token equation string">$$x+1<span class="token equation-command regex">\over</span><span class="token equation-command regex">\sqrt</span>&#123;1-x^2&#125; <span class="token equation-command regex">\tag</span>&#123;i&#125;<span class="token equation-command regex">\label</span>&#123;eq_tag&#125;$$</span></code></pre>
+
 <p>$$x+1\over\sqrt{1-x^2} \tag{i}\label{eq_tag}$$</p>
-<pre class=" language-latex"><code class="language-latex">Equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&amp;#123;eq_tag&amp;#125;$</span> use `<span class="token function selector">\tag</span><span class="token punctuation">&amp;</span>#123;<span class="token punctuation">&amp;</span>#125;` instead of automatic numbering.</code></pre>
+<pre class="language-latex" data-language="latex"><code class="language-latex">Equation <span class="token equation string">$<span class="token equation-command regex">\eqref</span>&#123;eq_tag&#125;$</span> use `<span class="token function selector">\tag</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>` instead of automatic numbering.</code></pre>
+
 <p>Equation $\eqref{eq_tag}$ use <code>\tag&#123;&#125;</code> instead of automatic numbering.</p>
 
       </div>

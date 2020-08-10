@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -528,14 +523,14 @@
       <div class="post-body">
           <h3 id="Chatra"><a href="#Chatra" class="headerlink" title="Chatra"></a>Chatra</h3><p><span class="exturl" data-url="aHR0cHM6Ly9jaGF0cmEuaW8v">Chatra<i class="fa fa-external-link-alt"></i></span> is a live chat messenger app for your website.</p>
 <div class="tabs" id="chatra"><ul class="nav-tabs"><li class="tab active"><a href="#chatra-1">Enable Chatra →</a></li><li class="tab"><a href="#chatra-2">Activate sidebar button</a></li></ul><div class="tab-content"><div class="tab-pane active" id="chatra-1"><p>Visit <span class="exturl" data-url="aHR0cHM6Ly9hcHAuY2hhdHJhLmlvL3NldHRpbmdzL2dlbmVyYWw=">Dashboard<i class="fa fa-external-link-alt"></i></span> to get your ChatraID.</p>
-<pre class=" language-yml"><code class="language-yml"># Chatra Support
-# See: https://chatra.io
-# Dashboard: https://app.chatra.io/settings/general
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Chatra Support
+# See: https:&#x2F;&#x2F;chatra.io
+# Dashboard: https:&#x2F;&#x2F;app.chatra.io&#x2F;settings&#x2F;general
 chatra:
   enable: true
   async: true
-  id: <ChatraID></code></pre></div><div class="tab-pane" id="chatra-2"><p>After Chatra enabled, you can set <code>chat.enable</code> to <code>true</code> and set <code>chat.service</code> to <code>chatra</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml"># A button to open designated chat widget in sidebar.
+  id: &lt;ChatraID&gt;</code></pre></div><div class="tab-pane" id="chatra-2"><p>After Chatra enabled, you can set <code>chat.enable</code> to <code>true</code> and set <code>chat.service</code> to <code>chatra</code> in <mark class="label primary">theme config file</mark>.</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml"># A button to open designated chat widget in sidebar.
 # Firstly, you need enable the chat service you want to activate its sidebar button.
 chat:
   enable: true
@@ -545,13 +540,13 @@ chat:
 
 <h3 id="Tidio"><a href="#Tidio" class="headerlink" title="Tidio"></a>Tidio</h3><p><span class="exturl" data-url="aHR0cHM6Ly93d3cudGlkaW9jaGF0LmNvbS8=">Tidio<i class="fa fa-external-link-alt"></i></span> is a live chat messenger app for your website.</p>
 <div class="tabs" id="tidio"><ul class="nav-tabs"><li class="tab active"><a href="#tidio-1">Enable Tidio →</a></li><li class="tab"><a href="#tidio-2">Activate sidebar button</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tidio-1"><p>Visit <span class="exturl" data-url="aHR0cHM6Ly93d3cudGlkaW9jaGF0LmNvbS9wYW5lbC9kYXNoYm9hcmQ=">Dashboard<i class="fa fa-external-link-alt"></i></span> to get your Public Key.</p>
-<pre class=" language-yml"><code class="language-yml"># Tidio Support
-# See: https://www.tidiochat.com
-# Dashboard: https://www.tidiochat.com/panel/dashboard
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Tidio Support
+# See: https:&#x2F;&#x2F;www.tidiochat.com
+# Dashboard: https:&#x2F;&#x2F;www.tidiochat.com&#x2F;panel&#x2F;dashboard
 tidio:
   enable: true
-  key: <Publick Key></code></pre></div><div class="tab-pane" id="tidio-2"><p>After Tidio enabled, you can set <code>chat.enable</code> to <code>true</code> and set <code>chat.service</code> to <code>tidio</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml"># A button to open designated chat widget in sidebar.
+  key: &lt;Publick Key&gt;</code></pre></div><div class="tab-pane" id="tidio-2"><p>After Tidio enabled, you can set <code>chat.enable</code> to <code>true</code> and set <code>chat.service</code> to <code>tidio</code> in <mark class="label primary">theme config file</mark>.</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml"># A button to open designated chat widget in sidebar.
 # Firstly, you need enable the chat service you want to activate its sidebar button.
 chat:
   enable: true

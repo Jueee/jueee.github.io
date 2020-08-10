@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -531,8 +526,8 @@
 </div>
 
 <div class="tabs" id="seo"><ul class="nav-tabs"><li class="tab active"><a href="#seo-1"><code>disable_baidu_transformation</code></a></li><li class="tab"><a href="#seo-2"><code>index_with_subtitle</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="seo-1"><p>By default China&#39;s search engine Baidu will cache and rewrite your site to provide a webpage snapshot for mobile users. You can disable this by setting the value <code>disable_baidu_transformation</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml">disable_baidu_transformation: true</code></pre></div><div class="tab-pane" id="seo-2"><p>Set the value <code>enable</code> to <code>true</code> in <code>index_with_subtitle</code> section to add <code>subtitle</code> information in <mark class="label info"><code class="language-yml">disable_baidu_transformation: true</code></pre></div><div class="tab-pane" id="seo-2"><p>Set the value <code>enable</code> to <code>true</code> in <code>index_with_subtitle</code> section to add <code>subtitle</code> information in <mark class="label info">site config file</mark> to index page.</p>
-<pre><code class="yml">index_with_subtitle: true</code></pre></div></div></div>
+<pre class="language-yml" data-language="yml"><code class="language-yml">disable_baidu_transformation: true</code></pre></div><div class="tab-pane" id="seo-2"><p>Set the value <code>enable</code> to <code>true</code> in <code>index_with_subtitle</code> section to add <code>subtitle</code> information in <mark class="label info">site config file</mark> to index page.</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">index_with_subtitle: true</code></pre></div></div></div>
 
 <h3 id="ExtURL"><a href="#ExtURL" class="headerlink" title="ExtURL"></a>ExtURL</h3><p>External URL with BASE64 encrypt &amp; decrypt which provide nonsense for search engines to <code>&lt;a&gt;</code> tags.</p>
 <h4 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h4><p>Search engines scan <code>&lt;a&gt;</code> tag with hight priority. You may add <code>external</code> / <code>nofollow</code> / <code>noopener</code> / <code>noreferrer</code> or any similar tricks, in any case all external links from your site will be indexed on your site. But here exists another trick: crawlers doesn&#39;t reproduce any javascript – this do clients on their local devices.<br>That tag give the way to set any external link without <code>&lt;a&gt;</code> tag. So, some crawlers like Yandex will not give away links weight from your site and this very useful for SEO. This tag perform:</p>
@@ -546,31 +541,33 @@
 </div>
 
 <h4 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h4><p>Just one setting must be turned on under the <code>SEO Settings</code> section in <mark class="label primary">theme config file</mark>:</p>
-<pre class=" language-yml"><code class="language-yml">exturl: true</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">exturl: true</code></pre>
+
 <p>Then run the following command in <mark class="label info">site root dir</mark> to ensure that <code>exturl</code> can be enabled or disabled correctly:</p>
-<pre class=" language-bash"><code class="language-bash">$ hexo clean</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo clean</code></pre>
+
 <h3 id="Webmaster-Tools"><a href="#Webmaster-Tools" class="headerlink" title="Webmaster Tools"></a>Webmaster Tools</h3><h4 id="Google-Webmaster-Tools"><a href="#Google-Webmaster-Tools" class="headerlink" title="Google Webmaster Tools"></a>Google Webmaster Tools</h4><p>Set the verification string of <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS93ZWJtYXN0ZXJzL3Rvb2xz">Google Webmaster Tools<i class="fa fa-external-link-alt"></i></span> which is used in submitting sitemap.</p>
 <div class="tabs" id="google-webmaster-tools"><ul class="nav-tabs"><li class="tab active"><a href="#google-webmaster-tools-1">Get Verification Code →</a></li><li class="tab"><a href="#google-webmaster-tools-2">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="google-webmaster-tools-1"><p>Login to Google Webmaster Tools and go to verification methods and choose <code>HTML Tag</code>, you will get some code:</p>
-<pre class=" language-html">&lt;meta name=&quot;google-site-verification&quot; content=&quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;&gt;</code></pre></div><div class="tab-pane" id="google-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary"><code class="language-html">&lt;meta name=&quot;google-site-verification&quot; content=&quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;&gt;</code></pre></div><div class="tab-pane" id="google-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary">theme config file</mark> and add or change <code>google_site_verification</code> section:</p>
-<pre><code class="yml">google_site_verification: XXXXXXXXXXXXXXXXXXXXXXX</code></pre></div></div></div>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>google-site-verification<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXXXXXXXXXXXXXXXXXXXXXX<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre></div><div class="tab-pane" id="google-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary">theme config file</mark> and add or change <code>google_site_verification</code> section:</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">google_site_verification: XXXXXXXXXXXXXXXXXXXXXXX</code></pre></div></div></div>
 
 <h4 id="Bing-Webmaster-Tools"><a href="#Bing-Webmaster-Tools" class="headerlink" title="Bing Webmaster Tools"></a>Bing Webmaster Tools</h4><p>Set the verification string of <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluZy5jb20vd2VibWFzdGVyLw==">Bing Webmaster Tools<i class="fa fa-external-link-alt"></i></span> which is used in submitting sitemap.</p>
 <div class="tabs" id="bing-webmaster-tools"><ul class="nav-tabs"><li class="tab active"><a href="#bing-webmaster-tools-1">Get Verification Code →</a></li><li class="tab"><a href="#bing-webmaster-tools-2">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="bing-webmaster-tools-1"><p>Login to Bing Webmaster Tools and go to verification methods and choose <code>HTML Tag</code>, you will get some code:</p>
-<pre class=" language-html">&lt;meta name=&quot;msvalidate.01&quot; content=&quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;&gt;</code></pre></div><div class="tab-pane" id="bing-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary"><code class="language-html">&lt;meta name=&quot;msvalidate.01&quot; content=&quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;&gt;</code></pre></div><div class="tab-pane" id="bing-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary">theme config file</mark> and add or change <code>bing_site_verification</code> section:</p>
-<pre><code class="yml">bing_site_verification: XXXXXXXXXXXXXXXXXXXXXXX</code></pre></div></div></div>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>msvalidate.01<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXXXXXXXXXXXXXXXXXXXXXX<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre></div><div class="tab-pane" id="bing-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary">theme config file</mark> and add or change <code>bing_site_verification</code> section:</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">bing_site_verification: XXXXXXXXXXXXXXXXXXXXXXX</code></pre></div></div></div>
 
 <h4 id="Yandex-Webmaster-Tools"><a href="#Yandex-Webmaster-Tools" class="headerlink" title="Yandex Webmaster Tools"></a>Yandex Webmaster Tools</h4><p>Set the verification string of <span class="exturl" data-url="aHR0cHM6Ly93ZWJtYXN0ZXIueWFuZGV4LnJ1Lw==">Yandex Webmaster Tools<i class="fa fa-external-link-alt"></i></span> which is used in submitting sitemap.</p>
 <div class="tabs" id="yandex-webmaster-tools"><ul class="nav-tabs"><li class="tab active"><a href="#yandex-webmaster-tools-1">Get Verification Code →</a></li><li class="tab"><a href="#yandex-webmaster-tools-2">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="yandex-webmaster-tools-1"><p>Login to Yandex Webmaster Tools and go to verification methods and choose <code>Meta Tag</code>, you will get some code:</p>
-<pre class=" language-html">&lt;meta name=&quot;yandex-verification&quot; content=&quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;&gt;</code></pre></div><div class="tab-pane" id="yandex-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary"><code class="language-html">&lt;meta name=&quot;yandex-verification&quot; content=&quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;&gt;</code></pre></div><div class="tab-pane" id="yandex-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary">theme config file</mark> and add or change <code>yandex_site_verification</code> section:</p>
-<pre><code class="yml">yandex_site_verification: XXXXXXXXXXXXXXXXXXXXXXX</code></pre></div></div></div>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>yandex-verification<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXXXXXXXXXXXXXXXXXXXXXX<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre></div><div class="tab-pane" id="yandex-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary">theme config file</mark> and add or change <code>yandex_site_verification</code> section:</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">yandex_site_verification: XXXXXXXXXXXXXXXXXXXXXXX</code></pre></div></div></div>
 
 <h4 id="Baidu-Webmaster-Tools"><a href="#Baidu-Webmaster-Tools" class="headerlink" title="Baidu Webmaster Tools"></a>Baidu Webmaster Tools</h4><p>Set the verification string of <span class="exturl" data-url="aHR0cHM6Ly96aXl1YW4uYmFpZHUuY29tL3NpdGUv">Baidu Webmaster Tools<i class="fa fa-external-link-alt"></i></span> which is used in submitting sitemap.</p>
 <div class="tabs" id="baidu-webmaster-tools"><ul class="nav-tabs"><li class="tab active"><a href="#baidu-webmaster-tools-1">Get Verification Code →</a></li><li class="tab"><a href="#baidu-webmaster-tools-2">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="baidu-webmaster-tools-1"><p>Login to Baidu Webmaster Tools and go to verification methods and choose <code>HTML Tag</code>, you will get some code:</p>
-<pre class=" language-html">&lt;meta name=&quot;baidu-site-verification&quot; content=&quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;&gt;</code></pre></div><div class="tab-pane" id="baidu-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary"><code class="language-html">&lt;meta name=&quot;baidu-site-verification&quot; content=&quot;XXXXXXXXXXXXXXXXXXXXXXX&quot;&gt;</code></pre></div><div class="tab-pane" id="baidu-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary">theme config file</mark> and add or change <code>baidu_site_verification</code> section:</p>
-<pre><code class="yml">baidu_site_verification: XXXXXXXXXXXXXXXXXXXXXXX</code></pre></div></div></div>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>baidu-site-verification<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>XXXXXXXXXXXXXXXXXXXXXXX<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></code></pre></div><div class="tab-pane" id="baidu-webmaster-tools-2"><p>Copy <code>XXXXXXXXXXXXXXXXXXXXXXX</code> value of <code>content</code> key.<br>Edit <mark class="label primary">theme config file</mark> and add or change <code>baidu_site_verification</code> section:</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">baidu_site_verification: XXXXXXXXXXXXXXXXXXXXXXX</code></pre></div></div></div>
 
 <p>NexT also supports the baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO. You can enable it by setting value <code>baidu_push</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">baidu_push: true</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">baidu_push: true</code></pre>
 
       </div>
       

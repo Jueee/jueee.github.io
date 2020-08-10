@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -533,11 +528,12 @@
 <li><strong><code>left</code></strong> → Place at the left of the screen.</li>
 <li><code>right</code> → Place at the right of the screen.</li>
 </ul>
-<pre class=" language-yml"><code class="language-yml">sidebar:
+<pre class="language-yml" data-language="yml"><code class="language-yml">sidebar:
   position: left
   #position: right</code></pre></div><div class="tab-pane" id="setting-sidebar-2"><p>You can change sidebar width by specify <code>sidebar.width</code> setting in pixels, for example:</p>
-<pre class=" language-yml"><code class="language-yml">sidebar:
+<pre class="language-yml" data-language="yml"><code class="language-yml">sidebar:
   width: 300</code></pre>
+
 <div class="note warning"><p>This option is commented out by default and values are:</p>
 <ul>
 <li>For Muse | Mist schemes: <code>320</code></li>
@@ -550,91 +546,97 @@
 <li><code>hide</code> → Hide it in all pages (but can be opened by user manually).</li>
 <li><code>remove</code> → Remove sidebar totally.</li>
 </ul>
-<pre class=" language-yml"><code class="language-yml">sidebar:
+<pre class="language-yml" data-language="yml"><code class="language-yml">sidebar:
   display: post
   #display: always
   #display: hide
   #display: remove</code></pre></div><div class="tab-pane" id="setting-sidebar-4"><p>Set up sidebar padding in pixels by changing the value of <code>sidebar.padding</code>:</p>
-<pre class=" language-yml"><code class="language-yml">sidebar:
+<pre class="language-yml" data-language="yml"><code class="language-yml">sidebar:
   padding: 18</code></pre></div><div class="tab-pane" id="setting-sidebar-5"><p>Set up sidebar offset from top menubar in pixels by changing the value of <code>sidebar.offset</code>:</p>
-<pre class=" language-yml"><code class="language-yml">sidebar:
+<pre class="language-yml" data-language="yml"><code class="language-yml">sidebar:
   offset: 12</code></pre>
+
 <div class="note danger"><p>For now only Pisces / Gemini Schemes supports <code>offset</code> setting under <strong>6.0.x</strong> version or higher.</p>
 </div></div></div></div>
 
 <h3 id="Configuring-Avatar"><a href="#Configuring-Avatar" class="headerlink" title="Configuring Avatar"></a>Configuring Avatar</h3><p>By default NexT doesn&#39;t show avatar in sidebar. You can configure it by editing values under <code>avatar</code> setting in <mark class="label primary">theme config file</mark>.</p>
 <div class="tabs" id="avatar"><ul class="nav-tabs"><li class="tab active"><a href="#avatar-1"><code>url</code></a></li><li class="tab"><a href="#avatar-2"><code>rounded</code></a></li><li class="tab"><a href="#avatar-3"><code>rotated</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="avatar-1"><p>For first test you can uncomment <code>/images/avatar.gif</code> value near the <code>avatar.url</code> setting to see default avatar:</p>
-<pre class=" language-yml"><code class="language-yml">avatar:
-  url: /images/avatar.gif</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">avatar:
+  url: &#x2F;images&#x2F;avatar.gif</code></pre>
+
 <p>Then you need to specify your own avatar. It can be done one of the ways below:</p>
 <div class="tabs" id="avatar1"><ul class="nav-tabs"><li class="tab active"><a href="#avatar1-1"><mark class="label success">Hexo directory</mark></a></li><li class="tab"><a href="#avatar1-2">NexT directory</a></li><li class="tab"><a href="#avatar1-3">Absolute URL from Internet</a></li></ul><div class="tab-content"><div class="tab-pane active" id="avatar1-1"><p>Put your avatar under <mark class="label info">site directory</mark> <code>source/uploads/</code> (create directory if it doesn&#39;t exists).<br>And then change option to <code>url: /uploads/avatar.png</code>.</p></div><div class="tab-pane" id="avatar1-2"><p>Put your avatar under <mark class="label primary">theme directory</mark> <code>source/images/</code>.<br>And then change option to <code>url: /images/avatar.png</code>.</p>
 <div class="note info"><p>Current site uses avatar under <mark class="label primary">theme directory</mark> from file located in <code>next/source/images/apple-touch-icon-next.png</code> with following config:</p>
-<pre class=" language-yml"><code class="language-yml">avatar:
-  url: /images/apple-touch-icon-next.png</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">avatar:
+  url: &#x2F;images&#x2F;apple-touch-icon-next.png</code></pre>
 </div></div><div class="tab-pane" id="avatar1-3"><p>You can also specify any external URL with absolute path to image: <code>http(s)://example.com/avatar.png</code></p></div></div></div></div><div class="tab-pane" id="avatar-2"><p>Set up rounded of avatar by changing the value of <code>avatar.rounded</code>:</p>
 <ul>
 <li><code>true</code> → Avatar will be rounded.</li>
 <li><strong><code>false</code></strong> → Avatar will be squared.</li>
 </ul>
-<pre class=" language-yml"><code class="language-yml">avatar:
+<pre class="language-yml" data-language="yml"><code class="language-yml">avatar:
   rounded: true</code></pre></div><div class="tab-pane" id="avatar-3"><p>Set up rotated of avatar by changing the value of <code>avatar.rotated</code>:</p>
 <ul>
 <li><code>true</code> → Avatar will be rotate under the mouse hovering.</li>
 <li><strong><code>false</code></strong> → Avatar will not rotate under the mouse hovering.</li>
 </ul>
-<pre class=" language-yml"><code class="language-yml">avatar:
+<pre class="language-yml" data-language="yml"><code class="language-yml">avatar:
   rotated: true</code></pre></div></div></div>
 
 <h3 id="Sidebar-Site-State"><a href="#Sidebar-Site-State" class="headerlink" title="Sidebar Site State"></a>Sidebar Site State</h3><p>By default NexT shows the categories and counts of Posts / Categories / Tags in sidebar. You can configure it by editing value <code>site_state</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">site_state: true</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">site_state: true</code></pre>
+
 <h3 id="Sidebar-Social-Links"><a href="#Sidebar-Social-Links" class="headerlink" title="Sidebar Social Links"></a>Sidebar Social Links</h3><div class="note default"><p>Social Links have similar fucture as <a href="/docs/getting-started/#Configuring-Menu-Items">Menu Items</a>, only target link there is difference: specified link must have full url path (permalink).</p>
 </div>
 
 <p>Edit the <code>social</code> section in <mark class="label primary">theme config file</mark> as following:</p>
-<pre class=" language-yml"><code class="language-yml">social:
-  GitHub: https://github.com/yourname || fab fa-github
+<pre class="language-yml" data-language="yml"><code class="language-yml">social:
+  GitHub: https:&#x2F;&#x2F;github.com&#x2F;yourname || fab fa-github
   E-Mail: mailto:yourname@gmail.com || fa fa-envelope
-  Weibo: https://weibo.com/yourname || fab fa-weibo
-  Google: https://plus.google.com/yourname || fab fa-google
-  Twitter: https://twitter.com/yourname || fab fa-twitter
-  FB Page: https://www.facebook.com/yourname || fab fa-facebook
-  StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
-  YouTube: https://youtube.com/yourname || fab fa-youtube
-  Instagram: https://instagram.com/yourname || fab fa-instagram
+  Weibo: https:&#x2F;&#x2F;weibo.com&#x2F;yourname || fab fa-weibo
+  Google: https:&#x2F;&#x2F;plus.google.com&#x2F;yourname || fab fa-google
+  Twitter: https:&#x2F;&#x2F;twitter.com&#x2F;yourname || fab fa-twitter
+  FB Page: https:&#x2F;&#x2F;www.facebook.com&#x2F;yourname || fab fa-facebook
+  StackOverflow: https:&#x2F;&#x2F;stackoverflow.com&#x2F;yourname || fab fa-stack-overflow
+  YouTube: https:&#x2F;&#x2F;youtube.com&#x2F;yourname || fab fa-youtube
+  Instagram: https:&#x2F;&#x2F;instagram.com&#x2F;yourname || fab fa-instagram
   Skype: skype:yourname?call|chat || fab fa-skype</code></pre>
+
 <p>By default NexT shows the icons of social links in sidebar.</p>
 <div class="tabs" id="social_icons"><ul class="nav-tabs"><li class="tab active"><a href="#social_icons-1"><code>enable</code></a></li><li class="tab"><a href="#social_icons-2"><code>icons_only</code></a></li><li class="tab"><a href="#social_icons-3"><code>transition</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="social_icons-1"><p>You can configure it by editing value <code>enable</code> in <code>social_icons</code> section in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">social_icons:
+<pre class="language-yml" data-language="yml"><code class="language-yml">social_icons:
   enable: true</code></pre></div><div class="tab-pane" id="social_icons-2"><p>Set the value <code>icons_only</code> to <code>true</code> to display social icons without description in <code>social_icons</code> section in <mark class="label primary">theme config file</mark> as following:</p>
-<pre class=" language-yml"><code class="language-yml">social_icons:
+<pre class="language-yml" data-language="yml"><code class="language-yml">social_icons:
   icons_only: true</code></pre></div><div class="tab-pane" id="social_icons-3"><p>Set the value <code>transition</code> to <code>true</code> to display social icons with transition effects in <code>social_icons</code> section in <mark class="label primary">theme config file</mark> as following:</p>
-<pre class=" language-yml"><code class="language-yml">social_icons:
+<pre class="language-yml" data-language="yml"><code class="language-yml">social_icons:
   transition: true</code></pre></div></div></div>
 
 <h3 id="Sidebar-Blogrolls"><a href="#Sidebar-Blogrolls" class="headerlink" title="Sidebar Blogrolls"></a>Sidebar Blogrolls</h3><p>You can add blog rolls within sidebar in NexT.</p>
 <div class="tabs" id="blogrolls"><ul class="nav-tabs"><li class="tab active"><a href="#blogrolls-1"><code>links_settings</code></a></li><li class="tab"><a href="#blogrolls-2"><code>links</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="blogrolls-1"><p>By default NexT shows the <code>globe</code> icon <a class="btn" href="#"><i class="fa fa-globe"></i></a> before <code>title</code>. The name of icon can be found in <span class="exturl" data-url="aHR0cHM6Ly9mb250YXdlc29tZS5jb20v">Font Awesome<i class="fa fa-external-link-alt"></i></span> site. You can configure it by editing value <code>icon</code> in <code>links_settings</code> section in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">links_settings:
+<pre class="language-yml" data-language="yml"><code class="language-yml">links_settings:
   icon: fa fa-globe</code></pre>
+
 <p>By default NexT uses <code>Links</code> as the name of blogroll. You can configure it by editing value <code>title</code> in <code>links_settings</code> section in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">links_settings:
+<pre class="language-yml" data-language="yml"><code class="language-yml">links_settings:
   title: Links</code></pre>
+
 <p>By default all blogrolls are displayed in block. You can configure it to <code>inline</code> by editing value <code>layout</code> in <code>links_settings</code> section in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">links_settings:
+<pre class="language-yml" data-language="yml"><code class="language-yml">links_settings:
   layout: block</code></pre></div><div class="tab-pane" id="blogrolls-2"><p>Edit the <code>links</code> section in <mark class="label primary">theme config file</mark> and add your favorite links:</p>
-<pre class=" language-yml"><code class="language-yml">links:
-  Title1: https://example1.com/
-  Title2: https://example2.com/</code></pre></div></div></div>
+<pre class="language-yml" data-language="yml"><code class="language-yml">links:
+  Title1: https:&#x2F;&#x2F;example1.com&#x2F;
+  Title2: https:&#x2F;&#x2F;example2.com&#x2F;</code></pre></div></div></div>
 
 <h3 id="Sidebar-TOC"><a href="#Sidebar-TOC" class="headerlink" title="Sidebar TOC"></a>Sidebar TOC</h3><div class="tabs" id="toc"><ul class="nav-tabs"><li class="tab active"><a href="#toc-1"><code>enable</code></a></li><li class="tab"><a href="#toc-2"><code>number</code></a></li><li class="tab"><a href="#toc-3"><code>wrap</code></a></li><li class="tab"><a href="#toc-4"><code>expand_all</code></a></li><li class="tab"><a href="#toc-5"><code>max_depth</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="toc-1"><p>By default NexT shows <code>Table Of Contents (TOC)</code> in the sidebar. You can disable it by setting <code>toc.enable</code> to <code>false</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">toc:
+<pre class="language-yml" data-language="yml"><code class="language-yml">toc:
   enable: true</code></pre></div><div class="tab-pane" id="toc-2"><p>By default NexT adds list number to TOC automatically. You can disable it by setting <code>toc.number</code> to <code>false</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">toc:
+<pre class="language-yml" data-language="yml"><code class="language-yml">toc:
   number: true</code></pre></div><div class="tab-pane" id="toc-3"><p>If the post header width longer than sidebar width, you can wrap the header words in next lines by setting <code>toc.wrap</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">toc:
+<pre class="language-yml" data-language="yml"><code class="language-yml">toc:
   wrap: true</code></pre></div><div class="tab-pane" id="toc-4"><p>If you want all level of TOC in a post to be displayed, rather than the activated part of it, you can set <code>toc.expand_all</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">toc:
+<pre class="language-yml" data-language="yml"><code class="language-yml">toc:
   expand_all: true</code></pre></div><div class="tab-pane" id="toc-5"><p>By default maximum heading depth of generated toc is 6. You can set it by setting <code>toc.max_depth</code> to <code>another number</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">toc:
+<pre class="language-yml" data-language="yml"><code class="language-yml">toc:
   max_depth: 3</code></pre></div></div></div>
 
       </div>

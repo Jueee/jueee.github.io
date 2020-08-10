@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -528,79 +523,81 @@
       <div class="post-body">
           <h3 id="Custom-Page-Support"><a href="#Custom-Page-Support" class="headerlink" title="Custom Page Support"></a>Custom Page Support</h3><p>Next allows users to add custom pages in menu.</p>
 <div class="tabs" id="adding-custom-page"><ul class="nav-tabs"><li class="tab active"><a href="#adding-custom-page-1">Adding New Page →</a></li><li class="tab"><a href="#adding-custom-page-2">Setting Front-matter Values →</a></li><li class="tab"><a href="#adding-custom-page-3">Editting Menu</a></li></ul><div class="tab-content"><div class="tab-pane active" id="adding-custom-page-1"><p>Change to <mark class="label info">site root directory</mark> in your terminal. Use <code>hexo new page custom-name</code> to create a new <code>custom-name</code> page:</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> hexo-site
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> hexo-site
 $ hexo new page custom-name</code></pre></div><div class="tab-pane" id="adding-custom-page-2"><p>Front-matter is a block of YAML or JSON at the beginning of the file that is used to configure settings for your writings. Settings Front-matter values and more detailed can be found in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZnJvbnQtbWF0dGVy">Front-matter<i class="fa fa-external-link-alt"></i></span>. You can also add contents in <code>custom-name/index.md</code> if you like.</p>
-<pre class=" language-md"><code class="language-md">title: custom-name
+<pre class="language-md" data-language="md"><code class="language-md">title: custom-name
 date: 2014-12-22 12:39:04
 ---</code></pre></div><div class="tab-pane" id="adding-custom-page-3"><p>Add <code>custom-name</code> to <code>menu</code> by editing <mark class="label primary">theme config file</mark>, like adding <code>about</code> page:</p>
-<pre class=" language-yml"><code class="language-yml">menu:
-  home: / || fa fa-home
-  archives: /archives/ || fa fa-archive
-  about: /about/ || fa fa-user</code></pre></div></div></div>
+<pre class="language-yml" data-language="yml"><code class="language-yml">menu:
+  home: &#x2F; || fa fa-home
+  archives: &#x2F;archives&#x2F; || fa fa-archive
+  about: &#x2F;about&#x2F; || fa fa-user</code></pre></div></div></div>
 
 <p>If you want to add Tags or Categories page, please continue reading.<br>Please read <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZnJvbnQtbWF0dGVyI0NhdGVnb3JpZXMtYW1wLVRhZ3M=">Hexo&#39;s Docs of Categories &amp; Tags<i class="fa fa-external-link-alt"></i></span> to know how to add tags or categories for articles.<br>Following code shows you a example of article with tags:</p>
-<div class="tabs" id="tags-variants"><ul class="nav-tabs"><li class="tab active"><a href="#tags-variants-1">Variant 1</a></li><li class="tab"><a href="#tags-variants-2">Variant 2</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tags-variants-1"><pre class=" language-md"><code class="language-md">title: Tags Testing Article
+<div class="tabs" id="tags-variants"><ul class="nav-tabs"><li class="tab active"><a href="#tags-variants-1">Variant 1</a></li><li class="tab"><a href="#tags-variants-2">Variant 2</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tags-variants-1"><pre class="language-md" data-language="md"><code class="language-md">title: Tags Testing Article
 tags: [Testing, Another Tag]
----</code></pre></div><div class="tab-pane" id="tags-variants-2"><pre class=" language-md"><code class="language-md">title: Tags Testing Article
+---</code></pre></div><div class="tab-pane" id="tags-variants-2"><pre class="language-md" data-language="md"><code class="language-md">title: Tags Testing Article
 tags:
   - Testing
   - Another Tag
 ---</code></pre></div></div></div>
 
 <h3 id="Use-Archive-Page-as-Home-Page"><a href="#Use-Archive-Page-as-Home-Page" class="headerlink" title="Use Archive Page as Home Page"></a>Use Archive Page as Home Page</h3><p>You can configure the path of archive and index generator in <mark class="label info">site config file</mark>, e.g.</p>
-<pre class=" language-yml"><code class="language-yml">archive_dir: /
+<pre class="language-yml" data-language="yml"><code class="language-yml">archive_dir: &#x2F;
 
 index_generator:
   path: archives
   per_page: 10
   order_by: -date</code></pre>
+
 <h3 id="Adding-«Tags»-Page"><a href="#Adding-«Tags»-Page" class="headerlink" title="Adding «Tags» Page"></a>Adding «Tags» Page</h3><p>Adding «Tags» page and show «Tags» link in menu. «Tags» page will show all tags of site. If no article has tags, this page will leave blank.</p>
 <div class="tabs" id="adding-tags-page"><ul class="nav-tabs"><li class="tab active"><a href="#adding-tags-page-1">Adding New Page →</a></li><li class="tab"><a href="#adding-tags-page-2">Setting Page Type →</a></li><li class="tab"><a href="#adding-tags-page-3">Editting Menu</a></li></ul><div class="tab-content"><div class="tab-pane active" id="adding-tags-page-1"><p>Change to <mark class="label info">site root directory</mark> in your terminal. Use <code>hexo new page tags</code> to create a new <code>tags</code> page:</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> hexo-site
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> hexo-site
 $ hexo new page tags</code></pre></div><div class="tab-pane" id="adding-tags-page-2"><p>Edit the new page and change the type to <code>&quot;tags&quot;</code>, theme will show tags cloud automatically in this page. Page content looks like following:</p>
-<pre class=" language-md"><code class="language-md">title: Tags
+<pre class="language-md" data-language="md"><code class="language-md">title: Tags
 date: 2014-12-22 12:39:04
 type: tags
 ---</code></pre></div><div class="tab-pane" id="adding-tags-page-3"><p>Add <code>tags</code> to <code>menu</code> by editing <mark class="label primary">theme config file</mark>, like following:</p>
-<pre class=" language-yml"><code class="language-yml">menu:
-  home: / || fa fa-home
-  archives: /archives/ || fa fa-archive
-  tags: /tags/ || fa fa-tags</code></pre></div></div></div>
+<pre class="language-yml" data-language="yml"><code class="language-yml">menu:
+  home: &#x2F; || fa fa-home
+  archives: &#x2F;archives&#x2F; || fa fa-archive
+  tags: &#x2F;tags&#x2F; || fa fa-tags</code></pre></div></div></div>
 
 <div class="note warning"><p>If you enable any comment system for your site, comments will be shown for all posts and pages.<br>See <a href="/docs/third-party-services/#How-to-Disable-Comments-on-Page">«How to Disable Comments on Page»</a> if you want to do it for pages like <code>tags</code> or <code>categories</code>.</p>
 </div>
 
 <h4 id="Tagcloud"><a href="#Tagcloud" class="headerlink" title="Tagcloud"></a>Tagcloud</h4><p>By default, NexT has setted font color and size for tagcloud in tags page.<br>From NexT v7.0.2 you can customize them, just set related values in <mark class="label primary">theme config file</mark>:</p>
-<pre class=" language-yml"><code class="language-yml"># TagCloud settings for tags page.
+<pre class="language-yml" data-language="yml"><code class="language-yml"># TagCloud settings for tags page.
 tagcloud:
   min: 12 # Minimun font size in px
   max: 30 # Maxium font size in px
   amount: 200 # Total amount of tags
   orderby: name # Order of tags
   order: 1 # Sort order</code></pre>
+
 <h3 id="Adding-«Categories»-Page"><a href="#Adding-«Categories»-Page" class="headerlink" title="Adding «Categories» Page"></a>Adding «Categories» Page</h3><div class="note default"><p>«Categories» page can be added in similar way as <a href="#Adding-%C2%ABTags%C2%BB-Page">«Tags» page</a>, only name there is difference: just need to replace <code>tags</code> with <code>categories</code>.</p>
 </div>
 
 <h3 id="Adding-Google-Calendar-Page"><a href="#Adding-Google-Calendar-Page" class="headerlink" title="Adding Google Calendar Page"></a>Adding Google Calendar Page</h3><div class="tabs" id="calendar"><ul class="nav-tabs"><li class="tab active"><a href="#calendar-1">Adding Schedule Page →</a></li><li class="tab"><a href="#calendar-2">Setting Front-matter Values →</a></li><li class="tab"><a href="#calendar-3">Editting Menu →</a></li><li class="tab"><a href="#calendar-4">Setting Google Calendar</a></li></ul><div class="tab-content"><div class="tab-pane active" id="calendar-1"><p>Change to <mark class="label info">site root directory</mark> in your terminal. Use <code>hexo new page schedule</code> to create a new <code>schedule</code> page:</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> hexo-site
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> hexo-site
 $ hexo new page schedule</code></pre></div><div class="tab-pane" id="calendar-2"><p>Front-matter is a block of YAML or JSON at the beginning of the file that is used to configure settings for your writings. Settings Front-matter values and more detailed can be found in <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZnJvbnQtbWF0dGVy">Front-matter<i class="fa fa-external-link-alt"></i></span>. You can also add contents in <code>schedule/index.md</code> if you like.</p>
-<pre class=" language-md"><code class="language-md">title: Schedule
+<pre class="language-md" data-language="md"><code class="language-md">title: Schedule
 date: 2014-12-22 12:39:04
 type: schedule
 ---</code></pre></div><div class="tab-pane" id="calendar-3"><p>Add <code>schedule</code> to <code>menu</code> by editing <mark class="label primary">theme config file</mark>:</p>
-<pre class=" language-yml"><code class="language-yml">menu:
-  home: / || fa fa-home
-  archives: /archives/ || fa fa-archive
-  schedule: /schedule/ || fa fa-calendar</code></pre></div><div class="tab-pane" id="calendar-4"><div class="tabs" id="calendar1"><ul class="nav-tabs"><li class="tab active"><a href="#calendar1-1">Get calendar ID and API KEY →</a></li><li class="tab"><a href="#calendar1-2">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="calendar1-1"><p>Login to <span class="exturl" data-url="aHR0cHM6Ly9jb25zb2xlLmRldmVsb3BlcnMuZ29vZ2xlLmNvbS9mbG93cy9lbmFibGVhcGk/YXBpaWQ9Y2FsZW5kYXI=">Google developers<i class="fa fa-external-link-alt"></i></span> and add Google Calendar API, you will get your calendar ID and API KEY. <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmdvb2dsZS5jb20vY2FsZW5kYXIvcXVpY2tzdGFydC9qcw==">More detailed documentation<i class="fa fa-external-link-alt"></i></span></p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">menu:
+  home: &#x2F; || fa fa-home
+  archives: &#x2F;archives&#x2F; || fa fa-archive
+  schedule: &#x2F;schedule&#x2F; || fa fa-calendar</code></pre></div><div class="tab-pane" id="calendar-4"><div class="tabs" id="calendar1"><ul class="nav-tabs"><li class="tab active"><a href="#calendar1-1">Get calendar ID and API KEY →</a></li><li class="tab"><a href="#calendar1-2">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="calendar1-1"><p>Login to <span class="exturl" data-url="aHR0cHM6Ly9jb25zb2xlLmRldmVsb3BlcnMuZ29vZ2xlLmNvbS9mbG93cy9lbmFibGVhcGk/YXBpaWQ9Y2FsZW5kYXI=">Google developers<i class="fa fa-external-link-alt"></i></span> and add Google Calendar API, you will get your calendar ID and API KEY. <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmdvb2dsZS5jb20vY2FsZW5kYXIvcXVpY2tzdGFydC9qcw==">More detailed documentation<i class="fa fa-external-link-alt"></i></span></p>
 <p>References:</p>
 <ul>
 <li>API Documentation: <span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXJzLmdvb2dsZS5jb20vZ29vZ2xlLWFwcHMvY2FsZW5kYXIvdjMvcmVmZXJlbmNlL2V2ZW50cy9saXN0">https://developers.google.com/google-apps/calendar/v3/reference/events/list<i class="fa fa-external-link-alt"></i></span></li>
 <li>To get api_key: <span class="exturl" data-url="aHR0cHM6Ly9jb25zb2xlLmRldmVsb3BlcnMuZ29vZ2xlLmNvbS8=">https://console.developers.google.com<i class="fa fa-external-link-alt"></i></span></li>
 <li>Create &amp; manage a public Google calendar: <span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vY2FsZW5kYXIvYW5zd2VyLzM3MDgz">https://support.google.com/calendar/answer/37083<i class="fa fa-external-link-alt"></i></span></li>
 </ul></div><div class="tab-pane" id="calendar1-2"><p>You can enable it by setting values in <code>calendar</code> part. Copy the value of calendar ID and API KEY in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">calendar:
-  calendar_id: <required>
-  api_key: <required>
+<pre class="language-yml" data-language="yml"><code class="language-yml">calendar:
+  calendar_id: &lt;required&gt;
+  api_key: &lt;required&gt;
   orderBy: startTime
   showLocation: false
   offsetMax: 72
@@ -610,21 +607,22 @@ type: schedule
   maxResults: 250</code></pre></div></div></div></div></div></div>
 
 <h3 id="Custom-404-Page"><a href="#Custom-404-Page" class="headerlink" title="Custom 404 Page"></a>Custom 404 Page</h3><div class="tabs" id="custom-404-page"><ul class="nav-tabs"><li class="tab active"><a href="#custom-404-page-1">Adding New Page →</a></li><li class="tab"><a href="#custom-404-page-2">Editting Page →</a></li><li class="tab"><a href="#custom-404-page-3">Editting Menu →</a></li></ul><div class="tab-content"><div class="tab-pane active" id="custom-404-page-1"><p>In your terminal, change to the <code>source</code> folder of <mark class="label info">site root directory</mark>. Create a new folder called <code>404</code>, then create a new page in it:</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> hexo-site/source
-$ <span class="token function">mkdir</span> 404
-$ <span class="token function">touch</span> 404/index.md</code></pre></div><div class="tab-pane" id="custom-404-page-2"><p>If you would like to enable <code>commonweal 404</code> (A service provided by Tencent in China), Edit <code>404/index.md</code> like this:</p>
-<pre class=" language-md"><code class="language-md">---
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> hexo-site/source
+$ <span class="token function">mkdir</span> <span class="token number">404</span>
+$ <span class="token function">touch</span> <span class="token number">404</span>/index.md</code></pre></div><div class="tab-pane" id="custom-404-page-2"><p>If you would like to enable <code>commonweal 404</code> (A service provided by Tencent in China), Edit <code>404/index.md</code> like this:</p>
+<pre class="language-md" data-language="md"><code class="language-md">---
 title: 404
 date: 1970-01-01 00:00:00
 ---
-<script src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js"
-        charset="utf-8" homePageUrl="/" homePageName="Back to home">
-</script></code></pre>
+&lt;script src&#x3D;&quot;&#x2F;&#x2F;qzonestyle.gtimg.cn&#x2F;qzone&#x2F;hybrid&#x2F;app&#x2F;404&#x2F;search_children.js&quot;
+        charset&#x3D;&quot;utf-8&quot; homePageUrl&#x3D;&quot;&#x2F;&quot; homePageName&#x3D;&quot;Back to home&quot;&gt;
+&lt;&#x2F;script&gt;</code></pre>
+
 <p>You can also add any content you want to it.</p></div><div class="tab-pane" id="custom-404-page-3"><p>Add <code>404</code> to <code>menu</code> by editing <mark class="label primary">theme config file</mark>:</p>
-<pre class=" language-yml"><code class="language-yml">menu:
-  home: / || fa fa-home
-  archives: /archives/ || fa fa-archive
-  commonweal: /404/ || fa fa-heartbeat</code></pre></div></div></div>
+<pre class="language-yml" data-language="yml"><code class="language-yml">menu:
+  home: &#x2F; || fa fa-home
+  archives: &#x2F;archives&#x2F; || fa fa-archive
+  commonweal: &#x2F;404&#x2F; || fa fa-heartbeat</code></pre></div></div></div>
 
       </div>
       

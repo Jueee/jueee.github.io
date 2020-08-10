@@ -113,7 +113,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -137,6 +137,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -286,14 +287,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -319,9 +317,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -525,10 +520,10 @@
 <h3 id="NexT-Installation"><a href="#NexT-Installation" class="headerlink" title="NexT Installation"></a>NexT Installation</h3><p>It&#39;s easy to install Hexo theme: you can just download the NexT theme, copy the theme folder to the <code>themes</code> directory under <mark class="label info">site root directory</mark> and specify in <mark class="label info">site config file</mark> your <mark class="label primary">theme root directory</mark>. The detailed steps are as follows:</p>
 <h4 id="Downloading-NexT"><a href="#Downloading-NexT" class="headerlink" title="Downloading NexT"></a>Downloading NexT</h4><div class="tabs" id="downloading-next"><ul class="nav-tabs"><li class="tab active"><a href="#downloading-next-1">Using <code>npm</code></a></li><li class="tab"><a href="#downloading-next-2">Using <code>git</code></a></li><li class="tab"><a href="#downloading-next-3">Download zip</a></li></ul><div class="tab-content"><div class="tab-pane active" id="downloading-next-1"><p>If you&#39;re using Hexo 5.0 or later, the simplest way to install is through npm.</p>
 <p>Open your Terminal, change to Hexo <mark class="label info">site root directory</mark> and install NexT theme:</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> hexo-site
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> hexo-site
 $ <span class="token function">npm</span> <span class="token function">install</span> hexo-theme-next</code></pre></div><div class="tab-pane" id="downloading-next-2"><p>If you know about <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git<i class="fa fa-external-link-alt"></i></span>, you can clone the whole repository and update it in any time with <code>git pull</code> command instead of downloading archive manually.</p>
 <p>Open your terminal, change to Hexo <mark class="label info">site root directory</mark> and clone latest master branch of NexT theme:</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> hexo-site
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> hexo-site
 $ <span class="token function">git</span> clone https://github.com/next-theme/hexo-theme-next themes/next</code></pre></div><div class="tab-pane" id="downloading-next-3"><ol>
 <li>Go to NexT version <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0L3JlbGVhc2Vz">Release Page<i class="fa fa-external-link-alt"></i></span>.</li>
 <li>Choose the version you need and download the Source Code (zip) in the Download section. For example v8.0.0-rc.3.</li>
@@ -542,10 +537,12 @@ $ <span class="token function">git</span> clone https://github.com/next-theme/he
 </div>
 
 <h4 id="Enabling-NexT"><a href="#Enabling-NexT" class="headerlink" title="Enabling NexT"></a>Enabling NexT</h4><p>Like all Hexo themes, after you download it, open <mark class="label info">site config file</mark>, find <code>theme</code> section, and change its value to <code>next</code> (or another theme directory name).</p>
-<pre class=" language-yml"><code class="language-yml">theme: next</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">theme: next</code></pre>
+
 <p>Now you have installed NexT theme and enabled it. The following steps will help you verify whether NexT is enabled correctly.</p>
 <h4 id="Checking-NexT"><a href="#Checking-NexT" class="headerlink" title="Checking NexT"></a>Checking NexT</h4><p>It&#39;s recommended to use <code>hexo clean</code> to clean Hexo&#39;s cache first.<br>Then start Hexo local server with debug parameter (by adding <code>--debug</code>), the whole command is <code>hexo s --debug</code>. You can see the output while running, and if you find problem, you can use the output to help others locate error better. When it prints:</p>
-<pre><code>INFO  Hexo is running at http://localhost:4000/. Press Ctrl+C to stop.</code></pre>
+<pre class="language-none"><code class="language-none">INFO  Hexo is running at http:&#x2F;&#x2F;localhost:4000&#x2F;. Press Ctrl+C to stop.</code></pre>
+
 <p>Now you can open <code>http://localhost:4000</code> in your browser, and check whether the site works correctly.</p>
 <div class="note success"><p>If you find your site looks like this picture, you have installed it correctly. That&#39;s default NexT scheme – Muse.<br><img src="/images/docs/next-default-scheme.png" alt="Default Scheme – Muse" loading="lazy"></p>
 </div>
@@ -553,30 +550,34 @@ $ <span class="token function">git</span> clone https://github.com/next-theme/he
 <p>If everything is OK, in next steps we will change some settings including personalization and third-party services integration.</p>
 <h3 id="Hexo-Configuration"><a href="#Hexo-Configuration" class="headerlink" title="Hexo Configuration"></a>Hexo Configuration</h3><p>The following settings in <mark class="label info">site config file</mark> are very helpful for optimizing your website.</p>
 <h4 id="Configuring-Author"><a href="#Configuring-Author" class="headerlink" title="Configuring Author"></a>Configuring Author</h4><p>Edit <mark class="label info">site config file</mark> and set the value of <code>author</code> to your nickname.</p>
-<pre class=" language-yml"><code class="language-yml"># Site
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Site
 author:</code></pre>
+
 <h4 id="Configuring-Description"><a href="#Configuring-Description" class="headerlink" title="Configuring Description"></a>Configuring Description</h4><p>Edit <mark class="label info">site config file</mark> and set the value of <code>description</code> to your description, which can be a sentence you like.</p>
-<pre class=" language-yml"><code class="language-yml"># Site
+<pre class="language-yml" data-language="yml"><code class="language-yml"># Site
 description:</code></pre>
+
 <p>After that we can <a href="/docs/getting-started/deployment.html">configure deployment</a>.</p>
 <h3 id="NexT-Quick-Start"><a href="#NexT-Quick-Start" class="headerlink" title="NexT Quick Start"></a>NexT Quick Start</h3><h4 id="Configuring-Favicon"><a href="#Configuring-Favicon" class="headerlink" title="Configuring Favicon"></a>Configuring Favicon</h4><p>By default the Hexo site use NexT favicons in <code>hexo-site/themes/next/source/images/</code> directory with different size for different device. You can replace them with your own favicons.</p>
 <p>For example, you can put your favicons in <code>hexo-site/source/images/</code> directory. Then you need to rename them and change the settings in <code>favicon</code> section in <mark class="label primary">theme config file</mark>, otherwise icons from Next will rewrite your custom icons in Hexo.</p>
 <p>You can also put custom favicons into <code>hexo-site/source/</code> directory. In this way, you <strong>must remove</strong> <code>/images</code> prefix from paths.</p>
 <p>To generate custom favicons, you can visit <span class="exturl" data-url="aHR0cHM6Ly9yZWFsZmF2aWNvbmdlbmVyYXRvci5uZXQv">Favicon Generator<i class="fa fa-external-link-alt"></i></span>.</p>
-<pre class=" language-yml"><code class="language-yml">favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
-  apple_touch_icon: /images/apple-touch-icon-next.png
-  safari_pinned_tab: /images/logo.svg
-  android_manifest: /images/manifest.json
-  ms_browserconfig: /images/browserconfig.xml</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">favicon:
+  small: &#x2F;images&#x2F;favicon-16x16-next.png
+  medium: &#x2F;images&#x2F;favicon-32x32-next.png
+  apple_touch_icon: &#x2F;images&#x2F;apple-touch-icon-next.png
+  safari_pinned_tab: &#x2F;images&#x2F;logo.svg
+  android_manifest: &#x2F;images&#x2F;manifest.json
+  ms_browserconfig: &#x2F;images&#x2F;browserconfig.xml</code></pre>
+
 <h4 id="Creative-Commons"><a href="#Creative-Commons" class="headerlink" title="Creative Commons"></a>Creative Commons</h4><p>NexT supports the display of <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnLw==">Creative Commons 4.0 International License<i class="fa fa-external-link-alt"></i></span> in sidebar and post including <code>by</code>, <code>by-nc</code>, <code>by-nc-nd</code>, <code>by-nc-sa</code>, <code>by-nd</code>, <code>by-sa</code>, <code>zero</code>. These licenses allow creators to communicate which rights they reserve, and which rights they waive for the benefit of recipients or other creators.</p>
 <p>You can configure it by editing values in <code>creative_commons</code> section in <mark class="label primary">theme config file</mark>, for example:</p>
-<pre class=" language-yml"><code class="language-yml">creative_commons:
+<pre class="language-yml" data-language="yml"><code class="language-yml">creative_commons:
   license: by-nc-sa
   sidebar: true
   post: true
   language: deed.zh</code></pre>
+
 <h4 id="Choosing-Scheme"><a href="#Choosing-Scheme" class="headerlink" title="Choosing Scheme"></a>Choosing Scheme</h4><p>Scheme is a feature supported by NexT, by using Scheme NexT gives you different views. And nearly all config can be used by those Schemes. Till now NexT supports 4 schemes, and they are:</p>
 <ul>
 <li><strong><code>Muse</code></strong> → Default Scheme, this is the initial version of NexT. Uses black-white tone and mainly looks cleanly.</li>
@@ -585,12 +586,14 @@ description:</code></pre>
 <li><code>Gemini</code> → Looks like Pisces, but have distinct column blocks with shadow to appear more sensitive to view.</li>
 </ul>
 <p>You can change Scheme by editing <mark class="label primary">theme config file</mark>, searching <code>scheme</code> keyword. You&#39;ll see 4 lines of scheme settings and can enable one of them by removing it&#39;s <code>#</code> and added <code>#</code> to previous.</p>
-<pre class=" language-yml"><code class="language-yml">#scheme: Muse
+<pre class="language-yml" data-language="yml"><code class="language-yml">#scheme: Muse
 #scheme: Mist
 #scheme: Pisces
 scheme: Gemini</code></pre>
+
 <h4 id="Dark-Mode"><a href="#Dark-Mode" class="headerlink" title="Dark Mode"></a>Dark Mode</h4><p>You can enable Dark Mode by setting <code>darkmode</code> to <code>true</code> in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">darkmode: true</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">darkmode: true</code></pre>
+
 <p>The <code>prefers-color-scheme</code> CSS media feature is used to bring Dark Mode to all 4 schemes above, make sure your browser supports it.</p>
 <iframe data-feature="prefers-color-scheme" src="https://caniuse.bitsofco.de/embed/index.html?feat=prefers-color-scheme&periods=current,past_1,past_2,past_3,past_4,past_5&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
@@ -601,41 +604,43 @@ scheme: Gemini</code></pre>
 </div></div><div class="tab-pane" id="menu-items-2"><p>Value before <code>||</code> delimeter (<code>/link/</code>) → is the target link to relative url inside your site.</p></div><div class="tab-pane" id="menu-items-3"><p>Value after <code>||</code> delimeter (<code>icon</code>) → is the name of Font Awesome icon.<br>Names of that icons can be found in <span class="exturl" data-url="aHR0cHM6Ly9mb250YXdlc29tZS5jb20v">Font Awesome<i class="fa fa-external-link-alt"></i></span> site.</p></div></div></div>
 
 <p>By default, all menu items are commented out to ensure that you can override them in the <a href="/docs/getting-started/configuration.html">Alternate Theme Config</a>.<br>To customize menu items, edit the following content in <mark class="label primary">theme config file</mark>:</p>
-<pre class=" language-yml"><code class="language-yml">menu:
-  home: / || fa fa-home
-  #about: /about/ || fa fa-user
-  #tags: /tags/ || fa fa-tags
-  #categories: /categories/ || fa fa-th
-  archives: /archives/ || fa fa-archive
-  #schedule: /schedule/ || fa fa-calendar
-  #sitemap: /sitemap.xml || fa fa-sitemap
-  #commonweal: /404/ || fa fa-heartbeat</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">menu:
+  home: &#x2F; || fa fa-home
+  #about: &#x2F;about&#x2F; || fa fa-user
+  #tags: &#x2F;tags&#x2F; || fa fa-tags
+  #categories: &#x2F;categories&#x2F; || fa fa-th
+  archives: &#x2F;archives&#x2F; || fa fa-archive
+  #schedule: &#x2F;schedule&#x2F; || fa fa-calendar
+  #sitemap: &#x2F;sitemap.xml || fa fa-sitemap
+  #commonweal: &#x2F;404&#x2F; || fa fa-heartbeat</code></pre>
+
 <div class="note warning"><p>Except <code>home</code> and <code>archives</code>, all custom pages under <code>menu</code> section need to be created manually. See <a href="/docs/theme-settings/custom-pages.html">«Custom Page Support»</a>.</p>
 <p>Besides, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvLWdlbmVyYXRvci1zaXRlbWFw">hexo-generator-sitemap<i class="fa fa-external-link-alt"></i></span> plugin is required for <code>sitemap</code> support.</p>
 </div>
 
 <p>Dynamic sub-menu within hierarchy structure is also supported. Add your sub-menu items in <code>menu</code> section in <mark class="label primary">theme config file</mark> as following:</p>
-<pre class=" language-yml"><code class="language-yml">menu:
-  home: / || fa fa-home
-  archives: /archives/ || fa fa-archive
+<pre class="language-yml" data-language="yml"><code class="language-yml">menu:
+  home: &#x2F; || fa fa-home
+  archives: &#x2F;archives&#x2F; || fa fa-archive
   Docs:
-    default: /docs/ || fa fa-book
+    default: &#x2F;docs&#x2F; || fa fa-book
     Getting Started:
-      default: /getting-started/ || fa fa-flag
-      Installation: /installation.html || fa fa-download
-      Configuration: /configuration.html || fa fa-wrench
+      default: &#x2F;getting-started&#x2F; || fa fa-flag
+      Installation: &#x2F;installation.html || fa fa-download
+      Configuration: &#x2F;configuration.html || fa fa-wrench
     Third Party Services:
-      default: /third-party-services/ || fa fa-puzzle-piece
-      Math Equations: /math-equations.html || fa fa-square-root-alt
-      Comment Systems: /comments.html || far fa-comment</code></pre>
+      default: &#x2F;third-party-services&#x2F; || fa fa-puzzle-piece
+      Math Equations: &#x2F;math-equations.html || fa fa-square-root-alt
+      Comment Systems: &#x2F;comments.html || far fa-comment</code></pre>
+
 <div class="note warning"><p>A <code>default</code> page is required for each sub-menu item.</p>
 </div>
 
 <p>By default NexT shows the icons of menu items without badges.</p>
 <div class="tabs" id="menu_settings"><ul class="nav-tabs"><li class="tab active"><a href="#menu_settings-1"><code>icons</code></a></li><li class="tab"><a href="#menu_settings-2"><code>badges</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="menu_settings-1"><p>You can configure it by editing values in <code>menu_settings.icons</code> section in <mark class="label primary">theme config file</mark>.</p>
-<pre class=" language-yml"><code class="language-yml">menu_settings:
+<pre class="language-yml" data-language="yml"><code class="language-yml">menu_settings:
   icons: true</code></pre></div><div class="tab-pane" id="menu_settings-2"><p>Set the value <code>badges</code> to <code>true</code> to display the count of Posts / Categories / Tags within menu items in <code>menu_settings</code> section in <mark class="label primary">theme config file</mark> as following:</p>
-<pre class=" language-yml"><code class="language-yml">menu_settings:
+<pre class="language-yml" data-language="yml"><code class="language-yml">menu_settings:
   badges: true</code></pre></div></div></div>
 
       </div>

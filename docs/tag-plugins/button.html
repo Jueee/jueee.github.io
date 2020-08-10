@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -542,37 +537,43 @@
       
       
       <div class="post-body">
-          <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class=" language-md"><code class="language-md">&#123;% button url, text, icon [class], [title] %&#125;
-<!-- Tag Alias -->
+          <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class="language-md" data-language="md"><code class="language-md">&#123;% button url, text, icon [class], [title] %&#125;
+&lt;!-- Tag Alias --&gt;
 &#123;% btn url, text, icon [class], [title] %&#125;
 
 url     : Absolute or relative path to URL.
 text    : Button text. Required if no icon specified.
-icon    : Font Awesome icon name (without 'fa-' at the begining). Required if no text specified.
+icon    : Font Awesome icon name (without &#39;fa-&#39; at the begining). Required if no text specified.
 [class] : Font Awesome class(es): fa-fw | fa-lg | fa-2x | fa-3x | fa-4x | fa-5x
           Optional parameter.
 [title] : Tooltip at mouseover.
           Optional parameter.</code></pre>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><pre class=" language-md"><code class="language-md">&#123;% button #, Text %&#125;</code></pre>
+
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><pre class="language-md" data-language="md"><code class="language-md">&#123;% button #, Text %&#125;</code></pre>
+
 <a class="btn" href="#">Text</a>
 
-<h4 id="Button-with-text-amp-title"><a href="#Button-with-text-amp-title" class="headerlink" title="Button with text &amp; title"></a>Button with text &amp; title</h4><pre class=" language-md"><code class="language-md">&#123;% btn #, Text %&#125;&#123;% btn #, Text & Title,, Title %&#125;</code></pre>
+<h4 id="Button-with-text-amp-title"><a href="#Button-with-text-amp-title" class="headerlink" title="Button with text &amp; title"></a>Button with text &amp; title</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% btn #, Text %&#125;&#123;% btn #, Text &amp; Title,, Title %&#125;</code></pre>
+
 <a class="btn" href="#">Text</a><a class="btn" href="#" title="Title">Text & Title</a>
 
-<pre class=" language-md"><code class="language-md">&#123;% btn #, Text %&#125; &#123;% btn #, Text & Title,, Title %&#125;</code></pre>
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% btn #, Text %&#125; &#123;% btn #, Text &amp; Title,, Title %&#125;</code></pre>
+
 <a class="btn" href="#">Text</a> <a class="btn" href="#" title="Title">Text & Title</a>
 
-<pre class=" language-md"><code class="language-md">&#123;% btn #, Text %&#125;
-&#123;% btn #, Text & Title,, Title %&#125;</code></pre>
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% btn #, Text %&#125;
+&#123;% btn #, Text &amp; Title,, Title %&#125;</code></pre>
+
 <a class="btn" href="#">Text</a>
 <a class="btn" href="#" title="Title">Text & Title</a>
 
-<h4 id="Button-with-icon"><a href="#Button-with-icon" class="headerlink" title="Button with icon"></a>Button with icon</h4><pre class=" language-md"><code class="language-md"><div>&#123;% btn #,, home fa-5x %&#125;&#123;% btn #,, home fa-5x %&#125;&#123;% btn #,, home fa-5x %&#125;</div>
-<div>&#123;% btn #,, home fa-4x %&#125;&#123;% btn #,, home fa-4x %&#125;&#123;% btn #,, home fa-4x %&#125;</div>
-<div>&#123;% btn #,, home fa-3x %&#125;&#123;% btn #,, home fa-3x %&#125;&#123;% btn #,, home fa-3x %&#125;</div>
-<div>&#123;% btn #,, home fa-2x %&#125;&#123;% btn #,, home fa-2x %&#125;&#123;% btn #,, home fa-2x %&#125;</div>
-<div>&#123;% btn #,, home fa-lg %&#125;&#123;% btn #,, home fa-lg %&#125;&#123;% btn #,, home fa-lg %&#125;</div>
-<div>&#123;% btn #,, home %&#125;&#123;% btn #,, home %&#125;&#123;% btn #,, home %&#125;</div></code></pre>
+<h4 id="Button-with-icon"><a href="#Button-with-icon" class="headerlink" title="Button with icon"></a>Button with icon</h4><pre class="language-md" data-language="md"><code class="language-md">&lt;div&gt;&#123;% btn #,, home fa-5x %&#125;&#123;% btn #,, home fa-5x %&#125;&#123;% btn #,, home fa-5x %&#125;&lt;&#x2F;div&gt;
+&lt;div&gt;&#123;% btn #,, home fa-4x %&#125;&#123;% btn #,, home fa-4x %&#125;&#123;% btn #,, home fa-4x %&#125;&lt;&#x2F;div&gt;
+&lt;div&gt;&#123;% btn #,, home fa-3x %&#125;&#123;% btn #,, home fa-3x %&#125;&#123;% btn #,, home fa-3x %&#125;&lt;&#x2F;div&gt;
+&lt;div&gt;&#123;% btn #,, home fa-2x %&#125;&#123;% btn #,, home fa-2x %&#125;&#123;% btn #,, home fa-2x %&#125;&lt;&#x2F;div&gt;
+&lt;div&gt;&#123;% btn #,, home fa-lg %&#125;&#123;% btn #,, home fa-lg %&#125;&#123;% btn #,, home fa-lg %&#125;&lt;&#x2F;div&gt;
+&lt;div&gt;&#123;% btn #,, home %&#125;&#123;% btn #,, home %&#125;&#123;% btn #,, home %&#125;&lt;&#x2F;div&gt;</code></pre>
+
 <div><a class="btn" href="#"><i class="fa fa-home fa-5x"></i></a><a class="btn" href="#"><i class="fa fa-home fa-5x"></i></a><a class="btn" href="#"><i class="fa fa-home fa-5x"></i></a></div>
 <div><a class="btn" href="#"><i class="fa fa-home fa-4x"></i></a><a class="btn" href="#"><i class="fa fa-home fa-4x"></i></a><a class="btn" href="#"><i class="fa fa-home fa-4x"></i></a></div>
 <div><a class="btn" href="#"><i class="fa fa-home fa-3x"></i></a><a class="btn" href="#"><i class="fa fa-home fa-3x"></i></a><a class="btn" href="#"><i class="fa fa-home fa-3x"></i></a></div>
@@ -580,22 +581,25 @@ icon    : Font Awesome icon name (without 'fa-' at the begining). Required if no
 <div><a class="btn" href="#"><i class="fa fa-home fa-lg"></i></a><a class="btn" href="#"><i class="fa fa-home fa-lg"></i></a><a class="btn" href="#"><i class="fa fa-home fa-lg"></i></a></div>
 <div><a class="btn" href="#"><i class="fa fa-home"></i></a><a class="btn" href="#"><i class="fa fa-home"></i></a><a class="btn" href="#"><i class="fa fa-home"></i></a></div>
 
-<h4 id="Button-with-text-amp-icon"><a href="#Button-with-text-amp-icon" class="headerlink" title="Button with text &amp; icon"></a>Button with text &amp; icon</h4><pre class=" language-md"><code class="language-md"><p>&#123;% btn #, Text & Icon (buggy), home %&#125;
-&#123;% btn #, Text & Icon (fixed width), home fa-fw %&#125;</p></code></pre>
+<h4 id="Button-with-text-amp-icon"><a href="#Button-with-text-amp-icon" class="headerlink" title="Button with text &amp; icon"></a>Button with text &amp; icon</h4><pre class="language-md" data-language="md"><code class="language-md">&lt;p&gt;&#123;% btn #, Text &amp; Icon (buggy), home %&#125;
+&#123;% btn #, Text &amp; Icon (fixed width), home fa-fw %&#125;&lt;&#x2F;p&gt;</code></pre>
+
 <p><a class="btn" href="#"><i class="fa fa-home"></i>Text & Icon (buggy)</a>
 <a class="btn" href="#"><i class="fa fa-home fa-fw"></i>Text & Icon (fixed width)</a></p>
 
-<pre class=" language-md"><code class="language-md"><p>&#123;% btn #, Text & Large Icon, home fa-fw fa-lg %&#125;
-&#123;% btn #, Text & Large Icon & Title, home fa-fw fa-lg, Title %&#125;</p></code></pre>
+<pre class="language-md" data-language="md"><code class="language-md">&lt;p&gt;&#123;% btn #, Text &amp; Large Icon, home fa-fw fa-lg %&#125;
+&#123;% btn #, Text &amp; Large Icon &amp; Title, home fa-fw fa-lg, Title %&#125;&lt;&#x2F;p&gt;</code></pre>
+
 <p><a class="btn" href="#"><i class="fa fa-home fa-fw fa-lg"></i>Text & Large Icon</a>
 <a class="btn" href="#" title="Title"><i class="fa fa-home fa-fw fa-lg"></i>Text & Large Icon & Title</a></p>
 
-<h4 id="Button-inside-text"><a href="#Button-inside-text" class="headerlink" title="Button inside text"></a>Button inside text</h4><pre class=" language-md"><code class="language-md">Lorem &#123;% btn #, Lorem, home fa-fw fa-lg %&#125; ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<h4 id="Button-inside-text"><a href="#Button-inside-text" class="headerlink" title="Button inside text"></a>Button inside text</h4><pre class="language-md" data-language="md"><code class="language-md">Lorem &#123;% btn #, Lorem, home fa-fw fa-lg %&#125; ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident &#123;% btn #, Ipsum, home fa-fw fa-lg %&#125;, sunt in culpa qui officia deserunt mollit anim id est laborum.</code></pre>
+
 <p>Lorem <a class="btn" href="#"><i class="fa fa-home fa-fw fa-lg"></i>ipsum</a> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure <a class="btn" href="#"><i class="fa fa-home fa-fw fa-lg"></i>dolor</a> in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non <a class="btn" href="#"><i class="fa fa-home fa-fw fa-lg"></i>proident</a>, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<h4 id="Button-inside-other-tag"><a href="#Button-inside-other-tag" class="headerlink" title="Button inside other tag"></a>Button inside other tag</h4><pre class=" language-md"><code class="language-md">&#123;% note info %&#125;
-&#123;% btn #, Text & Icon, home fa-fw %&#125;
+<h4 id="Button-inside-other-tag"><a href="#Button-inside-other-tag" class="headerlink" title="Button inside other tag"></a>Button inside other tag</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% note info %&#125;
+&#123;% btn #, Text &amp; Icon, home fa-fw %&#125;
 
 &#123;% btn #,, home, Title %&#125;&#123;% btn #, Text %&#125;
 
@@ -606,17 +610,20 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <p><a href="#">Link</a></p>
 </div>
 
-<h4 id="Button-margin"><a href="#Button-margin" class="headerlink" title="Button margin"></a>Button margin</h4><pre class=" language-md"><code class="language-md"><div class="text-center"><div>&#123;% btn #,, heading %&#125;&#123;% btn #,, fab fa-edge %&#125;&#123;% btn #,, times %&#125;&#123;% btn #,, far fa-circle %&#125;</div>
-<div>&#123;% btn #,, italic %&#125;&#123;% btn #,, fab fa-scribd %&#125;</div>
-<div>&#123;% btn #,, fab fa-google %&#125;&#123;% btn #,, fab fa-chrome %&#125;&#123;% btn #,, fab fa-opera %&#125;&#123;% btn #,, gem fa-rotate-270 %&#125;</div></div></code></pre>
+<h4 id="Button-margin"><a href="#Button-margin" class="headerlink" title="Button margin"></a>Button margin</h4><pre class="language-md" data-language="md"><code class="language-md">&lt;div class&#x3D;&quot;text-center&quot;&gt;&lt;div&gt;&#123;% btn #,, heading %&#125;&#123;% btn #,, fab fa-edge %&#125;&#123;% btn #,, times %&#125;&#123;% btn #,, far fa-circle %&#125;&lt;&#x2F;div&gt;
+&lt;div&gt;&#123;% btn #,, italic %&#125;&#123;% btn #,, fab fa-scribd %&#125;&lt;&#x2F;div&gt;
+&lt;div&gt;&#123;% btn #,, fab fa-google %&#125;&#123;% btn #,, fab fa-chrome %&#125;&#123;% btn #,, fab fa-opera %&#125;&#123;% btn #,, gem fa-rotate-270 %&#125;&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;</code></pre>
+
 <div class="text-center"><div><a class="btn" href="#"><i class="fa fa-heading"></i></a><a class="btn" href="#"><i class="fab fa-edge"></i></a><a class="btn" href="#"><i class="fa fa-times"></i></a><a class="btn" href="#"><i class="far fa-circle"></i></a></div>
 <div><a class="btn" href="#"><i class="fa fa-italic"></i></a><a class="btn" href="#"><i class="fab fa-scribd"></i></a></div>
 <div><a class="btn" href="#"><i class="fab fa-google"></i></a><a class="btn" href="#"><i class="fab fa-chrome"></i></a><a class="btn" href="#"><i class="fab fa-opera"></i></a><a class="btn" href="#"><i class="fa fa-gem fa-rotate-270"></i></a></div></div>
 
-<h4 id="Button-with-relative-URL"><a href="#Button-with-relative-URL" class="headerlink" title="Button with relative URL"></a>Button with relative URL</h4><pre class=" language-md"><code class="language-md"><div class="text-center">&#123;% btn #, Previous Chapter, arrow-left fa-fw fa-lg, Previous Chapter (Full Image) %&#125; &#123;% btn #, Next Chapter, arrow-right fa-fw fa-lg, Next Chapter (Label) %&#125;</div></code></pre>
+<h4 id="Button-with-relative-URL"><a href="#Button-with-relative-URL" class="headerlink" title="Button with relative URL"></a>Button with relative URL</h4><pre class="language-md" data-language="md"><code class="language-md">&lt;div class&#x3D;&quot;text-center&quot;&gt;&#123;% btn #, Previous Chapter, arrow-left fa-fw fa-lg, Previous Chapter (Full Image) %&#125; &#123;% btn #, Next Chapter, arrow-right fa-fw fa-lg, Next Chapter (Label) %&#125;&lt;&#x2F;div&gt;</code></pre>
+
 <div class="text-center"><a class="btn" href="/docs/tag-plugins/full-image" title="Previous Chapter (Full Image)"><i class="fa fa-arrow-left fa-fw fa-lg"></i>Previous Chapter</a> <a class="btn" href="/docs/tag-plugins/label" title="Next Chapter (Label)"><i class="fa fa-arrow-right fa-fw fa-lg"></i>Next Chapter</a></div>
 
-<h4 id="Button-with-absolute-URL"><a href="#Button-with-absolute-URL" class="headerlink" title="Button with absolute URL"></a>Button with absolute URL</h4><pre class=" language-md"><code class="language-md"><div class="text-center">&#123;% btn https://github.com/next-theme/hexo-theme-next, NexT, fab fa-github fa-fw fa-lg, NexT source code %&#125;</div></code></pre>
+<h4 id="Button-with-absolute-URL"><a href="#Button-with-absolute-URL" class="headerlink" title="Button with absolute URL"></a>Button with absolute URL</h4><pre class="language-md" data-language="md"><code class="language-md">&lt;div class&#x3D;&quot;text-center&quot;&gt;&#123;% btn https:&#x2F;&#x2F;github.com&#x2F;next-theme&#x2F;hexo-theme-next, NexT, fab fa-github fa-fw fa-lg, NexT source code %&#125;&lt;&#x2F;div&gt;</code></pre>
+
 <div class="text-center"><a class="btn" target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next" title="NexT source code"><i class="fab fa-github fa-fw fa-lg"></i>NexT</a></div>
 
       </div>

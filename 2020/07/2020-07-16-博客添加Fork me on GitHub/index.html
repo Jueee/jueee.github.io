@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -430,12 +425,14 @@
 <p><span class="exturl" data-url="aHR0cHM6Ly9zaW1vbndoaXRha2VyLmdpdGh1Yi5pby9naXRodWItZm9yay1yaWJib24tY3NzLw==">https://simonwhitaker.github.io/github-fork-ribbon-css/<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>将以下代码复制到<code>&lt;head&gt;</code>页面的中，引入 css：</p>
-<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css&quot; /&gt;</code></pre>
+<pre class="language-none"><code class="language-none">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;github-fork-ribbon-css&#x2F;0.2.3&#x2F;gh-fork-ribbon.min.css&quot; &#x2F;&gt;</code></pre>
+
 <p>使用非常简单，将下面的代码插入到 <code>&lt;body&gt;</code> 和 <code>&lt;/body&gt;</code> 之间就行了。</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>github-fork-ribbon<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://github.com/Jueee<span class="token punctuation">"</span></span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span> 
-       <span class="token attr-name">data-ribbon</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Fork me on GitHub<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Fork me on GitHub<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>github-fork-ribbon<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://github.com/Jueee<span class="token punctuation">"</span></span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span> 
+       <span class="token attr-name">data-ribbon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Fork me on GitHub<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Fork me on GitHub<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     Fork me on GitHub
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+
 <p>默认是在页面右上角。</p>
 <h3 id="其他样式"><a href="#其他样式" class="headerlink" title="其他样式"></a>其他样式</h3><ul>
 <li><p>固定标签：<code>class=&quot;github-fork-ribbon fixed&quot;</code></p>
@@ -449,27 +446,30 @@
 </ul>
 </li>
 <li><p>更换背景颜色：</p>
-<pre class=" language-css"><code class="language-css"><span class="token number">.</span>github-fork-ribbon<span class="token number">.</span><span class="token property">left-bottom</span><span class="token punctuation">:</span>before &amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
-    <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token hexcode">#333</span><span class="token punctuation">;</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">.github-fork-ribbon.left-bottom:before</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #333<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
 </li>
 </ul>
 <h3 id="小屏幕不显示"><a href="#小屏幕不显示" class="headerlink" title="小屏幕不显示"></a>小屏幕不显示</h3><p>按照上面的步骤当屏幕缩小后还会显示fork me on github图标，但这不是我想要的，如果希望在大屏下显示，小屏后就不显示了。方法如下：</p>
 <p>新增样式：</p>
-<pre class=" language-css"><code class="language-css"><span class="token number">.</span>forkme&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">.forkme</span><span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
-<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 1350px<span class="token punctuation">)</span> &amp;#123<span class="token punctuation">;</span></span>
-  <span class="token number">.</span>forkme&amp;<span class="token hexcode">#123</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 1350px<span class="token punctuation">)</span></span> <span class="token punctuation">&#123;</span>
+  <span class="token selector">.forkme</span><span class="token punctuation">&#123;</span>
     <span class="token property">display</span><span class="token punctuation">:</span> inline<span class="token punctuation">;</span>
-  &amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span>
-&amp;<span class="token hexcode">#125</span><span class="token punctuation">;</span></code></pre>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
 <p>代码块上套上div加上class就行了，如下：</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>forkme<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>github-fork-ribbon fixed<span class="token punctuation">"</span></span>    <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://github.com/Jueee<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>forkme<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>github-fork-ribbon fixed<span class="token punctuation">"</span></span>    <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://github.com/Jueee<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
         Fork me on GitHub
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+
 
     </div>
 
@@ -509,8 +509,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/2020-07-08-jekyll%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84/" rel="prev" title="jekyll使用中文路径">
-      <i class="fa fa-chevron-left"></i> jekyll使用中文路径
+    <a href="/2020/07/2020-07-09-%E4%BD%BF%E7%94%A8%E4%B8%8D%E8%92%9C%E5%AD%90%E5%A2%9E%E5%8A%A0Jekyll%E5%8D%9A%E5%AE%A2%E8%AE%BF%E9%97%AE%E9%87%8F%E7%BB%9F%E8%AE%A1/" rel="prev" title="使用不蒜子增加Jekyll博客访问量统计">
+      <i class="fa fa-chevron-left"></i> 使用不蒜子增加Jekyll博客访问量统计
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/07/2020-07-10-%E7%BD%91%E9%A1%B5%E7%B2%92%E5%AD%90%E8%83%8C%E6%99%AF%E6%8F%92%E4%BB%B6canvas-nest.js/" rel="next" title="网页粒子背景插件canvas-nest.js">

@@ -113,7 +113,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -137,6 +137,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -286,14 +287,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -319,9 +317,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -442,32 +437,34 @@
 </blockquote>
 <h4 id="启动-Arthas"><a href="#启动-Arthas" class="headerlink" title="启动 Arthas"></a>启动 Arthas</h4><p>我们只需要使用普通的 jar 包启动命令：<code>java -jar arthas-boot.jar</code> 来启动 Arthas 即可。</p>
 <h4 id="Windows-运行"><a href="#Windows-运行" class="headerlink" title="Windows 运行"></a>Windows 运行</h4><p>Windows 需要以管理员方式运行，bat 脚本如下：</p>
-<pre class=" language-bat"><code class="language-bat">%1 mshta vbscript:CreateObject("Shell.Application").ShellExecute("cmd.exe","/c %~s0 ::","","runas",1)(window.close)&&exit
-cd /d "%~dp0"
+<pre class="language-bat" data-language="bat"><code class="language-bat">%1 mshta vbscript:CreateObject(&quot;Shell.Application&quot;).ShellExecute(&quot;cmd.exe&quot;,&quot;&#x2F;c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,1)(window.close)&amp;&amp;exit
+cd &#x2F;d &quot;%~dp0&quot;
 java -jar arthas-boot.jar</code></pre>
+
 <h3 id="热更新-Java-代码"><a href="#热更新-Java-代码" class="headerlink" title="热更新 Java 代码"></a>热更新 Java 代码</h3><p>假如我们原来的代码是这样的：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> sample<span class="token punctuation">.</span>redefine<span class="token punctuation">;</span>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">sample<span class="token punctuation">.</span>redefine</span><span class="token punctuation">;</span>
 
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>TimeUnit<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">TimeUnit</span><span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineSuccess</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineSuccess</span> <span class="token punctuation">&#123;</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is true."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is false."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is true."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is false."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
+
 <p>我们现在想要把 <code>flag</code> 变量改为 <code>false</code> 就可以这样来做：</p>
 <ol>
 <li>使用 Arthas 的内存编译工具将新的 Java 代码编译为字节码；</li>
@@ -475,23 +472,26 @@ java -jar arthas-boot.jar</code></pre>
 </ol>
 <h4 id="编译字节码"><a href="#编译字节码" class="headerlink" title="编译字节码"></a>编译字节码</h4><p>首先，我们需要将新的 Java 代码编译为字节码，我们可以通过 Arthas 提供的 <code>mc</code> 命令实现，<code>mc</code> 是 Memory Compiler（内存编译器）的缩写。</p>
 <p>实现示例如下：</p>
-<pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>arthas<span class="token annotation punctuation">@10200</span><span class="token punctuation">]</span>$ mc C<span class="token operator">:</span><span class="token operator">/</span>arthas<span class="token operator">-</span>demo<span class="token operator">/</span>src<span class="token operator">/</span>main<span class="token operator">/</span>java<span class="token operator">/</span>sample<span class="token operator">/</span>redefine<span class="token operator">/</span>RedefineSuccess<span class="token punctuation">.</span>java <span class="token operator">-</span>d  E<span class="token operator">:</span>
-Memory compiler output<span class="token operator">:</span>
-E<span class="token operator">:</span>\sample\redefine\RedefineSuccess<span class="token punctuation">.</span><span class="token keyword">class</span>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token punctuation">[</span>arthas<span class="token annotation punctuation">@10200</span><span class="token punctuation">]</span>$ mc <span class="token class-name">C</span><span class="token operator">:</span><span class="token operator">/</span>arthas<span class="token operator">-</span>demo<span class="token operator">/</span>src<span class="token operator">/</span>main<span class="token operator">/</span>java<span class="token operator">/</span>sample<span class="token operator">/</span>redefine<span class="token operator">/</span><span class="token class-name">RedefineSuccess</span><span class="token punctuation">.</span>java <span class="token operator">-</span>d  <span class="token class-name">E</span><span class="token operator">:</span>
+<span class="token class-name">Memory</span> compiler output<span class="token operator">:</span>
+<span class="token class-name">E</span><span class="token operator">:</span>\sample\redefine\<span class="token class-name">RedefineSuccess</span><span class="token punctuation">.</span><span class="token keyword">class</span>
 <span class="token class-name">Affect</span><span class="token punctuation">(</span>row<span class="token operator">-</span>cnt<span class="token operator">:</span><span class="token number">1</span><span class="token punctuation">)</span> cost in <span class="token number">500</span> ms<span class="token punctuation">.</span></code></pre>
+
 <p>其中 <code>-d</code> 表示编译文件的存放位置。</p>
 <blockquote>
 <p>小贴士：我们也可以使用 javac App.java 生成的字节码，它与此步骤执行的结果相同。</p>
 </blockquote>
 <h4 id="执行热更新"><a href="#执行热更新" class="headerlink" title="执行热更新"></a>执行热更新</h4><p>有了字节码文件之后，我们就可以使用 <code>redefine</code> 命令来实现热更新了，实现示例如下：</p>
-<pre><code>[arthas@10200]$ redefine e:/sample/redefine/RedefineSuccess.class
+<pre class="language-none"><code class="language-none">[arthas@10200]$ redefine e:&#x2F;sample&#x2F;redefine&#x2F;RedefineSuccess.class
 redefine success, size: 1</code></pre>
+
 <p>从上述结果可以看出，热更新执行成功，此时我们去控制台查看执行结果，如下图所示：</p>
 <p><img src="/images/2020/07/1594883244673.png" alt="1594883244673" loading="lazy"></p>
 <p>这说明热更新执行确实成功了。</p>
-<h3 id="结合-jad-mc-命令使用"><a href="#结合-jad-mc-命令使用" class="headerlink" title="结合 jad/mc 命令使用"></a>结合 jad/mc 命令使用</h3><pre class=" language-shell"><code class="language-shell">jad --source-only com.example.demo.arthas.user.UserController > /tmp/UserController.java
-mc /tmp/UserController.java -d /tmp
-redefine /tmp/com/example/demo/arthas/user/UserController.class</code></pre>
+<h3 id="结合-jad-mc-命令使用"><a href="#结合-jad-mc-命令使用" class="headerlink" title="结合 jad/mc 命令使用"></a>结合 jad/mc 命令使用</h3><pre class="language-shell" data-language="shell"><code class="language-shell">jad --source-only com.example.demo.arthas.user.UserController &gt; &#x2F;tmp&#x2F;UserController.java
+mc &#x2F;tmp&#x2F;UserController.java -d &#x2F;tmp
+redefine &#x2F;tmp&#x2F;com&#x2F;example&#x2F;demo&#x2F;arthas&#x2F;user&#x2F;UserController.class</code></pre>
+
 <ul>
 <li>jad命令反编译，然后可以用其它编译器，比如vim来修改源码</li>
 <li>mc命令来内存编译修改过的代码</li>
@@ -507,25 +507,26 @@ redefine /tmp/com/example/demo/arthas/user/UserController.class</code></pre>
 <li>替换正在运行的方法。</li>
 </ol>
 <p>最后一条我们需要单独说明一下，假如我们把上面的示例改为如下代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> sample<span class="token punctuation">.</span>redefine<span class="token punctuation">;</span>
+ <pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">sample<span class="token punctuation">.</span>redefine</span><span class="token punctuation">;</span>
 
-<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>TimeUnit<span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">TimeUnit</span><span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineError</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineError</span> <span class="token punctuation">&#123;</span>
 
-   <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-       <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-           TimeUnit<span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-           <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-           <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-               System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is true."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-           <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-               System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is false."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-           <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-       <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is true."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is false."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 </code></pre>
+
 <p>那么此时我们再进行热更新操作修改 <code>flag</code> 的值，那么就会执行失败，因为我们替换的是正在运行中的方法，而我们正常示例中的代码之所以能成功，是因为我们在 <code>while</code> 无线循环中调用了另一个方法，而那个方法是被间歇性使用的，因此可以替换成功。</p>
 
     </div>
@@ -537,10 +538,10 @@ redefine /tmp/com/example/demo/arthas/user/UserController.class</code></pre>
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas之源码简要分析</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-02-Arthas之各模块简介\" rel="bookmark">Arthas之各模块简介</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-02-Arthas之各模块简介\" rel="bookmark">Arthas之各模块简介</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas之源码简要分析</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas之jad反编译原理</a></div>

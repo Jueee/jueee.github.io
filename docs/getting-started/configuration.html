@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -517,10 +512,11 @@
 <h4 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h4><ol>
 <li>Please ensure you are using Hexo 5.0 (or later).</li>
 <li>Create a config file in site&#39;s root directory, e.g. <code>_config.next.yml</code>.</li>
-<li>Copy needed NexT theme options from <mark class="label primary">theme config file</mark> into this config file. If it is the first time to install NexT, then copy the whole configuration file by the following command:<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Installed through npm</span>
+<li>Copy needed NexT theme options from <mark class="label primary">theme config file</mark> into this config file. If it is the first time to install NexT, then copy the whole configuration file by the following command: <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Installed through npm</span>
 <span class="token function">cp</span> node_modules/hexo-theme-next/_config.yml _config.next.yml
-<span class="token comment" spellcheck="true"># Installed through Git</span>
+<span class="token comment"># Installed through Git</span>
 <span class="token function">cp</span> theme/next/_config.yml _config.next.yml</code></pre>
+
 </li>
 </ol>
 <h3 id="theme-config"><a href="#theme-config" class="headerlink" title="theme_config"></a><code>theme_config</code></h3><p>With this way, all your configurations locate in main <mark class="label info">site config file</mark>. You don&#39;t need to edit <mark class="label primary">theme config file</mark> or create any new files. But you need to <strong><a href="/docs/troubleshooting.html#Keep-Up-Indentation">keep up indentation</a></strong> within <code>theme_config</code> option.</p>

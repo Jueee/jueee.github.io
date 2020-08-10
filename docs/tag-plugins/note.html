@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -542,7 +537,7 @@
       
       
       <div class="post-body">
-          <h3 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h3><pre class=" language-yml"><code class="language-yml">note:
+          <h3 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h3><pre class="language-yml" data-language="yml"><code class="language-yml">note:
   # Note tag style values:
   #  - simple    bs-callout old alert style. Default.
   #  - modern    bs-callout new (v2-v3) alert style.
@@ -553,7 +548,8 @@
   # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
   # Offset also applied to label tag variables. This option can work with disabled note tag.
   light_bg_offset: 0</code></pre>
-<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class=" language-md"><code class="language-md">&#123;% note [class] [no-icon] [summary] %&#125;
+
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class="language-md" data-language="md"><code class="language-md">&#123;% note [class] [no-icon] [summary] %&#125;
 Any content (support inline tags too).
 &#123;% endnote %&#125;
 
@@ -562,77 +558,87 @@ Any content (support inline tags too).
 [summary] : Optional summary of the note.
 
 All parameters are optional.</code></pre>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><pre class=" language-md"><code class="language-md">&#123;% note %&#125;
+
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><pre class="language-md" data-language="md"><code class="language-md">&#123;% note %&#125;
 #### Header
 (without define class style)
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note "><h4 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h4><p>(without define class style)</p>
 </div>
 
-<pre class=" language-md"><code class="language-md">&#123;% note default %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note default %&#125;
 #### Default Header
-Welcome to [Hexo!](https://hexo.io)
+Welcome to [Hexo!](https:&#x2F;&#x2F;hexo.io)
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note default"><h4 id="Default-Header"><a href="#Default-Header" class="headerlink" title="Default Header"></a>Default Header</h4><p>Welcome to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo!<i class="fa fa-external-link-alt"></i></span></p>
 </div>
 
-<pre class=" language-md"><code class="language-md">&#123;% note primary %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note primary %&#125;
 #### Primary Header
-**Welcome** to [Hexo!](https://hexo.io)
+**Welcome** to [Hexo!](https:&#x2F;&#x2F;hexo.io)
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note primary"><h4 id="Primary-Header"><a href="#Primary-Header" class="headerlink" title="Primary Header"></a>Primary Header</h4><p><strong>Welcome</strong> to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo!<i class="fa fa-external-link-alt"></i></span></p>
 </div>
 
-<pre class=" language-md"><code class="language-md">&#123;% note info %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note info %&#125;
 #### Info Header
-**Welcome** to [Hexo!](https://hexo.io)
+**Welcome** to [Hexo!](https:&#x2F;&#x2F;hexo.io)
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note info"><h4 id="Info-Header"><a href="#Info-Header" class="headerlink" title="Info Header"></a>Info Header</h4><p><strong>Welcome</strong> to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo!<i class="fa fa-external-link-alt"></i></span></p>
 </div>
 
-<pre class=" language-md"><code class="language-md">&#123;% note success %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note success %&#125;
 #### Success Header
-**Welcome** to [Hexo!](https://hexo.io)
+**Welcome** to [Hexo!](https:&#x2F;&#x2F;hexo.io)
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note success"><h4 id="Success-Header"><a href="#Success-Header" class="headerlink" title="Success Header"></a>Success Header</h4><p><strong>Welcome</strong> to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo!<i class="fa fa-external-link-alt"></i></span></p>
 </div>
 
-<pre class=" language-md"><code class="language-md">&#123;% note warning %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note warning %&#125;
 #### Warning Header
-**Welcome** to [Hexo!](https://hexo.io)
+**Welcome** to [Hexo!](https:&#x2F;&#x2F;hexo.io)
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note warning"><h4 id="Warning-Header"><a href="#Warning-Header" class="headerlink" title="Warning Header"></a>Warning Header</h4><p><strong>Welcome</strong> to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo!<i class="fa fa-external-link-alt"></i></span></p>
 </div>
 
-<pre class=" language-md"><code class="language-md">&#123;% note danger %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note danger %&#125;
 #### Danger Header
-**Welcome** to [Hexo!](https://hexo.io)
+**Welcome** to [Hexo!](https:&#x2F;&#x2F;hexo.io)
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note danger"><h4 id="Danger-Header"><a href="#Danger-Header" class="headerlink" title="Danger Header"></a>Danger Header</h4><p><strong>Welcome</strong> to <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvLw==">Hexo!<i class="fa fa-external-link-alt"></i></span></p>
 </div>
 
-<pre class=" language-md"><code class="language-md">&#123;% note info no-icon %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note info no-icon %&#125;
 #### No icon note
-Note **without** icon: `note info no-icon`
+Note **without** icon: &#96;note info no-icon&#96;
 
 note info, note info, note info
 note info, note info, note info
 note info, note info, note info
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note info no-icon"><h4 id="No-icon-note"><a href="#No-icon-note" class="headerlink" title="No icon note"></a>No icon note</h4><p>Note <strong>without</strong> icon: <code>note info no-icon</code></p>
 <p>note info, note info, note info<br>note info, note info, note info<br>note info, note info, note info</p>
 </div>
 
-<pre class=" language-md"><code class="language-md">&#123;% note primary This is a summary %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note primary This is a summary %&#125;
 #### Details and summary
-Note with summary: `note primary This is a summary`</code></pre>
+Note with summary: &#96;note primary This is a summary&#96;</code></pre>
+
 <details class="note primary"><summary><p>This is a summary</p>
 </summary>
 <h4 id="Details-and-summary"><a href="#Details-and-summary" class="headerlink" title="Details and summary"></a>Details and summary</h4><p>Note with summary: <code>note primary This is a summary</code></p>
 
 </details>
 
-<pre class=" language-md"><code class="language-md">&#123;% note success %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note success %&#125;
 #### Codeblock in note
 &#123;% code %&#125;
 code block in note tag
@@ -640,11 +646,12 @@ code block in note tag
 code block in note tag
 &#123;% endcode %&#125;
 &#123;% endnote %&#125;</code></pre>
-<div class="note success"><h4 id="Codeblock-in-note"><a href="#Codeblock-in-note" class="headerlink" title="Codeblock in note"></a>Codeblock in note</h4><pre><code>code block in note tag
+
+<div class="note success"><h4 id="Codeblock-in-note"><a href="#Codeblock-in-note" class="headerlink" title="Codeblock in note"></a>Codeblock in note</h4><pre class="language-none"><code class="language-none">code block in note tag
 code block in note tag
 code block in note tag</code></pre></div>
 
-<pre class=" language-md"><code class="language-md">&#123;% note default %&#125;
+<pre class="language-md" data-language="md"><code class="language-md">&#123;% note default %&#125;
 #### Lists in note
 * ul
 * ul
@@ -658,6 +665,7 @@ code block in note tag</code></pre></div>
   2. ol
 3. ol
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note default"><h4 id="Lists-in-note"><a href="#Lists-in-note" class="headerlink" title="Lists in note"></a>Lists in note</h4><ul>
 <li>ul</li>
 <li>ul<ul>
@@ -678,7 +686,7 @@ code block in note tag</code></pre></div>
 </ol>
 </div>
 
-<pre class=" language-md"><code class="language-md">#### Table in Note
+<pre class="language-md" data-language="md"><code class="language-md">#### Table in Note
 &#123;% note default %&#125;
 | 1 | 2 |
 | - | - |
@@ -686,6 +694,7 @@ code block in note tag</code></pre></div>
 | 5 | 6 |
 | 7 | 8 |
 &#123;% endnote %&#125;</code></pre>
+
 <div class="note default"><h4 id="Table-in-note"><a href="#Table-in-note" class="headerlink" title="Table in note"></a>Table in note</h4><table>
 <thead>
 <tr>

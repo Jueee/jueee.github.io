@@ -113,7 +113,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -137,6 +137,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -286,14 +287,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -319,9 +317,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -530,14 +525,14 @@
       <div class="post-body">
           <h3 id="Widgetpack-Rating"><a href="#Widgetpack-Rating" class="headerlink" title="Widgetpack Rating"></a>Widgetpack Rating</h3><p>Rating service with login through any social networks like Facebook, Twitter, Google+, LinkedIn, Instagram and others.</p>
 <div class="tabs" id="rating"><ul class="nav-tabs"><li class="tab active"><a href="#rating-1">Get ID →</a></li><li class="tab"><a href="#rating-2">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="rating-1"><p>Login to <span class="exturl" data-url="aHR0cHM6Ly93aWRnZXRwYWNrLmNvbS9hZG1pbiNzaWduaW4=">widgetpack<i class="fa fa-external-link-alt"></i></span> and add new site, you will get your site ID:</p>
-<pre class=" language-html">wpac_init.push(&amp;#123;widget: &#39;Rating&#39;, id: ID&amp;#125;);</code></pre></div><div class="tab-pane" id="rating-2"><p>You can enable it by setting value <code>rating.enable</code> to <code>true</code>, and copy <code>ID</code> value of <code>id</code> in <mark class="label primary"><code class="language-html">wpac_init.push(&amp;#123;widget: &#39;Rating&#39;, id: ID&amp;#125;);</code></pre></div><div class="tab-pane" id="rating-2"><p>You can enable it by setting value <code>rating.enable</code> to <code>true</code>, and copy <code>ID</code> value of <code>id</code> in <mark class="label primary">theme config file</mark>. You can also configure the rating color by editing values in <code>rating.color</code> section.</p>
-<pre><code class="yml">rating:
+<pre class="language-html" data-language="html"><code class="language-html">wpac_init.push(&#123;widget: 'Rating', id: ID&#125;);</code></pre></div><div class="tab-pane" id="rating-2"><p>You can enable it by setting value <code>rating.enable</code> to <code>true</code>, and copy <code>ID</code> value of <code>id</code> in <mark class="label primary">theme config file</mark>. You can also configure the rating color by editing values in <code>rating.color</code> section.</p>
+<pre class="language-yml" data-language="yml"><code class="language-yml">rating:
   enable: false
-  id:     ID #<app_id>
+  id:     ID #&lt;app_id&gt;
   color:  fc6423</code></pre></div></div></div>
 
 <h3 id="AddThis"><a href="#AddThis" class="headerlink" title="AddThis"></a>AddThis</h3><div class="tabs" id="addthis"><ul class="nav-tabs"><li class="tab active"><a href="#addthis-1">Sign Up →</a></li><li class="tab"><a href="#addthis-2">AddThis ID →</a></li><li class="tab"><a href="#addthis-3">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="addthis-1"><p>Sign up in <span class="exturl" data-url="aHR0cHM6Ly93d3cuYWRkdGhpcy5jb20v">AddThis<i class="fa fa-external-link-alt"></i></span>. You can use Google/Facebook/Twitter to login.</p></div><div class="tab-pane" id="addthis-2"><p>Get AddThis ID in this menu: <code>More..</code> → <code>General</code> → <code>ID</code>. See example on the picture below:<br><img src="/images/docs/add-this-id.png" alt="AddThis ID" loading="lazy"></p></div><div class="tab-pane" id="addthis-3"><p>Edit the configurations in <code>add_this_id</code> section in the <mark class="label primary">theme config file</mark> as following:</p>
-<pre class=" language-yml"><code class="language-yml">add_this_id: your_add_this_id</code></pre></div></div></div>
+<pre class="language-yml" data-language="yml"><code class="language-yml">add_this_id: your_add_this_id</code></pre></div></div></div>
 
       </div>
       

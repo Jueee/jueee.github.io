@@ -111,7 +111,7 @@
 </noscript>
 
 <link rel="alternate" href="/atom.xml" title="Jueee的专栏" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -135,6 +135,7 @@
       <h1 class="site-title">Jueee的专栏</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜。</p>
   </div>
 
   <div class="site-nav-right">
@@ -284,14 +285,11 @@
         <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
-    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></span>
-  </div>
 
 
   <div class="links-of-blogroll animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
-      Links
+      笔记总结
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
@@ -317,9 +315,6 @@
         </li>
     </ul>
   </div>
-<div class="cc-license motion-element" itemprop="sponsor">
-  <span class="exturl cc-opacity" title="Deploy with Netlify → https://www.netlify.com" data-url="aHR0cHM6Ly93d3cubmV0bGlmeS5jb20="><img width="80" src="https://www.netlify.com/img/global/badges/netlify-dark.svg" alt="Netlify"></span>
-</div>
 
       </section>
     </div>
@@ -542,166 +537,175 @@
       
       
       <div class="post-body">
-          <h3 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h3><pre class=" language-yml"><code class="language-yml">tabs:
+          <h3 id="Settings"><a href="#Settings" class="headerlink" title="Settings"></a>Settings</h3><pre class="language-yml" data-language="yml"><code class="language-yml">tabs:
   transition:
     tabs: false
     labels: true</code></pre>
-<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class=" language-md"><code class="language-md">&#123;% tabs Unique name, [index] %&#125;
-<!-- tab [Tab caption] [@icon] -->
+
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><pre class="language-md" data-language="md"><code class="language-md">&#123;% tabs Unique name, [index] %&#125;
+&lt;!-- tab [Tab caption] [@icon] --&gt;
 Any content (support inline tags too).
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;
 
 Unique name   : Unique name of tabs block tag without comma.
-                Will be used in #id's as prefix for each tab with their index numbers.
+                Will be used in #id&#39;s as prefix for each tab with their index numbers.
                 If there are whitespaces in name, for generate #id all whitespaces will replaced by dashes.
-                Only for current url of post/page must be unique!
+                Only for current url of post&#x2F;page must be unique!
 [index]       : Index number of active tab.
                 If not specified, first tab (1) will be selected.
-                If index is -1, no tab will be selected. It's will be something like spoiler.
+                If index is -1, no tab will be selected. It&#39;s will be something like spoiler.
                 Optional parameter.
 [Tab caption] : Caption of current tab.
                 If not caption specified, unique name with tab index suffix will be used as caption of tab.
                 If not caption specified, but specified icon, caption will empty.
                 Optional parameter.
-[@icon]       : Font Awesome icon name (without 'fa-' at the begining).
-                Can be specified with or without space; e.g. 'Tab caption @icon' similar to 'Tab caption@icon'.
+[@icon]       : Font Awesome icon name (without &#39;fa-&#39; at the begining).
+                Can be specified with or without space; e.g. &#39;Tab caption @icon&#39; similar to &#39;Tab caption@icon&#39;.
                 Optional parameter.</code></pre>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><pre class=" language-md"><code class="language-md">&#123;% tabs First unique name %&#125;
-<!-- tab -->
+
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><pre class="language-md" data-language="md"><code class="language-md">&#123;% tabs First unique name %&#125;
+&lt;!-- tab --&gt;
 **This is Tab 1.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 2.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 3.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;</code></pre>
+
 <div class="tabs" id="first-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#first-unique-name-1">First unique name 1</a></li><li class="tab"><a href="#first-unique-name-2">First unique name 2</a></li><li class="tab"><a href="#first-unique-name-3">First unique name 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="first-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="first-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
 
-<h4 id="Tabs-with-3rd-tab-selected"><a href="#Tabs-with-3rd-tab-selected" class="headerlink" title="Tabs with 3rd tab selected"></a>Tabs with 3rd tab selected</h4><pre class=" language-md"><code class="language-md">&#123;% tabs Second unique name, 3 %&#125;
-<!-- tab -->
+<h4 id="Tabs-with-3rd-tab-selected"><a href="#Tabs-with-3rd-tab-selected" class="headerlink" title="Tabs with 3rd tab selected"></a>Tabs with 3rd tab selected</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% tabs Second unique name, 3 %&#125;
+&lt;!-- tab --&gt;
 **This is Tab 1.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 2.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 3.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;</code></pre>
+
 <div class="tabs" id="second-unique-name"><ul class="nav-tabs"><li class="tab"><a href="#second-unique-name-1">Second unique name 1</a></li><li class="tab"><a href="#second-unique-name-2">Second unique name 2</a></li><li class="tab active"><a href="#second-unique-name-3">Second unique name 3</a></li></ul><div class="tab-content"><div class="tab-pane" id="second-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="second-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane active" id="second-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
 
-<h4 id="Tabs-with-no-tab-selected"><a href="#Tabs-with-no-tab-selected" class="headerlink" title="Tabs with no tab selected"></a>Tabs with no tab selected</h4><pre class=" language-md"><code class="language-md">&#123;% tabs Third unique name, -1 %&#125;
-<!-- tab -->
+<h4 id="Tabs-with-no-tab-selected"><a href="#Tabs-with-no-tab-selected" class="headerlink" title="Tabs with no tab selected"></a>Tabs with no tab selected</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% tabs Third unique name, -1 %&#125;
+&lt;!-- tab --&gt;
 **This is Tab 1.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 2.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 3.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;</code></pre>
+
 <div class="tabs" id="third-unique-name"><ul class="nav-tabs"><li class="tab"><a href="#third-unique-name-1">Third unique name 1</a></li><li class="tab"><a href="#third-unique-name-2">Third unique name 2</a></li><li class="tab"><a href="#third-unique-name-3">Third unique name 3</a></li></ul><div class="tab-content"><div class="tab-pane" id="third-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="third-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="third-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
 
-<h4 id="Tabs-with-custom-labels"><a href="#Tabs-with-custom-labels" class="headerlink" title="Tabs with custom labels"></a>Tabs with custom labels</h4><pre class=" language-md"><code class="language-md">&#123;% tabs Fourth unique name %&#125;
-<!-- tab Solution 1 -->
+<h4 id="Tabs-with-custom-labels"><a href="#Tabs-with-custom-labels" class="headerlink" title="Tabs with custom labels"></a>Tabs with custom labels</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% tabs Fourth unique name %&#125;
+&lt;!-- tab Solution 1 --&gt;
 **This is Tab 1.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab Solution 2 -->
+&lt;!-- tab Solution 2 --&gt;
 **This is Tab 2.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab Solution 3 -->
+&lt;!-- tab Solution 3 --&gt;
 **This is Tab 3.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;</code></pre>
+
 <div class="tabs" id="fourth-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#fourth-unique-name-1">Solution 1</a></li><li class="tab"><a href="#fourth-unique-name-2">Solution 2</a></li><li class="tab"><a href="#fourth-unique-name-3">Solution 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="fourth-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="fourth-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="fourth-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
 
-<h4 id="Tabs-with-icons-only"><a href="#Tabs-with-icons-only" class="headerlink" title="Tabs with icons only"></a>Tabs with icons only</h4><pre class=" language-md"><code class="language-md">&#123;% tabs Fifth unique name %&#125;
-<!-- tab @text-width -->
+<h4 id="Tabs-with-icons-only"><a href="#Tabs-with-icons-only" class="headerlink" title="Tabs with icons only"></a>Tabs with icons only</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% tabs Fifth unique name %&#125;
+&lt;!-- tab @text-width --&gt;
 **This is Tab 1.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab @font -->
+&lt;!-- tab @font --&gt;
 **This is Tab 2.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab @bold -->
+&lt;!-- tab @bold --&gt;
 **This is Tab 3.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;</code></pre>
+
 <div class="tabs" id="fifth-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#fifth-unique-name-1"><i class="fa fa-text-width"></i></a></li><li class="tab"><a href="#fifth-unique-name-2"><i class="fa fa-font"></i></a></li><li class="tab"><a href="#fifth-unique-name-3"><i class="fa fa-bold"></i></a></li></ul><div class="tab-content"><div class="tab-pane active" id="fifth-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="fifth-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="fifth-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
 
-<h4 id="Tabs-with-icons-and-labels"><a href="#Tabs-with-icons-and-labels" class="headerlink" title="Tabs with icons and labels"></a>Tabs with icons and labels</h4><pre class=" language-md"><code class="language-md">&#123;% tabs Sixth unique name %&#125;
-<!-- tab Solution 1@text-width -->
+<h4 id="Tabs-with-icons-and-labels"><a href="#Tabs-with-icons-and-labels" class="headerlink" title="Tabs with icons and labels"></a>Tabs with icons and labels</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% tabs Sixth unique name %&#125;
+&lt;!-- tab Solution 1@text-width --&gt;
 **This is Tab 1.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab Solution 2 @font -->
+&lt;!-- tab Solution 2 @font --&gt;
 **This is Tab 2.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab Solution 3@bold -->
+&lt;!-- tab Solution 3@bold --&gt;
 **This is Tab 3.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;</code></pre>
+
 <div class="tabs" id="sixth-unique-name"><ul class="nav-tabs"><li class="tab active"><a href="#sixth-unique-name-1"><i class="fa fa-text-width"></i>Solution 1</a></li><li class="tab"><a href="#sixth-unique-name-2"><i class="fa fa-font"></i>Solution 2</a></li><li class="tab"><a href="#sixth-unique-name-3"><i class="fa fa-bold"></i>Solution 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="sixth-unique-name-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="sixth-unique-name-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="sixth-unique-name-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
 
-<h4 id="Tabs-permalinks-test"><a href="#Tabs-permalinks-test" class="headerlink" title="Tabs permalinks test"></a>Tabs permalinks test</h4><pre class=" language-md"><code class="language-md">Permalink for > [Tab one](#tab-one).
-Permalink for > [Tab one 1](#tab-one-1).
-Permalink for > [Tab one 2](#tab-one-2).
-Permalink for > [Tab one 3](#tab-one-3).
+<h4 id="Tabs-permalinks-test"><a href="#Tabs-permalinks-test" class="headerlink" title="Tabs permalinks test"></a>Tabs permalinks test</h4><pre class="language-md" data-language="md"><code class="language-md">Permalink for &gt; [Tab one](#tab-one).
+Permalink for &gt; [Tab one 1](#tab-one-1).
+Permalink for &gt; [Tab one 2](#tab-one-2).
+Permalink for &gt; [Tab one 3](#tab-one-3).
 
-Permalink for > [Tab two](#tab-two).
-Permalink for > [Tab two 1](#tab-two-1).
-Permalink for > [Tab two 2](#tab-two-2).
-Permalink for > [Tab two 3](#tab-two-3).
+Permalink for &gt; [Tab two](#tab-two).
+Permalink for &gt; [Tab two 1](#tab-two-1).
+Permalink for &gt; [Tab two 2](#tab-two-2).
+Permalink for &gt; [Tab two 3](#tab-two-3).
 
 &#123;% tabs Tab one %&#125;
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 1.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 2.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 3.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;
 
 &#123;% tabs Tab two %&#125;
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 1.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 2.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 3.**
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;</code></pre>
+
 <p>Permalink for &gt; <a href="#tab-one">Tab one</a>.<br>Permalink for &gt; <a href="#tab-one-1">Tab one 1</a>.<br>Permalink for &gt; <a href="#tab-one-2">Tab one 2</a>.<br>Permalink for &gt; <a href="#tab-one-3">Tab one 3</a>.</p>
 <p>Permalink for &gt; <a href="#tab-two">Tab two</a>.<br>Permalink for &gt; <a href="#tab-two-1">Tab two 1</a>.<br>Permalink for &gt; <a href="#tab-two-2">Tab two 2</a>.<br>Permalink for &gt; <a href="#tab-two-3">Tab two 3</a>.</p>
 <div class="tabs" id="tab-one"><ul class="nav-tabs"><li class="tab active"><a href="#tab-one-1">Tab one 1</a></li><li class="tab"><a href="#tab-one-2">Tab one 2</a></li><li class="tab"><a href="#tab-one-3">Tab one 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-one-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="tab-one-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="tab-one-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
 
 <div class="tabs" id="tab-two"><ul class="nav-tabs"><li class="tab active"><a href="#tab-two-1">Tab two 1</a></li><li class="tab"><a href="#tab-two-2">Tab two 2</a></li><li class="tab"><a href="#tab-two-3">Tab two 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-two-1"><p><strong>This is Tab 1.</strong></p></div><div class="tab-pane" id="tab-two-2"><p><strong>This is Tab 2.</strong></p></div><div class="tab-pane" id="tab-two-3"><p><strong>This is Tab 3.</strong></p></div></div></div>
 
-<h4 id="Tabs-with-other-tags"><a href="#Tabs-with-other-tags" class="headerlink" title="Tabs with other tags"></a>Tabs with other tags</h4><pre class=" language-md"><code class="language-md">&#123;% tabs Tags %&#125;
-<!-- tab -->
+<h4 id="Tabs-with-other-tags"><a href="#Tabs-with-other-tags" class="headerlink" title="Tabs with other tags"></a>Tabs with other tags</h4><pre class="language-md" data-language="md"><code class="language-md">&#123;% tabs Tags %&#125;
+&lt;!-- tab --&gt;
 **This is Tab 1.**
 
 1. One
@@ -710,7 +714,7 @@ Permalink for > [Tab two 3](#tab-two-3).
 
 Indented code block:
 
-    nano /etc
+    nano &#x2F;etc
 
 Tagged code block:
 
@@ -723,9 +727,9 @@ code tag
 &#123;% note default %&#125;
 Note default tag.
 &#123;% endnote %&#125;
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 2.**
 
 * Five
@@ -735,13 +739,13 @@ Note default tag.
 &#123;% note primary %&#125;
 &#123;% youtube Kt7u5kr_P5o %&#125;
 &#123;% endnote %&#125;
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Tab 3.**
 
 &#123;% subtabs Sub Tabs %&#125;
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Sub Tab 1.**
 &#123;% note success %&#125;
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.
@@ -752,9 +756,9 @@ Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metu
 
 Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.
 &#123;% endnote %&#125;
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Sub Tab 2.**
 &#123;% note success %&#125;
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.
@@ -765,13 +769,13 @@ Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metu
 Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.
 &#123;% endnote %&#125;
 &#123;% endnote %&#125;
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Sub Tab 3.**
 
 &#123;% subtabs Sub-Sub Tabs %&#125;
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Sub-Sub Tab 1 of Sub Tab 3.**
 &#123;% note success %&#125;
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.
@@ -780,9 +784,9 @@ Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metu
 
 Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl.
 &#123;% endnote %&#125;
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Sub-Sub Tab 2 of Sub Tab 3.**
 &#123;% note success %&#125;
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Pellentesque fermentum dolor. Aliquam quam lectus, facilisis auctor, ultrices ut, elementum vulputate, nunc.
@@ -794,9 +798,9 @@ Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorp
 &#123;% endnote %&#125;
 
 &#123;% endnote %&#125;
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 
-<!-- tab -->
+&lt;!-- tab --&gt;
 **This is Sub-Sub Tab 3 of Sub Tab 3.**
 
 &#123;% note success %&#125;
@@ -812,14 +816,15 @@ Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorp
 &#123;% endnote %&#125;
 
 &#123;% endnote %&#125;
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endsubtabs %&#125;
 
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endsubtabs %&#125;
 
-<!-- endtab -->
+&lt;!-- endtab --&gt;
 &#123;% endtabs %&#125;</code></pre>
+
 <div class="tabs" id="tags"><ul class="nav-tabs"><li class="tab active"><a href="#tags-1">Tags 1</a></li><li class="tab"><a href="#tags-2">Tags 2</a></li><li class="tab"><a href="#tags-3">Tags 3</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tags-1"><p><strong>This is Tab 1.</strong></p>
 <ol>
 <li>One</li>
@@ -829,9 +834,10 @@ Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorp
 <p>Indented code block:</p>
 <pre><code>nano /etc</code></pre>
 <p>Tagged code block:</p>
-<pre><code>code tag
+<pre class="language-none"><code class="language-none">code tag
 code tag
 code tag</code></pre>
+
 <div class="note default"><p>Note default tag.</p>
 </div></div><div class="tab-pane" id="tags-2"><p><strong>This is Tab 2.</strong></p>
 <ul>
