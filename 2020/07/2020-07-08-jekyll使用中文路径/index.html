@@ -26,7 +26,7 @@
 
   <meta name="description" content="在使用 jekyll 在本地预览自己写的中文文件名博客无法正常打开，如何解决？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jekyll使用中文路径">
+<meta property="og:title" content="jekyll 使用中文路径">
 <meta property="og:url" content="https://jueee.github.io/2020/07/2020-07-08-jekyll%E4%BD%BF%E7%94%A8%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84/index.html">
 <meta property="og:site_name" content="小决的专栏">
 <meta property="og:description" content="在使用 jekyll 在本地预览自己写的中文文件名博客无法正常打开，如何解决？">
@@ -34,8 +34,8 @@
 <meta property="article:published_time" content="2020-07-08T00:00:00.000Z">
 <meta property="article:modified_time" content="2020-08-07T03:12:56.685Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Blog">
 <meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="Blog">
 <meta property="article:tag" content="jekyll">
 <meta name="twitter:card" content="summary">
 
@@ -52,7 +52,7 @@
   };
 </script>
 
-  <title>jekyll使用中文路径 | 小决的专栏</title>
+  <title>jekyll 使用中文路径 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -159,17 +159,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">29</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">13</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">14</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">22</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">23</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -249,20 +249,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -355,7 +355,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          jekyll使用中文路径
+          jekyll 使用中文路径
         </h1>
 
         <div class="post-meta">
@@ -409,16 +409,16 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h2><p>在使用 jekyll 在本地预览自己写的博客无法正常打开，而提交到 github 上却可以正常解析。</p>
-<p>看了一下，发现原来是因为博客的markdown文件使用了中文文件名，jekyll 无法正常解析出现乱码。</p>
+<p>看了一下，发现原来是因为博客的 markdown 文件使用了中文文件名，jekyll 无法正常解析出现乱码。</p>
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>修改 安装目录 <code>Ruby26-x64\lib\ruby\2.6.0\webrick\httpservlet</code> 下的 <code>filehandler.rb</code> 文件，建议先备份。</p>
-<p>找到下列两处，添加一句（+的一行为添加部分）</p>
-<p>第285行： </p>
+<p>找到下列两处，添加一句（+ 的一行为添加部分）</p>
+<p>第 285 行： </p>
 <pre class="language-ruby" data-language="ruby"><code class="language-ruby">path <span class="token operator">=</span> req<span class="token punctuation">.</span>path_info<span class="token punctuation">.</span>dup<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token constant">Encoding</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">"filesystem"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token operator">+</span> path<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment"># 加入编码</span>
+<span class="token operator">+</span> path<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment"># 加入编码 </span>
 <span class="token keyword">if</span> trailing_pathsep<span class="token operator">?</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>path_info<span class="token punctuation">)</span>       </code></pre>
-<p>第333行：</p>
+<p>第 333 行：</p>
 <pre class="language-ruby" data-language="ruby"><code class="language-ruby"><span class="token keyword">break</span> <span class="token keyword">if</span> base <span class="token operator">==</span> <span class="token string">"/"</span>
-<span class="token operator">+</span> base<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment">#加入編碼</span>
+<span class="token operator">+</span> base<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment"># 加入編碼 </span>
 <span class="token keyword">break</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>directory<span class="token operator">?</span><span class="token punctuation">(</span><span class="token builtin">File</span><span class="token punctuation">.</span>expand_path<span class="token punctuation">(</span>res<span class="token punctuation">.</span>filename <span class="token operator">+</span> base<span class="token punctuation">)</span><span class="token punctuation">)</span>  </code></pre>
 
 <p>修改完重新 jekyll serve 即可支持中文文件名。</p>
@@ -432,27 +432,27 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建Jekyll环境</a></div>
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建 Jekyll 环境</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为Jekyll博客系统增加来必力评论系统</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为Jekyll博客系统增加百度统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加 Jekyll 博客访问量统计</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件canvas-nest.js</a></div>
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为 Jekyll 博客系统增加百度统计</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加Jekyll博客访问量统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件 canvas-nest.js</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Blog/" rel="tag"># Blog</a>
               <a href="/tags/Ruby/" rel="tag"># Ruby</a>
+              <a href="/tags/Blog/" rel="tag"># Blog</a>
               <a href="/tags/jekyll/" rel="tag"># jekyll</a>
           </div>
 
@@ -462,8 +462,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/2020-07-07-%E4%BD%BF%E7%94%A8rinetd%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%87%8D%E5%AE%9A%E5%90%91/" rel="prev" title="使用rinetd实现端口转发重定向">
-      <i class="fa fa-chevron-left"></i> 使用rinetd实现端口转发重定向
+    <a href="/2020/07/2020-07-07-%E4%BD%BF%E7%94%A8rinetd%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%87%8D%E5%AE%9A%E5%90%91/" rel="prev" title="使用 rinetd 实现端口转发重定向">
+      <i class="fa fa-chevron-left"></i> 使用 rinetd 实现端口转发重定向
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/07/2020-07-16-%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Fork%20me%20on%20GitHub/" rel="next" title="博客添加 Fork me on GitHub">

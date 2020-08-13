@@ -161,17 +161,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">29</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">13</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">14</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">22</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">23</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -251,20 +251,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -410,30 +410,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="添加-k8s-集群"><a href="#添加-k8s-集群" class="headerlink" title="添加 k8s 集群"></a>添加 k8s 集群</h3><p>单击<strong>添加现有集群</strong>选项卡，然后填写详细信息：</p>
+        <h3 id="添加-k8s-集群"><a href="#添加-k8s-集群" class="headerlink" title="添加 k8s 集群"></a>添加 k8s 集群</h3><p>单击 ** 添加现有集群 ** 选项卡，然后填写详细信息：</p>
 <ul>
-<li><p><strong>Kubernetes集群名称</strong>（必填）-您希望为<strong>集群指定</strong>的名称。</p>
+<li><p>**Kubernetes 集群名称 **（必填）- 您希望为 ** 集群指定 ** 的名称。</p>
 </li>
-<li><p><strong>环境范围</strong>（必需）-  <a href="index.md#setting-the-environment-scope-premium">与</a>此集群<a href="index.md#setting-the-environment-scope-premium">相关的环境</a>。</p>
+<li><p>** 环境范围 **（必需）-  <a href="index.md#setting-the-environment-scope-premium">与</a> 此集群 <a href="index.md#setting-the-environment-scope-premium">相关的环境</a>。</p>
 </li>
-<li><p><strong>API URL</strong>（必填）-这是GitLab用于访问Kubernetes API的URL。Kubernetes公开了几个API，我们希望所有API都具有通用的“基本” URL，例如，<code>https://kubernetes.example.com</code>而不是<code>https://kubernetes.example.com/api/v1</code>。</p>
-<p>通过运行以下命令获取API URL：</p>
+<li><p><strong>API URL</strong>（必填）- 这是 GitLab 用于访问 Kubernetes API 的 URL。Kubernetes 公开了几个 API，我们希望所有 API 都具有通用的 “基本” URL，例如，<code>https://kubernetes.example.com</code> 而不是 <code>https://kubernetes.example.com/api/v1</code>。</p>
+<p>通过运行以下命令获取 API URL：</p>
 <pre class="language-none"><code class="language-none">kubectl cluster-info | grep &#39;Kubernetes master&#39; | awk &#39;&#x2F;http&#x2F; &#123;print $NF&#125;&#39;</code></pre>
 </li>
-<li><p><strong>CA证书</strong>（必需）-需要有效的Kubernetes证书才能对集群进行身份验证。我们将使用默认创建的证书。</p>
+<li><p>**CA 证书 **（必需）- 需要有效的 Kubernetes 证书才能对集群进行身份验证。我们将使用默认创建的证书。</p>
 <ul>
-<li><p>用列出秘密<code>kubectl get secrets</code>，并命名类似  <code>default-token-xxxxx</code>。复制该令牌名称以在下面使用。</p>
+<li><p>用列出秘密 <code>kubectl get secrets</code>，并命名类似  <code>default-token-xxxxx</code>。复制该令牌名称以在下面使用。</p>
 </li>
 <li><p>通过运行以下命令获取证书：</p>
 <pre class="language-none"><code class="language-none">kubectl get secret &lt;secret name&gt; -o jsonpath&#x3D;&quot;&#123;[&#39;data&#39;][&#39;ca\.crt&#39;]&#125;&quot; | base64 --decode</code></pre>
 
-<p>注意：<strong>注意：</strong>  如果命令返回整个证书链，则需要在证书链 底部复制<em>root ca</em>证书。</p>
+<p>注意：** 注意：**  如果命令返回整个证书链，则需要在证书链 底部复制 * root ca * 证书。</p>
 </li>
 </ul>
 </li>
-<li><p><strong>令牌</strong> -GitLab使用服务令牌对Kubernetes进行身份验证，该服务令牌的范围仅限于特定的<code>namespace</code>。 <strong>使用的令牌应属于具有cluster-admin 特权的服务帐户  。</strong>要创建此服务帐户：</p>
+<li><p>** 令牌 ** -GitLab 使用服务令牌对 Kubernetes 进行身份验证，该服务令牌的范围仅限于特定的 <code>namespace</code>。 ** 使用的令牌应属于具有 cluster-admin 特权的服务帐户  。** 要创建此服务帐户：</p>
 <ol>
-<li><p>创建一个<code>gitlab-admin-service-account.yaml</code>包含内容的文件：</p>
+<li><p>创建一个 <code>gitlab-admin-service-account.yaml</code> 包含内容的文件：</p>
 <p>&lt;!--hexoPostRenderEscape:<pre class="language-none"><code class="language-none">apiVersion: v1<br>kind: ServiceAccount<br>metadata:<br>name: gitlab-admin<br>namespace: kube-system</p>
 </li>
 </ol>
@@ -447,18 +447,18 @@
 <li><p>将服务帐户和群集角色绑定应用于您的群集：</p>
 <pre class="language-none"><code class="language-none">kubectl apply -f gitlab-admin-service-account.yaml</code></pre>
 
-<p>您将需要<code>container.clusterRoleBindings.create</code>许可权才能创建集群级角色。如果您没有此权限，则可以选择启用基本身份验证，然后<code>kubectl apply</code>以管理员身份运行  命令：</p>
+<p>您将需要 <code>container.clusterRoleBindings.create</code> 许可权才能创建集群级角色。如果您没有此权限，则可以选择启用基本身份验证，然后 <code>kubectl apply</code> 以管理员身份运行  命令：</p>
 <pre class="language-none"><code class="language-none">kubectl apply -f gitlab-admin-service-account.yaml --username&#x3D;admin --password&#x3D;&lt;password&gt;</code></pre>
 
-<p>注意：<strong>注意：</strong>  可以打开基本身份验证，并可以使用Google Cloud Console获取密码凭据。</p>
+<p>注意：** 注意：**  可以打开基本身份验证，并可以使用 Google Cloud Console 获取密码凭据。</p>
 <p>输出：</p>
 <pre class="language-none"><code class="language-none">serviceaccount &quot;gitlab-admin&quot; created
 clusterrolebinding &quot;gitlab-admin&quot; created</code></pre>
 </li>
-<li><p>检索<code>gitlab-admin</code>服务帐户的令牌：</p>
+<li><p>检索 <code>gitlab-admin</code> 服务帐户的令牌：</p>
 <pre class="language-none"><code class="language-none">kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep gitlab-admin | awk &#39;&#123;print $1&#125;&#39;)</code></pre>
 
-<p>复制<code>&lt;authentication_token&gt;</code>输出中的值：</p>
+<p>复制 <code>&lt;authentication_token&gt;</code> 输出中的值：</p>
 <p>&lt;!--hexoPostRenderEscape:<pre class="language-none"><code class="language-none">Name:         gitlab-admin-token-b5zv4<br>Namespace:    kube-system<br>Labels:       &lt;none&gt;<br>Annotations:  kubernetes.io&#x2F;service-account.name&#x3D;gitlab-admin</p>
 <pre><code>     kubernetes.io&amp;#x2F;service-account.uid&amp;#x3D;bcfe66ac-39be-11e8-97e8-026dce96b6e8</code></pre>
 </li>
@@ -519,8 +519,8 @@ clusterrolebinding &quot;gitlab-admin&quot; created</code></pre>
       <i class="fa fa-chevron-left"></i> 使用 GitBook 进行团队文档协作
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/2020-07-30-%E4%B8%BAGithub%E9%A1%B9%E7%9B%AE%E8%AF%B4%E6%98%8E%E6%B7%BB%E5%8A%A0%E4%BC%98%E7%BE%8E%E6%A0%87%E7%AD%BE/" rel="next" title="为Github项目说明添加优美标签">
-      为Github项目说明添加优美标签 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/2020-07-30-%E4%B8%BAGithub%E9%A1%B9%E7%9B%AE%E8%AF%B4%E6%98%8E%E6%B7%BB%E5%8A%A0%E4%BC%98%E7%BE%8E%E6%A0%87%E7%AD%BE/" rel="next" title="为 Github 项目说明添加优美标签">
+      为 Github 项目说明添加优美标签 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

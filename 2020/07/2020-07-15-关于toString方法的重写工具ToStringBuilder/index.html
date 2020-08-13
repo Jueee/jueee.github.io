@@ -26,7 +26,7 @@
 
   <meta name="description" content="apache的commons-lang3的工具包里有一个ToStringBuilder类，这样在打日志的时候可以方便的打印出类实例中的各属性的值。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于toString方法的重写工具ToStringBuilder">
+<meta property="og:title" content="关于 toString 方法的重写工具 ToStringBuilder">
 <meta property="og:url" content="https://jueee.github.io/2020/07/2020-07-15-%E5%85%B3%E4%BA%8EtoString%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E5%86%99%E5%B7%A5%E5%85%B7ToStringBuilder/index.html">
 <meta property="og:site_name" content="小决的专栏">
 <meta property="og:description" content="apache的commons-lang3的工具包里有一个ToStringBuilder类，这样在打日志的时候可以方便的打印出类实例中的各属性的值。">
@@ -51,7 +51,7 @@
   };
 </script>
 
-  <title>关于toString方法的重写工具ToStringBuilder | 小决的专栏</title>
+  <title>关于 toString 方法的重写工具 ToStringBuilder | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -158,17 +158,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">26</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">29</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">13</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">14</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">22</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">23</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -248,20 +248,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -354,7 +354,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          关于toString方法的重写工具ToStringBuilder
+          关于 toString 方法的重写工具 ToStringBuilder
         </h1>
 
         <div class="post-meta">
@@ -425,36 +425,36 @@
 
 <p>打印结果参考：</p>
 <blockquote>
-<p>com.zzz.other.City@4eec7777[id=1,name=杭州,province=浙江,country=CN]</p>
+<p>com.zzz.other.City@4eec7777 [id=1,name = 杭州，province = 浙江，country=CN]</p>
 </blockquote>
 <h3 id="ToStringStyle"><a href="#ToStringStyle" class="headerlink" title="ToStringStyle"></a>ToStringStyle</h3><p><code>ToStringBuilder.reflectionToString</code>  默认为 <code>ToStringStyle.DEFAULT_STYLE</code>。</p>
 <p>使用方法：</p>
-<pre class="language-none"><code class="language-none">ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);</code></pre>
+<pre class="language-none"><code class="language-none">ToStringBuilder.reflectionToString (this, ToStringStyle.DEFAULT_STYLE);</code></pre>
 
 <p>ToStringStyle 还有其他样式，可调整 ToStringBuilder 的打印结果：</p>
 <ul>
 <li><p><strong>ToStringStyle.DEFAULT_STYLE</strong>：对象及其属性一行显示</p>
-<pre class="language-none"><code class="language-none">com.zzz.other.City@4eec7777[id&#x3D;1,name&#x3D;杭州,province&#x3D;浙江,country&#x3D;CN]</code></pre>
+<pre class="language-none"><code class="language-none">com.zzz.other.City@4eec7777 [id&#x3D;1,name&#x3D; 杭州，province&#x3D; 浙江，country&#x3D;CN]</code></pre>
 </li>
 <li><p><strong>ToStringStyle.MULTI_LINE_STYLE</strong>：属性换行显示</p>
-<pre class="language-none"><code class="language-none">com.zzz.other.City@4eec7777[
+<pre class="language-none"><code class="language-none">com.zzz.other.City@4eec7777 [
 id&#x3D;1
-name&#x3D;杭州
-province&#x3D;浙江
+name&#x3D; 杭州
+province&#x3D; 浙江
 country&#x3D;CN
 ]</code></pre>
 </li>
 <li><p><strong>ToStringStyle.NO_FIELD_NAMES_STYLE</strong>：不显示属性名，只显示属性值</p>
-<pre class="language-none"><code class="language-none">com.zzz.other.City@4eec7777[1,杭州,浙江,CN]</code></pre>
+<pre class="language-none"><code class="language-none">com.zzz.other.City@4eec7777 [1, 杭州，浙江，CN]</code></pre>
 </li>
 <li><p><strong>ToStringStyle.SHORT_PREFIX_STYLE</strong>：对象名称简写</p>
-<pre class="language-none"><code class="language-none">City[id&#x3D;1,name&#x3D;杭州,province&#x3D;浙江,country&#x3D;CN]</code></pre></li>
+<pre class="language-none"><code class="language-none">City [id&#x3D;1,name&#x3D; 杭州，province&#x3D; 浙江，country&#x3D;CN]</code></pre></li>
 <li><p><strong>ToStringStyle.SIMPLE_STYLE</strong>：只显示属性</p>
-<pre class="language-none"><code class="language-none">1,杭州,浙江,CN</code></pre>
+<pre class="language-none"><code class="language-none">1, 杭州，浙江，CN</code></pre>
 
 </li>
 </ul>
-<h3 id="原理解析"><a href="#原理解析" class="headerlink" title="原理解析"></a>原理解析</h3><p><code>ReflectionToStringBuilder</code> 主要是通过java 反射实现的属性拼接。</p>
+<h3 id="原理解析"><a href="#原理解析" class="headerlink" title="原理解析"></a>原理解析</h3><p><code>ReflectionToStringBuilder</code> 主要是通过 java 反射实现的属性拼接。</p>
 <p><strong>org.apache.commons.lang.builder.ReflectionToStringBuilder</strong>：</p>
  <pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token class-name">Object</span> object<span class="token punctuation">,</span> <span class="token class-name">ToStringStyle</span> style<span class="token punctuation">,</span> 
                               <span class="token keyword">boolean</span> outputTransients<span class="token punctuation">,</span> <span class="token keyword">boolean</span> outputStatics<span class="token punctuation">,</span>
@@ -477,7 +477,7 @@ country&#x3D;CN
     <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span></code></pre>
 
-<p>其中参数  <code>ToStringStyle</code>  是个抽象类，定义了输出的格式 主要是 append了一类类信息到字符串上，可以自己继承 <code>ToStringStyle</code>  实现自定义的输出格式。</p>
+<p>其中参数  <code>ToStringStyle</code>  是个抽象类，定义了输出的格式 主要是 append 了一类类信息到字符串上，可以自己继承 <code>ToStringStyle</code>  实现自定义的输出格式。</p>
 
     </div>
 
@@ -499,12 +499,12 @@ country&#x3D;CN
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/2020-07-01-%E4%B8%BAJekyll%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%A2%9E%E5%8A%A0%E6%9D%A5%E5%BF%85%E5%8A%9B%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="prev" title="为Jekyll博客系统增加来必力评论系统">
-      <i class="fa fa-chevron-left"></i> 为Jekyll博客系统增加来必力评论系统
+    <a href="/2020/07/2020-07-01-%E4%B8%BAJekyll%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%E5%A2%9E%E5%8A%A0%E6%9D%A5%E5%BF%85%E5%8A%9B%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="prev" title="为 Jekyll 博客系统增加来必力评论系统">
+      <i class="fa fa-chevron-left"></i> 为 Jekyll 博客系统增加来必力评论系统
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/2020-07-06-%E6%A8%A1%E6%9D%BFList%E5%88%86%E4%B8%A4%E5%88%97%E5%B1%95%E7%A4%BA/" rel="next" title="模板List分两列展示">
-      模板List分两列展示 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/2020-07-06-%E6%A8%A1%E6%9D%BFList%E5%88%86%E4%B8%A4%E5%88%97%E5%B1%95%E7%A4%BA/" rel="next" title="模板 List 分两列展示">
+      模板 List 分两列展示 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
