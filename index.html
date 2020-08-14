@@ -624,13 +624,6 @@ cmak.zkhosts=${?ZK_HOSTS}</code></pre>
 
 <h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5><pre class="language-none"><code class="language-none">$ bin/cmak &amp;</code></pre>
 
-<h5 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h5><p>如果使用 kafka-manager 监控，需要开启 JMX，否则会有以下报错：</p>
-<pre class="language-none"><code class="language-none">2020-08-14 17:30:58,236 - [ERROR] k.m.j.KafkaJMX$ - Failed to connect to service:jmx:rmi:///jndi/rmi://dm161.bjth.163.org:-1/jmxrmi
-java.lang.IllegalArgumentException: requirement failed: No jmx port but jmx polling enabled!</code></pre>
-
-<p>启动 kafka 服务时指定 JMX_PORT 值:</p>
-<pre class="language-none"><code class="language-none">JMX_PORT=9999 nohup bin/kafka-server-start.sh config/server.properties &amp;</code></pre>
-
 <h4 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h4><p>DockerHub：<span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL3NoZWVwa2lsbGVyL2thZmthLW1hbmFnZXI=">https://hub.docker.com/r/sheepkiller/kafka-manager<i class="fa fa-external-link-alt"></i></span></p>
 <p>安装命令：</p>
 <pre class="language-shell" data-language="shell"><code class="language-shell">docker run -it \
@@ -651,6 +644,15 @@ java.lang.IllegalArgumentException: requirement failed: No jmx port but jmx poll
 <p><img src="/images/2020/08/1597386711921.png" alt="1597386711921" loading="lazy"></p>
 </li>
 </ol>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p>如果使用 kafka-manager 监控，需要开启 JMX，则需要勾选：</p>
+<p><img src="/images/2020/08/1597405340838.png" alt="1597405340838" loading="lazy"></p>
+<p>否则会有以下报错：</p>
+<pre class="language-none"><code class="language-none">2020-08-14 17:30:58,236 - [ERROR] k.m.j.KafkaJMX$ - Failed to connect to service:jmx:rmi:///jndi/rmi://dm161.bjth.163.org:-1/jmxrmi
+java.lang.IllegalArgumentException: requirement failed: No jmx port but jmx polling enabled!</code></pre>
+
+<p>启动 kafka 服务时指定 <code>JMX_PORT</code> 值:</p>
+<pre class="language-none"><code class="language-none">JMX_PORT=9999 nohup bin/kafka-server-start.sh config/server.properties &amp;</code></pre>
+
 
       
     </div>

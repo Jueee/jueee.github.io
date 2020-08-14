@@ -33,8 +33,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1597386588682.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1597386711921.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/08/1597405340838.png">
 <meta property="article:published_time" content="2020-08-14T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-14T11:27:09.986Z">
+<meta property="article:modified_time" content="2020-08-14T11:43:19.664Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="软件">
@@ -236,7 +237,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#kafka-manager%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">kafka-manager 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kafka-manager%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">kafka-manager 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85kafka-manager"><span class="nav-number">3.</span> <span class="nav-text">安装 kafka-manager</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">普通安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.1.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">3.1.3.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">3.1.4.</span> <span class="nav-text">问题解决</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-%E5%AE%89%E8%A3%85"><span class="nav-number">3.2.</span> <span class="nav-text">docker 安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-kafka-manager"><span class="nav-number">4.</span> <span class="nav-text">配置 kafka-manager</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#kafka-manager%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">kafka-manager 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kafka-manager%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">kafka-manager 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85kafka-manager"><span class="nav-number">3.</span> <span class="nav-text">安装 kafka-manager</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">普通安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.1.1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">3.1.3.</span> <span class="nav-text">启动</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-%E5%AE%89%E8%A3%85"><span class="nav-number">3.2.</span> <span class="nav-text">docker 安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-kafka-manager"><span class="nav-number">4.</span> <span class="nav-text">配置 kafka-manager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">5.</span> <span class="nav-text">问题解决</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -449,13 +450,6 @@ cmak.zkhosts=${?ZK_HOSTS}</code></pre>
 
 <h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5><pre class="language-none"><code class="language-none">$ bin/cmak &amp;</code></pre>
 
-<h5 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h5><p>如果使用 kafka-manager 监控，需要开启 JMX，否则会有以下报错：</p>
-<pre class="language-none"><code class="language-none">2020-08-14 17:30:58,236 - [ERROR] k.m.j.KafkaJMX$ - Failed to connect to service:jmx:rmi:///jndi/rmi://dm161.bjth.163.org:-1/jmxrmi
-java.lang.IllegalArgumentException: requirement failed: No jmx port but jmx polling enabled!</code></pre>
-
-<p>启动 kafka 服务时指定 JMX_PORT 值:</p>
-<pre class="language-none"><code class="language-none">JMX_PORT=9999 nohup bin/kafka-server-start.sh config/server.properties &amp;</code></pre>
-
 <h4 id="docker-安装"><a href="#docker-安装" class="headerlink" title="docker 安装"></a>docker 安装</h4><p>DockerHub：<span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL3NoZWVwa2lsbGVyL2thZmthLW1hbmFnZXI=">https://hub.docker.com/r/sheepkiller/kafka-manager<i class="fa fa-external-link-alt"></i></span></p>
 <p>安装命令：</p>
 <pre class="language-shell" data-language="shell"><code class="language-shell">docker run -it \
@@ -476,6 +470,15 @@ java.lang.IllegalArgumentException: requirement failed: No jmx port but jmx poll
 <p><img src="/images/2020/08/1597386711921.png" alt="1597386711921" loading="lazy"></p>
 </li>
 </ol>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p>如果使用 kafka-manager 监控，需要开启 JMX，则需要勾选：</p>
+<p><img src="/images/2020/08/1597405340838.png" alt="1597405340838" loading="lazy"></p>
+<p>否则会有以下报错：</p>
+<pre class="language-none"><code class="language-none">2020-08-14 17:30:58,236 - [ERROR] k.m.j.KafkaJMX$ - Failed to connect to service:jmx:rmi:///jndi/rmi://dm161.bjth.163.org:-1/jmxrmi
+java.lang.IllegalArgumentException: requirement failed: No jmx port but jmx polling enabled!</code></pre>
+
+<p>启动 kafka 服务时指定 <code>JMX_PORT</code> 值:</p>
+<pre class="language-none"><code class="language-none">JMX_PORT=9999 nohup bin/kafka-server-start.sh config/server.properties &amp;</code></pre>
+
 
     </div>
 
