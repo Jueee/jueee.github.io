@@ -33,10 +33,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2020/07/1594883244673.png">
 <meta property="article:published_time" content="2020-07-16T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-10T03:20:34.680Z">
+<meta property="article:modified_time" content="2020-08-14T07:34:49.854Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java诊断">
 <meta property="article:tag" content="Arthas">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jueee.github.io/images/2020/07/1594883244673.png">
 
@@ -160,17 +161,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">30</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">33</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">14</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">23</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">25</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -234,7 +235,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arthas-%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">Arthas 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Arthas-%E8%B5%84%E6%96%99"><span class="nav-number">1.1.</span> <span class="nav-text">Arthas 资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-Arthas"><span class="nav-number">1.2.</span> <span class="nav-text">下载 Arthas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-Arthas"><span class="nav-number">1.3.</span> <span class="nav-text">启动 Arthas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows-%E8%BF%90%E8%A1%8C"><span class="nav-number">1.4.</span> <span class="nav-text">Windows 运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E6%9B%B4%E6%96%B0-Java-%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">热更新 Java 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%AD%97%E8%8A%82%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">编译字节码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E7%83%AD%E6%9B%B4%E6%96%B0"><span class="nav-number">2.2.</span> <span class="nav-text">执行热更新</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E5%90%88-jad-mc-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">结合 jad&#x2F;mc 命令使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E6%9B%B4%E6%96%B0%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.</span> <span class="nav-text">热更新注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#redefine-%E7%89%B9%E5%88%AB%E8%AF%B4%E6%98%8E"><span class="nav-number">4.1.</span> <span class="nav-text">redefine 特别说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%99%90%E5%88%B6"><span class="nav-number">4.2.</span> <span class="nav-text">条件限制</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arthas-%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">Arthas 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Arthas%E8%B5%84%E6%96%99"><span class="nav-number">1.1.</span> <span class="nav-text">Arthas 资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-Arthas"><span class="nav-number">1.2.</span> <span class="nav-text">下载 Arthas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8-Arthas"><span class="nav-number">1.3.</span> <span class="nav-text">启动 Arthas</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows-%E8%BF%90%E8%A1%8C"><span class="nav-number">1.4.</span> <span class="nav-text">Windows 运行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E6%9B%B4%E6%96%B0-Java-%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">热更新 Java 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%AD%97%E8%8A%82%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">编译字节码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E7%83%AD%E6%9B%B4%E6%96%B0"><span class="nav-number">2.2.</span> <span class="nav-text">执行热更新</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E5%90%88-jad-mc-%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">结合 jad&#x2F;mc 命令使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E6%9B%B4%E6%96%B0%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.</span> <span class="nav-text">热更新注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#redefine-%E7%89%B9%E5%88%AB%E8%AF%B4%E6%98%8E"><span class="nav-number">4.1.</span> <span class="nav-text">redefine 特别说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%99%90%E5%88%B6"><span class="nav-number">4.2.</span> <span class="nav-text">条件限制</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -250,20 +251,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -380,6 +381,10 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Java/Java%E8%AF%8A%E6%96%AD/" itemprop="url" rel="index"><span itemprop="name">Java诊断</span></a>
                 </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/Java%E8%AF%8A%E6%96%AD/Arthas/" itemprop="url" rel="index"><span itemprop="name">Arthas</span></a>
+                </span>
             </span>
 
           
@@ -415,9 +420,9 @@
     <div class="post-body" itemprop="articleBody">
         <p>Arthas（阿尔萨斯）是 Alibaba 开源的一款 Java 诊断工具，使用它我们可以监控和排查 Java 程序，然而它还提供了非常实用的 Java 热更新功能。</p>
 <p>所谓的 Java 热更新是指在不重启项目的情况下实现代码的更新与替换。使用它可以实现不停机更新 Java 程序，尤其是对那些启动非常耗时的 Java 项目来说，更是效果显著。</p>
-<h3 id="Arthas-使用"><a href="#Arthas-使用" class="headerlink" title="Arthas 使用"></a>Arthas 使用</h3><h4 id="Arthas-资料"><a href="#Arthas-资料" class="headerlink" title="Arthas 资料"></a>Arthas 资料</h4><p>Github 地址：</p>
+<h3 id="Arthas-使用"><a href="#Arthas-使用" class="headerlink" title="Arthas 使用"></a>Arthas 使用</h3><h4 id="Arthas资料"><a href="#Arthas资料" class="headerlink" title="Arthas资料"></a>Arthas 资料</h4><p>Github 地址：</p>
 <blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFz">https://github.com/alibaba/arthas<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFz"> https://github.com/alibaba/arthas<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <p>Arthas<br>用户文档：</p>
 <blockquote>
@@ -429,8 +434,8 @@
 </blockquote>
 <h4 id="启动-Arthas"><a href="#启动-Arthas" class="headerlink" title="启动 Arthas"></a>启动 Arthas</h4><p>我们只需要使用普通的 jar 包启动命令：<code>java -jar arthas-boot.jar</code> 来启动 Arthas 即可。</p>
 <h4 id="Windows-运行"><a href="#Windows-运行" class="headerlink" title="Windows 运行"></a>Windows 运行</h4><p>Windows 需要以管理员方式运行，bat 脚本如下：</p>
-<pre class="language-bat" data-language="bat"><code class="language-bat">%1 mshta vbscript:CreateObject (&quot;Shell.Application&quot;).ShellExecute (&quot;cmd.exe&quot;,&quot;&#x2F;c %~s0 ::&quot;,&quot;&quot;,&quot;runas&quot;,1)(window.close)&amp;&amp;exit
-cd &#x2F;d &quot;%~dp0&quot;
+<pre class="language-bat" data-language="bat"><code class="language-bat">%1 mshta vbscript:CreateObject("Shell.Application").ShellExecute("cmd.exe","/c %~s0 ::","","runas",1)(window.close)&amp;&amp;exit
+cd /d "%~dp0"
 java -jar arthas-boot.jar</code></pre>
 
 <h3 id="热更新-Java-代码"><a href="#热更新-Java-代码" class="headerlink" title="热更新 Java 代码"></a>热更新 Java 代码</h3><p>假如我们原来的代码是这样的：</p>
@@ -438,24 +443,24 @@ java -jar arthas-boot.jar</code></pre>
 
 <span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">TimeUnit</span><span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineSuccess</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineSuccess</span> <span class="token punctuation">{</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is true."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is false."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
 <p>我们现在想要把 <code>flag</code> 变量改为 <code>false</code> 就可以这样来做：</p>
 <ol>
@@ -474,19 +479,19 @@ java -jar arthas-boot.jar</code></pre>
 <p>小贴士：我们也可以使用 javac App.java 生成的字节码，它与此步骤执行的结果相同。</p>
 </blockquote>
 <h4 id="执行热更新"><a href="#执行热更新" class="headerlink" title="执行热更新"></a>执行热更新</h4><p>有了字节码文件之后，我们就可以使用 <code>redefine</code> 命令来实现热更新了，实现示例如下：</p>
-<pre class="language-none"><code class="language-none">[arthas@10200]$ redefine e:&#x2F;sample&#x2F;redefine&#x2F;RedefineSuccess.class
+<pre class="language-none"><code class="language-none">[arthas@10200]$ redefine e:/sample/redefine/RedefineSuccess.class
 redefine success, size: 1</code></pre>
 
 <p>从上述结果可以看出，热更新执行成功，此时我们去控制台查看执行结果，如下图所示：</p>
 <p><img src="/images/2020/07/1594883244673.png" alt="1594883244673" loading="lazy"></p>
 <p>这说明热更新执行确实成功了。</p>
-<h3 id="结合-jad-mc-命令使用"><a href="#结合-jad-mc-命令使用" class="headerlink" title="结合 jad/mc 命令使用"></a>结合 jad/mc 命令使用</h3><pre class="language-shell" data-language="shell"><code class="language-shell">jad --source-only com.example.demo.arthas.user.UserController &gt; &#x2F;tmp&#x2F;UserController.java
-mc &#x2F;tmp&#x2F;UserController.java -d &#x2F;tmp
-redefine &#x2F;tmp&#x2F;com&#x2F;example&#x2F;demo&#x2F;arthas&#x2F;user&#x2F;UserController.class</code></pre>
+<h3 id="结合-jad-mc-命令使用"><a href="#结合-jad-mc-命令使用" class="headerlink" title="结合 jad/mc 命令使用"></a>结合 jad/mc 命令使用</h3><pre class="language-shell" data-language="shell"><code class="language-shell">jad --source-only com.example.demo.arthas.user.UserController &gt; /tmp/UserController.java
+mc /tmp/UserController.java -d /tmp
+redefine /tmp/com/example/demo/arthas/user/UserController.class</code></pre>
 
 <ul>
 <li>jad 命令反编译，然后可以用其它编译器，比如 vim 来修改源码</li>
-<li>mc 命令来内存编译修改过的代码</li>
+<li> mc 命令来内存编译修改过的代码</li>
 <li>用 redefine 命令加载新的字节码</li>
 </ul>
 <h3 id="热更新注意事项"><a href="#热更新注意事项" class="headerlink" title="热更新注意事项"></a>热更新注意事项</h3><h4 id="redefine-特别说明"><a href="#redefine-特别说明" class="headerlink" title="redefine 特别说明"></a>redefine 特别说明</h4><p><code>redefine</code> 命令和 <code>jad</code>/<code>watch</code>/<code>trace</code>/<code>monitor</code>/<code>tt</code> 等命令会冲突。</p>
@@ -503,20 +508,20 @@ redefine &#x2F;tmp&#x2F;com&#x2F;example&#x2F;demo&#x2F;arthas&#x2F;user&#x2F;Us
 
 <span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">TimeUnit</span><span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineError</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineError</span> <span class="token punctuation">{</span>
 
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is true."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
                 <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is false."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">&#125;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 <p>那么此时我们再进行热更新操作修改 <code>flag</code> 的值，那么就会执行失败，因为我们替换的是正在运行中的方法，而我们正常示例中的代码之所以能成功，是因为我们在 <code>while</code> 无线循环中调用了另一个方法，而那个方法是被间歇性使用的，因此可以替换成功。</p>
@@ -541,6 +546,9 @@ redefine &#x2F;tmp&#x2F;com&#x2F;example&#x2F;demo&#x2F;arthas&#x2F;user&#x2F;Us
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
     </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-Arthas之通过trace命令定位耗时问题\" rel="bookmark">Arthas 之通过 trace 命令定位耗时问题</a></div>
+    </li>
   </ul>
 
 
@@ -548,6 +556,7 @@ redefine &#x2F;tmp&#x2F;com&#x2F;example&#x2F;demo&#x2F;arthas&#x2F;user&#x2F;Us
           <div class="post-tags">
               <a href="/tags/Java%E8%AF%8A%E6%96%AD/" rel="tag"># Java诊断</a>
               <a href="/tags/Arthas/" rel="tag"># Arthas</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
           </div>
 
         

@@ -32,10 +32,11 @@
 <meta property="og:description" content="Arthas是阿里巴巴开源的Java应用诊断利器，本文介绍Arthas里jad命令的实现原理。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-04T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-13T06:07:28.373Z">
+<meta property="article:modified_time" content="2020-08-14T11:25:56.433Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java诊断">
 <meta property="article:tag" content="Arthas">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-04-Arthas%E4%B9%8Bjad%E5%8F%8D%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
@@ -158,17 +159,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">30</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">33</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">14</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">23</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">25</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -232,7 +233,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jad-%E5%91%BD%E4%BB%A4%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">jad 命令介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%88%B0%E7%B1%BB%E7%9A%84%E5%AD%97%E8%8A%82%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">获取到类的字节码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ClassFileTransformer-%E6%9C%BA%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">ClassFileTransformer 机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-cfr-%E6%9D%A5%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="nav-number">4.</span> <span class="nav-text">使用 cfr 来反编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jad-%E5%91%BD%E4%BB%A4%E7%9A%84%E7%BC%BA%E9%99%B7"><span class="nav-number">5.</span> <span class="nav-text">jad 命令的缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%BE%E7%A1%AE%E8%8E%B7%E5%8F%96%E5%AD%97%E8%8A%82%E7%A0%81"><span class="nav-number">6.</span> <span class="nav-text">精确获取字节码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cfr-%E5%8F%8D%E7%BC%96%E8%AF%91%E7%A4%BA%E4%BE%8B"><span class="nav-number">7.</span> <span class="nav-text">cfr 反编译示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">7.1.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%96%B9%E6%B3%95"><span class="nav-number">7.2.</span> <span class="nav-text">编写方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">7.3.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">7.4.</span> <span class="nav-text">输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">8.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jad-%E5%91%BD%E4%BB%A4%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">jad 命令介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%88%B0%E7%B1%BB%E7%9A%84%E5%AD%97%E8%8A%82%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">获取到类的字节码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ClassFileTransformer%E6%9C%BA%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">ClassFileTransformer 机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8cfr%E6%9D%A5%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="nav-number">4.</span> <span class="nav-text">使用 cfr 来反编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jad-%E5%91%BD%E4%BB%A4%E7%9A%84%E7%BC%BA%E9%99%B7"><span class="nav-number">5.</span> <span class="nav-text">jad 命令的缺陷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%BE%E7%A1%AE%E8%8E%B7%E5%8F%96%E5%AD%97%E8%8A%82%E7%A0%81"><span class="nav-number">6.</span> <span class="nav-text">精确获取字节码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cfr%E5%8F%8D%E7%BC%96%E8%AF%91%E7%A4%BA%E4%BE%8B"><span class="nav-number">7.</span> <span class="nav-text">cfr 反编译示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">7.1.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%96%B9%E6%B3%95"><span class="nav-number">7.2.</span> <span class="nav-text">编写方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">7.3.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">7.4.</span> <span class="nav-text">输出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">8.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -248,20 +249,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -378,6 +379,10 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Java/Java%E8%AF%8A%E6%96%AD/" itemprop="url" rel="index"><span itemprop="name">Java诊断</span></a>
                 </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/Java%E8%AF%8A%E6%96%AD/Arthas/" itemprop="url" rel="index"><span itemprop="name">Arthas</span></a>
+                </span>
             </span>
 
           
@@ -421,20 +426,20 @@
 <li>反编译为 Java 代码</li>
 </ol>
 <p>那么怎么从运行的 JVM 里获取到字节码？</p>
-<p>最常见的思路是，在 <code>classpaths</code> 下面查找，比如 <code>ClassLoader.getResource (&quot;java/lang/String.class&quot;)</code>，但是这样子查找到的字节码不一定对。比如可能有多个冲突的 jar，或者有 Java Agent 修改了字节码。</p>
-<h3 id="ClassFileTransformer-机制"><a href="#ClassFileTransformer-机制" class="headerlink" title="ClassFileTransformer 机制"></a>ClassFileTransformer 机制</h3><p>从 JDK 1.5 起，有一套 <code>ClassFileTransformer</code> 的机制，Java Agent 通过 <code>Instrumentation</code> 注册 <code>ClassFileTransformer</code>，那么在类加载或者 <code>retransform</code> 时就可以回调修改字节码。</p>
-<p>显然，在 Arthas 里，要增强的类是已经被加载的，所以它们的字节码都是在 <code>retransform</code> 时被修改的。<br>通过显式调用 <code>Instrumentation.retransformClasses (Class&lt;?&gt;...)</code> 可以触发回调。</p>
+<p>最常见的思路是，在 <code>classpaths</code> 下面查找，比如 <code>ClassLoader.getResource("java/lang/String.class")</code>，但是这样子查找到的字节码不一定对。比如可能有多个冲突的 jar，或者有 Java Agent 修改了字节码。</p>
+<h3 id="ClassFileTransformer机制"><a href="#ClassFileTransformer机制" class="headerlink" title="ClassFileTransformer机制"></a>ClassFileTransformer 机制</h3><p>从 JDK 1.5 起，有一套 <code>ClassFileTransformer</code> 的机制，Java Agent 通过 <code>Instrumentation</code> 注册 <code>ClassFileTransformer</code>，那么在类加载或者 <code>retransform</code> 时就可以回调修改字节码。</p>
+<p>显然，在 Arthas 里，要增强的类是已经被加载的，所以它们的字节码都是在 <code>retransform</code> 时被修改的。<br>通过显式调用 <code>Instrumentation.retransformClasses(Class&lt;?&gt;...)</code> 可以触发回调。</p>
 <p>Arthas 里增强字节码的 <code>watch</code>/<code>trace</code>/<code>stack</code>/<code>tt</code> 等命令都是通过 <code>ClassFileTransformer</code> 来实现的。</p>
 <p><code>java.lang.instrument.ClassFileTransformer</code> 的接口如下：</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ClassFileTransformer</span> <span class="token punctuation">&#123;</span>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ClassFileTransformer</span> <span class="token punctuation">{</span>
     <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
     <span class="token function">transform</span><span class="token punctuation">(</span>  <span class="token class-name">ClassLoader</span>         loader<span class="token punctuation">,</span>
                 <span class="token class-name">String</span>              className<span class="token punctuation">,</span>
-                <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span>            classBeingRedefined<span class="token punctuation">,</span>
+                <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span>            classBeingRedefined<span class="token punctuation">,</span>
                 <span class="token class-name">ProtectionDomain</span>    protectionDomain<span class="token punctuation">,</span>
                 <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span>              classfileBuffer<span class="token punctuation">)</span>
         <span class="token keyword">throws</span> <span class="token class-name">IllegalClassFormatException</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 <p>看到这里，读者应该猜到 <code>jad</code> 是怎么获取到字节码的了：</p>
 <ol>
@@ -443,7 +448,7 @@
 <li>在回调的 <code>transform</code> 函数里获取到字节码</li>
 <li>删掉注册的 <code>ClassFileTransformer</code></li>
 </ol>
-<h3 id="使用-cfr-来反编译"><a href="#使用-cfr-来反编译" class="headerlink" title="使用 cfr 来反编译"></a>使用 cfr 来反编译</h3><p>获取到字节码之后，怎样转换为 Java 代码呢？</p>
+<h3 id="使用cfr来反编译"><a href="#使用cfr来反编译" class="headerlink" title="使用cfr来反编译"></a>使用 cfr 来反编译</h3><p>获取到字节码之后，怎样转换为 Java 代码呢？</p>
 <p>以前大家使用比较多的反编译软件可能是 <code>jd-gui</code>，但是它不支持 JDK8 的 lambda 语法和一些新版本 JDK 的特性。</p>
 <p>后面比较成熟的反编译软件是 <code>cfr</code>，它以前是不开源的。直到最近的 <code>0.145</code> 版本，作者终于开源了，可喜可贺。地址是</p>
 <blockquote>
@@ -461,19 +466,19 @@
 <blockquote>
 <p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hlbmd5dW5hYmMvZHVtcGNsYXNz">https://github.com/hengyunabc/dumpclass<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
-<h3 id="cfr-反编译示例"><a href="#cfr-反编译示例" class="headerlink" title="cfr 反编译示例"></a>cfr 反编译示例</h3><p>参考 Arthas 代码：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3V0aWwvRGVjb21waWxlci5qYXZh">com.taobao.arthas.core.util.Decompiler.java<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="cfr反编译示例"><a href="#cfr反编译示例" class="headerlink" title="cfr反编译示例"></a>cfr 反编译示例</h3><p>参考 Arthas 代码：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3V0aWwvRGVjb21waWxlci5qYXZh">com.taobao.arthas.core.util.Decompiler.java<i class="fa fa-external-link-alt"></i></span></p>
 <h4 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h4><p>首先，需要引入 maven 依赖：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.benf<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>cfr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>0.150<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.benf<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>cfr<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>0.150<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 <h4 id="编写方法"><a href="#编写方法" class="headerlink" title="编写方法"></a>编写方法</h4><p>编写反编译类 <code>sample.utils.Decompiler</code>：</p>
 <pre class="language-java" data-language="java"><code class="language-java">
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">decompile</span><span class="token punctuation">(</span><span class="token class-name">String</span> classFilePath<span class="token punctuation">,</span> <span class="token class-name">String</span> methodName<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">decompile</span><span class="token punctuation">(</span><span class="token class-name">String</span> classFilePath<span class="token punctuation">,</span> <span class="token class-name">String</span> methodName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token function">decompile</span><span class="token punctuation">(</span>classFilePath<span class="token punctuation">,</span> methodName<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
+<span class="token punctuation">}</span>
 
 <span class="token comment">/**
  * @param classFilePath
@@ -481,59 +486,59 @@
  * @param hideUnicode
  * @return
  */</span>
-<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">decompile</span><span class="token punctuation">(</span><span class="token class-name">String</span> classFilePath<span class="token punctuation">,</span> <span class="token class-name">String</span> methodName<span class="token punctuation">,</span> <span class="token keyword">boolean</span> hideUnicode<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">decompile</span><span class="token punctuation">(</span><span class="token class-name">String</span> classFilePath<span class="token punctuation">,</span> <span class="token class-name">String</span> methodName<span class="token punctuation">,</span> <span class="token keyword">boolean</span> hideUnicode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">final</span> <span class="token class-name">StringBuilder</span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token number">8192</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token class-name">OutputSinkFactory</span> mySink <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">OutputSinkFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">OutputSinkFactory</span> mySink <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">OutputSinkFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SinkClass</span><span class="token punctuation">></span></span> <span class="token function">getSupportedSinks</span><span class="token punctuation">(</span><span class="token class-name">SinkType</span> sinkType<span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SinkClass</span><span class="token punctuation">></span></span> collection<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SinkClass</span><span class="token punctuation">&gt;</span></span> <span class="token function">getSupportedSinks</span><span class="token punctuation">(</span><span class="token class-name">SinkType</span> sinkType<span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SinkClass</span><span class="token punctuation">&gt;</span></span> collection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token keyword">return</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token class-name">SinkClass</span><span class="token punctuation">.</span>STRING<span class="token punctuation">,</span> <span class="token class-name">SinkClass</span><span class="token punctuation">.</span>DECOMPILED<span class="token punctuation">,</span> <span class="token class-name">SinkClass</span><span class="token punctuation">.</span>DECOMPILED_MULTIVER<span class="token punctuation">,</span>
                             <span class="token class-name">SinkClass</span><span class="token punctuation">.</span>EXCEPTION_MESSAGE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">}</span>
 
         <span class="token annotation punctuation">@Override</span>
-        <span class="token keyword">public</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">Sink</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token function">getSink</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">SinkType</span> sinkType<span class="token punctuation">,</span> <span class="token class-name">SinkClass</span> sinkClass<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Sink</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">public</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token class-name">Sink</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token function">getSink</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">SinkType</span> sinkType<span class="token punctuation">,</span> <span class="token class-name">SinkClass</span> sinkClass<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Sink</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
                 <span class="token annotation punctuation">@Override</span>
-                <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token class-name">T</span> sinkable<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-                    <span class="token comment">//skip message like: Analysing type demo.MathGame</span>
-                    <span class="token keyword">if</span> <span class="token punctuation">(</span>sinkType <span class="token operator">==</span> <span class="token class-name">SinkType</span><span class="token punctuation">.</span>PROGRESS<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token class-name">T</span> sinkable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment">// skip message like: Analysing type demo.MathGame</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>sinkType <span class="token operator">==</span> <span class="token class-name">SinkType</span><span class="token punctuation">.</span>PROGRESS<span class="token punctuation">)</span> <span class="token punctuation">{</span>
                         <span class="token keyword">return</span><span class="token punctuation">;</span>
-                    <span class="token punctuation">&#125;</span>
+                    <span class="token punctuation">}</span>
                     result<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>sinkable<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">&#125;</span>
-            <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-    <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> options <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> options <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment">/**
-     * @see org.benf.cfr.reader.util.MiscConstants.Version.getVersion () Currently,
+     * @see org.benf.cfr.reader.util.MiscConstants.Version.getVersion() Currently,
      *      the cfr version is wrong. so disable show cfr version.
      */</span>
     options<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"showversion"</span><span class="token punctuation">,</span> <span class="token string">"false"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     options<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"hideutf"</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>hideUnicode<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>methodName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span>methodName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         options<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"methodname"</span><span class="token punctuation">,</span> methodName<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">}</span>
 
     <span class="token class-name">CfrDriver</span> driver <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CfrDriver</span><span class="token punctuation">.</span><span class="token class-name">Builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withOptions</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withOutputSink</span><span class="token punctuation">(</span>mySink<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> toAnalyse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> toAnalyse <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     toAnalyse<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>classFilePath<span class="token punctuation">)</span><span class="token punctuation">;</span>
     driver<span class="token punctuation">.</span><span class="token function">analyse</span><span class="token punctuation">(</span>toAnalyse<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">return</span> result<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><pre class="language-none"><code class="language-none">String className &#x3D; &quot;sample&#x2F;redefine&#x2F;RedefineSuccess.class&quot;;
-String classPath &#x3D; Thread.currentThread ().getContextClassLoader ().getResource (className).getFile ();
-System.out.println (classPath);
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><pre class="language-none"><code class="language-none">String className = "sample/redefine/RedefineSuccess.class";
+String classPath = Thread.currentThread().getContextClassLoader().getResource(className).getFile();
+System.out.println(classPath);
 
-String result &#x3D; decompile (classPath, null);
-System.out.println (result);
+String result = decompile(classPath, null);
+System.out.println(result);
 
-String result2 &#x3D; decompile (classPath, &quot;printFlag&quot;);
-System.out.println (result2);</code></pre>
+String result2 = decompile(classPath, "printFlag");
+System.out.println(result2);</code></pre>
 
 <h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token operator">/</span><span class="token class-name">C</span><span class="token operator">:</span><span class="token operator">/</span><span class="token class-name">Codes</span><span class="token operator">/</span><span class="token class-name">JavaWorkSpace</span><span class="token operator">/</span>workspace48<span class="token operator">/</span>arthas<span class="token operator">-</span>demo<span class="token operator">/</span>target<span class="token operator">/</span>classes<span class="token operator">/</span>sample<span class="token operator">/</span>redefine<span class="token operator">/</span><span class="token class-name">RedefineSuccess</span><span class="token punctuation">.</span><span class="token keyword">class</span>
 <span class="token comment">/*
@@ -543,32 +548,32 @@ System.out.println (result2);</code></pre>
 
 <span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span></span><span class="token class-name">TimeUnit</span><span class="token punctuation">;</span>
 
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineSuccess</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedefineSuccess</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token class-name">RedefineSuccess</span><span class="token punctuation">.</span><span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is true."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is false."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printFlag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">boolean</span> flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is true."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
         <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"flag is false."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
 <h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><blockquote>
 <p><span class="exturl" data-url="aHR0cDovL2hlbmd5dW5hYmMuZ2l0aHViLmlvL2FydGhhcy1qYWQv">http://hengyunabc.github.io/arthas-jad/<i class="fa fa-external-link-alt"></i></span></p>
@@ -594,6 +599,9 @@ System.out.println (result2);</code></pre>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
     </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-Arthas之通过trace命令定位耗时问题\" rel="bookmark">Arthas 之通过 trace 命令定位耗时问题</a></div>
+    </li>
   </ul>
 
 
@@ -601,6 +609,7 @@ System.out.println (result2);</code></pre>
           <div class="post-tags">
               <a href="/tags/Java%E8%AF%8A%E6%96%AD/" rel="tag"># Java诊断</a>
               <a href="/tags/Arthas/" rel="tag"># Arthas</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
           </div>
 
         
