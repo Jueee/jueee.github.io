@@ -134,7 +134,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h2 class="site-title">小决的专栏</h2>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
@@ -407,7 +407,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>** 在网上浏览博客时经常看到页面的右上角或左上角有一个 fork me on github 的按钮，本文将介绍如何实现。**</p>
+        <p><strong>在网上浏览博客时经常看到页面的右上角或左上角有一个 fork me on github 的按钮，本文将介绍如何实现。</strong></p>
 <h3 id="Fork-me-on-GitHub"><a href="#Fork-me-on-GitHub" class="headerlink" title="Fork me on GitHub"></a>Fork me on GitHub</h3><p>GitHub 获取 css 文件：</p>
 <blockquote>
 <p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NpbW9ud2hpdGFrZXIvZ2l0aHViLWZvcmstcmliYm9uLWNzcy8=">https://github.com/simonwhitaker/github-fork-ribbon-css/<i class="fa fa-external-link-alt"></i></span></p>
@@ -417,50 +417,50 @@
 <p><span class="exturl" data-url="aHR0cHM6Ly9zaW1vbndoaXRha2VyLmdpdGh1Yi5pby9naXRodWItZm9yay1yaWJib24tY3NzLw==">https://simonwhitaker.github.io/github-fork-ribbon-css/<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>将以下代码复制到 <code>&lt;head&gt;</code> 页面的中，引入 css：</p>
-<pre class="language-none"><code class="language-none">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdnjs.cloudflare.com&#x2F;ajax&#x2F;libs&#x2F;github-fork-ribbon-css&#x2F;0.2.3&#x2F;gh-fork-ribbon.min.css&quot; &#x2F;&gt;</code></pre>
+<pre class="language-none"><code class="language-none">&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" /&gt;</code></pre>
 
 <p>使用非常简单，将下面的代码插入到 <code>&lt;body&gt;</code> 和 <code>&lt;/body&gt;</code> 之间就行了。</p>
 <pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>github-fork-ribbon<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://github.com/Jueee<span class="token punctuation">"</span></span> <span class="token attr-name">target</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>_blank<span class="token punctuation">"</span></span> 
-       <span class="token attr-name">data-ribbon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Fork me on GitHub<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Fork me on GitHub<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+       <span class="token attr-name">data-ribbon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Fork me on GitHub<span class="token punctuation">"</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Fork me on GitHub<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
     Fork me on GitHub
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 <p>默认是在页面右上角。</p>
 <h3 id="其他样式"><a href="#其他样式" class="headerlink" title="其他样式"></a>其他样式</h3><ul>
-<li><p>固定标签：<code>class=&quot;github-fork-ribbon fixed&quot;</code></p>
+<li><p>固定标签：<code>class="github-fork-ribbon fixed"</code></p>
 </li>
 <li><p>更换位置：</p>
 <ul>
-<li>右上角：<code>class=&quot;github-fork-ribbon right-top&quot;</code></li>
-<li>右下角：<code>class=&quot;github-fork-ribbon right-bottom&quot;</code></li>
-<li>左上角：<code>class=&quot;github-fork-ribbon left-top&quot;</code></li>
-<li>左下角：<code>class=&quot;github-fork-ribbon left-bottom fixed&quot;</code></li>
+<li>右上角：<code>class="github-fork-ribbon right-top"</code></li>
+<li>右下角：<code>class="github-fork-ribbon right-bottom"</code></li>
+<li>左上角：<code>class="github-fork-ribbon left-top"</code></li>
+<li>左下角：<code>class="github-fork-ribbon left-bottom fixed"</code></li>
 </ul>
 </li>
 <li><p>更换背景颜色：</p>
-<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">.github-fork-ribbon.left-bottom:before</span> <span class="token punctuation">&#123;</span>
+<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">.github-fork-ribbon.left-bottom:before</span> <span class="token punctuation">{</span>
   <span class="token property">background-color</span><span class="token punctuation">:</span> #333<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+<span class="token punctuation">}</span></code></pre>
 
 </li>
 </ul>
 <h3 id="小屏幕不显示"><a href="#小屏幕不显示" class="headerlink" title="小屏幕不显示"></a>小屏幕不显示</h3><p>按照上面的步骤当屏幕缩小后还会显示 fork me on github 图标，但这不是我想要的，如果希望在大屏下显示，小屏后就不显示了。方法如下：</p>
 <p>新增样式：</p>
-<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">.forkme</span><span class="token punctuation">&#123;</span>
+<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">.forkme</span><span class="token punctuation">{</span>
   <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 1350px<span class="token punctuation">)</span></span> <span class="token punctuation">&#123;</span>
-  <span class="token selector">.forkme</span><span class="token punctuation">&#123;</span>
+<span class="token punctuation">}</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 1350px<span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">.forkme</span><span class="token punctuation">{</span>
     <span class="token property">display</span><span class="token punctuation">:</span> inline<span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span></code></pre>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 
 <p>代码块上套上 div 加上 class 就行了，如下：</p>
-<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>forkme<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>github-fork-ribbon fixed<span class="token punctuation">"</span></span>    <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://github.com/Jueee<span class="token punctuation">"</span></span> <span class="token punctuation">></span></span>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>forkme<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>github-fork-ribbon fixed<span class="token punctuation">"</span></span>    <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://github.com/Jueee<span class="token punctuation">"</span></span> <span class="token punctuation">&gt;</span></span>
         Fork me on GitHub
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 
     </div>
@@ -481,10 +481,10 @@
       <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建 Jekyll 环境</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为 Jekyll 博客系统增加百度统计</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加 Jekyll 博客访问量统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
     </li>
   </ul>
 
@@ -505,8 +505,8 @@
       <i class="fa fa-chevron-left"></i> jekyll 使用中文路径
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/2020-07-10-%E7%BD%91%E9%A1%B5%E7%B2%92%E5%AD%90%E8%83%8C%E6%99%AF%E6%8F%92%E4%BB%B6canvas-nest.js/" rel="next" title="网页粒子背景插件 canvas-nest.js">
-      网页粒子背景插件 canvas-nest.js <i class="fa fa-chevron-right"></i>
+    <a href="/2020/07/2020-07-09-%E4%BD%BF%E7%94%A8%E4%B8%8D%E8%92%9C%E5%AD%90%E5%A2%9E%E5%8A%A0Jekyll%E5%8D%9A%E5%AE%A2%E8%AE%BF%E9%97%AE%E9%87%8F%E7%BB%9F%E8%AE%A1/" rel="next" title="使用不蒜子增加 Jekyll 博客访问量统计">
+      使用不蒜子增加 Jekyll 博客访问量统计 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

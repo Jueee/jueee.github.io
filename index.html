@@ -129,7 +129,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h2 class="site-title">小决的专栏</h2>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
@@ -608,7 +608,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-14-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87trace%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E8%80%97%E6%97%B6%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-14-Arthas%E4%B9%8B%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -624,7 +624,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/2020-08-14-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87trace%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E8%80%97%E6%97%B6%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Arthas 之通过 trace 命令定位耗时问题</a>
+            <a href="/2020/08/2020-08-14-Arthas%E4%B9%8B%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Arthas 之定位方法调用问题</a>
         </h2>
 
         <div class="post-meta">
@@ -663,8 +663,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/2020-08-14-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87trace%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E8%80%97%E6%97%B6%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-14-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87trace%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E8%80%97%E6%97%B6%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/08/2020-08-14-Arthas%E4%B9%8B%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-14-Arthas%E4%B9%8B%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -677,10 +677,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>通过Arthas中的trace命令，可以查看方法内部调用路径，并输出方法路径上的每个节点上耗时。</p>
+          <p>通过Arthas中的trace/monitor/watch/stack/tt等命令，可以查看方法内部调用信息，从而定位方法调用问题。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-14-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87trace%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E8%80%97%E6%97%B6%E9%97%AE%E9%A2%98/">
+              <a class="btn" href="/2020/08/2020-08-14-Arthas%E4%B9%8B%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E9%97%AE%E9%A2%98/">
                 阅读全文 &raquo;
               </a>
             </div>

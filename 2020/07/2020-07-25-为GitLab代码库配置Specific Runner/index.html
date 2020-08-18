@@ -137,7 +137,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h2 class="site-title">小决的专栏</h2>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
@@ -410,63 +410,63 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="添加-k8s-集群"><a href="#添加-k8s-集群" class="headerlink" title="添加 k8s 集群"></a>添加 k8s 集群</h3><p>单击 ** 添加现有集群 ** 选项卡，然后填写详细信息：</p>
+        <h3 id="添加-k8s-集群"><a href="#添加-k8s-集群" class="headerlink" title="添加 k8s 集群"></a>添加 k8s 集群</h3><p>单击<strong>添加现有集群</strong>选项卡，然后填写详细信息：</p>
 <ul>
-<li><p>**Kubernetes 集群名称 **（必填）- 您希望为 ** 集群指定 ** 的名称。</p>
+<li><p><strong>Kubernetes 集群名称</strong>（必填）- 您希望为<strong>集群指定</strong>的名称。</p>
 </li>
-<li><p>** 环境范围 **（必需）-  <a href="index.md#setting-the-environment-scope-premium">与</a> 此集群 <a href="index.md#setting-the-environment-scope-premium">相关的环境</a>。</p>
+<li><p><strong>环境范围</strong>（必需）-  <a href="index.md#setting-the-environment-scope-premium">与</a>此集群<a href="index.md#setting-the-environment-scope-premium">相关的环境</a>。</p>
 </li>
 <li><p><strong>API URL</strong>（必填）- 这是 GitLab 用于访问 Kubernetes API 的 URL。Kubernetes 公开了几个 API，我们希望所有 API 都具有通用的 “基本” URL，例如，<code>https://kubernetes.example.com</code> 而不是 <code>https://kubernetes.example.com/api/v1</code>。</p>
 <p>通过运行以下命令获取 API URL：</p>
-<pre class="language-none"><code class="language-none">kubectl cluster-info | grep &#39;Kubernetes master&#39; | awk &#39;&#x2F;http&#x2F; &#123;print $NF&#125;&#39;</code></pre>
+<pre class="language-none"><code class="language-none">kubectl cluster-info | grep 'Kubernetes master' | awk '/http/ {print $NF}'</code></pre>
 </li>
-<li><p>**CA 证书 **（必需）- 需要有效的 Kubernetes 证书才能对集群进行身份验证。我们将使用默认创建的证书。</p>
+<li><p><strong>CA 证书</strong>（必需）- 需要有效的 Kubernetes 证书才能对集群进行身份验证。我们将使用默认创建的证书。</p>
 <ul>
 <li><p>用列出秘密 <code>kubectl get secrets</code>，并命名类似  <code>default-token-xxxxx</code>。复制该令牌名称以在下面使用。</p>
 </li>
 <li><p>通过运行以下命令获取证书：</p>
-<pre class="language-none"><code class="language-none">kubectl get secret &lt;secret name&gt; -o jsonpath&#x3D;&quot;&#123;[&#39;data&#39;][&#39;ca\.crt&#39;]&#125;&quot; | base64 --decode</code></pre>
+<pre class="language-none"><code class="language-none">kubectl get secret &lt;secret name&gt; -o jsonpath="{['data']['ca\.crt']}" | base64 --decode</code></pre>
 
-<p>注意：** 注意：**  如果命令返回整个证书链，则需要在证书链 底部复制 * root ca * 证书。</p>
+<p>注意：<strong>注意：</strong>  如果命令返回整个证书链，则需要在证书链 底部复制 <em>root ca</em> 证书。</p>
 </li>
 </ul>
 </li>
-<li><p>** 令牌 ** -GitLab 使用服务令牌对 Kubernetes 进行身份验证，该服务令牌的范围仅限于特定的 <code>namespace</code>。 ** 使用的令牌应属于具有 cluster-admin 特权的服务帐户  。** 要创建此服务帐户：</p>
+<li><p><strong>令牌</strong> -GitLab 使用服务令牌对 Kubernetes 进行身份验证，该服务令牌的范围仅限于特定的 <code>namespace</code>。 <strong>使用的令牌应属于具有 cluster-admin 特权的服务帐户  。</strong>要创建此服务帐户：</p>
 <ol>
 <li><p>创建一个 <code>gitlab-admin-service-account.yaml</code> 包含内容的文件：</p>
-<p>&lt;!--hexoPostRenderEscape:<pre class="language-none"><code class="language-none">apiVersion: v1<br>kind: ServiceAccount<br>metadata:<br>name: gitlab-admin<br>namespace: kube-system</p>
-</li>
-</ol>
-</li>
-</ul>
+<p>&lt;!--hexoPostRenderEscape:</p><pre class="language-none"><code class="language-none">apiVersion: v1<br>kind: ServiceAccount<br>metadata:<br>name: gitlab-admin<br>namespace: kube-system<p></p>
+</code></pre></li><code class="language-none">
+</code></ol><code class="language-none">
+</code></li><code class="language-none">
+</code></ul><code class="language-none">
 <hr>
-<p>apiVersion: rbac.authorization.k8s.io&#x2F;v1beta1<br>kind: ClusterRoleBinding<br>metadata:<br>  name: gitlab-admin<br>roleRef:<br>  apiGroup: rbac.authorization.k8s.io<br>  kind: ClusterRole<br>  name: cluster-admin<br>subjects:</p>
-<ul>
-<li><p>kind: ServiceAccount<br>name: gitlab-admin<br>namespace: kube-system</code></pre>:hexoPostRenderEscape--&gt;</p>
+<p>apiVersion: rbac.authorization.k8s.io/v1beta1<br>kind: ClusterRoleBinding<br>metadata:<br>  name: gitlab-admin<br>roleRef:<br>  apiGroup: rbac.authorization.k8s.io<br>  kind: ClusterRole<br>  name: cluster-admin<br>subjects:</p>
+</code><ul><code class="language-none">
+</code><li><code class="language-none"></code><p><code class="language-none">kind: ServiceAccount<br>name: gitlab-admin<br>namespace: kube-system</code>:hexoPostRenderEscape--&gt;</p>
 <ol start="2">
 <li><p>将服务帐户和群集角色绑定应用于您的群集：</p>
 <pre class="language-none"><code class="language-none">kubectl apply -f gitlab-admin-service-account.yaml</code></pre>
 
 <p>您将需要 <code>container.clusterRoleBindings.create</code> 许可权才能创建集群级角色。如果您没有此权限，则可以选择启用基本身份验证，然后 <code>kubectl apply</code> 以管理员身份运行  命令：</p>
-<pre class="language-none"><code class="language-none">kubectl apply -f gitlab-admin-service-account.yaml --username&#x3D;admin --password&#x3D;&lt;password&gt;</code></pre>
+<pre class="language-none"><code class="language-none">kubectl apply -f gitlab-admin-service-account.yaml --username=admin --password=&lt;password&gt;</code></pre>
 
-<p>注意：** 注意：**  可以打开基本身份验证，并可以使用 Google Cloud Console 获取密码凭据。</p>
+<p>注意：<strong>注意：</strong>  可以打开基本身份验证，并可以使用 Google Cloud Console 获取密码凭据。</p>
 <p>输出：</p>
-<pre class="language-none"><code class="language-none">serviceaccount &quot;gitlab-admin&quot; created
-clusterrolebinding &quot;gitlab-admin&quot; created</code></pre>
+<pre class="language-none"><code class="language-none">serviceaccount "gitlab-admin" created
+clusterrolebinding "gitlab-admin" created</code></pre>
 </li>
 <li><p>检索 <code>gitlab-admin</code> 服务帐户的令牌：</p>
-<pre class="language-none"><code class="language-none">kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep gitlab-admin | awk &#39;&#123;print $1&#125;&#39;)</code></pre>
+<pre class="language-none"><code class="language-none">kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep gitlab-admin | awk '{print $1}')</code></pre>
 
 <p>复制 <code>&lt;authentication_token&gt;</code> 输出中的值：</p>
-<p>&lt;!--hexoPostRenderEscape:<pre class="language-none"><code class="language-none">Name:         gitlab-admin-token-b5zv4<br>Namespace:    kube-system<br>Labels:       &lt;none&gt;<br>Annotations:  kubernetes.io&#x2F;service-account.name&#x3D;gitlab-admin</p>
+<p>&lt;!--hexoPostRenderEscape:</p><pre class="language-none"><code class="language-none">Name:         gitlab-admin-token-b5zv4<br>Namespace:    kube-system<br>Labels:       &lt;none&gt;<br>Annotations:  kubernetes.io/service-account.name=gitlab-admin<p></p>
 <pre><code>     kubernetes.io&amp;#x2F;service-account.uid&amp;#x3D;bcfe66ac-39be-11e8-97e8-026dce96b6e8</code></pre>
-</li>
-</ol>
-</li>
-</ul>
-<p>Type:  kubernetes.io&#x2F;service-account-token</p>
-<p>Data<br>&#x3D;&#x3D;&#x3D;&#x3D;<br>ca.crt:     1025 bytes<br>namespace:  11 bytes<br>token:      &lt;authentication_token&gt;</code></pre>:hexoPostRenderEscape--&gt;</p>
+</code></pre></li><code class="language-none">
+</code></ol><code class="language-none">
+</code></li><code class="language-none">
+</code></ul><code class="language-none">
+<p>Type:  kubernetes.io/service-account-token</p>
+</code><p><code class="language-none">Data<br>====<br>ca.crt:     1025 bytes<br>namespace:  11 bytes<br>token:      &lt;authentication_token&gt;</code>:hexoPostRenderEscape--&gt;</p>
 <h3 id="配置-Specific-Runner"><a href="#配置-Specific-Runner" class="headerlink" title="配置 Specific Runner"></a>配置 Specific Runner</h3><p>在 GitLab 的 CI/CD 流程中具体执行任务的节点叫做 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vcnVubmVyLw==">runner<i class="fa fa-external-link-alt"></i></span>。GitLab 中有两种类型的 runner：</p>
 <ul>
 <li><strong>Shared Runners</strong> 由 GitLab 管理员配置的公有 runner。多个项目公用。作为开发人员无需配置，可以直接使用。</li>
@@ -482,7 +482,7 @@ clusterrolebinding &quot;gitlab-admin&quot; created</code></pre>
 <h3 id="注册-runner"><a href="#注册-runner" class="headerlink" title="注册 runner"></a>注册 runner</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><pre class="language-none"><code class="language-none">k exec -it runner-gitlab-runner-74cf6f794b-22vln gitlab-runner register -n gitlab-managed-apps</code></pre>
 
 <h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>进入 <code>D:\GitLab-Runner</code> 目录执行命令：</p>
-<pre class="language-yml" data-language="yml"><code class="language-yml">.&#x2F;gitlab-runner.exe register</code></pre>
+<pre class="language-yml" data-language="yml"><code class="language-yml">./gitlab-runner.exe register</code></pre>
 
 <h4 id="进行注册"><a href="#进行注册" class="headerlink" title="进行注册"></a>进行注册</h4><p>执行完后会进入一个交互式的配置流程，你需要回答以下问题：</p>
 <ul>
@@ -505,7 +505,7 @@ clusterrolebinding &quot;gitlab-admin&quot; created</code></pre>
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Git每次都需要输入用户名密码的问题解决\" rel="bookmark">Git每次都需要输入用户名密码的问题解决</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Git每次都需要输入用户名密码的问题解决\" rel="bookmark">Git 每次都需要输入用户名密码的问题解决</a></div>
     </li>
   </ul>
 

@@ -135,7 +135,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h2 class="site-title">小决的专栏</h2>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
@@ -414,11 +414,11 @@
 <p>找到下列两处，添加一句（+ 的一行为添加部分）</p>
 <p>第 285 行： </p>
 <pre class="language-ruby" data-language="ruby"><code class="language-ruby">path <span class="token operator">=</span> req<span class="token punctuation">.</span>path_info<span class="token punctuation">.</span>dup<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token constant">Encoding</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">"filesystem"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token operator">+</span> path<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment"># 加入编码 </span>
+<span class="token operator">+</span> path<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment"># 加入编码</span>
 <span class="token keyword">if</span> trailing_pathsep<span class="token operator">?</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>path_info<span class="token punctuation">)</span>       </code></pre>
 <p>第 333 行：</p>
 <pre class="language-ruby" data-language="ruby"><code class="language-ruby"><span class="token keyword">break</span> <span class="token keyword">if</span> base <span class="token operator">==</span> <span class="token string">"/"</span>
-<span class="token operator">+</span> base<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment"># 加入編碼 </span>
+<span class="token operator">+</span> base<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment">#加入編碼</span>
 <span class="token keyword">break</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>directory<span class="token operator">?</span><span class="token punctuation">(</span><span class="token builtin">File</span><span class="token punctuation">.</span>expand_path<span class="token punctuation">(</span>res<span class="token punctuation">.</span>filename <span class="token operator">+</span> base<span class="token punctuation">)</span><span class="token punctuation">)</span>  </code></pre>
 
 <p>修改完重新 jekyll serve 即可支持中文文件名。</p>
@@ -435,16 +435,16 @@
       <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建 Jekyll 环境</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加 Jekyll 博客访问量统计</a></div>
-    </li>
-    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为 Jekyll 博客系统增加百度统计</a></div>
     </li>
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件 canvas-nest.js</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加 Jekyll 博客访问量统计</a></div>
     </li>
   </ul>
 

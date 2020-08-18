@@ -134,7 +134,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h2 class="site-title">小决的专栏</h2>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
@@ -417,15 +417,15 @@
 <pre class="language-none"><code class="language-none">baidu_tmid: d11c8b9bc802239c2cc46ff39d3faf79</code></pre>
 
 <p>在 <code>footer.html</code> 文件中添加：</p>
-<pre class="language-html" data-language="html"><code class="language-html">&#123;% raw %&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+<pre class="language-html" data-language="html"><code class="language-html">{% raw %}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
 <span class="token keyword">var</span> _hmt <span class="token operator">=</span> _hmt <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
    <span class="token keyword">var</span> hm <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"script"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   hm<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">"https://hm.baidu.com/hm.js?&#123;&#123;site.baidu_tmid&#125;&#125;"</span><span class="token punctuation">;</span>
+   hm<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">"https://hm.baidu.com/hm.js?{{site.baidu_tmid}}"</span><span class="token punctuation">;</span>
    <span class="token keyword">var</span> s <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"script"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
    s<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>hm<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>&#123;% endraw %&#125;</code></pre>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>{% endraw %}</code></pre>
 
 
     </div>
@@ -443,13 +443,13 @@
       <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加 Jekyll 博客访问量统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll 使用中文路径</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件 canvas-nest.js</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll 使用中文路径</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加 Jekyll 博客访问量统计</a></div>
     </li>
   </ul>
 

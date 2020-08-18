@@ -134,7 +134,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h2 class="site-title">小决的专栏</h2>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
@@ -411,7 +411,7 @@
 <p>用于有效地将连接从一个 IP 地址 / 端口组合重定向到另一 IP 地址 / 端口组合。在操作虚拟服务器、防火墙等时很有用。</p>
 <p>Rinetd 是单一过程的服务器，它处理任何数量的连接到在配置文件 etc/rinetd 中指定的地址 / 端口对。尽管 rinetd 使用非闭锁 I/O 运行作为一个单一过程，它可能重定向很多连接而不对这台机器增加额外的负担。</p>
 <p>官网地址：<span class="exturl" data-url="aHR0cDovL3d3dy5ib3V0ZWxsLmNvbS9yaW5ldGQ=">http://www.boutell.com/rinetd<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h4 id="方法一：压缩包"><a href="#方法一：压缩包" class="headerlink" title="方法一：压缩包"></a>方法一：压缩包</h4><pre class="language-shell" data-language="shell"><code class="language-shell">wget http:&#x2F;&#x2F;www.boutell.com&#x2F;rinetd&#x2F;http&#x2F;rinetd.tar.gz
+<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h4 id="方法一：压缩包"><a href="#方法一：压缩包" class="headerlink" title="方法一：压缩包"></a>方法一：压缩包</h4><pre class="language-shell" data-language="shell"><code class="language-shell">wget http://www.boutell.com/rinetd/http/rinetd.tar.gz
 tar zxvf rinetd.tar.gz
 make
 make install</code></pre>
@@ -421,11 +421,11 @@ apt-get install rinetd -y</code></pre>
 
 <h3 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h3><p>配置文件格式：</p>
 <pre class="language-none"><code class="language-none">[Source Address] [Source Port] [Destination Address] [Destination Port]
-源地址 源端口 目的地址 目的端口 </code></pre>
+源地址 源端口 目的地址 目的端口</code></pre>
 
 <p>在每一单独的行中指定每个要转发的端口。源地址和目的地址都可以是主机名或 IP 地址，IP 地址 0.0.0.0 将 rinetd 绑定到任何可用的本地 IP 地址上。</p>
 <p>例如：</p>
-<pre class="language-none"><code class="language-none">vi &#x2F;etc&#x2F;rinetd.conf
+<pre class="language-none"><code class="language-none">vi /etc/rinetd.conf
 0.0.0.0 8080 172.19.94.3 8080
 0.0.0.0 2222 192.168.0.103 3389
 1.2.3.4 80     192.168.0.10 80</code></pre>
@@ -440,7 +440,7 @@ apt-get install rinetd -y</code></pre>
 <pre class="language-none"><code class="language-none">pkill rinetd</code></pre>
 
 <p>启动转发</p>
-<pre class="language-none"><code class="language-none">rinetd -c &#x2F;etc&#x2F;rinetd.conf</code></pre>
+<pre class="language-none"><code class="language-none">rinetd -c /etc/rinetd.conf</code></pre>
 
 <h3 id="开机启动"><a href="#开机启动" class="headerlink" title="开机启动"></a>开机启动</h3><p>把这条命令加到 <code>/etc/rc.local</code> 里面就可以开机自动运行。</p>
 <h3 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h3><pre class="language-none"><code class="language-none">netstat -antup</code></pre>
@@ -450,10 +450,10 @@ apt-get install rinetd -y</code></pre>
 </li>
 <li><p>运行 rinetd 的系统防火墙应该打开绑定的本机端口。</p>
 <p>例如：</p>
-<p>&lt;!--hexoPostRenderEscape:<pre class="language-none"><code class="language-none">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 1111 -jACCEPT</p>
-</li>
-</ol>
-<p>-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 2222 -jACCEPT</code></pre>:hexoPostRenderEscape--&gt;</p>
+<p>&lt;!--hexoPostRenderEscape:</p><pre class="language-none"><code class="language-none">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 1111 -jACCEPT<p></p>
+</code></pre></li><code class="language-none">
+</code></ol><code class="language-none">
+</code><p><code class="language-none">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 2222 -jACCEPT</code>:hexoPostRenderEscape--&gt;</p>
 
     </div>
 
@@ -467,7 +467,7 @@ apt-get install rinetd -y</code></pre>
       <div class="popular-posts-title"><a href="\2020\07\2020-07-14-使用LFTP进行SFTP文件上传与下载\" rel="bookmark">使用 LFTP 进行 SFTP 文件上传与下载</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-kafka-manager的安装和使用\" rel="bookmark">kafka-manager的安装和使用</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-kafka-manager的安装和使用\" rel="bookmark">kafka-manager 的安装和使用</a></div>
     </li>
   </ul>
 

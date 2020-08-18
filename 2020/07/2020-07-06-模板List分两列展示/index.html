@@ -135,7 +135,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h2 class="site-title">小决的专栏</h2>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
@@ -409,43 +409,43 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>使用 freeMarker 的机会有很多，自然也就会接触下 <code>&lt;List&gt;</code> 标签，我想大家应该都不陌生。</p>
-<p><code>&lt;#list attrList as attr&gt;$&#123;a.name&#125;&lt;/#list&gt;</code> 类似的用法很多，但是偶尔会用到两列的展示效果我们改怎么办呢？</p>
+<p><code>&lt;#list attrList as attr&gt;${a.name}&lt;/#list&gt;</code> 类似的用法很多，但是偶尔会用到两列的展示效果我们改怎么办呢？</p>
 <p>我们可以根据模型中的 int 类型的某一列，一般是自动增长的 id 标识列。</p>
-<h3 id="freemarker-模板语言"><a href="#freemarker-模板语言" class="headerlink" title="freemarker 模板语言"></a>freemarker 模板语言</h3><pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#list</span> <span class="token attr-name">attrList</span> <span class="token attr-name">as</span> <span class="token attr-name">attr</span><span class="token punctuation">></span></span>
-       &lt;#if attr_index%2 ==0>
-        &lt;#if attr_index==0>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#else</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">></span></span>
-       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>118<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>$&#123;attr.key!&#125;:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>$&#123;attr.value!&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span> 
-    &lt;#if attr_index==attrList?size-1>
-        &lt;#if attr_index%2 ==1>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#else</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>118<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#list</span><span class="token punctuation">></span></span></code></pre>
+<h3 id="freemarker-模板语言"><a href="#freemarker-模板语言" class="headerlink" title="freemarker 模板语言"></a>freemarker 模板语言</h3><pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#list</span> <span class="token attr-name">attrList</span> <span class="token attr-name">as</span> <span class="token attr-name">attr</span><span class="token punctuation">&gt;</span></span>
+       &lt;#if attr_index%2 ==0&gt;
+        &lt;#if attr_index==0&gt;
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#else</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">&gt;</span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>118<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>${attr.key!}:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>${attr.value!}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span> 
+    &lt;#if attr_index==attrList?size-1&gt;
+        &lt;#if attr_index%2 ==1&gt;
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>#else</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>118<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#if</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>#list</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 <h3 id="Liquid-模板语言"><a href="#Liquid-模板语言" class="headerlink" title="Liquid 模板语言"></a>Liquid 模板语言</h3><p>Liquid 是一门开源的模板语言，由 <span class="exturl" data-url="aHR0cHM6Ly93d3cuc2hvcGlmeS5jb20v">Shopify<i class="fa fa-external-link-alt"></i></span> 创造并用 Ruby 实现。它是 Shopify 主题的骨骼，并且被用于加载店铺系统的动态内容。</p>
-<pre class="language-html" data-language="html"><code class="language-html">&#123;% raw %&#125;
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span> <span class="token punctuation">></span></span>
-&#123;% for post in site.gitpagelink %&#125;
-&#123;% assign index_2 = forloop.index | modulo: 2 %&#125;
-    &#123;% if index_2 == 1 %&#125;
-        &#123;% if forloop.index == 1 %&#125; <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span> &#123;% else %&#125; <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span> &#123;% endif %&#125;
-    &#123;% endif %&#125;
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>&#123;&#123; post.name &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>
-    &#123;% if forloop.size == forloop.index %&#125;
-        &#123;% if index_2 == 0 %&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>&#123;% else %&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>&#123;% endif %&#125;
-    &#123;% endif %&#125;
-&#123;% endfor %&#125;
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span>
-&#123;% endraw %&#125;</code></pre>
+<pre class="language-html" data-language="html"><code class="language-html">{% raw %}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span> <span class="token punctuation">&gt;</span></span>
+{% for post in site.gitpagelink %}
+{% assign index_2 = forloop.index | modulo: 2 %}
+    {% if index_2 == 1 %}
+        {% if forloop.index == 1 %} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span> {% else %} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span> {% endif %}
+    {% endif %}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>{{ post.name }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+    {% if forloop.size == forloop.index %}
+        {% if index_2 == 0 %}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>{% else %}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>{% endif %}
+    {% endif %}
+{% endfor %}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">&gt;</span></span>
+{% endraw %}</code></pre>
 
 
     </div>
