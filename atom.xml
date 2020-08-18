@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jueee.github.io/"/>
-  <updated>2020-08-18T08:08:33.697Z</updated>
+  <updated>2020-08-18T08:25:35.812Z</updated>
   <id>https://jueee.github.io/</id>
   
   <author>
@@ -17,23 +17,29 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="https://jueee.github.io/2020/08/2020-08-18-/"/>
-    <id>https://jueee.github.io/2020/08/2020-08-18-/</id>
+    <title>Robots.txt 文件介绍及生成</title>
+    <link href="https://jueee.github.io/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/"/>
+    <id>https://jueee.github.io/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/</id>
     <published>2020-08-18T00:00:00.000Z</published>
-    <updated>2020-08-18T08:08:33.697Z</updated>
+    <updated>2020-08-18T08:25:35.812Z</updated>
+    
+    <content type="html"><![CDATA[<p>Robots.txt 是存放在站点根目录下的一个纯文本文件。虽然它的设置很简单，但是作用却很强大。它可以指定搜索引擎蜘蛛只抓取指定的内容，或者是禁止搜索引擎蜘蛛抓取网站的部分或全部内容。</p><h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>Robots.txt 文件应该放在网站根目录下，并且该文件是可以通过互联网进行访问的。</p><p>例如：如果您的网站地址是 <code>http://www.yourdomain.com/</code>。那么，该文件必须能够通过 <code>http://www.yourdomain.com/robots.txt</code> 打开并看到里面的内容。</p><p>例如：<a href="https://jueee.github.io/robots.txt">https://jueee.github.io/robots.txt</a></p><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><h4 id="User-agent"><a href="#User-agent" class="headerlink" title="User-agent"></a>User-agent</h4><p>用于描述搜索引擎蜘蛛的名字，在 "Robots.txt" 文件中，如果有多条 User-agent 记录说明有多个搜索引擎蜘蛛会受到该协议的限制，对该文件来说，至少要有一条 User-agent 记录。</p><p>如果该项的值设为 <code>*</code>，则该协议对任何搜索引擎蜘蛛均有效，在 "Robots.txt" 文件中，"<code>User-agent:*</code>" 这样的记录只能有一条。</p><h4 id="Disallow"><a href="#Disallow" class="headerlink" title="Disallow"></a>Disallow</h4><p>用于描述不希望被访问到的一个 URL，这个 URL 可以是一条完整的路径，也可以是部分的，任何以 Disallow 开头的 URL 均不会被 Robot 访问到。</p><p>举例：</p><p>例一："Disallow:/help" 是指 /help.html 和 /help/index.html 都不允许搜索引擎蜘蛛抓取。</p><p>例二："Disallow:/help/" 是指允许搜索引擎蜘蛛抓取 /help.html，而不能抓取 /help/index.html。</p><p>例三：Disallow 记录为空说明该网站的所有页面都允许被搜索引擎抓取，在 "/robots.txt" 文件中，至少要有一条 Disallow 记录。如果 "/robots.txt" 是一个空文件，则对于所有的搜索引擎蜘蛛，该网站都是开放的可以被抓取的。</p><h4 id="注释符"><a href="#注释符" class="headerlink" title="注释符"></a>注释符</h4><p><code>#</code> 是 Robots.txt 协议中的注释符。</p><h3 id="综合例子"><a href="#综合例子" class="headerlink" title="综合例子"></a>综合例子</h3><p>例一：通过 "/robots.txt" 禁止所有搜索引擎蜘蛛抓取 "/bin/cgi/" 目录，以及 "/tmp/" 目录和 /foo.html 文件，设置方法如下：</p><pre class="language-none"><code class="language-none">User-agent: *Disallow: /bin/cgi/Disallow: /tmp/Disallow: /foo.html</code></pre><p>例二：通过 "/robots.txt" 只允许某个搜索引擎抓取，而禁止其他的搜索引擎抓取。如：只允许名为 "slurp" 的搜索引擎蜘蛛抓取，而拒绝其他的搜索引擎蜘蛛抓取 "/cgi/" 目录下的内容，设置方法如下：</p><pre class="language-none"><code class="language-none">User-agent: *Disallow: /cgi/User-agent: slurpDisallow:</code></pre><p>例三：禁止任何搜索引擎抓取我的网站，设置方法如下：</p><pre class="language-none"><code class="language-none">User-agent: *Disallow: /</code></pre><p>例四：只禁止某个搜索引擎抓取我的网站如：只禁止名为 “slurp” 的搜索引擎蜘蛛抓取，设置方法如下：</p><pre class="language-none"><code class="language-none">User-agent: slurpDisallow: /</code></pre>]]></content>
     
     <summary type="html">
+    
+      Robots.txt 是存放在站点根目录下的一个纯文本文件。虽然它的设置很简单，但是作用却很强大。它可以指定搜索引擎蜘蛛只抓取指定的内容，或者是禁止搜索引擎蜘蛛抓取网站的部分或全部内容。
     
     </summary>
     
     
       <category term="Blog" scheme="https://jueee.github.io/categories/Blog/"/>
     
+      <category term="SEO" scheme="https://jueee.github.io/categories/Blog/SEO/"/>
+    
     
       <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
     
-      <category term="HTML" scheme="https://jueee.github.io/tags/HTML/"/>
+      <category term="SEO" scheme="https://jueee.github.io/tags/SEO/"/>
     
   </entry>
   
@@ -351,9 +357,9 @@
     <link href="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/"/>
     <id>https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/</id>
     <published>2020-08-09T00:00:00.000Z</published>
-    <updated>2020-08-13T06:07:28.382Z</updated>
+    <updated>2020-08-18T08:10:48.809Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="谷歌分析"><a href="#谷歌分析" class="headerlink" title="谷歌分析"></a>谷歌分析</h3><ol><li><p>创建一个帐户并登录 <span class="exturl" data-url="aHR0cHM6Ly9hbmFseXRpY3MuZ29vZ2xlLmNvbS8=">Google Analytics（分析）<i class="fa fa-external-link-alt"></i></span>。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYW5hbHl0aWNzLz9obD1lbiN0b3BpYz0zNTQ0OTA2">更详细的文档<i class="fa fa-external-link-alt"></i></span></p></li><li><p>编辑 主题配置文件并 <code>tracking_id</code> 在部分下填写 <code>google_analytics</code> 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 <code>UA-</code>。</p><pre class="language-yml" data-language="yml"><code class="language-yml"># Google Analyticsgoogle_analytics:tracking_id: UA-XXXXXXXX-Xonly_pageview: false</code></pre></li><li><p>当 field <code>only_pageview</code> 设置为 true 时，NexT 将仅向 <code>pageview</code>Google Analytics（分析）发送事件。<br>使用它而不是使用它的好处 <code>only_pageview: false</code> 是减少了站点上的外部脚本，这将为您提供更好的性能，但没有完整的分析功能。</p></li></ol><h3 id="百度分析"><a href="#百度分析" class="headerlink" title="百度分析"></a>百度分析</h3><ol><li><p>登录 <span class="exturl" data-url="aHR0cHM6Ly90b25namkuYmFpZHUuY29tLw==">百度分析<i class="fa fa-external-link-alt"></i></span> 并找到网站代码获取页面。</p></li><li><p>在后面复制脚本 ID <code>hm.js?</code>，如下图：</p><p><img src="/images/2020/08/1597041510807.png" alt="1597041510807" loading="lazy"></p></li><li><p>编辑 主题配置文件并将部分更改 <code>baidu_analytics</code> 为您的脚本 ID。</p><pre class="language-yml" data-language="yml"><code class="language-yml"># Baidu Analytics IDbaidu_analytics: your_id</code></pre></li></ol>]]></content>
+    <content type="html"><![CDATA[<h3 id="谷歌分析"><a href="#谷歌分析" class="headerlink" title="谷歌分析"></a>谷歌分析</h3><ol><li><p>创建一个帐户并登录 <span class="exturl" data-url="aHR0cHM6Ly9hbmFseXRpY3MuZ29vZ2xlLmNvbS8=">Google Analytics（分析）<i class="fa fa-external-link-alt"></i></span>。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYW5hbHl0aWNzLz9obD1lbiN0b3BpYz0zNTQ0OTA2">更详细的文档<i class="fa fa-external-link-alt"></i></span></p></li><li><p>编辑 主题配置文件并 <code>tracking_id</code> 在部分下填写 <code>google_analytics</code> 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 <code>UA-</code>。</p><pre class="language-yml" data-language="yml"><code class="language-yml"># Google Analyticsgoogle_analytics:tracking_id: UA-XXXXXXXX-Xonly_pageview: false</code></pre></li><li><p>当 field <code>only_pageview</code> 设置为 true 时，NexT 将仅向 <code>pageview</code>Google Analytics（分析）发送事件。<br>使用它而不是使用它的好处 <code>only_pageview: false</code> 是减少了站点上的外部脚本，这将为您提供更好的性能，但没有完整的分析功能。</p></li></ol><h3 id="百度分析"><a href="#百度分析" class="headerlink" title="百度分析"></a>百度分析</h3><ol><li><p>登录<span class="exturl" data-url="aHR0cHM6Ly90b25namkuYmFpZHUuY29tLw==">百度分析<i class="fa fa-external-link-alt"></i></span> 并找到网站代码获取页面。</p></li><li><p>在后面复制脚本 ID <code>hm.js?</code>，如下图：</p><p><img src="/images/2020/08/1597041510807.png" alt="1597041510807" loading="lazy"></p></li><li><p>编辑 主题配置文件并将部分更改 <code>baidu_analytics</code> 为您的脚本 ID。</p><pre class="language-yml" data-language="yml"><code class="language-yml"># Baidu Analytics IDbaidu_analytics: your_id</code></pre></li></ol>]]></content>
     
     <summary type="html">
     
@@ -368,8 +374,12 @@
     
       <category term="Blog" scheme="https://jueee.github.io/categories/Blog/"/>
     
+      <category term="SEO" scheme="https://jueee.github.io/categories/Blog/SEO/"/>
+    
     
       <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
+    
+      <category term="SEO" scheme="https://jueee.github.io/tags/SEO/"/>
     
   </entry>
   
@@ -378,9 +388,9 @@
     <link href="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BEsitemap/"/>
     <id>https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BEsitemap/</id>
     <published>2020-08-09T00:00:00.000Z</published>
-    <updated>2020-08-13T06:07:28.391Z</updated>
+    <updated>2020-08-18T08:10:56.593Z</updated>
     
-    <content type="html"><![CDATA[<p>站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知 Google 和其他搜索引擎。Googlebot 等搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。</p><h3 id="站点地图"><a href="#站点地图" class="headerlink" title="站点地图"></a>站点地图</h3><p>站点地图是一个网站所有链接的容器。很多网站的连接层次比较深，爬虫很难抓取到，站点地图可以方便爬虫抓取网站页面，通过抓取网站页面，清晰了解网站的架构，网站地图一般存放在根目录下并命名 sitemap，为爬虫指路，增加网站重要内容页面的收录。</p><p>站点地图就是根据网站的结构、框架、内容，生成的导航网页文件。站点地图对于提高用户体验有好处，它们为网站访问者指明方向，并帮助迷失的访问者找到他们想看的页面。</p><h3 id="添加-sitemap"><a href="#添加-sitemap" class="headerlink" title="添加 sitemap"></a>添加 sitemap</h3><ol><li><p>安装插件：</p><pre class="language-none"><code class="language-none">npm install hexo-generator-sitemap --savenpm install hexo-generator-baidu-sitemap --save</code></pre></li><li><p>在博客目录的_config.yml 中添加如下代码：</p><pre class="language-yml" data-language="yml"><code class="language-yml"># 自动生成 sitemapsitemap: path: sitemap.xmlbaidusitemap: path: baidusitemap.xml</code></pre></li><li><p>编译博客</p><pre class="language-shell" data-language="shell"><code class="language-shell">npx hexo generate</code></pre></li><li><p>在你的博客根目录的 public 下面发现生成了 sitemap.xml 以及 baidusitemap.xml 就表示成功了。</p><p>如下图所示：</p><p><img src="/images/2020/08/1597229983009.png" alt="1597229983009" loading="lazy"></p></li></ol><h3 id="查看站点地图"><a href="#查看站点地图" class="headerlink" title="查看站点地图"></a>查看站点地图</h3><ul><li><a href="https://jueee.github.io/sitemap.xml">sitemap.xml</a></li><li><a href="https://jueee.github.io/baidusitemap.xml">baidusitemap.xml</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知 Google 和其他搜索引擎。Googlebot 等搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。</p><h3 id="站点地图"><a href="#站点地图" class="headerlink" title="站点地图"></a>站点地图</h3><p>站点地图是一个网站所有链接的容器。很多网站的连接层次比较深，爬虫很难抓取到，站点地图可以方便爬虫抓取网站页面，通过抓取网站页面，清晰了解网站的架构，网站地图一般存放在根目录下并命名 sitemap，为爬虫指路，增加网站重要内容页面的收录。</p><p>站点地图就是根据网站的结构、框架、内容，生成的导航网页文件。站点地图对于提高用户体验有好处，它们为网站访问者指明方向，并帮助迷失的访问者找到他们想看的页面。</p><h3 id="添加sitemap"><a href="#添加sitemap" class="headerlink" title="添加sitemap"></a>添加 sitemap</h3><ol><li><p>安装插件：</p><pre class="language-none"><code class="language-none">npm install hexo-generator-sitemap --savenpm install hexo-generator-baidu-sitemap --save</code></pre></li><li><p>在博客目录的_config.yml 中添加如下代码：</p><pre class="language-yml" data-language="yml"><code class="language-yml"># 自动生成sitemapsitemap: path: sitemap.xmlbaidusitemap: path: baidusitemap.xml</code></pre></li><li><p>编译博客</p><pre class="language-shell" data-language="shell"><code class="language-shell">npx hexo generate</code></pre></li><li><p>在你的博客根目录的 public 下面发现生成了 sitemap.xml 以及 baidusitemap.xml 就表示成功了。</p><p>如下图所示：</p><p><img src="/images/2020/08/1597229983009.png" alt="1597229983009" loading="lazy"></p></li></ol><h3 id="查看站点地图"><a href="#查看站点地图" class="headerlink" title="查看站点地图"></a>查看站点地图</h3><ul><li><a href="https://jueee.github.io/sitemap.xml">sitemap.xml</a></li><li><a href="https://jueee.github.io/baidusitemap.xml">baidusitemap.xml</a></li></ul>]]></content>
     
     <summary type="html">
     
@@ -391,8 +401,12 @@
     
       <category term="Blog" scheme="https://jueee.github.io/categories/Blog/"/>
     
+      <category term="SEO" scheme="https://jueee.github.io/categories/Blog/SEO/"/>
+    
     
       <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
+    
+      <category term="SEO" scheme="https://jueee.github.io/tags/SEO/"/>
     
   </entry>
   
