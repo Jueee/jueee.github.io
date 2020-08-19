@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://jueee.github.io/2020/08/2020-08-19-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%96%B0%E5%A2%9E%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/assets/1597836277711.png">
 <meta property="og:image" content="https://jueee.github.io/2020/08/2020-08-19-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%96%B0%E5%A2%9E%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/assets/1597836674463.png">
 <meta property="article:published_time" content="2020-08-19T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-19T11:33:53.321Z">
+<meta property="article:modified_time" content="2020-08-19T11:39:25.340Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="HTML">
@@ -421,7 +421,7 @@
 <h3 id="添加-Gitalk-评论系统"><a href="#添加-Gitalk-评论系统" class="headerlink" title="添加 Gitalk 评论系统"></a>添加 Gitalk 评论系统</h3><p>Gitalk 是一个基于 Github issues 的评论系统。使用之前需要确保你指定的 Github 仓库是公开的，并开启了 issues 功能。</p>
 <h4 id="注册-Gitalk"><a href="#注册-Gitalk" class="headerlink" title="注册 Gitalk"></a>注册 Gitalk</h4><p>首先，你需要注册一个新的 <strong>GitHub Application</strong> 来授权，点击<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL2FwcGxpY2F0aW9ucy9uZXc=">这里<i class="fa fa-external-link-alt"></i></span>注册。这样可以获取所需的 <code>client ID</code> 和 <code>client secret</code>。</p>
 <p><img src="assets/1597836162033.png" alt="1597836162033" loading="lazy"></p>
-<p>注册成功后：</p>
+<p>注册成功后，可以在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NldHRpbmdzL2RldmVsb3BlcnM=">开发者页面<i class="fa fa-external-link-alt"></i></span>&nbsp;看到如下配置：</p>
 <p><img src="assets/1597836277711.png" alt="1597836277711" loading="lazy"></p>
 <h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">gitalk</span><span class="token punctuation">:</span>
   <span class="token comment"># 是否启用</span>
@@ -735,7 +735,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
     var gitalk = new Gitalk({
       clientID    : 'e61b622bb2d41a9820db',
       clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
-      repo        : 'git@github.com:Jueee/jueee.github.io.git',
+      repo        : 'jueee.github.io.git',
       owner       : '',
       admin       : [''],
       id          : '5b789ca93126e3c0cb7fc3a4a08b600f',
