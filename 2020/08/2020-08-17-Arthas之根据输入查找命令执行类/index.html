@@ -178,7 +178,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">37</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -268,7 +268,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -408,20 +408,6 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/08/2020-08-17-Arthas%E4%B9%8B%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-17-Arthas%E4%B9%8B%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%B1%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
             <div class="post-description">介绍 Arthas命令路由的整个过程，包括如何注册命令、如何读取客户端的输入、如何根据输入找到对应的命令执行类。最后以一个基础命令help为例，简要介绍命令执行类是如何执行，如何接收参数，以及如何向客户端返回数据的。</div>
 
         </div>
@@ -434,7 +420,7 @@
         <p>本文介绍 Arthas 命令路由的整个过程，包括如何注册命令、如何读取客户端的输入、如何根据输入找到对应的命令执行类。最后以一个基础命令 help 为例，简要介绍命令执行类是如何执行，如何接收参数，以及如何向客户端返回数据的。</p>
 <h3 id="在ShellServer中注册命令"><a href="#在ShellServer中注册命令" class="headerlink" title="在ShellServer中注册命令"></a>在 ShellServer 中注册命令</h3><p>ShellServer 是与命令行交互的服务端的核心类，启动 Arthas 服务端的整个过程（<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NlcnZlci9BcnRoYXNCb290c3RyYXAuamF2YQ==">com.taobao.arthas.core.server.ArthasBootstrap<i class="fa fa-external-link-alt"></i></span> 类的 bind () 方法）都是围绕着 ShellServer 进行的。</p>
 <p>ShellServer 是开源项目 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VjbGlwc2UtdmVydHgvdmVydC54">vert.x<i class="fa fa-external-link-alt"></i></span> 提供的，Arthas 仅在此之上进行了少量的二次开发。</p>
-<p>在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NlcnZlci9BcnRoYXNCb290c3RyYXAuamF2YQ==">ArthasBootstrap<i class="fa fa-external-link-alt"></i></span>&nbsp;类的 bind () 方法中，首先通过一个自建的类 <code>BuiltinCommandPack</code> 来读取所有的命令类：</p>
+<p>在<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NlcnZlci9BcnRoYXNCb290c3RyYXAuamF2YQ=="> ArthasBootstrap<i class="fa fa-external-link-alt"></i></span>&nbsp;类的 bind () 方法中，首先通过一个自建的类 <code>BuiltinCommandPack</code> 来读取所有的命令类：</p>
 <p><img src="/images/2020/08/1597663881528.png" alt="1597663881528" loading="lazy"></p>
 <p>而这个 <code>BuiltinCommandPack</code> 是怎样运转的呢？非常简单，仅仅是将一个个类添加到一个 list 里而已。</p>
 <p>见 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL2NvbW1hbmQvQnVpbHRpbkNvbW1hbmRQYWNrLmphdmE=">BuiltinCommandPack.java<i class="fa fa-external-link-alt"></i></span>：</p>
@@ -443,20 +429,20 @@
 <p><img src="/images/2020/08/1597664133197.png" alt="1597664133197" loading="lazy"></p>
 <h3 id="读取客户端的输入"><a href="#读取客户端的输入" class="headerlink" title="读取客户端的输入"></a>读取客户端的输入</h3><p>真正接收客户端输入的是 ShellServer 中注册的 TermServer，Arthas 默认注册了两个 TermServer：</p>
 <ul>
-<li>提供 Telnet 客户端的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL3Rlcm0vaW1wbC9UZWxuZXRUZXJtU2VydmVyLmphdmE=">TelnetTermServer<i class="fa fa-external-link-alt"></i></span></li>
-<li> 提供 WebSocket 客户端的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL3Rlcm0vaW1wbC9IdHRwVGVybVNlcnZlci5qYXZh">HttpTermServer<i class="fa fa-external-link-alt"></i></span></li>
+<li>提供 Telnet 客户端的<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL3Rlcm0vaW1wbC9UZWxuZXRUZXJtU2VydmVyLmphdmE="> TelnetTermServer<i class="fa fa-external-link-alt"></i></span></li>
+<li>提供 WebSocket 客户端的<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL3Rlcm0vaW1wbC9IdHRwVGVybVNlcnZlci5qYXZh"> HttpTermServer<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <p>见 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NlcnZlci9BcnRoYXNCb290c3RyYXAuamF2YQ==">ArthasBootstrap<i class="fa fa-external-link-alt"></i></span> 类的 bind () 方法：</p>
 <p><img src="/images/2020/08/1597664402161.png" alt="1597664402161" loading="lazy"></p>
 <p>这两个 TermServer 的实现在读取客户端输入的部分是一样的：</p>
 <p><img src="/images/2020/08/1597664489423.png" alt="1597664489423" loading="lazy"></p>
-<p>客户端的输入到来时，通过 TermServer 来 handle，而这个 TermServer 是哪儿来的呢？是从 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL3Rlcm0vaW1wbC9IdHRwVGVybVNlcnZlci5qYXZh">ShellServerImpl<i class="fa fa-external-link-alt"></i></span> 中传来的 TermServerTermHandler。</p>
-<p>而这个 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL2hhbmRsZXJzL3NlcnZlci9UZXJtU2VydmVyVGVybUhhbmRsZXIuamF2YQ==">TermServerTermHandler<i class="fa fa-external-link-alt"></i></span> 是怎样 handle 的呢？调用 ShellServer 的 handleTerm () 方法。</p>
+<p>客户端的输入到来时，通过 TermServer 来 handle，而这个 TermServer 是哪儿来的呢？是从<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL3Rlcm0vaW1wbC9IdHRwVGVybVNlcnZlci5qYXZh"> ShellServerImpl<i class="fa fa-external-link-alt"></i></span> 中传来的 TermServerTermHandler。</p>
+<p>而这个<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL2hhbmRsZXJzL3NlcnZlci9UZXJtU2VydmVyVGVybUhhbmRsZXIuamF2YQ=="> TermServerTermHandler<i class="fa fa-external-link-alt"></i></span>是怎样 handle 的呢？调用 ShellServer 的 handleTerm () 方法。</p>
 <p><img src="/images/2020/08/1597665051394.png" alt="1597665051394" loading="lazy"></p>
 <p>在这里，一个 session 就是一个客户端的连接（这很容易理解），而 ShellImpl 的 readline () 方法，就是读取客户端输入的方法。见：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL2ltcGwvU2hlbGxJbXBsLmphdmE=">ShellImpl<i class="fa fa-external-link-alt"></i></span></p>
 <p><img src="/images/2020/08/1597665260376.png" alt="1597665260376" loading="lazy"></p>
 <h3 id="查找对应的命令执行类"><a href="#查找对应的命令执行类" class="headerlink" title="查找对应的命令执行类"></a>查找对应的命令执行类</h3><p>ShellImpl 的 readline () 方法，最终将客户端的输入转换为 String，交给 ShellLineHandler 的 handle () 方法来处理。</p>
-<p>在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL2hhbmRsZXJzL3NoZWxsL1NoZWxsTGluZUhhbmRsZXIuamF2YQ==">ShellLineHandler<i class="fa fa-external-link-alt"></i></span> 的 handle () 方法中，首先把 String 类型的输入转换为第三方组件 CLI 中的 CliToken 的 List：</p>
+<p>在<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL2hhbmRsZXJzL3NoZWxsL1NoZWxsTGluZUhhbmRsZXIuamF2YQ=="> ShellLineHandler<i class="fa fa-external-link-alt"></i></span>的 handle () 方法中，首先把 String 类型的输入转换为第三方组件 CLI 中的 CliToken 的 List：</p>
 <p><img src="/images/2020/08/1597665436179.png" alt="1597665436179" loading="lazy"></p>
 <p>在 List<clitoken> 中，first 是输入的命令，而剩余部分则是命令的参数。在拿到输入的命令后，先做一些判断，处理几个内建命令：</clitoken></p>
 <p><img src="/images/2020/08/1597665536086.png" alt="1597665536086" loading="lazy"></p>
@@ -475,11 +461,11 @@
 <p>核心的 createProcess () 方法：</p>
 <p><img src="/images/2020/08/1597665851789.png" alt="1597665851789" loading="lazy"></p>
 <p>然后到了将输入路由到命令执行类的地方了！</p>
-<p>开始看 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL3N5c3RlbS9pbXBsL0ludGVybmFsQ29tbWFuZE1hbmFnZXIuamF2YQ==">InternalCommandManager<i class="fa fa-external-link-alt"></i></span> 的 getCommand () 方法：</p>
+<p>开始看<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL3NoZWxsL3N5c3RlbS9pbXBsL0ludGVybmFsQ29tbWFuZE1hbmFnZXIuamF2YQ=="> InternalCommandManager<i class="fa fa-external-link-alt"></i></span>的 getCommand () 方法：</p>
 <p><img src="/images/2020/08/1597665933730.png" alt="1597665933730" loading="lazy"></p>
 <p>到这里，根据客户端的输入寻找对应的命令执行类的整个流程终于结束了，接下来就是各个命令执行类自己发挥的时刻了。</p>
 <h3 id="help命令的执行过程"><a href="#help命令的执行过程" class="headerlink" title="help命令的执行过程"></a>help 命令的执行过程</h3><p>下面我以基础命令 help 为例，简要介绍命令执行类是如何执行，如何接收参数，以及如何向客户端返回数据的。</p>
-<p>help 命令对应的命令执行类是 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL2NvbW1hbmQvYmFzaWMxMDAwL0hlbHBDb21tYW5kLmphdmE=">HelpCommand<i class="fa fa-external-link-alt"></i></span>，其中 process () 方法是命令执行类的核心方法：</p>
+<p>help 命令对应的命令执行类是<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL2NvbW1hbmQvYmFzaWMxMDAwL0hlbHBDb21tYW5kLmphdmE="> HelpCommand<i class="fa fa-external-link-alt"></i></span>，其中 process () 方法是命令执行类的核心方法：</p>
 <p><img src="/images/2020/08/1597666134279.png" alt="1597666134279" loading="lazy"></p>
 <p>可以看到，help 命令的 process () 方法非常简单，就是获取所有的命令，生成 String 类型的文本。</p>
 <p>不过这里有一点特殊之处，help 指令可以输入参数。根据参数中传来的命令生成的命令帮助内容。</p>
@@ -495,7 +481,7 @@
 <p>见 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2Jsb2IvbWFzdGVyL2NvcmUvc3JjL21haW4vamF2YS9jb20vdGFvYmFvL2FydGhhcy9jb3JlL2NvbW1hbmQvdmlldy9IZWxwVmlldy5qYXZh">HelpView.java<i class="fa fa-external-link-alt"></i></span>：</p>
 <p><img src="/images/2020/08/1597666484624.png" alt="1597666484624" loading="lazy"></p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3M/X19iaXo9TXpVNE9EYzBPVGsyTmc9PSZhbXA7bWlkPTIyNDc0ODM5MDcmYW1wO2lkeD0xJmFtcDtzbj0wNmIwZGU1YjY0OTU1ZGZkMzlmNjA1YjZjMjJlMzMxZSZhbXA7Y2hrc209ZmRkOTRmZTJjYWFlYzZmNGM4ZWZlMzY1M2VmNDNjYTM4NzMyZTBmOGE3Y2VmMDYwOTc4NWRkZDIwM2QxMWQzOGY0NjViZWRmZWM3ZCZhbXA7bXBzaGFyZT0xJmFtcDtzY2VuZT0xJmFtcDtzcmNpZD0wODE1aWNzUWFrblQzVjBUY3FjV2Zkd1MmYW1wO3NoYXJlcl9zaGFyZXRpbWU9MTU5NzQyMTE4OTAyMSZhbXA7c2hhcmVyX3NoYXJlaWQ9NDljNjExMjFmOTIwMDQ5MDJiZWNlYTcwNTcxNmNjYTcmYW1wO2tleT1kZTg3OWQxZDA5ZTJhOGI3Mjg0NmY4MzA4OTA3NThkYWY3Njc3ZDRiODNlOWU1YmZkNzkyMGIwYWU2NDdlNzI0ZmQ5MmIyMjg1MjUwNDlhMjA3NjIzMGViNmMwNWFiNmRmZWUxODAyODY1MmRmZjkxYzkyODllNTNiYzY5NDk2MzZjN2RlYTRhODk1MzMwMzY3ZjZmMmM2NDk2Y2U0NjdmYzQ2ZjBjYjcwZWVkNmQ4YmJhMjYwM2NhMGUxMGVmZDM2ZWQzMmVlN2UzNzU2MDAxM2E4MjZiOTU3NGJmYWMzODJhODU2ODA2YTI4NTUzMTk0YTdhNmYxODYzMWI0MzA1JmFtcDthc2NlbmU9MSZhbXA7dWluPU1UZzBORGsxTlRjd01nPT0mYW1wO2RldmljZXR5cGU9V2luZG93cysxMCt4NjQmYW1wO3ZlcnNpb249NjIwOTA1MjkmYW1wO2xhbmc9emhfQ04mYW1wO2V4cG9ydGtleT1BZDV4ekFOY1ZlTXgyeE9rNkN6ZWo2RT0mYW1wO3Bhc3NfdGlja2V0PXZtcWZ6NW9nUjEvd2dBdmp1eGtqSXE5bHBEa3NyeFV0NURsQk96WHJnRDJpdFJQS0FwT3MvcDhHdXJsbHZiem8=">参考<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tcC53ZWl4aW4ucXEuY29tL3M/X19iaXo9TXpVNE9EYzBPVGsyTmc9PSZtaWQ9MjI0NzQ4MzkwNyZpZHg9MSZzbj0wNmIwZGU1YjY0OTU1ZGZkMzlmNjA1YjZjMjJlMzMxZSZjaGtzbT1mZGQ5NGZlMmNhYWVjNmY0YzhlZmUzNjUzZWY0M2NhMzg3MzJlMGY4YTdjZWYwNjA5Nzg1ZGRkMjAzZDExZDM4ZjQ2NWJlZGZlYzdkJm1wc2hhcmU9MSZzY2VuZT0xJnNyY2lkPTA4MTVpY3NRYWtuVDNWMFRjcWNXZmR3UyZzaGFyZXJfc2hhcmV0aW1lPTE1OTc0MjExODkwMjEmc2hhcmVyX3NoYXJlaWQ9NDljNjExMjFmOTIwMDQ5MDJiZWNlYTcwNTcxNmNjYTcma2V5PWRlODc5ZDFkMDllMmE4YjcyODQ2ZjgzMDg5MDc1OGRhZjc2NzdkNGI4M2U5ZTViZmQ3OTIwYjBhZTY0N2U3MjRmZDkyYjIyODUyNTA0OWEyMDc2MjMwZWI2YzA1YWI2ZGZlZTE4MDI4NjUyZGZmOTFjOTI4OWU1M2JjNjk0OTYzNmM3ZGVhNGE4OTUzMzAzNjdmNmYyYzY0OTZjZTQ2N2ZjNDZmMGNiNzBlZWQ2ZDhiYmEyNjAzY2EwZTEwZWZkMzZlZDMyZWU3ZTM3NTYwMDEzYTgyNmI5NTc0YmZhYzM4MmE4NTY4MDZhMjg1NTMxOTRhN2E2ZjE4NjMxYjQzMDUmYXNjZW5lPTEmdWluPU1UZzBORGsxTlRjd01nPT0mZGV2aWNldHlwZT1XaW5kb3dzKzEwK3g2NCZ2ZXJzaW9uPTYyMDkwNTI5Jmxhbmc9emhfQ04mZXhwb3J0a2V5PUFkNXh6QU5jVmVNeDJ4T2s2Q3plajZFPSZwYXNzX3RpY2tldD12bXFmejVvZ1IxL3dnQXZqdXhraklxOWxwRGtzcnhVdDVEbEJPelhyZ0QyaXRSUEtBcE9zL3A4R3VybGx2Ynpv">参考<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 
     </div>
@@ -556,7 +542,7 @@
 
         </div>
         
-    <div class="comments" id="valine-comments"></div>
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -784,16 +770,23 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    new Valine(Object.assign({
-      el  : '#valine-comments',
-      path: location.pathname,
-    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
-    ));
-  }, window.Valine);
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'git@github.com:Jueee/jueee.github.io.git',
+      owner       : '',
+      admin       : [''],
+      id          : 'adea39499120e3fbf64ae9b0f5be2ab7',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 });
 </script>
 

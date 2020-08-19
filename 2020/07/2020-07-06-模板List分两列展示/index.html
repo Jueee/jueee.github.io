@@ -34,7 +34,7 @@
 <meta property="og:description" content="对于模板语言的List遍历，偶尔会用到两列的展示效果我们改怎么办呢？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-06T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-07T03:11:24.119Z">
+<meta property="article:modified_time" content="2020-08-19T03:26:35.995Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="HTML">
 <meta property="article:tag" content="freemarker">
@@ -161,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">37</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -251,7 +251,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -387,20 +387,6 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/07/2020-07-06-%E6%A8%A1%E6%9D%BFList%E5%88%86%E4%B8%A4%E5%88%97%E5%B1%95%E7%A4%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/2020-07-06-%E6%A8%A1%E6%9D%BFList%E5%88%86%E4%B8%A4%E5%88%97%E5%B1%95%E7%A4%BA/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
             <div class="post-description">对于模板语言的List遍历，偶尔会用到两列的展示效果我们改怎么办呢？</div>
 
         </div>
@@ -467,6 +453,9 @@
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\07\2020-07-30-为Github项目说明添加优美标签\" rel="bookmark">为 Github 项目说明添加优美标签</a></div>
     </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-19-为博客新增评论系统\" rel="bookmark">为博客新增评论系统</a></div>
+    </li>
   </ul>
 
 
@@ -502,7 +491,7 @@
 
         </div>
         
-    <div class="comments" id="valine-comments"></div>
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -730,16 +719,23 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    new Valine(Object.assign({
-      el  : '#valine-comments',
-      path: location.pathname,
-    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
-    ));
-  }, window.Valine);
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'git@github.com:Jueee/jueee.github.io.git',
+      owner       : '',
+      admin       : [''],
+      id          : '666a9da95c82a69859949633566996b2',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 });
 </script>
 

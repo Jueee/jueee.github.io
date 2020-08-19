@@ -163,7 +163,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">37</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -253,7 +253,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -393,20 +393,6 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/07/2020-07-16-%E4%BD%BF%E7%94%A8Arthas%E7%83%AD%E6%9B%B4%E6%96%B0Java%E4%BB%A3%E7%A0%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/2020-07-16-%E4%BD%BF%E7%94%A8Arthas%E7%83%AD%E6%9B%B4%E6%96%B0Java%E4%BB%A3%E7%A0%81/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
             <div class="post-description">所谓的 Java 热更新是指在不重启项目的情况下实现代码的更新与替换。使用它可以实现不停机更新 Java 程序，尤其是对那些启动非常耗时的 Java 项目来说，更是效果显著。</div>
 
         </div>
@@ -545,7 +531,7 @@ redefine /tmp/com/example/demo/arthas/user/UserController.class</code></pre>
       <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-Arthas之定位方法调用问题\" rel="bookmark">Arthas 之定位方法调用问题</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-Arthas之通过trace命令定位耗时问题\" rel="bookmark">Arthas 之通过 trace 命令定位耗时问题</a></div>
     </li>
   </ul>
 
@@ -582,7 +568,7 @@ redefine /tmp/com/example/demo/arthas/user/UserController.class</code></pre>
 
         </div>
         
-    <div class="comments" id="valine-comments"></div>
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -810,16 +796,23 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    new Valine(Object.assign({
-      el  : '#valine-comments',
-      path: location.pathname,
-    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
-    ));
-  }, window.Valine);
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'git@github.com:Jueee/jueee.github.io.git',
+      owner       : '',
+      admin       : [''],
+      id          : '0620646d0c54ba7c6fdace8de43f741c',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 });
 </script>
 

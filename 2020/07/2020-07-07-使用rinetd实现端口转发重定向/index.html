@@ -34,7 +34,7 @@
 <meta property="og:description" content="linux下简单好用的工具rinetd，实现端口映射&#x2F;转发&#x2F;重定向。用于有效地将连接从一个 IP 地址&#x2F;端口组合重定向到另一 IP 地址&#x2F;端口组合。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-07T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-07T03:12:42.290Z">
+<meta property="article:modified_time" content="2020-08-19T03:26:35.998Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="工具">
@@ -160,7 +160,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">37</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -250,7 +250,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -386,20 +386,6 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/07/2020-07-07-%E4%BD%BF%E7%94%A8rinetd%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%87%8D%E5%AE%9A%E5%90%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/2020-07-07-%E4%BD%BF%E7%94%A8rinetd%E5%AE%9E%E7%8E%B0%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%87%8D%E5%AE%9A%E5%90%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
             <div class="post-description">linux下简单好用的工具rinetd，实现端口映射/转发/重定向。用于有效地将连接从一个 IP 地址/端口组合重定向到另一 IP 地址/端口组合。</div>
 
         </div>
@@ -505,7 +491,7 @@ apt-get install rinetd -y</code></pre>
 
         </div>
         
-    <div class="comments" id="valine-comments"></div>
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -733,16 +719,23 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    new Valine(Object.assign({
-      el  : '#valine-comments',
-      path: location.pathname,
-    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
-    ));
-  }, window.Valine);
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'git@github.com:Jueee/jueee.github.io.git',
+      owner       : '',
+      admin       : [''],
+      id          : '8ac31b6b3f30c3ded041624cc0466de1',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
 });
 </script>
 
