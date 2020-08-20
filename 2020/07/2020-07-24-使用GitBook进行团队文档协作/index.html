@@ -34,7 +34,7 @@
 <meta property="og:description" content="GitBook 提供了 GitBook Editor ，GitBook cli 这两个工具，一个是编辑文档，一个可以生成文档。只要本地搭建一个Git 服务就完全可以实现本地化了。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-24T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-19T03:26:36.013Z">
+<meta property="article:modified_time" content="2020-08-20T02:07:19.950Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="GitBook">
@@ -417,16 +417,16 @@
 <li>GitBook CI <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0dpdGJvb2tJTy9naXRib29rLWNsaQ==">https://github.com/GitbookIO/gitbook-cli<i class="fa fa-external-link-alt"></i></span> </li>
 <li>GitBook Editor <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ2l0Ym9vay5jb20vZWRpdG9y">https://www.gitbook.com/editor<i class="fa fa-external-link-alt"></i></span></li>
 </ol>
-<h3 id="GitLab-Runner配置"><a href="#GitLab-Runner配置" class="headerlink" title="GitLab Runner配置"></a>GitLab Runner 配置</h3><h4 id="编辑-gitlab-ci-yml"><a href="#编辑-gitlab-ci-yml" class="headerlink" title="编辑 .gitlab-ci.yml"></a>编辑 .gitlab-ci.yml</h4><pre class="language-yml" data-language="yml"><code class="language-yml"># 定义 stages
-stages:
-  - build
-# 定义 job
-GenerateHTML:
-  stage: build
-  script:
-    - p=`pwd`
-    - echo $p
-    - gitbook build</code></pre>
+<h3 id="GitLab-Runner配置"><a href="#GitLab-Runner配置" class="headerlink" title="GitLab Runner配置"></a>GitLab Runner 配置</h3><h4 id="编辑-gitlab-ci-yml"><a href="#编辑-gitlab-ci-yml" class="headerlink" title="编辑 .gitlab-ci.yml"></a>编辑 .gitlab-ci.yml</h4><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 定义 stages</span>
+<span class="token key atrule">stages</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> build
+<span class="token comment"># 定义 job</span>
+<span class="token key atrule">GenerateHTML</span><span class="token punctuation">:</span>
+  <span class="token key atrule">stage</span><span class="token punctuation">:</span> build
+  <span class="token key atrule">script</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> p=`pwd`
+    <span class="token punctuation">-</span> echo $p
+    <span class="token punctuation">-</span> gitbook build</code></pre>
 
 <p>gitlab 执行构建，会在文件夹下生成 _book 的目录。</p>
 <p>手工执行 gitbook serve 启动。</p>
