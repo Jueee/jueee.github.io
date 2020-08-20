@@ -26,29 +26,24 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="Arthas之各模块简介。">
+  <meta name="description" content="介绍 Arthas 的 logger 命令的基本使用。并分别使用 logger 命令和ongl表达式，演示查看和修改日志级别的方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Arthas 之各模块简介">
-<meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-02-Arthas%E4%B9%8B%E5%90%84%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:title" content="Arthas 之查看和修改日志级别">
+<meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="Arthas之各模块简介。">
+<meta property="og:description" content="介绍 Arthas 的 logger 命令的基本使用。并分别使用 logger 命令和ongl表达式，演示查看和修改日志级别的方法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596679506644.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596698216827.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596616373228.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596710846489.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596700025625.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596701687793.png">
-<meta property="article:published_time" content="2020-08-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-19T03:26:36.026Z">
+<meta property="og:image" content="https://jueee.github.io/images/2020/08/1597912401412.png">
+<meta property="article:published_time" content="2020-08-20T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-08-20T10:48:58.154Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Java诊断">
 <meta property="article:tag" content="Arthas">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jueee.github.io/images/2020/08/1596679506644.png">
+<meta name="twitter:image" content="https://jueee.github.io/images/2020/08/1597912401412.png">
 
-<link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-02-Arthas%E4%B9%8B%E5%90%84%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B/">
+<link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/">
 
 
 <script data-pjax class="page-configurations">
@@ -61,7 +56,7 @@
   };
 </script>
 
-  <title>Arthas 之各模块简介 | 小决的专栏</title>
+  <title>Arthas 之查看和修改日志级别 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -242,7 +237,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arthas"><span class="nav-number">1.</span> <span class="nav-text">Arthas</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">项目代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%85%E5%90%AB%E6%A8%A1%E5%9D%97"><span class="nav-number">1.2.</span> <span class="nav-text">包含模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">模块简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="nav-number">3.</span> <span class="nav-text">主要功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%85%B3%E7%B3%BB"><span class="nav-number">4.</span> <span class="nav-text">模块关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%B1%BB%E6%8F%8F%E8%BF%B0"><span class="nav-number">5.</span> <span class="nav-text">核心类描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB"><span class="nav-number">6.</span> <span class="nav-text">常用命令汇总</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#logger-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">logger 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.</span> <span class="nav-text">方法介绍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-logger-%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">使用 logger 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB"><span class="nav-number">2.1.</span> <span class="nav-text">修改默认日志级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB"><span class="nav-number">2.2.</span> <span class="nav-text">修改方法日志级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-ongl-%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">使用 ongl 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB-1"><span class="nav-number">3.1.</span> <span class="nav-text">修改默认日志级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB-1"><span class="nav-number">3.2.</span> <span class="nav-text">修改方法日志级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">查看日志配置</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -349,7 +344,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-02-Arthas%E4%B9%8B%E5%90%84%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -364,7 +359,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Arthas 之各模块简介
+          Arthas 之查看和修改日志级别
         </h1>
 
         <div class="post-meta">
@@ -374,7 +369,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-02T00:00:00Z">2020-08-02</time>
+              <time title="创建时间：2020-08-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-20T00:00:00Z">2020-08-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -406,13 +401,13 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/2020-08-02-Arthas%E4%B9%8B%E5%90%84%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-02-Arthas%E4%B9%8B%E5%90%84%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/" itemprop="commentCount"></span>
     </a>
   </span>
   
   
-            <div class="post-description">Arthas之各模块简介。</div>
+            <div class="post-description">介绍 Arthas 的 logger 命令的基本使用。并分别使用 logger 命令和ongl表达式，演示查看和修改日志级别的方法。</div>
 
         </div>
       </header>
@@ -421,51 +416,121 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="Arthas"><a href="#Arthas" class="headerlink" title="Arthas"></a>Arthas</h3><h4 id="项目代码"><a href="#项目代码" class="headerlink" title="项目代码"></a>项目代码</h4><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFz">GitHub Code by arthas<i class="fa fa-external-link-alt"></i></span></p>
-<h4 id="包含模块"><a href="#包含模块" class="headerlink" title="包含模块"></a>包含模块</h4><p><img src="/images/2020/08/1596679506644.png" alt="1596679506644" loading="lazy"></p>
-<h3 id="模块简介"><a href="#模块简介" class="headerlink" title="模块简介"></a>模块简介</h3><ul>
-<li>arthas-agent：基于 JavaAgent 技术的代理</li>
-<li> bin：一些启动脚本</li>
-<li> arthas-boot：Java 版本的一键安装启动脚本</li>
-<li> arthas-client：telnet client 代码</li>
-<li> arthas-common：一些共用的工具类和枚举类</li>
-<li> arthas-core：核心库，各种 arthas 命令的交互和实现</li>
-<li> arthas-demo：示例代码</li>
-<li> arthas-memorycompiler：内存编绎器代码</li>
-<li> arthas-packaging：maven 打包相关的</li>
-<li> arthas-site：arthas 站点</li>
-<li> arthas-spy：编织到目标类中的各个切面</li>
-<li> static：静态资源</li>
-<li> arthas-testcase：测试</li>
-</ul>
-<h3 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h3><p>Arthas 提供的功能主要可以分为以下三个方面：</p>
-<ol>
-<li>信息监控<ul>
-<li>进程运行基本信息包括：内存、CPU 占用、线程信息、线程堆栈、线程数统计、环境变量信息。</li>
-<li>对象信息：类对象静态属性、 Mbean 的属性信息、已加载类信息、类加载器、类方法信息。</li>
-</ul>
-</li>
-<li>方法调用<ul>
-<li>方法调用入参、返回值查看。</li>
-<li>方法被调用的调用路径、调用耗时、方法调用次数、成功次数、失败次数等统计。</li>
-<li>记录和重做方法调用。</li>
-</ul>
-</li>
-<li>类文件处理<ul>
-<li> dump 已加载类的字节码、字节码反编译、类编译、类重新热加载。</li>
-</ul>
-</li>
-</ol>
-<h3 id="模块关系"><a href="#模块关系" class="headerlink" title="模块关系"></a>模块关系</h3><p>整体宏观模块调用图：</p>
-<p><img src="/images/2020/08/1596698216827.png" alt="1596698216827" loading="lazy"></p>
-<p>模块描述：</p>
-<p><img src="/images/2020/08/1596616373228.png" alt="1596616373228" loading="lazy"></p>
-<h3 id="核心类描述"><a href="#核心类描述" class="headerlink" title="核心类描述"></a>核心类描述</h3><p>核心类描述：</p>
-<p><img src="/images/2020/08/1596710846489.png" alt="1596710846489" loading="lazy"></p>
-<p>核心类描述（精简版）</p>
-<p><img src="/images/2020/08/1596700025625.png" alt="1596700025625" loading="lazy"></p>
-<h3 id="常用命令汇总"><a href="#常用命令汇总" class="headerlink" title="常用命令汇总"></a>常用命令汇总</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2lzc3Vlcy8xMDAz">Arthas 常用命令汇总<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="/images/2020/08/1596701687793.png" alt="1596701687793" loading="lazy"></p>
+        <h3 id="logger-命令"><a href="#logger-命令" class="headerlink" title="logger 命令"></a>logger 命令</h3><h4 id="方法介绍"><a href="#方法介绍" class="headerlink" title="方法介绍"></a>方法介绍</h4><p>查看 logger 信息，更新 logger level。</p>
+<p>官方文档：<span class="exturl" data-url="aHR0cHM6Ly9hbGliYWJhLmdpdGh1Yi5pby9hcnRoYXMvbG9nZ2VyLmh0bWw=">https://alibaba.github.io/arthas/logger.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>帮助信息：</p>
+<p><img src="/images/2020/08/1597912401412.png" alt="1597912401412" loading="lazy"></p>
+<h3 id="使用-logger-命令"><a href="#使用-logger-命令" class="headerlink" title="使用 logger 命令"></a>使用 logger 命令</h3><h4 id="修改默认日志级别"><a href="#修改默认日志级别" class="headerlink" title="修改默认日志级别"></a>修改默认日志级别</h4><p>使用 <code>logger</code> 命令打印的结果是（默认 <code> --name ROOT</code>）：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ logger
+ name                ROOT
+ <span class="token keyword">class</span>               ch<span class="token punctuation">.</span>qos<span class="token punctuation">.</span>logback<span class="token punctuation">.</span>classic<span class="token punctuation">.</span>Logger
+ classLoader         sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$AppClassLoader</span>@73d16e93
+ classLoaderHash     73d16e93
+ level               INFO
+ effectiveLevel      INFO
+ additivity          true
+ codeSource          file:<span class="token operator">/</span>E:<span class="token operator">/</span>code<span class="token operator">/</span>Java<span class="token operator">/</span>repository<span class="token operator">/</span>ch<span class="token operator">/</span>qos<span class="token operator">/</span>logback<span class="token operator">/</span>logback<span class="token operator">-</span>classic<span class="token operator">/</span>1<span class="token punctuation">.</span>2<span class="token punctuation">.</span>3<span class="token operator">/</span>logback<span class="token operator">-</span>classic<span class="token operator">-</span>1<span class="token punctuation">.</span>2<span class="token punctuation">.</span>3<span class="token punctuation">.</span>jar
+ appenders           name            CONSOLE
+                     <span class="token keyword">class</span>           ch<span class="token punctuation">.</span>qos<span class="token punctuation">.</span>logback<span class="token punctuation">.</span>core<span class="token punctuation">.</span>ConsoleAppender
+                     classLoader     sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$AppClassLoader</span>@73d16e93
+                     classLoaderHash 73d16e93
+                     target          System<span class="token punctuation">.</span>out
+                     name            FILE
+                     <span class="token keyword">class</span>           ch<span class="token punctuation">.</span>qos<span class="token punctuation">.</span>logback<span class="token punctuation">.</span>core<span class="token punctuation">.</span>rolling<span class="token punctuation">.</span>RollingFileAppender
+                     classLoader     sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$AppClassLoader</span>@73d16e93
+                     classLoaderHash 73d16e93
+                     file            C:\Users\HZWEIY~1\AppData\Local\Temp\<span class="token operator">/</span>spring<span class="token punctuation">.</span>log
+                     name            INFO_FILE
+                     <span class="token keyword">class</span>           ch<span class="token punctuation">.</span>qos<span class="token punctuation">.</span>logback<span class="token punctuation">.</span>core<span class="token punctuation">.</span>rolling<span class="token punctuation">.</span>RollingFileAppender
+                     classLoader     sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$AppClassLoader</span>@73d16e93
+                     classLoaderHash 73d16e93
+                     file            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span>log<span class="token operator">/</span>info<span class="token punctuation">.</span>log
+                     name            ERROR_FILE
+                     <span class="token keyword">class</span>           ch<span class="token punctuation">.</span>qos<span class="token punctuation">.</span>logback<span class="token punctuation">.</span>core<span class="token punctuation">.</span>rolling<span class="token punctuation">.</span>RollingFileAppender
+                     classLoader     sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$AppClassLoader</span>@73d16e93
+                     classLoaderHash 73d16e93
+                     file            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">/</span>log<span class="token operator">/</span>error<span class="token punctuation">.</span>log</code></pre>
+
+<p>修改日志级别为 <code>debug</code>：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ logger <span class="token operator">--</span>name ROOT <span class="token operator">--</span>level debug
+Update logger level success<span class="token punctuation">.</span></code></pre>
+
+<h4 id="修改方法日志级别"><a href="#修改方法日志级别" class="headerlink" title="修改方法日志级别"></a>修改方法日志级别</h4><p>查看指定类的 logger 信息：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ logger  <span class="token operator">-</span>n sample<span class="token punctuation">.</span>mybatis<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span>CompanyMapper
+ name                sample<span class="token punctuation">.</span>mybatis<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span>CompanyMapper
+ <span class="token keyword">class</span>               ch<span class="token punctuation">.</span>qos<span class="token punctuation">.</span>logback<span class="token punctuation">.</span>classic<span class="token punctuation">.</span>Logger
+ classLoader         sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$AppClassLoader</span>@73d16e93
+ classLoaderHash     73d16e93
+ level               null
+ effectiveLevel      DEBUG
+ additivity          true
+ codeSource          file:<span class="token operator">/</span>E:<span class="token operator">/</span>code<span class="token operator">/</span>Java<span class="token operator">/</span>repository<span class="token operator">/</span>ch<span class="token operator">/</span>qos<span class="token operator">/</span>logback<span class="token operator">/</span>logback<span class="token operator">-</span>classic<span class="token operator">/</span>1<span class="token punctuation">.</span>2<span class="token punctuation">.</span>3<span class="token operator">/</span>logback<span class="token operator">-</span>classic<span class="token operator">-</span>1<span class="token punctuation">.</span>2<span class="token punctuation">.</span>3<span class="token punctuation">.</span>jar</code></pre>
+
+<p>修改日志级别：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ logger  <span class="token operator">-</span>n sample<span class="token punctuation">.</span>mybatis<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span>CompanyMapper <span class="token operator">-</span>l debug
+Update logger level success<span class="token punctuation">.</span></code></pre>
+
+<h3 id="使用-ongl-命令"><a href="#使用-ongl-命令" class="headerlink" title="使用 ongl 命令"></a>使用 ongl 命令</h3><h4 id="修改默认日志级别-1"><a href="#修改默认日志级别-1" class="headerlink" title="修改默认日志级别"></a>修改默认日志级别</h4><p>获取默认日志级别：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ ognl <span class="token string">'@org.slf4j.LoggerFactory@getLogger("root")'</span>
+@Logger<span class="token punctuation">[</span>
+    serialVersionUID=@Long<span class="token punctuation">[</span>5454405123156820674<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    FQCN=@String<span class="token namespace">[ch.qos.logback.classic.Logger]</span><span class="token punctuation">,</span>
+    name=@String<span class="token namespace">[ROOT]</span><span class="token punctuation">,</span>
+    level=@Level<span class="token namespace">[INFO]</span><span class="token punctuation">,</span>
+    effectiveLevelInt=@Integer<span class="token punctuation">[</span>20000<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    parent=null<span class="token punctuation">,</span>
+    childrenList=@CopyOnWriteArrayList<span class="token namespace">[isEmpty=false;size=3]</span><span class="token punctuation">,</span>
+    aai=@AppenderAttachableImpl<span class="token namespace">[ch.qos.logback.core.spi.AppenderAttachableImpl@3a0771d0]</span><span class="token punctuation">,</span>
+    additive=@Boolean<span class="token namespace">[true]</span><span class="token punctuation">,</span>
+    loggerContext=@LoggerContext<span class="token namespace">[ch.qos.logback.classic.LoggerContext[default]]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span></code></pre>
+
+<p>修改日志级别为 <code>debug</code>：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ ognl <span class="token string">'@org.slf4j.LoggerFactory@getLogger("root").setLevel(@ch.qos.logback.classic.Level@DEBUG)'</span>
+null</code></pre>
+
+<h4 id="修改方法日志级别-1"><a href="#修改方法日志级别-1" class="headerlink" title="修改方法日志级别"></a>修改方法日志级别</h4><p>获取方法日志级别：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ ognl <span class="token string">'@sample.mybatis.SampleXmlApplication@log'</span>
+@Logger<span class="token punctuation">[</span>
+    serialVersionUID=@Long<span class="token punctuation">[</span>5454405123156820674<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    FQCN=@String<span class="token namespace">[ch.qos.logback.classic.Logger]</span><span class="token punctuation">,</span>
+    name=@String<span class="token namespace">[sample.mybatis.SampleXmlApplication]</span><span class="token punctuation">,</span>
+    level=null<span class="token punctuation">,</span>
+    effectiveLevelInt=@Integer<span class="token punctuation">[</span>20000<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    parent=@Logger<span class="token namespace">[Logger[sample.mybatis]]</span><span class="token punctuation">,</span>
+    childrenList=null<span class="token punctuation">,</span>
+    aai=null<span class="token punctuation">,</span>
+    additive=@Boolean<span class="token namespace">[true]</span><span class="token punctuation">,</span>
+    loggerContext=@LoggerContext<span class="token namespace">[ch.qos.logback.classic.LoggerContext[default]]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span></code></pre>
+
+<p>修改日志级别：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ ognl <span class="token string">'@sample.mybatis.SampleXmlApplication@log.setLevel(@ch.qos.logback.classic.Level@DEBUG)'</span>
+null</code></pre>
+
+<h4 id="查看日志配置"><a href="#查看日志配置" class="headerlink" title="查看日志配置"></a>查看日志配置</h4><pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ ognl <span class="token string">'@org.slf4j.LoggerFactory@getLogger("root").loggerContext.objectMap'</span>
+@HashMap<span class="token punctuation">[</span>
+    @String<span class="token namespace">[EVALUATOR_MAP]</span>:@HashMap<span class="token namespace">[isEmpty=true;size=0]</span><span class="token punctuation">,</span>
+    @String<span class="token namespace">[RFA_FILENAME_PATTERN_COLLISION_MAP]</span>:@HashMap<span class="token namespace">[isEmpty=false;size=3]</span><span class="token punctuation">,</span>
+    @String<span class="token namespace">[PATTERN_RULE_REGISTRY]</span>:@HashMap<span class="token namespace">[isEmpty=false;size=3]</span><span class="token punctuation">,</span>
+    @String<span class="token namespace">[CONFIGURATION_WATCH_LIST]</span>:@ConfigurationWatchList<span class="token namespace">[ch.qos.logback.core.joran.spi.ConfigurationWatchList@68ec0e24]</span><span class="token punctuation">,</span>
+    @String<span class="token namespace">[org.springframework.boot.logging.LoggingSystem]</span>:@Object<span class="token namespace">[java.lang.Object@5336a68d]</span><span class="token punctuation">,</span>
+    @String<span class="token namespace">[RECONFIGURE_ON_CHANGE_TASK]</span>:@ReconfigureOnChangeTask<span class="token namespace">[ReconfigureOnChangeTask(born:1597910258119)]</span><span class="token punctuation">,</span>
+    @String<span class="token namespace">[FA_FILENAME_COLLISION_MAP]</span>:@HashMap<span class="token namespace">[isEmpty=false;size=3]</span><span class="token punctuation">,</span>
+    @String<span class="token namespace">[SAFE_JORAN_CONFIGURATION]</span>:@ArrayList<span class="token namespace">[isEmpty=false;size=135]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span></code></pre>
+
+<p>查看日志配置文件加载位置：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@23176]</span>$ ognl <span class="token string">'#map1=@org.slf4j.LoggerFactory@getLogger("root").loggerContext.objectMap, #map1.get("CONFIGURATION_WATCH_LIST")'</span>
+@ConfigurationWatchList<span class="token punctuation">[</span>
+    mainURL=@URL<span class="token namespace">[file:/C:/Codes/JavaWorkSpace/workspace48/arthas-demo/target/classes/logback.xml]</span><span class="token punctuation">,</span>
+    fileWatchList=@ArrayList<span class="token namespace">[isEmpty=false;size=1]</span><span class="token punctuation">,</span>
+    lastModifiedList=@ArrayList<span class="token namespace">[isEmpty=false;size=1]</span><span class="token punctuation">,</span>
+    noContextWarning=@Integer<span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    context=@LoggerContext<span class="token namespace">[ch.qos.logback.classic.LoggerContext[default]]</span><span class="token punctuation">,</span>
+    declaredOrigin=@ConfigurationWatchList<span class="token namespace">[ch.qos.logback.core.joran.spi.ConfigurationWatchList@68ec0e24]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span></code></pre>
+
 
     </div>
 
@@ -479,6 +544,9 @@
       <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
     </li>
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-02-Arthas之各模块简介\" rel="bookmark">Arthas 之各模块简介</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas 之 jad 反编译原理</a></div>
     </li>
     <li class="popular-posts-item">
@@ -486,9 +554,6 @@
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-Arthas之定位方法调用问题\" rel="bookmark">Arthas 之定位方法调用问题</a></div>
     </li>
   </ul>
 
@@ -506,13 +571,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/2020-07-31-%E8%BF%81%E7%A7%BBVMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%87%B3%E5%BE%AE%E8%BD%AFHyper-V/" rel="prev" title="迁移 VMware 虚拟机至微软 Hyper-V">
-      <i class="fa fa-chevron-left"></i> 迁移 VMware 虚拟机至微软 Hyper-V
+    <a href="/2020/08/2020-08-19-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%96%B0%E5%A2%9E%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="prev" title="为博客新增评论系统">
+      <i class="fa fa-chevron-left"></i> 为博客新增评论系统
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/2020-08-03-Arthas%E4%B9%8B%E6%BA%90%E7%A0%81%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90/" rel="next" title="Arthas 之源码简要分析">
-      Arthas 之源码简要分析 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -777,7 +839,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'jueee.github.io',
       owner       : 'jueee',
       admin       : ['jueee'],
-      id          : '84ce6493ea3fcb22dbdd1d41b3fd6695',
+      id          : '10fb99258b3ddb8d11703e998f602f5e',
         language: 'zh-CN',
       distractionFreeMode: true
     });
