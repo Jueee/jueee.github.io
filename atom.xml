@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jueee.github.io/"/>
-  <updated>2020-08-21T11:11:05.637Z</updated>
+  <updated>2020-08-24T01:41:31.578Z</updated>
   <id>https://jueee.github.io/</id>
   
   <author>
@@ -21,23 +21,19 @@
     <link href="https://jueee.github.io/2020/08/2020-08-21-%E9%80%9A%E8%BF%87UnxUtils%E5%9C%A8Windows%E4%B8%8A%E4%BD%BF%E7%94%A8Unix%E5%91%BD%E4%BB%A4/"/>
     <id>https://jueee.github.io/2020/08/2020-08-21-%E9%80%9A%E8%BF%87UnxUtils%E5%9C%A8Windows%E4%B8%8A%E4%BD%BF%E7%94%A8Unix%E5%91%BD%E4%BB%A4/</id>
     <published>2020-08-21T00:00:00.000Z</published>
-    <updated>2020-08-21T11:11:05.637Z</updated>
+    <updated>2020-08-24T01:41:31.578Z</updated>
     
-    <content type="html"><![CDATA[<p>UnxUtils 是一个可以支持<strong>在 Windows 下使用 linux 命令的工具</strong>，用习惯了 linux 之后，感觉 Windows 的 dos 命令实在是太难用了，发现了这个工具，非常的小，装了它之后，把路径加入到环境变量中就支持常用的 linux 命令了。</p><p>介绍：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVW54VXRpbHM=">https://en.wikipedia.org/wiki/UnxUtils<i class="fa fa-external-link-alt"></i></span></p><p>下载：<span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2Vmb3JnZS5uZXQvcHJvamVjdHMvdW54dXRpbHMv">https://sourceforge.net/projects/unxutils/<i class="fa fa-external-link-alt"></i></span></p><p>下载完成后，解压 UnxUtils.zip，然后把 UnxUtils 这个目录下的 \usr\local\wbin 加入到环境变量里面就可以了。</p><p><img src="/images/2020/08/1598008019072.png" alt="1598008019072" loading="lazy"></p>]]></content>
+    <content type="html"><![CDATA[<p>UnxUtils 是一个可以支持<strong>在 Windows 下使用 linux 命令的工具</strong>，用习惯了 linux 之后，感觉 Windows 的 dos 命令实在是太难用了，发现了这个工具，非常的小，装了它之后，把路径加入到环境变量中就支持常用的 linux 命令了。</p><a id="more"></a><p>介绍：<span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVW54VXRpbHM=">https://en.wikipedia.org/wiki/UnxUtils<i class="fa fa-external-link-alt"></i></span></p><p>下载：<span class="exturl" data-url="aHR0cHM6Ly9zb3VyY2Vmb3JnZS5uZXQvcHJvamVjdHMvdW54dXRpbHMv">https://sourceforge.net/projects/unxutils/<i class="fa fa-external-link-alt"></i></span></p><p>下载完成后，解压 UnxUtils.zip，然后把 UnxUtils 这个目录下的 \usr\local\wbin 加入到环境变量里面就可以了。</p><p><img src="/images/2020/08/1598008019072.png" alt="1598008019072" loading="lazy"></p>]]></content>
     
     <summary type="html">
     
-      UnxUtils是一个可以支持**在Windows下使用linux命令的工具**，用习惯了linux之后，感觉Windows的dos命令实在是太难用了，发现了这个工具，非常的小，装了它之后，把路径加入到环境变量中就支持常用的linux命令了。
+      &lt;p&gt;UnxUtils 是一个可以支持&lt;strong&gt;在 Windows 下使用 linux 命令的工具&lt;/strong&gt;，用习惯了 linux 之后，感觉 Windows 的 dos 命令实在是太难用了，发现了这个工具，非常的小，装了它之后，把路径加入到环境变量中就支持常用的 linux 命令了。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="Windows" scheme="https://jueee.github.io/categories/Windows/"/>
+      <category term="软件" scheme="https://jueee.github.io/categories/%E8%BD%AF%E4%BB%B6/"/>
     
-      <category term="软件" scheme="https://jueee.github.io/categories/Windows/%E8%BD%AF%E4%BB%B6/"/>
-    
-    
-      <category term="Windows" scheme="https://jueee.github.io/tags/Windows/"/>
     
       <category term="软件" scheme="https://jueee.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
     
@@ -347,7 +343,7 @@
     <link href="https://jueee.github.io/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/"/>
     <id>https://jueee.github.io/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/</id>
     <published>2020-08-12T00:00:00.000Z</published>
-    <updated>2020-08-19T03:26:36.044Z</updated>
+    <updated>2020-08-24T01:38:25.917Z</updated>
     
     <content type="html"><![CDATA[<h3 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h3><p>SpeedyFox 是一个超级简单的工具，一个单窗口，没有选项的工具来优化浏览器的性能。</p><p>SpeedyFox 声称通过对 SQLITE 数据库进行碎片整理来加速浏览器。它说，这些数据库随着时间的推移而变得变形，减慢了启动速度，并推迟了使用 Cookie 和历史记录的操作。</p><h3 id="下载网址"><a href="#下载网址" class="headerlink" title="下载网址"></a>下载网址</h3><blockquote><p><span class="exturl" data-url="aHR0cHM6Ly9jcnlzdGFsaWRlYS5jb20vc3BlZWR5Zm94">https://crystalidea.com/speedyfox<i class="fa fa-external-link-alt"></i></span></p></blockquote><h3 id="使用软件"><a href="#使用软件" class="headerlink" title="使用软件"></a>使用软件</h3><p>Edge 浏览器，Chrome、Firefox 等浏览器，以及大部分国产浏览器，都可以使用。SpeedyFox 能自动识别，浏览器的配置文件路径。</p><p>所以，打开软件，只要直接点击 Optimize 按钮就行了，不需要复杂的配置。</p><p>优化过程可能需要 5 秒钟到一分钟，具体取决于数据库的大小。整个优化过程很安全，因为它不会影响您的历史记录，书签，密码等。</p><p>根据您的浏览活动，建议每 1-2 周对您的个人资料进行一次优化。</p><p>如下图所示：</p><p><img src="/images/2020/08/1597286104064.png" alt="1597286104064" loading="lazy"></p>]]></content>
     
@@ -358,12 +354,8 @@
     </summary>
     
     
-      <category term="Windows" scheme="https://jueee.github.io/categories/Windows/"/>
+      <category term="软件" scheme="https://jueee.github.io/categories/%E8%BD%AF%E4%BB%B6/"/>
     
-      <category term="软件" scheme="https://jueee.github.io/categories/Windows/%E8%BD%AF%E4%BB%B6/"/>
-    
-    
-      <category term="Windows" scheme="https://jueee.github.io/tags/Windows/"/>
     
       <category term="软件" scheme="https://jueee.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
     
@@ -501,9 +493,9 @@
     <link href="https://jueee.github.io/2020/08/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/"/>
     <id>https://jueee.github.io/2020/08/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/</id>
     <published>2020-08-07T00:00:00.000Z</published>
-    <updated>2020-08-21T11:11:05.558Z</updated>
+    <updated>2020-08-21T11:13:03.520Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="博客介绍"><a href="#博客介绍" class="headerlink" title="博客介绍"></a>博客介绍</h3><p>博客预览地址：<span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p><h3 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvdGhlbWUtbmV4dC1kb2Nz">https://github.com/next-theme/theme-next-docs<i class="fa fa-external-link-alt"></i></span></p><p>在本地安装：</p><pre class="language-shell" data-language="shell"><code class="language-shell">git clone https://github.com/next-theme/theme-next-docscd theme-next-docsnpm install</code></pre><p>生成：</p><pre class="language-none"><code class="language-none">npx hexo generate</code></pre><p>运行：</p><pre class="language-none"><code class="language-none">npx hexo server</code></pre><h3 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">https://github.com/next-theme/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p><h3 id="发布到github-io"><a href="#发布到github-io" class="headerlink" title="发布到github.io"></a>发布到 github.io</h3><p>在 hexo 下的_config.yml 文件中配置：</p><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>  <span class="token key atrule">type</span><span class="token punctuation">:</span> git  <span class="token key atrule">repository</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>Jueee/jueee.github.io.git  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master</code></pre><p>安装插件：</p><pre class="language-none"><code class="language-none">npm install hexo-deployer-git --save</code></pre><p>打开你的 git bash，输入 <code>hexo d</code> 就会将本次有改动的代码全部提交，没有改动的不会：</p><pre class="language-none"><code class="language-none">$ npx hexo g -d</code></pre><p>【注】部署这个命令一定要用 git bash，否则会提示 <code>Permission denied (publickey).</code></p><p>此时，会在项目中生成 <code>.deploy_git</code> 文件夹。</p><p>打开 git bash，切换到 hexo/.deploy_git，执行</p><pre class="language-none"><code class="language-none">git init</code></pre><p>再绑定远程仓库</p><pre class="language-none"><code class="language-none">git remote add origin git@github.com:jueee/jueee.github.io.git</code></pre><p>回到 cmd 命令行</p><pre class="language-none"><code class="language-none">$ npx hexo g -d</code></pre><p>搞定了，成功提交了正确的博客内容。</p><h3 id="常用hexo命令"><a href="#常用hexo命令" class="headerlink" title="常用hexo命令"></a>常用 hexo 命令</h3><p>常见命令</p><pre class="language-none"><code class="language-none">hexo new "postName" #新建文章hexo new page "pageName" #新建页面hexo generate #生成静态页面至public目录hexo server #开启预览访问端口（默认端口4000，'ctrl + c'关闭server）hexo deploy #部署到GitHubhexo help  # 查看帮助hexo version  #查看Hexo的版本</code></pre><p>缩写：</p><pre class="language-none"><code class="language-none">hexo n == hexo newhexo g == hexo generatehexo s == hexo serverhexo d == hexo deploy</code></pre><p>组合命令：</p><pre class="language-none"><code class="language-none">hexo s -g #生成并本地预览hexo d -g #生成并上传</code></pre><h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><h4 id="问题一："><a href="#问题一：" class="headerlink" title="问题一："></a>问题一：</h4><p><img src="assets/image-20200821165728975.png" alt="image-20200821165728975" loading="lazy"></p><p>解决方法：<br>配置 git 环境变量，将 <code>C:\Program Files\Git\cmd</code>（具体根据 git 安装目录）添加到系统变量 path 中</p><h4 id="问题二："><a href="#问题二：" class="headerlink" title="问题二："></a>问题二：</h4><pre class="language-none"><code class="language-none">PS E:\code\GitHub\Jueee\jueee-blog&gt; npx hexo clean(node:44956) ExperimentalWarning: The fs.promises API is experimentalERROR { err:   E:\code\GitHub\Jueee\jueee-blog\node_modules\hexo-theme-next\package.json:2     "_from": "hexo-theme-next@8.0.0-rc.5",</code></pre><p>查看 node 版本</p><pre class="language-none"><code class="language-none">node -vv10.16.0npm -v6.9.0</code></pre><p>需要升级 node 到最新版。</p><p>下载地址：<span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL3poLWNuL2Rvd25sb2FkLw==">https://nodejs.org/zh-cn/download/<i class="fa fa-external-link-alt"></i></span></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="博客介绍"><a href="#博客介绍" class="headerlink" title="博客介绍"></a>博客介绍</h3><p>博客预览地址：<span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p><h3 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvdGhlbWUtbmV4dC1kb2Nz">https://github.com/next-theme/theme-next-docs<i class="fa fa-external-link-alt"></i></span></p><p>在本地安装：</p><pre class="language-shell" data-language="shell"><code class="language-shell">git clone https://github.com/next-theme/theme-next-docscd theme-next-docsnpm install</code></pre><p>生成：</p><pre class="language-none"><code class="language-none">npx hexo generate</code></pre><p>运行：</p><pre class="language-none"><code class="language-none">npx hexo server</code></pre><h3 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">https://github.com/next-theme/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p><h3 id="发布到github-io"><a href="#发布到github-io" class="headerlink" title="发布到github.io"></a>发布到 github.io</h3><p>在 hexo 下的_config.yml 文件中配置：</p><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>  <span class="token key atrule">type</span><span class="token punctuation">:</span> git  <span class="token key atrule">repository</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>Jueee/jueee.github.io.git  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master</code></pre><p>安装插件：</p><pre class="language-none"><code class="language-none">npm install hexo-deployer-git --save</code></pre><p>打开你的 git bash，输入 <code>hexo d</code> 就会将本次有改动的代码全部提交，没有改动的不会：</p><pre class="language-none"><code class="language-none">$ npx hexo g -d</code></pre><p>【注】部署这个命令一定要用 git bash，否则会提示 <code>Permission denied (publickey).</code></p><p>此时，会在项目中生成 <code>.deploy_git</code> 文件夹。</p><p>打开 git bash，切换到 hexo/.deploy_git，执行</p><pre class="language-none"><code class="language-none">git init</code></pre><p>再绑定远程仓库</p><pre class="language-none"><code class="language-none">git remote add origin git@github.com:jueee/jueee.github.io.git</code></pre><p>回到 cmd 命令行</p><pre class="language-none"><code class="language-none">$ npx hexo g -d</code></pre><p>搞定了，成功提交了正确的博客内容。</p><h3 id="常用hexo命令"><a href="#常用hexo命令" class="headerlink" title="常用hexo命令"></a>常用 hexo 命令</h3><p>常见命令</p><pre class="language-none"><code class="language-none">hexo new "postName" #新建文章hexo new page "pageName" #新建页面hexo generate #生成静态页面至public目录hexo server #开启预览访问端口（默认端口4000，'ctrl + c'关闭server）hexo deploy #部署到GitHubhexo help  # 查看帮助hexo version  #查看Hexo的版本</code></pre><p>缩写：</p><pre class="language-none"><code class="language-none">hexo n == hexo newhexo g == hexo generatehexo s == hexo serverhexo d == hexo deploy</code></pre><p>组合命令：</p><pre class="language-none"><code class="language-none">hexo s -g #生成并本地预览hexo d -g #生成并上传</code></pre><h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><h4 id="问题一："><a href="#问题一：" class="headerlink" title="问题一："></a>问题一：</h4><p><img src="/images/2020/08/image-20200821165728975.png" alt="image-20200821165728975" loading="lazy"></p><p>解决方法：<br>配置 git 环境变量，将 <code>C:\Program Files\Git\cmd</code>（具体根据 git 安装目录）添加到系统变量 path 中</p><h4 id="问题二："><a href="#问题二：" class="headerlink" title="问题二："></a>问题二：</h4><pre class="language-none"><code class="language-none">PS E:\code\GitHub\Jueee\jueee-blog&gt; npx hexo clean(node:44956) ExperimentalWarning: The fs.promises API is experimentalERROR { err:   E:\code\GitHub\Jueee\jueee-blog\node_modules\hexo-theme-next\package.json:2     "_from": "hexo-theme-next@8.0.0-rc.5",</code></pre><p>查看 node 版本</p><pre class="language-none"><code class="language-none">node -vv10.16.0npm -v6.9.0</code></pre><p>需要升级 node 到最新版。</p><p>下载地址：<span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL3poLWNuL2Rvd25sb2FkLw==">https://nodejs.org/zh-cn/download/<i class="fa fa-external-link-alt"></i></span></p>]]></content>
     
     <summary type="html">
     
