@@ -45,6 +45,29 @@
   </entry>
   
   <entry>
+    <title>Java 的 JIT 知识整理</title>
+    <link href="https://jueee.github.io/2020/08/2020-08-27-Java%E7%9A%84JIT%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/"/>
+    <id>https://jueee.github.io/2020/08/2020-08-27-Java%E7%9A%84JIT%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/</id>
+    <published>2020-08-27T00:00:00.000Z</published>
+    <updated>2020-08-27T11:13:14.950Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="JIT-介绍"><a href="#JIT-介绍" class="headerlink" title="JIT 介绍"></a>JIT 介绍</h3><p>JIT 编译器（just in time 即时编译器），当虚拟机发现某个方法或代码块运行特别频繁时，就会把这些代码认定为 热点代码（Hot Spot Code），为了提高热点代码的执行效率，在运行时，虚拟机将会把这些代码编译成与本地平台相关的机器码，并进行各层次的优化，完成这项任务的正是 <strong>JIT 编译器</strong>。</p><a id="more"></a><h3 id="JIT的工作原理"><a href="#JIT的工作原理" class="headerlink" title="JIT的工作原理"></a>JIT 的工作原理</h3><p><img src="/images/2020/08/1598525622168.png" alt="1598525622168" loading="lazy"></p><h3 id="JIT编译"><a href="#JIT编译" class="headerlink" title="JIT编译"></a>JIT 编译</h3><p>对于 Java 代码，刚开始都是<code>被编译器编译成字节码文件</code>，<code>然后字节码文件会被交由 JVM 解释执行</code>，所以可以说 Java 本身是一种<strong>半编译半解释执行的语言</strong>。</p><p>当 JIT 编译启用时（默认是启用的），JVM 读入<code>.class文件解释后</code>，将其<code>发给JIT编译器</code>。JIT 编译器<code>将字节码编译成本机机器代码</code>。</p><p>通常 <code>Javac将程序源码编译</code>，<code>转换成java字节码</code>，<code>JVM通过解释字节码将其翻译成相应的机器指令</code>，逐条读入，逐条解释翻译。<br> 经过解释运行，其运行速度必定会比可运行的二进制字节码程序慢。为了提高运行速度，引入了 JIT 技术。</p><p>在执行时 JIT 会把翻译过的机器码保存起来，已备下次使用，因此从理论上来说，采用该 JIT 技术能够，能够接近曾经纯编译技术。</p><p>运行过程中会被即时编译器编译的<code>热点代码</code>有两类：<strong>被多次调用的方法</strong>、<strong>被多次调用的循环体</strong>。<br>这两种情况，编译器都是以<strong>整个方法作为编译对象</strong>，这种编译也是虚拟机中标准的编译方式。要知道一段代码或方法是不是热点代码，是不是需要触发即时编译，需要进行 <code>Hot Spot Detection（热点探测）</code>。</p><h3 id="热点判定方式"><a href="#热点判定方式" class="headerlink" title="热点判定方式"></a>热点判定方式</h3><p>目前主要的热点 判定方式有以下两种：</p><ol><li><strong>基于采样的热点探测</strong>：<br> 采用这种方法的虚拟机会周期性地检查各个线程的栈顶，如果发现某些方法经常出现在栈顶，那这段方法代码就是 “热点代码”。这种探测方法的好处是实现简单高效，还可以很容易地获取方法调用关系，缺点是很难精确地确认一个方法的热度，容易因为受到线程阻塞或别的外界因素的影响而扰乱热点探测。</li><li><strong>基于计数器的热点探测</strong>：<br> 采用这种方法的虚拟机会为每个方法，甚至是代码块建立计数器，统计方法的执行次数，如果执行次数超过一定的阀值，就认为它是 “热点方法”。这种统计方法实现复杂一些，需要为每个方法建立并维护计数器，而且不能直接获取到方法的调用关系，但是它的统计结果相对更加精确严谨。</li></ol><p>HotSpot 虚拟机中使用的是第二种: <strong>基于计数器的热点探测方法</strong>，因此它为每个方法准备了两个计数器：<code>方法调用计数器和回边计数器</code>。</p><ul><li><p><strong>方法调用计数器</strong></p><p>方法调用计数器用来统计方法调用的次数，在默认设置下，方法调用计数器统计的并不是方法被调用的绝对次数，而是一个相对的执行频率，即一段时间内方法被调用的次数。</p></li><li><p><strong>回边计数器</strong></p><p>用于统计一个方法中循环体代码执行的次数（准确地说，应该是回边的次数，因为并非所有的循环都是回边），在字节码中遇到控制流向后跳转的指令就称为 “回边”。</p></li></ul><p>方法调用计数器触发即时编译的流程：</p><p><img src="/images/2020/08/1598525962562.png" alt="1598525962562" loading="lazy"></p><h3 id="设置热点阈值"><a href="#设置热点阈值" class="headerlink" title="设置热点阈值"></a>设置热点阈值</h3><p>一段代码需要执行多少次才会触发 JIT 优化呢？通常这个值由 <code>-XX:CompileThreshold</code> 参数进行设置：</p><ol><li><p>使用 client 编译器时，默认为 1500。</p></li><li><p>使用 server 编译器时，默认为 10000。</p></li></ol><h3 id="JIT优化"><a href="#JIT优化" class="headerlink" title="JIT优化"></a>JIT 优化</h3><ol><li><p><strong>开启服务端模式</strong></p><p>开启服务端模式以后就有即时编译器和解释器两种执行引擎，执行效率最高的是即时编译器，所以我们做 JIT 优化的目的是尽量使代码使用即时编译器</p><p>参数设置：<code>-server</code></p></li><li><p><strong>增加内联函数的可能性</strong></p><p>增加函数内联的可能性能减少栈帧的创建，节约内存空间</p><p>参数设置：</p><p>使用 final 修饰函数向编译器建议可以内联，启动参数不宜设置，注意只是建议，具体是否内联看 JVM 决定</p></li><li><p><strong>提高使用即时编译器的可能性</strong></p><p>小方法：写方法时尽量不要写得太大，让 JVM 尽可能使用即时编译器编译代码</p><p>在启动项配置参数 - XX:CompileThreshold=10000，使得一个方法被调用超过 10000 次以后使用即时编译器编译为机器码</p><p><strong>OSR 编译阈值</strong></p><ul><li><strong>调用计数器</strong>，即方法被调用的次数，CompileThreshold，该值是指当方法被调用多少次后，就编译为机器码，client 模式默认为 1500 次，server 模式默认为 1 万次，可以在启动时添加 - XX:CompileThreshold=10000 来设置该值。</li><li><strong>回边计数器</strong>，即方法中循环执行部分代码的执行次数，OnStackReplacePercentage，该值用于 / 参与计算是否触发 OSR 编译的阈值，client 默认为 933，sever 默认为 140，可以通过 - XX:OnStackReplacePercentage=140 来设置。</li></ul><p>client 模式下的计算规则为：</p><pre class="language-none"><code class="language-none">CompileThreshold*OnStackReplacePercentage/100</code></pre><p>server 模式下计算规则为：</p><pre class="language-none"><code class="language-none">CompileThreshold *（OnStackReplacePercentage-InterpreterProfilePercentage）/100</code></pre><p>InterpreterProfilePercentage，默认为 33。</p></li><li><p><strong>降低线程优先级</strong></p><p>Linux 不能设置，需要 root 权限</p></li><li><p><strong>热度衰减与半衰周期</strong></p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;JIT-介绍&quot;&gt;&lt;a href=&quot;#JIT-介绍&quot; class=&quot;headerlink&quot; title=&quot;JIT 介绍&quot;&gt;&lt;/a&gt;JIT 介绍&lt;/h3&gt;&lt;p&gt;JIT 编译器（just in time 即时编译器），当虚拟机发现某个方法或代码块运行特别频繁时，就会把这些代码认定为 热点代码（Hot Spot Code），为了提高热点代码的执行效率，在运行时，虚拟机将会把这些代码编译成与本地平台相关的机器码，并进行各层次的优化，完成这项任务的正是 &lt;strong&gt;JIT 编译器&lt;/strong&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="https://jueee.github.io/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="https://jueee.github.io/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Arthas 之热更新原理，并实现简易版热更新功能</title>
     <link href="https://jueee.github.io/2020/08/2020-08-26-Arthas%E4%B9%8B%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E7%89%88%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8A%9F%E8%83%BD/"/>
     <id>https://jueee.github.io/2020/08/2020-08-26-Arthas%E4%B9%8B%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86%EF%BC%8C%E5%B9%B6%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E7%89%88%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8A%9F%E8%83%BD/</id>
@@ -422,6 +445,29 @@
   </entry>
   
   <entry>
+    <title>Git 的 .gitconfig 文件配置汇总</title>
+    <link href="https://jueee.github.io/2020/08/2020-08-22-Git%20%E7%9A%84%20.gitconfig%20%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%B1%87%E6%80%BB/"/>
+    <id>https://jueee.github.io/2020/08/2020-08-22-Git%20%E7%9A%84%20.gitconfig%20%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%B1%87%E6%80%BB/</id>
+    <published>2020-08-13T00:00:00.000Z</published>
+    <updated>2020-08-27T11:13:14.943Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="http-postBuffer"><a href="#http-postBuffer" class="headerlink" title="http.postBuffer"></a>http.postBuffer</h3><p>在使用 git 推送项目时候出现 "<strong>fatal: The remote end hung up unexpectedly</strong> " 原因是推送的文件太大。</p><pre class="language-none"><code class="language-none">Connection reset by 140.82.113.4fatal: The remote end hung up unexpectedlyfatal: The remote end hung up unexpectedly[41mFATAL[49m {  err: Error: Spawn failed      at ChildProcess.&lt;anonymous&gt; (E:\code\GitHub\Jueee\jueee-blog\node_modules\hexo-deployer-git\node_modules\hexo-util\lib\spawn.js:51:21)      at ChildProcess.emit (events.js:315:20)      at ChildProcess.cp.emit (E:\code\GitHub\Jueee\jueee-blog\node_modules\cross-spawn\lib\enoent.js:34:29)      at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12) {    code: 128  }} Something's wrong. Maybe you can find the solution here: %s [4mhttps://hexo.io/docs/troubleshooting.html[24m</code></pre><p>解决方案</p><p>在克隆 / 创建版本库生成的 .git 目录下面修改生成的 config 文件或者 <code>.gitconfig</code>  文件增加如下：</p><pre class="language-none"><code class="language-none">[http]postBuffer = 524288000</code></pre><p>即修改提交缓存大小为 500M。</p>]]></content>
+    
+    <summary type="html">
+    
+      Git 的 .gitconfig 文件配置汇总
+    
+    </summary>
+    
+    
+      <category term="Git" scheme="https://jueee.github.io/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="https://jueee.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
     <title>浏览器提速软件 SpeedyFox</title>
     <link href="https://jueee.github.io/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/"/>
     <id>https://jueee.github.io/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/</id>
@@ -491,58 +537,6 @@
     
     
       <category term="Neo4j" scheme="https://jueee.github.io/tags/Neo4j/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客网址增加站点分析</title>
-    <link href="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/"/>
-    <id>https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/</id>
-    <published>2020-08-09T00:00:00.000Z</published>
-    <updated>2020-08-20T02:07:19.981Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="谷歌分析"><a href="#谷歌分析" class="headerlink" title="谷歌分析"></a>谷歌分析</h3><ol><li><p>创建一个帐户并登录 <span class="exturl" data-url="aHR0cHM6Ly9hbmFseXRpY3MuZ29vZ2xlLmNvbS8=">Google Analytics（分析）<i class="fa fa-external-link-alt"></i></span>。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYW5hbHl0aWNzLz9obD1lbiN0b3BpYz0zNTQ0OTA2">更详细的文档<i class="fa fa-external-link-alt"></i></span></p></li><li><p>编辑 主题配置文件并 <code>tracking_id</code> 在部分下填写 <code>google_analytics</code> 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 <code>UA-</code>。</p><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Google Analytics</span><span class="token key atrule">google_analytics</span><span class="token punctuation">:</span><span class="token key atrule">tracking_id</span><span class="token punctuation">:</span> UA<span class="token punctuation">-</span>XXXXXXXX<span class="token punctuation">-</span>X<span class="token key atrule">only_pageview</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre></li><li><p>当 field <code>only_pageview</code> 设置为 true 时，NexT 将仅向 <code>pageview</code>Google Analytics（分析）发送事件。<br>使用它而不是使用它的好处 <code>only_pageview: false</code> 是减少了站点上的外部脚本，这将为您提供更好的性能，但没有完整的分析功能。</p></li></ol><h3 id="百度分析"><a href="#百度分析" class="headerlink" title="百度分析"></a>百度分析</h3><ol><li><p>登录<span class="exturl" data-url="aHR0cHM6Ly90b25namkuYmFpZHUuY29tLw==">百度分析<i class="fa fa-external-link-alt"></i></span> 并找到网站代码获取页面。</p></li><li><p>在后面复制脚本 ID <code>hm.js?</code>，如下图：</p><p><img src="/images/2020/08/1597041510807.png" alt="1597041510807" loading="lazy"></p></li><li><p>编辑 主题配置文件并将部分更改 <code>baidu_analytics</code> 为您的脚本 ID。</p><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Baidu Analytics ID</span><span class="token key atrule">baidu_analytics</span><span class="token punctuation">:</span> your_id</code></pre></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;谷歌分析&quot;&gt;&lt;a href=&quot;#谷歌分析&quot; class=&quot;headerlink&quot; title=&quot;谷歌分析&quot;&gt;&lt;/a&gt;谷歌分析&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;创建一个帐户并登录 &lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly9h
-      
-    
-    </summary>
-    
-    
-      <category term="Blog" scheme="https://jueee.github.io/categories/Blog/"/>
-    
-    
-      <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客网址增加站点地图 sitemap</title>
-    <link href="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BEsitemap/"/>
-    <id>https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BEsitemap/</id>
-    <published>2020-08-09T00:00:00.000Z</published>
-    <updated>2020-08-20T02:07:19.985Z</updated>
-    
-    <content type="html"><![CDATA[<p>站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知 Google 和其他搜索引擎。Googlebot 等搜索引擎网页抓取工具会读取此文件，以便更加智能地抓取您的网站。</p><h3 id="站点地图"><a href="#站点地图" class="headerlink" title="站点地图"></a>站点地图</h3><p>站点地图是一个网站所有链接的容器。很多网站的连接层次比较深，爬虫很难抓取到，站点地图可以方便爬虫抓取网站页面，通过抓取网站页面，清晰了解网站的架构，网站地图一般存放在根目录下并命名 sitemap，为爬虫指路，增加网站重要内容页面的收录。</p><p>站点地图就是根据网站的结构、框架、内容，生成的导航网页文件。站点地图对于提高用户体验有好处，它们为网站访问者指明方向，并帮助迷失的访问者找到他们想看的页面。</p><h3 id="添加sitemap"><a href="#添加sitemap" class="headerlink" title="添加sitemap"></a>添加 sitemap</h3><ol><li><p>安装插件：</p><pre class="language-none"><code class="language-none">npm install hexo-generator-sitemap --savenpm install hexo-generator-baidu-sitemap --save</code></pre></li><li><p>在博客目录的_config.yml 中添加如下代码：</p><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># 自动生成sitemap</span><span class="token key atrule">sitemap</span><span class="token punctuation">:</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> sitemap.xml<span class="token key atrule">baidusitemap</span><span class="token punctuation">:</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> baidusitemap.xml</code></pre></li><li><p>编译博客</p><pre class="language-shell" data-language="shell"><code class="language-shell">npx hexo generate</code></pre></li><li><p>在你的博客根目录的 public 下面发现生成了 sitemap.xml 以及 baidusitemap.xml 就表示成功了。</p><p>如下图所示：</p><p><img src="/images/2020/08/1597229983009.png" alt="1597229983009" loading="lazy"></p></li></ol><h3 id="查看站点地图"><a href="#查看站点地图" class="headerlink" title="查看站点地图"></a>查看站点地图</h3><ul><li><a href="https://jueee.github.io/sitemap.xml">sitemap.xml</a></li><li><a href="https://jueee.github.io/baidusitemap.xml">baidusitemap.xml</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      站点地图是一种文件，您可以通过该文件列出您网站上的网页，从而将您网站内容的组织架构告知Google和其他搜索引擎。
-    
-    </summary>
-    
-    
-      <category term="Blog" scheme="https://jueee.github.io/categories/Blog/"/>
-    
-    
-      <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
-    
-      <category term="SEO" scheme="https://jueee.github.io/tags/SEO/"/>
     
   </entry>
   
