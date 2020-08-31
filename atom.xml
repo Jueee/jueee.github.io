@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jueee.github.io/"/>
-  <updated>2020-08-28T11:23:12.838Z</updated>
+  <updated>2020-08-31T10:59:21.951Z</updated>
   <id>https://jueee.github.io/</id>
   
   <author>
@@ -17,21 +17,77 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Ceph 常用命令行汇总</title>
+    <link href="https://jueee.github.io/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/"/>
+    <id>https://jueee.github.io/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/</id>
+    <published>2020-08-31T00:00:00.000Z</published>
+    <updated>2020-08-31T10:59:21.951Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="ceph-基础命令"><a href="#ceph-基础命令" class="headerlink" title="ceph 基础命令"></a>ceph 基础命令</h3><p>查看版本：</p><pre class="language-shell" data-language="shell"><code class="language-shell"># ceph -vceph version 15.2.4 (7447c15c6ff58d7fce91843b705a268a1917325c) octopus (stable)</code></pre><a id="more"></a><p>查看集群状态：</p><pre class="language-shell" data-language="shell"><code class="language-shell"># ceph -s  cluster:    id:     dacae2ee-013b-413c-83c9-7c1b96ec84f1    health: HEALTH_WARN            Degraded data redundancy: 32 pgs undersized  services:    mon: 2 daemons, quorum a,b (age 6d)    mgr: a(active, since 2w)    osd: 3 osds: 3 up (since 2w), 3 in (since 5w); 1 remapped pgs  data:    pools:   2 pools, 33 pgs    objects: 3 objects, 0 B    usage:   3.1 GiB used, 11 TiB / 11 TiB avail    pgs:     3/9 objects misplaced (33.333%)             32 active+undersized             1  active+clean+remapped</code></pre><h3 id="ceph-auth-命令"><a href="#ceph-auth-命令" class="headerlink" title="ceph auth 命令"></a>ceph auth 命令</h3><p>获取 Ceph <code>ceph.client.admin.keyring</code> 并生成 secret key：</p><pre class="language-none"><code class="language-none"># ceph auth get client.adminexported keyring for client.admin[client.admin]        key = AQAKThlfDW+2IxAApUzJ34ftDmNMUaDiV/SB0A==        caps mds = "allow *"        caps mgr = "allow *"        caps mon = "allow *"        caps osd = "allow *"</code></pre><p>k8s secret 认证 key 需要使用 base64 编码：</p><pre class="language-none"><code class="language-none"># echo "AQAKThlfDW+2IxAApUzJ34ftDmNMUaDiV/SB0A==" | base64QVFBS1RobGZEVysySXhBQXBVekozNGZ0RG1OTVVhRGlWL1NCMEE9PQo=</code></pre><p>以上两步可以合并为：</p><pre class="language-none"><code class="language-none"># ceph auth get-key client.admin |base64QVFBS1RobGZEVysySXhBQXBVekozNGZ0RG1OTVVhRGlWL1NCMEE9PQ==</code></pre><h3 id="ceph-osd-命令"><a href="#ceph-osd-命令" class="headerlink" title="ceph osd 命令"></a>ceph osd 命令</h3><p>OSD 全称 Object Storage Device，也就是负责响应客户端请求返回具体数据的进程。</p><p>查看 osd 状态</p><pre class="language-shell" data-language="shell"><code class="language-shell"># ceph osd statusID  HOST   USED  AVAIL  WR OPS  WR DATA  RD OPS  RD DATA  STATE 0  host1  1045M  3724G      0        0       0        0   exists,up 1  host2  1045M  3724G      0        0       0        0   exists,up 2  host3  1045M  3724G      0        0       0        0   exists,up</code></pre><p>查看 osd 目录树</p><pre class="language-none"><code class="language-none"># ceph osd treeID  CLASS  WEIGHT    TYPE NAME                    STATUS  REWEIGHT  PRI-AFF-1         10.91460  root default-3          7.27640      host host1 0    hdd   3.63820          osd.0                    up   1.00000  1.00000 1    hdd   3.63820          osd.1                    up   1.00000  1.00000-5          3.63820      host host2 2    hdd   3.63820          osd.2                    up   1.00000  1.00000</code></pre><h3 id="ceph-mon-命令"><a href="#ceph-mon-命令" class="headerlink" title="ceph mon 命令"></a>ceph mon 命令</h3><p>查看 mon 状态：</p><pre class="language-none"><code class="language-none"># ceph mon state2: 2 mons at {a=[v2:172.18.32.119:3300/0,v1:172.18.32.119:6789/0],b=[v2:172.18.83.170:3300/0,v1:172.18.83.170:6789/0]}, election epoch 16, leader 0 a, quorum 0,1 a,b</code></pre><h3 id="ceph-pg-命令"><a href="#ceph-pg-命令" class="headerlink" title="ceph pg 命令"></a>ceph pg 命令</h3><p>查看 pg 状态：</p><pre class="language-none"><code class="language-none"># ceph pg stat33 pgs: 1 active+clean+remapped, 32 active+undersized; 0 B data, 63 MiB used, 11 TiB / 11 TiB avail; 3/9 objects misplaced (33.333%)</code></pre><h3 id="rados-命令"><a href="#rados-命令" class="headerlink" title="rados 命令"></a>rados 命令</h3><pre class="language-shell" data-language="shell"><code class="language-shell"># rados dfPOOL_NAME                USED  OBJECTS  CLONES  COPIES  MISSING_ON_PRIMARY  UNFOUND  DEGRADED  RD_OPS       RD  WR_OPS       WR  USED COMPR  UNDER COMPRdevice_health_metrics  90 KiB        3       0       9                   0        0         0     104  104 KiB     108  108 KiB         0 B          0 Btest                      0 B        0       0       0                   0        0         0       0      0 B       0      0 B         0 B          0 Btotal_objects    3total_used       3.1 GiBtotal_avail      11 TiBtotal_space      11 TiB</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;ceph-基础命令&quot;&gt;&lt;a href=&quot;#ceph-基础命令&quot; class=&quot;headerlink&quot; title=&quot;ceph 基础命令&quot;&gt;&lt;/a&gt;ceph 基础命令&lt;/h3&gt;&lt;p&gt;查看版本：&lt;/p&gt;
+&lt;pre class=&quot;language-shell&quot; data-language=&quot;shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;# ceph -v
+ceph version 15.2.4 (7447c15c6ff58d7fce91843b705a268a1917325c) octopus (stable)&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="Ceph" scheme="https://jueee.github.io/categories/Ceph/"/>
+    
+    
+      <category term="Ceph" scheme="https://jueee.github.io/tags/Ceph/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 k8s 中使用 rook-ceph</title>
+    <link href="https://jueee.github.io/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/"/>
+    <id>https://jueee.github.io/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/</id>
+    <published>2020-08-30T00:00:00.000Z</published>
+    <updated>2020-08-31T10:59:21.950Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p>rook-ceph 官方指导：</p><blockquote><p><span class="exturl" data-url="aHR0cHM6Ly9yb29rLmlvL2RvY3Mvcm9vay92MS4xL2NlcGgtZXhhbXBsZXMuaHRtbA==">https://rook.io/docs/rook/v1.1/ceph-examples.html<i class="fa fa-external-link-alt"></i></span> </p></blockquote><p>github 项目地址：</p><blockquote><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Jvb2svcm9vay90cmVlL21hc3Rlci9jbHVzdGVyL2V4YW1wbGVzL2t1YmVybmV0ZXMvY2VwaA==">https://github.com/rook/rook/tree/master/cluster/examples/kubernetes/ceph<i class="fa fa-external-link-alt"></i></span> </p></blockquote><a id="more"></a><h3 id="rook-ceph-tools使用"><a href="#rook-ceph-tools使用" class="headerlink" title="rook-ceph-tools使用"></a>rook-ceph-tools 使用</h3><ol><li><p>执行 toolbox.yaml，生成 rook-ceph-tools-xxxx pod</p></li><li><p>使用如下命令进入 ceph 的管理中：</p><pre class="language-none"><code class="language-none">kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='{.items[0].metadata.name}') bash</code></pre></li><li><p>ceph 常用命令</p><pre class="language-none"><code class="language-none">ceph -s 查看集群状态ceph osd status 查看osd状态ceph pg stat 查看pg状态ceph osd pool set pool pg_num 64 设置pg数量ceph osd pool set pool pgp_num 64 设置pgp数量，在集群规模较小，pg数量过少会导致监控警告，此两条命令需一起使用</code></pre></li></ol><h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><p><span class="exturl" data-url="aHR0cHM6Ly9wa2dzLm9yZy9kb3dubG9hZC9jZXBoLWNvbW1vbg==">https://pkgs.org/download/ceph-common<i class="fa fa-external-link-alt"></i></span></p><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLjUxY3RvLmNvbS9sZWVqaWEvMjUwMTA4MA==">https://blog.51cto.com/leejia/2501080<i class="fa fa-external-link-alt"></i></span></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;相关链接&quot;&gt;&lt;a href=&quot;#相关链接&quot; class=&quot;headerlink&quot; title=&quot;相关链接&quot;&gt;&lt;/a&gt;相关链接&lt;/h3&gt;&lt;p&gt;rook-ceph官方指导：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://rook.io/docs/rook/v1.1/ceph-examples.html&quot;&gt;https://rook.io/docs/rook/v1.1/ceph-examples.html&lt;/a&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;github项目地址：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/rook/rook/tree/master/cluster/examples/kubernetes/ceph&quot;&gt;https://github.com/rook/rook/tree/master/cluster/examples/kubernetes/ceph&lt;/a&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="Ceph" scheme="https://jueee.github.io/categories/Ceph/"/>
+    
+    
+      <category term="Ceph" scheme="https://jueee.github.io/tags/Ceph/"/>
+    
+      <category term="k8s" scheme="https://jueee.github.io/tags/k8s/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ceph 分布式存储系统介绍</title>
     <link href="https://jueee.github.io/2020/08/2020-08-29-Ceph%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/"/>
     <id>https://jueee.github.io/2020/08/2020-08-29-Ceph%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/</id>
     <published>2020-08-29T00:00:00.000Z</published>
-    <updated>2020-08-28T11:23:12.838Z</updated>
+    <updated>2020-08-31T10:59:21.949Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><ul><li><span class="exturl" data-url="aHR0cDovL2RvY3MuY2VwaC5vcmcuY24v">Ceph 中文文档<i class="fa fa-external-link-alt"></i></span></li><li><span class="exturl" data-url="aHR0cDovL2NlcGgub3JnLmNuLw==">Ceph 中文社区<i class="fa fa-external-link-alt"></i></span></li></ul><h3 id="Ceph-架构"><a href="#Ceph-架构" class="headerlink" title="Ceph 架构"></a>Ceph 架构</h3><p>Ceph 生态系统可以大致划分为四部分：</p><ul><li>客户端（数据使用者）</li><li>元数据服务器（缓冲及同步分布的元数据）</li><li>对象存储集群（以对象方式存储数据与元数据，实现其它主要职责）</li><li>集群监控（实现监控功能）</li></ul><p>Ceph 生态系统的概念架构：</p><p><img src="/images/2020/08/1598611098897.png" alt="1598611098897" loading="lazy"></p><p>Ceph 生态系统的简化分层视图：</p><p><img src="/images/2020/08/1598611214479.png" alt="1598611214479" loading="lazy"></p><h3 id="Ceph-生态系统"><a href="#Ceph-生态系统" class="headerlink" title="Ceph 生态系统"></a>Ceph 生态系统</h3><p><img src="/images/2020/08/1598611164703.png" alt="1598611164703" loading="lazy"></p><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul><li><span class="exturl" data-url="aHR0cHM6Ly93d3cub3NjaGluYS5uZXQvdHJhbnNsYXRlL2NlcGg=">https://www.oschina.net/translate/ceph<i class="fa fa-external-link-alt"></i></span></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><ul><li><span class="exturl" data-url="aHR0cDovL2RvY3MuY2VwaC5vcmcuY24v">Ceph 中文文档<i class="fa fa-external-link-alt"></i></span></li><li><span class="exturl" data-url="aHR0cDovL2NlcGgub3JnLmNuLw==">Ceph 中文社区<i class="fa fa-external-link-alt"></i></span></li></ul><a id="more"></a><h3 id="Ceph-架构"><a href="#Ceph-架构" class="headerlink" title="Ceph 架构"></a>Ceph 架构</h3><p>Ceph 生态系统可以大致划分为四部分：</p><ul><li>客户端（数据使用者）</li><li>元数据服务器（缓冲及同步分布的元数据）</li><li>对象存储集群（以对象方式存储数据与元数据，实现其它主要职责）</li><li>集群监控（实现监控功能）</li></ul><p>Ceph 生态系统的概念架构：</p><p><img src="/images/2020/08/1598611098897.png" alt="1598611098897" loading="lazy"></p><p>Ceph 生态系统的简化分层视图：</p><p><img src="/images/2020/08/1598611214479.png" alt="1598611214479" loading="lazy"></p><h3 id="Ceph-生态系统"><a href="#Ceph-生态系统" class="headerlink" title="Ceph 生态系统"></a>Ceph 生态系统</h3><p><img src="/images/2020/08/1598611164703.png" alt="1598611164703" loading="lazy"></p><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul><li><span class="exturl" data-url="aHR0cHM6Ly93d3cub3NjaGluYS5uZXQvdHJhbnNsYXRlL2NlcGg=">https://www.oschina.net/translate/ceph<i class="fa fa-external-link-alt"></i></span></li></ul>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h3 id=&quot;相关链接&quot;&gt;&lt;a href=&quot;#相关链接&quot; class=&quot;headerlink&quot; title=&quot;相关链接&quot;&gt;&lt;/a&gt;相关链接&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cDovL2RvY3MuY2VwaC5vc
-      
+      &lt;h3 id=&quot;相关链接&quot;&gt;&lt;a href=&quot;#相关链接&quot; class=&quot;headerlink&quot; title=&quot;相关链接&quot;&gt;&lt;/a&gt;相关链接&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://docs.ceph.org.cn/&quot;&gt;Ceph 中文文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://ceph.org.cn/&quot;&gt;Ceph 中文社区&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
@@ -495,52 +551,6 @@
     
     
       <category term="Git" scheme="https://jueee.github.io/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浏览器提速软件 SpeedyFox</title>
-    <link href="https://jueee.github.io/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/"/>
-    <id>https://jueee.github.io/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/</id>
-    <published>2020-08-12T00:00:00.000Z</published>
-    <updated>2020-08-24T01:38:25.917Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="软件介绍"><a href="#软件介绍" class="headerlink" title="软件介绍"></a>软件介绍</h3><p>SpeedyFox 是一个超级简单的工具，一个单窗口，没有选项的工具来优化浏览器的性能。</p><p>SpeedyFox 声称通过对 SQLITE 数据库进行碎片整理来加速浏览器。它说，这些数据库随着时间的推移而变得变形，减慢了启动速度，并推迟了使用 Cookie 和历史记录的操作。</p><h3 id="下载网址"><a href="#下载网址" class="headerlink" title="下载网址"></a>下载网址</h3><blockquote><p><span class="exturl" data-url="aHR0cHM6Ly9jcnlzdGFsaWRlYS5jb20vc3BlZWR5Zm94">https://crystalidea.com/speedyfox<i class="fa fa-external-link-alt"></i></span></p></blockquote><h3 id="使用软件"><a href="#使用软件" class="headerlink" title="使用软件"></a>使用软件</h3><p>Edge 浏览器，Chrome、Firefox 等浏览器，以及大部分国产浏览器，都可以使用。SpeedyFox 能自动识别，浏览器的配置文件路径。</p><p>所以，打开软件，只要直接点击 Optimize 按钮就行了，不需要复杂的配置。</p><p>优化过程可能需要 5 秒钟到一分钟，具体取决于数据库的大小。整个优化过程很安全，因为它不会影响您的历史记录，书签，密码等。</p><p>根据您的浏览活动，建议每 1-2 周对您的个人资料进行一次优化。</p><p>如下图所示：</p><p><img src="/images/2020/08/1597286104064.png" alt="1597286104064" loading="lazy"></p>]]></content>
-    
-    <summary type="html">
-    
-      SpeedyFox是一个超级简单的工具，一个单窗口，没有选项的工具来优化浏览器的性能。
-    
-    </summary>
-    
-    
-      <category term="软件" scheme="https://jueee.github.io/categories/%E8%BD%AF%E4%BB%B6/"/>
-    
-    
-      <category term="软件" scheme="https://jueee.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL 中 DBlink 的使用</title>
-    <link href="https://jueee.github.io/2020/08/2020-08-11-MySQL%E4%B8%ADDBlink%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>https://jueee.github.io/2020/08/2020-08-11-MySQL%E4%B8%ADDBlink%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
-    <published>2020-08-11T00:00:00.000Z</published>
-    <updated>2020-08-19T03:26:36.042Z</updated>
-    
-    <content type="html"><![CDATA[<p>在实际工作中，我们可能会遇到需要操作其他数据库实例的部分表，但又不想系统连接多库。此时我们就需要用到数据表映射。</p><p>如同 Oracle 中的 DBlink 一般，使用过 Oracle DBlink 数据库链接的人都知道可以跨实例来进行数据查询，同样的，Mysql 自带的 FEDERATED 引擎完美的帮我们解决了该问题。</p><h3 id="检查引擎"><a href="#检查引擎" class="headerlink" title="检查引擎"></a>检查引擎</h3><p>查看 target 端是否安装了 FEDERATED 存储引擎：</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; show engines ;</code></pre><p>例如：</p><p><img src="/images/2020/08/1597126521400.png" alt="1597126521400" loading="lazy"></p><h3 id="安装引擎"><a href="#安装引擎" class="headerlink" title="安装引擎"></a>安装引擎</h3><p>注意：如果没有安装 <strong>FEDERATED 引擎</strong>，执行：</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">install plugin federated soname 'ha_federated.so';</code></pre><p>例如：</p><p><img src="/images/2020/08/1597126538702.png" alt="1597126538702" loading="lazy"></p><p>再次检查引擎：</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; show engines ;</code></pre><p>例如：</p><p><img src="/images/2020/08/1597126564647.png" alt="1597126564647" loading="lazy"></p><h3 id="开启引擎"><a href="#开启引擎" class="headerlink" title="开启引擎"></a>开启引擎</h3><p>将 federated 添加到 my.cnf 重启数据库</p><pre class="language-cnf" data-language="cnf"><code class="language-cnf">vi /etc/my.cnf[mysqld]federated</code></pre><p>再次检查引擎，例如：</p><p><img src="/images/2020/08/1597126649766.png" alt="1597126649766" loading="lazy"></p><h3 id="建表访问"><a href="#建表访问" class="headerlink" title="建表访问"></a>建表访问</h3><p>使用 CONNECTION 创建 FEDERATED 引擎表通用模型：</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">CREATE TABLE (......) ENGINE =FEDERATED CONNECTION='mysql://username:password@hostname:port/database/tablename'</code></pre><p>注意 ENGINE=FEDERATED CONNECTION 后为源端地址 避免使用带 @的密码</p><h3 id="使用总结"><a href="#使用总结" class="headerlink" title="使用总结"></a>使用总结</h3><p>基于 MySQL5.7.23 版本，笔者在源端及目标端实验了多种 DDL 及 DML，现简单总结如下，有兴趣的同学可以试试看。</p><ul><li>目标端建表结构可以与源端不一样 推荐与源端结构一致</li><li>源端 DDL (CREATE、ALTER、DROP 等语句) 语句更改表结构 目标端不会变化</li><li>源端 DML（SELECT、UPDATE、INSERT、DELETEt 等语句）语句目标端查询会同步</li><li>源端 drop 表 目标端结构还在但无法查询</li><li>目标端不能执行 DDL 语句</li><li>目标端执行 DML 语句 源端数据也会变化</li><li>目标端 truncate 表 源端表数据也会被清空</li><li>目标端 drop 表对源端无影响</li></ul><h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><p>目前 FEDERATED 引擎使用范围还不多，若确实有跨实例访问的需求，建议做好规范，个人总结最佳实践如下：</p><ol><li>源端专门创建只读权限的用户来供目标端使用。</li><li>目标端建议用 CREATE SERVER 方式创建 FEDERATED 表。</li><li>FEDERATED 表不宜太多，迁移时要特别注意。</li><li>目标端应该只做查询使用，禁止在目标端更改 FEDERATED 表。</li><li>建议目标端表名及结构和源端保持一致。</li><li>源端表结构变更后 目标端要及时删除重建。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      在实际工作中，我们可能会遇到需要操作其他数据库实例的部分表，但又不想系统连接多库。此时我们就需要用到数据表映射。如同Oracle中的DBlink一般，使用过Oracle DBlink数据库链接的人都知道可以跨实例来进行数据查询，同样的，Mysql自带的FEDERATED引擎完美的帮我们解决了该问题。
-    
-    </summary>
-    
-    
-      <category term="MySQL" scheme="https://jueee.github.io/categories/MySQL/"/>
-    
-    
-      <category term="MySQL" scheme="https://jueee.github.io/tags/MySQL/"/>
     
   </entry>
   

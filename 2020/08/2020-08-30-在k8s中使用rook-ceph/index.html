@@ -26,16 +26,21 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小决的专栏">
-<meta property="og:url" content="https://jueee.github.io/categories/MySQL/index.html">
+  <meta name="description" content="相关链接rook-ceph官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 k8s 中使用 rook-ceph">
+<meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/index.html">
 <meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="相关链接rook-ceph官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-30T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-08-31T10:59:21.950Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Hexo, NexT">
+<meta property="article:tag" content="Ceph">
+<meta property="article:tag" content="k8s">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://jueee.github.io/categories/MySQL/">
+<link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/">
 
 
 <script data-pjax class="page-configurations">
@@ -43,12 +48,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: MySQL | 小决的专栏</title>
+  <title>在 k8s 中使用 rook-ceph | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -217,7 +222,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -229,6 +234,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text">相关链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rook-ceph-tools%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">rook-ceph-tools 使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">问题处理</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -328,57 +334,170 @@
       <div class="main-inner">
         
 
-        <div class="content category">
+        <div class="content post posts-expand">
           
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">MySQL
-          <small>分类</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在 k8s 中使用 rook-ceph
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-30 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-30T00:00:00Z">2020-08-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p>rook-ceph 官方指导：</p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9yb29rLmlvL2RvY3Mvcm9vay92MS4xL2NlcGgtZXhhbXBsZXMuaHRtbA==">https://rook.io/docs/rook/v1.1/ceph-examples.html<i class="fa fa-external-link-alt"></i></span> </p>
+</blockquote>
+<p>github 项目地址：</p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Jvb2svcm9vay90cmVlL21hc3Rlci9jbHVzdGVyL2V4YW1wbGVzL2t1YmVybmV0ZXMvY2VwaA==">https://github.com/rook/rook/tree/master/cluster/examples/kubernetes/ceph<i class="fa fa-external-link-alt"></i></span> </p>
+</blockquote>
+<a id="more"></a>
+
+<h3 id="rook-ceph-tools使用"><a href="#rook-ceph-tools使用" class="headerlink" title="rook-ceph-tools使用"></a>rook-ceph-tools 使用</h3><ol>
+<li><p>执行 toolbox.yaml，生成 rook-ceph-tools-xxxx pod</p>
+</li>
+<li><p>使用如下命令进入 ceph 的管理中：</p>
+<pre class="language-none"><code class="language-none">kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='{.items[0].metadata.name}') bash</code></pre>
+</li>
+<li><p>ceph 常用命令</p>
+<pre class="language-none"><code class="language-none">ceph -s 查看集群状态
+ceph osd status 查看osd状态
+ceph pg stat 查看pg状态
+ceph osd pool set pool pg_num 64 设置pg数量
+ceph osd pool set pool pgp_num 64 设置pgp数量，在集群规模较小，pg数量过少会导致监控警告，此两条命令需一起使用</code></pre>
+
+</li>
+</ol>
+<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><p><span class="exturl" data-url="aHR0cHM6Ly9wa2dzLm9yZy9kb3dubG9hZC9jZXBoLWNvbW1vbg==">https://pkgs.org/download/ceph-common<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLjUxY3RvLmNvbS9sZWVqaWEvMjUwMTA4MA==">https://blog.51cto.com/leejia/2501080<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-29-Ceph分布式存储系统介绍\" rel="bookmark">Ceph分布式存储系统介绍</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-31-Ceph常用命令行汇总\" rel="bookmark">Ceph常用命令行汇总</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ceph/" rel="tag"># Ceph</a>
+              <a href="/tags/k8s/" rel="tag"># k8s</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/2020-08-29-Ceph%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/" rel="prev" title="Ceph 分布式存储系统介绍">
+      <i class="fa fa-chevron-left"></i> Ceph 分布式存储系统介绍
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/" rel="next" title="Ceph 常用命令行汇总">
+      Ceph 常用命令行汇总 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-11T00:00:00Z"
-              content="2020-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/2020-08-11-MySQL%E4%B8%ADDBlink%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">MySQL 中 DBlink 的使用</span>
-          </a>
-      </div>
-
-    </header>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
 
         </div>
         
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -550,9 +669,81 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '45b78239675ca581e1f7da86f154739e',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 
 <script>

@@ -26,18 +26,18 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="相关链接 Ceph 中文文档 Ceph 中文社区  Ceph 架构Ceph 生态系统可以大致划分为四部分：  客户端（数据使用者） 元数据服务器（缓冲及同步分布的元数据） 对象存储集群（以对象方式存储数据与元数据，实现其它主要职责） 集群监控（实现监控功能）  Ceph 生态系统的概念架构：  Ceph 生态系统的简化分层视图：  Ceph 生态系统 参考资料 https:&#x2F;&#x2F;www.oschin">
+  <meta name="description" content="相关链接 Ceph 中文文档 Ceph 中文社区">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ceph 分布式存储系统介绍">
 <meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-29-Ceph%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="相关链接 Ceph 中文文档 Ceph 中文社区  Ceph 架构Ceph 生态系统可以大致划分为四部分：  客户端（数据使用者） 元数据服务器（缓冲及同步分布的元数据） 对象存储集群（以对象方式存储数据与元数据，实现其它主要职责） 集群监控（实现监控功能）  Ceph 生态系统的概念架构：  Ceph 生态系统的简化分层视图：  Ceph 生态系统 参考资料 https:&#x2F;&#x2F;www.oschin">
+<meta property="og:description" content="相关链接 Ceph 中文文档 Ceph 中文社区">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1598611098897.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1598611214479.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1598611164703.png">
 <meta property="article:published_time" content="2020-08-29T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-28T11:23:12.838Z">
+<meta property="article:modified_time" content="2020-08-31T10:59:21.949Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Ceph">
 <meta name="twitter:card" content="summary">
@@ -163,7 +163,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">45</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">47</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -173,7 +173,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">28</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">29</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -253,7 +253,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -266,7 +266,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -415,6 +415,8 @@
 <li><span class="exturl" data-url="aHR0cDovL2RvY3MuY2VwaC5vcmcuY24v">Ceph 中文文档<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cDovL2NlcGgub3JnLmNuLw==">Ceph 中文社区<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
+<a id="more"></a>
+
 <h3 id="Ceph-架构"><a href="#Ceph-架构" class="headerlink" title="Ceph 架构"></a>Ceph 架构</h3><p>Ceph 生态系统可以大致划分为四部分：</p>
 <ul>
 <li>客户端（数据使用者）</li>
@@ -437,6 +439,15 @@
     
     
       
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在k8s中使用rook-ceph</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-31-Ceph常用命令行汇总\" rel="bookmark">Ceph常用命令行汇总</a></div>
+    </li>
+  </ul>
 
 
       <footer class="post-footer">
@@ -453,7 +464,10 @@
     <a href="/2020/08/2020-08-28-Java%E7%9A%84JIT%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/" rel="prev" title="Java 的 JIT 知识整理">
       <i class="fa fa-chevron-left"></i> Java 的 JIT 知识整理
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/" rel="next" title="在 k8s 中使用 rook-ceph">
+      在 k8s 中使用 rook-ceph <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     

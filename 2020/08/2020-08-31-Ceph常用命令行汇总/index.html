@@ -26,16 +26,20 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小决的专栏">
-<meta property="og:url" content="https://jueee.github.io/categories/MySQL/index.html">
+  <meta name="description" content="ceph 基础命令查看版本： # ceph -v ceph version 15.2.4 (7447c15c6ff58d7fce91843b705a268a1917325c) octopus (stable)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ceph 常用命令行汇总">
+<meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/index.html">
 <meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="ceph 基础命令查看版本： # ceph -v ceph version 15.2.4 (7447c15c6ff58d7fce91843b705a268a1917325c) octopus (stable)">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-31T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-08-31T10:59:21.951Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Hexo, NexT">
+<meta property="article:tag" content="Ceph">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://jueee.github.io/categories/MySQL/">
+<link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/">
 
 
 <script data-pjax class="page-configurations">
@@ -43,12 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: MySQL | 小决的专栏</title>
+  <title>Ceph 常用命令行汇总 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -217,7 +221,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -229,6 +233,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ceph-%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">ceph 基础命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ceph-auth-%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">ceph auth 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ceph-osd-%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">ceph osd 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ceph-mon-%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">ceph mon 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ceph-pg-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">ceph pg 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rados-%E5%91%BD%E4%BB%A4"><span class="nav-number">6.</span> <span class="nav-text">rados 命令</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -328,57 +333,221 @@
       <div class="main-inner">
         
 
-        <div class="content category">
+        <div class="content post posts-expand">
           
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">MySQL
-          <small>分类</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ceph 常用命令行汇总
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-31 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-31T00:00:00Z">2020-08-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="ceph-基础命令"><a href="#ceph-基础命令" class="headerlink" title="ceph 基础命令"></a>ceph 基础命令</h3><p>查看版本：</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell"># ceph -v
+ceph version 15.2.4 (7447c15c6ff58d7fce91843b705a268a1917325c) octopus (stable)</code></pre>
+
+<a id="more"></a>
+
+<p>查看集群状态：</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell"># ceph -s
+  cluster:
+    id:     dacae2ee-013b-413c-83c9-7c1b96ec84f1
+    health: HEALTH_WARN
+            Degraded data redundancy: 32 pgs undersized
+
+  services:
+    mon: 2 daemons, quorum a,b (age 6d)
+    mgr: a(active, since 2w)
+    osd: 3 osds: 3 up (since 2w), 3 in (since 5w); 1 remapped pgs
+
+  data:
+    pools:   2 pools, 33 pgs
+    objects: 3 objects, 0 B
+    usage:   3.1 GiB used, 11 TiB / 11 TiB avail
+    pgs:     3/9 objects misplaced (33.333%)
+             32 active+undersized
+             1  active+clean+remapped</code></pre>
+
+<h3 id="ceph-auth-命令"><a href="#ceph-auth-命令" class="headerlink" title="ceph auth 命令"></a>ceph auth 命令</h3><p>获取 Ceph <code>ceph.client.admin.keyring</code> 并生成 secret key：</p>
+<pre class="language-none"><code class="language-none"># ceph auth get client.admin
+exported keyring for client.admin
+[client.admin]
+        key = AQAKThlfDW+2IxAApUzJ34ftDmNMUaDiV/SB0A==
+        caps mds = "allow *"
+        caps mgr = "allow *"
+        caps mon = "allow *"
+        caps osd = "allow *"</code></pre>
+
+<p>k8s secret 认证 key 需要使用 base64 编码：</p>
+<pre class="language-none"><code class="language-none"># echo "AQAKThlfDW+2IxAApUzJ34ftDmNMUaDiV/SB0A==" | base64
+QVFBS1RobGZEVysySXhBQXBVekozNGZ0RG1OTVVhRGlWL1NCMEE9PQo=</code></pre>
+
+<p>以上两步可以合并为：</p>
+<pre class="language-none"><code class="language-none"># ceph auth get-key client.admin |base64
+QVFBS1RobGZEVysySXhBQXBVekozNGZ0RG1OTVVhRGlWL1NCMEE9PQ==</code></pre>
+
+<h3 id="ceph-osd-命令"><a href="#ceph-osd-命令" class="headerlink" title="ceph osd 命令"></a>ceph osd 命令</h3><p>OSD 全称 Object Storage Device，也就是负责响应客户端请求返回具体数据的进程。</p>
+<p>查看 osd 状态</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell"># ceph osd status
+ID  HOST   USED  AVAIL  WR OPS  WR DATA  RD OPS  RD DATA  STATE
+ 0  host1  1045M  3724G      0        0       0        0   exists,up
+ 1  host2  1045M  3724G      0        0       0        0   exists,up
+ 2  host3  1045M  3724G      0        0       0        0   exists,up</code></pre>
+
+<p>查看 osd 目录树</p>
+<pre class="language-none"><code class="language-none"># ceph osd tree
+ID  CLASS  WEIGHT    TYPE NAME                    STATUS  REWEIGHT  PRI-AFF
+-1         10.91460  root default
+-3          7.27640      host host1
+ 0    hdd   3.63820          osd.0                    up   1.00000  1.00000
+ 1    hdd   3.63820          osd.1                    up   1.00000  1.00000
+-5          3.63820      host host2
+ 2    hdd   3.63820          osd.2                    up   1.00000  1.00000</code></pre>
+
+<h3 id="ceph-mon-命令"><a href="#ceph-mon-命令" class="headerlink" title="ceph mon 命令"></a>ceph mon 命令</h3><p>查看 mon 状态：</p>
+<pre class="language-none"><code class="language-none"># ceph mon stat
+e2: 2 mons at {a=[v2:172.18.32.119:3300/0,v1:172.18.32.119:6789/0],b=[v2:172.18.83.170:3300/0,v1:172.18.83.170:6789/0]}, election epoch 16, leader 0 a, quorum 0,1 a,b</code></pre>
+
+<h3 id="ceph-pg-命令"><a href="#ceph-pg-命令" class="headerlink" title="ceph pg 命令"></a>ceph pg 命令</h3><p>查看 pg 状态：</p>
+<pre class="language-none"><code class="language-none"># ceph pg stat
+33 pgs: 1 active+clean+remapped, 32 active+undersized; 0 B data, 63 MiB used, 11 TiB / 11 TiB avail; 3/9 objects misplaced (33.333%)</code></pre>
+
+<h3 id="rados-命令"><a href="#rados-命令" class="headerlink" title="rados 命令"></a>rados 命令</h3><pre class="language-shell" data-language="shell"><code class="language-shell"># rados df
+POOL_NAME                USED  OBJECTS  CLONES  COPIES  MISSING_ON_PRIMARY  UNFOUND  DEGRADED  RD_OPS       RD  WR_OPS       WR  USED COMPR  UNDER COMPR
+device_health_metrics  90 KiB        3       0       9                   0        0         0     104  104 KiB     108  108 KiB         0 B          0 B
+test                      0 B        0       0       0                   0        0         0       0      0 B       0      0 B         0 B          0 B
+
+total_objects    3
+total_used       3.1 GiB
+total_avail      11 TiB
+total_space      11 TiB</code></pre>
+
+
+
+
+    </div>
+
+    
+    
+    
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-29-Ceph分布式存储系统介绍\" rel="bookmark">Ceph分布式存储系统介绍</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在k8s中使用rook-ceph</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ceph/" rel="tag"># Ceph</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/" rel="prev" title="在 k8s 中使用 rook-ceph">
+      <i class="fa fa-chevron-left"></i> 在 k8s 中使用 rook-ceph
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-08-11T00:00:00Z"
-              content="2020-08-11">
-          08-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/2020-08-11-MySQL%E4%B8%ADDBlink%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">MySQL 中 DBlink 的使用</span>
-          </a>
-      </div>
-
-    </header>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
 
         </div>
         
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -550,9 +719,81 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : 'c2bc1ab4cb8a756a2e061d152e82f81e',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 
 <script>
