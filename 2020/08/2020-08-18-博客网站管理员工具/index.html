@@ -26,17 +26,17 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="网站管理员工具需要对网站域名所有权进行验证，通常是通过上传指定文件、增加 META 或者修改网站 DNS 来验证管理员身份，通过验证后，网站管理员可以查询到自己网站的各类统计信息。">
+  <meta name="description" content="网站管理员工具需要对网站域名所有权进行验证，通常是通过上传指定文件、增加META或者修改网站DNS来验证管理员身份，通过验证后，网站管理员可以查询到自己网站的各类统计信息。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客网站管理员工具">
 <meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-18-%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86%E5%91%98%E5%B7%A5%E5%85%B7/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="网站管理员工具需要对网站域名所有权进行验证，通常是通过上传指定文件、增加 META 或者修改网站 DNS 来验证管理员身份，通过验证后，网站管理员可以查询到自己网站的各类统计信息。">
+<meta property="og:description" content="网站管理员工具需要对网站域名所有权进行验证，通常是通过上传指定文件、增加META或者修改网站DNS来验证管理员身份，通过验证后，网站管理员可以查询到自己网站的各类统计信息。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1597744034857.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1597744215606.png">
 <meta property="article:published_time" content="2020-08-18T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-20T02:07:20.015Z">
+<meta property="article:modified_time" content="2020-09-02T09:00:11.022Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="SEO">
@@ -163,7 +163,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">47</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">51</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -253,7 +253,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -414,21 +414,21 @@
         <p>网站管理员工具需要对网站域名所有权进行验证，通常是通过上传指定文件、增加 META 或者修改网站 DNS 来验证管理员身份，通过验证后，网站管理员可以查询到自己网站的各类统计信息。</p>
 <a id="more"></a>
 
-<h3 id="网站管理员工具"><a href="#网站管理员工具" class="headerlink" title="网站管理员工具"></a>网站管理员工具</h3><h4 id="Google网站管理员工具"><a href="#Google网站管理员工具" class="headerlink" title="Google网站管理员工具"></a>Google 网站管理员工具</h4><p>设置 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS93ZWJtYXN0ZXJzL3Rvb2xz">Google 网站站长工具<i class="fa fa-external-link-alt"></i></span>的验证字符串 用于提交站点地图。</p>
+<h3 id="网站管理员工具"><a href="#网站管理员工具" class="headerlink" title="网站管理员工具"></a>网站管理员工具</h3><h4 id="Google网站管理员工具"><a href="#Google网站管理员工具" class="headerlink" title="Google网站管理员工具"></a>Google 网站管理员工具</h4><p>设置<span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS93ZWJtYXN0ZXJzL3Rvb2xz"> Google 网站站长工具<i class="fa fa-external-link-alt"></i></span>的验证字符串 用于提交站点地图。</p>
 <p>登录到 Google 网站站长工具，然后转到验证方法并选择 <code>HTML Tag</code>，您将获得一些代码：</p>
 <pre class="language-none"><code class="language-none">&lt;meta name="google-site-verification" content="XXXXXXXXXXXXXXXXXXXXXXX"&gt;</code></pre>
 
 <p>复制 <code>XXXXXXXXXXXXXXXXXXXXXXX</code> 的价值 <code>content</code> 的关键。<br>编辑主题配置文件并添加或更改 <code>google_site_verification</code> 部分：</p>
 <pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">google_site_verification</span><span class="token punctuation">:</span> XXXXXXXXXXXXXXXXXXXXXXX</code></pre>
 
-<h4 id="Bing网站管理员工具"><a href="#Bing网站管理员工具" class="headerlink" title="Bing网站管理员工具"></a>Bing 网站管理员工具</h4><p>设置 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluZy5jb20vd2VibWFzdGVyLw==">Bing 网站管理员工具<i class="fa fa-external-link-alt"></i></span>的验证字符串 用于提交站点地图。</p>
+<h4 id="Bing网站管理员工具"><a href="#Bing网站管理员工具" class="headerlink" title="Bing网站管理员工具"></a>Bing 网站管理员工具</h4><p>设置<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmluZy5jb20vd2VibWFzdGVyLw=="> Bing 网站管理员工具<i class="fa fa-external-link-alt"></i></span>的验证字符串 用于提交站点地图。</p>
 <p>登录到 Bing 网站管理员工具，然后转到验证方法并选择 <code>HTML Tag</code>，您将获得一些代码：</p>
 <pre class="language-none"><code class="language-none">&lt;meta name="msvalidate.01" content="XXXXXXXXXXXXXXXXXXXXXXX"&gt;</code></pre>
 
 <p>复制 <code>XXXXXXXXXXXXXXXXXXXXXXX</code> 的价值 <code>content</code> 的关键。<br>编辑主题配置文件并添加或更改 <code>bing_site_verification</code> 部分：</p>
 <pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">bing_site_verification</span><span class="token punctuation">:</span> XXXXXXXXXXXXXXXXXXXXXXX</code></pre>
 
-<h4 id="Yandex网站管理员工具"><a href="#Yandex网站管理员工具" class="headerlink" title="Yandex网站管理员工具"></a>Yandex 网站管理员工具</h4><p>设置 <span class="exturl" data-url="aHR0cHM6Ly93ZWJtYXN0ZXIueWFuZGV4LnJ1Lw==">Yandex 网站管理员工具<i class="fa fa-external-link-alt"></i></span>的验证字符串 用于提交站点地图。</p>
+<h4 id="Yandex网站管理员工具"><a href="#Yandex网站管理员工具" class="headerlink" title="Yandex网站管理员工具"></a>Yandex 网站管理员工具</h4><p>设置<span class="exturl" data-url="aHR0cHM6Ly93ZWJtYXN0ZXIueWFuZGV4LnJ1Lw=="> Yandex 网站管理员工具<i class="fa fa-external-link-alt"></i></span>的验证字符串 用于提交站点地图。</p>
 <p>登录到 Yandex 网站管理员工具，然后转到验证方法并选择 <code>Meta Tag</code>，您将获得一些代码：</p>
 <pre class="language-none"><code class="language-none">&lt;meta name="yandex-verification" content="XXXXXXXXXXXXXXXXXXXXXXX"&gt;</code></pre>
 
@@ -461,19 +461,19 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-09-博客网址增加站点地图sitemap\" rel="bookmark">博客网址增加站点地图 sitemap</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-09-博客网址增加站点地图sitemap\" rel="bookmark">博客网址增加站点地图sitemap</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-18-Robots.txt文件介绍及生成\" rel="bookmark">Robots.txt 文件介绍及生成</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-18-Robots.txt文件介绍及生成\" rel="bookmark">Robots.txt文件介绍及生成</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建 Jekyll 环境</a></div>
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建Jekyll环境</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为 Jekyll 博客系统增加百度统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为Jekyll博客系统增加百度统计</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为Jekyll博客系统增加来必力评论系统</a></div>
     </li>
   </ul>
 
@@ -490,12 +490,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/2020-08-17-Arthas%E4%B9%8B%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%B1%BB/" rel="prev" title="Arthas 之根据输入查找命令执行类">
-      <i class="fa fa-chevron-left"></i> Arthas 之根据输入查找命令执行类
+    <a href="/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/" rel="prev" title="Robots.txt 文件介绍及生成">
+      <i class="fa fa-chevron-left"></i> Robots.txt 文件介绍及生成
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/" rel="next" title="Robots.txt 文件介绍及生成">
-      Robots.txt 文件介绍及生成 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/2020-08-19-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%96%B0%E5%A2%9E%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" rel="next" title="为博客新增评论系统">
+      为博客新增评论系统 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -750,6 +750,19 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
+    ));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
@@ -767,19 +780,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    new Valine(Object.assign({
-      el  : '#valine-comments',
-      path: location.pathname,
-    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
-    ));
-  }, window.Valine);
 });
 </script>
 

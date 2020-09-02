@@ -34,7 +34,7 @@
 <meta property="og:description" content="相关链接rook-ceph官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-30T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-31T10:59:21.950Z">
+<meta property="article:modified_time" content="2020-09-02T09:00:11.035Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Ceph">
 <meta property="article:tag" content="k8s">
@@ -160,7 +160,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">47</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">51</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -234,7 +234,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text">相关链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rook-ceph-tools%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">rook-ceph-tools 使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">问题处理</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text">相关链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rook-ceph-tools%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">rook-ceph-tools 使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%AE%BF%E4%B8%BB%E6%9C%BA%E4%BD%BF%E7%94%A8-ceph-%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">3.</span> <span class="nav-text">在宿主机使用 ceph 命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">问题处理</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -250,7 +250,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -422,7 +422,9 @@
 <li><p>执行 toolbox.yaml，生成 rook-ceph-tools-xxxx pod</p>
 </li>
 <li><p>使用如下命令进入 ceph 的管理中：</p>
-<pre class="language-none"><code class="language-none">kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='{.items[0].metadata.name}') bash</code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl -n rook-ceph <span class="token builtin class-name">exec</span> -it <span class="token variable"><span class="token variable">$(</span>kubectl -n rook-ceph get pod -l <span class="token string">"app=rook-ceph-tools"</span> -o <span class="token assign-left variable">jsonpath</span><span class="token operator">=</span><span class="token string">'{.items[0].metadata.name}'</span><span class="token variable">)</span></span> <span class="token function">bash</span></code></pre>
+
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl <span class="token builtin class-name">exec</span> -it rook-ceph-tools-9c9d7744b-2tpwn <span class="token function">bash</span> -n rook-ceph</code></pre>
 </li>
 <li><p>ceph 常用命令</p>
 <pre class="language-none"><code class="language-none">ceph -s 查看集群状态
@@ -433,7 +435,15 @@ ceph osd pool set pool pgp_num 64 设置pgp数量，在集群规模较小，pg�
 
 </li>
 </ol>
-<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><p><span class="exturl" data-url="aHR0cHM6Ly9wa2dzLm9yZy9kb3dubG9hZC9jZXBoLWNvbW1vbg==">https://pkgs.org/download/ceph-common<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="在宿主机使用-ceph-命令行"><a href="#在宿主机使用-ceph-命令行" class="headerlink" title="在宿主机使用 ceph 命令行"></a>在宿主机使用 ceph 命令行</h3><ol>
+<li>安装 <code>ceph-common</code>：<code>apt-get&nbsp;install&nbsp;ceph-common</code>。</li>
+<li>进入 <code>rook-ceph-tools-9c9d7744b-2tpwn</code>&nbsp;容器，将 <code>/etc/ceph/ceph.conf</code>&nbsp;和 <code>/etc/ceph/keyring</code>&nbsp;拷贝到宿主机的 <code>/etc/ceph/</code>&nbsp;文件夹下即可。</li>
+</ol>
+<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><pre class="language-none"><code class="language-none">(combined from similar events): MountVolume.SetUp failed for volume "mysqldata" : CephFS: mount failed: mount failed: exit status 32</code></pre>
+
+
+
+<p><span class="exturl" data-url="aHR0cHM6Ly9wa2dzLm9yZy9kb3dubG9hZC9jZXBoLWNvbW1vbg==">https://pkgs.org/download/ceph-common<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLjUxY3RvLmNvbS9sZWVqaWEvMjUwMTA4MA==">https://blog.51cto.com/leejia/2501080<i class="fa fa-external-link-alt"></i></span></p>
 
     </div>
@@ -445,10 +455,19 @@ ceph osd pool set pool pgp_num 64 设置pgp数量，在集群规模较小，pg�
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s静态PV集成ceph块设备存储</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s动态PV集成ceph块设备存储</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-29-Ceph分布式存储系统介绍\" rel="bookmark">Ceph分布式存储系统介绍</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-31-Ceph常用命令行汇总\" rel="bookmark">Ceph常用命令行汇总</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-01-Ceph块设备rbd相关学习\" rel="bookmark">Ceph块设备rbd相关学习</a></div>
     </li>
   </ul>
 
@@ -725,6 +744,19 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
+    ));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
@@ -742,19 +774,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    new Valine(Object.assign({
-      el  : '#valine-comments',
-      path: location.pathname,
-    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
-    ));
-  }, window.Valine);
 });
 </script>
 

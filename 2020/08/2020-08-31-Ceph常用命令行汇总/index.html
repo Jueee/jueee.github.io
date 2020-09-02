@@ -34,7 +34,7 @@
 <meta property="og:description" content="ceph 基础命令查看版本： # ceph -v ceph version 15.2.4 (7447c15c6ff58d7fce91843b705a268a1917325c) octopus (stable)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-31T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-31T10:59:21.951Z">
+<meta property="article:modified_time" content="2020-09-02T09:00:11.037Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Ceph">
 <meta name="twitter:card" content="summary">
@@ -159,7 +159,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">47</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">51</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -249,7 +249,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">51</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -408,30 +408,43 @@
     
     <div class="post-body" itemprop="articleBody">
         <h3 id="ceph-基础命令"><a href="#ceph-基础命令" class="headerlink" title="ceph 基础命令"></a>ceph 基础命令</h3><p>查看版本：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell"># ceph -v
-ceph version 15.2.4 (7447c15c6ff58d7fce91843b705a268a1917325c) octopus (stable)</code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># ceph -v</span>
+ceph version <span class="token number">15.2</span>.4 <span class="token punctuation">(</span>7447c15c6ff58d7fce91843b705a268a1917325c<span class="token punctuation">)</span> octopus <span class="token punctuation">(</span>stable<span class="token punctuation">)</span></code></pre>
 
 <a id="more"></a>
 
 <p>查看集群状态：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell"># ceph -s
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># ceph -s</span>
   cluster:
     id:     dacae2ee-013b-413c-83c9-7c1b96ec84f1
     health: HEALTH_WARN
-            Degraded data redundancy: 32 pgs undersized
+            Degraded data redundancy: <span class="token number">32</span> pgs undersized
 
   services:
-    mon: 2 daemons, quorum a,b (age 6d)
-    mgr: a(active, since 2w)
-    osd: 3 osds: 3 up (since 2w), 3 in (since 5w); 1 remapped pgs
+    mon: <span class="token number">2</span> daemons, quorum a,b <span class="token punctuation">(</span>age 6d<span class="token punctuation">)</span>
+    mgr: a<span class="token punctuation">(</span>active, since 2w<span class="token punctuation">)</span>
+    osd: <span class="token number">3</span> osds: <span class="token number">3</span> up <span class="token punctuation">(</span>since 2w<span class="token punctuation">)</span>, <span class="token number">3</span> <span class="token keyword">in</span> <span class="token punctuation">(</span>since 5w<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token number">1</span> remapped pgs
 
   data:
-    pools:   2 pools, 33 pgs
-    objects: 3 objects, 0 B
-    usage:   3.1 GiB used, 11 TiB / 11 TiB avail
-    pgs:     3/9 objects misplaced (33.333%)
-             32 active+undersized
-             1  active+clean+remapped</code></pre>
+    pools:   <span class="token number">2</span> pools, <span class="token number">33</span> pgs
+    objects: <span class="token number">3</span> objects, <span class="token number">0</span> B
+    usage:   <span class="token number">3.1</span> GiB used, <span class="token number">11</span> TiB / <span class="token number">11</span> TiB avail
+    pgs:     <span class="token number">3</span>/9 objects misplaced <span class="token punctuation">(</span><span class="token number">33.333</span>%<span class="token punctuation">)</span>
+             <span class="token number">32</span> active+undersized
+             <span class="token number">1</span>  active+clean+remapped</code></pre>
+
+<p>查看磁盘占用：</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ ceph <span class="token function">df</span>
+--- RAW STORAGE ---
+CLASS  SIZE    AVAIL   USED    RAW USED  %RAW USED
+hdd    <span class="token number">11</span> TiB  <span class="token number">11</span> TiB  <span class="token number">69</span> MiB   <span class="token number">3.1</span> GiB       <span class="token number">0.03</span>
+TOTAL  <span class="token number">11</span> TiB  <span class="token number">11</span> TiB  <span class="token number">69</span> MiB   <span class="token number">3.1</span> GiB       <span class="token number">0.03</span>
+
+--- POOLS ---
+POOL                   ID  STORED  OBJECTS  USED     %USED  MAX AVAIL
+device_health_metrics   <span class="token number">1</span>  <span class="token number">30</span> KiB        <span class="token number">3</span>   <span class="token number">90</span> KiB      <span class="token number">0</span>    <span class="token number">3.5</span> TiB
+<span class="token builtin class-name">test</span>                    <span class="token number">2</span>     <span class="token number">0</span> B        <span class="token number">0</span>      <span class="token number">0</span> B      <span class="token number">0</span>    <span class="token number">3.5</span> TiB
+kcha                    <span class="token number">3</span>   <span class="token number">691</span> B        <span class="token number">4</span>  <span class="token number">256</span> KiB      <span class="token number">0</span>    <span class="token number">5.2</span> TiB</code></pre>
 
 <h3 id="ceph-auth-命令"><a href="#ceph-auth-命令" class="headerlink" title="ceph auth 命令"></a>ceph auth 命令</h3><p>获取 Ceph <code>ceph.client.admin.keyring</code> 并生成 secret key：</p>
 <pre class="language-none"><code class="language-none"># ceph auth get client.admin
@@ -453,11 +466,11 @@ QVFBS1RobGZEVysySXhBQXBVekozNGZ0RG1OTVVhRGlWL1NCMEE9PQ==</code></pre>
 
 <h3 id="ceph-osd-命令"><a href="#ceph-osd-命令" class="headerlink" title="ceph osd 命令"></a>ceph osd 命令</h3><p>OSD 全称 Object Storage Device，也就是负责响应客户端请求返回具体数据的进程。</p>
 <p>查看 osd 状态</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell"># ceph osd status
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># ceph osd status</span>
 ID  HOST   USED  AVAIL  WR OPS  WR DATA  RD OPS  RD DATA  STATE
- 0  host1  1045M  3724G      0        0       0        0   exists,up
- 1  host2  1045M  3724G      0        0       0        0   exists,up
- 2  host3  1045M  3724G      0        0       0        0   exists,up</code></pre>
+ <span class="token number">0</span>  host1  1045M  3724G      <span class="token number">0</span>        <span class="token number">0</span>       <span class="token number">0</span>        <span class="token number">0</span>   exists,up
+ <span class="token number">1</span>  host2  1045M  3724G      <span class="token number">0</span>        <span class="token number">0</span>       <span class="token number">0</span>        <span class="token number">0</span>   exists,up
+ <span class="token number">2</span>  host3  1045M  3724G      <span class="token number">0</span>        <span class="token number">0</span>       <span class="token number">0</span>        <span class="token number">0</span>   exists,up</code></pre>
 
 <p>查看 osd 目录树</p>
 <pre class="language-none"><code class="language-none"># ceph osd tree
@@ -469,6 +482,12 @@ ID  CLASS  WEIGHT    TYPE NAME                    STATUS  REWEIGHT  PRI-AFF
 -5          3.63820      host host2
  2    hdd   3.63820          osd.2                    up   1.00000  1.00000</code></pre>
 
+<p>列出存储池</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ ceph osd lspools
+<span class="token number">1</span> device_health_metrics
+<span class="token number">2</span> <span class="token builtin class-name">test</span>
+<span class="token number">3</span> kcha</code></pre>
+
 <h3 id="ceph-mon-命令"><a href="#ceph-mon-命令" class="headerlink" title="ceph mon 命令"></a>ceph mon 命令</h3><p>查看 mon 状态：</p>
 <pre class="language-none"><code class="language-none"># ceph mon stat
 e2: 2 mons at {a=[v2:172.18.32.119:3300/0,v1:172.18.32.119:6789/0],b=[v2:172.18.83.170:3300/0,v1:172.18.83.170:6789/0]}, election epoch 16, leader 0 a, quorum 0,1 a,b</code></pre>
@@ -477,17 +496,15 @@ e2: 2 mons at {a=[v2:172.18.32.119:3300/0,v1:172.18.32.119:6789/0],b=[v2:172.18.
 <pre class="language-none"><code class="language-none"># ceph pg stat
 33 pgs: 1 active+clean+remapped, 32 active+undersized; 0 B data, 63 MiB used, 11 TiB / 11 TiB avail; 3/9 objects misplaced (33.333%)</code></pre>
 
-<h3 id="rados-命令"><a href="#rados-命令" class="headerlink" title="rados 命令"></a>rados 命令</h3><pre class="language-shell" data-language="shell"><code class="language-shell"># rados df
+<h3 id="rados-命令"><a href="#rados-命令" class="headerlink" title="rados 命令"></a>rados 命令</h3><pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># rados df</span>
 POOL_NAME                USED  OBJECTS  CLONES  COPIES  MISSING_ON_PRIMARY  UNFOUND  DEGRADED  RD_OPS       RD  WR_OPS       WR  USED COMPR  UNDER COMPR
-device_health_metrics  90 KiB        3       0       9                   0        0         0     104  104 KiB     108  108 KiB         0 B          0 B
-test                      0 B        0       0       0                   0        0         0       0      0 B       0      0 B         0 B          0 B
+device_health_metrics  <span class="token number">90</span> KiB        <span class="token number">3</span>       <span class="token number">0</span>       <span class="token number">9</span>                   <span class="token number">0</span>        <span class="token number">0</span>         <span class="token number">0</span>     <span class="token number">104</span>  <span class="token number">104</span> KiB     <span class="token number">108</span>  <span class="token number">108</span> KiB         <span class="token number">0</span> B          <span class="token number">0</span> B
+<span class="token builtin class-name">test</span>                      <span class="token number">0</span> B        <span class="token number">0</span>       <span class="token number">0</span>       <span class="token number">0</span>                   <span class="token number">0</span>        <span class="token number">0</span>         <span class="token number">0</span>       <span class="token number">0</span>      <span class="token number">0</span> B       <span class="token number">0</span>      <span class="token number">0</span> B         <span class="token number">0</span> B          <span class="token number">0</span> B
 
-total_objects    3
-total_used       3.1 GiB
-total_avail      11 TiB
-total_space      11 TiB</code></pre>
-
-
+total_objects    <span class="token number">3</span>
+total_used       <span class="token number">3.1</span> GiB
+total_avail      <span class="token number">11</span> TiB
+total_space      <span class="token number">11</span> TiB</code></pre>
 
 
     </div>
@@ -503,6 +520,15 @@ total_space      11 TiB</code></pre>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在k8s中使用rook-ceph</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-01-Ceph块设备rbd相关学习\" rel="bookmark">Ceph块设备rbd相关学习</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s静态PV集成ceph块设备存储</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s动态PV集成ceph块设备存储</a></div>
     </li>
   </ul>
 
@@ -521,7 +547,10 @@ total_space      11 TiB</code></pre>
     <a href="/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/" rel="prev" title="在 k8s 中使用 rook-ceph">
       <i class="fa fa-chevron-left"></i> 在 k8s 中使用 rook-ceph
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/2020-09-01-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%BF%A1%E6%81%AF%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" rel="next" title="Arthas 之查看类加载信息的相关命令">
+      Arthas 之查看类加载信息的相关命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -775,6 +804,19 @@ if (document.querySelectorAll('pre.mermaid').length) {
 
   
 
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
+    ));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
@@ -792,19 +834,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    new Valine(Object.assign({
-      el  : '#valine-comments',
-      path: location.pathname,
-    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
-    ));
-  }, window.Valine);
 });
 </script>
 
