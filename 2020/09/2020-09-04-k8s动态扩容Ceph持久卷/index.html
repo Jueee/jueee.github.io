@@ -26,22 +26,21 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="谷歌分析 创建一个帐户并登录 Google Analytics（分析）。更详细的文档  编辑 主题配置文件并 tracking_id 在部分下填写 google_analytics 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 UA-。 # Google Analytics google_analytics: tracking_id: UA-XXXXXXXX-X only_">
+  <meta name="description" content="主要是针对 ceph 的 rbd 创建的 pv 进行扩容操作。 StorageClass 配置自动扩容需要配置 storage class，开启允许扩容选项 allowVolumeExpansion apiVersion: storage.k8s.io&#x2F;v1 kind: StorageClass allowVolumeExpansion: true provisioner: ceph.com&#x2F;rb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客网址增加站点分析">
-<meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="k8s 动态扩容 Ceph 持久卷">
+<meta property="og:url" content="https://jueee.github.io/2020/09/2020-09-04-k8s%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9Ceph%E6%8C%81%E4%B9%85%E5%8D%B7/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="谷歌分析 创建一个帐户并登录 Google Analytics（分析）。更详细的文档  编辑 主题配置文件并 tracking_id 在部分下填写 google_analytics 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 UA-。 # Google Analytics google_analytics: tracking_id: UA-XXXXXXXX-X only_">
+<meta property="og:description" content="主要是针对 ceph 的 rbd 创建的 pv 进行扩容操作。 StorageClass 配置自动扩容需要配置 storage class，开启允许扩容选项 allowVolumeExpansion apiVersion: storage.k8s.io&#x2F;v1 kind: StorageClass allowVolumeExpansion: true provisioner: ceph.com&#x2F;rb">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1597041510807.png">
-<meta property="article:published_time" content="2020-08-09T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-02T09:00:11.005Z">
+<meta property="article:published_time" content="2020-09-04T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-04T02:58:30.962Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Ceph">
+<meta property="article:tag" content="k8s">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jueee.github.io/images/2020/08/1597041510807.png">
 
-<link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="https://jueee.github.io/2020/09/2020-09-04-k8s%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9Ceph%E6%8C%81%E4%B9%85%E5%8D%B7/">
 
 
 <script data-pjax class="page-configurations">
@@ -54,7 +53,7 @@
   };
 </script>
 
-  <title>博客网址增加站点分析 | 小决的专栏</title>
+  <title>k8s 动态扩容 Ceph 持久卷 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -235,7 +234,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%B7%E6%AD%8C%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">谷歌分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">百度分析</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#StorageClass-%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%89%A9%E5%AE%B9"><span class="nav-number">1.</span> <span class="nav-text">StorageClass 配置自动扩容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%B7%B2%E5%88%9B%E5%BB%BA%E7%9A%84-PV-%E8%BF%9B%E8%A1%8C%E6%89%A9%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text">对已创建的 PV 进行扩容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text"></span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -342,7 +341,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-04-k8s%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9Ceph%E6%8C%81%E4%B9%85%E5%8D%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -357,7 +356,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          博客网址增加站点分析
+          k8s 动态扩容 Ceph 持久卷
         </h1>
 
         <div class="post-meta">
@@ -367,7 +366,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-09T00:00:00Z">2020-08-09</time>
+              <time title="创建时间：2020-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-04T00:00:00Z">2020-09-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -375,7 +374,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+                  <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
                 </span>
             </span>
 
@@ -395,8 +394,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/09/2020-09-04-k8s%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9Ceph%E6%8C%81%E4%B9%85%E5%8D%B7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-04-k8s%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9Ceph%E6%8C%81%E4%B9%85%E5%8D%B7/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -409,31 +408,47 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="谷歌分析"><a href="#谷歌分析" class="headerlink" title="谷歌分析"></a>谷歌分析</h3><ol>
-<li><p>创建一个帐户并登录<span class="exturl" data-url="aHR0cHM6Ly9hbmFseXRpY3MuZ29vZ2xlLmNvbS8="> Google Analytics（分析）<i class="fa fa-external-link-alt"></i></span>。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYW5hbHl0aWNzLz9obD1lbiN0b3BpYz0zNTQ0OTA2">更详细的文档<i class="fa fa-external-link-alt"></i></span></p>
+        <p>主要是针对 ceph 的 rbd 创建的 pv 进行扩容操作。</p>
+<h3 id="StorageClass-配置自动扩容"><a href="#StorageClass-配置自动扩容" class="headerlink" title="StorageClass 配置自动扩容"></a>StorageClass 配置自动扩容</h3><p>需要配置 storage class，开启允许扩容选项 <code>allowVolumeExpansion</code></p>
+<pre class="language-none"><code class="language-none">apiVersion: storage.k8s.io/v1
+kind: StorageClass
+allowVolumeExpansion: true
+provisioner: ceph.com/rbd</code></pre>
+
+<p>任何从这一 <code>StorageClass</code> 中创建的 PVC 都能够通过编辑的方式来申请更多空间。Kubernetes 会处理 Storage 字段的变更，据此申请空间，触发卷的扩容。</p>
+<a id="more"></a>
+
+<h3 id="对已创建的-PV-进行扩容"><a href="#对已创建的-PV-进行扩容" class="headerlink" title="对已创建的 PV 进行扩容"></a>对已创建的 PV 进行扩容</h3><ol>
+<li><p><strong>查看 PV 信息</strong></p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ kubectl describe pv pvc<span class="token operator">-</span>3e1e651c<span class="token operator">-</span>fcce<span class="token operator">-</span>4a31<span class="token operator">-</span>8283<span class="token operator">-</span>8b5d7f4859fc <span class="token punctuation">|</span>grep Image
+ RBDImage:      kubernetes<span class="token operator">-</span>dynamic<span class="token operator">-</span>pvc<span class="token operator">-</span>dbaa94d7<span class="token operator">-</span>ecdd<span class="token operator">-</span>11ea<span class="token operator">-</span>a4f5<span class="token operator">-</span>aedb151bd819</code></pre>
 </li>
-<li><p>编辑 主题配置文件并 <code>tracking_id</code> 在部分下填写 <code>google_analytics</code> 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 <code>UA-</code>。</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Google Analytics</span>
-<span class="token key atrule">google_analytics</span><span class="token punctuation">:</span>
-<span class="token key atrule">tracking_id</span><span class="token punctuation">:</span> UA<span class="token punctuation">-</span>XXXXXXXX<span class="token punctuation">-</span>X
-<span class="token key atrule">only_pageview</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
+<li><p><strong>查看 rbd 镜像信息</strong></p>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd info kcha/kubernetes-dynamic-pvc-dbaa94d7-ecdd-11ea-a4f5-aedb151bd819
+rbd image 'kubernetes-dynamic-pvc-dbaa94d7-ecdd-11ea-a4f5-aedb151bd819':
+     size 30 GB in 256000 objects
+     order 22 (4096 kB objects)
+     block_name_prefix: rbd_data.b642e6b8b4567
+     format: 2
+     features: layering
+     flags:</code></pre>
 </li>
-<li><p>当 field <code>only_pageview</code> 设置为 true 时，NexT 将仅向 <code>pageview</code>Google Analytics（分析）发送事件。<br>使用它而不是使用它的好处 <code>only_pageview: false</code> 是减少了站点上的外部脚本，这将为您提供更好的性能，但没有完整的分析功能。</p>
+<li><p><strong>修改 rbd 大小</strong></p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ rbd resize <span class="token operator">--</span>size 1024000 kcha<span class="token operator">/</span>kubernetes<span class="token operator">-</span>dynamic<span class="token operator">-</span>pvc<span class="token operator">-</span>dbaa94d7<span class="token operator">-</span>ecdd<span class="token operator">-</span>11ea<span class="token operator">-</span>a4f5<span class="token operator">-</span>aedb151bd819</code></pre>
+</li>
+<li><p><strong>更新 PV 大小</strong></p>
+<pre class="language-none"><code class="language-none">$ kubectl edit pv pvc-3e1e651c-fcce-4a31-8283-8b5d7f4859fc</code></pre>
+<p>修改其中的 <code>storage: 30Gi</code> 大小。然后 <code>kubectl get pv</code> 查看更新。</p>
+</li>
+<li><p><strong>更新 PVC 大小</strong></p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ kubectl edit pvc esdata<span class="token operator">-</span>es<span class="token operator">-</span>0</code></pre>
+
+<p>修改其中的 <code>storage: 30Gi</code> 大小。然后 <code>kubectl get pvc</code> 查看更新。</p>
+</li>
+<li><p><strong>重启挂载该 PVC 的 Pod。</strong></p>
 </li>
 </ol>
-<h3 id="百度分析"><a href="#百度分析" class="headerlink" title="百度分析"></a>百度分析</h3><ol>
-<li><p>登录<span class="exturl" data-url="aHR0cHM6Ly90b25namkuYmFpZHUuY29tLw==">百度分析<i class="fa fa-external-link-alt"></i></span> 并找到网站代码获取页面。</p>
-</li>
-<li><p>在后面复制脚本 ID <code>hm.js?</code>，如下图：</p>
-<p><img src="/images/2020/08/1597041510807.png" alt="1597041510807" loading="lazy"></p>
-</li>
-<li><p>编辑 主题配置文件并将部分更改 <code>baidu_analytics</code> 为您的脚本 ID。</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Baidu Analytics ID</span>
-<span class="token key atrule">baidu_analytics</span><span class="token punctuation">:</span> your_id</code></pre>
-
-</li>
-</ol>
-
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
     </div>
 
     
@@ -443,26 +458,27 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建Jekyll环境</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在 k8s 中使用 rook-ceph</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为Jekyll博客系统增加百度统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s 静态 PV 集成 ceph 块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为Jekyll博客系统增加来必力评论系统</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s动态PV集成ceph块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll使用中文路径</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-29-Ceph分布式存储系统介绍\" rel="bookmark">Ceph分布式存储系统介绍</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加Jekyll博客访问量统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-31-Ceph常用命令行汇总\" rel="bookmark">Ceph常用命令行汇总</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Blog/" rel="tag"># Blog</a>
+              <a href="/tags/Ceph/" rel="tag"># Ceph</a>
+              <a href="/tags/k8s/" rel="tag"># k8s</a>
           </div>
 
         
@@ -471,13 +487,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BEsitemap/" rel="prev" title="博客网址增加站点地图 sitemap">
-      <i class="fa fa-chevron-left"></i> 博客网址增加站点地图 sitemap
+    <a href="/2020/09/2020-09-03-k8s%E5%8A%A8%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" rel="prev" title="k8s 动态 PV 集成 ceph 块设备存储">
+      <i class="fa fa-chevron-left"></i> k8s 动态 PV 集成 ceph 块设备存储
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/2020-08-10-Neo4j%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%86%E7%A0%81/" rel="next" title="Neo4j 初始化密码">
-      Neo4j 初始化密码 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -742,7 +755,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'jueee.github.io',
       owner       : 'jueee',
       admin       : ['jueee'],
-      id          : '6fb1b0242c84ea26c898136690ccefde',
+      id          : '73b04bebb42d04d87f910405af230846',
         language: 'zh-CN',
       distractionFreeMode: true
     });

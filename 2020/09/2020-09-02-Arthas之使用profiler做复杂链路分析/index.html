@@ -26,22 +26,22 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="谷歌分析 创建一个帐户并登录 Google Analytics（分析）。更详细的文档  编辑 主题配置文件并 tracking_id 在部分下填写 google_analytics 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 UA-。 # Google Analytics google_analytics: tracking_id: UA-XXXXXXXX-X only_">
+  <meta name="description" content="Arthas 的 profiler 命令命令说明profiler 命令支持生成应用热点的火焰图。本质上是通过不断的采样，然后把收集到的采样结果生成火焰图。  文档：https:&#x2F;&#x2F;arthas.aliyun.com&#x2F;doc&#x2F;profiler.html  profiler 命令的实现依赖于开源 async-profiler：  GitHub：https:&#x2F;&#x2F;github.com&#x2F;jvm-profil">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客网址增加站点分析">
-<meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="Arthas 之使用 profiler 做复杂链路分析">
+<meta property="og:url" content="https://jueee.github.io/2020/09/2020-09-02-Arthas%E4%B9%8B%E4%BD%BF%E7%94%A8profiler%E5%81%9A%E5%A4%8D%E6%9D%82%E9%93%BE%E8%B7%AF%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="谷歌分析 创建一个帐户并登录 Google Analytics（分析）。更详细的文档  编辑 主题配置文件并 tracking_id 在部分下填写 google_analytics 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 UA-。 # Google Analytics google_analytics: tracking_id: UA-XXXXXXXX-X only_">
+<meta property="og:description" content="Arthas 的 profiler 命令命令说明profiler 命令支持生成应用热点的火焰图。本质上是通过不断的采样，然后把收集到的采样结果生成火焰图。  文档：https:&#x2F;&#x2F;arthas.aliyun.com&#x2F;doc&#x2F;profiler.html  profiler 命令的实现依赖于开源 async-profiler：  GitHub：https:&#x2F;&#x2F;github.com&#x2F;jvm-profil">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1597041510807.png">
-<meta property="article:published_time" content="2020-08-09T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-02T09:00:11.005Z">
+<meta property="article:published_time" content="2020-09-02T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-03T01:53:06.006Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Java诊断">
+<meta property="article:tag" content="Arthas">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jueee.github.io/images/2020/08/1597041510807.png">
 
-<link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="https://jueee.github.io/2020/09/2020-09-02-Arthas%E4%B9%8B%E4%BD%BF%E7%94%A8profiler%E5%81%9A%E5%A4%8D%E6%9D%82%E9%93%BE%E8%B7%AF%E5%88%86%E6%9E%90/">
 
 
 <script data-pjax class="page-configurations">
@@ -54,7 +54,7 @@
   };
 </script>
 
-  <title>博客网址增加站点分析 | 小决的专栏</title>
+  <title>Arthas 之使用 profiler 做复杂链路分析 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -235,7 +235,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%B7%E6%AD%8C%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">谷歌分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">百度分析</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arthas-%E7%9A%84-profiler-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">Arthas 的 profiler 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">命令说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">1.2.</span> <span class="nav-text">参数说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-profiler-%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">使用 profiler 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8profiler"><span class="nav-number">2.1.</span> <span class="nav-text">启动 profiler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E9%87%8F"><span class="nav-number">2.2.</span> <span class="nav-text">获取数量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81"><span class="nav-number">2.3.</span> <span class="nav-text">查看状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2profiler"><span class="nav-number">2.4.</span> <span class="nav-text">停止 profiler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90html%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.5.</span> <span class="nav-text">生成 html 格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E5%A4%8D%E6%9D%82%E9%93%BE%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">做复杂链路分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%87%E6%A0%B7%E7%94%9F%E6%88%90jfr%E6%96%87%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">采样生成 jfr 文件</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -342,7 +342,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-02-Arthas%E4%B9%8B%E4%BD%BF%E7%94%A8profiler%E5%81%9A%E5%A4%8D%E6%9D%82%E9%93%BE%E8%B7%AF%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -357,7 +357,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          博客网址增加站点分析
+          Arthas 之使用 profiler 做复杂链路分析
         </h1>
 
         <div class="post-meta">
@@ -367,7 +367,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-09T00:00:00Z">2020-08-09</time>
+              <time title="创建时间：2020-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-02T00:00:00Z">2020-09-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -375,7 +375,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/Arthas/" itemprop="url" rel="index"><span itemprop="name">Arthas</span></a>
                 </span>
             </span>
 
@@ -395,8 +399,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/09/2020-09-02-Arthas%E4%B9%8B%E4%BD%BF%E7%94%A8profiler%E5%81%9A%E5%A4%8D%E6%9D%82%E9%93%BE%E8%B7%AF%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-02-Arthas%E4%B9%8B%E4%BD%BF%E7%94%A8profiler%E5%81%9A%E5%A4%8D%E6%9D%82%E9%93%BE%E8%B7%AF%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -409,30 +413,95 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="谷歌分析"><a href="#谷歌分析" class="headerlink" title="谷歌分析"></a>谷歌分析</h3><ol>
-<li><p>创建一个帐户并登录<span class="exturl" data-url="aHR0cHM6Ly9hbmFseXRpY3MuZ29vZ2xlLmNvbS8="> Google Analytics（分析）<i class="fa fa-external-link-alt"></i></span>。<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vYW5hbHl0aWNzLz9obD1lbiN0b3BpYz0zNTQ0OTA2">更详细的文档<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p>编辑 主题配置文件并 <code>tracking_id</code> 在部分下填写 <code>google_analytics</code> 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 <code>UA-</code>。</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Google Analytics</span>
-<span class="token key atrule">google_analytics</span><span class="token punctuation">:</span>
-<span class="token key atrule">tracking_id</span><span class="token punctuation">:</span> UA<span class="token punctuation">-</span>XXXXXXXX<span class="token punctuation">-</span>X
-<span class="token key atrule">only_pageview</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
-</li>
-<li><p>当 field <code>only_pageview</code> 设置为 true 时，NexT 将仅向 <code>pageview</code>Google Analytics（分析）发送事件。<br>使用它而不是使用它的好处 <code>only_pageview: false</code> 是减少了站点上的外部脚本，这将为您提供更好的性能，但没有完整的分析功能。</p>
-</li>
-</ol>
-<h3 id="百度分析"><a href="#百度分析" class="headerlink" title="百度分析"></a>百度分析</h3><ol>
-<li><p>登录<span class="exturl" data-url="aHR0cHM6Ly90b25namkuYmFpZHUuY29tLw==">百度分析<i class="fa fa-external-link-alt"></i></span> 并找到网站代码获取页面。</p>
-</li>
-<li><p>在后面复制脚本 ID <code>hm.js?</code>，如下图：</p>
-<p><img src="/images/2020/08/1597041510807.png" alt="1597041510807" loading="lazy"></p>
-</li>
-<li><p>编辑 主题配置文件并将部分更改 <code>baidu_analytics</code> 为您的脚本 ID。</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Baidu Analytics ID</span>
-<span class="token key atrule">baidu_analytics</span><span class="token punctuation">:</span> your_id</code></pre>
+        <h3 id="Arthas-的-profiler-命令"><a href="#Arthas-的-profiler-命令" class="headerlink" title="Arthas 的 profiler 命令"></a>Arthas 的 profiler 命令</h3><h4 id="命令说明"><a href="#命令说明" class="headerlink" title="命令说明"></a>命令说明</h4><p><code>profiler</code> 命令支持生成应用热点的火焰图。本质上是通过不断的采样，然后把收集到的采样结果生成火焰图。</p>
+<blockquote>
+<p>文档：<span class="exturl" data-url="aHR0cHM6Ly9hcnRoYXMuYWxpeXVuLmNvbS9kb2MvcHJvZmlsZXIuaHRtbA==">https://arthas.aliyun.com/doc/profiler.html<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p><code>profiler</code> 命令的实现依赖于开源 <code>async-profiler</code>：</p>
+<blockquote>
+<p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2p2bS1wcm9maWxpbmctdG9vbHMvYXN5bmMtcHJvZmlsZXI=">https://github.com/jvm-profiling-tools/async-profiler<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<a id="more"></a>
 
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em> action</em></td>
+<td> 要执行的操作</td>
+</tr>
+<tr>
+<td><em> actionArg</em></td>
+<td> 属性名模式</td>
+</tr>
+<tr>
+<td> [i:]</td>
+<td> 采样间隔（单位：ns）（默认值：10'000'000，即 10 ms）</td>
+</tr>
+<tr>
+<td>[f:]</td>
+<td> 将输出转储到指定路径</td>
+</tr>
+<tr>
+<td> [d:]</td>
+<td> 运行评测指定秒</td>
+</tr>
+<tr>
+<td> [e:]</td>
+<td> 要跟踪哪个事件（cpu, alloc, lock, cache-misses 等），默认是 cpu</td>
+</tr>
+</tbody></table>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><p><code>profiler</code> 命令的使用，有以下注意事项：</p>
+<ol>
+<li><p>Windows 系统不支持 profiler 命令，只有  Linux/Mac 支持。</p>
+<blockquote>
+<p>Current OS do not support AsyncProfiler, Only support Linux/Mac.</p>
+</blockquote>
+</li>
+<li><p><code>$ /lib/x86_64-linux-gnu/libc.so.6 --version</code> 版本大于 2.14</p>
+<blockquote>
+<p>/lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.14' not found</p>
+</blockquote>
 </li>
 </ol>
+<h3 id="使用-profiler-命令"><a href="#使用-profiler-命令" class="headerlink" title="使用 profiler 命令"></a>使用 profiler 命令</h3><h4 id="启动profiler"><a href="#启动profiler" class="headerlink" title="启动profiler"></a>启动 profiler</h4><pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ profiler <span class="token function">start</span>
+Started <span class="token namespace">[cpu]</span> profiling</code></pre>
+
+<blockquote>
+<p>默认情况下，生成的是 cpu 的火焰图，即 event 为 <code>cpu</code>。可以用 <code>--event</code> 参数来指定。</p>
+</blockquote>
+<h4 id="获取数量"><a href="#获取数量" class="headerlink" title="获取数量"></a>获取数量</h4><p>获取已采集的 sample 的数量</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ profiler getSamples
+23</code></pre>
+
+<h4 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h4><pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ profiler status
+<span class="token namespace">[cpu]</span> profiling is running <span class="token keyword">for</span> 4 seconds</code></pre>
+
+<p>可以查看当前 profiler 在采样哪种 <code>event</code> 和采样时间。</p>
+<h4 id="停止profiler"><a href="#停止profiler" class="headerlink" title="停止profiler"></a>停止 profiler</h4><p>默认生成 svg 格式结果</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ profiler stop
+profiler output file: <span class="token operator">/</span>tmp<span class="token operator">/</span>demo<span class="token operator">/</span>arthas<span class="token operator">-</span>output<span class="token operator">/</span>20191125<span class="token operator">-</span>135546<span class="token punctuation">.</span>svg
+OK</code></pre>
+
+<p>默认情况下，生成的结果保存到应用的<code>工作目录</code>下的 <code>arthas-output</code> 目录。可以通过 <code>--file</code> 参数来指定输出结果路径。比如：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ profiler stop <span class="token operator">--</span>file <span class="token operator">/</span>tmp<span class="token operator">/</span>output<span class="token punctuation">.</span>svg
+profiler output file: <span class="token operator">/</span>tmp<span class="token operator">/</span>output<span class="token punctuation">.</span>svg
+OK</code></pre>
+
+<h4 id="生成html格式"><a href="#生成html格式" class="headerlink" title="生成html格式"></a>生成 html 格式</h4><p>默认情况下，结果文件是 <code>svg</code> 格式，如果想生成 <code>html</code> 格式，可以用 <code>--format</code> 参数指定：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ profiler stop <span class="token operator">--</span>format html
+profiler output file: <span class="token operator">/</span>tmp<span class="token operator">/</span>test<span class="token operator">/</span>arthas<span class="token operator">-</span>output<span class="token operator">/</span>20191125<span class="token operator">-</span>143329<span class="token punctuation">.</span>html
+OK</code></pre>
+
+<p>或者在 <code>--file</code> 参数里用文件名指名格式。比如 <code>--file /tmp/result.html</code> 。</p>
+<h3 id="做复杂链路分析"><a href="#做复杂链路分析" class="headerlink" title="做复杂链路分析"></a>做复杂链路分析</h3><h4 id="采样生成jfr文件"><a href="#采样生成jfr文件" class="headerlink" title="采样生成jfr文件"></a>采样生成 jfr 文件</h4><p>启动 arthas 之后，执行以下采样命令：</p>
+<pre class="language-none"><code class="language-none">profiler start -f /home/admin/yourAppName/target/arthas-output/%t.jfr -d 180</code></pre>
+
+<p>% t 表示当前时间，-d 后面是采样秒数。</p>
 
     </div>
 
@@ -443,26 +512,28 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建Jekyll环境</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为Jekyll博客系统增加百度统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-02-Arthas之各模块简介\" rel="bookmark">Arthas之各模块简介</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为Jekyll博客系统增加来必力评论系统</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas之源码简要分析</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll使用中文路径</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas之jad反编译原理</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加Jekyll博客访问量统计</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas之通过thread命令定位线程问题</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Blog/" rel="tag"># Blog</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Java%E8%AF%8A%E6%96%AD/" rel="tag"># Java诊断</a>
+              <a href="/tags/Arthas/" rel="tag"># Arthas</a>
           </div>
 
         
@@ -471,12 +542,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/2020-08-09-%E5%8D%9A%E5%AE%A2%E7%BD%91%E5%9D%80%E5%A2%9E%E5%8A%A0%E7%AB%99%E7%82%B9%E5%9C%B0%E5%9B%BEsitemap/" rel="prev" title="博客网址增加站点地图 sitemap">
-      <i class="fa fa-chevron-left"></i> 博客网址增加站点地图 sitemap
+    <a href="/2020/09/2020-09-01-Ceph%E5%9D%97%E8%AE%BE%E5%A4%87rbd%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0/" rel="prev" title="Ceph 块设备 rbd 相关学习">
+      <i class="fa fa-chevron-left"></i> Ceph 块设备 rbd 相关学习
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/08/2020-08-10-Neo4j%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%86%E7%A0%81/" rel="next" title="Neo4j 初始化密码">
-      Neo4j 初始化密码 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" rel="next" title="k8s 静态 PV 集成 ceph 块设备存储">
+      k8s 静态 PV 集成 ceph 块设备存储 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -742,7 +813,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'jueee.github.io',
       owner       : 'jueee',
       admin       : ['jueee'],
-      id          : '6fb1b0242c84ea26c898136690ccefde',
+      id          : 'c435ee296dc31f72b78252c587788b8b',
         language: 'zh-CN',
       distractionFreeMode: true
     });

@@ -34,7 +34,7 @@
 <meta property="og:description" content="块设备相关文档http:&#x2F;&#x2F;docs.ceph.org.cn&#x2F;rbd&#x2F;rbd&#x2F; rbd 命令创建 rbd $ rbd create --size 10240 kcha&#x2F;mysqldata  查看 rbd $ rbd list kcha mysqldata  调整块设备映像大小： $ rbd resize --size 10240 kcha&#x2F;mysqldata Resizing image: 100">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-01T09:49:57.994Z">
+<meta property="article:modified_time" content="2020-09-04T02:58:30.955Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Ceph">
 <meta name="twitter:card" content="summary">
@@ -159,7 +159,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">51</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">53</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -233,7 +233,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%97%E8%AE%BE%E5%A4%87%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="nav-number">1.</span> <span class="nav-text">块设备相关文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rbd-%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">rbd 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RBD%E7%89%B9%E6%80%A7%E8%A7%A3%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">RBD 特性解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%80%A7%E4%B8%80%E8%A7%88%E8%A1%A8"><span class="nav-number">3.1.</span> <span class="nav-text">特性一览表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="nav-number">3.2.</span> <span class="nav-text">默认属性值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%B1%9E%E6%80%A7"><span class="nav-number">3.3.</span> <span class="nav-text">控制属性</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%97%E8%AE%BE%E5%A4%87%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="nav-number">1.</span> <span class="nav-text">块设备相关文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rbd-%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">rbd 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rbd-%E5%8D%A0%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">rbd 占用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4-rbd"><span class="nav-number">2.2.</span> <span class="nav-text">删除 rbd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA"><span class="nav-number">2.3.</span> <span class="nav-text">导入导出</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RBD%E7%89%B9%E6%80%A7%E8%A7%A3%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">RBD 特性解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%80%A7%E4%B8%80%E8%A7%88%E8%A1%A8"><span class="nav-number">3.1.</span> <span class="nav-text">特性一览表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="nav-number">3.2.</span> <span class="nav-text">默认属性值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E5%B1%9E%E6%80%A7"><span class="nav-number">3.3.</span> <span class="nav-text">控制属性</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -249,7 +249,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -409,15 +409,15 @@
     <div class="post-body" itemprop="articleBody">
         <h3 id="块设备相关文档"><a href="#块设备相关文档" class="headerlink" title="块设备相关文档"></a>块设备相关文档</h3><p><span class="exturl" data-url="aHR0cDovL2RvY3MuY2VwaC5vcmcuY24vcmJkL3JiZC8=">http://docs.ceph.org.cn/rbd/rbd/<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="rbd-命令"><a href="#rbd-命令" class="headerlink" title="rbd 命令"></a>rbd 命令</h3><p>创建 rbd</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd create --size <span class="token number">10240</span> kcha/mysqldata</code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd create --size 10240 kcha/mysqldata</code></pre>
 
 <p>查看 rbd</p>
 <pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd list kcha
 mysqldata</code></pre>
 
 <p>调整块设备映像大小：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd resize --size <span class="token number">10240</span> kcha/mysqldata
-Resizing image: <span class="token number">100</span>% complete<span class="token punctuation">..</span>.done.</code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd resize --size 10240 kcha/mysqldata
+Resizing image: 100% complete...done.</code></pre>
 
 <p>查看信息：</p>
 <pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ rbd info kcha<span class="token operator">/</span>mysqldata
@@ -432,20 +432,40 @@ rbd image <span class="token string">'mysqldata'</span>:
 <p>移除 features</p>
 <pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd feature disable kcha/mysqldata exclusive-lock, object-map, fast-diff, deep-flatten</code></pre>
 
-<p>删除 rbd</p>
-<pre class="language-none"><code class="language-none">加入黑名单
-$ ceph osd blacklist add 10.105.136.63:0/1081512968
-blacklisting 10.105.136.63:0/1081512968 until 2020-09-01T10:46:28.920245+0000 (3600 sec)
-删除
-$ rbd rm kcha/mysqldata
-Removing image: 100% complete...done.
-查看黑名单
-$ ceph osd blacklist ls
+<h4 id="rbd-占用"><a href="#rbd-占用" class="headerlink" title="rbd 占用"></a>rbd 占用</h4><p>查看 rbd 实际占用：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ rbd <span class="token function">diff</span> kcha<span class="token operator">/</span>mysqldata <span class="token punctuation">|</span> awk <span class="token string">'{ SUM += $2 } END { print SUM/1024/1024 " MB" }'</span>
+860<span class="token punctuation">.</span>449 MB
+$ rbd <span class="token function">diff</span> kcha<span class="token operator">/</span>mysqldata <span class="token punctuation">|</span> awk <span class="token string">'{ SUM += $2 } END { print SUM/1024/1024/1024 " GB" }'</span>
+0<span class="token punctuation">.</span>840282 GB</code></pre>
+
+<h4 id="删除-rbd"><a href="#删除-rbd" class="headerlink" title="删除 rbd"></a>删除 rbd</h4><p>直接删除：</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd rm kcha/mysqldata
+Removing image: 100% complete...done.</code></pre>
+
+<p>若 rbd 被占用，则需要先将占用加入黑名单，后再删除。</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 加入黑名单</span>
+$ ceph osd blacklist add 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968
+blacklisting 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968 <span class="token keyword">until</span> 2020<span class="token operator">-</span>09<span class="token operator">-</span>01T10:46:28<span class="token punctuation">.</span>920245<span class="token operator">+</span>0000 <span class="token punctuation">(</span>3600 sec<span class="token punctuation">)</span>
+<span class="token comment"># 删除</span>
+$ rbd <span class="token function">rm</span> kcha<span class="token operator">/</span>mysqldata
+Removing image: 100<span class="token operator">%</span> complete<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>done<span class="token punctuation">.</span>
+<span class="token comment"># 查看黑名单</span>
+$ ceph osd blacklist <span class="token function">ls</span>
 listed 1 entries
-10.105.136.63:0/1081512968 2020-09-01T10:46:28.920245+0000
-移除黑名单
-$ ceph osd blacklist rm 10.105.136.63:0/1081512968
-un-blacklisting 10.105.136.63:0/1081512968</code></pre>
+10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968 2020<span class="token operator">-</span>09<span class="token operator">-</span>01T10:46:28<span class="token punctuation">.</span>920245<span class="token operator">+</span>0000
+<span class="token comment"># 移除黑名单</span>
+$ ceph osd blacklist <span class="token function">rm</span> 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968
+un<span class="token operator">-</span>blacklisting 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968</code></pre>
+
+<h4 id="导入导出"><a href="#导入导出" class="headerlink" title="导入导出"></a>导入导出</h4><pre class="language-none"><code class="language-none">$ rbd export kcha/mysqldata ~/mysqldata
+Exporting image: 100% complete...done.</code></pre>
+
+
+
+<pre class="language-none"><code class="language-none">$ rbd import ~/mysqldata  mantidata/mysqldata --image-format 2
+Importing image: 100% complete...done.</code></pre>
+
+
 
 <h3 id="RBD特性解析"><a href="#RBD特性解析" class="headerlink" title="RBD特性解析"></a>RBD 特性解析</h3><h4 id="特性一览表"><a href="#特性一览表" class="headerlink" title="特性一览表"></a>特性一览表</h4><p>RBD 支持的特性，及具体 BIT 值的计算如下</p>
 <table>
@@ -522,13 +542,13 @@ un-blacklisting 10.105.136.63:0/1081512968</code></pre>
       <div class="popular-posts-title"><a href="\2020\08\2020-08-29-Ceph分布式存储系统介绍\" rel="bookmark">Ceph分布式存储系统介绍</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在k8s中使用rook-ceph</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在 k8s 中使用 rook-ceph</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-31-Ceph常用命令行汇总\" rel="bookmark">Ceph常用命令行汇总</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s静态PV集成ceph块设备存储</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s 静态 PV 集成 ceph 块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s动态PV集成ceph块设备存储</a></div>
@@ -551,8 +571,8 @@ un-blacklisting 10.105.136.63:0/1081512968</code></pre>
       <i class="fa fa-chevron-left"></i> Arthas 之查看类加载信息的相关命令
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" rel="next" title="k8s 静态 PV 集成 ceph 块设备存储">
-      k8s 静态 PV 集成 ceph 块设备存储 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/2020-09-02-Arthas%E4%B9%8B%E4%BD%BF%E7%94%A8profiler%E5%81%9A%E5%A4%8D%E6%9D%82%E9%93%BE%E8%B7%AF%E5%88%86%E6%9E%90/" rel="next" title="Arthas 之使用 profiler 做复杂链路分析">
+      Arthas 之使用 profiler 做复杂链路分析 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
