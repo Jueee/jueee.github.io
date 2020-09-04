@@ -26,15 +26,15 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="动态 PV 使用步骤 创建存储池并启用 RBD 功能。 创建 Ceph 用户，提供给k8s 使用。 在k8s 上安装ceph-common客户端。 复制ceph.conf以及admin用户的keyring文件到k8s节点（master and node）。 创建 Secret 资源，以 keyring 的key 为 data。 动态 PV使用 创建 StorageClass 创建PVC 创建POD">
+  <meta name="description" content="动态 PV 使用步骤 创建存储池并启用 RBD 功能。 创建 Ceph 用户，提供给 k8s 使用。 在 k8s 上安装 ceph-common 客户端。 复制 ceph.conf 以及 admin 用户的 keyring 文件到 k8s 节点（master and node）。 创建 Secret 资源，以 keyring 的 key 为 data。 动态 PV 使用 创建 StorageCla">
 <meta property="og:type" content="article">
 <meta property="og:title" content="k8s 动态 PV 集成 ceph 块设备存储">
 <meta property="og:url" content="https://jueee.github.io/2020/09/2020-09-03-k8s%E5%8A%A8%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="动态 PV 使用步骤 创建存储池并启用 RBD 功能。 创建 Ceph 用户，提供给k8s 使用。 在k8s 上安装ceph-common客户端。 复制ceph.conf以及admin用户的keyring文件到k8s节点（master and node）。 创建 Secret 资源，以 keyring 的key 为 data。 动态 PV使用 创建 StorageClass 创建PVC 创建POD">
+<meta property="og:description" content="动态 PV 使用步骤 创建存储池并启用 RBD 功能。 创建 Ceph 用户，提供给 k8s 使用。 在 k8s 上安装 ceph-common 客户端。 复制 ceph.conf 以及 admin 用户的 keyring 文件到 k8s 节点（master and node）。 创建 Secret 资源，以 keyring 的 key 为 data。 动态 PV 使用 创建 StorageCla">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-03T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-02T04:54:42.076Z">
+<meta property="article:modified_time" content="2020-09-04T08:47:48.619Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Ceph">
 <meta property="article:tag" content="k8s">
@@ -160,12 +160,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">53</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">55</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">15</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -250,14 +250,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -375,6 +375,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
                 </span>
             </span>
 
@@ -596,8 +600,8 @@ kubectl <span class="token operator">-</span>n <span class="token variable">$NAM
       <i class="fa fa-chevron-left"></i> k8s 静态 PV 集成 ceph 块设备存储
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/2020-09-04-k8s%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9Ceph%E6%8C%81%E4%B9%85%E5%8D%B7/" rel="next" title="k8s 动态扩容 Ceph 持久卷">
-      k8s 动态扩容 Ceph 持久卷 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/2020-09-04-%E4%BF%AE%E6%94%B9k8s%E7%9A%84nodeport%E7%B1%BB%E5%9E%8B%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/" rel="next" title="修改 k8s 的 nodeport 类型端口范围">
+      修改 k8s 的 nodeport 类型端口范围 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
