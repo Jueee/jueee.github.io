@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jueee.github.io/"/>
-  <updated>2020-09-04T11:02:25.660Z</updated>
+  <updated>2020-09-08T11:20:14.168Z</updated>
   <id>https://jueee.github.io/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>自动删除 Elasticsearch 索引</title>
+    <link href="https://jueee.github.io/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20Elasticsearch%20%E7%B4%A2%E5%BC%95/"/>
+    <id>https://jueee.github.io/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20Elasticsearch%20%E7%B4%A2%E5%BC%95/</id>
+    <published>2020-09-07T00:00:00.000Z</published>
+    <updated>2020-09-08T11:20:14.168Z</updated>
+    
+    <content type="html"><![CDATA[<p>查看所有的索引文件：</p><blockquote><p>curl -XGET <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo5MjAwL19jYXQvaW5kaWNlcz92">http://localhost:9200/_cat/indices?v<i class="fa fa-external-link-alt"></i></span></p></blockquote><p>删除索引文件以释放空间：</p><blockquote><p>curl -XDELETE <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo5MjAwL2ZpbGViZWF0LTIwMTYuMTIuMjg=">http://localhost:9200/filebeat-2016.12.28<i class="fa fa-external-link-alt"></i></span></p></blockquote><p>索引文件保留在服务器中，大大减小服务器的性能，占用硬盘空间，<br>因此使用脚本自动删除 elk 中七天以前的索引以释放空间。</p><a id="more"></a><p>新增 Shell 脚本：</p><pre class="language-shell" data-language="shell"><code class="language-shell">#!/bin/bash# auto delete 7 day ago elasticsearch indexeshost='127.0.0.1:9200'dtime=`date -d "7 day ago" +%Y-%m-%d`dtime_stamp=`date -d "$dtime" +%s`echo `date` 'start clean ' $dtime &gt;&gt; clean-log.logindexs=`curl -s 'http://'$eshost'/_cat/indices' | awk '$3~/^logstash/{print $3}'`for line in $indexs;do  index=$line  itime=`echo $line | awk -F - '{print $3}' | tr '.' '-'`  itime_stamp=`date -d "$itime" +%s`  if [ $itime_stamp -lt $dtime_stamp ];then    echo $index &gt;&gt; clean-log.log    curl -X DELETE 'http://'$eshost'/$index' &gt; /dev/null 2&gt;&amp;1  fidone</code></pre><p>每天 2 点定时删除 es 中指定日期的数据，配置 crontab：</p><pre class="language-none"><code class="language-none">0 2 * * * sh /home/dir/auto-clean-log.sh &gt;&gt; /home/dir/clean-log.log 2&gt;&amp;1</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;查看所有的索引文件：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;curl -XGET &lt;a href=&quot;http://localhost:9200/_cat/indices?v&quot;&gt;http://localhost:9200/_cat/indices?v&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;删除索引文件以释放空间：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;curl -XDELETE &lt;a href=&quot;http://localhost:9200/filebeat-2016.12.28&quot;&gt;http://localhost:9200/filebeat-2016.12.28&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;索引文件保留在服务器中，大大减小服务器的性能，占用硬盘空间，&lt;br&gt;因此使用脚本自动删除 elk 中七天以前的索引以释放空间。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://jueee.github.io/categories/Linux/"/>
+    
+      <category term="Shell" scheme="https://jueee.github.io/categories/Linux/Shell/"/>
+    
+      <category term="Elasticsearch" scheme="https://jueee.github.io/categories/Elasticsearch/"/>
+    
+    
+      <category term="Elasticsearch" scheme="https://jueee.github.io/tags/Elasticsearch/"/>
+    
+      <category term="Shell" scheme="https://jueee.github.io/tags/Shell/"/>
+    
+  </entry>
   
   <entry>
     <title>k8s 在 tomcat 多副本时的 session 会话保持</title>
@@ -558,31 +595,6 @@ ceph version &lt;span class=&quot;token number&quot;&gt;15.2&lt;/span&gt;.4 &lt;
     <summary type="html">
     
       &lt;p&gt;网站管理员工具需要对网站域名所有权进行验证，通常是通过上传指定文件、增加META或者修改网站DNS来验证管理员身份，通过验证后，网站管理员可以查询到自己网站的各类统计信息。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Blog" scheme="https://jueee.github.io/categories/Blog/"/>
-    
-    
-      <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
-    
-      <category term="SEO" scheme="https://jueee.github.io/tags/SEO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Robots.txt 文件介绍及生成</title>
-    <link href="https://jueee.github.io/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/"/>
-    <id>https://jueee.github.io/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/</id>
-    <published>2020-08-18T00:00:00.000Z</published>
-    <updated>2020-09-02T09:00:11.021Z</updated>
-    
-    <content type="html"><![CDATA[<p>Robots.txt 是存放在站点根目录下的一个纯文本文件。虽然它的设置很简单，但是作用却很强大。它可以指定搜索引擎蜘蛛只抓取指定的内容，或者是禁止搜索引擎蜘蛛抓取网站的部分或全部内容。</p><h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>Robots.txt 文件应该放在网站根目录下，并且该文件是可以通过互联网进行访问的。</p><p>例如：如果您的网站地址是 <code>http://www.yourdomain.com/</code>。那么，该文件必须能够通过 <code>http://www.yourdomain.com/robots.txt</code> 打开并看到里面的内容。</p><p>例如：<a href="https://jueee.github.io/robots.txt">https://jueee.github.io/robots.txt</a></p><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><h4 id="User-agent"><a href="#User-agent" class="headerlink" title="User-agent"></a>User-agent</h4><p>用于描述搜索引擎蜘蛛的名字，在 "Robots.txt" 文件中，如果有多条 User-agent 记录说明有多个搜索引擎蜘蛛会受到该协议的限制，对该文件来说，至少要有一条 User-agent 记录。</p><p>如果该项的值设为 <code>*</code>，则该协议对任何搜索引擎蜘蛛均有效，在 "Robots.txt" 文件中，"<code>User-agent:*</code>" 这样的记录只能有一条。</p><h4 id="Disallow"><a href="#Disallow" class="headerlink" title="Disallow"></a>Disallow</h4><p>用于描述不希望被访问到的一个 URL，这个 URL 可以是一条完整的路径，也可以是部分的，任何以 Disallow 开头的 URL 均不会被 Robot 访问到。</p><p>举例：</p><p>例一："Disallow:/help" 是指 /help.html 和 /help/index.html 都不允许搜索引擎蜘蛛抓取。</p><p>例二："Disallow:/help/" 是指允许搜索引擎蜘蛛抓取 /help.html，而不能抓取 /help/index.html。</p><p>例三：Disallow 记录为空说明该网站的所有页面都允许被搜索引擎抓取，在 "/robots.txt" 文件中，至少要有一条 Disallow 记录。如果 "/robots.txt" 是一个空文件，则对于所有的搜索引擎蜘蛛，该网站都是开放的可以被抓取的。</p><h4 id="注释符"><a href="#注释符" class="headerlink" title="注释符"></a>注释符</h4><p><code>#</code> 是 Robots.txt 协议中的注释符。</p><h3 id="综合例子"><a href="#综合例子" class="headerlink" title="综合例子"></a>综合例子</h3><p>例一：通过 "/robots.txt" 禁止所有搜索引擎蜘蛛抓取 "/bin/cgi/" 目录，以及 "/tmp/" 目录和 /foo.html 文件，设置方法如下：</p><pre class="language-none"><code class="language-none">User-agent: *Disallow: /bin/cgi/Disallow: /tmp/Disallow: /foo.html</code></pre><p>例二：通过 "/robots.txt" 只允许某个搜索引擎抓取，而禁止其他的搜索引擎抓取。如：只允许名为 "slurp" 的搜索引擎蜘蛛抓取，而拒绝其他的搜索引擎蜘蛛抓取 "/cgi/" 目录下的内容，设置方法如下：</p><pre class="language-none"><code class="language-none">User-agent: *Disallow: /cgi/User-agent: slurpDisallow:</code></pre><p>例三：禁止任何搜索引擎抓取我的网站，设置方法如下：</p><pre class="language-none"><code class="language-none">User-agent: *Disallow: /</code></pre><p>例四：只禁止某个搜索引擎抓取我的网站如：只禁止名为 “slurp” 的搜索引擎蜘蛛抓取，设置方法如下：</p><pre class="language-none"><code class="language-none">User-agent: slurpDisallow: /</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      Robots.txt 是存放在站点根目录下的一个纯文本文件。虽然它的设置很简单，但是作用却很强大。它可以指定搜索引擎蜘蛛只抓取指定的内容，或者是禁止搜索引擎蜘蛛抓取网站的部分或全部内容。
     
     </summary>
     
