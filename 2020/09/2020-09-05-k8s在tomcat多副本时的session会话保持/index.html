@@ -35,7 +35,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2020/09/1599216595277.png">
 <meta property="article:published_time" content="2020-09-05T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-04T10:56:51.594Z">
+<meta property="article:modified_time" content="2020-09-04T11:02:25.660Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="k8s">
 <meta name="twitter:card" content="summary">
@@ -235,7 +235,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">出现问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session-%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4"><span class="nav-number">3.</span> <span class="nav-text">Session&amp;nbsp;超时时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session-Affinity"><span class="nav-number">4.</span> <span class="nav-text">Session Affinity</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">出现问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session-%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4"><span class="nav-number">3.</span> <span class="nav-text">Session 超时时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session-Affinity"><span class="nav-number">4.</span> <span class="nav-text">Session Affinity</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -417,10 +417,20 @@
 <p>如下图所示：</p>
 <p><img src="/images/2020/09/1599216595277.png" alt="1599216595277" loading="lazy"></p>
 <p>备注：这种方法目前只适用使用 nodeport 暴露服务的情况。</p>
-<h3 id="Session-超时时间"><a href="#Session-超时时间" class="headerlink" title="Session&nbsp;超时时间"></a>Session&nbsp;超时时间</h3><p>如果您还想指定时间，则需要添加以下内容：</p>
+<p><code>spec.sessionAffinity</code> 字段用于定义要使用的粘性会话的类型，它仅支持使用 “None” 和 “ ClientIP” 两种属性值。</p>
+<p>也可以使用打补丁的方式进行修改 yaml 内的内容，如下：</p>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># session保持，同一ip访问同一个pod</span>
+kubectl patch svc myapp <span class="token operator">-</span>p <span class="token string">'{"spec":{"sessionAffinity":"ClusterIP"}}'</span>  
+<span class="token comment"># 取消session </span>
+kubectl patch svc myapp <span class="token operator">-</span>p <span class="token string">'{"spec":{"sessionAffinity":"None"}}'</span>    </code></pre>
+
+<h3 id="Session-超时时间"><a href="#Session-超时时间" class="headerlink" title="Session 超时时间"></a>Session 超时时间</h3><p>Service affinity 的效果仅仅在一段时间内生效，默认值为 10800 秒，超出时长，客户端再次访问会重新调度。</p>
+<p>该机制仅能基于客户端 IP 地址识别客户端身份，它会将经由同一个 NAT 服务器进行原地址转换的所有客户端识别为同一个客户端，由此可知，其调度的效果并不理想。</p>
+<p>Service 资源 通过 <code>.spec.sessionAffinity</code> 和 <code>.spec.sessionAffinityConfig</code> 两个字段配置粘性会话。</p>
+<p>如果您还想指定时间，则需要添加以下内容：</p>
 <pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">sessionAffinityConfig</span><span class="token punctuation">:</span>
-    <span class="token key atrule">clientIP</span><span class="token punctuation">:</span>
-      <span class="token key atrule">timeoutSeconds</span><span class="token punctuation">:</span> <span class="token number">10</span></code></pre>
+  <span class="token key atrule">clientIP</span><span class="token punctuation">:</span>
+    <span class="token key atrule">timeoutSeconds</span><span class="token punctuation">:</span> <span class="token number">10</span></code></pre>
 
 <h3 id="Session-Affinity"><a href="#Session-Affinity" class="headerlink" title="Session Affinity"></a>Session Affinity</h3><p>会话保持 (Session Affinity), 有时又称粘滞会话 (Sticky Sessions), 是负载均衡领域设计需要着力解决的重要问题之一，也是一个相对比较复杂的问题。</p>
 <p>会话保持是指在负载均衡器上的一种机制，在完成负载均衡任务的同时，还负责一系列相关连的访问请求会分配到一台服务器上｡</p>

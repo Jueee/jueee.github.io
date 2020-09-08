@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1596700025625.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1596701687793.png">
 <meta property="article:published_time" content="2020-08-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-02T09:00:10.997Z">
+<meta property="article:modified_time" content="2020-09-07T10:48:05.279Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Java诊断">
@@ -456,7 +456,15 @@
 </ul>
 </li>
 </ol>
-<h3 id="模块关系"><a href="#模块关系" class="headerlink" title="模块关系"></a>模块关系</h3><p>整体宏观模块调用图：</p>
+<h3 id="模块关系"><a href="#模块关系" class="headerlink" title="模块关系"></a>模块关系</h3><p>模块关系说明：</p>
+<ol>
+<li>arthas-boot.jar 和 as.sh 模块功能类似，分别使用 java 和 shell 脚本，下载对应的 jar 包，并生成服务端和客户端的启动命令，然后启动客户端和服务端。</li>
+<li>arthas-core.jar 是服务端程序的启动入口类，会调用 <code>virtualMachine#attach</code> 到目标进程，并加载 arthas-agent.jar 作为 agent jar 包。</li>
+<li>arthas-agent.jar 既可以使用 premain 方式（在目标进程启动之前，通过 - agent 参数静态指定），也可以通过 agentmain 方式（在进程启动之后 attach 上去）。arthas-agent 会使用自定义的 classloader (<code>ArthasClassLoader</code>) 加载 arthas-core.jar 里面的 <code>com.taobao.arthas.core.config.Configure</code> 类以及 <code>com.taobao.arthas.core.server.ArthasBootstrap</code>。 同时程序运行的时候会使用 arthas-spy.jar。</li>
+<li>arthas-spy.jar 里面只包含 Spy 类，目的是为了将 Spy 类使用 <code>BootstrapClassLoader</code> 来加载，从而使目标进程的 java 应用可以访问 Spy 类。通过 ASM 修改字节码，可以将 Spy 类的方法 <code>ON_BEFORE_METHOD</code>， <code>ON_RETURN_METHOD</code> 等编织到目标类里面。Spy 类你可以简单理解为类似 spring aop 的 Advice，有前置方法，后置方法等。</li>
+<li>arthas-client.jar 是客户端程序，用来连接 arthas-core.jar 启动的服务端代码，使用 telnet 方式。一般由 arthas-boot.jar 和 as.sh 来负责启动。</li>
+</ol>
+<p>整体宏观模块调用图：</p>
 <p><img src="/images/2020/08/1596698216827.png" alt="1596698216827" loading="lazy"></p>
 <p>模块描述：</p>
 <p><img src="/images/2020/08/1596616373228.png" alt="1596616373228" loading="lazy"></p>
