@@ -155,17 +155,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">56</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">59</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">17</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">19</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">31</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -244,20 +244,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -330,6 +330,306 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-04-%E4%BF%AE%E6%94%B9k8s%E7%9A%84nodeport%E7%B1%BB%E5%9E%8B%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/2020-09-04-%E4%BF%AE%E6%94%B9k8s%E7%9A%84nodeport%E7%B1%BB%E5%9E%8B%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/" class="post-title-link" itemprop="url">修改 k8s 的 nodeport 类型端口范围</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-04T00:00:00Z">2020-09-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/2020-09-04-%E4%BF%AE%E6%94%B9k8s%E7%9A%84nodeport%E7%B1%BB%E5%9E%8B%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-04-%E4%BF%AE%E6%94%B9k8s%E7%9A%84nodeport%E7%B1%BB%E5%9E%8B%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><p>在 Kubernetes (k8s) 创建 service 使用 nodePort 暴露 外部端口 8192 时报错：</p>
+<blockquote>
+<p>The Service "web-admin" is invalid: spec.ports[0].nodePort: Invalid value: 8192: provided port is not in the valid range. The range of valid ports is 30000-32767</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/2020-09-04-%E4%BF%AE%E6%94%B9k8s%E7%9A%84nodeport%E7%B1%BB%E5%9E%8B%E7%AB%AF%E5%8F%A3%E8%8C%83%E5%9B%B4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-03-k8s%E5%8A%A8%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/2020-09-03-k8s%E5%8A%A8%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">k8s 动态 PV 集成 ceph 块设备存储</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-03T00:00:00Z">2020-09-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/2020-09-03-k8s%E5%8A%A8%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-03-k8s%E5%8A%A8%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="动态-PV-使用步骤"><a href="#动态-PV-使用步骤" class="headerlink" title="动态 PV 使用步骤"></a>动态 PV 使用步骤</h3><ol>
+<li>创建存储池并启用 RBD 功能。</li>
+<li>创建 Ceph 用户，提供给 k8s 使用。</li>
+<li>在 k8s 上安装 ceph-common 客户端。</li>
+<li>复制 <code>ceph.conf</code> 以及 admin 用户的 keyring 文件到 k8s 节点（master and node）。</li>
+<li>创建 Secret 资源，以 keyring 的 key 为 data。</li>
+<li>动态 PV 使用<ol>
+<li>创建 StorageClass</li>
+<li> 创建 PVC</li>
+<li> 创建 POD</li>
+</ol>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/2020-09-03-k8s%E5%8A%A8%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">k8s 静态 PV 集成 ceph 块设备存储</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-02T00:00:00Z">2020-09-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="静态-PV-使用步骤"><a href="#静态-PV-使用步骤" class="headerlink" title="静态 PV 使用步骤"></a>静态 PV 使用步骤</h3><ol>
+<li>创建存储池并启用 RBD 功能。</li>
+<li>创建 Ceph 用户，提供给 k8s 使用。</li>
+<li>在 k8s 上安装 ceph-common 客户端。</li>
+<li>复制 <code>ceph.conf</code> 以及 admin 用户的 keyring 文件到 k8s 节点（master and node）。</li>
+<li>创建 Secret 资源，以 keyring 的 key 为 data。</li>
+<li>静态 PV 使用：<ol>
+<li>创建 PV</li>
+<li> 创建 PVC</li>
+<li> 在 Ceph 存储池里创建对应的 RBDImage</li>
+<li> 创建 POD</li>
+</ol>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -937,286 +1237,6 @@ Affect<span class="token punctuation">(</span>row<span class="token operator">-<
 Affect<span class="token punctuation">(</span>row<span class="token operator">-</span>cnt:1<span class="token punctuation">)</span> cost in 4 ms<span class="token punctuation">.</span></code></pre>
 
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">Ceph 常用命令行汇总</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-31 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-31T00:00:00Z">2020-08-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="ceph-基础命令"><a href="#ceph-基础命令" class="headerlink" title="ceph 基础命令"></a>ceph 基础命令</h3><p>查看版本：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># ceph -v</span>
-ceph version <span class="token number">15.2</span>.4 <span class="token punctuation">(</span>7447c15c6ff58d7fce91843b705a268a1917325c<span class="token punctuation">)</span> octopus <span class="token punctuation">(</span>stable<span class="token punctuation">)</span></code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/" class="post-title-link" itemprop="url">在 k8s 中使用 rook-ceph</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-30 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-30T00:00:00Z">2020-08-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p>rook-ceph 官方指导：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://rook.io/docs/rook/v1.1/ceph-examples.html">https://rook.io/docs/rook/v1.1/ceph-examples.html</a> </p>
-</blockquote>
-<p>github 项目地址：</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://github.com/rook/rook/tree/master/cluster/examples/kubernetes/ceph">https://github.com/rook/rook/tree/master/cluster/examples/kubernetes/ceph</a> </p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-29-Ceph%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/2020-08-29-Ceph%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">Ceph 分布式存储系统介绍</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-29T00:00:00Z">2020-08-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/08/2020-08-29-Ceph%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-29-Ceph%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><ul>
-<li><a target="_blank" rel="noopener" href="http://docs.ceph.org.cn/">Ceph 中文文档</a></li>
-<li><a target="_blank" rel="noopener" href="http://ceph.org.cn/">Ceph 中文社区</a></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-29-Ceph%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
