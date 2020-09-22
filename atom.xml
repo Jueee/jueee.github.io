@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jueee.github.io/"/>
-  <updated>2020-09-21T03:20:47.506Z</updated>
+  <updated>2020-09-22T03:23:18.125Z</updated>
   <id>https://jueee.github.io/</id>
   
   <author>
@@ -21,13 +21,13 @@
     <link href="https://jueee.github.io/2020/09/2020-09-21-%E5%9C%A8eclipse%E4%B8%AD%E5%AE%89%E8%A3%85lombok.jar/"/>
     <id>https://jueee.github.io/2020/09/2020-09-21-%E5%9C%A8eclipse%E4%B8%AD%E5%AE%89%E8%A3%85lombok.jar/</id>
     <published>2020-09-21T00:00:00.000Z</published>
-    <updated>2020-09-21T03:20:47.506Z</updated>
+    <updated>2020-09-22T03:23:18.125Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><strong>下载 lombok.jar（一定要最新版）</strong></p><p>下载地址：<span class="exturl" data-url="aHR0cHM6Ly9wcm9qZWN0bG9tYm9rLm9yZy9kb3dubG9hZA==">https://projectlombok.org/download<i class="fa fa-external-link-alt"></i></span></p><a id="more"></a><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol><li><p><strong>复制 lombok.jar 到 eclipse.ini 所在目录</strong></p></li><li><p><strong>安装 lombok.jar</strong>：shift + 右键唤出命令窗口，运行 <strong>java -jar lombok.jar</strong>  或者 直接双击 lombok.jar（后者操作更简单）</p><p><img src="assets/image-20200921103421844.png" alt="image-20200921103421844" loading="lazy"></p></li><li><p>选择 eclipse.exe：<br><img src="assets/image-20200921103504337.png" alt="image-20200921103504337" loading="lazy"></p></li><li><p>确认 eclipse.exe：<img src="assets/image-20200921103526313.png" alt="image-20200921103526313" loading="lazy"></p></li><li><p>快速安装：<br><img src="assets/image-20200921103543338.png" alt="image-20200921103543338" loading="lazy"></p></li><li><p>操作完成后发现 eclipse.ini 多了一行配置：<br><img src="assets/image-20200921103619161.png" alt="image-20200921103619161" loading="lazy"></p></li></ol><h3 id="安装成功后操作"><a href="#安装成功后操作" class="headerlink" title="安装成功后操作"></a><strong>安装成功后操作</strong></h3><p>重启 eclipse 并刷新项目，之前报错的 set () get () 等方法不再报错。</p><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h3><p>lombok.jar 一定要从官网下载最新，否则安装后 get () set () 等方法仍会报错。</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><strong>下载 lombok.jar（一定要最新版）</strong></p><p>下载地址：<span class="exturl" data-url="aHR0cHM6Ly9wcm9qZWN0bG9tYm9rLm9yZy9kb3dubG9hZA==">https://projectlombok.org/download<i class="fa fa-external-link-alt"></i></span></p><a id="more"></a><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol><li><p><strong>复制 lombok.jar 到 eclipse.ini 所在目录</strong></p></li><li><p><strong>安装 lombok.jar</strong>：shift + 右键唤出命令窗口，运行 <strong>java -jar lombok.jar</strong>  或者 直接双击 lombok.jar（后者操作更简单）</p><p><img src="/images/2020/09/image-20200921103421844.png" alt="image-20200921103421844" loading="lazy"></p></li><li><p>选择 eclipse.exe：<br><img src="/images/2020/09/image-20200921103504337.png" alt="image-20200921103504337" loading="lazy"></p></li><li><p>确认 eclipse.exe：<img src="/images/2020/09/image-20200921103526313.png" alt="image-20200921103526313" loading="lazy"></p></li><li><p>快速安装：<br><img src="/images/2020/09/image-20200921103543338.png" alt="image-20200921103543338" loading="lazy"></p></li><li><p>操作完成后发现 eclipse.ini 多了一行配置：<br><img src="/images/2020/09/image-20200921103619161.png" alt="image-20200921103619161" loading="lazy"></p></li></ol><h3 id="安装成功后操作"><a href="#安装成功后操作" class="headerlink" title="安装成功后操作"></a><strong>安装成功后操作</strong></h3><p>重启 eclipse 并刷新项目，之前报错的 set () get () 等方法不再报错。</p><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h3><p>lombok.jar 一定要从官网下载最新，否则安装后 get () set () 等方法仍会报错。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;下载 lombok.jar（一定要最新版）&lt;/strong&gt;&lt;/p&gt;
+      &lt;h3 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;下载lombok.jar（一定要最新版）&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;下载地址：&lt;a href=&quot;https://projectlombok.org/download&quot;&gt;https://projectlombok.org/download&lt;/a&gt;&lt;/p&gt;
     
     </summary>
