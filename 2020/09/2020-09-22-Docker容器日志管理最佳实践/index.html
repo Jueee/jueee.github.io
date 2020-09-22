@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="Docker 日志分为两类：  Docker 引擎日志(也就是 dockerd 运行时的日志)， 容器的日志，容器内的服务产生的日志。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 容器日志管理最佳实践">
+<meta property="og:url" content="https://jueee.github.io/2020/09/2020-09-22-Docker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="Docker 日志分为两类：  Docker 引擎日志(也就是 dockerd 运行时的日志)， 容器的日志，容器内的服务产生的日志。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jueee.github.io/images/2020/09/1600768133957.png">
+<meta property="article:published_time" content="2020-09-22T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-22T09:52:32.133Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jueee.github.io/images/2020/09/1600768133957.png">
+
+<link rel="canonical" href="https://jueee.github.io/2020/09/2020-09-22-Docker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Docker 容器日志管理最佳实践 | 小决的专栏</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h2 class="site-title">小决的专栏</h2>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">60</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E5%BC%95%E6%93%8E%E6%97%A5%E5%BF%97"><span class="nav-number">1.</span> <span class="nav-text">Docker 引擎日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97"><span class="nav-number">2.</span> <span class="nav-text">容器日志</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-%E6%97%A5%E5%BF%97%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">Docker 日志命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-%E6%97%A5%E5%BF%97%E9%A9%B1%E5%8A%A8"><span class="nav-number">2.2.</span> <span class="nav-text">Docker 日志驱动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E9%A9%B1%E5%8A%A8"><span class="nav-number">3.</span> <span class="nav-text">日志驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#local"><span class="nav-number">3.1.</span> <span class="nav-text">local</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-file%EF%BC%88%E9%BB%98%E8%AE%A4%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">json-file（默认）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#syslog"><span class="nav-number">3.3.</span> <span class="nav-text">syslog</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Journald"><span class="nav-number">3.4.</span> <span class="nav-text">Journald</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%AD%E5%82%A8%E5%AD%98%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97"><span class="nav-number">4.</span> <span class="nav-text">生产环境中储存容器日志</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97%E5%88%86%E7%B1%BB"><span class="nav-number">4.1.</span> <span class="nav-text">容器日志分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E8%BE%93%E5%87%BA%E7%9A%84%E5%AD%98%E5%82%A8"><span class="nav-number">4.2.</span> <span class="nav-text">标准输出的存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E6%97%A5%E5%BF%97%E7%9A%84%E5%AD%98%E5%82%A8"><span class="nav-number">4.3.</span> <span class="nav-text">文本日志的存储</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD%E7%9B%AE%E5%BD%95-bind"><span class="nav-number">4.3.1.</span> <span class="nav-text">挂载目录 bind</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%8D%B7-volume"><span class="nav-number">4.3.2.</span> <span class="nav-text">使用数据卷 volume</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%AE%B9%E5%99%A8-rootfs-%E6%8C%82%E8%BD%BD%E7%82%B9"><span class="nav-number">4.3.3.</span> <span class="nav-text">计算容器 rootfs 挂载点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%86%E6%97%A5%E5%BF%97%E5%86%99%E5%85%A5kafka"><span class="nav-number">4.3.4.</span> <span class="nav-text">将日志写入 kafka</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-22-Docker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker 容器日志管理最佳实践
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-22 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-22T00:00:00Z">2020-09-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/2020-09-22-Docker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-22-Docker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Docker 日志分为两类：</p>
+<ul>
+<li>Docker 引擎日志 (也就是 dockerd 运行时的日志)，</li>
+<li>容器的日志，容器内的服务产生的日志。</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="Docker-引擎日志"><a href="#Docker-引擎日志" class="headerlink" title="Docker 引擎日志"></a>Docker 引擎日志</h3><p>Docker 引擎日志一般是交给了 Upstart (Ubuntu 14.04) 或者 systemd (CentOS 7, Ubuntu 16.04)。前者一般位于 /var/log/upstart/docker.log 下，后者我们一般 通过 <code>journalctl -u docker </code>来进行查看。</p>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>日志位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td> Ubuntu(14.04)</td>
+<td><code>/var/log/upstart/docker.log</code></td>
+</tr>
+<tr>
+<td>Ubuntu(16.04)</td>
+<td><code>journalctl -u docker.service</code></td>
+</tr>
+<tr>
+<td>CentOS 7/RHEL 7/Fedora</td>
+<td><code>journalctl -u docker.service</code></td>
+</tr>
+<tr>
+<td>CoreOS</td>
+<td><code>journalctl -u docker.service</code></td>
+</tr>
+<tr>
+<td>OpenSuSE</td>
+<td><code>journalctl -u docker.service</code></td>
+</tr>
+<tr>
+<td>OSX</td>
+<td><code>~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/log/d‌ocker.log</code></td>
+</tr>
+<tr>
+<td>Debian GNU/Linux 7</td>
+<td><code>/var/log/daemon.log</code></td>
+</tr>
+<tr>
+<td>Debian GNU/Linux 8</td>
+<td><code>journalctl -u docker.service</code></td>
+</tr>
+<tr>
+<td>Boot2Docker</td>
+<td><code>/var/log/docker.log</code></td>
+</tr>
+</tbody></table>
+<p>以上内容来自：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmxhYjk5Lm9yZy9wb3N0L2RvY2tlci0yMDE2LTA3LTE0LWZhcS5odG1s">https://blog.lab99.org/post/docker-2016-07-14-faq.html<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="容器日志"><a href="#容器日志" class="headerlink" title="容器日志"></a>容器日志</h3><h4 id="Docker-日志命令"><a href="#Docker-日志命令" class="headerlink" title="Docker 日志命令"></a>Docker 日志命令</h4><p><code>docker logs CONTAINER</code> 显示当前运行的容器的日志信息， UNIX 和 Linux 的命令有三种 输入输出，分别是 STDIN (标准输入)、STDOUT (标准输出)、STDERR (标准错误输出)，docker logs 显示的内容包含 STOUT 和 STDERR。在生产环境，如果我们的应用输出到我们的日志文件里，所以我们在使用 docker logs 一般收集不到太多重要的日志信息。</p>
+<blockquote>
+<ul>
+<li>nginx 官方镜像，使用了一种方式，让日志输出到 STDOUT，也就是 创建一个符号链接 <code>/var/log/nginx/access.log</code> 到 <code>/dev/stdout</code>。</li>
+<li>httpd 使用的是 让其输出到指定文件 ，正常日志输出到 <code>/proc/self/fd/1</code> (STDOUT) ，错误日志输出到 <code>/proc/self/fd/2</code> (STDERR)。</li>
+<li>当日志量比较大的时候，我们使用 docker logs 来查看日志，会对 docker daemon 造成比较大的压力，容器导致容器创建慢等一系列问题。</li>
+<li><strong>只有使用了 local 、json-file、journald 的日志驱动的容器才可以使用 docker logs 捕获日志，使用其他日志驱动无法使用 docker logs</strong></li>
+</ul>
+</blockquote>
+<h4 id="Docker-日志驱动"><a href="#Docker-日志驱动" class="headerlink" title="Docker 日志驱动"></a>Docker 日志驱动</h4><p>Docker 提供了两种模式用于将消息从容器到日志驱动。</p>
+<ul>
+<li>(默认) 拒绝，阻塞从容器到容器驱动</li>
+<li>非阻塞传递，日志将储存在容器的缓冲区。</li>
+</ul>
+<blockquote>
+<p>当缓冲区满，旧的日志将被丢弃。</p>
+</blockquote>
+<p>在 mode 日志选项控制使用 <code>blocking(默认)</code> 或者 <code>non-blocking</code>, 当设置为 <code>non-blocking</code> 需要设置 <code>max-buffer-size</code> 参数 (默认为 1MB)。</p>
+<p>支持的驱动</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>none</code></td>
+<td>运行的容器没有日志，<code>docker logs</code> 也不返回任何输出。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/local/"><code>local</code></a></td>
+<td>日志以自定义格式存储，旨在实现最小开销。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/json-file/"><code>json-file</code></a></td>
+<td>日志格式为 JSON。Docker 的默认日志记录驱动程序。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/syslog/"><code>syslog</code></a></td>
+<td>将日志消息写入 <code>syslog</code>。该 <code>syslog</code> 守护程序必须在主机上运行。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/journald/"><code>journald</code></a></td>
+<td>将日志消息写入 <code>journald</code>。该 <code>journald</code> 守护程序必须在主机上运行。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/gelf/"><code>gelf</code></a></td>
+<td>将日志消息写入 Graylog 扩展日志格式（GELF）端点，例如 Graylog 或 Logstash。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/fluentd/"><code>fluentd</code></a></td>
+<td>将日志消息写入 <code>fluentd</code>（转发输入）。该 <code>fluentd</code> 守护程序必须在主机上运行。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/awslogs/"><code>awslogs</code></a></td>
+<td>将日志消息写入 Amazon CloudWatch Logs。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/splunk/"><code>splunk</code></a></td>
+<td>使用 HTTP 事件收集器将日志消息写入 <code>splunk</code>。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/etwlogs/"><code>etwlogs</code></a></td>
+<td>将日志消息写为 Windows 事件跟踪（ETW）事件。仅适用于 Windows 平台。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/gcplogs/"><code>gcplogs</code></a></td>
+<td>将日志消息写入 Google Cloud Platform（GCP）Logging。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/config/containers/logging/logentries/"><code>logentries</code></a></td>
+<td>将日志消息写入 Rapid7 Logentries。</td>
+</tr>
+</tbody></table>
+<p>使用 Docker-CE 版本，<code>docker logs </code>命令 仅仅适用于以下驱动程序 (前面 docker logs 详解也提及到了)</p>
+<ul>
+<li>local</li>
+<li>json-file</li>
+<li>journald</li>
+</ul>
+<p><img src="/images/2020/09/1600768133957.png" alt="1600768133957" loading="lazy"></p>
+<p><strong>Docker 日志驱动常用命令</strong></p>
+<p>查看系统当前设置的日志驱动</p>
+<pre class="language-none"><code class="language-none">docker  info |grep  "Logging Driver"  / docker info --format '{{.LoggingDriver}}'</code></pre>
+
+<p>查看单个容器的设置的日志驱动</p>
+<pre class="language-none"><code class="language-none">docker inspect  -f '{{.HostConfig.LogConfig.Type}}'   容器id</code></pre>
+
+<p><strong>Docker 日志驱动全局配置更改</strong></p>
+<p>修改日志驱动，在配置文件 <code>/etc/docker/daemon.json</code>（注意该文件内容是 JSON 格式的）进行配置即可。</p>
+<p>示例：</p>
+<pre class="language-none"><code class="language-none">{
+  "log-driver": "syslog"
+}</code></pre>
+
+<p>以上更改是针对所有的容器的日志驱动的。我们也可以单独为单一容器设置日志驱动。</p>
+<p><strong>Docker 单一容器日志驱动配置</strong></p>
+<p>在 运行容器的时候指定 日志驱动 <code>--log-driver</code>。</p>
+<pre class="language-none"><code class="language-none">docker  run  -itd --log-driver none alpine ash # 这里指定的日志驱动为 none </code></pre>
+
+<h3 id="日志驱动"><a href="#日志驱动" class="headerlink" title="日志驱动"></a>日志驱动</h3><h4 id="local"><a href="#local" class="headerlink" title="local"></a>local</h4><p><code>local</code> 日志驱动 记录从容器的 <code>STOUT/STDERR</code> 的输出，并写到宿主机的磁盘。</p>
+<p>默认情况下，local 日志驱动为每个容器保留 100MB 的日志信息，并启用自动压缩来保存。(经过测试，保留 100MB 的日志是指没有经过压缩的日志)</p>
+<p>local 日志驱动的储存位置 <code>/var/lib/docker/containers/容器id/local-logs/</code> 以 <code>container.log</code> 命名。</p>
+<p><strong>local 驱动支持的选项</strong></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+<th>示例值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>max-size</code></td>
+<td>切割之前日志的最大大小。可取值为 (k,m,g)， 默认为 20m。</td>
+<td><code>--log-opt max-size=10m</code></td>
+</tr>
+<tr>
+<td><code>max-file</code></td>
+<td>可以存在的最大日志文件数。如果超过最大值，则会删除最旧的文件。** 仅在 max-size 设置时有效。默认为 5。</td>
+<td><code>--log-opt max-file=3</code></td>
+</tr>
+<tr>
+<td><code>compress</code></td>
+<td>对应切割日志文件是否启用压缩。默认情况下启用。</td>
+<td><code>--log-opt compress=false</code></td>
+</tr>
+</tbody></table>
+<p><strong>全局日志驱动设置为 —local</strong></p>
+<p>在配置文件 <code>/etc/docker/daemon.json</code>（注意该文件内容是 JSON 格式的）进行配置即可。</p>
+<pre class="language-none"><code class="language-none">{
+  "log-driver": "local",
+  "log-opts": {
+    "max-size": "10m"
+  }
+}</code></pre>
+
+<p>重启 docker 即可生效。</p>
+<p><strong>单个容器日志驱动设置为 —local</strong></p>
+<p>运行容器并设定为 <code>local</code> 驱动。</p>
+<pre class="language-none"><code class="language-none">#  运行一个容器 ，并设定日志驱动为 local ，并运行命令 ping www.baidu.com
+[root@localhost docker]# docker run  -itd  --log-driver  local  alpine  ping www.baidu.com 
+3795b6483534961c1d5223359ad1106433ce2bf25e18b981a47a2d79ad7a3156
+#  查看运行的容器的 日志驱动是否是 local
+[root@localhost docker]# docker inspect  -f '{{.HostConfig.LogConfig.Type}}'   3795b6483534961c
+local
+# 查看日志
+[root@localhost local-logs]# tail -f  /var/lib/docker/containers/3795b6483534961c1d5223359ad1106433ce2bf25e18b981a47a2d79ad7a3156/local-logs/container.log 
+NNdoutםѰ͕̈:64 bytes from 14.215.177.38: seq=816 ttl=55 time=5.320 ms
+NNdoutهµ͕̈͡:64 bytes from 14.215.177.38: seq=817 ttl=55 time=4.950 ms</code></pre>
+
+<blockquote>
+<p>注意事项： 经过测试，当我们产生了 100 MB 大小的日志时 会有 四个压缩文件和一个 <code>container.log</code>：</p>
+<pre class="language-none"><code class="language-none">[root@localhost local-logs]# ls -l
+total 32544
+-rw-r-----. 1 root root 18339944 May 16 09:41 container.log
+-rw-r-----. 1 root root  3698660 May 16 09:41 container.log.1.gz
+-rw-r-----. 1 root root  3726315 May 16 09:41 container.log.2.gz
+-rw-r-----. 1 root root  3805668 May 16 09:41 container.log.3.gz
+-rw-r-----. 1 root root  3744104 May 16 09:41 container.log.4.gz</code></pre>
+
+<p>那么当超过了 100MB 的日志文件，日志文件会继续写入到 <code>container.log</code>，但是会将 <code>container.log</code> 日志中老的日志删除，追加新的，也就是 当写满 100MB 日志后 ，再产生一条新日志，会删除 <code>container.log</code> 中的一条老日志，保存 100MB 的大小。<strong>这个 对我们是会有一些影响的，</strong></p>
+<pre class="language-none"><code class="language-none">当我运行系统时 第一天由于bug产生了 100MB 日志，那么之前的日志就已经有 80MB 日志变成的压缩包，所以我在后续的运行中，只能获取最近的 20MB日志。</code></pre>
+</blockquote>
+<h4 id="json-file（默认）"><a href="#json-file（默认）" class="headerlink" title="json-file（默认）"></a>json-file（默认）</h4><p><strong>所有容器默认的日志驱动 json-file</strong>。</p>
+<p><code>json-file</code> 日志驱动 记录从容器的 <code>STOUT/STDERR</code> 的输出 ，用 JSON 的格式写到文件中，日志中不仅包含着 输出日志，还有时间戳和 输出格式。下面是一个 <code>ping www.baidu.com</code> 对应的 JSON 日志</p>
+<pre class="language-none"><code class="language-none">{"log":"64 bytes from 14.215.177.39: seq=34 ttl=55 time=7.067 ms\r\n","stream":"stdout","time":"2019-05-16T14:14:15.030612567Z"}</code></pre>
+
+<p>json-file 日志的路径位于 <code>/var/lib/docker/containers/container_id/container_id-json.log</code>。</p>
+<p><code>json-file</code> 的 日志驱动支持以下选项：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+<th>示例值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>max-size</code></td>
+<td>切割之前日志的最大大小。可取值单位为 (k,m,g)， 默认为 - 1（表示无限制）。</td>
+<td><code>--log-opt max-size=10m</code></td>
+</tr>
+<tr>
+<td><code>max-file</code></td>
+<td>可以存在的最大日志文件数。如果切割日志会创建超过阈值的文件数，则会删除最旧的文件。<strong>仅在 max-size 设置时有效。</strong>正整数。默认为 1。</td>
+<td><code>--log-opt max-file=3</code></td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td>适用于启动 Docker 守护程序时。此守护程序接受的以逗号分隔的与日志记录相关的标签列表。</td>
+<td><code>--log-opt labels=production_status,geo</code></td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td>适用于启动 Docker 守护程序时。此守护程序接受的以逗号分隔的与日志记录相关的环境变量列表。</td>
+<td><code>--log-opt env=os,customer</code></td>
+</tr>
+<tr>
+<td><code>env-regex</code></td>
+<td>类似于并兼容 <code>env</code>。用于匹配与日志记录相关的环境变量的正则表达式。</td>
+<td>`--log-opt env-regex=^(os</td>
+</tr>
+<tr>
+<td><code>compress</code></td>
+<td>切割的日志是否进行压缩。默认是 <code>disabled</code>。</td>
+<td><code>--log-opt compress=true</code></td>
+</tr>
+</tbody></table>
+<p><strong>json-file 的日志驱动示例</strong></p>
+<pre class="language-none"><code class="language-none"># 设置 日志驱动为 json-file ，我们也可以不设置，因为默认就是 json-file
+docker run  -itd  --name  test-log-json  --log-driver json-file   alpine  ping www.baidu.com
+199608b2e2c52136d2a17e539e9ef7fbacf97f1293678aded421dadbdb006a5e
+
+# 查看日志,日志名称就是 容器名称-json.log
+tail -f /var/lib/docker/containers/199608b2e2c52136d2a17e539e9ef7fbacf97f1293678aded421dadbdb006a5e/199608b2e2c52136d2a17e539e9ef7fbacf97f1293678aded421dadbdb006a5e-json.log
+
+{"log":"64 bytes from 14.215.177.39: seq=13 ttl=55 time=15.023 ms\r\n","stream":"stdout","time":"2019-05-16T14:13:54.003118877Z"}
+{"log":"64 bytes from 14.215.177.39: seq=14 ttl=55 time=9.640 ms\r\n","stream":"stdout","time":"2019-05-16T14:13:54.999011017Z"}
+{"log":"64 bytes from 14.215.177.39: seq=15 ttl=55 time=8.938 ms\r\n","stream":"stdout","time":"2019-05-16T14:13:55.998612636Z"}
+{"log":"64 bytes from 14.215.177.39: seq=16 ttl=55 time=18.086 ms\r\n","stream":"stdout","time":"2019-05-16T14:13:57.011235913Z"}
+{"log":"64 bytes from 14.215.177.39: seq=17 ttl=55 time=12.615 ms\r\n","stream":"stdout","time":"2019-05-16T14:13:58.007104112Z"}
+{"log":"64 bytes from 14.215.177.39: seq=18 ttl=55 time=11.001 ms\r\n","stream":"stdout","time":"2019-05-16T14:13:59.007559413Z"}</code></pre>
+
+<h4 id="syslog"><a href="#syslog" class="headerlink" title="syslog"></a>syslog</h4><p>syslog 日志驱动将日志路由到 syslog 服务器，syslog 以原始的字符串作为 日志消息元数据，接收方可以提取以下的消息：</p>
+<ul>
+<li>level 日志等级 ，如 <code>debug</code>，<code>warning</code>，<code>error</code>，<code>info</code>。</li>
+<li>timestamp 时间戳</li>
+<li> hostname 事件发生的主机</li>
+<li> facillty 系统模块</li>
+<li>进程名称和进程 ID</li>
+</ul>
+<p><strong>syslog 日志驱动全局配置</strong></p>
+<p>编辑 <code>/etc/docker/daemon.json</code> 文件</p>
+<pre class="language-none"><code class="language-none">{
+  "log-driver": "syslog",
+  "log-opts": {
+    "syslog-address": "udp://1.2.3.4:1111"
+  }
+}</code></pre>
+
+<p>重启 docker 即可生效。</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Example value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>syslog-address</code></td>
+<td>指定 syslog 服务所在的服务器和使用的协议和端口。 格式：`[tcp</td>
+<td>udp</td>
+</tr>
+<tr>
+<td><code>syslog-facility</code></td>
+<td>使用的 <code>syslog</code> 的设备， 具体设备名称见 <span class="exturl" data-url="aHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzU0MjQjc2VjdGlvbi02LjIuMQ==">syslog documentation<i class="fa fa-external-link-alt"></i></span>.</td>
+<td><code>--log-opt syslog-facility=daemon</code></td>
+</tr>
+<tr>
+<td><code>syslog-tls-ca-cert</code></td>
+<td>如果使用的是 <code>tcp+tls</code> 的地址，指定 CA 证书的地址，如果没有使用，则不设置该选项。</td>
+<td><code>--log-opt syslog-tls-ca-cert=/etc/ca-certificates/custom/ca.pem</code></td>
+</tr>
+<tr>
+<td><code>syslog-tls-cert</code></td>
+<td>如果使用的是 <code>tcp+tls</code> 的地址，指定 TLS 证书的地址，如果没有使用，则不设置该选项。</td>
+<td><code>--log-opt syslog-tls-cert=/etc/ca-certificates/custom/cert.pem</code></td>
+</tr>
+<tr>
+<td><code>syslog-tls-key</code></td>
+<td>如果使用的是 <code>tcp+tls</code> 的地址，指定 TLS 证书 key 的地址，如果没有使用，则不设置该选项。**</td>
+<td><code>--log-opt syslog-tls-key=/etc/ca-certificates/custom/key.pem</code></td>
+</tr>
+<tr>
+<td><code>syslog-tls-skip-verify</code></td>
+<td>如果设置为 true ，会跳过 TLS 验证，默认为 false</td>
+<td><code>--log-opt syslog-tls-skip-verify=true</code></td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>将应用程序的名称附加到 <code>syslog</code> 消息中，默认情况下使用容器 ID 的前 12 位去 标记这个日志信息。</td>
+<td><code>--log-opt tag=mailer</code></td>
+</tr>
+<tr>
+<td><code>syslog-format</code></td>
+<td><code>syslog</code> 使用的消息格式 如果未指定则使用本地 UNIX syslog 格式，rfc5424micro 格式具有微妙时间戳。</td>
+<td><code>--log-opt syslog-format=rfc5424micro</code></td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td>启动 docker 时，配置与日志相关的标签，以逗号分割</td>
+<td><code>--log-opt labels=production_status,geo</code></td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td>启动 docker 时，指定环境变量用于日志中，以逗号分隔</td>
+<td><code>--log-opt env=os,customer</code></td>
+</tr>
+<tr>
+<td><code>env-regex</code></td>
+<td>类似并兼容 <code>env</code>，</td>
+<td>`--log-opt env-regex=^(os</td>
+</tr>
+</tbody></table>
+<p>** 单个容器日志驱动设置为 —syslog **</p>
+<p><code>Linux</code> 系统中 我们用的系统日志模块时 <code>rsyslog</code> ，它是基于 <code>syslog</code> 的标准实现。我们要使用 syslog 驱动需要使用 系统自带的 <code>rsyslog</code> 服务。</p>
+<pre class="language-none"><code class="language-none"># 查看当前 rsyslog 版本和基本信息
+[root@localhost harbor]# rsyslogd  -v
+rsyslogd 8.24.0, compiled with:
+    PLATFORM:                x86_64-redhat-linux-gnu
+    PLATFORM (lsb_release -d):        
+    FEATURE_REGEXP:                Yes
+    GSSAPI Kerberos 5 support:        Yes
+    FEATURE_DEBUG (debug build, slow code):    No
+    32bit Atomic operations supported:    Yes
+    64bit Atomic operations supported:    Yes
+    memory allocator:            system default
+    Runtime Instrumentation (slow code):    No
+    uuid support:                Yes
+    Number of Bits in RainerScript integers: 64
+
+See http://www.rsyslog.com for more information.</code></pre>
+
+<p>配置 syslog , 在配置文件 <code>/etc/rsyslog.conf</code> 大约 14-20 行，我们可以看到两个配置，一个 udp，一个 tcp ，都是监听 514 端口，提供 syslog 的接收。选择 tcp 就将 tcp 的两个配置的前面 # 号注释即可。</p>
+<pre class="language-none"><code class="language-none"># Provides UDP syslog reception
+#$ModLoad imudp
+#$UDPServerRun 514
+
+# Provides TCP syslog reception
+#$ModLoad imtcp  
+#$InputTCPServerRun 514</code></pre>
+
+<p>然后重启 rsyslog，我们可以看到 514 端口在监听。</p>
+<pre class="language-none"><code class="language-none">systemctl restart  rsyslog
+[root@localhost harbor]# netstat -ntul |grep 514
+tcp        0      0 0.0.0.0:514             0.0.0.0:*               LISTEN     
+tcp6       0      0 :::514                  :::*                    LISTEN  </code></pre>
+
+<p>启动一个以 <code>syslog</code> 为驱动的容器。</p>
+<pre class="language-none"><code class="language-none">docker  run -d -it  -p 87:80 --log-driver syslog --log-opt syslog-address=tcp://127.0.0.1:514  --name nginx-syslog   nginx</code></pre>
+
+<p>访问并查看日志</p>
+<pre class="language-none"><code class="language-none"># 访问nginx
+curl 127.0.0.1:87
+# 查看访问日志
+tail -f  /var/log/messages
+May 17 15:56:48 localhost fe18924aefde[6141]: 172.17.0.1 - - [17/May/2019:07:56:48 +0000] "GET / HTTP/1.1" 200 612 "-" "curl/7.29.0" "-"#015
+May 17 15:58:16 localhost fe18924aefde[6141]: 172.17.0.1 - - [17/May/2019:07:58:16 +0000] "GET / HTTP/1.1" 200 612 "-" "curl/7.29.0" "-"#015</code></pre>
+
+<h4 id="Journald"><a href="#Journald" class="headerlink" title="Journald"></a>Journald</h4><p><code>journald</code> 日志驱动程序将容器的日志发送到 <code>systemd journal</code>, 可以使用 <code>journal API</code> 或者使用 <code>docker logs</code> 来查日志。</p>
+<p>除了日志本身以外， <code>journald</code> 日志驱动还会在日志加上下面的数据与消息一起储存。</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CONTAINER_ID</code></td>
+<td>容器 ID, 为 12 个字符</td>
+</tr>
+<tr>
+<td><code>CONTAINER_ID_FULL</code></td>
+<td>完整的容器 ID，为 64 个字符</td>
+</tr>
+<tr>
+<td><code>CONTAINER_NAME</code></td>
+<td>启动时容器的名称，如果容器后面更改了名称，日志中的名称不会更改。</td>
+</tr>
+<tr>
+<td><code>CONTAINER_TAG</code>, <code>SYSLOG_IDENTIFIER</code></td>
+<td>容器的 tag.</td>
+</tr>
+<tr>
+<td><code>CONTAINER_PARTIAL_MESSAGE</code></td>
+<td>当日志比较长的时候使用标记来表示 (显示日志的大小)</td>
+</tr>
+</tbody></table>
+<p>选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tag</code></td>
+<td>可选的</td>
+<td>指定要在日志中设置 <code>CONTAINER_TAG</code> 和 <code>SYSLOG_IDENTIFIER</code> 值的模板。</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td>可选的</td>
+<td>以逗号分隔的标签列表，如果为容器指定了这些标签，则应包含在消息中。</td>
+</tr>
+<tr>
+<td><code>env</code></td>
+<td>可选的</td>
+<td>如果为容器指定了这些变量，则以逗号分隔的环境变量键列表（应包含在消息中）。</td>
+</tr>
+<tr>
+<td><code>env-regex</code></td>
+<td>可选的</td>
+<td>与 env 类似并兼容。用于匹配与日志记录相关的环境变量的正则表达式 。</td>
+</tr>
+</tbody></table>
+<p><strong>journald 日志驱动全局配置</strong></p>
+<p>编辑 <code>/etc/docker/daemon.json</code> 文件</p>
+<pre class="language-none"><code class="language-none">{
+  "log-driver": "journald"
+}</code></pre>
+
+<p><strong>单个容器日志驱动设置为 —journald</strong></p>
+<pre class="language-none"><code class="language-none">docker  run  -d -it --log-driver=journald \
+    --log-opt labels=location \
+    --log-opt env=TEST \
+    --env "TEST=false" \
+    --label location=china \
+    --name  nginx-journald\
+    -p 80:80\
+    nginx</code></pre>
+
+<p>查看日志 <code>journalctl</code></p>
+<pre class="language-none"><code class="language-none"># 只查询指定容器的相关消息
+ journalctl CONTAINER_NAME=webserver
+# -b 指定从上次启动以来的所有消息
+ journalctl -b CONTAINER_NAME=webserver
+# -o 指定日志消息格式，-o json 表示以json 格式返回日志消息
+ journalctl -o json CONTAINER_NAME=webserver
+# -f 一直捕获日志输出
+ journalctl -f CONTAINER_NAME=webserver</code></pre>
+
+<blockquote>
+<p>如果我们的容器在启动的时候加了 -t 参数，启用了 TTY 的话，那么我查看日志是会像下面一样</p>
+<pre class="language-none"><code class="language-none">May 17 17:19:26 localhost.localdomain 2a338e4631fe[6141]: [104B blob data]
+May 17 17:19:32 localhost.localdomain 2a338e4631fe[6141]: [104B blob data]</code></pre>
+
+<p>显示 <code>[104B blob data]</code> 而不是完整日志原因是因为有 <code>\r</code> 的存在，如果我们要完整显示，需要加上参数 <code>--all</code> 。</p>
+</blockquote>
+<h3 id="生产环境中储存容器日志"><a href="#生产环境中储存容器日志" class="headerlink" title="生产环境中储存容器日志"></a>生产环境中储存容器日志</h3><p>我们在上面看到了 Docker 官方提供了 很多日志驱动，但是上面的这些驱动都是针对的 标准输出的日志驱动。</p>
+<h4 id="容器日志分类"><a href="#容器日志分类" class="headerlink" title="容器日志分类"></a>容器日志分类</h4><p>容器的日志实际是有两大类的：</p>
+<ul>
+<li><strong>标准输出的</strong> ，也就是 STDOUT 、STDERR , <strong>这类日志我们可以通过 Docker 官方的日志驱动进行收集。</strong></li>
+</ul>
+<p>示例：Nginx 日志，Nginx 日志有 <code>access.log</code> 和 <code>error.log</code> ，我们在 Docker Hub 上可以看到 Nginx 的 dockerfile 对于这两个日志的处理是：</p>
+<pre class="language-none"><code class="language-none">RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+    &amp;&amp; ln -sf /dev/stderr /var/log/nginx/error.log</code></pre>
+
+<p>都软连接到 <code>/dev/stdout</code> 和 <code>/dev/stderr</code> ，也就是标准输出，所以这类 容器是可以使用 Docker 官方的日志驱动。</p>
+<ul>
+<li><p><strong>文本日志</strong>，存在在于容器内部，并没有重定向到 容器的标准输出的日志。</p>
+<p>示例： Tomcat 日志，Tomcat 有 catalina、localhost、manager、admin、host-manager，我们可以在 Docker Hub 看到 Tomcat 的 dockerfile 只有对于 catalina 进行处理，其它日志将储存在容器里。</p>
+<pre class="language-none"><code class="language-none">CMD ["catalina.sh", "run"]</code></pre>
+
+<p>我们运行了一个 Tomcat 容器 ，然后进行访问后，并登陆到容器内部，我们可以看到产生了文本日志：</p>
+<p>&lt;!--hexoPostRenderEscape:</p><pre class="language-none"><code class="language-none">root@25ba00fdab97:/usr/local/tomcat/logs# ls -l<br>total 16<p></p>
+</code></pre></li><code class="language-none">
+<li><p>rw-r-----. 1 root root 6822 May 17 14:36 catalina.2019-05-17.log</p>
+</li>
+<li><p>rw-r-----. 1 root root    0 May 17 14:36 host-manager.2019-05-17.log</p>
+</li>
+<li><p>rw-r-----. 1 root root  459 May 17 14:36 localhost.2019-05-17.log</p>
+</li>
+<li><p>rw-r-----. 1 root root 1017 May 17 14:37 localhost_access_log.2019-05-17.txt</p>
+</li>
+</code><li><code class="language-none"></code><p><code class="language-none">rw-r-----. 1 root root    0 May 17 14:36 manager.2019-05-17.log</code>:hexoPostRenderEscape--&gt;</p>
+<p> 这类容器我们下面有专门的方案来应对。</p>
+</li>
+</ul>
+<h4 id="标准输出的存储"><a href="#标准输出的存储" class="headerlink" title="标准输出的存储"></a>标准输出的存储</h4><p>当是完全是标准输出的类型的容器，我们可以选择 json-file 、syslog、local 等 Docker 支持的日志驱动。</p>
+<h4 id="文本日志的存储"><a href="#文本日志的存储" class="headerlink" title="文本日志的存储"></a>文本日志的存储</h4><p>当有文件文本日志的类型容器</p>
+<h5 id="挂载目录-bind"><a href="#挂载目录-bind" class="headerlink" title="挂载目录 bind"></a>挂载目录 bind</h5><p>创建一个目录，将目录挂载到 容器中产生日志的目录。</p>
+<pre class="language-none"><code class="language-none">--mount  type=bind,src=/opt/logs/,dst=/usr/local/tomcat/logs/ </code></pre>
+
+<p>示例：</p>
+<pre class="language-none"><code class="language-none"># 创建挂载目录/opt/logs
+[root@fy-local-2 /]# mkdir  /opt/logs
+# 创建容器tomcat-bind 并将 /opt/logs 挂载至 /usr/local/tomcat/logs/
+[root@fy-local-2 /]# docker  run -d  --name  tomcat-bind  -P  --mount  type=bind,src=/opt/logs/,dst=/usr/local/tomcat/logs/   tomcat 
+[root@fy-local-2 /]# ls -l /opt/logs/
+total 12
+-rw-r----- 1 root root 6820 May 22 17:31 catalina.2019-05-22.log
+-rw-r----- 1 root root    0 May 22 17:31 host-manager.2019-05-22.log
+-rw-r----- 1 root root  459 May 22 17:31 localhost.2019-05-22.log
+-rw-r----- 1 root root    0 May 22 17:31 localhost_access_log.2019-05-22.txt
+-rw-r----- 1 root root    0 May 22 17:31 manager.2019-05-22.log</code></pre>
+
+<h5 id="使用数据卷-volume"><a href="#使用数据卷-volume" class="headerlink" title="使用数据卷 volume"></a>使用数据卷 volume</h5><p>创建数据卷，创建容器时绑定数据卷，</p>
+<pre class="language-none"><code class="language-none">--mount  type=volume  src=volume_name  dst=/usr/local/tomcat/logs/ </code></pre>
+
+<p>示例：</p>
+<pre class="language-none"><code class="language-none"># 创建tomcat应用数据卷名称为 tomcat
+[root@fy-local-2 /]# docker volume  create  tomcat
+# 创建容器tomcat-volume 并指定数据卷为 tomcat，绑定至 /usr/local/tomcat/logs/
+[root@fy-local-2 /]# docker  run -d  --name  tomcat-volume   -P  --mount  type=volume,src=tomcat,dst=/usr/local/tomcat/logs/   tomcat
+# 查看数据卷里面的内容
+[root@fy-local-2 /]# ls -l /var/lib/docker/volumes/tomcat/_data/
+total 12
+-rw-r----- 1 root root 6820 May 22 17:33 catalina.2019-05-22.log
+-rw-r----- 1 root root    0 May 22 17:33 host-manager.2019-05-22.log
+-rw-r----- 1 root root  459 May 22 17:33 localhost.2019-05-22.log
+-rw-r----- 1 root root    0 May 22 17:33 localhost_access_log.2019-05-22.txt
+-rw-r----- 1 root root    0 May 22 17:33 manager.2019-05-22.log</code></pre>
+
+<h5 id="计算容器-rootfs-挂载点"><a href="#计算容器-rootfs-挂载点" class="headerlink" title="计算容器 rootfs 挂载点"></a>计算容器 rootfs 挂载点</h5><p>此方案的文字内容摘抄于 <span class="exturl" data-url="aHR0cHM6Ly95cS5hbGl5dW4uY29tL2FydGljbGVzLzY3MjA1NA==">https://yq.aliyun.com/articles/672054<i class="fa fa-external-link-alt"></i></span></p>
+<p>使用挂载宿主机目录的方式采集日志对应用会有一定的侵入性，因为它要求容器启动的时候包含挂载命令。如果采集过程能对用户透明那就太棒了。事实上，可以通过计算容器 rootfs 挂载点来达到这种目的。</p>
+<p>和容器 rootfs 挂载点密不可分的一个概念是 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmRvY2tlci5jb20vc3RvcmFnZS9zdG9yYWdlZHJpdmVyLw==">storage driver<i class="fa fa-external-link-alt"></i></span>。实际使用过程中，用户往往会根据 linux 版本、文件系统类型、容器读写情况等因素选择合适的 storage driver。不同 storage driver 下，容器的 rootfs 挂载点遵循一定规律，因此我们可以根据 storage driver 的类型推断出容器的 rootfs 挂载点，进而采集容器内部日志。下表展示了部分 storage dirver 的 rootfs 挂载点及其计算方法。</p>
+<table>
+<thead>
+<tr>
+<th>Storage driver</th>
+<th>rootfs 挂载点</th>
+<th>计算方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td> aufs</td>
+<td>/var/lib/docker/aufs/mnt/</td>
+<td>id 可以从如下文件读到。 <code>/var/lib/docker/image/aufs/layerdb/mounts/&lt;container-id&gt;/mount-id</code></td>
+</tr>
+<tr>
+<td>overlay</td>
+<td>/var/lib/docker/overlay//merged</td>
+<td> 完整路径可以通过如下命令得到。 <code>docker inspect -f '{{.GraphDriver.Data.MergedDir}}' &lt;container-id&gt;</code></td>
+</tr>
+<tr>
+<td>overlay2</td>
+<td>/var/lib/docker/overlay2//merged</td>
+<td> 完整路径可以通过如下命令得到。 <code>docker inspect -f '{{.GraphDriver.Data.MergedDir}}' &lt;container-id&gt;</code></td>
+</tr>
+<tr>
+<td>devicemapper</td>
+<td>/var/lib/docker/devicemapper/mnt//rootfs</td>
+<td>id 可以通过如下命令得到。 <code>docker inspect -f '{{.GraphDriver.Data.DeviceName}}' &lt;container-id&gt;</code></td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<pre class="language-none"><code class="language-none"># 创建容器 tomcat-test
+[root@fy-local-2 /]# docker  run -d  --name  tomcat-test  -P  tomcat
+36510dd653ae7dcac1d017174b1c38b3f9a226f9c4e329d0ff656cfe041939ff  
+# 查看tomcat-test 容器的 挂载点位置
+[root@fy-local-2 /]# docker inspect -f '{{.GraphDriver.Data.MergedDir}}' 36510dd653ae7dcac1d017174b1c38b3f9a226f9c4e329d0ff656cfe041939ff  
+/var/lib/docker/overlay2/c10ec54bab8f3fccd2c5f1a305df6f3b1e53068776363ab0c104d253216b799d/merged
+# 查看挂载点的目录结构
+[root@fy-local-2 /]# ls -l /var/lib/docker/overlay2/c10ec54bab8f3fccd2c5f1a305df6f3b1e53068776363ab0c104d253216b799d/merged
+total 4
+drwxr-xr-x 1 root root  179 May  8 13:05 bin
+drwxr-xr-x 2 root root    6 Mar 28 17:12 boot
+drwxr-xr-x 1 root root   43 May 22 17:27 dev
+lrwxrwxrwx 1 root root   33 May  8 13:08 docker-java-home -&gt; /usr/lib/jvm/java-8-openjdk-amd64
+drwxr-xr-x 1 root root   66 May 22 17:27 etc
+drwxr-xr-x 2 root root    6 Mar 28 17:12 home
+drwxr-xr-x 1 root root    6 May 16 08:50 lib
+drwxr-xr-x 2 root root   34 May  6 08:00 lib64
+drwxr-xr-x 2 root root    6 May  6 08:00 media
+drwxr-xr-x 2 root root    6 May  6 08:00 mnt
+drwxr-xr-x 2 root root    6 May  6 08:00 opt
+drwxr-xr-x 2 root root    6 Mar 28 17:12 proc
+drwx------ 1 root root   27 May 22 17:29 root
+drwxr-xr-x 3 root root   30 May  6 08:00 run
+drwxr-xr-x 2 root root 4096 May  6 08:00 sbin
+drwxr-xr-x 2 root root    6 May  6 08:00 srv
+drwxr-xr-x 2 root root    6 Mar 28 17:12 sys
+drwxrwxrwt 1 root root   29 May 16 08:50 tmp
+drwxr-xr-x 1 root root   19 May  6 08:00 usr
+drwxr-xr-x 1 root root   41 May  6 08:00 var
+# 查看日志
+[root@fy-local-2 /]# ls -l /var/lib/docker/overlay2/c10ec54bab8f3fccd2c5f1a305df6f3b1e53068776363ab0c104d253216b799d/merged/usr/local/tomcat/logs/
+total 20
+-rw-r----- 1 root root 14514 May 22 17:40 catalina.2019-05-22.log
+-rw-r----- 1 root root     0 May 22 17:27 host-manager.2019-05-22.log
+-rw-r----- 1 root root  1194 May 22 17:40 localhost.2019-05-22.log
+-rw-r----- 1 root root     0 May 22 17:27 localhost_access_log.2019-05-22.txt
+-rw-r----- 1 root root     0 May 22 17:27 manager.2019-05-22.log</code></pre>
+
+<h5 id="将日志写入kafka"><a href="#将日志写入kafka" class="headerlink" title="将日志写入kafka"></a>将日志写入 kafka</h5><p>docker -&gt; kafka -&gt; Logstash -&gt; Elasticsearch</p>
+<p>通过代码层面，直接将日志写入 <code>kafka</code>, 最后写入 <code>Elasticsearch</code>。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vb3BlcmF0aW9uaG9tZS9wLzEwOTA3NTkxLmh0bWw=">https://www.cnblogs.com/operationhome/p/10907591.html<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-06-模板List分两列展示\" rel="bookmark">模板List分两列展示</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件canvas-nest.js</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-博客添加Fork me on GitHub\" rel="bookmark">博客添加 Fork me on GitHub</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-30-为Github项目说明添加优美标签\" rel="bookmark">为Github项目说明添加优美标签</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-19-为博客新增评论系统\" rel="bookmark">为博客新增评论系统</a></div>
+    </li>
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/2020-09-21-%E5%9C%A8eclipse%E4%B8%AD%E5%AE%89%E8%A3%85lombok.jar/" rel="prev" title="在 eclipse 中安装 lombok.jar">
+      <i class="fa fa-chevron-left"></i> 在 eclipse 中安装 lombok.jar
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://github.com/next-theme/hexo-theme-next" class="theme-link" rel="noopener" target="_blank">Hexo.NexT</a> v8.0.0</div>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/next-theme/pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+    <div class="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      const script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : 'ca61b174c67cfe6fc51a0fd95644f66c',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el  : '#valine-comments',
+      path: location.pathname,
+    }, {"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":false,"serverURLs":null,"enableQQ":false,"requiredFields":[]}
+    ));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
