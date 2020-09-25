@@ -26,23 +26,21 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。">
+  <meta name="description" content="FastDFS 容器化安装环境变量新增 .env 文件如下： HOSTNAME_COMMAND&#x3D;xxx.xxx.xxx.xxx  其中，xxx.xxx.xxx.xxx&amp;nbsp;为 服务器 IP 地址。 nginx.conf&amp;nbsp;配置nginx.conf 文件增加配置如下： location &#x2F;group1&#x2F;M00 {     root &#x2F;fastdfs&#x2F;storage&#x2F;data;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建 hexo+github+next 主题博客">
-<meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="FastDFS 容器化安装实践">
+<meta property="og:url" content="https://jueee.github.io/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。">
+<meta property="og:description" content="FastDFS 容器化安装环境变量新增 .env 文件如下： HOSTNAME_COMMAND&#x3D;xxx.xxx.xxx.xxx  其中，xxx.xxx.xxx.xxx&amp;nbsp;为 服务器 IP 地址。 nginx.conf&amp;nbsp;配置nginx.conf 文件增加配置如下： location &#x2F;group1&#x2F;M00 {     root &#x2F;fastdfs&#x2F;storage&#x2F;data;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/image-20200821165728975.png">
-<meta property="article:published_time" content="2020-08-07T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-02T09:00:11.002Z">
+<meta property="article:published_time" content="2020-09-24T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-09-24T10:56:48.043Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Blog">
-<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="FastDFS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jueee.github.io/images/2020/08/image-20200821165728975.png">
 
-<link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/">
+<link rel="canonical" href="https://jueee.github.io/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/">
 
 
 <script data-pjax class="page-configurations">
@@ -55,7 +53,7 @@
   };
 </script>
 
-  <title>搭建 hexo+github+next 主题博客 | 小决的专栏</title>
+  <title>FastDFS 容器化安装实践 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -236,7 +234,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">博客介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="nav-number">2.</span> <span class="nav-text">搭建博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">博客主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E5%B8%83%E5%88%B0github-io"><span class="nav-number">4.</span> <span class="nav-text">发布到 github.io</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8hexo%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">常用 hexo 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">问题处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80%EF%BC%9A"><span class="nav-number">6.1.</span> <span class="nav-text">问题一：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C%EF%BC%9A"><span class="nav-number">6.2.</span> <span class="nav-text">问题二：</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#FastDFS-%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">FastDFS 容器化安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx-conf-%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">nginx.conf&amp;nbsp;配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-compose"><span class="nav-number">1.3.</span> <span class="nav-text">docker-compose</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95-FastDFS"><span class="nav-number">2.</span> <span class="nav-text">测试 FastDFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE-FastDFS"><span class="nav-number">3.</span> <span class="nav-text">访问 FastDFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">问题处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80"><span class="nav-number">4.1.</span> <span class="nav-text">问题一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C"><span class="nav-number">4.2.</span> <span class="nav-text">问题二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%89"><span class="nav-number">4.3.</span> <span class="nav-text">问题三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%9B%9B"><span class="nav-number">4.4.</span> <span class="nav-text">问题四</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%BA%94"><span class="nav-number">4.5.</span> <span class="nav-text">问题五</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -343,7 +341,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -358,7 +356,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          搭建 hexo+github+next 主题博客
+          FastDFS 容器化安装实践
         </h1>
 
         <div class="post-meta">
@@ -368,7 +366,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-07 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-07T00:00:00Z">2020-08-07</time>
+              <time title="创建时间：2020-09-24 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-24T00:00:00Z">2020-09-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -376,7 +374,15 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
                 </span>
             </span>
 
@@ -396,13 +402,12 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/" itemprop="commentCount"></span>
     </a>
   </span>
   
   
-            <div class="post-description">Hexo是一款基于Node.js的静态博客框架，依赖少易于安装使用，可以方便的生成静态网页托管在GitHub和Coding上，是搭建博客的首选框架。</div>
 
         </div>
       </header>
@@ -411,79 +416,116 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="博客介绍"><a href="#博客介绍" class="headerlink" title="博客介绍"></a>博客介绍</h3><p>博客预览地址：<span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZy8=">https://theme-next.js.org/<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvdGhlbWUtbmV4dC1kb2Nz">https://github.com/next-theme/theme-next-docs<i class="fa fa-external-link-alt"></i></span></p>
-<p>在本地安装：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> clone https://github.com/next-theme/theme-next-docs
-<span class="token builtin class-name">cd</span> theme-next-docs
-<span class="token function">npm</span> <span class="token function">install</span></code></pre>
+        <h3 id="FastDFS-容器化安装"><a href="#FastDFS-容器化安装" class="headerlink" title="FastDFS 容器化安装"></a>FastDFS 容器化安装</h3><h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><p>新增 .env 文件如下：</p>
+<pre class="language-none"><code class="language-none">HOSTNAME_COMMAND=xxx.xxx.xxx.xxx</code></pre>
 
-<p>生成：</p>
-<pre class="language-none"><code class="language-none">npx hexo generate</code></pre>
+<p>其中，<code>xxx.xxx.xxx.xxx&nbsp;</code>为 服务器 IP 地址。</p>
+<h4 id="nginx-conf-配置"><a href="#nginx-conf-配置" class="headerlink" title="nginx.conf&nbsp;配置"></a>nginx.conf&nbsp;配置</h4><p><code>nginx.conf</code> 文件增加配置如下：</p>
+<pre class="language-none"><code class="language-none">location /group1/M00 {
+    root /fastdfs/storage/data;
+    ngx_fastdfs_module;
+}</code></pre>
 
-<p>运行：</p>
-<pre class="language-none"><code class="language-none">npx hexo server</code></pre>
+<h4 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h4><p><code>docker-compose.yml</code> 文件如下：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'2'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+    <span class="token key atrule">fastdfs-tracker</span><span class="token punctuation">:</span>
+        <span class="token key atrule">hostname</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>tracker
+        <span class="token key atrule">container_name</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>tracker
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> season/fastdfs<span class="token punctuation">:</span><span class="token number">1.2</span>
+        <span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"host"</span>
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> tracker
+        <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> ./data/tracker_data<span class="token punctuation">:</span>/fastdfs/tracker/data
+    <span class="token key atrule">fastdfs-storage</span><span class="token punctuation">:</span>
+        <span class="token key atrule">hostname</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>storage
+        <span class="token key atrule">container_name</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>storage
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> season/fastdfs<span class="token punctuation">:</span><span class="token number">1.2</span>
+        <span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"host"</span>
+        <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> ./data/storage_data<span class="token punctuation">:</span>/fastdfs/storage/data
+          <span class="token punctuation">-</span> ./data/store_path<span class="token punctuation">:</span>/fastdfs/store_path
+        <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> TRACKER_SERVER=$<span class="token punctuation">{</span>HOSTNAME_COMMAND<span class="token punctuation">}</span><span class="token punctuation">:</span><span class="token number">22122</span>
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> storage
+        <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> fastdfs<span class="token punctuation">-</span>tracker
+    <span class="token key atrule">fastdfs-nginx</span><span class="token punctuation">:</span>
+        <span class="token key atrule">hostname</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>nginx
+        <span class="token key atrule">container_name</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>nginx
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> season/fastdfs<span class="token punctuation">:</span><span class="token number">1.2</span>
+        <span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"host"</span>
+        <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> ./nginx.conf<span class="token punctuation">:</span>/etc/nginx/conf/nginx.conf
+          <span class="token punctuation">-</span> ./data/store_path<span class="token punctuation">:</span>/fastdfs/store_path
+        <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> TRACKER_SERVER=$<span class="token punctuation">{</span>HOSTNAME_COMMAND<span class="token punctuation">}</span><span class="token punctuation">:</span><span class="token number">22122</span>
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> nginx</code></pre>
 
-<h3 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h3><p>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">https://github.com/next-theme/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="发布到github-io"><a href="#发布到github-io" class="headerlink" title="发布到github.io"></a>发布到 github.io</h3><p>在 hexo 下的_config.yml 文件中配置：</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
-  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
-  <span class="token key atrule">repository</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>Jueee/jueee.github.io.git
-  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master</code></pre>
+<p>需要注意：</p>
+<ul>
+<li>network_mode 必须是 host, 原因是当上传文件时，tracker 会把 storage 的 IP 和端口发给 client，如果是 bridge 模式，则发送的是内网 IP，client 无法访问到。</li>
+<li>image 采用 season/fastdfs:1.2 ，不要用 lastest, 因为 lastest 不包含 nginx 服务，其他 fasdfs 镜像均没有 season 的精简。</li>
+</ul>
+<h3 id="测试-FastDFS"><a href="#测试-FastDFS" class="headerlink" title="测试 FastDFS"></a>测试 FastDFS</h3><p>命令行测试上传</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ fdfs_upload_file /etc/fdfs/client.conf /home/ant/test 
+group1/M00/00/00/CqD3YF3kwS-ACYbMAAAAHDDhFHI6820520</code></pre>
 
-<p>安装插件：</p>
-<pre class="language-none"><code class="language-none">npm install hexo-deployer-git --save</code></pre>
+<p>命令行测试下载：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ fdfs_download_file /etc/fdfs/client.conf group1/M00/00/00/CqD3YF3kwS-ACYbMAAAAHDDhFHI6820520</code></pre>
 
-<p>打开你的 git bash，输入 <code>hexo d</code> 就会将本次有改动的代码全部提交，没有改动的不会：</p>
-<pre class="language-none"><code class="language-none">$ npx hexo g -d</code></pre>
+<p>http 测试下载：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> http://xxx.xxx.xxx.xxx/group1/M00/00/00/CmmIP19sbZ6ABzkBAAAXTnaiWqo2684096?filename<span class="token operator">=</span>testfile</code></pre>
 
-<p>【注】部署这个命令一定要用 git bash，否则会提示 <code>Permission denied (publickey).</code></p>
-<p>此时，会在项目中生成 <code>.deploy_git</code> 文件夹。</p>
-<p>打开 git bash，切换到 hexo/.deploy_git，执行</p>
-<pre class="language-none"><code class="language-none">git init</code></pre>
+<h3 id="访问-FastDFS"><a href="#访问-FastDFS" class="headerlink" title="访问 FastDFS"></a>访问 FastDFS</h3><p>其他容器如需按照域名访问 FastDFS，可增加配置：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">web-admin</span><span class="token punctuation">:</span>
+   <span class="token key atrule">container_name</span><span class="token punctuation">:</span> web<span class="token punctuation">-</span>admin
+   <span class="token key atrule">extra_hosts</span><span class="token punctuation">:</span>
+       <span class="token punctuation">-</span> <span class="token string">"fastdfs.manti-infra.svc:${HOSTNAME_COMMAND}"</span></code></pre>
 
-<p>再绑定远程仓库</p>
-<pre class="language-none"><code class="language-none">git remote add origin git@github.com:jueee/jueee.github.io.git</code></pre>
+<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><h4 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h4><p>报错问题：</p>
+<pre class="language-none"><code class="language-none">[error] 13#0: *1 open() "/etc/nginx/html/group1/M00/00/00/CmmIP19sbZ6ABzkBAAAXTnaiWqo2684096" failed (2: No such file or directory)</code></pre>
 
-<p>回到 cmd 命令行</p>
-<pre class="language-none"><code class="language-none">$ npx hexo g -d</code></pre>
+<p>修复：修改 nginx.conf 中的 location 配置为：</p>
+<pre class="language-none"><code class="language-none">location/group1/M00/ {
+    alias /fastdfs/store_path/data;
+    ngx_fastdfs_module;
+}</code></pre>
 
-<p>搞定了，成功提交了正确的博客内容。</p>
-<h3 id="常用hexo命令"><a href="#常用hexo命令" class="headerlink" title="常用hexo命令"></a>常用 hexo 命令</h3><p>常见命令</p>
-<pre class="language-none"><code class="language-none">hexo new "postName" #新建文章
-hexo new page "pageName" #新建页面
-hexo generate #生成静态页面至public目录
-hexo server #开启预览访问端口（默认端口4000，'ctrl + c'关闭server）
-hexo deploy #部署到GitHub
-hexo help  # 查看帮助
-hexo version  #查看Hexo的版本</code></pre>
+<h4 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h4><p>报错问题：</p>
+<pre class="language-none"><code class="language-none">ERROR - file: ../common/fdfs_global.c, line:52, the format of filename
+"group1/M00/00/00/wKgAA1cLh12AI0kfAAAADzbdjmQ50_big.html"is invalid</code></pre>
 
-<p>缩写：</p>
-<pre class="language-none"><code class="language-none">hexo n == hexo new
-hexo g == hexo generate
-hexo s == hexo server
-hexo d == hexo deploy</code></pre>
 
-<p>组合命令：</p>
-<pre class="language-none"><code class="language-none">hexo s -g #生成并本地预览
-hexo d -g #生成并上传</code></pre>
+<p>原因：nginx 的 fdfs 的 MOD 里面默认没有开启 url_have_group_name</p>
+<p>修复：开启 mod_fastdfs.conf 文件中的 url_have_group_name 选项，后重启 nginx</p>
+<h4 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h4><pre class="language-none"><code class="language-none">/usr/src/fastdfs-nginx-module/src/common.c:21:25:致命错误：fdfs_define.h：没有那个文件或目录
+#include "fdfs_define.h" 
+编译中断。</code></pre>
 
-<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><h4 id="问题一："><a href="#问题一：" class="headerlink" title="问题一："></a>问题一：</h4><p><img src="/images/2020/08/image-20200821165728975.png" alt="image-20200821165728975" loading="lazy"></p>
-<p>解决方法：<br>配置 git 环境变量，将 <code>C:\Program Files\Git\cmd</code>（具体根据 git 安装目录）添加到系统变量 path 中</p>
-<h4 id="问题二："><a href="#问题二：" class="headerlink" title="问题二："></a>问题二：</h4><pre class="language-none"><code class="language-none">PS E:\code\GitHub\Jueee\jueee-blog&gt; npx hexo clean
-(node:44956) ExperimentalWarning: The fs.promises API is experimental
-ERROR { err:
-   E:\code\GitHub\Jueee\jueee-blog\node_modules\hexo-theme-next\package.json:2
-     "_from": "hexo-theme-next@8.0.0-rc.5",</code></pre>
 
-<p>查看 node 版本</p>
-<pre class="language-none"><code class="language-none">node -v
-v10.16.0
-npm -v
-6.9.0</code></pre>
+<p>原因：编译安装 nginx 的 fastdfs 插件的头文件没有找到，由于编译 nginx 时候系统会到／usr/local/include，而编译安装 fastdfs-nginx-module 时则默认保存在了 /usr/include 目录。</p>
+<p>修复：ln -s /usr/include/fast* /usr/local/include/</p>
+<h4 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h4><p>Nginx 启动后 error.log 日志报错</p>
+<pre class="language-none"><code class="language-none">ERROR - file:../storage/trunk_mgr/trunk_shared.c, line: 177, "No such file ordirectory" can't be accessed, error info: /data/fastdfs</code></pre>
 
-<p>需要升级 node 到最新版。</p>
-<p>下载地址：<span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL3poLWNuL2Rvd25sb2FkLw==">https://nodejs.org/zh-cn/download/<i class="fa fa-external-link-alt"></i></span></p>
+<p>原因：nginx 的 fdfs 插件没有在 /etc/fdfs 目录中找到 http.conf 和 mime.types。</p>
+<p>修复：复制或者创建对应文件的软连接<br>cp/usr/local/FastDFS/conf/http.conf /etc/fdfs/<br>cp/usr/local/FastDFS/conf/mime.types /etc/fdfs/</p>
+<h4 id="问题五"><a href="#问题五" class="headerlink" title="问题五"></a>问题五</h4><p>页面访问动态缩略图返回 415</p>
+<p>原因：</p>
+<ul>
+<li>首先需要排除文件类型的问题，image_filter 只支持 jpg、git 和 png 三种格式的图片文件，调用其他格式的 图片文件 会返回 415。</li>
+<li>其次要确认设置的 image_filter 缓存是否小于上传的图片大小，如果小于同样会报 415 错误。</li>
+</ul>
+<p>如果排除以上两种可能性，那么出现的问题应该是没有在 Nginx 页面的 DocumentRoot 目录创建 FastDFS 数据存储的软连接。</p>
+<p>修复：执行下列命令创建软连接：</p>
+<pre class="language-none"><code class="language-none"># mkdir -pv/usr/local/nginx/html/group1
+# ln -s /data/fastdfs_store/data/usr/local/nginx/html/group1/M00</code></pre>
+
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20veWxvdmVkL3AvMTI2NDk1NjkuaHRtbA==">https://www.cnblogs.com/yloved/p/12649569.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYWxpeXVuLmNvbS9hcnRpY2xlLzU0NTAxNg==">https://developer.aliyun.com/article/545016<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
 
     </div>
 
@@ -494,27 +536,18 @@ npm -v
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-08-hexo博客个性化设置\" rel="bookmark">hexo博客个性化设置</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-15-使用Python遍历备份docker-compose文件中的镜像\" rel="bookmark">使用 Python 遍历备份 docker-compose 文件中的镜像</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建Jekyll环境</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为Jekyll博客系统增加百度统计</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为Jekyll博客系统增加来必力评论系统</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll使用中文路径</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-22-Docker容器日志管理最佳实践\" rel="bookmark">Docker容器日志管理最佳实践</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Blog/" rel="tag"># Blog</a>
-              <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/FastDFS/" rel="tag"># FastDFS</a>
           </div>
 
         
@@ -523,13 +556,10 @@ npm -v
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/2020-08-04-Arthas%E4%B9%8Bjad%E5%8F%8D%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="prev" title="Arthas 之 jad 反编译原理">
-      <i class="fa fa-chevron-left"></i> Arthas 之 jad 反编译原理
+    <a href="/2020/09/2020-09-22-Docker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" rel="prev" title="Docker 容器日志管理最佳实践">
+      <i class="fa fa-chevron-left"></i> Docker 容器日志管理最佳实践
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/08/2020-08-08-hexo%E5%8D%9A%E5%AE%A2%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE/" rel="next" title="hexo 博客个性化设置">
-      hexo 博客个性化设置 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -794,7 +824,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'jueee.github.io',
       owner       : 'jueee',
       admin       : ['jueee'],
-      id          : '2dbbf666b436382966cc5e132a5e80de',
+      id          : 'fedff6b7c55b0c5b0879a4cd1b500ad4',
         language: 'zh-CN',
       distractionFreeMode: true
     });
