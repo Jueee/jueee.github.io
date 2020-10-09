@@ -26,18 +26,18 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="目标类型 List转 ListList&lt;String&gt; list1 &#x3D; Lists.newArrayList(); List&lt;String&gt; list2 &#x3D; list1.stream().map(string -&gt; &amp;#123;     return &quot;stream().map()处理之后：&quot; + string; &amp;#125;).collect(Collectors.toList())">
+  <meta name="description" content="目标类型 List转 ListList&lt;String&gt; list1 &#x3D; Lists.newArrayList(); List&lt;String&gt; list2 &#x3D; list1.stream().map(string -&gt; {     return &quot;stream().map()处理之后：&quot; + string; }).collect(Collectors.toList());">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 lambda 表达式进行集合类型转换">
 <meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-24-%E4%BD%BF%E7%94%A8lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BF%9B%E8%A1%8C%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="目标类型 List转 ListList&lt;String&gt; list1 &#x3D; Lists.newArrayList(); List&lt;String&gt; list2 &#x3D; list1.stream().map(string -&gt; &amp;#123;     return &quot;stream().map()处理之后：&quot; + string; &amp;#125;).collect(Collectors.toList())">
+<meta property="og:description" content="目标类型 List转 ListList&lt;String&gt; list1 &#x3D; Lists.newArrayList(); List&lt;String&gt; list2 &#x3D; list1.stream().map(string -&gt; {     return &quot;stream().map()处理之后：&quot; + string; }).collect(Collectors.toList());">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-24T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-02T09:00:11.030Z">
+<meta property="article:modified_time" content="2020-10-09T08:28:19.396Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="JavaClass">
 <meta property="article:tag" content="Java">
+<meta property="article:tag" content="JavaClass">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-24-%E4%BD%BF%E7%94%A8lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BF%9B%E8%A1%8C%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
@@ -160,7 +160,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">61</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">62</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -250,7 +250,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -419,9 +419,16 @@
 
 <a id="more"></a>
 
-<h4 id="转-Map"><a href="#转-Map" class="headerlink" title="转 Map"></a>转 Map</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SystemTabMenu</span><span class="token punctuation">&gt;</span></span> allList <span class="token operator">=</span> <span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h4 id="转-Map"><a href="#转-Map" class="headerlink" title="转 Map"></a>转 Map</h4><p>分组转换</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SystemTabMenu</span><span class="token punctuation">&gt;</span></span> allList <span class="token operator">=</span> <span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> map <span class="token operator">=</span> allList<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
     <span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span><span class="token class-name">SystemTabMenu</span><span class="token operator">::</span><span class="token function">getParentid</span><span class="token punctuation">,</span> <span class="token class-name">SystemTabMenu</span><span class="token operator">::</span><span class="token function">getParentid</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<p>分组汇总</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">UploadDataStatistics</span><span class="token punctuation">&gt;</span></span> allList <span class="token operator">=</span> <span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> resultMap <span class="token operator">=</span> allList<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
+    <span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">groupingBy</span><span class="token punctuation">(</span><span class="token class-name">UploadDataStatistics</span><span class="token operator">::</span><span class="token function">getDataType</span><span class="token punctuation">,</span>
+                       <span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">summingInt</span><span class="token punctuation">(</span><span class="token class-name">UploadDataStatistics</span><span class="token operator">::</span><span class="token function">getSuccessnum</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
 <h4 id="转-Map-lt-String-List-gt"><a href="#转-Map-lt-String-List-gt" class="headerlink" title="转 Map<String, List>"></a>转 Map&lt;String, List&gt;</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SystemTabMenu</span><span class="token punctuation">&gt;</span></span> allList <span class="token operator">=</span> <span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">SystemTabMenu</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> map <span class="token operator">=</span> allList<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
@@ -440,27 +447,27 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-15-关于toString方法的重写工具ToStringBuilder\" rel="bookmark">关于toString方法的重写工具ToStringBuilder</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-02-Arthas之各模块简介\" rel="bookmark">Arthas之各模块简介</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-02-Arthas之各模块简介\" rel="bookmark">Arthas 之各模块简介</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas 之源码简要分析</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas之jad反编译原理</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas 之 jad 反编译原理</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-Arthas之定位方法调用问题\" rel="bookmark">Arthas 之定位方法调用问题</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/JavaClass/" rel="tag"># JavaClass</a>
               <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/JavaClass/" rel="tag"># JavaClass</a>
           </div>
 
         
@@ -763,5 +770,5 @@ NexT.utils.loadComments('#valine-comments', () => {
 </script>
 
     </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

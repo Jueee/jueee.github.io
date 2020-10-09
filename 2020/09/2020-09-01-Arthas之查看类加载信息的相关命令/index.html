@@ -34,7 +34,7 @@
 <meta property="og:description" content="通过 Arthas 中的 trace&#x2F;monitor&#x2F;watch&#x2F;stack&#x2F;tt 等命令，可以查看方法内部调用信息，从而定位定位方法调用问题。 sc（已加载的类信息）方法介绍“Search-Class” 的简写，这个命令能搜索出所有已经加载到 JVM 中的 Class 信息。 官方文档：  https:&#x2F;&#x2F;arthas.aliyun.com&#x2F;doc&#x2F;sc.html  参数说明使用 sc --he">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-01T02:51:19.866Z">
+<meta property="article:modified_time" content="2020-09-22T09:52:32.097Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Java诊断">
@@ -161,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">61</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">62</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -251,7 +251,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -659,19 +659,19 @@ Affect<span class="token punctuation">(</span>row<span class="token operator">-<
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-02-Arthas之各模块简介\" rel="bookmark">Arthas之各模块简介</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-02-Arthas之各模块简介\" rel="bookmark">Arthas 之各模块简介</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas 之源码简要分析</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas之jad反编译原理</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas 之 jad 反编译原理</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas之通过thread命令定位线程问题</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-Arthas之定位方法调用问题\" rel="bookmark">Arthas 之定位方法调用问题</a></div>
     </li>
   </ul>
 
@@ -689,12 +689,12 @@ Affect<span class="token punctuation">(</span>row<span class="token operator">-<
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/08/2020-08-31-Ceph%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%B1%87%E6%80%BB/" rel="prev" title="Ceph 常用命令行汇总">
-      <i class="fa fa-chevron-left"></i> Ceph 常用命令行汇总
+    <a href="/2020/09/2020-09-01-Ceph%E5%9D%97%E8%AE%BE%E5%A4%87rbd%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0/" rel="prev" title="Ceph 块设备 rbd 相关学习">
+      <i class="fa fa-chevron-left"></i> Ceph 块设备 rbd 相关学习
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/09/2020-09-01-Ceph%E5%9D%97%E8%AE%BE%E5%A4%87rbd%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0/" rel="next" title="Ceph 块设备 rbd 相关学习">
-      Ceph 块设备 rbd 相关学习 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" rel="next" title="k8s 静态 PV 集成 ceph 块设备存储">
+      k8s 静态 PV 集成 ceph 块设备存储 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -983,5 +983,5 @@ NexT.utils.loadComments('#valine-comments', () => {
 </script>
 
     </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

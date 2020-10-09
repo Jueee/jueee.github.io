@@ -26,21 +26,23 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="步骤">
+  <meta name="description" content="资料汇总 GitHub：https:&#x2F;&#x2F;github.com&#x2F;EYHN&#x2F;hexo-helper-live2d  配置说明：https:&#x2F;&#x2F;l2dwidget.js.org&#x2F;docs&#x2F;class&#x2F;src&#x2F;index.js~L2Dwidget.html  模型仓库：https:&#x2F;&#x2F;github.com&#x2F;xiazeyu&#x2F;live2d-widget-models  模型预览：https:&#x2F;&#x2F;huaji8.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="k8s 集成 ceph 块设备存储">
-<meta property="og:url" content="https://jueee.github.io/2020/09/2020-09-02-k8s%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/index.html">
+<meta property="og:title" content="Hexo 博客添加 Live2D 看板娘">
+<meta property="og:url" content="https://jueee.github.io/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="步骤">
+<meta property="og:description" content="资料汇总 GitHub：https:&#x2F;&#x2F;github.com&#x2F;EYHN&#x2F;hexo-helper-live2d  配置说明：https:&#x2F;&#x2F;l2dwidget.js.org&#x2F;docs&#x2F;class&#x2F;src&#x2F;index.js~L2Dwidget.html  模型仓库：https:&#x2F;&#x2F;github.com&#x2F;xiazeyu&#x2F;live2d-widget-models  模型预览：https:&#x2F;&#x2F;huaji8.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-01T11:19:49.369Z">
+<meta property="og:image" content="https://jueee.github.io/images/2020/10/1602240328748.png">
+<meta property="article:published_time" content="2020-10-09T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-09T10:48:34.631Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Ceph">
-<meta property="article:tag" content="k8s">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="HTML">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jueee.github.io/images/2020/10/1602240328748.png">
 
-<link rel="canonical" href="https://jueee.github.io/2020/09/2020-09-02-k8s%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/">
+<link rel="canonical" href="https://jueee.github.io/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/">
 
 
 <script data-pjax class="page-configurations">
@@ -53,7 +55,7 @@
   };
 </script>
 
-  <title>k8s 集成 ceph 块设备存储 | 小决的专栏</title>
+  <title>Hexo 博客添加 Live2D 看板娘 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -160,17 +162,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">50</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">62</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">15</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">19</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">29</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">35</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -234,7 +236,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-ceph-%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.</span> <span class="nav-text">安装 ceph 客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-Ceph-secret"><span class="nav-number">3.</span> <span class="nav-text">配置 Ceph secret</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%9D%97%E5%AD%98%E5%82%A8"><span class="nav-number">4.</span> <span class="nav-text">创建块存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-PV"><span class="nav-number">5.</span> <span class="nav-text">创建 PV</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-PVC"><span class="nav-number">6.</span> <span class="nav-text">创建 PVC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-pod"><span class="nav-number">7.</span> <span class="nav-text">创建 pod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E6%9C%8D%E5%8A%A1"><span class="nav-number">8.</span> <span class="nav-text">验证服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">9.</span> <span class="nav-text">问题解决</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#rbd-feature-disable"><span class="nav-number">9.1.</span> <span class="nav-text">rbd feature disable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data-directory-has-files"><span class="nav-number">9.2.</span> <span class="nav-text">data directory has files</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99"><span class="nav-number">10.</span> <span class="nav-text">相关资料</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB"><span class="nav-number">1.</span> <span class="nav-text">资料汇总</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">安装配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E9%A2%84%E8%A7%88"><span class="nav-number">3.</span> <span class="nav-text">效果预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%A7%A3%E9%87%8A"><span class="nav-number">4.</span> <span class="nav-text">配置解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">5.</span> <span class="nav-text">问题解决</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#position-left-%E4%B8%8D%E7%94%9F%E6%95%88"><span class="nav-number">5.1.</span> <span class="nav-text">position: left 不生效</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -250,20 +252,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -341,7 +343,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-02-k8s%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -356,7 +358,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          k8s 集成 ceph 块设备存储
+          Hexo 博客添加 Live2D 看板娘
         </h1>
 
         <div class="post-meta">
@@ -366,7 +368,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-02T00:00:00Z">2020-09-02</time>
+              <time title="创建时间：2020-10-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-09T00:00:00Z">2020-10-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -374,7 +376,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
+                  <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
                 </span>
             </span>
 
@@ -394,8 +396,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/09/2020-09-02-k8s%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-02-k8s%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -408,159 +410,76 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><a id="more"></a>
-
-<h3 id="安装-ceph-客户端"><a href="#安装-ceph-客户端" class="headerlink" title="安装 ceph 客户端"></a>安装 ceph 客户端</h3><p>在部署 kubernetes 之前我们就已经有了 Ceph 集群，因此我们可以直接拿来用。但是 kubernetes 的所有节点（尤其是 master 节点）上依然需要安装 ceph 客户端。</p>
-<pre class="language-none"><code class="language-none">apt-get install -y ceph-common</code></pre>
-
-<p>还需要将 ceph 的配置文件 <code>ceph.conf</code> 放在所有节点的 <code>/etc/ceph</code> 目录下。</p>
-<h3 id="配置-Ceph-secret"><a href="#配置-Ceph-secret" class="headerlink" title="配置 Ceph secret"></a>配置 Ceph secret</h3><p>生成 Ceph secret</p>
-<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># ceph auth get-key client.admin |base64</span>
-QVFBS1RobGZEVysySXhBQXBVekozNGZ0RG1OTVVhRGlWL1NCMEE9PQ==</code></pre>
-
-<p>创建 <code>ceph-secret.yaml</code> 文件内容为：</p>
-<pre class="language-yml" data-language="yml"><code class="language-yml">apiVersion: v1
-kind: Secret
-metadata:
-  name: ceph-secret
-data:
-  key: QVFBS1RobGZEVysySXhBQXBVekozNGZ0RG1OTVVhRGlWL1NCMEE9PQo=</code></pre>
-
-<h3 id="创建块存储"><a href="#创建块存储" class="headerlink" title="创建块存储"></a>创建块存储</h3><p>创建 pool kcha</p>
-<p>创建 rbd</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd create --size 10240 kcha/mysqldata</code></pre>
-
-<p>查看 mon 状态：</p>
-<pre class="language-none"><code class="language-none"># ceph mon stat
-e2: 2 mons at {a=[v2:172.18.32.119:3300/0,v1:172.18.32.119:6789/0],b=[v2:172.18.83.170:3300/0,v1:172.18.83.170:6789/0]}, election epoch 16, leader 0 a, quorum 0,1 a,b</code></pre>
-
-<h3 id="创建-PV"><a href="#创建-PV" class="headerlink" title="创建 PV"></a>创建 PV</h3><p>创建 <code>pv-mysql.yaml</code> 文件内容为：</p>
-<pre class="language-yml" data-language="yml"><code class="language-yml">apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysqldata
-  namespace: manti-infra
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  rbd:
-    monitors:
-    - 172.18.32.119:6789
-    - 172.18.83.170:6789
-    pool: kcha
-    image: mysqldata
-    user: admin
-    secretRef:
-      name: ceph-secret
-      namespace: default
-    fsType: ext4
-    readOnly: false
-  persistentVolumeReclaimPolicy: Recycle
-  storageClassName: mysqldata</code></pre>
-
-<h3 id="创建-PVC"><a href="#创建-PVC" class="headerlink" title="创建 PVC"></a>创建 PVC</h3><p>创建 <code>pvc-mysql.yaml</code> 文件内容为：</p>
-<pre class="language-yml" data-language="yml"><code class="language-yml">apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysqldata
-  namespace: manti-infra
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: mysqldata</code></pre>
-
-<h3 id="创建-pod"><a href="#创建-pod" class="headerlink" title="创建 pod"></a>创建 pod</h3><pre class="language-yml" data-language="yml"><code class="language-yml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-    name: mysql
-    namespace: manti-infra
-spec:
-    replicas: 1
-    selector:
-        matchLabels:
-            app: mysql
-    template:
-        metadata:
-            labels:
-                app: mysql
-        spec:
-            imagePullSecrets:
-              - name: harborsecret
-            containers:
-              - name: mysql
-                image: mysql:v1.0.6
-                imagePullPolicy: IfNotPresent
-                ports:
-                  - containerPort: 3306
-                env:
-                  - name: MYSQL_ROOT_PASSWORD
-                    value: 123456
-                volumeMounts:
-                  - name: mysqldata
-                    subPath: mysql
-                    mountPath: /var/lib/mysql
-            volumes:
-              - name: mysqldata
-                persistentVolumeClaim:
-                    claimName: mysqldata
-            initContainers:
-              - name: increase-fd-ulimit
-                image: busybox
-                command: ["sh", "-c", "ulimit -n 65536"]
-                securityContext:
-                    privileged: true</code></pre>
-
-<h3 id="验证服务"><a href="#验证服务" class="headerlink" title="验证服务"></a>验证服务</h3><pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ kg pod <span class="token operator">-</span>o wide
-NAME                     READY   STATUS    RESTARTS   AGE   IP              
-mysql<span class="token operator">-</span>544c557fdb<span class="token operator">-</span>nrp92   1<span class="token operator">/</span>1     Running   0          25m   192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>74<span class="token punctuation">.</span>76   
-$ mysql <span class="token operator">-</span>h192<span class="token punctuation">.</span>168<span class="token punctuation">.</span>74<span class="token punctuation">.</span>76 <span class="token operator">-</span>P3306 <span class="token operator">-</span>uroot <span class="token operator">-</span>p123456</code></pre>
-
-<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><h4 id="rbd-feature-disable"><a href="#rbd-feature-disable" class="headerlink" title="rbd feature disable"></a>rbd feature disable</h4><pre class="language-none"><code class="language-none">RBD image feature set mismatch. You can disable features unsupported by the kernel with "rbd feature disable".
-In some cases useful info is found in syslog - try "dmesg | tail" or so.
-rbd: map failed: (6) No such device or address</code></pre>
-
-<p>移除 features</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd feature disable kcha/mysqldata exclusive-lock, object-map, fast-diff, deep-flatten</code></pre>
-
-<h4 id="data-directory-has-files"><a href="#data-directory-has-files" class="headerlink" title="data directory has files"></a>data directory has files</h4><p>部署后日志报错：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ k logs mysql-66946b4c48-7dngn
-Initializing database
-2020-09-01T10:34:38.008752-00:00 0 [ERROR] --initialize specified but the data directory has files in it. Aborting.
-2020-09-01T10:34:38.008819-00:00 0 [ERROR] Aborting</code></pre>
-
-<p>参考资料：</p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2RvY2tlci1saWJyYXJ5L215c3FsL2lzc3Vlcy8xODY=">https://github.com/docker-library/mysql/issues/186<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL3NlcnZlci1vcHRpb25zLmh0bWwjb3B0aW9uX215c3FsZF9pZ25vcmUtZGItZGly">https://dev.mysql.com/doc/refman/5.7/en/server-options.html#option_mysqld_ignore-db-dir<i class="fa fa-external-link-alt"></i></span></li>
+        <h3 id="资料汇总"><a href="#资料汇总" class="headerlink" title="资料汇总"></a>资料汇总</h3><ul>
+<li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0VZSE4vaGV4by1oZWxwZXItbGl2ZTJk">https://github.com/EYHN/hexo-helper-live2d<i class="fa fa-external-link-alt"></i></span></li>
+<li> 配置说明：<span class="exturl" data-url="aHR0cHM6Ly9sMmR3aWRnZXQuanMub3JnL2RvY3MvY2xhc3Mvc3JjL2luZGV4LmpzfkwyRHdpZGdldC5odG1s">https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html<i class="fa fa-external-link-alt"></i></span></li>
+<li> 模型仓库：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYXpleXUvbGl2ZTJkLXdpZGdldC1tb2RlbHM=">https://github.com/xiazeyu/live2d-widget-models<i class="fa fa-external-link-alt"></i></span></li>
+<li> 模型预览：<span class="exturl" data-url="aHR0cHM6Ly9odWFqaTgudG9wL3Bvc3QvbGl2ZTJkLXBsdWdpbi0yLjAv">https://huaji8.top/post/live2d-plugin-2.0/<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
-<p>原因：</p>
-<p>一个新的 ext4 磁盘分区通常不为空。有一个 <code>lost+found</code> 目录，已知 mysql 会阻塞该目录。您可以尝试添加 <code>--ignore-db-dir=lost+found</code> 到，<code>CMD</code> 以确保确定。</p>
-<p>解决方案：</p>
-<ol>
-<li><p>增加启动参数：</p>
-<pre class="language-none"><code class="language-none">name: mysql-master
-image: mysql:5.7
-args:
-- "--ignore-db-dir=lost+found"</code></pre>
-</li>
-<li><p>增加子目录</p>
-<pre class="language-none"><code class="language-none">volumeMounts:
-- name: mysqldata
- subPath: mysql
- mountPath: /var/lib/mysql</code></pre>
+<a id="more"></a>
 
-</li>
-</ol>
-<h3 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h3><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9rdWJlcm5ldGVzLmlvL3poL2RvY3MvY29uY2VwdHMvc3RvcmFnZS9zdG9yYWdlLWNsYXNzZXMvI2NlcGgtcmJk">https://kubernetes.io/zh/docs/concepts/storage/storage-classes/#ceph-rbd<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9rdWJlcm5ldGVzLmlvL2RvY3MvY29uY2VwdHMvc3RvcmFnZS9zdG9yYWdlLWNsYXNzZXMv">https://kubernetes.io/docs/concepts/storage/storage-classes/<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9qaW1teXNvbmcuaW8va3ViZXJuZXRlcy1oYW5kYm9vay9wcmFjdGljZS91c2luZy1jZXBoLWZvci1wZXJzaXN0ZW50LXN0b3JhZ2UuaHRtbA==">https://jimmysong.io/kubernetes-handbook/practice/using-ceph-for-persistent-storage.html<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
+<h3 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h3><p>首先，安装 npm 包：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> --save hexo-helper-live2d</code></pre>
+
+<p>然后在 hexo 的配置文件<code>_config.yml</code> 中添加如下配置，详细配置可以参考<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0VZSE4vaGV4by1oZWxwZXItbGl2ZTJkL2Jsb2IvbWFzdGVyL1JFQURNRS56aC1DTi5tZA==">文档<i class="fa fa-external-link-alt"></i></span>：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">live2d</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">scriptFrom</span><span class="token punctuation">:</span> local
+  <span class="token key atrule">pluginRootPath</span><span class="token punctuation">:</span> live2dw/
+  <span class="token key atrule">pluginJsPath</span><span class="token punctuation">:</span> lib/
+  <span class="token key atrule">pluginModelPath</span><span class="token punctuation">:</span> assets/
+  <span class="token key atrule">tagMode</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">debug</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">model</span><span class="token punctuation">:</span>
+    <span class="token key atrule">use</span><span class="token punctuation">:</span> live2d<span class="token punctuation">-</span>widget<span class="token punctuation">-</span>model<span class="token punctuation">-</span>wanko
+  <span class="token key atrule">display</span><span class="token punctuation">:</span>
+    <span class="token key atrule">position</span><span class="token punctuation">:</span> right
+    <span class="token key atrule">width</span><span class="token punctuation">:</span> <span class="token number">150</span>
+    <span class="token key atrule">height</span><span class="token punctuation">:</span> <span class="token number">300</span>
+  <span class="token key atrule">mobile</span><span class="token punctuation">:</span>
+    <span class="token key atrule">show</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">react</span><span class="token punctuation">:</span>
+    <span class="token key atrule">opacity</span><span class="token punctuation">:</span> <span class="token number">0.7</span></code></pre>
+
+<p>然后下载模型，模型名称可以到<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYXpleXUvbGl2ZTJkLXdpZGdldC1tb2RlbHM=">这里<i class="fa fa-external-link-alt"></i></span>参考，一些模型的预览可以在<span class="exturl" data-url="aHR0cHM6Ly9odWFqaTgudG9wL3Bvc3QvbGl2ZTJkLXBsdWdpbi0yLjAv">这里<i class="fa fa-external-link-alt"></i></span>。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> live2d-widget-model-shizuku</code></pre>
+
+<h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><p><img src="/images/2020/10/1602240328748.png" alt="1602240328748" loading="lazy"></p>
+<h3 id="配置解释"><a href="#配置解释" class="headerlink" title="配置解释"></a>配置解释</h3><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Live2D</span>
+<span class="token comment">## https://github.com/EYHN/hexo-helper-live2d</span>
+<span class="token comment">## https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html#instance-method-init</span>
+<span class="token key atrule">live2d</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token comment">#enable: false</span>
+  <span class="token key atrule">scriptFrom</span><span class="token punctuation">:</span> local <span class="token comment"># 默认</span>
+  <span class="token key atrule">pluginRootPath</span><span class="token punctuation">:</span> live2dw/ <span class="token comment"># 插件在站点上的根目录(相对路径)</span>
+  <span class="token key atrule">pluginJsPath</span><span class="token punctuation">:</span> lib/ <span class="token comment"># 脚本文件相对与插件根目录路径</span>
+  <span class="token key atrule">pluginModelPath</span><span class="token punctuation">:</span> assets/ <span class="token comment"># 模型文件相对与插件根目录路径</span>
+  <span class="token comment"># scriptFrom: jsdelivr # jsdelivr CDN</span>
+  <span class="token comment"># scriptFrom: unpkg # unpkg CDN</span>
+  <span class="token comment"># scriptFrom: https://cdn.jsdelivr.net/npm/live2d-widget@3.x/lib/L2Dwidget.min.js # 你的自定义 url</span>
+  <span class="token key atrule">tagMode</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 标签模式, 是否仅替换 live2d tag标签而非插入到所有页面中</span>
+  <span class="token key atrule">debug</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> <span class="token comment"># 调试, 是否在控制台输出日志</span>
+  <span class="token key atrule">model</span><span class="token punctuation">:</span>
+    <span class="token key atrule">use</span><span class="token punctuation">:</span> live2d<span class="token punctuation">-</span>widget<span class="token punctuation">-</span>model<span class="token punctuation">-</span>hibiki
+    <span class="token comment"># use: live2d-widget-model-wanko # npm-module package name</span>
+    <span class="token comment"># use: wanko # 博客根目录/live2d_models/ 下的目录名</span>
+    <span class="token comment"># use: ./wives/wanko # 相对于博客根目录的路径</span>
+    <span class="token comment"># use: https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json # 你的自定义 url</span>
+  <span class="token key atrule">display</span><span class="token punctuation">:</span>
+    <span class="token key atrule">position</span><span class="token punctuation">:</span> right
+    <span class="token key atrule">width</span><span class="token punctuation">:</span> <span class="token number">145</span>
+    <span class="token key atrule">height</span><span class="token punctuation">:</span> <span class="token number">315</span>
+  <span class="token key atrule">mobile</span><span class="token punctuation">:</span>
+    <span class="token key atrule">show</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment"># 是否在移动设备上显示</span>
+    <span class="token key atrule">scale</span><span class="token punctuation">:</span> <span class="token number">0.5</span> <span class="token comment"># 移动设备上的缩放</span>
+  <span class="token key atrule">react</span><span class="token punctuation">:</span>
+    <span class="token key atrule">opacityDefault</span><span class="token punctuation">:</span> <span class="token number">0.7</span>
+    <span class="token key atrule">opacityOnHover</span><span class="token punctuation">:</span> <span class="token number">0.8</span></code></pre>
+
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><h4 id="position-left-不生效"><a href="#position-left-不生效" class="headerlink" title="position: left 不生效"></a>position: left 不生效</h4><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0VZSE4vaGV4by1oZWxwZXItbGl2ZTJkL2lzc3Vlcy8xMDA=">https://github.com/EYHN/hexo-helper-live2d/issues/100<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
 
     </div>
 
@@ -571,24 +490,27 @@ args:
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在 k8s 中使用 rook-ceph</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-19-为博客新增评论系统\" rel="bookmark">为博客新增评论系统</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-29-Ceph分布式存储系统介绍\" rel="bookmark">Ceph分布式存储系统介绍</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件 canvas-nest.js</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-31-Ceph常用命令行汇总\" rel="bookmark">Ceph 常用命令行汇总</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-30-为Github项目说明添加优美标签\" rel="bookmark">为 Github 项目说明添加优美标签</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-01-Ceph块设备rbd相关学习\" rel="bookmark">Ceph 块设备 rbd 相关学习</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-博客添加Fork me on GitHub\" rel="bookmark">博客添加 Fork me on GitHub</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-09-博客网址增加站点分析\" rel="bookmark">博客网址增加站点分析</a></div>
     </li>
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Ceph/" rel="tag"># Ceph</a>
-              <a href="/tags/k8s/" rel="tag"># k8s</a>
+              <a href="/tags/Blog/" rel="tag"># Blog</a>
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
           </div>
 
         
@@ -597,8 +519,8 @@ args:
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/2020-09-01-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%BF%A1%E6%81%AF%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" rel="prev" title="Arthas 之查看类加载信息的相关命令">
-      <i class="fa fa-chevron-left"></i> Arthas 之查看类加载信息的相关命令
+    <a href="/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/" rel="prev" title="FastDFS 容器化安装实践">
+      <i class="fa fa-chevron-left"></i> FastDFS 容器化安装实践
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -865,7 +787,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'jueee.github.io',
       owner       : 'jueee',
       admin       : ['jueee'],
-      id          : 'cfb55c9d76c2bb26fb7b43351f766ff3',
+      id          : '57864e070fd71c4d0b98891fe8e828dc',
         language: 'zh-CN',
       distractionFreeMode: true
     });
@@ -888,5 +810,5 @@ NexT.utils.loadComments('#valine-comments', () => {
 </script>
 
     </div>
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
