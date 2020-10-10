@@ -780,17 +780,17 @@ tail -f /var/lib/docker/containers/199608b2e2c52136d2a17e539e9ef7fbacf97f1293678
 <pre class="language-none"><code class="language-none"># 查看当前 rsyslog 版本和基本信息
 [root@localhost harbor]# rsyslogd  -v
 rsyslogd 8.24.0, compiled with:
-    PLATFORM:                x86_64-redhat-linux-gnu
-    PLATFORM (lsb_release -d):        
-    FEATURE_REGEXP:                Yes
-    GSSAPI Kerberos 5 support:        Yes
-    FEATURE_DEBUG (debug build, slow code):    No
-    32bit Atomic operations supported:    Yes
-    64bit Atomic operations supported:    Yes
-    memory allocator:            system default
-    Runtime Instrumentation (slow code):    No
-    uuid support:                Yes
-    Number of Bits in RainerScript integers: 64
+	PLATFORM:				x86_64-redhat-linux-gnu
+	PLATFORM (lsb_release -d):		
+	FEATURE_REGEXP:				Yes
+	GSSAPI Kerberos 5 support:		Yes
+	FEATURE_DEBUG (debug build, slow code):	No
+	32bit Atomic operations supported:	Yes
+	64bit Atomic operations supported:	Yes
+	memory allocator:			system default
+	Runtime Instrumentation (slow code):	No
+	uuid support:				Yes
+	Number of Bits in RainerScript integers: 64
 
 See http://www.rsyslog.com for more information.</code></pre>
 
@@ -920,7 +920,7 @@ May 17 17:19:32 localhost.localdomain 2a338e4631fe[6141]: [104B blob data]</code
 </ul>
 <p>示例：Nginx 日志，Nginx 日志有 <code>access.log</code> 和 <code>error.log</code> ，我们在 Docker Hub 上可以看到 Nginx 的 dockerfile 对于这两个日志的处理是：</p>
 <pre class="language-none"><code class="language-none">RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-    &amp;&amp; ln -sf /dev/stderr /var/log/nginx/error.log</code></pre>
+	&amp;&amp; ln -sf /dev/stderr /var/log/nginx/error.log</code></pre>
 
 <p>都软连接到 <code>/dev/stdout</code> 和 <code>/dev/stderr</code> ，也就是标准输出，所以这类 容器是可以使用 Docker 官方的日志驱动。</p>
 <ul>
@@ -929,18 +929,15 @@ May 17 17:19:32 localhost.localdomain 2a338e4631fe[6141]: [104B blob data]</code
 <pre class="language-none"><code class="language-none">CMD ["catalina.sh", "run"]</code></pre>
 
 <p>我们运行了一个 Tomcat 容器 ，然后进行访问后，并登陆到容器内部，我们可以看到产生了文本日志：</p>
-<p>&lt;!--hexoPostRenderEscape:</p><pre class="language-none"><code class="language-none">root@25ba00fdab97:/usr/local/tomcat/logs# ls -l<br>total 16<p></p>
-</code></pre></li><code class="language-none">
-<li><p>rw-r-----. 1 root root 6822 May 17 14:36 catalina.2019-05-17.log</p>
-</li>
-<li><p>rw-r-----. 1 root root    0 May 17 14:36 host-manager.2019-05-17.log</p>
-</li>
-<li><p>rw-r-----. 1 root root  459 May 17 14:36 localhost.2019-05-17.log</p>
-</li>
-<li><p>rw-r-----. 1 root root 1017 May 17 14:37 localhost_access_log.2019-05-17.txt</p>
-</li>
-</code><li><code class="language-none"></code><p><code class="language-none">rw-r-----. 1 root root    0 May 17 14:36 manager.2019-05-17.log</code>:hexoPostRenderEscape--&gt;</p>
-<p> 这类容器我们下面有专门的方案来应对。</p>
+<pre class="language-none"><code class="language-none">root@25ba00fdab97:/usr/local/tomcat/logs# ls -l
+total 16
+-rw-r-----. 1 root root 6822 May 17 14:36 catalina.2019-05-17.log
+-rw-r-----. 1 root root    0 May 17 14:36 host-manager.2019-05-17.log
+-rw-r-----. 1 root root  459 May 17 14:36 localhost.2019-05-17.log
+-rw-r-----. 1 root root 1017 May 17 14:37 localhost_access_log.2019-05-17.txt
+-rw-r-----. 1 root root    0 May 17 14:36 manager.2019-05-17.log</code></pre>
+
+<p>这类容器我们下面有专门的方案来应对。</p>
 </li>
 </ul>
 <h4 id="标准输出的存储"><a href="#标准输出的存储" class="headerlink" title="标准输出的存储"></a>标准输出的存储</h4><p>当是完全是标准输出的类型的容器，我们可以选择 json-file 、syslog、local 等 Docker 支持的日志驱动。</p>
@@ -1064,19 +1061,19 @@ total 20
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-19-为博客新增评论系统\" rel="bookmark">为博客新增评论系统</a></div>
-    </li>
-    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\07\2020-07-06-模板List分两列展示\" rel="bookmark">模板 List 分两列展示</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\07\2020-07-10-网页粒子背景插件canvas-nest.js\" rel="bookmark">网页粒子背景插件 canvas-nest.js</a></div>
     </li>
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-博客添加Fork me on GitHub\" rel="bookmark">博客添加 Fork me on GitHub</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\07\2020-07-30-为Github项目说明添加优美标签\" rel="bookmark">为 Github 项目说明添加优美标签</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-博客添加Fork me on GitHub\" rel="bookmark">博客添加 Fork me on GitHub</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-19-为博客新增评论系统\" rel="bookmark">为博客新增评论系统</a></div>
     </li>
   </ul>
 

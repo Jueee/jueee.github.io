@@ -427,7 +427,7 @@
 
 <h3 id="重写-toString"><a href="#重写-toString" class="headerlink" title="重写 toString"></a>重写 toString</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
 <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token class-name">ToStringBuilder</span><span class="token punctuation">.</span><span class="token function">reflectionToString</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token class-name">ToStringBuilder</span><span class="token punctuation">.</span><span class="token function">reflectionToString</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
 <p>打印结果参考：</p>
@@ -445,10 +445,10 @@
 </li>
 <li><p><strong>ToStringStyle.MULTI_LINE_STYLE</strong>：属性换行显示</p>
 <pre class="language-none"><code class="language-none">com.zzz.other.City@4eec7777[
-id=1
-name=杭州
-province=浙江
-country=CN
+  id=1
+  name=杭州
+  province=浙江
+  country=CN
 ]</code></pre>
 </li>
 <li><p><strong>ToStringStyle.NO_FIELD_NAMES_STYLE</strong>：不显示属性名，只显示属性值</p>
@@ -466,22 +466,22 @@ country=CN
  <pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token class-name">Object</span> object<span class="token punctuation">,</span> <span class="token class-name">ToStringStyle</span> style<span class="token punctuation">,</span> 
                               <span class="token keyword">boolean</span> outputTransients<span class="token punctuation">,</span> <span class="token keyword">boolean</span> outputStatics<span class="token punctuation">,</span>
                               <span class="token class-name">Class</span> reflectUpToClass<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ReflectionToStringBuilder</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span> style<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> 
+	<span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ReflectionToStringBuilder</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span> style<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">,</span> 
                                          reflectUpToClass<span class="token punctuation">,</span> outputTransients<span class="token punctuation">,</span>
                                          outputStatics<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getStyle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getNullText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token class-name">Class</span> clazz <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">appendFieldsIn</span><span class="token punctuation">(</span>clazz<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">while</span> <span class="token punctuation">(</span>clazz<span class="token punctuation">.</span><span class="token function">getSuperclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> clazz <span class="token operator">!=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getUpToClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        clazz <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getSuperclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">appendFieldsIn</span><span class="token punctuation">(</span>clazz<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getStyle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getNullText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token class-name">Class</span> clazz <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">appendFieldsIn</span><span class="token punctuation">(</span>clazz<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">while</span> <span class="token punctuation">(</span>clazz<span class="token punctuation">.</span><span class="token function">getSuperclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> clazz <span class="token operator">!=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getUpToClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		clazz <span class="token operator">=</span> clazz<span class="token punctuation">.</span><span class="token function">getSuperclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">appendFieldsIn</span><span class="token punctuation">(</span>clazz<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
 <p>其中参数  <code>ToStringStyle</code>  是个抽象类，定义了输出的格式 主要是 append 了一类类信息到字符串上，可以自己继承 <code>ToStringStyle</code>  实现自定义的输出格式。</p>

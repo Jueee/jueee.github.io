@@ -572,13 +572,13 @@ Initializing database
 <pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> mysql<span class="token punctuation">-</span>master
 <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span><span class="token number">5.7</span>
 <span class="token key atrule">args</span><span class="token punctuation">:</span>
-<span class="token punctuation">-</span> <span class="token string">"--ignore-db-dir=lost+found"</span></code></pre>
+  <span class="token punctuation">-</span> <span class="token string">"--ignore-db-dir=lost+found"</span></code></pre>
 </li>
 <li><p>增加子目录</p>
 <pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
-<span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> mysqldata
- <span class="token key atrule">subPath</span><span class="token punctuation">:</span> mysql
- <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /var/lib/mysql</code></pre>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> mysqldata
+	<span class="token key atrule">subPath</span><span class="token punctuation">:</span> mysql
+	<span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /var/lib/mysql</code></pre>
 
 </li>
 </ol>

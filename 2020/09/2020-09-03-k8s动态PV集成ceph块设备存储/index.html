@@ -526,13 +526,13 @@ Failed to provision volume with StorageClass "kchadata": failed to create rbd im
 <p><strong>方案一</strong>：添加 ceph-common 到 hyperkube image 中，构建一个新的安装了 ceph-common 的同名镜像 hyperkube-amd64 替换官方镜像</p>
 <pre class="language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">$ vim Dockerfile
 FROM gcr.io/google_containers/hyperkube-amd64:v1.2.1
-
+ 
 RUN curl https://raw.githubusercontent.com/ceph/ceph/master/keys/release.asc | apt-key add - &amp;&amp; \
     echo deb http://download.ceph.com/debian-hammer/ jessie main | tee /etc/apt/sources.list.d/ceph.list &amp;&amp; \
     apt-get update &amp;&amp; \
     DEBIAN_FRONTEND=noninteractive apt-get install -q -y ceph-common &amp;&amp; \
     apt-get clean &amp;&amp; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
+ 
 $ docker build -t custom/hyperkube-amd64:v1.2.1 .    </code></pre>
 
 <p><strong>方案二：</strong>使用 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1YmVybmV0ZXMtaW5jdWJhdG9yL2V4dGVybmFsLXN0b3JhZ2U=">扩展存储卷插件<i class="fa fa-external-link-alt"></i></span> 来帮我们完成这一步。</p>

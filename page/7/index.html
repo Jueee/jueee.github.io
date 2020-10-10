@@ -612,8 +612,8 @@
 <li><p>编辑 主题配置文件并 <code>tracking_id</code> 在部分下填写 <code>google_analytics</code> 您的 Google 跟踪 ID。Google 曲目 ID 始终以开头 <code>UA-</code>。</p>
 <pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Google Analytics</span>
 <span class="token key atrule">google_analytics</span><span class="token punctuation">:</span>
-<span class="token key atrule">tracking_id</span><span class="token punctuation">:</span> UA<span class="token punctuation">-</span>XXXXXXXX<span class="token punctuation">-</span>X
-<span class="token key atrule">only_pageview</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
+  <span class="token key atrule">tracking_id</span><span class="token punctuation">:</span> UA<span class="token punctuation">-</span>XXXXXXXX<span class="token punctuation">-</span>X
+  <span class="token key atrule">only_pageview</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
 </li>
 <li><p>当 field <code>only_pageview</code> 设置为 true 时，NexT 将仅向 <code>pageview</code>Google Analytics（分析）发送事件。<br>使用它而不是使用它的好处 <code>only_pageview: false</code> 是减少了站点上的外部脚本，这将为您提供更好的性能，但没有完整的分析功能。</p>
 </li>

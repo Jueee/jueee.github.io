@@ -514,8 +514,8 @@
 <p>其中，<code>xxx.xxx.xxx.xxx&nbsp;</code>为 服务器 IP 地址。</p>
 <h4 id="nginx-conf-配置"><a href="#nginx-conf-配置" class="headerlink" title="nginx.conf&nbsp;配置"></a>nginx.conf&nbsp;配置</h4><p><code>nginx.conf</code> 文件增加配置如下：</p>
 <pre class="language-none"><code class="language-none">location /group1/M00 {
-    root /fastdfs/storage/data;
-    ngx_fastdfs_module;
+	root /fastdfs/storage/data;
+	ngx_fastdfs_module;
 }</code></pre>
 
 <h4 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h4><p><code>docker-compose.yml</code> 文件如下：</p>
@@ -580,8 +580,8 @@ group1/M00/00/00/CqD3YF3kwS-ACYbMAAAAHDDhFHI6820520</code></pre>
 
 <p>修复：修改 nginx.conf 中的 location 配置为：</p>
 <pre class="language-none"><code class="language-none">location/group1/M00/ {
-    alias /fastdfs/store_path/data;
-    ngx_fastdfs_module;
+	alias /fastdfs/store_path/data;
+	ngx_fastdfs_module;
 }</code></pre>
 
 <h4 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h4><p>报错问题：</p>
@@ -843,101 +843,6 @@ group1/M00/00/00/CqD3YF3kwS-ACYbMAAAAHDDhFHI6820520</code></pre>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" class="post-title-link" itemprop="url">Linux 进行磁盘自动挂载</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-15T00:00:00Z">2020-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在给系统新增了磁盘以后，如果重启系统我们会发现找不到存储了；但是使用 fdisk -l 可以看到存储空间，说明存储还在。这是因为关机后，挂载已经自动卸载掉了。我们当然可以手动再次将其挂载，但如果每次重启都需要这样手动操作会很不方便；因此我们可以利用自动挂载，这样系统每次开机的时候就可以自动将磁盘挂载上去了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-15-%E4%BD%BF%E7%94%A8Python%E9%81%8D%E5%8E%86%E5%A4%87%E4%BB%BDdocker-compose%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1056,6 +961,101 @@ group1/M00/00/00/CqD3YF3kwS-ACYbMAAAAHDDhFHI6820520</code></pre>
     </code></pre>
 
 
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" class="post-title-link" itemprop="url">Linux 进行磁盘自动挂载</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-15T00:00:00Z">2020-09-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在给系统新增了磁盘以后，如果重启系统我们会发现找不到存储了；但是使用 fdisk -l 可以看到存储空间，说明存储还在。这是因为关机后，挂载已经自动卸载掉了。我们当然可以手动再次将其挂载，但如果每次重启都需要这样手动操作会很不方便；因此我们可以利用自动挂载，这样系统每次开机的时候就可以自动将磁盘挂载上去了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

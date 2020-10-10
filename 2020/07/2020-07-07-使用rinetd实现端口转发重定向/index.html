@@ -418,13 +418,13 @@
 <p>用于有效地将连接从一个 IP 地址 / 端口组合重定向到另一 IP 地址 / 端口组合。在操作虚拟服务器、防火墙等时很有用。</p>
 <p>Rinetd 是单一过程的服务器，它处理任何数量的连接到在配置文件 etc/rinetd 中指定的地址 / 端口对。尽管 rinetd 使用非闭锁 I/O 运行作为一个单一过程，它可能重定向很多连接而不对这台机器增加额外的负担。</p>
 <p>官网地址：<span class="exturl" data-url="aHR0cDovL3d3dy5ib3V0ZWxsLmNvbS9yaW5ldGQ=">http://www.boutell.com/rinetd<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h4 id="方法一：压缩包"><a href="#方法一：压缩包" class="headerlink" title="方法一：压缩包"></a>方法一：压缩包</h4><pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token function">wget</span> http://www.boutell.com/rinetd/http/rinetd.tar.gz
-<span class="token function">tar</span> zxvf rinetd.tar.gz
-<span class="token function">make</span>
-<span class="token function">make</span> <span class="token function">install</span></code></pre>
+<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h4 id="方法一：压缩包"><a href="#方法一：压缩包" class="headerlink" title="方法一：压缩包"></a>方法一：压缩包</h4><pre class="language-shell" data-language="shell"><code class="language-shell">wget http://www.boutell.com/rinetd/http/rinetd.tar.gz
+tar zxvf rinetd.tar.gz
+make
+make install</code></pre>
 
-<h4 id="方法二：apt-get"><a href="#方法二：apt-get" class="headerlink" title="方法二：apt-get"></a>方法二：apt-get</h4><pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token function">apt-cache</span> search rinetd
-<span class="token function">apt-get</span> <span class="token function">install</span> rinetd -y</code></pre>
+<h4 id="方法二：apt-get"><a href="#方法二：apt-get" class="headerlink" title="方法二：apt-get"></a>方法二：apt-get</h4><pre class="language-shell" data-language="shell"><code class="language-shell">apt-cache search rinetd
+apt-get install rinetd -y</code></pre>
 
 <h3 id="软件配置"><a href="#软件配置" class="headerlink" title="软件配置"></a>软件配置</h3><p>配置文件格式：</p>
 <pre class="language-none"><code class="language-none">[Source Address] [Source Port] [Destination Address] [Destination Port]
@@ -457,10 +457,13 @@
 </li>
 <li><p>运行 rinetd 的系统防火墙应该打开绑定的本机端口。</p>
 <p>例如：</p>
-<p>&lt;!--hexoPostRenderEscape:</p><pre class="language-none"><code class="language-none">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 1111 -jACCEPT<p></p>
-</code></pre></li><code class="language-none">
-</code></ol><code class="language-none">
-</code><p><code class="language-none">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 2222 -jACCEPT</code>:hexoPostRenderEscape--&gt;</p>
+<pre class="language-none"><code class="language-none">-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 1111 -jACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 2222 -jACCEPT</code></pre>
+
+
+
+</li>
+</ol>
 
     </div>
 

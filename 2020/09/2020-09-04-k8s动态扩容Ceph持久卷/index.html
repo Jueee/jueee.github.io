@@ -430,17 +430,17 @@ provisioner: ceph.com/rbd</code></pre>
 <h3 id="对已创建的-PV-进行扩容"><a href="#对已创建的-PV-进行扩容" class="headerlink" title="对已创建的 PV 进行扩容"></a>对已创建的 PV 进行扩容</h3><ol>
 <li><p><strong>查看 PV 信息</strong></p>
 <pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ kubectl describe pv pvc<span class="token operator">-</span>3e1e651c<span class="token operator">-</span>fcce<span class="token operator">-</span>4a31<span class="token operator">-</span>8283<span class="token operator">-</span>8b5d7f4859fc <span class="token punctuation">|</span>grep Image
- RBDImage:      kubernetes<span class="token operator">-</span>dynamic<span class="token operator">-</span>pvc<span class="token operator">-</span>dbaa94d7<span class="token operator">-</span>ecdd<span class="token operator">-</span>11ea<span class="token operator">-</span>a4f5<span class="token operator">-</span>aedb151bd819</code></pre>
+    RBDImage:      kubernetes<span class="token operator">-</span>dynamic<span class="token operator">-</span>pvc<span class="token operator">-</span>dbaa94d7<span class="token operator">-</span>ecdd<span class="token operator">-</span>11ea<span class="token operator">-</span>a4f5<span class="token operator">-</span>aedb151bd819</code></pre>
 </li>
 <li><p><strong>查看 rbd 镜像信息</strong></p>
 <pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd info kcha/kubernetes-dynamic-pvc-dbaa94d7-ecdd-11ea-a4f5-aedb151bd819
 rbd image <span class="token string">'kubernetes-dynamic-pvc-dbaa94d7-ecdd-11ea-a4f5-aedb151bd819'</span><span class="token builtin class-name">:</span>
-     size <span class="token number">30</span> GB <span class="token keyword">in</span> <span class="token number">256000</span> objects
-     order <span class="token number">22</span> <span class="token punctuation">(</span><span class="token number">4096</span> kB objects<span class="token punctuation">)</span>
-     block_name_prefix: rbd_data.b642e6b8b4567
-     format: <span class="token number">2</span>
-     features: layering
-     flags:</code></pre>
+        size <span class="token number">30</span> GB <span class="token keyword">in</span> <span class="token number">256000</span> objects
+        order <span class="token number">22</span> <span class="token punctuation">(</span><span class="token number">4096</span> kB objects<span class="token punctuation">)</span>
+        block_name_prefix: rbd_data.b642e6b8b4567
+        format: <span class="token number">2</span>
+        features: layering
+        flags:</code></pre>
 </li>
 <li><p><strong>修改 rbd 大小</strong></p>
 <pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ rbd resize <span class="token operator">--</span>size 1024000 kcha<span class="token operator">/</span>kubernetes<span class="token operator">-</span>dynamic<span class="token operator">-</span>pvc<span class="token operator">-</span>dbaa94d7<span class="token operator">-</span>ecdd<span class="token operator">-</span>11ea<span class="token operator">-</span>a4f5<span class="token operator">-</span>aedb151bd819</code></pre>

@@ -441,16 +441,25 @@
 <li><p><strong>令牌</strong> -GitLab 使用服务令牌对 Kubernetes 进行身份验证，该服务令牌的范围仅限于特定的 <code>namespace</code>。 <strong>使用的令牌应属于具有 cluster-admin 特权的服务帐户  。</strong>要创建此服务帐户：</p>
 <ol>
 <li><p>创建一个 <code>gitlab-admin-service-account.yaml</code> 包含内容的文件：</p>
-<p>&lt;!--hexoPostRenderEscape:</p><pre class="language-none"><code class="language-none">apiVersion: v1<br>kind: ServiceAccount<br>metadata:<br>name: gitlab-admin<br>namespace: kube-system<p></p>
-</code></pre></li><code class="language-none">
-</code></ol><code class="language-none">
-</code></li><code class="language-none">
-</code></ul><code class="language-none">
-<hr>
-<p>apiVersion: rbac.authorization.k8s.io/v1beta1<br>kind: ClusterRoleBinding<br>metadata:<br>  name: gitlab-admin<br>roleRef:<br>  apiGroup: rbac.authorization.k8s.io<br>  kind: ClusterRole<br>  name: cluster-admin<br>subjects:</p>
-</code><ul><code class="language-none">
-</code><li><code class="language-none"></code><p><code class="language-none">kind: ServiceAccount<br>name: gitlab-admin<br>namespace: kube-system</code>:hexoPostRenderEscape--&gt;</p>
-<ol start="2">
+<pre class="language-none"><code class="language-none">apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gitlab-admin
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: gitlab-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: gitlab-admin
+  namespace: kube-system</code></pre>
+</li>
 <li><p>将服务帐户和群集角色绑定应用于您的群集：</p>
 <pre class="language-none"><code class="language-none">kubectl apply -f gitlab-admin-service-account.yaml</code></pre>
 
@@ -466,14 +475,24 @@ clusterrolebinding "gitlab-admin" created</code></pre>
 <pre class="language-none"><code class="language-none">kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep gitlab-admin | awk '{print $1}')</code></pre>
 
 <p>复制 <code>&lt;authentication_token&gt;</code> 输出中的值：</p>
-<p>&lt;!--hexoPostRenderEscape:</p><pre class="language-none"><code class="language-none">Name:         gitlab-admin-token-b5zv4<br>Namespace:    kube-system<br>Labels:       &lt;none&gt;<br>Annotations:  kubernetes.io/service-account.name=gitlab-admin<p></p>
-<pre><code>     kubernetes.io&amp;#x2F;service-account.uid&amp;#x3D;bcfe66ac-39be-11e8-97e8-026dce96b6e8</code></pre>
-</code></pre></li><code class="language-none">
-</code></ol><code class="language-none">
-</code></li><code class="language-none">
-</code></ul><code class="language-none">
-<p>Type:  kubernetes.io/service-account-token</p>
-</code><p><code class="language-none">Data<br>====<br>ca.crt:     1025 bytes<br>namespace:  11 bytes<br>token:      &lt;authentication_token&gt;</code>:hexoPostRenderEscape--&gt;</p>
+<pre class="language-none"><code class="language-none">Name:         gitlab-admin-token-b5zv4
+Namespace:    kube-system
+Labels:       &lt;none&gt;
+Annotations:  kubernetes.io/service-account.name=gitlab-admin
+              kubernetes.io/service-account.uid=bcfe66ac-39be-11e8-97e8-026dce96b6e8
+
+Type:  kubernetes.io/service-account-token
+
+Data
+====
+ca.crt:     1025 bytes
+namespace:  11 bytes
+token:      &lt;authentication_token&gt;</code></pre>
+
+</li>
+</ol>
+</li>
+</ul>
 <h3 id="配置-Specific-Runner"><a href="#配置-Specific-Runner" class="headerlink" title="配置 Specific Runner"></a>配置 Specific Runner</h3><p>在 GitLab 的 CI/CD 流程中具体执行任务的节点叫做 <span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdpdGxhYi5jb20vcnVubmVyLw==">runner<i class="fa fa-external-link-alt"></i></span>。GitLab 中有两种类型的 runner：</p>
 <ul>
 <li><strong>Shared Runners</strong> 由 GitLab 管理员配置的公有 runner。多个项目公用。作为开发人员无需配置，可以直接使用。</li>
