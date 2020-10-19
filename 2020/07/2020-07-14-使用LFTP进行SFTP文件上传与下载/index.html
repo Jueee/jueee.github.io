@@ -833,6 +833,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/07/2020-07-14-%E4%BD%BF%E7%94%A8LFTP%E8%BF%9B%E8%A1%8CSFTP%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -850,18 +862,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/07/2020-07-14-%E4%BD%BF%E7%94%A8LFTP%E8%BF%9B%E8%A1%8CSFTP%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8E%E4%B8%8B%E8%BD%BD/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 

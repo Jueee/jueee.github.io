@@ -866,6 +866,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/07/2020-07-24-%E4%BD%BF%E7%94%A8GitBook%E8%BF%9B%E8%A1%8C%E5%9B%A2%E9%98%9F%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -883,18 +895,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/07/2020-07-24-%E4%BD%BF%E7%94%A8GitBook%E8%BF%9B%E8%A1%8C%E5%9B%A2%E9%98%9F%E6%96%87%E6%A1%A3%E5%8D%8F%E4%BD%9C/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 
