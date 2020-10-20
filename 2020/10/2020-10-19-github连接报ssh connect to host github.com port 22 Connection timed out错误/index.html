@@ -28,15 +28,18 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="Git 在提交 代码时，报错： ssh: connect to host github.com port 22: Connection timed out fatal: Could not read from remote repository.">
+<meta property="og:type" content="article">
 <meta property="og:title" content="github 连接报 “ssh connect to host github.com port 22 Connection timed out” 错误">
 <meta property="og:url" content="https://jueee.github.io/2020/10/2020-10-19-github%E8%BF%9E%E6%8E%A5%E6%8A%A5ssh%20connect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E9%94%99%E8%AF%AF/index.html">
 <meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="Git 在提交 代码时，报错： ssh: connect to host github.com port 22: Connection timed out fatal: Could not read from remote repository.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-19T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-10-19T08:12:05.706Z">
+<meta property="article:modified_time" content="2020-10-19T08:18:38.772Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Git">
+<meta property="article:tag" content="GitHub">
 <meta name="twitter:card" content="summary">
 
 
@@ -159,7 +162,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">69</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">70</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -169,7 +172,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -248,7 +251,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -261,7 +264,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -409,7 +412,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        
+        <p>Git 在提交 代码时，报错：</p>
+<pre class="language-none"><code class="language-none">ssh: connect to host github.com port 22: Connection timed out
+fatal: Could not read from remote repository.</code></pre>
+
+<a id="more"></a>
+
+<p>在连接 github 时，执行”ssh -T <span class="exturl" data-url="bWFpbHRvOmdpdEBnaXRodWIuY29t">git@github.com<i class="fa fa-external-link-alt"></i></span>” 命令时，出现：</p>
+<pre class="language-none"><code class="language-none">$ ssh -T git@github.com
+ssh: connect to host github.com port 22: Connection timed out</code></pre>
+
+<p>在存放公钥私钥 (id_rsa 和 id_rsa.pub) 的同级文件夹中，新建 config 文本，内容如下：</p>
+<pre class="language-none"><code class="language-none">Host github.com
+User hellojue@foxmail.com
+Hostname ssh.github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+Port 443</code></pre>
+
+<p>其中 User 为登录 github 的账号名称。</p>
+<p>再次执行”ssh -T <span class="exturl" data-url="bWFpbHRvOmdpdEBnaXRodWIuY29t">git@github.com<i class="fa fa-external-link-alt"></i></span>” 时，这时验证就可以通过。</p>
+<pre class="language-none"><code class="language-none">$ ssh -T git@github.com
+Hi Jueee! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+
+
     </div>
 
     
@@ -433,6 +459,7 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Git/" rel="tag"># Git</a>
+              <a href="/tags/GitHub/" rel="tag"># GitHub</a>
           </div>
 
         
@@ -444,6 +471,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2020/10/2020-10-20-PHP%E4%B9%8BSmarty%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%B1%87%E6%80%BB/" rel="next" title="PHP 之 Smarty 模板引擎使用汇总">
+                  PHP 之 Smarty 模板引擎使用汇总 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -699,18 +729,6 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/10/2020-10-19-github%E8%BF%9E%E6%8E%A5%E6%8A%A5ssh%20connect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E9%94%99%E8%AF%AF/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
-});
-</script>
-
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -728,6 +746,18 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/10/2020-10-19-github%E8%BF%9E%E6%8E%A5%E6%8A%A5ssh%20connect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E9%94%99%E8%AF%AF/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
 });
 </script>
 

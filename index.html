@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">69</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">70</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -167,7 +167,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -259,7 +259,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -339,6 +339,376 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-20-PHP%E4%B9%8BSmarty%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/2020-10-20-PHP%E4%B9%8BSmarty%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">PHP 之 Smarty 模板引擎使用汇总</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-20T00:00:00Z">2020-10-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/2020-10-20-PHP%E4%B9%8BSmarty%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%B1%87%E6%80%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-20-PHP%E4%B9%8BSmarty%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%B1%87%E6%80%BB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>Smarty 是 PHP 的一个引擎模板，可以更好的进行逻辑与显示的分离，即我们常说的 MVC，这个引擎的作用就是将 C 分离出来。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在网上下载 Smarty 包直接将其解压，我们需要的仅仅是里面的 libs 文件夹。</p>
+<p>Libs 文件里面都是库文件，我们不应该修改里面的任何内容。</p>
+<p>解压完毕后就直接将 libs 文件夹放入到我们需要使用的网站根目录。</p>
+<p><img src="/images/2020/10/1603086382391.png" alt="image-20201019173920839" loading="lazy"></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>首先打开 Smarty.class.php 文件看看里面的一些代码：</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token keyword">protected</span> <span class="token variable">$template_dir</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./templates/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">protected</span> <span class="token variable">$config_dir</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./configs/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">protected</span> <span class="token variable">$compile_dir</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'./templates_c/'</span><span class="token punctuation">;</span>
+<span class="token keyword">protected</span> <span class="token variable">$cache_dir</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'./cache/'</span><span class="token punctuation">;</span></code></pre>
+
+<p>Smarty 的构造器：</p>
+<ul>
+<li>templates：默认存放模板文件夹</li>
+<li> templates_c：默认存放混编文件的文件夹</li>
+<li> cache：存放缓存</li>
+<li> configs：存放配置文件</li>
+</ul>
+<p>默认左右边界符：</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token keyword">public</span> <span class="token variable">$left_delimiter</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{"</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token variable">$right_delimiter</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"}"</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h3><p>从上文了解到 Smarty 需要一些文件夹用来分别存放不同类别的文件。有 templates、templates_c、cache、configs 等文件夹。这是默认文件夹名称，你可以根据你的喜好对它们进行更改。</p>
+<p>下面是我建立的文件夹：</p>
+<p><img src="/images/2020/10/1603087940434.png" alt="1603087940434" loading="lazy"></p>
+<p>简单实例：</p>
+<ol>
+<li><p>先在 templates 文件夹下准备自己需要的模板文件。test1.html</p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>smarty test1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+我的名字叫{$name}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+</li>
+<li><p>在根目录下建立访问的逻辑文件。test1.php</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">require</span> <span class="token single-quoted-string string">'./libs/Smarty.class.php'</span><span class="token punctuation">;</span>
+<span class="token variable">$smarty</span><span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Smarty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$name</span><span class="token operator">=</span><span class="token single-quoted-string string">'小决'</span><span class="token punctuation">;</span>
+<span class="token variable">$smarty</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">assign</span><span class="token punctuation">(</span> <span class="token single-quoted-string string">'name'</span> <span class="token punctuation">,</span> <span class="token variable">$name</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$smarty</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./test1.html'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
+</li>
+<li><p>访问 test1.php 结果为：</p>
+<p><img src="/images/2020/10/1603088135288.png" alt="1603088135288" loading="lazy"></p>
+</li>
+<li><p>当访问完后将会在 templates_c 中生成一个相应的混编文件。</p>
+</li>
+</ol>
+<h3 id="常用的语法"><a href="#常用的语法" class="headerlink" title="常用的语法"></a>常用的语法</h3><h4 id="普通变量的声明与使用"><a href="#普通变量的声明与使用" class="headerlink" title="普通变量的声明与使用"></a>普通变量的声明与使用</h4><p>一共有两种声明变量的方法。</p>
+<ol>
+<li>即 $smarty-&gt;assign ('name',' 值 ');</li>
+<li> 第二种：在模板文件中声明（html 中），即 {assignvar='name'value=' 值 '}</li>
+</ol>
+<p>使用：{$name}</p>
+<p>注意：也可以定义与使用数组。假若上面定义的 name 为一个一维数组，使用时即：{$name [2]}、{$name ['aa']}={$name.aa} 等等使用方式。</p>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><pre class="language-php" data-language="php"><code class="language-php"><span class="token punctuation">{</span><span class="token operator">*</span>这里面是注释内容<span class="token operator">*</span><span class="token punctuation">}</span></code></pre>
+
+<p>Smarty 的注释是不会在最终页面输出显示的，即：若在 html 里则效果像 <code>&lt;!--注释--&gt;</code> 一样，不过也有一定的区别，Smarty 的注释在浏览器里查看源代码也是不显示的，而 html 的注释是显示的。</p>
+<p>代码：</p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">&lt;!--HTML注释--&gt;</span>
+{* 这里面是注释内容 *}
+我的名字叫{$name}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<p>结果：</p>
+<p><img src="/images/2020/10/1603088825916.png" alt="1603088825916" loading="lazy"></p>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>Smarty 对数组的使用：数组 [下标]、数组。下标</p>
+<h4 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h4><p>对象的声明和变量一样，通过 assign 来声明使用采用 -&gt; 来调用对象的属性。</p>
+<ol>
+<li><p>test2.php</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">require</span> <span class="token single-quoted-string string">'./libs/Smarty.class.php'</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+	<span class="token keyword">public</span> <span class="token variable">$name</span><span class="token operator">=</span><span class="token double-quoted-string string">"小决"</span><span class="token punctuation">;</span>
+	<span class="token keyword">public</span> <span class="token variable">$sex</span><span class="token operator">=</span><span class="token double-quoted-string string">"男"</span><span class="token punctuation">;</span>
+	<span class="token keyword">public</span> <span class="token variable">$age</span><span class="token operator">=</span><span class="token single-quoted-string string">'18'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token variable">$smarty</span><span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Smarty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$test</span><span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$smarty</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">assign</span><span class="token punctuation">(</span> <span class="token single-quoted-string string">'test'</span> <span class="token punctuation">,</span> <span class="token variable">$test</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$smarty</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./test2.html'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
+</li>
+<li><p>test2.html</p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>smarty test2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+名字：{$test-&gt;name}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>br</span><span class="token punctuation">&gt;</span></span>
+性别：{$test-&gt;sex}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>br</span><span class="token punctuation">&gt;</span></span>
+年龄：{$test-&gt;age}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>br</span><span class="token punctuation">&gt;</span></span>
+{$smarty.now}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+</li>
+<li><p>结果：</p>
+<p><img src="/images/2020/10/1603089300156.png" alt="1603089300156" loading="lazy"></p>
+</li>
+</ol>
+<h4 id="保留变量"><a href="#保留变量" class="headerlink" title="保留变量"></a>保留变量</h4><p>Smarty 中有一个特殊的变量（就是 smarty）可以通过这个变量很容易就可以访问到一些环境变量。就像 PHP 中的超全局变量一样神奇。</p>
+<p><strong>注意</strong>：在使用这个保留变量的时候：smarty 是对于大小写敏感的，我们需要的是小写的 smarty。</p>
+<p>例子：</p>
+<ol>
+<li><p>使用 smarty 访问 PHP 中的超全局数组变量：</p>
+<ul>
+<li>获取 <code>$_GET{$smarty.get.name}</code> 获取 get 中的 name 值</li>
+<li>获取 <code>$_POST{$smarty.post.name}</code> 获取 post 中的 name 值</li>
+<li>获取 <code>$_COOKIE{$smarty.cooke.name}</code> 获取 cookie 中的 name 值</li>
+</ul>
+<p>同理，还可以获取 <code>$_SERVER</code>,<code>$_ENV</code> 和 <code>$_SESSION</code> 等等。</p>
+<p>注意：虽然 Smarty 提供了较方便直接访问 PHP 超全局变量的方法，但必须谨慎使用。直接访问超全局变量会弄乱应用程序底层代码和模板语法。</p>
+<p>最佳的实践是从 PHP 将需要的变量对模板进行赋值再使用。</p>
+</li>
+<li><p>获取当前时间戳 <code>{$smarty.now}</code> 其原理就是调用了 <code>timr()</code> 函数</p>
+</li>
+<li><p>直接访问 PHP 常量 <code>{$smarty.const.常量名}</code>，即：<code>{$smarty.const.AGE}</code></p>
+<p>PHP 定义常量 smarty 直接调用常量结果</p>
+</li>
+<li><p>其他</p>
+<ul>
+<li>获取配置变量：{$smarty.config}</li>
+<li> 返回当前模板名称：{$smarty.template}</li>
+<li> 返回当前模板对象：{$smarty.template_object}</li>
+<li> 返回当前目录名称：{$smarty.current_dir}</li>
+</ul>
+</li>
+</ol>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>在之前根据需求建立的 Configs 文件夹下，建立 Smarty.conf 配置文件（命名任意，木有明确规定），配置文件可以让设计者将全局的模板变量以文件的方式管理起来。</p>
+<p>首先我们先来定义一些配置变量来对它进行简单的了解：</p>
+<ol>
+<li><p>定义如下所示 的 <code>Smarty.conf</code> 文件：</p>
+<pre class="language-conf" data-language="conf"><code class="language-conf">title='标题'
+bodyColor='#eee'</code></pre>
+</li>
+<li><p>引入配置文件：{config_loadfile='Smarty.conf'}</p>
+</li>
+<li><p>引用配置变量：、{$smarty.config. 配置变量}</p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+{config_load  file='Smarty.conf'}
+配置变量1：{#title#}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>br</span><span class="token punctuation">&gt;</span></span>
+配置变量2：{$smarty.config.bodyColor}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code></pre>
+</li>
+<li><p>查看：</p>
+<p><img src="/images/2020/10/image-20201020095437334.png" alt="image-20201020095437334" loading="lazy"></p>
+</li>
+</ol>
+<h4 id="段落变量"><a href="#段落变量" class="headerlink" title="段落变量"></a>段落变量</h4><p>在 Smarty 配置文件中大体分为两种变量，一种为全局变量，另一种为段落变量。</p>
+<ul>
+<li>全局全局变量故名思议就是就是每次载入这个配置文件的时候这些变量都会被加载</li>
+<li>段落变量则有选择的进行加载。</li>
+</ul>
+<p>段落变量的定义语法：[段落名字]</p>
+<p>段落名字：这里可以是任意字符但不包括 <code>[</code> 和 <code>]</code>。</p>
+<p>调用段落变量：在引入配置文件后面加上这段代码 <code>section='段落名字'</code>。</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token punctuation">{</span>config_load file<span class="token operator">=</span><span class="token single-quoted-string string">'Smarty.conf'</span> section<span class="token operator">=</span><span class="token single-quoted-string string">'firstStyle'</span><span class="token punctuation">}</span></code></pre>
+
+<p><strong>注意</strong>：section 只能使用一次，若有多个 section 引入多个段落变量则最后一个会覆盖前面的所有 section 引入的段落变量，即只有最后一个引入的段落变量有用其他作废。</p>
+<p>特别说明：</p>
+<ol>
+<li>若全局变量与被加载的段落变量有相同的变量名，则段落名的值将覆盖全局变量的值。</li>
+<li>若某个段落变量里含有相同的变量名，则最后一个的变量的值将会覆盖前面的值。</li>
+<li>在整个 smarty.conf 文件中，点（.）拥有相对较高的权限的。点的作用是将一个变量或者整个段落隐藏，不能被使用。（我的理解就是相当于被注释掉不能被使用）</li>
+</ol>
+<p>简单应用：</p>
+<ol>
+<li><p>配置文件：<code>test5.conf</code></p>
+<pre class="language-conf" data-language="conf"><code class="language-conf">#段落变量
+#第一种颜色风格
+[firstStyle]
+color='#00f'
+width='300px'
+height='300px'
+content='第一种风格'
+
+#第二种颜色风格
+[secondStyle]
+color='#0f0'
+width='500px'
+height='500px'
+content='第二种风格'</code></pre>
+</li>
+<li><p>php 文件：<code>test5.php</code></p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">require</span> <span class="token single-quoted-string string">'./libs/Smarty.class.php'</span><span class="token punctuation">;</span>
+<span class="token variable">$smarty</span><span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Smarty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$smarty</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./test5.html'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
+</li>
+<li><p>模板文件：<code>test5.html</code></p>
+<pre class="language-html" data-language="html"><code class="language-html">{config_load file='Smarty.conf' section='firstStyle'}
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>smarty test1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+<span class="token selector">#aa</span><span class="token punctuation">{</span> <span class="token selector">width:</span> <span class="token punctuation">{</span>#width#<span class="token punctuation">}</span><span class="token selector">;height:</span> <span class="token punctuation">{</span>#height#<span class="token punctuation">}</span><span class="token selector">;background:</span> <span class="token punctuation">{</span>#color#<span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>aa<span class="token punctuation">'</span></span><span class="token punctuation">&gt;</span></span>
+
+这是一个div<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/&gt;</span></span>
+{#content#}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span></code></pre>
+</li>
+<li><p>效果：</p>
+<p><img src="/images/2020/10/image-20201020102811027.png" alt="image-20201020102811027" loading="lazy"></p>
+</li>
+<li><p>特别说明：</p>
+<p>若 <code>#aa{width: 200px;height: 200px;background: red;}</code>。</p>
+<p>则报错：</p>
+<blockquote>
+<p><strong>Fatal error</strong>: Uncaught --&gt; Smarty Compiler: Syntax error in template "file:E:\software\php\php-page\Smarty\templates\test5.html" on line 8 "#aa{width: ;height: ;background: ;}" - Unexpected ": ", expected one of: "}" &lt;-- thrown in <strong>E:\software\php\php-page\Smarty\libs\sysplugins\smarty_internal_templatecompilerbase.php</strong> on line <strong>8</strong></p>
+</blockquote>
+<p>这是由于使用了 smarty 模板，所以在 html 的所有 {} 将会被 smarty 解析。</p>
+<p>解决办法：</p>
+<ol>
+<li><p>更换定界符</p>
+</li>
+<li><p>在 <code>{</code> 前面加一个空格：<code>#aa{ width: </code></p>
+</li>
+<li><p>使用 {literal}{/literal}  literal: 原样的，原义的</p>
+<pre class="language-html" data-language="html"><code class="language-html">{literal}#aa{width{/literal}: {#width#};height: {#height#};background: {#color#};}</code></pre>
+
+<p><strong>{literal} 标签会影响变量的解析！</strong></p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="模板布局"><a href="#模板布局" class="headerlink" title="模板布局"></a>模板布局</h4><p>即是模板的继承问题。使用的关键字主要有 block、extends</p>
+<ol>
+<li><p>先在站点建立一个 layout 文件夹（主要用来存放父模板文件），在文件夹下建立一个模板文件 template.html</p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>这个是模板文件<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>这个是模板文件输出的<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/&gt;</span></span>
+子输出一：{block name='first'}{/block}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/&gt;</span></span>
+子输出二：{block name='second'}{/block}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>这个是模板文件输出的<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></code></pre>
+</li>
+<li><p>再建立模板文件 test.html，此模板需要继承上面的父模板</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token punctuation">{</span><span class="token keyword">extends</span> <span class="token class-name">file</span><span class="token operator">=</span><span class="token single-quoted-string string">'layout/template.html'</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span>block name<span class="token operator">=</span><span class="token single-quoted-string string">'first'</span><span class="token punctuation">}</span>
+	这里是test中的first
+<span class="token punctuation">{</span><span class="token operator">/</span>block<span class="token punctuation">}</span>
+<span class="token punctuation">{</span>block name<span class="token operator">=</span><span class="token single-quoted-string string">'second'</span><span class="token punctuation">}</span>
+	这里是test中的second
+<span class="token punctuation">{</span><span class="token operator">/</span>block<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p>php 逻辑文件调用 smarty</p>
+<pre class="language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">require</span> <span class="token single-quoted-string string">'./libs/Smarty.class.php'</span><span class="token punctuation">;</span>
+<span class="token variable">$smarty</span><span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Smarty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$smarty</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token function">display</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./test6.html'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
+</li>
+<li><p>访问结果</p>
+<p><img src="/images/2020/10/image-20201020103849371.png" alt="image-20201020103849371" loading="lazy"></p>
+</li>
+</ol>
+<p>若含较多的公共部分，则采用布局文件；含公共部分较少，则采用包含文件 {include file=' 文件路径 '}</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-19-github%E8%BF%9E%E6%8E%A5%E6%8A%A5ssh%20connect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E9%94%99%E8%AF%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -400,7 +770,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p>Git 在提交 代码时，报错：</p>
+<pre class="language-none"><code class="language-none">ssh: connect to host github.com port 22: Connection timed out
+fatal: Could not read from remote repository.</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/2020-10-19-github%E8%BF%9E%E6%8E%A5%E6%8A%A5ssh%20connect%20to%20host%20github.com%20port%2022%20Connection%20timed%20out%E9%94%99%E8%AF%AF/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1250,111 +1630,6 @@ VALUES ('John', 'Doe', 'john@example.com')"</span><span class="token punctuation
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-14-k8s%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8NFS%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/2020-10-14-k8s%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8NFS%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">k8s 配置使用 NFS 动态存储</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-10-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-14T00:00:00Z">2020-10-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/10/2020-10-14-k8s%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8NFS%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-14-k8s%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8NFS%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="部署nfs服务"><a href="#部署nfs服务" class="headerlink" title="部署nfs服务"></a>部署 nfs 服务</h3><p>1、主机安装 nfs 服务器</p>
-<pre class="language-none"><code class="language-none">sudo apt-get install nfs-kernel-server
-sudo apt-get install nfs-common</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/2020-10-14-k8s%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8NFS%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
@@ -1593,6 +1868,7 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+
 <script>
 NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
@@ -1604,7 +1880,6 @@ NexT.utils.loadComments('#valine-comments', () => {
   }, window.Valine);
 });
 </script>
-
 
     </div>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
