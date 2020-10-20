@@ -28,12 +28,12 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="介绍Smarty 是 PHP 的一个引擎模板，可以更好的进行逻辑与显示的分离，即我们常说的 MVC，这个引擎的作用就是将 C 分离出来。 安装在网上下载 Smarty 包直接将其解压，我们需要的仅仅是里面的 libs 文件夹。 Libs 文件里面都是库文件，我们不应该修改里面的任何内容。 解压完毕后就直接将 libs 文件夹放入到我们需要使用的网站根目录。  使用首先打开 Smarty.class">
+  <meta name="description" content="Smarty 介绍Smarty 是 PHP 的一个引擎模板，可以更好的进行逻辑与显示的分离，即我们常说的 MVC，这个引擎的作用就是将 C 分离出来。  官网：https:&#x2F;&#x2F;www.smarty.net&#x2F; 中文手册：https:&#x2F;&#x2F;www.smarty.net&#x2F;docs&#x2F;zh_CN&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;smarty-php&#x2F;smarty&#x2F; 下载：https:&#x2F;&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP 之 Smarty 模板引擎使用汇总">
 <meta property="og:url" content="https://jueee.github.io/2020/10/2020-10-20-PHP%E4%B9%8BSmarty%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%B1%87%E6%80%BB/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="介绍Smarty 是 PHP 的一个引擎模板，可以更好的进行逻辑与显示的分离，即我们常说的 MVC，这个引擎的作用就是将 C 分离出来。 安装在网上下载 Smarty 包直接将其解压，我们需要的仅仅是里面的 libs 文件夹。 Libs 文件里面都是库文件，我们不应该修改里面的任何内容。 解压完毕后就直接将 libs 文件夹放入到我们需要使用的网站根目录。  使用首先打开 Smarty.class">
+<meta property="og:description" content="Smarty 介绍Smarty 是 PHP 的一个引擎模板，可以更好的进行逻辑与显示的分离，即我们常说的 MVC，这个引擎的作用就是将 C 分离出来。  官网：https:&#x2F;&#x2F;www.smarty.net&#x2F; 中文手册：https:&#x2F;&#x2F;www.smarty.net&#x2F;docs&#x2F;zh_CN&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;smarty-php&#x2F;smarty&#x2F; 下载：https:&#x2F;&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2020/10/1603086382391.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/10/1603087940434.png">
@@ -44,9 +44,10 @@
 <meta property="og:image" content="https://jueee.github.io/images/2020/10/image-20201020102811027.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/10/image-20201020103849371.png">
 <meta property="article:published_time" content="2020-10-20T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-10-20T02:39:54.539Z">
+<meta property="article:modified_time" content="2020-10-20T03:15:36.627Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="PHP">
+<meta property="article:tag" content="Smarty">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jueee.github.io/images/2020/10/1603086382391.png">
 
@@ -180,7 +181,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">38</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">39</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -244,7 +245,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">简单使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">常用的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="nav-number">5.1.</span> <span class="nav-text">普通变量的声明与使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-number">5.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">5.3.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.4.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E7%95%99%E5%8F%98%E9%87%8F"><span class="nav-number">5.5.</span> <span class="nav-text">保留变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.6.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AE%B5%E8%90%BD%E5%8F%98%E9%87%8F"><span class="nav-number">5.7.</span> <span class="nav-text">段落变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%B8%83%E5%B1%80"><span class="nav-number">5.8.</span> <span class="nav-text">模板布局</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Smarty-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">Smarty 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Smarty-%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">Smarty 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Smarty-%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">Smarty 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Smarty-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">Smarty 简单使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Smarty-%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">Smarty 常用语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="nav-number">5.1.</span> <span class="nav-text">普通变量的声明与使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-number">5.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">5.3.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.4.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E7%95%99%E5%8F%98%E9%87%8F"><span class="nav-number">5.5.</span> <span class="nav-text">保留变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.6.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AE%B5%E8%90%BD%E5%8F%98%E9%87%8F"><span class="nav-number">5.7.</span> <span class="nav-text">段落变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E5%B8%83%E5%B1%80"><span class="nav-number">5.8.</span> <span class="nav-text">模板布局</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -273,7 +274,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -421,12 +422,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>Smarty 是 PHP 的一个引擎模板，可以更好的进行逻辑与显示的分离，即我们常说的 MVC，这个引擎的作用就是将 C 分离出来。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在网上下载 Smarty 包直接将其解压，我们需要的仅仅是里面的 libs 文件夹。</p>
+        <h3 id="Smarty-介绍"><a href="#Smarty-介绍" class="headerlink" title="Smarty 介绍"></a>Smarty 介绍</h3><p>Smarty 是 PHP 的一个引擎模板，可以更好的进行逻辑与显示的分离，即我们常说的 MVC，这个引擎的作用就是将 C 分离出来。</p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuc21hcnR5Lm5ldC8=">官网<i class="fa fa-external-link-alt"></i></span>：<span class="exturl" data-url="aHR0cHM6Ly93d3cuc21hcnR5Lm5ldC8=">https://www.smarty.net/<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuc21hcnR5Lm5ldC9kb2NzL3poX0NOLw==">中文手册<i class="fa fa-external-link-alt"></i></span>：<span class="exturl" data-url="aHR0cHM6Ly93d3cuc21hcnR5Lm5ldC9kb2NzL3poX0NOLw==">https://www.smarty.net/docs/zh_CN/<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYXJ0eS1waHAvc21hcnR5Lw==">GitHub<i class="fa fa-external-link-alt"></i></span>：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYXJ0eS1waHAvc21hcnR5Lw==">https://github.com/smarty-php/smarty/<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYXJ0eS1waHAvc21hcnR5L3JlbGVhc2Vz">下载<i class="fa fa-external-link-alt"></i></span>：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYXJ0eS1waHAvc21hcnR5L3JlbGVhc2Vz">https://github.com/smarty-php/smarty/releases<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<a id="more"></a>
+
+<h3 id="Smarty-安装"><a href="#Smarty-安装" class="headerlink" title="Smarty 安装"></a>Smarty 安装</h3><p>在网上下载 Smarty 包直接将其解压，我们需要的仅仅是里面的 libs 文件夹。</p>
 <p>Libs 文件里面都是库文件，我们不应该修改里面的任何内容。</p>
 <p>解压完毕后就直接将 libs 文件夹放入到我们需要使用的网站根目录。</p>
 <p><img src="/images/2020/10/1603086382391.png" alt="image-20201019173920839" loading="lazy"></p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>首先打开 Smarty.class.php 文件看看里面的一些代码：</p>
+<h3 id="Smarty-配置"><a href="#Smarty-配置" class="headerlink" title="Smarty 配置"></a>Smarty 配置</h3><p>首先打开 Smarty.class.php 文件看看里面的一些代码：</p>
 <pre class="language-php" data-language="php"><code class="language-php"><span class="token keyword">protected</span> <span class="token variable">$template_dir</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./templates/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">protected</span> <span class="token variable">$config_dir</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'./configs/'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">protected</span> <span class="token variable">$compile_dir</span> <span class="token operator">=</span> <span class="token single-quoted-string string">'./templates_c/'</span><span class="token punctuation">;</span>
@@ -443,7 +452,7 @@
 <pre class="language-php" data-language="php"><code class="language-php"><span class="token keyword">public</span> <span class="token variable">$left_delimiter</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"{"</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token variable">$right_delimiter</span> <span class="token operator">=</span> <span class="token double-quoted-string string">"}"</span><span class="token punctuation">;</span></code></pre>
 
-<h3 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h3><p>从上文了解到 Smarty 需要一些文件夹用来分别存放不同类别的文件。有 templates、templates_c、cache、configs 等文件夹。这是默认文件夹名称，你可以根据你的喜好对它们进行更改。</p>
+<h3 id="Smarty-简单使用"><a href="#Smarty-简单使用" class="headerlink" title="Smarty 简单使用"></a>Smarty 简单使用</h3><p>从上文了解到 Smarty 需要一些文件夹用来分别存放不同类别的文件。有 templates、templates_c、cache、configs 等文件夹。这是默认文件夹名称，你可以根据你的喜好对它们进行更改。</p>
 <p>下面是我建立的文件夹：</p>
 <p><img src="/images/2020/10/1603087940434.png" alt="1603087940434" loading="lazy"></p>
 <p>简单实例：</p>
@@ -474,7 +483,7 @@
 <li><p>当访问完后将会在 templates_c 中生成一个相应的混编文件。</p>
 </li>
 </ol>
-<h3 id="常用的语法"><a href="#常用的语法" class="headerlink" title="常用的语法"></a>常用的语法</h3><h4 id="普通变量的声明与使用"><a href="#普通变量的声明与使用" class="headerlink" title="普通变量的声明与使用"></a>普通变量的声明与使用</h4><p>一共有两种声明变量的方法。</p>
+<h3 id="Smarty-常用语法"><a href="#Smarty-常用语法" class="headerlink" title="Smarty 常用语法"></a>Smarty 常用语法</h3><h4 id="普通变量的声明与使用"><a href="#普通变量的声明与使用" class="headerlink" title="普通变量的声明与使用"></a>普通变量的声明与使用</h4><p>一共有两种声明变量的方法。</p>
 <ol>
 <li>即 $smarty-&gt;assign ('name',' 值 ');</li>
 <li> 第二种：在模板文件中声明（html 中），即 {assignvar='name'value=' 值 '}</li>
@@ -728,6 +737,7 @@ content='第二种风格'</code></pre>
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/PHP/" rel="tag"># PHP</a>
+              <a href="/tags/Smarty/" rel="tag"># Smarty</a>
           </div>
 
         
