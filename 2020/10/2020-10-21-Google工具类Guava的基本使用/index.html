@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="Guava 介绍Guava 是一种基于开源的 Java 库，其中包含谷歌正在由他们很多项目使用的很多核心库。这个库是为了方便编码，并减少编码错误。这个库提供用于集合，缓存，支持原语，并发性，常见注解，字符串处理，I&#x2F;O 和验证的实用方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google 工具类 Guava 的基本使用">
+<meta property="og:url" content="https://jueee.github.io/2020/10/2020-10-21-Google%E5%B7%A5%E5%85%B7%E7%B1%BBGuava%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="Guava 介绍Guava 是一种基于开源的 Java 库，其中包含谷歌正在由他们很多项目使用的很多核心库。这个库是为了方便编码，并减少编码错误。这个库提供用于集合，缓存，支持原语，并发性，常见注解，字符串处理，I&#x2F;O 和验证的实用方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-21T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-21T09:51:02.438Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JavaJar">
+<meta property="article:tag" content="Google">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2020/10/2020-10-21-Google%E5%B7%A5%E5%85%B7%E7%B1%BBGuava%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Google 工具类 Guava 的基本使用 | 小决的专栏</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">小决的专栏</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">75</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">20</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">42</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Guava-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">Guava 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Guava-%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">Guava 优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Guava-%E9%93%BE%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">Guava 链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Guava-%E5%BC%95%E5%85%A5"><span class="nav-number">1.3.</span> <span class="nav-text">Guava 引入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Guava-%E9%9B%86%E5%90%88%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">Guava 集合工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Guava-%E7%BC%93%E5%AD%98%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">Guava 缓存工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Guava-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B7%A5%E5%85%B7"><span class="nav-number">4.</span> <span class="nav-text">Guava 字符串工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Guava-%E5%8E%9F%E8%AF%AD%E5%B7%A5%E5%85%B7"><span class="nav-number">5.</span> <span class="nav-text">Guava 原语工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Guava-%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7"><span class="nav-number">6.</span> <span class="nav-text">Guava 数学工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Guava-%E5%85%B6%E4%BB%96%E7%B1%BB%E5%BA%93"><span class="nav-number">7.</span> <span class="nav-text">Guava 其他类库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Optional"><span class="nav-number">7.1.</span> <span class="nav-text">Optional</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Preconditions"><span class="nav-number">7.2.</span> <span class="nav-text">Preconditions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ordering"><span class="nav-number">7.3.</span> <span class="nav-text">Ordering</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Range"><span class="nav-number">7.4.</span> <span class="nav-text">Range</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">8.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">42</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-21-Google%E5%B7%A5%E5%85%B7%E7%B1%BBGuava%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Google 工具类 Guava 的基本使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-21 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-21T00:00:00Z">2020-10-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/2020-10-21-Google%E5%B7%A5%E5%85%B7%E7%B1%BBGuava%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-21-Google%E5%B7%A5%E5%85%B7%E7%B1%BBGuava%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="Guava-介绍"><a href="#Guava-介绍" class="headerlink" title="Guava 介绍"></a>Guava 介绍</h3><p>Guava 是一种基于开源的 Java 库，其中包含谷歌正在由他们很多项目使用的很多核心库。这个库是为了方便编码，并减少编码错误。这个库提供用于集合，缓存，支持原语，并发性，常见注解，字符串处理，I/O 和验证的实用方法。</p>
+<a id="more"></a>
+
+<h4 id="Guava-优点"><a href="#Guava-优点" class="headerlink" title="Guava 优点"></a>Guava 优点</h4><ul>
+<li>标准化 - Guava 库是由谷歌托管。</li>
+<li>高效 - 可靠，快速和有效的扩展 JAVA 标准库</li>
+<li>优化 -Guava 库经过高度的优化。</li>
+<li>函数式编程 - 增加 JAVA 功能和处理能力。</li>
+<li>实用程序 - 提供了经常需要在应用程序开发的许多实用程序类。</li>
+<li>验证 - 提供标准的故障安全验证机制。</li>
+<li>最佳实践 - 强调最佳的做法。</li>
+</ul>
+<h4 id="Guava-链接"><a href="#Guava-链接" class="headerlink" title="Guava 链接"></a>Guava 链接</h4><ul>
+<li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9ndWF2YQ==">https://github.com/google/guava<i class="fa fa-external-link-alt"></i></span></li>
+<li> 官网：<span class="exturl" data-url="aHR0cHM6Ly9ndWF2YS5kZXYv">https://guava.dev/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h4 id="Guava-引入"><a href="#Guava-引入" class="headerlink" title="Guava 引入"></a>Guava 引入</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.google.guava<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>guava<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>30.0-jre<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<h3 id="Guava-集合工具"><a href="#Guava-集合工具" class="headerlink" title="Guava 集合工具"></a>Guava 集合工具</h3><ul>
+<li><strong><code>Multiset</code></strong><br>一个扩展来设置界面，允许重复的元素。</li>
+<li><strong><code>Multimap</code></strong><br>一个扩展来映射接口，以便其键可一次被映射到多个值</li>
+<li><strong><code>BiMap</code></strong><br>一个扩展来映射接口，支持反向操作。</li>
+<li><strong><code>Table</code></strong><br>表代表一个特殊的图，其中两个键可以在组合的方式被指定为单个值。</li>
+</ul>
+<h3 id="Guava-缓存工具"><a href="#Guava-缓存工具" class="headerlink" title="Guava 缓存工具"></a>Guava 缓存工具</h3><ul>
+<li><p><strong><code>LoadingCache</code></strong></p>
+<p>LoadingCache 提供了一个非常强大的基于内存的 LoadingCache&lt;K，V&gt;。</p>
+<p>在缓存中自动加载值，它提供了许多实用的方法，在有缓存需求时非常有用。</p>
+</li>
+</ul>
+<h3 id="Guava-字符串工具"><a href="#Guava-字符串工具" class="headerlink" title="Guava 字符串工具"></a>Guava 字符串工具</h3><ul>
+<li><p><strong><code>Joiner</code></strong><br>实用加入对象，字符串等。</p>
+</li>
+<li><p><strong><code>Spilter</code></strong><br>实用程序用来分割字符串。</p>
+</li>
+<li><p><strong><code>CharMatcher</code></strong><br>实用的字符操作。</p>
+</li>
+<li><p><strong><code>CaseFormat</code></strong><br>实用程序，用于改变字符串格式。</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">CaseFormat</span><span class="token punctuation">.</span>LOWER_HYPHEN<span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span><span class="token class-name">CaseFormat</span><span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">,</span> <span class="token string">"test-data"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// testData</span>
+<span class="token class-name">CaseFormat</span><span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span><span class="token class-name">CaseFormat</span><span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">,</span> <span class="token string">"test_data"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// testData</span>
+<span class="token class-name">CaseFormat</span><span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span><span class="token class-name">CaseFormat</span><span class="token punctuation">.</span>UPPER_CAMEL<span class="token punctuation">,</span> <span class="token string">"test_data"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TestData</span></code></pre>
+
+</li>
+</ul>
+<h3 id="Guava-原语工具"><a href="#Guava-原语工具" class="headerlink" title="Guava 原语工具"></a>Guava 原语工具</h3><p>作为 Java 的原语类型，不能用来传递在泛型或于类别作为输入。Guava 提供大量包装工具类来处理原始类型的对象。</p>
+<p>以下是有用的原始处理工具的列表：</p>
+<ul>
+<li><strong><code>Bytes</code></strong><br>实用程序的原始字节。</li>
+<li><strong><code>Shorts</code></strong><br>实用的原始 short。</li>
+<li><strong><code>Ints</code></strong><br>实用为基本整型。</li>
+<li><strong><code>Longs</code></strong><br>实用的原始长整型。</li>
+<li><strong><code>Floats</code></strong><br>实用为基本 float。</li>
+<li><strong><code>Doubles</code></strong><br>实用为基本的 double。</li>
+<li><strong><code>Chars</code></strong><br>实用的原始字符。</li>
+<li><strong><code>Booleans</code></strong><br>实用为基本布尔。</li>
+</ul>
+<h3 id="Guava-数学工具"><a href="#Guava-数学工具" class="headerlink" title="Guava 数学工具"></a>Guava 数学工具</h3><ul>
+<li><p><strong><code>IntMath</code></strong><br>数学工具为 int 类型。</p>
+</li>
+<li><p><strong><code>LongMath</code></strong><br>数学工具为 long 类型。</p>
+</li>
+<li><p><strong><code>BigIntegerMath</code></strong><br>数学实用程序处理 BigInteger。</p>
+</li>
+</ul>
+<h3 id="Guava-其他类库"><a href="#Guava-其他类库" class="headerlink" title="Guava 其他类库"></a>Guava 其他类库</h3><h4 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h4><p>Optional 用于包含非空对象的不可变对象。 Optional 对象，用于不存在值表示 null。这个类有各种实用的方法，以方便代码来处理为可用或不可用，而不是检查 null 值。</p>
+<ul>
+<li><strong><code>static &lt;T&gt; Optional&lt;T&gt; absent()</code></strong><br>返回没有包含的参考 Optional 的实例。</li>
+<li><strong><code>abstract Set&lt;T&gt; asSet()</code></strong><br>返回一个不可变的单集的唯一元素所包含的实例 (如果存在); 否则为一个空的不可变的集合。</li>
+<li><strong><code>abstract boolean equals(Object object)</code></strong><br>返回 true 如果对象是一个 Optional 实例，无论是包含引用彼此相等或两者都不存在。</li>
+<li><strong><code>static &lt;T&gt; Optional&lt;T&gt; fromNullable(T nullableReference)</code></strong><br>如果 nullableReference 非空，返回一个包含引用 Optional 实例；否则返回 absent ()。</li>
+<li><strong><code>abstract T get()</code></strong><br>返回所包含的实例，它必须存在。</li>
+<li><strong><code>abstract int hashCode()</code></strong><br>返回此实例的哈希码。</li>
+<li><strong><code>abstract boolean isPresent()</code></strong><br>返回 true，如果这支架包含一个 (非空) 的实例。</li>
+<li><strong><code>static &lt;T&gt; Optional&lt;T&gt; of(T reference)</code></strong><br>返回包含给定的非空引用 Optional 实例。</li>
+<li><strong><code>abstract Optional&lt;T&gt; or(Optional&lt;? extends T&gt; secondChoice)</code></strong><br>返回此 Optional，如果它有一个值存在；否则返回 secondChoice。</li>
+<li><strong><code>abstract T or(Supplier&lt;? extends T&gt; supplier)</code></strong><br>返回所包含的实例 (如果存在); 否则 supplier.get ()。</li>
+<li><strong><code>abstract T or(T defaultValue)</code></strong><br>返回所包含的实例 (如果存在); 否则为默认值。</li>
+<li><strong><code>abstract T orNull()</code></strong><br>返回所包含的实例 (如果存在); 否则返回 null。</li>
+<li><strong><code>static &lt;T&gt; Iterable&lt;T&gt; presentInstances(Iterable&lt;? extends Optional&lt;? extends T&gt;&gt; optionals)</code></strong><br>从提供的 optionals 返回每个实例的存在的值，从而跳过 absent ()。</li>
+<li><strong><code>abstract String toString()</code></strong><br>返回此实例的字符串表示。</li>
+<li><strong><code>abstract &lt;V&gt; Optional&lt;V&gt; transform(Function&lt;? super T,V&gt; function)</code></strong><br>如果实例存在，则它被转换给定的功能；否则 absent () 被返回。</li>
+</ul>
+<p>示例代码：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span> args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token class-name">OptionalDemo</span> guavaTester <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">OptionalDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">Integer</span> value1 <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+	<span class="token class-name">Integer</span> value2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> a <span class="token operator">=</span> <span class="token class-name">Optional</span><span class="token punctuation">.</span><span class="token function">fromNullable</span><span class="token punctuation">(</span>value1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> b <span class="token operator">=</span> <span class="token class-name">Optional</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>guavaTester<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 10</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token class-name">Integer</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> a<span class="token punctuation">,</span> <span class="token class-name">Optional</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"First parameter is present: "</span> <span class="token operator">+</span> a<span class="token punctuation">.</span><span class="token function">isPresent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Second parameter is present: "</span> <span class="token operator">+</span> b<span class="token punctuation">.</span><span class="token function">isPresent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+	<span class="token class-name">Integer</span> value1 <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">or</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">Integer</span> value2 <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> value1 <span class="token operator">+</span> value2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h4 id="Preconditions"><a href="#Preconditions" class="headerlink" title="Preconditions"></a>Preconditions</h4><p>Preconditions 提供静态方法来检查方法或构造函数，被调用是否给定适当的参数。它检查的先决条件。其方法失败抛出 IllegalArgumentException。</p>
+<ul>
+<li><strong><code>static void checkArgument(boolean expression)</code></strong><br>确保涉及的一个或多个参数来调用方法表达式的真相。</li>
+<li><strong><code>static void checkArgument(boolean expression, Object errorMessage)</code></strong><br>确保涉及的一个或多个参数来调用方法表达式的真相。</li>
+<li><strong><code>static void checkArgument(boolean expression, String errorMessageTemplate, Object... errorMessageArgs)</code></strong><br>确保涉及的一个或多个参数来调用方法表达式的真相。</li>
+<li><strong><code>static int checkElementIndex(int index, int size)</code></strong><br>确保索引指定一个数组，列表或尺寸大小的字符串有效的元素。</li>
+<li><strong><code>static int checkElementIndex(int index, int size, String desc)</code></strong><br>确保索引指定一个数组，列表或尺寸大小的字符串有效的元素。</li>
+<li><strong><code>static &lt;T&gt; T checkNotNull(T reference)</code></strong><br>确保对象引用作为参数传递给调用方法不为空。</li>
+<li><strong><code>static &lt;T&gt; T checkNotNull(T reference, Object errorMessage)</code></strong><br>确保对象引用作为参数传递给调用方法不为空。</li>
+<li><strong><code>static &lt;T&gt; T checkNotNull(T reference, String errorMessageTemplate, Object... errorMessageArgs)</code></strong><br>确保对象引用作为参数传递给调用方法不为空。</li>
+<li><strong><code>static int checkPositionIndex(int index, int size)</code></strong><br>确保索引指定一个数组，列表或尺寸大小的字符串的有效位置。</li>
+<li><strong><code>static int checkPositionIndex(int index, int size, String desc)</code></strong><br>确保索引指定一个数组，列表或尺寸大小的字符串的有效位置。</li>
+<li><strong><code>static void checkPositionIndexes(int start, int end, int size)</code></strong><br>确保开始和结束指定数组，列表或字符串大小有效的位置，并按照顺序。</li>
+<li><strong><code>static void checkState(boolean expression)</code></strong><br>确保涉及调用实例的状态，但不涉及任何参数来调用方法表达式的真相。</li>
+<li><strong><code>static void checkState(boolean expression, Object errorMessage)</code></strong><br>确保涉及调用实例的状态，但不涉及任何参数来调用方法表达式的真相。</li>
+<li><strong><code>static void checkState(boolean expression, String errorMessageTemplate, Object... errorMessageArgs)</code></strong><br>确保涉及调用实例的状态，但不涉及任何参数来调用方法表达式的真相。</li>
+</ul>
+<p>示例代码：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span> args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token class-name">PreconditionsDemo</span> guavaTester <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PreconditionsDemo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">try</span> <span class="token punctuation">{</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>guavaTester<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">3.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Negative value -3.0.</span>
+	<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalArgumentException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">try</span> <span class="token punctuation">{</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>guavaTester<span class="token punctuation">.</span><span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NullPointerException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// First parameter is Null.</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">try</span> <span class="token punctuation">{</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>guavaTester<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+	<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IndexOutOfBoundsException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Invalid index. (6) must be less than size (5)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token keyword">double</span> input<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IllegalArgumentException</span> <span class="token punctuation">{</span>
+	<span class="token class-name">Preconditions</span><span class="token punctuation">.</span><span class="token function">checkArgument</span><span class="token punctuation">(</span>input <span class="token operator">&gt;</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token string">"Negative value %s."</span><span class="token punctuation">,</span> input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token class-name">Math</span><span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> a<span class="token punctuation">,</span> <span class="token class-name">Integer</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	a <span class="token operator">=</span> <span class="token class-name">Preconditions</span><span class="token punctuation">.</span><span class="token function">checkNotNull</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token string">"First parameter is Null."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	b <span class="token operator">=</span> <span class="token class-name">Preconditions</span><span class="token punctuation">.</span><span class="token function">checkNotNull</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token string">"Second parameter is Null."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getValue</span><span class="token punctuation">(</span><span class="token keyword">int</span> input<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token class-name">Preconditions</span><span class="token punctuation">.</span><span class="token function">checkElementIndex</span><span class="token punctuation">(</span>input<span class="token punctuation">,</span> data<span class="token punctuation">.</span>length<span class="token punctuation">,</span> <span class="token string">"Invalid index."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h4 id="Ordering"><a href="#Ordering" class="headerlink" title="Ordering"></a>Ordering</h4><p>Ordering (排序) 可以被看作是一个丰富的比较具有增强功能的链接，多个实用方法，多类型排序功能等。</p>
+<ul>
+<li><strong><code>static Ordering&lt;Object&gt; allEqual()</code></strong><br>返回一个排序，它把所有的值相等，说明 “没有顺序。” 通过这个顺序以任何稳定的排序算法的结果，在改变没有顺序元素。</li>
+<li><strong><code>static Ordering&lt;Object&gt; arbitrary()</code></strong><br>返回一个任意顺序对所有对象，其中 compare (a, b) == 0 意味着 a == b（身份平等）。</li>
+<li><strong><code>int binarySearch(List&lt;? extends T&gt; sortedList, T key)</code></strong><br>搜索排序列表使用键的二进制搜索算法。</li>
+<li><strong><code>abstract int compare(T left, T right)</code></strong><br>比较两个参数的顺序。</li>
+<li><strong><code>&lt;U extends T&gt; Ordering&lt;U&gt; compound(Comparator&lt;? super U&gt; secondaryComparator)</code></strong><br>返回首先使用排序这一点，但它排序中的 “tie”，然后委托给 secondaryComparator 事件。</li>
+<li><strong><code>static &lt;T&gt; Ordering&lt;T&gt; compound(Iterable&lt;? extends Comparator&lt;? super T&gt;&gt; comparators)</code></strong><br>返回一个排序它尝试每个给定的比较器，以便直到一个非零结果找到，返回该结果，并返回零仅当所有比较器返回零。</li>
+<li><strong><code>static &lt;T&gt; Ordering&lt;T&gt; explicit(List&lt;T&gt; valuesInOrder)</code></strong><br>返回根据它们出现的定列表中的顺序比较对象进行排序。</li>
+<li><strong><code>static &lt;T&gt; Ordering&lt;T&gt; explicit(T leastValue, T... remainingValuesInOrder)</code></strong><br>返回根据它们所赋予本方法的顺序进行比较的对象进行排序。</li>
+<li><strong><code>static &lt;T&gt; Ordering&lt;T&gt; from(Comparator&lt;T&gt; comparator)</code></strong><br>返回基于现有的比较实例进行排序。</li>
+<li><strong><code>&lt;E extends T&gt; List&lt;E&gt; greatestOf(Iterable&lt;E&gt; iterable, int k)</code></strong><br>返回根据这个顺序给出迭代，为了从最大到最小的 k 个最大的元素。</li>
+<li><strong><code>&lt;E extends T&gt; List&lt;E&gt; greatestOf(Iterator&lt;E&gt; iterator, int k)</code></strong><br>返回从给定的迭代器按照这个顺序，从最大到最小 k 个最大的元素。</li>
+<li><strong><code>&lt;E extends T&gt; ImmutableList&lt;E&gt; immutableSortedCopy(Iterable&lt;E&gt; elements)</code></strong><br>返回包含的元素排序这种排序的不可变列表。</li>
+<li><strong><code>boolean isOrdered(Iterable&lt;? extends T&gt; iterable)</code></strong><br>返回 true 如果在迭代后的第一个的每个元素是大于或等于在它之前，根据该排序的元素。</li>
+<li><strong><code>boolean isStrictlyOrdered(Iterable&lt;? extends T&gt; iterable)</code></strong><br>返回 true 如果在迭代后的第一个的每个元素是严格比在它之前，根据该排序的元素更大。</li>
+<li><strong><code>&lt;E extends T&gt; List&lt;E&gt; leastOf(Iterable&lt;E&gt; iterable, int k)</code></strong><br>返回根据这个顺序给出迭代，从而从低到最大的 k 个最低的元素。</li>
+<li><strong><code>&lt;E extends T&gt; List&lt;E&gt; leastOf(Iterator&lt;E&gt; elements, int k)</code></strong><br>返回第 k 从给定的迭代器，按照这个顺序从最低到最大至少元素。</li>
+<li><strong><code>&lt;S extends T&gt; Ordering&lt;Iterable&lt;S&gt;&gt; lexicographical()</code></strong><br>返回一个新的排序它通过比较对应元素两两直到非零结果发现排序迭代；规定 “字典顺序”。</li>
+<li><strong><code>&lt;E extends T&gt; E max(E a, E b)</code></strong><br>返回两个值按照这个顺序的较大值。</li>
+<li><strong><code>&lt;E extends T&gt; E max(E a, E b, E c, E... rest)</code></strong><br>返回指定的值，根据这个顺序是最大的。</li>
+<li><strong><code>&lt;E extends T&gt; E max(Iterable&lt;E&gt; iterable)</code></strong><br>返回指定的值，根据这个顺序是最大的。</li>
+<li><strong><code>&lt;E extends T&gt; E max(Iterator&lt;E&gt; iterator)</code></strong><br>返回指定的值，根据这个顺序是最大的。</li>
+<li><strong><code>&lt;E extends T&gt; E min(E a, E b)</code></strong><br>返回两个值按照这个顺序的较小者。</li>
+<li><strong><code>&lt;E extends T&gt; E min(E a, E b, E c, E... rest)</code></strong><br>返回最少指定的值，根据这个顺序。</li>
+<li><strong><code>&lt;E extends T&gt; E min(Iterable&lt;E&gt; iterable)</code></strong><br>返回最少指定的值，根据这个顺序。</li>
+<li><strong><code>&lt;E extends T&gt; E min(Iterator&lt;E&gt; iterator)</code></strong><br>返回最少指定的值，根据这个顺序。</li>
+<li><strong><code>static &lt;C extends Comparable&gt; Ordering&lt;C&gt; natural()</code></strong><br>返回使用值的自然顺序排序序列化。</li>
+<li><strong><code>&lt;S extends T&gt; Ordering&lt;S&gt; nullsFirst()</code></strong><br>返回对待 null 小于所有其他值，并使用此来比较非空值排序。</li>
+<li><strong><code>&lt;S extends T&gt; Ordering&lt;S&gt; nullsLast()</code></strong><br>返回对待 null 作为大于所有其他值，并使用这个顺序来比较非空值排序。</li>
+<li><strong><code>&lt;F&gt; Ordering&lt;F&gt; onResultOf(Function&lt;F,? extends T&gt; function)</code></strong><br>返回一个新的排序在 F 上，首先应用功能给它们，然后比较使用此这些结果的顺序元素。</li>
+<li><strong><code>&lt;S extends T&gt; Ordering&lt;S&gt; reverse()</code></strong><br>返回相反顺序；顺序相当于 Collections.reverseOrder（Comparator）。</li>
+<li><strong><code>&lt;E extends T&gt; List&lt;E&gt; sortedCopy(Iterable&lt;E&gt; elements)</code></strong><br>返回包含的元素排序此排序可变列表；使用这个只有在结果列表可能需要进一步修改，或可能包含 null。</li>
+<li><strong><code>static Ordering&lt;Object&gt; usingToString()</code></strong><br>返回由它们的字符串表示的自然顺序，toString () 比较对象进行排序。</li>
+</ul>
+<p>示例代码：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> numbers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">51</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">53</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">35</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">43</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [5, 2, 15, 51, 53, 35, 45, 32, 43, 16]</span>
+
+<span class="token class-name">Ordering</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> ordering <span class="token operator">=</span> <span class="token class-name">Ordering</span><span class="token punctuation">.</span><span class="token function">natural</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>numbers<span class="token punctuation">,</span> ordering<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [2, 5, 15, 16, 32, 35, 43, 45, 51, 53]</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>ordering<span class="token punctuation">.</span><span class="token function">isOrdered</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Minimum: "</span> <span class="token operator">+</span> ordering<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Maximum: "</span> <span class="token operator">+</span> ordering<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 53</span>
+
+<span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>numbers<span class="token punctuation">,</span> ordering<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 倒序</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [53, 51, 45, 43, 35, 32, 16, 15, 5, 2]</span>
+
+numbers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [53, 51, 45, 43, 35, 32, 16, 15, 5, 2, null]</span>
+
+<span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>numbers<span class="token punctuation">,</span> ordering<span class="token punctuation">.</span><span class="token function">nullsFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [null, 2, 5, 15, 16, 32, 35, 43, 45, 51, 53]</span>
+
+<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> names <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Ram"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Shyam"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Mohan"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Sohan"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Ramesh"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Suresh"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Naresh"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Mahesh"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Vikas"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+names<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Deepak"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Another List: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [Ram, Shyam, Mohan, Sohan, Ramesh, Suresh, Naresh, Mahesh, null, Vikas, Deepak]</span>
+
+<span class="token class-name">Ordering</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> ordering2 <span class="token operator">=</span> <span class="token class-name">Ordering</span><span class="token punctuation">.</span><span class="token function">natural</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Collections</span><span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>names<span class="token punctuation">,</span> ordering2<span class="token punctuation">.</span><span class="token function">nullsFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Null first then reverse sorted list: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [Vikas, Suresh, Sohan, Shyam, Ramesh, Ram, Naresh, Mohan, Mahesh, Deepak, null]</span></code></pre>
+
+<h4 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h4><p>Range 表示一个间隔或一个序列。它被用于获取一组数字 / 串在一个特定范围之内。</p>
+<ul>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; all()</code></strong><br>返回包含 C 型的每一个值范围</li>
+<li><strong><code>boolean apply(C input)Deprecated.</code></strong><br>只有提供满足谓词接口；使用包含 (C) 来代替。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; atLeast(C endpoint)</code></strong><br>返回包含大于或等于终点 (endpoint) 的所有值的范围内。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; atMost(C endpoint)</code></strong><br>返回包含的所有值小于或等于终点的范围内。</li>
+<li><strong><code>Range&lt;C&gt; canonical(DiscreteDomain&lt;C&gt; domain)</code></strong><br>返回此范围内，在给定域中的规范形式。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; closed(C lower, C upper)</code></strong><br>返回包含大于所有值或等于降低且小于或等于上限的范围内。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; closedOpen(C lower, C upper)</code></strong><br>返回包含大于或等于下限和所有值严格大于上限以下的范围内。</li>
+<li><strong><code>boolean contains(C value)</code></strong><br>返回 true，如果值是这个范围的范围之内。</li>
+<li><strong><code>boolean containsAll(Iterable&lt;? extends C&gt; values)</code></strong><br>如果值每一个元素都包含在这个范围内，则返回 true。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; downTo(C endpoint, BoundType boundType)</code></strong><br>返回的范围内的给定的端点，它可以是包容性（闭合）或专用（开），没有上限。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; encloseAll(Iterable&lt;C&gt; values)</code></strong><br>返回包含所有给定值的最小范围内。</li>
+<li><strong><code>boolean encloses(Range&lt;C&gt; other)</code></strong><br>返回 true，如果其他的边界不在该范围的边界之外延伸。</li>
+<li><strong><code>boolean equals(Object object)</code></strong><br>返回 true，如果对象是具有相同端点和绑定类型，这个范围内的范围。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; greaterThan(C endpoint)</code></strong><br>返回一个包含所有值严格大于端点的范围内。</li>
+<li><strong><code>int hashCode()</code></strong><br>返回此范围内的哈希码。</li>
+<li><strong><code>boolean hasLowerBound()</code></strong><br>如果此范围内具有更低的终点返回 true。</li>
+<li><strong><code>boolean hasUpperBound()</code></strong><br>如果此范围内有上端点返回 true。</li>
+<li><strong><code>Range&lt;C&gt; intersection(Range&lt;C&gt; connectedRange)</code></strong><br>返回由两者范围和 connectedRange 封闭，如果这样的范围存在的最大范围。</li>
+<li><strong><code>boolean isConnected(Range&lt;C&gt; other)</code></strong><br>如果存在这是由两者此范围和其他封闭（可能为空）的范围，则返回 true。</li>
+<li><strong><code>boolean isEmpty()</code></strong><br>返回 true，如果这个范围是形式 [v..v)  或 (v..v].</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; lessThan(C endpoint)</code></strong><br>返回一个包含所有值严格小于端点的范围内。</li>
+<li><strong><code>BoundType lowerBoundType()</code></strong><br>返回类型这个范围的下限：如果范围包括它的下端点 BoundType.CLOSED，如果没有 BoundType.OPEN。</li>
+<li><strong><code>C lowerEndpoint()</code></strong><br>返回该范围的较低端点。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; open(C lower, C upper)</code></strong><br>返回一个包含所有值严格大于下限和严格比上端更小一个范围。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; openClosed(C lower, C upper)</code></strong><br>返回包含所有值严格低于更大且小于或等于上限的范围内。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; range(C lower, BoundType lowerType, C upper, BoundType upperType)</code></strong><br>返回包含任何值由下到上，每个端点可以是包容性（关闭）或专用（开）的范围。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; singleton(C value)</code></strong><br>返回包含只在给定范围内的值。</li>
+<li><strong><code>Range&lt;C&gt; span(Range&lt;C&gt; other)</code></strong><br>返回最小的范围包围两者这个范围和 other 等。</li>
+<li><strong><code>String toString()</code></strong><br>返回该范围内的字符串表示，如 “[3..5）”（其他实例列在类文档）。</li>
+<li><strong><code>BoundType upperBoundType()</code></strong><br>返回类型此范围的上限：如果范围包括其上的端点返回 BoundType.CLOSED，如果没有返回 BoundType.OPEN。</li>
+<li><strong><code>C upperEndpoint()</code></strong><br>返回此范围的上限端点。</li>
+<li><strong><code>static &lt;C extends Comparable&lt;?&gt;&gt; Range&lt;C&gt; upTo(C endpoint, BoundType boundType)</code></strong><br>返回一个范围，没有下限到给定的端点，它可以是包容性（闭合）或专用（开）。</li>
+</ul>
+<p>示例代码：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 创建一个序列 [a,b] = { x | a &lt;= x &lt;= b}</span>
+<span class="token class-name">Range</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> range1 <span class="token operator">=</span> <span class="token class-name">Range</span><span class="token punctuation">.</span><span class="token function">closed</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0 1 2 3 4 5 6 7 8 9</span>
+
+<span class="token comment">// 创建一个序列 (a,b) = { x | a &lt; x &lt; b}</span>
+<span class="token class-name">Range</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> range2 <span class="token operator">=</span> <span class="token class-name">Range</span><span class="token punctuation">.</span><span class="token keyword">open</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1 2 3 4 5 6 7 8</span>
+
+<span class="token comment">// 创建一个序列 (a,b] = { x | a &lt; x &lt;= b}</span>
+<span class="token class-name">Range</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> range3 <span class="token operator">=</span> <span class="token class-name">Range</span><span class="token punctuation">.</span><span class="token function">openClosed</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1 2 3 4 5 6 7 8 9</span>
+
+<span class="token comment">// 创建一个序列 [a,b) = { x | a &lt;= x &lt; b}</span>
+<span class="token class-name">Range</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> range4 <span class="token operator">=</span> <span class="token class-name">Range</span><span class="token punctuation">.</span><span class="token function">closedOpen</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0 1 2 3 4 5 6 7 8</span></code></pre>
+
+
+
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cueWlpYmFpLmNvbS9ndWF2YQ==">https://www.yiibai.com/guava<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-27-Java字节码操纵框架ASM\" rel="bookmark">Java 字节码操纵框架 ASM</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-12-Apache数据库工具commons-dbutils的使用\" rel="bookmark">Apache 数据库工具 commons-dbutils 的使用</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-11-Apache集合工具commons-collections4的使用\" rel="bookmark">Apache 集合工具 commons-collections4 的使用</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas 之源码简要分析</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/JavaJar/" rel="tag"># JavaJar</a>
+              <a href="/tags/Google/" rel="tag"># Google</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/2020-10-20-PHP%E4%B9%8BSmarty%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E4%BD%BF%E7%94%A8%E6%B1%87%E6%80%BB/" rel="prev" title="PHP 之 Smarty 模板引擎使用汇总">
+                  <i class="fa fa-chevron-left"></i> PHP 之 Smarty 模板引擎使用汇总
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/10/2020-10-21-Windows%E5%BD%95%E5%B1%8F%E8%BD%AF%E4%BB%B6Bandicam/" rel="next" title="Windows 录屏软件 Bandicam">
+                  Windows 录屏软件 Bandicam <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '7c53c7d02df6c2a033b17b58c0725832',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/10/2020-10-21-Google%E5%B7%A5%E5%85%B7%E7%B1%BBGuava%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
