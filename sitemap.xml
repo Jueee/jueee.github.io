@@ -2,9 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jueee.github.io/2020/11/2020-11-03-%E5%9F%BA%E4%BA%8EVue%E7%BB%84%E4%BB%B6%E5%BA%93Element%E6%90%AD%E5%BB%BA%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</loc>
+    
+    <lastmod>2020-11-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/2020/11/2020-11-04-ElementUI%E8%A1%A8%E5%8D%95%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8form-generator/</loc>
+    
+    <lastmod>2020-11-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/2020/11/2020-11-02-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Electron%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2020-11-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/2020/11/2020-11-02-NodeJS%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2020-11-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/2020/11/2020-11-01-Spring%20Boot+Vue%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%BC%80%E5%8F%91%E5%AE%9E%E4%BE%8B/</loc>
+    
+    <lastmod>2020-11-03</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/2020/10/2020-10-31-Windows%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
+    
+    <lastmod>2020-11-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/2020/10/2020-10-31-MySQL%E8%BF%90%E7%BB%B4%E5%B7%A5%E5%85%B7percona-toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2020-11-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/2020/10/2020-10-30-SpringBoot%E9%9B%86%E6%88%90Druid/</loc>
+    
+    <lastmod>2020-11-02</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jueee.github.io/2020/10/2020-10-29-XML%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%BA%93XStream%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
     
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-10-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/2020/10/2020-10-28-HTML%E8%A7%A3%E6%9E%90%E5%99%A8JSoup%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2020-10-30</lastmod>
     
   </url>
   
@@ -592,7 +655,7 @@
 
   <url>
     <loc>https://jueee.github.io/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -600,308 +663,343 @@
   
   <url>
     <loc>https://jueee.github.io/tags/Ruby/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Blog/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/jekyll/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Baidu/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/LiveRe/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/HTML/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/freemarker/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Liquid/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Linux/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/JavaClass/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Apache/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/GitBook/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Git/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Java/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Java%E8%AF%8A%E6%96%AD/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Arthas/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/%E8%BD%AF%E4%BB%B6/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/IDE/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/idea/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Node-js/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/SEO/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Neo4j/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/MySQL/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Kafka/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Ognl/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/JavaJar/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Ceph/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/k8s/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Elasticsearch/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Shell/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Python/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Docker/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/eclipse/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/FastDFS/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/NFS/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/PHP/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/GitHub/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Smarty/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Eclipse/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Windows/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/Google/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/XML/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/tags/JSON/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/tags/Alibaba/</loc>
+    <lastmod>2020-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/tags/Vue/</loc>
+    <lastmod>2020-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/tags/SpringBoot/</loc>
+    <lastmod>2020-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/tags/Element/</loc>
+    <lastmod>2020-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/tags/Electron/</loc>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -910,147 +1008,168 @@
   
   <url>
     <loc>https://jueee.github.io/categories/Blog/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/HTML/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Linux/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Java/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Git/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Java/JavaClass/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Java/Arthas/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/%E8%BD%AF%E4%BB%B6/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Linux/Shell/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/%E8%BD%AF%E4%BB%B6/IDE/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Neo4j/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/MySQL/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Linux/%E8%BD%AF%E4%BB%B6/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Java/JavaJar/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Ceph/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/k8s/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Elasticsearch/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Python/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/Docker/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/PHP/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://jueee.github.io/categories/%E8%BD%AF%E4%BB%B6/Windows/</loc>
-    <lastmod>2020-10-29</lastmod>
+    <lastmod>2020-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/categories/Java/SpringBoot/</loc>
+    <lastmod>2020-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/categories/Vue/</loc>
+    <lastmod>2020-11-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://jueee.github.io/categories/Node-js/</loc>
+    <lastmod>2020-11-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
