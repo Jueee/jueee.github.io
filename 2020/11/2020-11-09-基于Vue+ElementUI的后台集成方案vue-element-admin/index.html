@@ -28,15 +28,15 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="vue-element-adminvue-element-admin 是一个后台前端解决方案，它基于 vue 和 element-ui&amp;nbsp;实现。 它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。  GitHub，在线预览，Wiki Gitee，在线预览，使用文档 OSChi">
+  <meta name="description" content="vue-element-adminvue-element-admin 是一个后台前端解决方案，它基于 vue 和 element-ui 实现。 它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。  GitHub，在线预览，Wiki Gitee，在线预览，使用文档 OSChina">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于 Vue+ElementUI 的后台集成方案 vue-element-admin">
 <meta property="og:url" content="https://jueee.github.io/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="vue-element-adminvue-element-admin 是一个后台前端解决方案，它基于 vue 和 element-ui&amp;nbsp;实现。 它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。  GitHub，在线预览，Wiki Gitee，在线预览，使用文档 OSChi">
+<meta property="og:description" content="vue-element-adminvue-element-admin 是一个后台前端解决方案，它基于 vue 和 element-ui 实现。 它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。  GitHub，在线预览，Wiki Gitee，在线预览，使用文档 OSChina">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-09T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-09T09:51:54.761Z">
+<meta property="article:modified_time" content="2020-11-13T11:03:10.430Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Vue">
 <meta property="article:tag" content="Element">
@@ -236,7 +236,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-element-admin"><span class="nav-number">1.</span> <span class="nav-text">vue-element-admin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-admin-template"><span class="nav-number">2.</span> <span class="nav-text">vue-admin-template</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-element-admin"><span class="nav-number">1.</span> <span class="nav-text">vue-element-admin</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.2.</span> <span class="nav-text">关联项目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-admin-template"><span class="nav-number">2.</span> <span class="nav-text">vue-admin-template</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -413,7 +413,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="vue-element-admin"><a href="#vue-element-admin" class="headerlink" title="vue-element-admin"></a>vue-element-admin</h3><p>vue-element-admin 是一个后台前端解决方案，它基于 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Z1ZWpzL3Z1ZQ==">vue<i class="fa fa-external-link-alt"></i></span> 和 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0VsZW1lRkUvZWxlbWVudA==">element-ui<i class="fa fa-external-link-alt"></i></span>&nbsp;实现。</p>
+        <h3 id="vue-element-admin"><a href="#vue-element-admin" class="headerlink" title="vue-element-admin"></a>vue-element-admin</h3><p>vue-element-admin 是一个后台前端解决方案，它基于 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Z1ZWpzL3Z1ZQ==">vue<i class="fa fa-external-link-alt"></i></span> 和 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0VsZW1lRkUvZWxlbWVudA==">element-ui<i class="fa fa-external-link-alt"></i></span> 实现。</p>
 <p>它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。</p>
 <ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1BhbkppYUNoZW4vdnVlLWVsZW1lbnQtYWRtaW4=">GitHub<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9wYW5qaWFjaGVuLmdpdGh1Yi5pby92dWUtZWxlbWVudC1hZG1pbi8=">在线预览<i class="fa fa-external-link-alt"></i></span>，<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1BhbkppYUNoZW4vdnVlLWVsZW1lbnQtYWRtaW4vd2lraQ==">Wiki<i class="fa fa-external-link-alt"></i></span></li>
@@ -423,14 +423,52 @@
 <a id="more"></a>
 
 <p>vue-element-admin 的定位是后台集成方案，不适合当基础模板来开发。</p>
-<p><strong>关联项目</strong></p>
-<ul>
+<h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><pre class="language-bash" data-language="bash"><code class="language-bash">├── build                      // 构建相关  
+├── config                     // 配置相关
+├── src                        // 源代码
+│   ├── api                    // 所有请求
+│   ├── assets                 // 主题 字体等静态资源
+│   ├── components             // 全局公用组件
+│   ├── directive              // 全局指令
+│   ├── filtres                // 全局 filter
+│   ├── icons                  // 项目所有 svg icons
+│   ├── lang                   // 国际化 language
+│   ├── mock                   // 项目mock 模拟数据
+│   ├── router                 // 路由
+│   ├── store                  // 全局 store管理
+│   ├── styles                 // 全局样式
+│   ├── utils                  // 全局公用方法
+│   ├── vendor                 // 公用vendor
+│   ├── views                   // view
+│   ├── App.vue                // 入口页面
+│   ├── main.js                // 入口 加载组件 初始化等
+│   └── permission.js          // 权限管理
+├── static                     // 第三方不打包资源
+│   └── Tinymce                // 富文本
+├── .babelrc                   // babel-loader 配置
+├── eslintrc.js                // eslint 配置项
+├── .gitignore                 // <span class="token function">git</span> 忽略项
+├── favicon.ico                // favicon图标
+├── index.html                 // html模板
+└── package.json               // package.json</code></pre>
+
+<h4 id="关联项目"><a href="#关联项目" class="headerlink" title="关联项目"></a>关联项目</h4><ul>
 <li>基础模板： <span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vcGFuamlhY2hlbi92dWUtYWRtaW4tdGVtcGxhdGU=">vueAdmin-template<i class="fa fa-external-link-alt"></i></span> </li>
 <li> 桌面终端： <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1BhbkppYUNoZW4vZWxlY3Ryb24tdnVlLWFkbWlu">electron-vue-admin<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <h3 id="vue-admin-template"><a href="#vue-admin-template" class="headerlink" title="vue-admin-template"></a>vue-admin-template</h3><ul>
 <li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1BhbkppYUNoZW4vdnVlLWFkbWluLXRlbXBsYXRl">https://github.com/PanJiaChen/vue-admin-template<i class="fa fa-external-link-alt"></i></span></li>
 <li> 演示地址：<span class="exturl" data-url="aHR0cHM6Ly9wYW5qaWFjaGVuLmdpdGh1Yi5pby92dWUtYWRtaW4tdGVtcGxhdGU=">https://panjiachen.github.io/vue-admin-template<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p><strong>vueAdmin-template</strong> 主要是基于 vue-cli webpack 模板为基础开发的，引入了如下 dependencies:</p>
+<ul>
+<li>element-ui 饿了么出品的 vue2.0 pc UI 框架</li>
+<li> axios 一个现在主流并且很好用的请求库 支持 Promise</li>
+<li>js-cookie 一个轻量的 JavaScript 库来处理 cookie</li>
+<li>normalize.css 格式化 css</li>
+<li>nprogress 轻量的全局进度条控制</li>
+<li> vuex 官方状态管理</li>
+<li> vue-router 官方路由</li>
 </ul>
 
     </div>
