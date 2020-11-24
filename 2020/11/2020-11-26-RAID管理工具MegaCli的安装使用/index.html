@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="MegaCli 介绍MegaCli 是一款管理维护硬件 RAID 软件，可以通过它来了解当前 raid 卡的所有信息，包括 raid 卡的型号，raid 的阵列类型，raid 上各磁盘状态，等等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RAID 管理工具 MegaCli 的安装使用">
+<meta property="og:url" content="https://jueee.github.io/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="MegaCli 介绍MegaCli 是一款管理维护硬件 RAID 软件，可以通过它来了解当前 raid 卡的所有信息，包括 raid 卡的型号，raid 的阵列类型，raid 上各磁盘状态，等等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-26T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-24T09:45:48.681Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="RAID">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>RAID 管理工具 MegaCli 的安装使用 | 小决的专栏</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">小决的专栏</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">108</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">25</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MegaCli-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">MegaCli 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MegaCli-%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">MegaCli 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.</span> <span class="nav-text">验证安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BC%82%E5%B8%B8"><span class="nav-number">2.3.</span> <span class="nav-text">安装异常</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB"><span class="nav-number">3.</span> <span class="nav-text">命令汇总</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RAID 管理工具 MegaCli 的安装使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-26T00:00:00Z">2020-11-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="MegaCli-介绍"><a href="#MegaCli-介绍" class="headerlink" title="MegaCli 介绍"></a>MegaCli 介绍</h3><p>MegaCli 是一款管理维护硬件 RAID 软件，可以通过它来了解当前 raid 卡的所有信息，包括 raid 卡的型号，raid 的阵列类型，raid 上各磁盘状态，等等。</p>
+<a id="more"></a>
+
+<h3 id="MegaCli-安装"><a href="#MegaCli-安装" class="headerlink" title="MegaCli 安装"></a>MegaCli 安装</h3><h4 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h4><p>方案一</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt-get</span> <span class="token function">install</span> alien
+<span class="token function">wget</span> --user<span class="token operator">=</span>hetzner --password<span class="token operator">=</span>download http://download.hetzner.de/tools/LSI/tools/MegaCLI/8.07.14_MegaCLI.zip
+<span class="token function">unzip</span> <span class="token number">8.07</span>.14_MegaCLI.zip -d megacli
+<span class="token builtin class-name">cd</span> megacli/Linux
+<span class="token function">sudo</span> alien MegaCli-8.07.14-1.noarch.rpm
+<span class="token function">sudo</span> dpkg -i megacli_8.07.14-2_all.deb
+<span class="token function">ln</span> -s /opt/MegaRAID/MegaCli/MegaCli64 /usr/bin/megacli</code></pre>
+
+<p>方案二</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt-get</span> -y <span class="token function">install</span>  rpm2cpio libsysfs2 libsysfs-dev <span class="token function">unzip</span>
+<span class="token function">unzip</span> <span class="token number">8.00</span>.48_Linux_MegaCLI.zip
+<span class="token function">unzip</span> MegaCliLin.zip
+rpm2cpio Lib_Utils-1.00-09.noarch.rpm <span class="token operator">|</span> cpio -idmv
+rpm2cpio MegaCli-8.00.48-1.i386.rpm <span class="token operator">|</span> cpio -idmv
+<span class="token function">ln</span> -s opt/MegaRAID/MegaCli/MegaCli64 /usr/bin/megacli64
+<span class="token function">ln</span> -s opt/MegaRAID/MegaCli/MegaCli /usr/bin/megacli</code></pre>
+
+<h4 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$  megacli -v
+      MegaCLI SAS RAID Management Tool  Ver <span class="token number">8.07</span>.14 Dec <span class="token number">16</span>, <span class="token number">2013</span>
+    <span class="token punctuation">(</span>c<span class="token punctuation">)</span>Copyright <span class="token number">2013</span>, LSI Corporation, All Rights Reserved.
+Exit Code: 0x00</code></pre>
+
+<h4 id="安装异常"><a href="#安装异常" class="headerlink" title="安装异常"></a>安装异常</h4><p>问题：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ megacli
+megacli: error <span class="token keyword">while</span> loading shared libraries: libncurses.so.5: cannot <span class="token function">open</span> shared object file: No such <span class="token function">file</span> or directory</code></pre>
+
+<p>解决</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">apt-get</span> <span class="token function">install</span> libncurses5</code></pre>
+
+<h3 id="命令汇总"><a href="#命令汇总" class="headerlink" title="命令汇总"></a>命令汇总</h3><ul>
+<li><p>查看 raid 卡日志</p>
+<p>megacli -FwTermLog -Dsply -aALL</p>
+</li>
+<li><p>显示适配器个数</p>
+<p>megacli -adpCount</p>
+</li>
+<li><p>显示适配器时间</p>
+<p>megacli -AdpGetTime –aALL</p>
+</li>
+<li><p>显示所有适配器信息</p>
+<p>megacli -AdpAllInfo -aAll</p>
+</li>
+<li><p>显示所有逻辑磁盘组信息</p>
+<p>megacli -LDInfo -LALL -aAll</p>
+</li>
+<li><p>查 raid 卡信息 (生产商、电池信息及所支持的 raid 级别)</p>
+<p>megacli -AdpAllInfo -aALL |grep -E "Product Name|BBU|Memory Size|RAID Level Supported"</p>
+</li>
+<li><p>查看虚拟化 (vd) 和物理盘 (pd) 的信息，比如查看物理硬盘数，是否有硬盘 offline 或者 degraded</p>
+<p>megacli -AdpAllInfo -aALL |grep -E "Device Present" -A9</p>
+</li>
+<li><p>查看硬盘是否 online</p>
+<p>megacli -PDList -aALL |grep "Firmware state"</p>
+</li>
+<li><p>查看硬盘是否存在物理错误 (error 不为 0，可能会有硬盘故障即将发生)</p>
+<p>megacli -PDList -aALL |grep -i error</p>
+</li>
+<li><p>查看电池信息 (电池类型、电池状态、充电状态、温度等)</p>
+<p>megacli -AdpBbuCmd -aAll</p>
+</li>
+<li><p>raid 卡个数</p>
+<p>megacli –adpCount</p>
+</li>
+<li><p>检测磁盘 ID 注意，该 ID 值用于标注磁盘</p>
+<p>megacli -PDlist -aALL | grep "ID" | uniq</p>
+</li>
+<li><p>显示所有逻辑磁盘组信息 (做了几组 raid，raid cache 的默认和当前策略，做好 raid 后的虚拟盘容量)</p>
+<p>megacli -LDInfo -LALL -aAll</p>
+</li>
+<li><p>显示所有物理盘 (物理磁盘个数、大小、是否存在 error)</p>
+<p>megacli -PDList -aAll</p>
+</li>
+<li><p>显示所有物理盘物理错误</p>
+<p>megacli -PDList -aAll |grep -i error</p>
+</li>
+<li><p>查看充电状态</p>
+<p>megacli -AdpBbuCmd -GetBbuStatus -aALL |grep 'Charger Status'</p>
+</li>
+<li><p>显示 BBU 状态信息，比如电池是否，如果 issohgood 为 Yes 为正常，No 为异常</p>
+</li>
+</ul>
+<p>  megacli -AdpBbuCmd -GetBbuStatus -aALL|grep -i issohgood</p>
+<ul>
+<li><p>显示 BBU 状态信息</p>
+<p>megacli -AdpBbuCmd -GetBbuStatus -aALL</p>
+</li>
+<li><p>显示 BBU 容量信息</p>
+<p>megacli -AdpBbuCmd -GetBbuCapacityInfo -aALL</p>
+</li>
+<li><p>显示 BBU 设计参数</p>
+<p>megacli -AdpBbuCmd -GetBbuDesignInfo -aALL</p>
+</li>
+<li><p>显示当前 BBU 属性</p>
+<p>megacli -AdpBbuCmd -GetBbuProperties -aALL</p>
+</li>
+<li><p>显示 Raid 卡型号，cache 大小、Raid 设置，cache 策略、Disk 相关信息</p>
+<p>megacli -cfgdsply -aALL |egrep "PDs|VDs|Product Name|Memory|BBU:"</p>
+</li>
+<li><p>查看磁盘缓存策略 (查看 vd 的)</p>
+<p>megacli -LDGetProp -Cache -LALL -aALL</p>
+</li>
+<li><p>查看磁盘缓存策略 (查看 pd 的)</p>
+<p>megacli -LDGetProp -DskCache -LALL -aALL</p>
+</li>
+<li><p>查看物理磁盘重建进度</p>
+<p>megacli -PDRbld -ShowProg -PhysDrv [1:5] -a0</p>
+</li>
+<li><p>以动态可视化文字界面显示</p>
+<p>megacli -PDRbld -ProgDsply -PhysDrv [1:5] -a0</p>
+</li>
+<li><p>关闭缓存</p>
+<p>megacli -LDSetProp -DisDskCache -L0 -a0</p>
+</li>
+<li><p>显示 Rebuid 进度</p>
+<p>megacli -PDRbld -ShowProg -physdrv[20:2] -aALL</p>
+</li>
+<li><p>查看 E S</p>
+<p>megacli -PDList -aAll -NoLog | grep -Ei "(enclosure|slot)"</p>
+</li>
+<li><p>查看所有硬盘的状态</p>
+<p>megacli -PDList -aAll -NoLog</p>
+</li>
+<li><p>查看所有 Virtual Disk 的状态</p>
+<p>megacli -LdPdInfo -aAll -NoLog</p>
+</li>
+<li><p>在线做 Raid</p>
+<p>megacli -CfgLdAdd -r0[0:11] WB NORA Direct CachedBadBBU -strpsz64 -a0 -NoLog</p>
+<p>megacli -CfgLdAdd -r5 [12:2,12:3,12:4,12:5,12:6,12:7] WB Direct -a0</p>
+</li>
+<li><p>点亮指定硬盘 (定位)</p>
+<p>megacli -PdLocate -start -physdrv[252:2] -a0</p>
+</li>
+<li><p>清除 Foreign 状态</p>
+<p>megacli -CfgForeign -Clear -a0</p>
+</li>
+<li><p>查看 RAID 阵列中掉线的盘</p>
+<p>megacli -pdgetmissing -a0</p>
+</li>
+<li><p>替换坏掉的模块</p>
+<p>megacli -pdreplacemissing -physdrv[12:10] -Array5 -row0 -a0</p>
+</li>
+<li><p>手动开启 rebuid</p>
+<p>megacli -pdrbld -start -physdrv[12:10] -a0</p>
+</li>
+<li><p>查看 Megacli 的 log</p>
+<p>megacli -FwTermLog dsply -a0 &gt; adp2.log</p>
+</li>
+<li><p>设置 HotSpare</p>
+<p>megacli -pdhsp -set [-Dedicated [-Array2]] [-EnclAffinity] [-nonRevertible] -PhysDrv[4:11] -a0</p>
+<p>megacli -pdhsp -set [-EnclAffinity] [-nonRevertible] -PhysDrv[32：1}] -a0</p>
+</li>
+<li><p>关闭 Rebuild</p>
+<p>megacli -AdpAutoRbld -Dsbl -a0</p>
+</li>
+<li><p>设置 rebuild 的速率</p>
+<p>megacli -AdpSetProp RebuildRate -30 -a0</p>
+</li>
+<li><p>创建一个 raid5 阵列，由物理盘 2,3 4 构成，该阵列的热备盘是物理盘 5</p>
+<p>megacli-CfgLdA d -r5 [1:2,1:3,1:4] WB Direct -Hsp[1:5] -a0</p>
+</li>
+<li><p>创建阵列，不指定热备</p>
+<p>megacli-CfgLdA d -r5 [1:2,1:3,1:4] WB Direct -a0</p>
+</li>
+<li><p>删除阵列</p>
+<p>megacli-CfgLdDel -L1 -a0</p>
+</li>
+<li><p>在线添加磁盘</p>
+<p>megacli-LDRecon -Star - 5 Ad -PhysDrv[1:4] -L1 -a0</p>
+</li>
+<li><p>阵列创建完后，会有一个初始化同步块的过程，可以看 其进度。</p>
+<p>megacli-LDInit -ShowProg -LA L -aAL</p>
+</li>
+<li><p>以动态可视化文字界面显示</p>
+<p>megacli-LDInit -ProgDsply -LA L -aAL</p>
+</li>
+<li><p>查看阵列后台初始化进度</p>
+<p>megacli-LDBI -ShowProg -LA L -aAL</p>
+</li>
+<li><p>或者以动态可视化文字界面显示</p>
+<p>megacli-LDBI -ProgDsply -LA L -aAL</p>
+</li>
+<li><p>指定第 5 块盘作为全局热备</p>
+<p>megacli-PDHSP -Set [-EnclAf in ty] [-no Rev rtible] -PhysDrv[1:5] -a0</p>
+</li>
+<li><p>指定为某个阵列的专用热备</p>
+<p>megacli-PDHSP -Set [-Dedicated [-Ar ay1] [-EnclAf in ty] [-no Rev rtible] -PhysDrv[1:5] -a0</p>
+</li>
+<li><p>删除全局热备</p>
+<p>megacli-PDHSP -Rmv -PhysDrv[1:5] -a0</p>
+</li>
+<li><p>将某块物理盘下线 / 上线</p>
+<p>megacli -PDOffline -PhysDrv [1:4] -a0</p>
+<p>megacli -PDOnline -PhysDrv [1:4] -a0</p>
+</li>
+<li><p>查看物理磁盘重建进度</p>
+<p>megacli-PDRbld -ShowProg -PhysDrv [1:5] -a0</p>
+</li>
+<li><p>或者以动态可视化文字界面显示</p>
+<p>megacli -PDRbld -ProgDsply -PhysDrv [1:5] -a0</p>
+</li>
+<li><p>查看做 raid 的情况</p>
+<p>megacli -LDInfo -Lal -aAL | grep -E "RAID Lev l|Strip Size|NumberOf Drives|Span Depth|^Size"</p>
+</li>
+<li><p>取 Enclosure Device ID</p>
+<p>uiqnum=<code> megacli -PDlist -aAL | grep "ID" | uniq |awk -F: '{print $2}' | awk '{print $1}'</code></p>
+</li>
+<li><p>取 Slot Number</p>
+<p>disknum=<code>megacli -PDList -aAL | grep -E "DISK GROUP|Slot Number|postion:|Firmware sta e:" | grep Slot | awk -F[: ] '{print $NF}'</code></p>
+</li>
+<li><p>算出总数</p>
+<p>diskto al=<code>megacli -PDList -aAL | grep -E "DISK GROUP|Slot Number|postion:|Firmware sta e:" | grep Slot | awk -F[: ] '{print $NF}' | wc -l</code><br>ar ay=($disknum)</p>
+</li>
+<li><p>查看当前 raid 缓存状态，raid 缓存状态设置为 wb 的话要注意电池放电事宜，设置电池放电模式为自动学习模式</p>
+<p>megacli   -ldgetprop  -dskcache -lall  -aall</p>
+</li>
+<li><p>raid 电池设置相关</p>
+<ul>
+<li><p>查看电池状态信息 (Display BBU Status Information)</p>
+<p>megacli -AdpBbuCmd -GetBbuStatus -aN|-a0,1,2|-aALL</p>
+<p>megacli -AdpBbuCmd -GetBbuStatus -aALL</p>
+</li>
+<li><p>查看电池容量（Display BBU Capacity Information）</p>
+<p>megacli -AdpBbuCmd -GetBbuCapacityInfo -aN|-a0,1,2|-aALL</p>
+<p>megacli -AdpBbuCmd -GetBbuCapacityInfo –aALL</p>
+</li>
+<li><p>查看电池设计参数 (Display BBU Design Parameters)</p>
+<p>megacli -AdpBbuCmd -GetBbuDesignInfo -aN|-a0,1,2|-aALL</p>
+<p>megacli -AdpBbuCmd -GetBbuDesignInfo –aALL</p>
+</li>
+<li><p>查看电池属性（Display Current BBU Properties）</p>
+<p>megacli -AdpBbuCmd -GetBbuProperties -aN|-a0,1,2|-aALL</p>
+<p>megacli -AdpBbuCmd -GetBbuProperties –aALL</p>
+</li>
+<li><p>设置电池为学习模式为循环模式（Start BBU Learning Cycle）</p>
+<p>megacli -AdpBbuCmd -BbuLearn -aN|-a0,1,2|-aALL</p>
+</li>
+</ul>
+</li>
+<li><p>查询 raid 级别，磁盘数量，容量，条带大小。</p>
+<p>megacli -cfgdsply -aALL |grep Policy</p>
+</li>
+<li><p>查询控制器 cache 策略</p>
+<p>megacli -LDSetProp WB -L0 -a0</p>
+</li>
+<li><p>设置 write back 功能</p>
+<p>megacli -LDSetProp CachedBadBBU -L0 -a0</p>
+</li>
+<li><p>设置即使电池坏了还是保持 WB 功能</p>
+<p>megacli -AdpBbuCmd -BbuLearn a0</p>
+</li>
+<li><p>手动充电</p>
+<p>megacli -FwTermLog -Dsply -aALL</p>
+</li>
+<li><p>显示适配器个数： </p>
+<p>megacli -adpCount</p>
+</li>
+<li><p>显示所有适配器信息： </p>
+<p>megacli -AdpAllInfo -aAll</p>
+</li>
+<li><p>显示所有逻辑磁盘组信息： </p>
+<p>megacli -LDInfo -LALL -aAll</p>
+</li>
+<li><p>显示所有的物理信息： </p>
+<p>megacli -PDList -aAll<br>Media</p>
+</li>
+<li><p>查看充电状态： </p>
+<p>megacli -AdpBbuCmd -GetBbuStatus -aALL</p>
+</li>
+<li><p>显示 BBU (后备电池) 状态信息： </p>
+<p>megacli -AdpBbuCmd -GetBbuStatus -aALL</p>
+</li>
+<li><p>显示 BBU 容量信息： </p>
+<p>megacli -AdpBbuCmd -GetBbuCapacityInfo -aALL</p>
+</li>
+<li><p>显示 BBU 设计参数： </p>
+<p>megacli -AdpBbuCmd -GetBbuDesignInfo -aALL</p>
+</li>
+<li><p>显示当前 BBU 属性： </p>
+<p>megacli -AdpBbuCmd -GetBbuProperties -aALL</p>
+</li>
+<li><p>显示 Raid 卡型号，Raid 设置，Disk 相关信息： </p>
+<p>megacli -cfgdsply -aALL</p>
+</li>
+<li><p>查看 Cache 策略设置： </p>
+<p>megacli -cfgdsply -aALL |grep -i Policy</p>
+</li>
+<li><p>查看充电进度百分比： </p>
+<p>megacli -AdpBbuCmd -GetBbuStatus -aALL</p>
+</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9pZGMud2FueXVuc2h1anUuY29tL2N5bS82NDYuaHRtbA==">https://idc.wanyunshuju.com/cym/646.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXN0LmdpdGh1Yi5jb20vZnhrcmF1cy81OTVhYjgyZTA3Y2Q2ZjhlMDU3ZDMxYmMwYmM1ZTc3OQ==">https://gist.github.com/fxkraus/595ab82e07cd6f8e057d31bc0bc5e779<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3hpbnFpZGlhbl94aWFvL2FydGljbGUvZGV0YWlscy84MDk0MDMwNg==">https://blog.csdn.net/xinqidian_xiao/article/details/80940306<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-kafka-manager的安装和使用\" rel="bookmark">kafka-manager 的安装和使用</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-23-启用Windows10下的Linux子系统\" rel="bookmark">启用 Windows10 下的 Linux 子系统</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-07-使用rinetd实现端口转发重定向\" rel="bookmark">使用 rinetd 实现端口转发重定向</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-14-使用LFTP进行SFTP文件上传与下载\" rel="bookmark">使用 LFTP 进行 SFTP 文件上传与下载</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-16-Linux进行磁盘自动挂载\" rel="bookmark">Linux 进行磁盘自动挂载</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag"># 软件</a>
+              <a href="/tags/RAID/" rel="tag"># RAID</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/2020-11-25-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7ExcelKit/" rel="prev" title="Excel 文件导入导出工具 ExcelKit">
+                  <i class="fa fa-chevron-left"></i> Excel 文件导入导出工具 ExcelKit
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '002604b06d3da36400bd44c5edc23df2',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
