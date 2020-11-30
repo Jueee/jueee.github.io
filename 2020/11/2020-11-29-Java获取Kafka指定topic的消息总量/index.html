@@ -28,15 +28,15 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="Kafka Consumer APIKafka提供了两套API给 Consumer  The high-level Consumer API The SimpleConsumer API   第一种高度抽象的Consumer API，它使用起来简单、方便，但是对于某些特殊的需求我们可能要用到第二种更底层的API。">
+  <meta name="description" content="Kafka Consumer APIKafka 提供了两套 API 给 Consumer  The high-level Consumer API The SimpleConsumer API   第一种高度抽象的 Consumer API，它使用起来简单、方便，但是对于某些特殊的需求我们可能要用到第二种更底层的 API。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 获取 Kafka 指定 topic 的消息总量">
 <meta property="og:url" content="https://jueee.github.io/2020/11/2020-11-29-Java%E8%8E%B7%E5%8F%96Kafka%E6%8C%87%E5%AE%9Atopic%E7%9A%84%E6%B6%88%E6%81%AF%E6%80%BB%E9%87%8F/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="Kafka Consumer APIKafka提供了两套API给 Consumer  The high-level Consumer API The SimpleConsumer API   第一种高度抽象的Consumer API，它使用起来简单、方便，但是对于某些特殊的需求我们可能要用到第二种更底层的API。">
+<meta property="og:description" content="Kafka Consumer APIKafka 提供了两套 API 给 Consumer  The high-level Consumer API The SimpleConsumer API   第一种高度抽象的 Consumer API，它使用起来简单、方便，但是对于某些特殊的需求我们可能要用到第二种更底层的 API。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-29T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-30T07:15:55.583Z">
+<meta property="article:modified_time" content="2020-11-30T07:58:16.392Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="JavaClass">
 <meta property="article:tag" content="Java">
@@ -168,12 +168,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">26</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">28</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">57</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -260,13 +260,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -387,7 +387,11 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Kafka/" itemprop="url" rel="index"><span itemprop="name">Kafka</span></a>
+          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/Kafka/" itemprop="url" rel="index"><span itemprop="name">Kafka</span></a>
         </span>
     </span>
 
@@ -638,7 +642,7 @@ topicName2:439466</code></pre>
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\11\2020-11-30-Java获取Kafka的topic列表\" rel="bookmark">Java获取Kafka的topic列表</a></div>
+      <div class="popular-posts-title"><a href="\2020\11\2020-11-30-Java获取Kafka的topic列表\" rel="bookmark">Java 获取 Kafka 的 topic 列表</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-24-使用lambda表达式进行集合类型转换\" rel="bookmark">使用 lambda 表达式进行集合类型转换</a></div>
@@ -929,18 +933,6 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/11/2020-11-29-Java%E8%8E%B7%E5%8F%96Kafka%E6%8C%87%E5%AE%9Atopic%E7%9A%84%E6%B6%88%E6%81%AF%E6%80%BB%E9%87%8F/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
-});
-</script>
-
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -958,6 +950,18 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/11/2020-11-29-Java%E8%8E%B7%E5%8F%96Kafka%E6%8C%87%E5%AE%9Atopic%E7%9A%84%E6%B6%88%E6%81%AF%E6%80%BB%E9%87%8F/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
 });
 </script>
 

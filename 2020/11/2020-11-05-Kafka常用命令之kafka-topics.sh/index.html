@@ -36,8 +36,9 @@
 <meta property="og:description" content="kafka-topics.sh 脚本主要负责 topic 相关的操作。它的具体实现是通过 kafka-run-class 来调用 TopicCommand 类，并根据参数执行指定的功能。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-05T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-05T03:25:56.836Z">
+<meta property="article:modified_time" content="2020-11-30T07:58:08.372Z">
 <meta property="article:author" content="小决">
+<meta property="article:tag" content="Apache">
 <meta property="article:tag" content="Kafka">
 <meta name="twitter:card" content="summary">
 
@@ -166,12 +167,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">26</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">28</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">57</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">56</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -258,13 +259,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -377,7 +378,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Kafka/" itemprop="url" rel="index"><span itemprop="name">Kafka</span></a>
+          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/Kafka/" itemprop="url" rel="index"><span itemprop="name">Kafka</span></a>
         </span>
     </span>
 
@@ -603,16 +608,23 @@
       <div class="popular-posts-title"><a href="\2020\08\2020-08-14-kafka-manager的安装和使用\" rel="bookmark">kafka-manager 的安装和使用</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\11\2020-11-29-Java获取Kafka指定topic的消息总量\" rel="bookmark">Java获取Kafka指定topic的消息总量</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-15-关于toString方法的重写工具ToStringBuilder\" rel="bookmark">关于 toString 方法的重写工具 ToStringBuilder</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\11\2020-11-30-Java获取Kafka的topic列表\" rel="bookmark">Java获取Kafka的topic列表</a></div>
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-15-Windows系统下安装Apache服务器\" rel="bookmark">Windows 系统下安装 Apache 服务器</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-12-Apache数据库工具commons-dbutils的使用\" rel="bookmark">Apache 数据库工具 commons-dbutils 的使用</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-11-Apache集合工具commons-collections4的使用\" rel="bookmark">Apache 集合工具 commons-collections4 的使用</a></div>
     </li>
   </ul>
 
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/Apache/" rel="tag"># Apache</a>
               <a href="/tags/Kafka/" rel="tag"># Kafka</a>
           </div>
 
@@ -883,18 +895,6 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/11/2020-11-05-Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bkafka-topics.sh/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
-});
-</script>
-
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -912,6 +912,18 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/11/2020-11-05-Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bkafka-topics.sh/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
 });
 </script>
 
