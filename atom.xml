@@ -6,7 +6,7 @@
   <link href="https://jueee.github.io/atom.xml" rel="self"/>
   
   <link href="https://jueee.github.io/"/>
-  <updated>2020-11-24T09:45:48.681Z</updated>
+  <updated>2020-11-27T07:58:48.103Z</updated>
   <id>https://jueee.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ElasticSearch 集成 Spring 之 ElasticsearchTemplate 示例</title>
+    <link href="https://jueee.github.io/2020/11/2020-11-27-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchTemplate%E7%A4%BA%E4%BE%8B/"/>
+    <id>https://jueee.github.io/2020/11/2020-11-27-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchTemplate%E7%A4%BA%E4%BE%8B/</id>
+    <published>2020-11-27T00:00:00.000Z</published>
+    <updated>2020-11-27T07:58:48.103Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="ElasticsearchTemplate"><a href="#ElasticsearchTemplate" class="headerlink" title="ElasticsearchTemplate"></a>ElasticsearchTemplate</h3><p>ElasticsearchTemplate 是 Spring 对 ElasticSearch 的 Java api 进行的封装，提供了大量的相关的类来完成各种各样的查询。</p><h4 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-elasticsearch --&gt;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.data<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-data-elasticsearch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.2.1.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre><h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><p><strong>索引是否存在</strong></p><pre class="language-java" data-language="java"><code class="language-java">elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">indexExists</span><span class="token punctuation">(</span><span class="token class-name">Test</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span></code></pre><p><strong>创建索引并初始化 Mapping</strong></p><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">boolean</span> createResult <span class="token operator">=</span> elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token class-name">Test</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"[createResult]"</span><span class="token operator">+</span>createResult<span class="token punctuation">)</span><span class="token punctuation">;</span>elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">putMapping</span><span class="token punctuation">(</span><span class="token class-name">Test</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">refresh</span><span class="token punctuation">(</span><span class="token class-name">Test</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;ElasticsearchTemplate&quot;&gt;&lt;a href=&quot;#ElasticsearchTemplate&quot; class=&quot;headerlink&quot; title=&quot;ElasticsearchTemplate&quot;&gt;&lt;/a&gt;ElasticsearchTemplate&lt;/</summary>
+      
+    
+    
+    
+    <category term="Java" scheme="https://jueee.github.io/categories/Java/"/>
+    
+    <category term="JavaJar" scheme="https://jueee.github.io/categories/Java/JavaJar/"/>
+    
+    <category term="ElasticSearch" scheme="https://jueee.github.io/categories/ElasticSearch/"/>
+    
+    
+    <category term="Java" scheme="https://jueee.github.io/tags/Java/"/>
+    
+    <category term="JavaJar" scheme="https://jueee.github.io/tags/JavaJar/"/>
+    
+    <category term="ElasticSearch" scheme="https://jueee.github.io/tags/ElasticSearch/"/>
+    
+  </entry>
   
   <entry>
     <title>RAID 管理工具 MegaCli 的安装使用</title>
@@ -75,23 +107,6 @@
   </entry>
   
   <entry>
-    <title>VirtualBox 安装 debian 无法启动的解决办法</title>
-    <link href="https://jueee.github.io/2020/11/2020-11-19-VirtualBox%E5%AE%89%E8%A3%85debian%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
-    <id>https://jueee.github.io/2020/11/2020-11-19-VirtualBox%E5%AE%89%E8%A3%85debian%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
-    <published>2020-11-24T00:00:00.000Z</published>
-    <updated>2020-11-24T09:07:35.925Z</updated>
-    
-    
-    
-    
-    <category term="Linux" scheme="https://jueee.github.io/categories/Linux/"/>
-    
-    
-    <category term="Linux" scheme="https://jueee.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Shell 中 kill 掉指定名称的进程</title>
     <link href="https://jueee.github.io/2020/11/2020-11-24-Shell%E4%B8%ADkill%E6%8E%89%E6%8C%87%E5%AE%9A%E5%90%8D%E7%A7%B0%E7%9A%84%E8%BF%9B%E7%A8%8B/"/>
     <id>https://jueee.github.io/2020/11/2020-11-24-Shell%E4%B8%ADkill%E6%8E%89%E6%8C%87%E5%AE%9A%E5%90%8D%E7%A7%B0%E7%9A%84%E8%BF%9B%E7%A8%8B/</id>
@@ -113,6 +128,27 @@
     <category term="Linux" scheme="https://jueee.github.io/tags/Linux/"/>
     
     <category term="Shell" scheme="https://jueee.github.io/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安装 debian 无法启动的解决办法</title>
+    <link href="https://jueee.github.io/2020/11/2020-11-19-%E5%AE%89%E8%A3%85debian%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <id>https://jueee.github.io/2020/11/2020-11-19-%E5%AE%89%E8%A3%85debian%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</id>
+    <published>2020-11-24T00:00:00.000Z</published>
+    <updated>2020-11-24T11:23:15.031Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装了几次 debian，一直无法启动。一直闪烁光标。后来发现是默认的问题。</p><a id="more"></a><h3 id="Debian-安装"><a href="#Debian-安装" class="headerlink" title="Debian 安装"></a>Debian 安装</h3><p>关键在于最后的 GRUB 的选择。如下图：</p><p><img src="/images/2020/11/image-20201124185648813.png" alt="image-20201124185648813" loading="lazy"></p><p><img src="/images/2020/11/image-20201124185711361.png" alt="image-20201124185711361" loading="lazy"></p><h3 id="Debian-发行版本"><a href="#Debian-发行版本" class="headerlink" title="Debian 发行版本"></a>Debian 发行版本</h3><ul><li><span class="exturl" data-url="aHR0cHM6Ly93d3cuZGViaWFuLm9yZy9yZWxlYXNlcy8=">https://www.debian.org/releases/<i class="fa fa-external-link-alt"></i></span></li></ul><h3 id="Debian-官网下载"><a href="#Debian-官网下载" class="headerlink" title="Debian 官网下载"></a>Debian 官网下载</h3><ul><li>Debian 5（lenny）：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZGViaWFuLm9yZy9yZWxlYXNlcy9sZW5ueS9kZWJpYW4taW5zdGFsbGVyLw==">https://www.debian.org/releases/lenny/debian-installer/<i class="fa fa-external-link-alt"></i></span></li><li>Debian 6（squeeze）：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZGViaWFuLm9yZy9yZWxlYXNlcy9zcXVlZXplL2RlYmlhbi1pbnN0YWxsZXIv">https://www.debian.org/releases/squeeze/debian-installer/<i class="fa fa-external-link-alt"></i></span></li><li>Debian 7（wheezy）：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZGViaWFuLm9yZy9yZWxlYXNlcy93aGVlenkvZGViaWFuLWluc3RhbGxlci8=">https://www.debian.org/releases/wheezy/debian-installer/<i class="fa fa-external-link-alt"></i></span></li><li>Debian 8（jessie）：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZGViaWFuLm9yZy9yZWxlYXNlcy9qZXNzaWUvZGViaWFuLWluc3RhbGxlci8=">https://www.debian.org/releases/jessie/debian-installer/<i class="fa fa-external-link-alt"></i></span></li><li>Debian 9（stretch）：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZGViaWFuLm9yZy9yZWxlYXNlcy9zdHJldGNoL2RlYmlhbi1pbnN0YWxsZXIv">https://www.debian.org/releases/stretch/debian-installer/<i class="fa fa-external-link-alt"></i></span></li><li>Debian 10（buster）：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZGViaWFuLm9yZy9yZWxlYXNlcy9idXN0ZXIvZGViaWFuLWluc3RhbGxlci8=">https://www.debian.org/releases/buster/debian-installer/<i class="fa fa-external-link-alt"></i></span></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;安装了几次 debian，一直无法启动。一直闪烁光标。后来发现是默认的问题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://jueee.github.io/categories/Linux/"/>
+    
+    
+    <category term="Linux" scheme="https://jueee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -508,39 +544,6 @@
 &lt;ul&gt;
 &lt;li&gt;官网：&lt;a href=&quot;https://element.eleme.cn/&quot;&gt;https://element.eleme.cn/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;GitHub：&lt;a href=&quot;https://github.com/ElemeFE/element/&quot;&gt;https://github.com/ElemeFE/element/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    <category term="Vue" scheme="https://jueee.github.io/categories/Vue/"/>
-    
-    
-    <category term="Vue" scheme="https://jueee.github.io/tags/Vue/"/>
-    
-    <category term="Element" scheme="https://jueee.github.io/tags/Element/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Element UI 表单设计及代码生成器 form-generator</title>
-    <link href="https://jueee.github.io/2020/11/2020-11-04-ElementUI%E8%A1%A8%E5%8D%95%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8form-generator/"/>
-    <id>https://jueee.github.io/2020/11/2020-11-04-ElementUI%E8%A1%A8%E5%8D%95%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8form-generator/</id>
-    <published>2020-11-03T00:00:00.000Z</published>
-    <updated>2020-11-03T11:40:12.391Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="form-generator"><a href="#form-generator" class="headerlink" title="form-generator"></a>form-generator</h3><p>Element UI 表单设计及代码生成器，可将生成的代码直接运行在基于 Element 的 vue 项目中；也可导出 JSON 表单，使用配套的解析器将 JSON 解析成真实的表单。</p><p><strong>源码：</strong></p><ul><li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0pha0h1YW5nL2Zvcm0tZ2VuZXJhdG9y">https://github.com/JakHuang/form-generator<i class="fa fa-external-link-alt"></i></span></li><li>Gitee：<span class="exturl" data-url="aHR0cHM6Ly9naXRlZS5jb20vbXJoai9mb3JtLWdlbmVyYXRvcg==">https://gitee.com/mrhj/form-generator<i class="fa fa-external-link-alt"></i></span></li></ul><p><strong>在线地址</strong>：</p><ul><li>国内预览地址：<span class="exturl" data-url="aHR0cHM6Ly9tcmhqLmdpdGVlLmlvL2Zvcm0tZ2VuZXJhdG9yLyMv">https://mrhj.gitee.io/form-generator/#/<i class="fa fa-external-link-alt"></i></span></li><li>vscode 插件：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0pha0h1YW5nL2Zvcm0tZ2VuZXJhdG9yLXBsdWdpbg==">https://github.com/JakHuang/form-generator-plugin<i class="fa fa-external-link-alt"></i></span></li></ul><a id="more"></a><h3 id="form-generator-plugin"><a href="#form-generator-plugin" class="headerlink" title="form-generator-plugin"></a>form-generator-plugin</h3><ul><li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0pha0h1YW5nL2Zvcm0tZ2VuZXJhdG9yLXBsdWdpbg==">https://github.com/JakHuang/form-generator-plugin<i class="fa fa-external-link-alt"></i></span></li></ul><h4 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h4><p>使用 vscode 搜索插件 <code>Form Generator Plugin</code>，并点击 install 进行安装。</p><p><img src="/images/2020/11/image-20201103100725339.png" alt="image-20201103100725339" loading="lazy"></p><h4 id="使用插件"><a href="#使用插件" class="headerlink" title="使用插件"></a>使用插件</h4><p>选择 vue 文件，邮件选择 “打开表单设计器”。</p><p><img src="/images/2020/11/image-20201103100909195.png" alt="image-20201103100909195" loading="lazy"></p><p>拖动控件进行布局：</p><p><img src="/images/2020/11/image-20201103193921825.png" alt="image-20201103193921825" loading="lazy"></p><p>导出或者复制代码，如下所示：</p><pre class="language-vue" data-language="vue"><code class="language-vue">&lt;template&gt;  &lt;div&gt;    &lt;el-form ref="elForm" :model="formData" :rules="rules" size="medium" label-width="100px"&gt;      &lt;el-form-item label="单行文本" prop="field101"&gt;        &lt;el-input v-model="formData.field101" placeholder="请输入单行文本" clearable :style="{width: '100%'}"&gt;        &lt;/el-input&gt;      &lt;/el-form-item&gt;      &lt;el-form-item label="时间范围" prop="field104"&gt;        &lt;el-time-picker v-model="formData.field104" is-range format="HH:mm:ss" value-format="HH:mm:ss"          :style="{width: '100%'}" start-placeholder="开始时间" end-placeholder="结束时间" range-separator="至"          clearable&gt;&lt;/el-time-picker&gt;      &lt;/el-form-item&gt;      &lt;el-form-item label="多选框组" prop="field103"&gt;        &lt;el-checkbox-group v-model="formData.field103" size="medium"&gt;          &lt;el-checkbox v-for="(item, index) in field103Options" :key="index" :label="item.value"            :disabled="item.disabled"&gt;{{item.label}}&lt;/el-checkbox&gt;        &lt;/el-checkbox-group&gt;      &lt;/el-form-item&gt;      &lt;el-form-item label="评分" prop="field105"&gt;        &lt;el-rate v-model="formData.field105"&gt;&lt;/el-rate&gt;      &lt;/el-form-item&gt;      &lt;el-form-item label="上传" prop="field106" required&gt;        &lt;el-upload ref="field106" :file-list="field106fileList" :action="field106Action"          :before-upload="field106BeforeUpload"&gt;          &lt;el-button size="small" type="primary" icon="el-icon-upload"&gt;点击上传&lt;/el-button&gt;        &lt;/el-upload&gt;      &lt;/el-form-item&gt;      &lt;el-form-item size="large"&gt;        &lt;el-button type="primary" @click="submitForm"&gt;提交&lt;/el-button&gt;        &lt;el-button @click="resetForm"&gt;重置&lt;/el-button&gt;      &lt;/el-form-item&gt;    &lt;/el-form&gt;  &lt;/div&gt;&lt;/template&gt;&lt;script&gt;export default {  components: {},  props: [],  data() {    return {      formData: {        field101: undefined,        field104: null,        field103: [],        field105: 0,        field106: null,      },      rules: {        field101: [{          required: true,          message: '请输入单行文本',          trigger: 'blur'        }],        field104: [{          required: true,          message: '时间范围不能为空',          trigger: 'change'        }],        field103: [{          required: true,          type: 'array',          message: '请至少选择一个field103',          trigger: 'change'        }],        field105: [{          required: true,          message: '评分不能为空',          trigger: 'change'        }],      },      field106Action: 'https://jsonplaceholder.typicode.com/posts/',      field106fileList: [],      field103Options: [{        "label": "选项一",        "value": 1      }, {        "label": "选项二",        "value": 2      }, {        "label": "选项三",        "value": ""      }, {        "label": "选项四",        "value": ""      }, {        "label": "选项五",        "value": ""      }],    }  },  computed: {},  watch: {},  created() {},  mounted() {},  methods: {    submitForm() {      this.$refs['elForm'].validate(valid =&gt; {        if (!valid) return        // TODO 提交表单      })    },    resetForm() {      this.$refs['elForm'].resetFields()    },    field106BeforeUpload(file) {      let isRightSize = file.size / 1024 / 1024 &lt; 2      if (!isRightSize) {        this.$message.error('文件大小超过 2MB')      }      return isRightSize    },  }}&lt;/script&gt;&lt;style&gt;.el-rate {  display: inline-block;  vertical-align: text-top;}.el-upload__tip {  line-height: 1.2;}&lt;/style&gt;</code></pre>]]></content>
-    
-    
-    <summary type="html">&lt;h3 id=&quot;form-generator&quot;&gt;&lt;a href=&quot;#form-generator&quot; class=&quot;headerlink&quot; title=&quot;form-generator&quot;&gt;&lt;/a&gt;form-generator&lt;/h3&gt;&lt;p&gt;Element UI表单设计及代码生成器，可将生成的代码直接运行在基于Element的vue项目中；也可导出JSON表单，使用配套的解析器将JSON解析成真实的表单。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;源码：&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;GitHub：&lt;a href=&quot;https://github.com/JakHuang/form-generator&quot;&gt;https://github.com/JakHuang/form-generator&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Gitee：&lt;a href=&quot;https://gitee.com/mrhj/form-generator&quot;&gt;https://gitee.com/mrhj/form-generator&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;在线地址&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;国内预览地址：&lt;a href=&quot;https://mrhj.gitee.io/form-generator/#/&quot;&gt;https://mrhj.gitee.io/form-generator/#/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;vscode 插件：&lt;a href=&quot;https://github.com/JakHuang/form-generator-plugin&quot;&gt;https://github.com/JakHuang/form-generator-plugin&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</summary>
     
     
