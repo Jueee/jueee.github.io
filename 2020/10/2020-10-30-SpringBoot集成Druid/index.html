@@ -38,11 +38,12 @@
 <meta property="og:image" content="https://jueee.github.io/images/2020/10/image-20201030161817190.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/10/image-20201030161817190.png">
 <meta property="article:published_time" content="2020-10-30T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-02T03:11:34.593Z">
+<meta property="article:modified_time" content="2020-12-15T09:24:47.295Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="JavaJar">
 <meta property="article:tag" content="Alibaba">
+<meta property="article:tag" content="druid">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jueee.github.io/images/2020/10/image-20201030161817190.png">
 
@@ -166,17 +167,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">115</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">120</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">28</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">29</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">59</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">63</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -256,20 +257,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -442,7 +443,14 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.2.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 
-<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>配置文件 application.properties：</p>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>配置文件 application.properties。</p>
+<p>基础配置：</p>
+<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.driverClassName</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
+<span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</span>
+<span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
+<span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span></code></pre>
+
+<p>信息配置：</p>
 <pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</span>
 <span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
 <span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
@@ -577,6 +585,9 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\12\2020-12-15-SpringBoot通过Druid集成JPA数据源\" rel="bookmark">SpringBoot 通过 Druid 集成 JPA 数据源</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-27-Java字节码操纵框架ASM\" rel="bookmark">Java 字节码操纵框架 ASM</a></div>
     </li>
     <li class="popular-posts-item">
@@ -588,9 +599,6 @@
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\10\2020-10-22-Google工具类Guava的基本使用\" rel="bookmark">Google工具类Guava的基本使用</a></div>
     </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\10\2020-10-26-Google工具类Gson的基本使用\" rel="bookmark">Google 工具类 Gson 的基本使用</a></div>
-    </li>
   </ul>
 
 
@@ -599,6 +607,7 @@
               <a href="/tags/Java/" rel="tag"># Java</a>
               <a href="/tags/JavaJar/" rel="tag"># JavaJar</a>
               <a href="/tags/Alibaba/" rel="tag"># Alibaba</a>
+              <a href="/tags/druid/" rel="tag"># druid</a>
           </div>
 
         
