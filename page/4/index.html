@@ -157,17 +157,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">120</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">122</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">29</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">30</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">63</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">64</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -246,20 +246,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-count">64</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -331,6 +331,222 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-23-Docker%E4%BD%BF%E7%94%A8Supervisor%E6%9D%A5%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/2020-11-23-Docker%E4%BD%BF%E7%94%A8Supervisor%E6%9D%A5%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/" class="post-title-link" itemprop="url">Docker 使用 Supervisor 来管理进程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-23 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-23T00:00:00Z">2020-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/11/2020-11-23-Docker%E4%BD%BF%E7%94%A8Supervisor%E6%9D%A5%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-23-Docker%E4%BD%BF%E7%94%A8Supervisor%E6%9D%A5%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>Docker</strong> 容器在启动的时候开启单个进程。但我们经常需要在一个机器上开启多个服务，这可以有很多方法，最简单的就是把多个启动命令放到一个启动脚本里面，启动的时候直接启动这个脚本，另外就是安装进程管理工具。</p>
+<p>本小节将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/2020-11-23-Docker%E4%BD%BF%E7%94%A8Supervisor%E6%9D%A5%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-20-Debian%E4%B8%8B%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/2020-11-20-Debian%E4%B8%8B%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Debian 下配置网络的方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-20T00:00:00Z">2020-11-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/11/2020-11-20-Debian%E4%B8%8B%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%B9%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-20-Debian%E4%B8%8B%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3><h4 id="配置网卡"><a href="#配置网卡" class="headerlink" title="配置网卡"></a>配置网卡</h4><p>修改 /etc/network/interfaces 添加如下</p>
+<pre class="language-none"><code class="language-none"># #号后面是备注，不要添加哦！
+ 
+auto eth0 #开机自动激活
+iface eth0 inte static #静态IP
+address 192.168.0.56 #本机IP
+netmask 255.255.255.0 #子网掩码
+gateway 192.168.0.254 #路由网关
+ 
+#因为我是通过路由上网的，所以配置为静态IP和网关</code></pre>
+
+<p>如果是用 DHCP 自动获取，请在配置文件里添加如下：</p>
+<pre class="language-none"><code class="language-none">iface eth0 inet dhcp</code></pre>
+
+<h4 id="设置DNS"><a href="#设置DNS" class="headerlink" title="设置DNS"></a>设置 DNS</h4><pre class="language-none"><code class="language-none">echo "nameserver 202.96.128.86" &gt;&gt; /etc/resolv.conf
+#请设置为你当地的DNS</code></pre>
+
+<p>到这里配置好以后，重启一下网络。</p>
+<h4 id="重启网络"><a href="#重启网络" class="headerlink" title="重启网络"></a>重启网络</h4><pre class="language-none"><code class="language-none">/etc/init.d/networking restart</code></pre>
+
+<h3 id="网卡配置"><a href="#网卡配置" class="headerlink" title="网卡配置"></a>网卡配置</h3><p><strong>ifup 命令</strong> 用于激活指定的网络接口。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 启动网卡eth1</span>
+<span class="token function">ifup</span> eth1</code></pre>
+
+<p><strong>ifdown 命令</strong> 用于禁用指定的网络接口。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 停止网卡eth1</span>
+<span class="token function">ifdown</span> eth1</code></pre>
+
+<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><p>问题描述：</p>
+<p>配置完 /etc/networking/interfaces 后，使用 /etc/init.d/networking restart 出现启动失败，根据提示输入 systemctl status networking.service 发现不认识 /etc/networking/interfaces 中配置的虚拟网卡 (或者是因为虚拟机的重新移动导致的设备不匹配问题等)</p>
+<p>解决方法：</p>
+<p>首先可以查看 etc/udev/rules.d/70-persistent-net.rules 是否存在，如果存在，则删除 rm etc/udev/rules.d/70-persistent-net.rules，重启即可</p>
+<p>如果 etc/udev/rules.d/70-persistent-net.rules 不存在，则 ifconfig -a 查看全部网卡，修改 /etc/networking/interfaces 中的网卡名和 ifconfig -a 命令显示的网卡名匹配，重启网络即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -731,206 +947,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">RESTful 架构的介绍和使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-10T00:00:00Z">2020-11-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h3><p>REST（Representational State Transfer）表象化状态转变（表述性状态转变），在 2000 年被提出，基于 HTTP、URI、XML、JSON 等标准和协议，支持轻量级、跨平台、跨语言的架构设计。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/" class="post-title-link" itemprop="url">基于 Vue+ElementUI 的后台集成方案 vue-element-admin</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-09T00:00:00Z">2020-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="vue-element-admin"><a href="#vue-element-admin" class="headerlink" title="vue-element-admin"></a>vue-element-admin</h3><p>vue-element-admin 是一个后台前端解决方案，它基于 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue">vue</a> 和 <a target="_blank" rel="noopener" href="https://github.com/ElemeFE/element">element-ui</a> 实现。</p>
-<p>它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/PanJiaChen/vue-element-admin">GitHub</a>，<a target="_blank" rel="noopener" href="https://panjiachen.github.io/vue-element-admin/">在线预览</a>，<a target="_blank" rel="noopener" href="https://github.com/PanJiaChen/vue-element-admin/wiki">Wiki</a></li>
-<li><a target="_blank" rel="noopener" href="https://gitee.com/panjiachen/vue-element-admin">Gitee</a>，<a target="_blank" rel="noopener" href="https://panjiachen.gitee.io/vue-element-admin/">在线预览</a>，<a target="_blank" rel="noopener" href="https://panjiachen.gitee.io/vue-element-admin-site/zh/guide/">使用文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.oschina.net/p/vue-element-admin">OSChina</a></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
