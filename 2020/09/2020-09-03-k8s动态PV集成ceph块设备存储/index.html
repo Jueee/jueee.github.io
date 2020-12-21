@@ -575,10 +575,10 @@ kubectl <span class="token operator">-</span>n <span class="token variable">$NAM
       <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在 k8s 中使用 rook-ceph</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s 动态扩容 Ceph 持久卷</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s 静态 PV 集成 ceph 块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s 静态 PV 集成 ceph 块设备存储</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s 动态扩容 Ceph 持久卷</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-29-Ceph分布式存储系统介绍\" rel="bookmark">Ceph 分布式存储系统介绍</a></div>
@@ -862,6 +862,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/09/2020-09-03-k8s%E5%8A%A8%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -879,18 +891,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/09/2020-09-03-k8s%E5%8A%A8%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 

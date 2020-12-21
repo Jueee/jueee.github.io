@@ -28,17 +28,17 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="Electron介绍Electron提供了丰富的本地（操作系统）的API，使你能够使用纯JavaScript来创建桌面应用程序。 与其它各种的Node.js运行时不同的是Electron专注于桌面应用程序而不是Web服务器。  Electron 官网：https:&#x2F;&#x2F;www.electronjs.org&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;electron&#x2F;electron 中文">
+  <meta name="description" content="Electron 介绍Electron 提供了丰富的本地（操作系统）的 API，使你能够使用纯 JavaScript 来创建桌面应用程序。 与其它各种的 Node.js 运行时不同的是 Electron 专注于桌面应用程序而不是 Web 服务器。  Electron 官网：https:&#x2F;&#x2F;www.electronjs.org&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;electron&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨平台桌面应用开发工具 Electron 使用入门">
 <meta property="og:url" content="https://jueee.github.io/2020/11/2020-11-02-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Electron%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="Electron介绍Electron提供了丰富的本地（操作系统）的API，使你能够使用纯JavaScript来创建桌面应用程序。 与其它各种的Node.js运行时不同的是Electron专注于桌面应用程序而不是Web服务器。  Electron 官网：https:&#x2F;&#x2F;www.electronjs.org&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;electron&#x2F;electron 中文">
+<meta property="og:description" content="Electron 介绍Electron 提供了丰富的本地（操作系统）的 API，使你能够使用纯 JavaScript 来创建桌面应用程序。 与其它各种的 Node.js 运行时不同的是 Electron 专注于桌面应用程序而不是 Web 服务器。  Electron 官网：https:&#x2F;&#x2F;www.electronjs.org&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;electron&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2020/11/image-20201102144240472.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/11/image-20201102145110935.png">
 <meta property="article:published_time" content="2020-11-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-03T08:58:41.181Z">
+<meta property="article:modified_time" content="2020-11-24T11:10:58.524Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="软件">
 <meta property="article:tag" content="Windows">
@@ -426,7 +426,7 @@
 <ul>
 <li>Electron 官网：<span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcv">https://www.electronjs.org/<i class="fa fa-external-link-alt"></i></span></li>
 <li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2VsZWN0cm9uL2VsZWN0cm9u">https://github.com/electron/electron<i class="fa fa-external-link-alt"></i></span></li>
-<li>中文文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjc2Nob29sLmNuL2VsZWN0cm9ubWFudWFsLw==">https://www.w3cschool.cn/electronmanual/<i class="fa fa-external-link-alt"></i></span></li>
+<li> 中文文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cudzNjc2Nob29sLmNuL2VsZWN0cm9ubWFudWFsLw==">https://www.w3cschool.cn/electronmanual/<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 <a id="more"></a>
 
@@ -481,7 +481,7 @@ app<span class="token punctuation">.</span><span class="token function">on</span
 <ul>
 <li>第 1 行：首先，导入包的 <code>app</code> 和 <code>BrowserWindow</code> 模块，<code>electron</code> 以便能够管理应用程序的生命周期事件，以及创建和控制浏览器窗口。</li>
 <li>第 3 行：此后，您定义一个函数，该函数创建一个启用了节点集成的<span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvZG9jcy9hcGkvYnJvd3Nlci13aW5kb3cjbmV3LWJyb3dzZXJ3aW5kb3dvcHRpb25z">新浏览器窗口<i class="fa fa-external-link-alt"></i></span>，将 <code>index.html</code> 文件加载到该窗口中（第 12 行，我们将在后面讨论文件）并打开 Developer Tools（第 13 行）。</li>
-<li>第 16 行：<code>createWindow</code> 在<span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvZG9jcy9hcGkvYXBwI2FwcHdoZW5yZWFkeQ==">初始化<i class="fa fa-external-link-alt"></i></span>Electron 应用程序后，通过调用函数来创建新的浏览器窗口。</li>
+<li>第 16 行：<code>createWindow</code> 在<span class="exturl" data-url="aHR0cHM6Ly93d3cuZWxlY3Ryb25qcy5vcmcvZG9jcy9hcGkvYXBwI2FwcHdoZW5yZWFkeQ==">初始化<i class="fa fa-external-link-alt"></i></span> Electron 应用程序后，通过调用函数来创建新的浏览器窗口。</li>
 <li>第 18 行：您添加了一个新的侦听器，当它不再有打开的窗口时，它会尝试退出该应用程序。由于操作系统的<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmFwcGxlLmNvbS9lbi1jYS9ndWlkZS9tYWMtaGVscC9tY2hscDI0NjkvbWFj">窗口管理行为，<i class="fa fa-external-link-alt"></i></span>该侦听器在 macOS 上是禁止操作的。</li>
 <li>第 24 行：您添加了一个新的侦听器，该侦听器仅在应用程序被激活后没有可见窗口时才创建新的浏览器窗口。例如，在第一次启动应用程序后，或重新启动已经运行的应用程序。</li>
 </ul>
@@ -560,16 +560,16 @@ app<span class="token punctuation">.</span><span class="token function">on</span
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\10\2020-10-21-Windows录屏软件Bandicam\" rel="bookmark">Windows录屏软件Bandicam</a></div>
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-21-Windows录屏软件Bandicam\" rel="bookmark">Windows 录屏软件 Bandicam</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\10\2020-10-23-启用Windows10下的Linux子系统\" rel="bookmark">启用 Windows10 下的 Linux 子系统</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\10\2020-10-31-Windows环境搭建Vue开发环境\" rel="bookmark">Windows环境搭建Vue开发环境</a></div>
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-31-Windows环境搭建Vue开发环境\" rel="bookmark">Windows 环境搭建 Vue 开发环境</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\12\2020-12-02-Potplayer画质增强教程\" rel="bookmark">Potplayer画质增强教程</a></div>
+      <div class="popular-posts-title"><a href="\2020\12\2020-12-02-Potplayer画质增强教程\" rel="bookmark">Potplayer 画质增强教程</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\07\2020-07-31-迁移VMware虚拟机至微软Hyper-V\" rel="bookmark">迁移 VMware 虚拟机至微软 Hyper-V</a></div>
@@ -588,13 +588,13 @@ app<span class="token punctuation">.</span><span class="token function">on</span
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/11/2020-11-01-Spring%20Boot+Vue%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%E5%BC%80%E5%8F%91%E5%AE%9E%E4%BE%8B/" rel="prev" title="Spring Boot+Vue 前后端分离开发实例">
-                  <i class="fa fa-chevron-left"></i> Spring Boot+Vue 前后端分离开发实例
+                <a href="/2020/11/2020-11-02-NodeJS%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E4%BD%BF%E7%94%A8/" rel="prev" title="NodeJS 版本管理工具 nvm 使用">
+                  <i class="fa fa-chevron-left"></i> NodeJS 版本管理工具 nvm 使用
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/11/2020-11-02-NodeJS%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E4%BD%BF%E7%94%A8/" rel="next" title="NodeJS 版本管理工具 nvm 使用">
-                  NodeJS 版本管理工具 nvm 使用 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/11/2020-11-04-ElementUI%E8%A1%A8%E5%8D%95%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8form-generator/" rel="next" title="Element UI 表单设计及代码生成器 form-generator">
+                  Element UI 表单设计及代码生成器 form-generator <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -851,6 +851,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/11/2020-11-02-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Electron%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -868,18 +880,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/11/2020-11-02-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Electron%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 

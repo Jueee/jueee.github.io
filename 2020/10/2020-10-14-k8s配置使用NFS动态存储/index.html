@@ -36,7 +36,7 @@
 <meta property="og:description" content="部署 nfs 服务1、主机安装 nfs 服务器 sudo apt-get install nfs-kernel-server sudo apt-get install nfs-common">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-10-16T07:27:21.744Z">
+<meta property="article:modified_time" content="2020-11-02T03:11:34.543Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="k8s">
 <meta property="article:tag" content="NFS">
@@ -567,16 +567,16 @@ sudo apt-get install nfs-common</code></pre>
       <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在 k8s 中使用 rook-ceph</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s 动态扩容 Ceph 持久卷</a></div>
-    </li>
-    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s 静态 PV 集成 ceph 块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-修改k8s的nodeport类型端口范围\" rel="bookmark">修改 k8s 的 nodeport 类型端口范围</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s 动态扩容 Ceph 持久卷</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s 动态 PV 集成 ceph 块设备存储</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-05-k8s在tomcat多副本时的session会话保持\" rel="bookmark">k8s 在 tomcat 多副本时的 session 会话保持</a></div>
     </li>
   </ul>
 
@@ -854,6 +854,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/10/2020-10-14-k8s%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8NFS%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -871,18 +883,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/10/2020-10-14-k8s%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8NFS%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 

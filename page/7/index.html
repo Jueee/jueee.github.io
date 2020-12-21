@@ -339,7 +339,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-02-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Electron%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-02-NodeJS%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -353,7 +353,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/2020-11-02-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Electron%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">跨平台桌面应用开发工具 Electron 使用入门</a>
+            <a href="/2020/11/2020-11-02-NodeJS%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">NodeJS 版本管理工具 nvm 使用</a>
         </h2>
 
         <div class="post-meta-container">
@@ -378,6 +378,10 @@
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/%E8%BD%AF%E4%BB%B6/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
         </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
+        </span>
     </span>
 
   
@@ -389,8 +393,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/11/2020-11-02-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Electron%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-02-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Electron%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/11/2020-11-02-NodeJS%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-02-NodeJS%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -404,16 +408,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Electron介绍"><a href="#Electron介绍" class="headerlink" title="Electron介绍"></a>Electron介绍</h3><p>Electron提供了丰富的本地（操作系统）的API，使你能够使用纯JavaScript来创建桌面应用程序。</p>
-<p>与其它各种的Node.js运行时不同的是Electron专注于桌面应用程序而不是Web服务器。</p>
+          <h3 id="nvm-介绍"><a href="#nvm-介绍" class="headerlink" title="nvm 介绍"></a>nvm 介绍</h3><p><code>nvm</code> 是一个 node 的版本管理工具，通俗来讲就是多个项目开发的时候，可能不是用的同一个版本的 <code>NodeJS</code> 开发的，这个时候我们进行二次开发调试的时候，就需要使用不同 <code>NodeJS</code> 的版本来进行测试，为了方便版本之间的切换，就需要使用的 <code>nvm</code> 来操作。</p>
 <ul>
-<li>Electron 官网：<a target="_blank" rel="noopener" href="https://www.electronjs.org/">https://www.electronjs.org/</a></li>
-<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/electron/electron">https://github.com/electron/electron</a></li>
-<li>中文文档：<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/electronmanual/">https://www.w3cschool.cn/electronmanual/</a></li>
+<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/coreybutler/nvm-windows">https://github.com/coreybutler/nvm-windows</a></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-02-%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%A1%8C%E9%9D%A2%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7Electron%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/#more" rel="contents">
+              <a class="btn" href="/2020/11/2020-11-02-NodeJS%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7nvm%E4%BD%BF%E7%94%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -518,12 +519,12 @@
     
     <div class="post-body" itemprop="articleBody">
           <h3 id="项目说明"><a href="#项目说明" class="headerlink" title="项目说明"></a>项目说明</h3><p>本项目基于 SpringBoot 和 Vue，搭建一个前后端分离项目的 demo。</p>
-<p>主要效果是通过前后端分离，将MySQL数据库中的数据，展示显示在页面上。</p>
+<p>主要效果是通过前后端分离，将 MySQL 数据库中的数据，展示显示在页面上。</p>
 <p>基础依赖：</p>
 <ul>
 <li>数据库存储：MySQL</li>
-<li>前端项目：Vue</li>
-<li>后端项目：springboot</li>
+<li> 前端项目：Vue</li>
+<li> 后端项目：springboot</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -627,8 +628,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="关于-Vue"><a href="#关于-Vue" class="headerlink" title="关于 Vue"></a>关于 Vue</h3><p>VueJS是一个开源的渐进式JavaScript框架，用于开发交互式Web界面。</p>
-<p>它是用于简化Web开发的着名框架之一，VueJS专注于视图层。它可以很容易地集成到大型项目前端开发没有任何问题。</p>
+          <h3 id="关于-Vue"><a href="#关于-Vue" class="headerlink" title="关于 Vue"></a>关于 Vue</h3><p>VueJS 是一个开源的渐进式 JavaScript 框架，用于开发交互式 Web 界面。</p>
+<p>它是用于简化 Web 开发的着名框架之一，VueJS 专注于视图层。它可以很容易地集成到大型项目前端开发没有任何问题。</p>
 <ul>
 <li>Vue 中文网：<a target="_blank" rel="noopener" href="https://cn.vuejs.org/">https://cn.vuejs.org/</a></li>
 </ul>
@@ -698,7 +699,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
         </span>
     </span>
 
@@ -1202,7 +1207,6 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
-
 <script>
 NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
@@ -1214,6 +1218,7 @@ NexT.utils.loadComments('#valine-comments', () => {
   }, window.Valine);
 });
 </script>
+
 
     </div>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>

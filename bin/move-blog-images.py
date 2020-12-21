@@ -1,4 +1,4 @@
-import os,re,shutil,sys,datetime
+import os,re,shutil,sys
 import fileinput
 
 def getBlogAddress():
@@ -49,11 +49,8 @@ def moveImages():
         os.rmdir(OLD_IMAGES_PATH)
         print('rmdir:'+OLD_IMAGES_PATH)
 
-def getThisMonth():
-    return str(datetime.datetime.now().year)+"-"+str(datetime.datetime.now().month)
-
 if __name__ == '__main__':
-    THIS_MONTH=getThisMonth()
+    THIS_MONTH="2020-08"
     if len(sys.argv) > 1:
         monthParam = sys.argv[1]
         if monthParam is not None:

@@ -36,7 +36,7 @@
 <meta property="og:description" content="使用编译器若遇到文件编码问题，当文件中有中文时，则会出现乱码，会因为编码问题导致各种错误。 所以写了个 python 脚本来检测原文件编码并转换为目标编码，以下代码以目标编码为 utf-8 为例： 需要安装 chardet，详情：https:&#x2F;&#x2F;pypi.python.org&#x2F;pypi&#x2F;chardet">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-10T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-10-10T09:27:42.694Z">
+<meta property="article:modified_time" content="2020-11-02T03:11:34.522Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -790,6 +790,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -807,18 +819,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 

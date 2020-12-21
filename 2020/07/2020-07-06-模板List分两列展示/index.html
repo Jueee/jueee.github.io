@@ -39,8 +39,8 @@
 <meta property="article:modified_time" content="2020-12-17T10:45:07.294Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="HTML">
-<meta property="article:tag" content="Liquid">
 <meta property="article:tag" content="FreeMarker">
+<meta property="article:tag" content="Liquid">
 <meta name="twitter:card" content="summary">
 
 
@@ -484,7 +484,7 @@
       <div class="popular-posts-title"><a href="\2020\08\2020-08-19-为博客新增评论系统\" rel="bookmark">为博客新增评论系统</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-22-Docker容器日志管理最佳实践\" rel="bookmark">Docker 容器日志管理最佳实践</a></div>
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-28-HTML解析器JSoup的基本使用\" rel="bookmark">HTML 解析器 JSoup 的基本使用</a></div>
     </li>
   </ul>
 
@@ -492,8 +492,8 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/HTML/" rel="tag"># HTML</a>
-              <a href="/tags/Liquid/" rel="tag"># Liquid</a>
               <a href="/tags/FreeMarker/" rel="tag"># FreeMarker</a>
+              <a href="/tags/Liquid/" rel="tag"># Liquid</a>
           </div>
 
         
@@ -763,6 +763,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/07/2020-07-06-%E6%A8%A1%E6%9D%BFList%E5%88%86%E4%B8%A4%E5%88%97%E5%B1%95%E7%A4%BA/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -780,18 +792,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/07/2020-07-06-%E6%A8%A1%E6%9D%BFList%E5%88%86%E4%B8%A4%E5%88%97%E5%B1%95%E7%A4%BA/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 

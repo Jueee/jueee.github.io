@@ -36,7 +36,7 @@
 <meta property="og:description" content="percona-toolkit 是一组高级命令行工具的集合，可以查看当前服务的摘要信息，磁盘检测，分析慢查询日志，查找重复索引，实现表同步等等。 官网：https:&#x2F;&#x2F;www.percona.com&#x2F;software&#x2F;database-tools&#x2F;percona-toolkit">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-31T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-02T06:15:13.276Z">
+<meta property="article:modified_time" content="2020-12-21T01:37:47.330Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -377,7 +377,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
         </span>
     </span>
 
@@ -492,13 +496,13 @@ $ pt-query-digest mysql-bin.288298.log <span class="token operator">&gt;</span> 
       <div class="popular-posts-title"><a href="\2020\08\2020-08-11-MySQL中DBlink的使用\" rel="bookmark">MySQL 中 DBlink 的使用</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\10\2020-10-17-PHP之通过MySQLi操作MySQL数据库\" rel="bookmark">PHP 之通过 MySQLi 操作 MySQL 数据库</a></div>
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-12-Apache数据库工具commons-dbutils的使用\" rel="bookmark">Apache 数据库工具 commons-dbutils 的使用</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\10\2020-10-18-PHP之通过PDO操作MySQL数据库\" rel="bookmark">PHP 之通过 PDO 操作 MySQL 数据库</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\10\2020-10-12-Apache数据库工具commons-dbutils的使用\" rel="bookmark">Apache 数据库工具 commons-dbutils 的使用</a></div>
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-17-PHP之通过MySQLi操作MySQL数据库\" rel="bookmark">PHP 之通过 MySQLi 操作 MySQL 数据库</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\12\2020-12-14-MySQL性能优化命令Explain的使用\" rel="bookmark">MySQL 性能优化命令 Explain 的使用</a></div>
@@ -778,6 +782,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/10/2020-10-31-MySQL%E8%BF%90%E7%BB%B4%E5%B7%A5%E5%85%B7percona-toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -795,18 +811,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/10/2020-10-31-MySQL%E8%BF%90%E7%BB%B4%E5%B7%A5%E5%85%B7percona-toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 
