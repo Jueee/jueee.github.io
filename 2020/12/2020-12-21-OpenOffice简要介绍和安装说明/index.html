@@ -28,17 +28,22 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小决的专栏">
-<meta property="og:url" content="https://jueee.github.io/categories/Neo4j/index.html">
+  <meta name="description" content="OpenOffice 介绍OpenOffice.org 是一套跨平台的办公室软件套件，能在 Windows、Linux、MacOS X (X11)、和 Solaris 等操作系统上执行。它与各个主要的办公室软件套件兼容。 OpenOffice.org 的主要模块有：  Writer (文本文档) Calc (电子表格) Impress (演示文稿) Math (公式计算) Draw (画图) Ba">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenOffice 简要介绍和安装说明">
+<meta property="og:url" content="https://jueee.github.io/2020/12/2020-12-21-OpenOffice%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/index.html">
 <meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="OpenOffice 介绍OpenOffice.org 是一套跨平台的办公室软件套件，能在 Windows、Linux、MacOS X (X11)、和 Solaris 等操作系统上执行。它与各个主要的办公室软件套件兼容。 OpenOffice.org 的主要模块有：  Writer (文本文档) Calc (电子表格) Impress (演示文稿) Math (公式计算) Draw (画图) Ba">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-21T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-21T07:39:18.648Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Hexo, NexT">
+<meta property="article:tag" content="Apache">
+<meta property="article:tag" content="OpenOffice">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://jueee.github.io/categories/Neo4j/">
+<link rel="canonical" href="https://jueee.github.io/2020/12/2020-12-21-OpenOffice%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/">
 
 
 <script data-pjax class="page-configurations">
@@ -46,12 +51,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: Neo4j | 小决的专栏</title>
+  <title>OpenOffice 简要介绍和安装说明 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -157,17 +162,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">123</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">125</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">31</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">33</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">65</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">66</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -219,7 +224,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -231,6 +236,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenOffice-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">OpenOffice 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenOffice-%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-number">2.</span> <span class="nav-text">OpenOffice 相关链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-OpenOffice"><span class="nav-number">3.</span> <span class="nav-text">安装 OpenOffice</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Debian-%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">Debian 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows-%E5%AE%89%E8%A3%85"><span class="nav-number">3.2.</span> <span class="nav-text">Windows 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">异常处理</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -246,20 +252,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">123</span>
+          <span class="site-state-item-count">125</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -327,98 +333,218 @@
 </noscript>
 
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
       
 
       
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h2 class="collection-header">Neo4j
-          <small>分类</small>
-        </h2>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-21-OpenOffice%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OpenOffice 简要介绍和安装说明
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-21 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-21T00:00:00Z">2020-12-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/OpenOffice/" itemprop="url" rel="index"><span itemprop="name">OpenOffice</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-21-OpenOffice%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-21-OpenOffice%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="OpenOffice-介绍"><a href="#OpenOffice-介绍" class="headerlink" title="OpenOffice 介绍"></a>OpenOffice 介绍</h3><p><strong>OpenOffice.org</strong> 是一套跨平台的办公室软件套件，能在 Windows、Linux、MacOS X (X11)、和 Solaris 等操作系统上执行。它与各个主要的办公室软件套件兼容。</p>
+<p>OpenOffice.org 的主要模块有：</p>
+<ul>
+<li>Writer (文本文档)</li>
+<li>Calc (电子表格)</li>
+<li>Impress (演示文稿)</li>
+<li>Math (公式计算)</li>
+<li>Draw (画图)</li>
+<li>Base (数据库)</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="OpenOffice-相关链接"><a href="#OpenOffice-相关链接" class="headerlink" title="OpenOffice 相关链接"></a>OpenOffice 相关链接</h3><ul>
+<li>官网：<span class="exturl" data-url="aHR0cHM6Ly9vcGVub2ZmaWNlLmFwYWNoZS5vcmcvJUUzJTgwJTgxaHR0cDovL3d3dy5vcGVub2ZmaWNlLm9yZy8=">https://openoffice.apache.org/、http://www.openoffice.org/<i class="fa fa-external-link-alt"></i></span></li>
+<li> 下载：<span class="exturl" data-url="aHR0cDovL3d3dy5vcGVub2ZmaWNlLm9yZy9kb3dubG9hZC8=">http://www.openoffice.org/download/<i class="fa fa-external-link-alt"></i></span></li>
+<li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FwYWNoZS9vcGVub2ZmaWNl">https://github.com/apache/openoffice<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h3 id="安装-OpenOffice"><a href="#安装-OpenOffice" class="headerlink" title="安装 OpenOffice"></a>安装 OpenOffice</h3><h4 id="Debian-安装"><a href="#Debian-安装" class="headerlink" title="Debian 安装"></a>Debian 安装</h4><ol>
+<li><p>下载 OpenOffice 软件包</p>
+<p>下载地址：<span class="exturl" data-url="aHR0cDovL3d3dy5vcGVub2ZmaWNlLm9yZy96aC1jbi9kb3dubG9hZC8=">http://www.openoffice.org/zh-cn/download/<i class="fa fa-external-link-alt"></i></span></p>
+<p>版本：deb 64 选择 <code>Linux 64-bit (x86-64) (DEB)</code></p>
+</li>
+<li><p>解压软件包</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -zxvf Apache_OpenOffice_4.1.7_Linux_x86-64_install-deb_zh-CN.tar.gz</code></pre>
+</li>
+<li><p>安装 OpenOffice</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> zh-CN/DEBS
+<span class="token function">sudo</span> dpkg -i *.deb
+<span class="token builtin class-name">cd</span> desktop-integration
+<span class="token function">sudo</span> dpkg -i *.deb</code></pre>
+</li>
+<li><p>启动 OpenOffice</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> soffice --headless --accept<span class="token operator">=</span><span class="token string">"socket,host=127.0.0.1,port=8100;urp;"</span> --nofirststartwizard <span class="token operator">&amp;</span></code></pre>
+
+</li>
+</ol>
+<h4 id="Windows-安装"><a href="#Windows-安装" class="headerlink" title="Windows 安装"></a>Windows 安装</h4><ol>
+<li>下载 <code>Apache_OpenOffice_4.1.8_Win_x86_install_zh-CN.exe</code></li>
+<li>双击进行安装。</li>
+<li>安装后，在 <code>C:\Program Files (x86)\OpenOffice 4</code>&nbsp;目录下。</li>
+</ol>
+<h4 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h4><p>运行程序报错：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ soffice --headless --accept<span class="token operator">=</span><span class="token string">"socket,host=127.0.0.1,port=8100;urp;"</span> --nofirststartwizard
+X11 connection rejected because of wrong authentication.
+X11 connection rejected because of wrong authentication.
+/opt/openoffice4/program/soffice.bin X11 error: Can't <span class="token function">open</span> display:
+   Set <span class="token environment constant">DISPLAY</span> environment variable, use -display option
+   or check permissions of your X-Server
+   <span class="token punctuation">(</span>See <span class="token string">"man X"</span> resp. <span class="token string">"man xhost"</span> <span class="token keyword">for</span> details<span class="token punctuation">)</span></code></pre>
+
+<p>需安装 X11：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt-get</span> <span class="token function">install</span> xvfb
+<span class="token function">apt-get</span> <span class="token function">install</span> x11-xserver-utils
+<span class="token function">apt-get</span> <span class="token function">install</span> tightvncserver tightvnc-java</code></pre>
+
+
+
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-10-24T00:00:00Z"
-              content="2020-10-24">
-          10-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/2020-10-24-Neo4j%E4%B9%8BCypher%E7%9B%B8%E5%85%B3SQL%E6%B1%87%E6%80%BB/" itemprop="url">
-            <span itemprop="name">Neo4j 之 Cypher 相关 SQL 汇总</span>
-          </a>
-      </div>
-
+    
+    
+    
       
-    </header>
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\12\2020-12-22-利用JODConverter转化文档为PDF格式\" rel="bookmark">利用 JODConverter 转化文档为 PDF 格式</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-15-关于toString方法的重写工具ToStringBuilder\" rel="bookmark">关于 toString 方法的重写工具 ToStringBuilder</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-kafka-manager的安装和使用\" rel="bookmark">kafka-manager 的安装和使用</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-11-Apache集合工具commons-collections4的使用\" rel="bookmark">Apache 集合工具 commons-collections4 的使用</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-12-Apache数据库工具commons-dbutils的使用\" rel="bookmark">Apache 数据库工具 commons-dbutils 的使用</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Apache/" rel="tag"># Apache</a>
+              <a href="/tags/OpenOffice/" rel="tag"># OpenOffice</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/2020-12-20-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90MyBatis%E6%95%B0%E6%8D%AE%E6%BA%90/" rel="prev" title="SpringBoot 通过 Druid 集成 MyBatis 数据源">
+                  <i class="fa fa-chevron-left"></i> SpringBoot 通过 Druid 集成 MyBatis 数据源
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/12/2020-12-22-%E5%88%A9%E7%94%A8JODConverter%E8%BD%AC%E5%8C%96%E6%96%87%E6%A1%A3%E4%B8%BAPDF%E6%A0%BC%E5%BC%8F/" rel="next" title="利用 JODConverter 转化文档为 PDF 格式">
+                  利用 JODConverter 转化文档为 PDF 格式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-10-08T00:00:00Z"
-              content="2020-10-08">
-          10-08
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">Neo4j 的安装和基本使用</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-08-10T00:00:00Z"
-              content="2020-08-10">
-          08-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/08/2020-08-10-Neo4j%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%86%E7%A0%81/" itemprop="url">
-            <span itemprop="name">Neo4j 初始化密码</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
-
-  
 
 
 
       
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -648,18 +774,37 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '6bc5e13d85dfa53f99a77bc18086e4b1',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
 <script>
 NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
     new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
       el: '#valine-comments',
-      path: "/categories/Neo4j/",
+      path: "/2020/12/2020-12-21-OpenOffice%E7%AE%80%E8%A6%81%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%AE%89%E8%A3%85%E8%AF%B4%E6%98%8E/",
       serverURLs: "https://p5beawtt.api.lncldglobal.com"
     }));
   }, window.Valine);
 });
 </script>
-
 
     </div>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
