@@ -28,15 +28,15 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="MyBatis-Plus 介绍MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。  官网：https:&#x2F;&#x2F;baomidou.com&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;baomidou&#x2F;mybatis-plus  依赖引入&lt;dependency&gt;     &lt;group">
+  <meta name="description" content="需要引入 maven 包： &lt;dependency&gt;     &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;     &lt;artifactId&gt;mybatis-plus-boot-starter&lt;&#x2F;artifactId&gt;     &lt;version&gt;3.4.1&lt;&#x2F;version&gt; &lt;&#x2F;depend">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot 通过 Druid 集成 MyBatis-Plus 框架">
-<meta property="og:url" content="https://jueee.github.io/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90MyBatis-Plus%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:title" content="SpringBoot 通过 Druid 多数据源集成 MyBatis-Plus">
+<meta property="og:url" content="https://jueee.github.io/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%9B%86%E6%88%90MyBatis-Plus/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="MyBatis-Plus 介绍MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。  官网：https:&#x2F;&#x2F;baomidou.com&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;baomidou&#x2F;mybatis-plus  依赖引入&lt;dependency&gt;     &lt;group">
+<meta property="og:description" content="需要引入 maven 包： &lt;dependency&gt;     &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;     &lt;artifactId&gt;mybatis-plus-boot-starter&lt;&#x2F;artifactId&gt;     &lt;version&gt;3.4.1&lt;&#x2F;version&gt; &lt;&#x2F;depend">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-23T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-22T11:25:51.331Z">
+<meta property="article:modified_time" content="2020-12-25T08:40:01.409Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="JavaJar">
@@ -45,7 +45,7 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://jueee.github.io/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90MyBatis-Plus%E6%A1%86%E6%9E%B6/">
+<link rel="canonical" href="https://jueee.github.io/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%9B%86%E6%88%90MyBatis-Plus/">
 
 
 <script data-pjax class="page-configurations">
@@ -58,7 +58,7 @@
   };
 </script>
 
-  <title>SpringBoot 通过 Druid 集成 MyBatis-Plus 框架 | 小决的专栏</title>
+  <title>SpringBoot 通过 Druid 多数据源集成 MyBatis-Plus | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -164,17 +164,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">127</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">133</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">33</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">67</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">70</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -238,7 +238,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyBatis-Plus-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">MyBatis-Plus 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%BC%95%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">依赖引入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyBatis-Plus-%E7%89%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">MyBatis-Plus 特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyBatis-Plus-%E8%AF%AD%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">MyBatis-Plus 语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.1.</span> <span class="nav-text">构造查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Druid-%E6%B3%A8%E8%A7%A3%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">Druid 注解多数据源示例</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Druid-%E6%B3%A8%E8%A7%A3%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">Druid 注解多数据源</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">数据源配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">定义注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bean"><span class="nav-number">1.4.</span> <span class="nav-text">Bean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mapper"><span class="nav-number">1.5.</span> <span class="nav-text">Mapper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service"><span class="nav-number">1.6.</span> <span class="nav-text">Service</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%B1%BB"><span class="nav-number">1.7.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.8.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -254,20 +254,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">133</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">70</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -348,7 +348,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90MyBatis-Plus%E6%A1%86%E6%9E%B6/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%9B%86%E6%88%90MyBatis-Plus/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -361,7 +361,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SpringBoot 通过 Druid 集成 MyBatis-Plus 框架
+          SpringBoot 通过 Druid 多数据源集成 MyBatis-Plus
         </h1>
 
         <div class="post-meta-container">
@@ -408,8 +408,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90MyBatis-Plus%E6%A1%86%E6%9E%B6/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90MyBatis-Plus%E6%A1%86%E6%9E%B6/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%9B%86%E6%88%90MyBatis-Plus/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%9B%86%E6%88%90MyBatis-Plus/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -423,49 +423,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="MyBatis-Plus-介绍"><a href="#MyBatis-Plus-介绍" class="headerlink" title="MyBatis-Plus 介绍"></a>MyBatis-Plus 介绍</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Jhb21pZG91L215YmF0aXMtcGx1cw==">MyBatis-Plus<i class="fa fa-external-link-alt"></i></span>（简称 MP）是一个 <span class="exturl" data-url="aHR0cDovL3d3dy5teWJhdGlzLm9yZy9teWJhdGlzLTMv">MyBatis<i class="fa fa-external-link-alt"></i></span> 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。</p>
-<ul>
-<li>官网：<span class="exturl" data-url="aHR0cHM6Ly9iYW9taWRvdS5jb20v">https://baomidou.com/<i class="fa fa-external-link-alt"></i></span></li>
-<li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2Jhb21pZG91L215YmF0aXMtcGx1cw==">https://github.com/baomidou/mybatis-plus<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h4 id="依赖引入"><a href="#依赖引入" class="headerlink" title="依赖引入"></a>依赖引入</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <p>需要引入 maven 包：</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.baomidou<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>mybatis-plus-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.4.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>mysql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>mysql-connector-java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>runtime<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>druid-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.2.4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>optional</span><span class="token punctuation">&gt;</span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>optional</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 <a id="more"></a>
 
-<h3 id="MyBatis-Plus-特性"><a href="#MyBatis-Plus-特性" class="headerlink" title="MyBatis-Plus 特性"></a>MyBatis-Plus 特性</h3><ul>
-<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
-<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
-<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
-<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
-<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
-<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
-<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
-<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
-<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
-<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
-<li><strong>内置性能分析插件</strong>：可输出 Sql 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
-<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
-</ul>
-<h3 id="MyBatis-Plus-语法"><a href="#MyBatis-Plus-语法" class="headerlink" title="MyBatis-Plus 语法"></a>MyBatis-Plus 语法</h3><h4 id="构造查询"><a href="#构造查询" class="headerlink" title="构造查询"></a>构造查询</h4><p><span class="exturl" data-url="aHR0cHM6Ly9iYW9taWRvdS5jb20vZ3VpZGUvd3JhcHBlci5odG1sI2Fic3RyYWN0d3JhcHBlcg==">参考文档<i class="fa fa-external-link-alt"></i></span></p>
-<pangu> </pangu><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">&gt;</span></span> wrapper<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">QueryWrapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-wrapper<span class="token punctuation">.</span><span class="token function">like</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">,</span><span class="token string">"tom"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Book</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> bookService<span class="token punctuation">.</span><span class="token function">selectAll</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-
-<h3 id="Druid-注解多数据源示例"><a href="#Druid-注解多数据源示例" class="headerlink" title="Druid 注解多数据源示例"></a>Druid 注解多数据源示例</h3><p>相关配置如下：</p>
-<ol>
-<li><p>使用注解方式，需要引入 druid 包：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>druid-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.2.4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
-</li>
-<li><p>配置文件</p>
-<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.first.driverClassName</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
+<h3 id="Druid-注解多数据源"><a href="#Druid-注解多数据源" class="headerlink" title="Druid 注解多数据源"></a>Druid 注解多数据源</h3><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.first.driverClassName</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
 <span class="token attr-name">spring.datasource.first.jdbc-url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://127.0.0.1:3306/vuedb?serverTimezone=UTC</span>
 <span class="token attr-name">spring.datasource.first.username</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
 <span class="token attr-name">spring.datasource.first.password</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
@@ -476,7 +458,8 @@ wrapper<span class="token punctuation">.</span><span class="token function">like
 <span class="token attr-name">spring.datasource.second.password</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
 
 <span class="token attr-name">mybatis.mapper-location</span><span class="token punctuation">=</span><span class="token attr-value">classpath*:mapper/*.xml</span></code></pre>
-</li>
+
+<h4 id="数据源配置"><a href="#数据源配置" class="headerlink" title="数据源配置"></a>数据源配置</h4><ol>
 <li><p>数据源通用方法 AbstractDatasource：</p>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>druid<span class="token punctuation">.</span>pool<span class="token punctuation">.</span></span><span class="token class-name">DruidDataSource</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>extension<span class="token punctuation">.</span>spring<span class="token punctuation">.</span></span><span class="token class-name">MybatisSqlSessionFactoryBean</span><span class="token punctuation">;</span>
@@ -617,8 +600,10 @@ wrapper<span class="token punctuation">.</span><span class="token function">like
         <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DataSourceTransactionManager</span><span class="token punctuation">(</span><span class="token function">secondaryDataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
+
 </li>
-<li><p>定义注解，分别作为不同数据库的表识。</p>
+</ol>
+<h4 id="定义注解"><a href="#定义注解" class="headerlink" title="定义注解"></a>定义注解</h4><p>定义注解，分别作为不同数据库的表识。</p>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>ibatis<span class="token punctuation">.</span>annotations<span class="token punctuation">.</span></span><span class="token class-name">Mapper</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span><span class="token punctuation">;</span>
 
@@ -646,9 +631,8 @@ wrapper<span class="token punctuation">.</span><span class="token function">like
 <span class="token keyword">public</span> <span class="token annotation punctuation">@interface</span> <span class="token class-name">SecondRepository</span> <span class="token punctuation">{</span>
     <span class="token class-name">String</span> <span class="token function">value</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-</li>
-<li><p>Bean：</p>
-<p><code>com.jueee.bean.User</code> 类：</p>
+
+<h4 id="Bean"><a href="#Bean" class="headerlink" title="Bean"></a>Bean</h4><p><code>com.jueee.bean.User</code> 类：</p>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">TableName</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Data</span><span class="token punctuation">;</span>
 
@@ -677,9 +661,8 @@ wrapper<span class="token punctuation">.</span><span class="token function">like
 
     <span class="token keyword">private</span> <span class="token class-name">String</span> title<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
-</li>
-<li><p>Mapper <code>com.jueee</code> 类：</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>core<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span></span><span class="token class-name">BaseMapper</span><span class="token punctuation">;</span>
+
+<h4 id="Mapper"><a href="#Mapper" class="headerlink" title="Mapper"></a>Mapper</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>core<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span></span><span class="token class-name">BaseMapper</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>jueee<span class="token punctuation">.</span>bean<span class="token punctuation">.</span></span><span class="token class-name">User</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>jueee<span class="token punctuation">.</span>repository<span class="token punctuation">.</span></span><span class="token class-name">FirstRepository</span><span class="token punctuation">;</span>
 
@@ -694,9 +677,8 @@ wrapper<span class="token punctuation">.</span><span class="token function">like
 <span class="token annotation punctuation">@SecondRepository</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BookMapper</span> <span class="token keyword">extends</span> <span class="token class-name">BaseMapper</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Book</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span></code></pre>
-</li>
-<li><p>Service 类如下：</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>jueee<span class="token punctuation">.</span>bean<span class="token punctuation">.</span></span><span class="token class-name">User</span><span class="token punctuation">;</span>
+
+<h4 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>jueee<span class="token punctuation">.</span>bean<span class="token punctuation">.</span></span><span class="token class-name">User</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>jueee<span class="token punctuation">.</span>mapper<span class="token punctuation">.</span></span><span class="token class-name">UserMapper</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Autowired</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Service</span><span class="token punctuation">;</span>
@@ -727,9 +709,8 @@ wrapper<span class="token punctuation">.</span><span class="token function">like
         <span class="token keyword">return</span> bookMapper<span class="token punctuation">.</span><span class="token function">selectList</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-</li>
-<li><p>测试类如下：</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>jueee<span class="token punctuation">.</span>bean<span class="token punctuation">.</span></span><span class="token class-name">Book</span><span class="token punctuation">;</span>
+
+<h4 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>jueee<span class="token punctuation">.</span>bean<span class="token punctuation">.</span></span><span class="token class-name">Book</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>jueee<span class="token punctuation">.</span>bean<span class="token punctuation">.</span></span><span class="token class-name">User</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span><span class="token class-name">Test</span><span class="token punctuation">;</span>
@@ -759,9 +740,7 @@ wrapper<span class="token punctuation">.</span><span class="token function">like
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 
-</li>
-</ol>
-
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
     </div>
 
     
@@ -783,7 +762,7 @@ wrapper<span class="token punctuation">.</span><span class="token function">like
       <div class="popular-posts-title"><a href="\2020\12\2020-12-15-SpringBoot通过Druid集成JPA数据源\" rel="bookmark">SpringBoot 通过 Druid 集成 JPA 数据源</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-27-Java字节码操纵框架ASM\" rel="bookmark">Java 字节码操纵框架 ASM</a></div>
+      <div class="popular-posts-title"><a href="\2020\12\2020-12-03-Mybatis增强工具包MyBatis-Plus\" rel="bookmark">Mybatis 增强工具包 MyBatis-Plus</a></div>
     </li>
   </ul>
 
@@ -1074,7 +1053,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'jueee.github.io',
       owner       : 'jueee',
       admin       : ['jueee'],
-      id          : 'ff69be3bb479fa82ce6aec27d85fa105',
+      id          : '59637f8788e06dd6e9a53452737cea81',
         language: 'zh-CN',
       distractionFreeMode: true
     });
@@ -1088,7 +1067,7 @@ NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
     new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
       el: '#valine-comments',
-      path: "/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90MyBatis-Plus%E6%A1%86%E6%9E%B6/",
+      path: "/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%9B%86%E6%88%90MyBatis-Plus/",
       serverURLs: "https://p5beawtt.api.lncldglobal.com"
     }));
   }, window.Valine);

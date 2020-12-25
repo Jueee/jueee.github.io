@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="Burp Intruder 介绍Burp Intruder 是一个强大的工具，用于自动对 Web 应用程序自定义的攻击，Burp Intruder 是高度可配置的，并被用来在广范围内进行自动化攻击。 可以使用 Burp Intruder 方便地执行许多任务，包括枚举标识符，获取有用数据，漏洞模糊测试。 合适的攻击类型取决于应用程序的情况，可能包括：缺陷测试：SQL 注入，跨站点脚本，缓冲区溢出，路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web 渗透工具 BurpSuite 的 Intruder 模块">
+<meta property="og:url" content="https://jueee.github.io/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="Burp Intruder 介绍Burp Intruder 是一个强大的工具，用于自动对 Web 应用程序自定义的攻击，Burp Intruder 是高度可配置的，并被用来在广范围内进行自动化攻击。 可以使用 Burp Intruder 方便地执行许多任务，包括枚举标识符，获取有用数据，漏洞模糊测试。 合适的攻击类型取决于应用程序的情况，可能包括：缺陷测试：SQL 注入，跨站点脚本，缓冲区溢出，路">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225101813001.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225102225581.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225102526892.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225102556360.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225102628858.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225102658729.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225103005795.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225103151064.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225103310245.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225103454175.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225103815261.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225103910105.png">
+<meta property="og:image" content="https://jueee.github.io/images/2020/12/image-20201225104000361.png">
+<meta property="article:published_time" content="2020-12-27T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-25T08:40:01.423Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jueee.github.io/images/2020/12/image-20201225101813001.png">
+
+
+<link rel="canonical" href="https://jueee.github.io/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Web 渗透工具 BurpSuite 的 Intruder 模块 | 小决的专栏</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">小决的专栏</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">133</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">34</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">70</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Burp-Intruder-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">Burp Intruder 介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">模块说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Target%EF%BC%9A%E7%9B%AE%E6%A0%87%E9%80%89%E9%A1%B9"><span class="nav-number">2.1.</span> <span class="nav-text">Target：目标选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Positions%EF%BC%9A%E4%BD%8D%E7%BD%AE%E9%80%89%E9%A1%B9"><span class="nav-number">2.2.</span> <span class="nav-text">Positions：位置选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Payloads%EF%BC%9A%E6%9C%89%E6%95%88%E8%B4%9F%E8%8D%B7%E9%80%89%E9%A1%B9"><span class="nav-number">2.3.</span> <span class="nav-text">Payloads：有效负荷选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Payload-Sets"><span class="nav-number">2.3.1.</span> <span class="nav-text">Payload Sets</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Payload-Opetions"><span class="nav-number">2.3.2.</span> <span class="nav-text">Payload Opetions</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Payload-Processing"><span class="nav-number">2.3.3.</span> <span class="nav-text">Payload Processing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Payload-Encoding"><span class="nav-number">2.3.4.</span> <span class="nav-text">Payload Encoding</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Opetions-%E9%80%89%E9%A1%B9%E5%8D%A1"><span class="nav-number">2.4.</span> <span class="nav-text">Opetions 选项卡</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Request-Headers"><span class="nav-number">2.4.1.</span> <span class="nav-text">Request Headers</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Request-Engine"><span class="nav-number">2.4.2.</span> <span class="nav-text">Request Engine</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Attack-Results"><span class="nav-number">2.4.3.</span> <span class="nav-text">Attack Results</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Grep-%E2%80%93-Match"><span class="nav-number">2.4.4.</span> <span class="nav-text">Grep – Match</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Grep-%E2%80%93-Extract"><span class="nav-number">2.4.5.</span> <span class="nav-text">Grep – Extract</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Grep-%E2%80%93-Payloads"><span class="nav-number">2.4.6.</span> <span class="nav-text">Grep – Payloads</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Redirections"><span class="nav-number">2.4.7.</span> <span class="nav-text">Redirections</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E8%B5%B7%E6%94%BB%E5%87%BB"><span class="nav-number">2.5.</span> <span class="nav-text">发起攻击</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Web 渗透工具 BurpSuite 的 Intruder 模块
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-27T00:00:00Z">2020-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="Burp-Intruder-介绍"><a href="#Burp-Intruder-介绍" class="headerlink" title="Burp Intruder 介绍"></a>Burp Intruder 介绍</h3><p>Burp Intruder 是一个强大的工具，用于自动对 Web 应用程序自定义的攻击，Burp Intruder 是高度可配置的，并被用来在广范围内进行自动化攻击。</p>
+<p>可以使用 Burp Intruder 方便地执行许多任务，包括枚举标识符，获取有用数据，漏洞模糊测试。</p>
+<p>合适的攻击类型取决于应用程序的情况，可能包括：缺陷测试：SQL 注入，跨站点脚本，缓冲区溢出，路径遍历；暴力攻击认证系统；枚举；操纵参数；拖出隐藏的内容和功能；会话令牌测序和会话劫持；数据挖掘；并发攻击；应用层的拒绝服务式攻击。</p>
+<a id="more"></a>
+
+<h3 id="模块说明"><a href="#模块说明" class="headerlink" title="模块说明"></a>模块说明</h3><p>Burp Intruder 主要有四个模块组成:</p>
+<ol>
+<li>Target 用于配置目标服务器进行攻击的详细信息。</li>
+<li>Positions  设置 Payloads 的插入点以及攻击类型（攻击模式）。</li>
+<li>Payloads  设置 payload，配置字典</li>
+<li> Opetions  此选项卡包含了 request headers，request engine，attack results ，grep match，grep_extrack，grep payloads 和 redirections。</li>
+</ol>
+<p>可以发动攻击之前，在主要 Intruder 的 UI 上编辑这些选项，大部分设置也可以在攻击时对已在运行的窗口进行修改。</p>
+<h4 id="Target：目标选项"><a href="#Target：目标选项" class="headerlink" title="Target：目标选项"></a>Target：目标选项</h4><p>这个选项是用来配置目标服务器的细节，配置目标的 host，port 及协议（http/https）：</p>
+<p><img src="/images/2020/12/image-20201225101813001.png" alt="image-20201225101813001" loading="lazy"></p>
+<h4 id="Positions：位置选项"><a href="#Positions：位置选项" class="headerlink" title="Positions：位置选项"></a>Positions：位置选项</h4><p>这个选项是用来配置在攻击里产生的所有 HTTP 请求的模板。</p>
+<p><img src="/images/2020/12/image-20201225102225581.png" alt="image-20201225102225581" loading="lazy"></p>
+<p>Attack type 有四个攻击方式，下面说下每个的作用：</p>
+<ul>
+<li>sniper – 对变量依次进行暴力破解。</li>
+<li>battering ram – 对变量同时进行破解。</li>
+<li>pitchfork – 每一个变量标记对应一个字典，一一对应进行破解。</li>
+<li>cluster bomb – 每个变量对应一个字典，并且进行交叉式破解，尝试各种组合。适用于用户名 + 密码的破解。</li>
+</ul>
+<p>可以使用选项上的按钮来控制位置上的标记：</p>
+<ul>
+<li>add § — 在当前光标位置插入一个位置标记。</li>
+<li>clear § — 删除整个模板或选中的部分模板里的位置标记。</li>
+<li>auto § — 这会对放置标记的位置做一个猜测，放哪里会有用，然后就把标记放到相应位置。这是一个为攻击常规漏洞 (SQL 注入) 快速标记出合适位置的有用的功能，然后人工标记是为自定义攻击的。</li>
+<li>refresh — 如果需要，可以刷新编辑器里有颜色的代码。</li>
+<li>clear — 删除整个编辑器内容。</li>
+</ul>
+<h4 id="Payloads：有效负荷选项"><a href="#Payloads：有效负荷选项" class="headerlink" title="Payloads：有效负荷选项"></a>Payloads：有效负荷选项</h4><p>这个选项是用来配置一个或多个有效负荷的集合。如果定义了”cluster bomb” 和”pitchfork” 攻击类型，然后必须为每定义的有效负荷位置 (最多 8 个) 配置一个单独的有效负荷。使用”payload set” 下拉菜单选择要配置的有效负荷。</p>
+<h5 id="Payload-Sets"><a href="#Payload-Sets" class="headerlink" title="Payload Sets"></a>Payload Sets</h5><p>Payload 数量类型设置</p>
+<p><img src="/images/2020/12/image-20201225102526892.png" alt="image-20201225102526892" loading="lazy"></p>
+<h5 id="Payload-Opetions"><a href="#Payload-Opetions" class="headerlink" title="Payload Opetions"></a>Payload Opetions</h5><p>该选项会根据选项 1 中 Payload type 的设置而改变</p>
+<p><img src="/images/2020/12/image-20201225102556360.png" alt="image-20201225102556360" loading="lazy"></p>
+<h5 id="Payload-Processing"><a href="#Payload-Processing" class="headerlink" title="Payload Processing"></a>Payload Processing</h5><p>对生成的 Payload 进行编码、加密、截取等操作</p>
+<p><img src="/images/2020/12/image-20201225102628858.png" alt="image-20201225102628858" loading="lazy"></p>
+<h5 id="Payload-Encoding"><a href="#Payload-Encoding" class="headerlink" title="Payload Encoding"></a>Payload Encoding</h5><p>可以配置哪些有效载荷中的字符应该是 URL 编码的 HTTP 请求中的安全传输。任何已配置的 URL 编码最后应用，任何有效载荷处理规则执行之后。 这是推荐使用此设置进行最终 URL 编码，而不是一个有效载荷处理规则，因为可以用来有效载荷的 grep 选项来检查响应为呼应有效载荷的最终 URL 编码应用之前。</p>
+<p><img src="/images/2020/12/image-20201225102658729.png" alt="image-20201225102658729" loading="lazy"></p>
+<h4 id="Opetions-选项卡"><a href="#Opetions-选项卡" class="headerlink" title="Opetions 选项卡"></a>Opetions 选项卡</h4><p>此选项卡包含了 request headers，request engine，attack results ，grep match，grep_extrack，grep payloads 和 redirections。</p>
+<p>可以发动攻击之前，在主要 Intruder 的 UI 上编辑这些选项，大部分设置也可以在攻击时对已在运行的窗口进行修改。</p>
+<h5 id="Request-Headers"><a href="#Request-Headers" class="headerlink" title="Request Headers"></a>Request Headers</h5><p>这些设置控制在 Intruder 是否更新配置请求头。</p>
+<p><img src="/images/2020/12/image-20201225103005795.png" alt="image-20201225103005795" loading="lazy"></p>
+<ul>
+<li>如果选中‘update Content-Length header’框，Burp Intruder 会使用每个请求的 HTTP 主体长度的正确值，添加或更新这个请求里 HTTP 消息头的内容长度。这个功能对一些需要把可变长度的有效载荷插入到 HTTP 请求模板主体的攻击是很有必要的。这个 HTTP 规范和大多数 web 服务器一样，需要使用消息头内容长度来指定 HTTP 主体长度的正确值。如果没有指定正确值，目标服务器会返回一个错误，也可能返回一个未完成的请求，也可能无限期地等待接收请求里的进一步数据。</li>
+<li>如果选中‘set Connection: close’框，则 Burp Intruder 会添加或更新 HTTP 消息头的连接来请求在每个请求后已关闭的连接。在多数情况下，这个选项会让攻击执行得更快。</li>
+</ul>
+<h5 id="Request-Engine"><a href="#Request-Engine" class="headerlink" title="Request Engine"></a>Request Engine</h5><p>设置发送请求的线程、超时重试等。</p>
+<p><img src="/images/2020/12/image-20201225103151064.png" alt="image-20201225103151064" loading="lazy"></p>
+<ul>
+<li>Number of threads：线程，该选项控制攻击请求的并发数。</li>
+<li>Number of retries on network failure：网络故障的重试次数 – 如果出现连接错误或其他网络问题，Burp 会放弃和移动之前重试的请求指定的次数。</li>
+<li>Pause before retry：重试前等待时间，当重试失败的请求，Burp 会等待指定的时间（以毫秒为单位），然后重试。</li>
+<li>Throttle between requests：请求之间的等待时间，Burp 可以在每次请求之前等待一个指定的延迟（以毫秒为单位） 。此选项很有用，以避免超载应用程序，或者是更隐蔽。</li>
+<li>Start time: 开始时间，此选项允许您配置攻击立即启动，或在指定的延迟后，或开始处于暂停状态。</li>
+</ul>
+<h5 id="Attack-Results"><a href="#Attack-Results" class="headerlink" title="Attack Results"></a>Attack Results</h5><p>设置攻击结果的显示。</p>
+<p><img src="/images/2020/12/image-20201225103310245.png" alt="image-20201225103310245" loading="lazy"></p>
+<ul>
+<li>Store requests/responses：存储请求 / 响应，这个选项确定攻击是否会保存单个请求和响应的内容</li>
+<li> Make unmodified baseline request：未修改的基本请求，如果选择此选项，那么除了配置的攻击请求，Burp 会发出模板请求设置为基值，所有有效载荷的位置。此请求将在结果表显示为项目＃ 0 。使用此选项很有用，提供一个用来比较的攻击响应基地的响应。</li>
+<li>Use denial-of-service mode：使用拒绝服务的模式，如果选择此选项，那么攻击会发出请求，如正常，但不会等待处理从服务器收到任何答复。只要发出的每个请求， TCP 连接将被关闭。这个功能可以被用来执行拒绝服务的应用层对脆弱的应用程序的攻击，通过重复发送该启动高负荷任务的服务器上，同时避免通过举办开放套接字等待服务器响应锁定了本地资源的请求。</li>
+<li>Store full payloads：保存完整的有效载荷。如果选择此选项，Burp 将存储全部有效载荷值的结果。</li>
+</ul>
+<h5 id="Grep-–-Match"><a href="#Grep-–-Match" class="headerlink" title="Grep – Match"></a>Grep – Match</h5><p>在响应中找出存在指定的内容的一项。</p>
+<p><img src="/images/2020/12/image-20201225103454175.png" alt="image-20201225103454175" loading="lazy"></p>
+<ul>
+<li>Match：匹配类型，指定的表达式是否是简单的字符串或 regular expressions (正则表达式)。</li>
+<li>Case sensitive match：区分大小写的匹配，指定检查表达式是否应区分大小写。</li>
+<li>Exclude HTTP headers：排除 HTTP 头，指定的 HTTP 响应头是否应被排除在检查。</li>
+</ul>
+<h5 id="Grep-–-Extract"><a href="#Grep-–-Extract" class="headerlink" title="Grep – Extract"></a>Grep – Extract</h5><p>通过正则提取返回信息中的内容。</p>
+<p>点击 ADD 就弹出正则编辑窗口，如图我们选中我们需要获取的部分就可以自动生成正则表达式。点击 OK 就可以在列表中添加这条正则表达式。</p>
+<p><img src="/images/2020/12/image-20201225103815261.png" alt="image-20201225103815261" loading="lazy"></p>
+<h5 id="Grep-–-Payloads"><a href="#Grep-–-Payloads" class="headerlink" title="Grep – Payloads"></a>Grep – Payloads</h5><p>这些设置可以用于包含已提交的有效负载的反射的标志结果项目。如果启用了此选项，BurpSuite 会添加包含一个复选框指示当前负载的值在每个响应发现新的结果列。</p>
+<p><img src="/images/2020/12/image-20201225103910105.png" alt="image-20201225103910105" loading="lazy"></p>
+<ul>
+<li>Search responses for payload strings：在响应中搜索 Payload。</li>
+<li>Case sensitive match：区分大小写，此指定是否对有效负载的检查区分大小写。</li>
+<li>Exclude HTTP headers：排除 HTTP 标头，不对 HTTP 响应头进行检查。</li>
+<li>Match against pre-URL-encoded payloads：对预 URL 编码的有效载荷匹配。</li>
+</ul>
+<h5 id="Redirections"><a href="#Redirections" class="headerlink" title="Redirections"></a>Redirections</h5><p>重定向响应，控制 Burp 在进行攻击时如何处理重定向。 </p>
+<p><img src="/images/2020/12/image-20201225104000361.png" alt="image-20201225104000361" loading="lazy"></p>
+<ul>
+<li>Follow redirections：跟随重定向<br>Never：不跟随重定向（关闭跟随重定向）。</li>
+<li>On-site only：只会跟随重定向到同一个网页 “网站” ，即使用相同的主机，端口和协议的是在原始请求使用的 URL 。</li>
+<li>In-scope only：只跟随范围内，Intruder 只会跟随重定向到目标范围之内的 URL 。</li>
+<li>Always：总是跟随重定向，将遵循重定向到任何任何 URL。（此选项可能会引导 burp 到其他网站）</li>
+</ul>
+<h4 id="发起攻击"><a href="#发起攻击" class="headerlink" title="发起攻击"></a>发起攻击</h4><p>配置好相关的内容后就可以点击任意模块右上角的 start attack 或者菜单栏中的 Intruder-&gt;start attack 发起攻击请求。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建 Jekyll 环境</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为 Jekyll 博客系统增加百度统计</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加 Jekyll 博客访问量统计</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll 使用中文路径</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Blog/" rel="tag"># Blog</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/12/2020-12-26-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" rel="prev" title="Web 渗透工具 Burp Suite 安装配置">
+                  <i class="fa fa-chevron-left"></i> Web 渗透工具 Burp Suite 安装配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '939566e61723c28a49c8bbfaf259d55f',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

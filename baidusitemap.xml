@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jueee.github.io/2020/12/2020-12-24-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90Tkmybatis/</loc>
-    <lastmod>2020-12-22</lastmod>
+    <loc>https://jueee.github.io/2020/12/2020-12-05-MyBatis-Plus%E7%9A%84%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8AutoGenerator/</loc>
+    <lastmod>2020-12-25</lastmod>
   </url>
   <url>
-    <loc>https://jueee.github.io/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90MyBatis-Plus%E6%A1%86%E6%9E%B6/</loc>
+    <loc>https://jueee.github.io/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/</loc>
+    <lastmod>2020-12-25</lastmod>
+  </url>
+  <url>
+    <loc>https://jueee.github.io/2020/12/2020-12-26-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2020-12-25</lastmod>
+  </url>
+  <url>
+    <loc>https://jueee.github.io/2020/12/2020-12-25-curl%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BF%AE%E6%94%B9ElasticSearch%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2020-12-25</lastmod>
+  </url>
+  <url>
+    <loc>https://jueee.github.io/2020/12/2020-12-23-SpringBoot%E9%80%9A%E8%BF%87Druid%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%9B%86%E6%88%90MyBatis-Plus/</loc>
+    <lastmod>2020-12-25</lastmod>
+  </url>
+  <url>
+    <loc>https://jueee.github.io/2020/12/2020-12-04-JavaScript%E6%A0%A1%E9%AA%8C%E5%AF%86%E7%A0%81%E5%A4%8D%E6%9D%82%E5%BA%A6/</loc>
+    <lastmod>2020-12-25</lastmod>
+  </url>
+  <url>
+    <loc>https://jueee.github.io/2020/12/2020-12-03-Mybatis%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E5%8C%85MyBatis-Plus/</loc>
+    <lastmod>2020-12-25</lastmod>
+  </url>
+  <url>
+    <loc>https://jueee.github.io/2020/12/2020-12-24-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90Tkmybatis/</loc>
     <lastmod>2020-12-22</lastmod>
   </url>
   <url>
