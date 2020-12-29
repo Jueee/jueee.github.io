@@ -157,17 +157,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">133</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">136</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">34</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">35</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">70</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">71</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -246,20 +246,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-count">136</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">70</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -331,6 +331,312 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/" class="post-title-link" itemprop="url">Python 转化文件编码为 UTF8</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-10 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-10T00:00:00Z">2020-10-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>使用编译器若遇到文件编码问题，当文件中有中文时，则会出现乱码，会因为编码问题导致各种错误。</p>
+<p>所以写了个 python 脚本来检测原文件编码并转换为目标编码，以下代码以目标编码为 utf-8 为例：</p>
+<p>需要安装 chardet，详情：<a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/chardet">https://pypi.python.org/pypi/chardet</a> </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/" class="post-title-link" itemprop="url">Hexo 博客添加 Live2D 看板娘</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-09T00:00:00Z">2020-10-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="资料汇总"><a href="#资料汇总" class="headerlink" title="资料汇总"></a>资料汇总</h3><ul>
+<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/EYHN/hexo-helper-live2d">https://github.com/EYHN/hexo-helper-live2d</a></li>
+<li> 配置说明：<a target="_blank" rel="noopener" href="https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html">https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html</a></li>
+<li> 模型仓库：<a target="_blank" rel="noopener" href="https://github.com/xiazeyu/live2d-widget-models">https://github.com/xiazeyu/live2d-widget-models</a></li>
+<li> 模型预览：<a target="_blank" rel="noopener" href="https://huaji8.top/post/live2d-plugin-2.0/">https://huaji8.top/post/live2d-plugin-2.0/</a></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Neo4j 的安装和基本使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-08T00:00:00Z">2020-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/Neo4j/" itemprop="url" rel="index"><span itemprop="name">Neo4j</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Neo4j-介绍"><a href="#Neo4j-介绍" class="headerlink" title="Neo4j 介绍"></a>Neo4j 介绍</h3><p>Neo4j 是一个世界领先的开源图形数据库。 </p>
+<p>图形数据库是以图形结构的形式存储数据的数据库。 它以节点，关系和属性的形式存储应用程序的数据。 正如 RDBMS 以表的 “行，列” 的形式存储数据，GDBMS 以 “图形” 的形式存储数据。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://neo4j.com/">https://neo4j.com/</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -713,359 +1019,6 @@ group1/M00/00/00/CqD3YF3kwS-ACYbMAAAAHDDhFHI6820520</code></pre>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/09/2020-09-21-%E5%9C%A8eclipse%E4%B8%AD%E5%AE%89%E8%A3%85lombok.jar/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-15-%E4%BD%BF%E7%94%A8Python%E9%81%8D%E5%8E%86%E5%A4%87%E4%BB%BDdocker-compose%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-15-%E4%BD%BF%E7%94%A8Python%E9%81%8D%E5%8E%86%E5%A4%87%E4%BB%BDdocker-compose%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/" class="post-title-link" itemprop="url">使用 Python 遍历备份 docker-compose 文件中的镜像</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-15T00:00:00Z">2020-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-15-%E4%BD%BF%E7%94%A8Python%E9%81%8D%E5%8E%86%E5%A4%87%E4%BB%BDdocker-compose%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-15-%E4%BD%BF%E7%94%A8Python%E9%81%8D%E5%8E%86%E5%A4%87%E4%BB%BDdocker-compose%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Python 脚本如下：</p>
-<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> os
-
-<span class="token keyword">def</span> <span class="token function">get_images</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"docker-compose.yml"</span><span class="token punctuation">)</span> 
-    images <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-    <span class="token keyword">for</span> line <span class="token keyword">in</span> <span class="token builtin">file</span><span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
-         line <span class="token operator">=</span> line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>  
-         <span class="token keyword">if</span> <span class="token string">"image"</span> <span class="token keyword">in</span> line<span class="token punctuation">:</span>
-             image <span class="token operator">=</span> line<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"image:"</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
-             images<span class="token punctuation">.</span>append<span class="token punctuation">(</span>image<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> images
-
-<span class="token keyword">def</span> <span class="token function">pull_images</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    images <span class="token operator">=</span> get_images<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> image <span class="token keyword">in</span> images<span class="token punctuation">:</span>
-        pull_commond <span class="token operator">=</span> <span class="token string">"docker pull "</span> <span class="token operator">+</span> image
-        <span class="token keyword">print</span><span class="token punctuation">(</span>pull_commond<span class="token punctuation">)</span>
-        os<span class="token punctuation">.</span>system<span class="token punctuation">(</span>pull_commond<span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">save_imaegs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    images <span class="token operator">=</span> get_images<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> image <span class="token keyword">in</span> images<span class="token punctuation">:</span>
-        sub_name <span class="token operator">=</span> image<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">,</span><span class="token string">"_"</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">".tar"</span>
-        <span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>sub_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>sub_name<span class="token punctuation">,</span><span class="token string">'is exists!'</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            save_commond <span class="token operator">=</span> <span class="token string">"docker save "</span> <span class="token operator">+</span> image <span class="token operator">+</span> <span class="token string">" -o "</span> <span class="token operator">+</span> sub_name
-            <span class="token keyword">print</span><span class="token punctuation">(</span>save_commond<span class="token punctuation">)</span>
-            os<span class="token punctuation">.</span>system<span class="token punctuation">(</span>save_commond<span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">load_images</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    files <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> files<span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token string">".tar"</span> <span class="token keyword">in</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span>
-            load_commond <span class="token operator">=</span> <span class="token string">"docker load -i "</span> <span class="token operator">+</span> <span class="token builtin">file</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>load_commond<span class="token punctuation">)</span>
-            os<span class="token punctuation">.</span>system<span class="token punctuation">(</span>load_commond<span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">start_deal</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">if</span> num <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
-        pull_images<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">elif</span> num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
-        save_imaegs<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">elif</span> num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
-        load_images<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    start_deal<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-    </code></pre>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" class="post-title-link" itemprop="url">Linux 进行磁盘自动挂载</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-15T00:00:00Z">2020-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在给系统新增了磁盘以后，如果重启系统我们会发现找不到存储了；但是使用 fdisk -l 可以看到存储空间，说明存储还在。这是因为关机后，挂载已经自动卸载掉了。我们当然可以手动再次将其挂载，但如果每次重启都需要这样手动操作会很不方便；因此我们可以利用自动挂载，这样系统每次开机的时候就可以自动将磁盘挂载上去了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">自动删除 ElasticSearch 索引</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-07T00:00:00Z">2020-09-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>索引文件保留在服务器中，大大减小服务器的性能，占用硬盘空间，<br>因此使用脚本自动删除 elk 中的历史索引以释放空间。</p>
-<h3 id="清理索引命令行"><a href="#清理索引命令行" class="headerlink" title="清理索引命令行"></a>清理索引命令行</h3><p>查看所有的索引文件：</p>
-<blockquote>
-<p>curl -XGET <a target="_blank" rel="noopener" href="http://localhost:9200/_cat/indices?v">http://localhost:9200/_cat/indices?v</a></p>
-</blockquote>
-<p>删除索引文件以释放空间：</p>
-<blockquote>
-<p>curl -XDELETE <a target="_blank" rel="noopener" href="http://localhost:9200/filebeat-2016.12.28">http://localhost:9200/filebeat-2016.12.28</a></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
