@@ -36,7 +36,7 @@
 <meta property="og:description" content="RSA 介绍RSA 加密算法是一种非对称加密算法。 RSA 是一对密钥。分别是公钥和私钥 , 这个公钥和私钥其实就是一组数字！其二进制位长度可以是 1024 位或者 2048 位。长度越长其加密强度越大，目前为止公之于众的能破解的最大长度为 768 位密钥，只要高于 768 位，相对就比较安全. RSA 加密的方式 使用公钥加密的数据，利用私钥进行解密 使用私钥加密的数据，利用公钥进行解密  RS">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-29T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-29T06:04:46.745Z">
+<meta property="article:modified_time" content="2020-12-30T06:51:35.260Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="JavaClass">
 <meta property="article:tag" content="Java">
@@ -163,17 +163,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">136</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">140</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">35</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">37</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">71</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">73</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -253,20 +253,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">136</span>
+          <span class="site-state-item-count">140</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -428,9 +428,11 @@
 <a id="more"></a>
 
 <h3 id="使用-RSA"><a href="#使用-RSA" class="headerlink" title="使用 RSA"></a>使用 RSA</h3><p>引入依赖：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/commons-codec/commons-codec --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>commons-codec<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>commons-codec<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.15<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 <p>RSA 代码：</p>
@@ -682,6 +684,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="next" title="Zeppelin 配置连接 MySQL 数据库">
+                  Zeppelin 配置连接 MySQL 数据库 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -742,8 +747,8 @@
 
 <div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
