@@ -28,16 +28,16 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="出现问题通过 kubernetes 部署了 tomcat+mysql 服务，设置 tomcat 多副本时发现首页登陆无法跳转的情况，经排查是由于 session 问题引起的。 kubernetes 上可以多实例（pod）高负载运行，但是如果应用如果没有做 session 同步的话，就会导致 session 不一致。kubernetes 有 session 亲和性的功能（每个 client 每次访问">
+  <meta name="description" content="出现问题通过kubernetes部署了tomcat+mysql服务，设置tomcat多副本时发现首页登陆无法跳转的情况，经排查是由于session问题引起的。 kubernetes 上可以多实例（pod）高负载运行，但是如果应用如果没有做session 同步的话，就会导致 session 不一致。kubernetes 有session 亲和性的功能（每个client每次访问，都会匹配到对应sess">
 <meta property="og:type" content="article">
 <meta property="og:title" content="k8s 在 tomcat 多副本时的 session 会话保持">
 <meta property="og:url" content="https://jueee.github.io/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="出现问题通过 kubernetes 部署了 tomcat+mysql 服务，设置 tomcat 多副本时发现首页登陆无法跳转的情况，经排查是由于 session 问题引起的。 kubernetes 上可以多实例（pod）高负载运行，但是如果应用如果没有做 session 同步的话，就会导致 session 不一致。kubernetes 有 session 亲和性的功能（每个 client 每次访问">
+<meta property="og:description" content="出现问题通过kubernetes部署了tomcat+mysql服务，设置tomcat多副本时发现首页登陆无法跳转的情况，经排查是由于session问题引起的。 kubernetes 上可以多实例（pod）高负载运行，但是如果应用如果没有做session 同步的话，就会导致 session 不一致。kubernetes 有session 亲和性的功能（每个client每次访问，都会匹配到对应sess">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2020/09/1599216595277.png">
 <meta property="article:published_time" content="2020-09-05T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-09-22T09:52:32.116Z">
+<meta property="article:modified_time" content="2021-01-07T04:29:46.252Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="k8s">
 <meta name="twitter:card" content="summary">
@@ -163,17 +163,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">140</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">143</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">37</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">73</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">74</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -253,20 +253,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">140</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -379,7 +379,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Kubernets/" itemprop="url" rel="index"><span itemprop="name">Kubernets</span></a>
         </span>
     </span>
 
@@ -450,19 +454,19 @@ kubectl patch svc myapp <span class="token operator">-</span>p <span class="toke
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在 k8s 中使用 rook-ceph</a></div>
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-30-在k8s中使用rook-ceph\" rel="bookmark">在k8s中使用rook-ceph</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s 静态 PV 集成 ceph 块设备存储</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s静态PV集成ceph块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s 动态扩容 Ceph 持久卷</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s动态扩容Ceph持久卷</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s 动态 PV 集成 ceph 块设备存储</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s动态PV集成ceph块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-修改k8s的nodeport类型端口范围\" rel="bookmark">修改 k8s 的 nodeport 类型端口范围</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-修改k8s的nodeport类型端口范围\" rel="bookmark">修改k8s的nodeport类型端口范围</a></div>
     </li>
   </ul>
 
@@ -739,6 +743,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -756,18 +772,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 

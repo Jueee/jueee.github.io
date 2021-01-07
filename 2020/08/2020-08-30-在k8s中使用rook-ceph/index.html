@@ -28,15 +28,15 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="相关链接rook-ceph 官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github 项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
+  <meta name="description" content="相关链接rook-ceph官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 k8s 中使用 rook-ceph">
 <meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="相关链接rook-ceph 官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github 项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
+<meta property="og:description" content="相关链接rook-ceph官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-30T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-21T01:36:13.869Z">
+<meta property="article:modified_time" content="2021-01-07T04:32:06.951Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Ceph">
 <meta property="article:tag" content="k8s">
@@ -162,17 +162,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">140</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">143</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">37</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">73</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">74</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -252,20 +252,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">140</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -382,7 +382,11 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Kubernets/" itemprop="url" rel="index"><span itemprop="name">Kubernets</span></a>
         </span>
     </span>
 
@@ -431,9 +435,9 @@
 <li><p>执行 toolbox.yaml，生成 rook-ceph-tools-xxxx pod</p>
 </li>
 <li><p>使用如下命令进入 ceph 的管理中：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl -n rook-ceph <span class="token builtin class-name">exec</span> -it <span class="token variable"><span class="token variable">$(</span>kubectl -n rook-ceph get pod -l <span class="token string">"app=rook-ceph-tools"</span> -o <span class="token assign-left variable">jsonpath</span><span class="token operator">=</span><span class="token string">'{.items[0].metadata.name}'</span><span class="token variable">)</span></span> <span class="token function">bash</span></code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='{.items[0].metadata.name}') bash</code></pre>
 
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl <span class="token builtin class-name">exec</span> -it rook-ceph-tools-9c9d7744b-2tpwn <span class="token function">bash</span> -n rook-ceph</code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl exec -it rook-ceph-tools-9c9d7744b-2tpwn bash -n rook-ceph</code></pre>
 </li>
 <li><p>ceph 常用命令</p>
 <pre class="language-none"><code class="language-none">ceph -s 查看集群状态
@@ -466,13 +470,13 @@ ceph osd pool set pool pgp_num 64 设置pgp数量，在集群规模较小，pg�
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s 静态 PV 集成 ceph 块设备存储</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s静态PV集成ceph块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s 动态扩容 Ceph 持久卷</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s动态扩容Ceph持久卷</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s 动态 PV 集成 ceph 块设备存储</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s动态PV集成ceph块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\08\2020-08-29-Ceph分布式存储系统介绍\" rel="bookmark">Ceph 分布式存储系统介绍</a></div>
@@ -756,6 +760,18 @@ if (document.querySelectorAll('.mermaid').length) {
 
   
 
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
 
 <script>
@@ -773,18 +789,6 @@ NexT.utils.loadComments('#gitalk-container', () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-<script>
-NexT.utils.loadComments('#valine-comments', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
-      el: '#valine-comments',
-      path: "/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
-    }));
-  }, window.Valine);
 });
 </script>
 
