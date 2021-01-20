@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">147</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">148</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-count">148</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -331,6 +331,110 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-17-Zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF%EF%BC%9APacket-len-is-out-of-range!/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/2020-12-17-Zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF%EF%BC%9APacket-len-is-out-of-range!/" class="post-title-link" itemprop="url">Zookeeper 客户端错误：Packet len* is out of range!</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-17T00:00:00Z">2020-12-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/Zookeeper/" itemprop="url" rel="index"><span itemprop="name">Zookeeper</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-17-Zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF%EF%BC%9APacket-len-is-out-of-range!/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-17-Zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF%EF%BC%9APacket-len-is-out-of-range!/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><p>zookeeper 客户端出现异常：</p>
+<pre class="language-none"><code class="language-none">2020-12-16 14:47:52,219 [main-SendThread(127.0.0.1:2181)] WARN  org.apache.zookeeper.ClientCnxn$SendThread (ClientCnxn.java:1161) - Session 0x1766a4799830001 for server localhost/127.0.0.1:2181, unexpected error, closing socket connection and attempting reconnect
+java.io.IOException: Packet len5605464 is out of range!
+        at org.apache.zookeeper.ClientCnxn$SendThread.readLength(ClientCnxn.java:710)
+        at org.apache.zookeeper.ClientCnxn$SendThread.doIO(ClientCnxn.java:869)
+        at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1130)</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/2020-12-17-Zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF%EF%BC%9APacket-len-is-out-of-range!/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -856,104 +960,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/12/2020-12-11-Java%E5%AE%9E%E7%8E%B0HTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-08-Vue%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6vue-grid-layout%E5%B5%8C%E5%A5%97%E9%A1%B5%E9%9D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/2020-12-08-Vue%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6vue-grid-layout%E5%B5%8C%E5%A5%97%E9%A1%B5%E9%9D%A2/" class="post-title-link" itemprop="url">Vue 可拖拽组件 vue-grid-layout 嵌套页面</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-08T00:00:00Z">2020-12-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/12/2020-12-08-Vue%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6vue-grid-layout%E5%B5%8C%E5%A5%97%E9%A1%B5%E9%9D%A2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-08-Vue%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6vue-grid-layout%E5%B5%8C%E5%A5%97%E9%A1%B5%E9%9D%A2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="嵌套页面方式"><a href="#嵌套页面方式" class="headerlink" title="嵌套页面方式"></a>嵌套页面方式</h3><ul>
-<li>普通嵌套</li>
-<li> ifream 嵌套</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-08-Vue%E5%8F%AF%E6%8B%96%E6%8B%BD%E7%BB%84%E4%BB%B6vue-grid-layout%E5%B5%8C%E5%A5%97%E9%A1%B5%E9%9D%A2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
