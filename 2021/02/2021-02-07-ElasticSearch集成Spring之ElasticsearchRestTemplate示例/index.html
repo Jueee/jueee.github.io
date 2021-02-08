@@ -28,15 +28,15 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="ElasticsearchRestTemplateElasticsearchRestTemplate 是 spring-data-elasticsearch 项目中的一个类，和其他 spring 项目中的 template 类似。 引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;">
+  <meta name="description" content="ElasticsearchRestTemplateElasticsearchRestTemplate是spring-data-elasticsearch项目中的一个类，和其他spring项目中的template类似。 引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ElasticSearch 集成 Spring 之 ElasticsearchRestTemplate 示例">
 <meta property="og:url" content="https://jueee.github.io/2021/02/2021-02-07-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchRestTemplate%E7%A4%BA%E4%BE%8B/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="ElasticsearchRestTemplateElasticsearchRestTemplate 是 spring-data-elasticsearch 项目中的一个类，和其他 spring 项目中的 template 类似。 引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;">
+<meta property="og:description" content="ElasticsearchRestTemplateElasticsearchRestTemplate是spring-data-elasticsearch项目中的一个类，和其他spring项目中的template类似。 引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactI">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-07T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-02-07T10:36:52.108Z">
+<meta property="article:modified_time" content="2021-02-08T07:50:11.482Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="ElasticSearch">
 <meta property="article:tag" content="Database">
@@ -162,17 +162,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">153</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">155</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">39</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">40</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">78</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">79</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -252,20 +252,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">153</span>
+          <span class="site-state-item-count">155</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-count">79</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -423,6 +423,8 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-data-elasticsearch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 
+<a id="more"></a>
+
 <h3 id="使用ElasticsearchRest"><a href="#使用ElasticsearchRest" class="headerlink" title="使用ElasticsearchRest"></a>使用 ElasticsearchRest</h3><ol>
 <li><p>参数配置：</p>
 <pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">elasticsearch.address</span><span class="token punctuation">=</span><span class="token attr-value">127.0.0.1:9200</span></code></pre>
@@ -496,10 +498,13 @@ elasticsearchTemplate<span class="token punctuation">.</span><span class="token 
       <div class="popular-posts-title"><a href="\2020\09\2020-09-07-自动删除 ElasticSearch 索引\" rel="bookmark">自动删除 ElasticSearch 索引</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\11\2020-11-27-ElasticSearch集成Spring之ElasticsearchTemplate示例\" rel="bookmark">ElasticSearch 集成 Spring 之 ElasticsearchTemplate 示例</a></div>
+      <div class="popular-posts-title"><a href="\2020\11\2020-11-27-ElasticSearch集成Spring之ElasticsearchTemplate示例\" rel="bookmark">ElasticSearch集成Spring之ElasticsearchTemplate示例</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\12\2020-12-06-ElasticSearch集成Spring之RestHighLevelClient示例\" rel="bookmark">ElasticSearch 集成 Spring 之 RestHighLevelClient 示例</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\02\2021-02-08-Springboot集成Neo4j示例\" rel="bookmark">Springboot集成Neo4j示例</a></div>
     </li>
   </ul>
 
@@ -519,6 +524,9 @@ elasticsearchTemplate<span class="token punctuation">.</span><span class="token 
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/02/2021-02-09-Java%E4%BD%BF%E7%94%A8neo4j-java-driver%E6%93%8D%E4%BD%9CNeo4j/" rel="next" title="Java 使用 neo4j-java-driver 操作 Neo4j">
+                  Java 使用 neo4j-java-driver 操作 Neo4j <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
