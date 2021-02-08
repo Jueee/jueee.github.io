@@ -28,15 +28,15 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="引入依赖&lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;org.neo4j.driver&#x2F;neo4j-java-driver --&gt; &lt;dependency&gt;    &lt;groupId&gt;org.neo4j.driver&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;neo4j-java-driver&lt;&#x2F;artifactId&gt;">
+  <meta name="description" content="引入依赖&lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;org.neo4j.driver&#x2F;neo4j-java-driver --&gt; &lt;dependency&gt;    &lt;groupId&gt;org.neo4j.driver&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;neo4j-java-driver&amp;lt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 使用 neo4j-java-driver 操作 Neo4j">
 <meta property="og:url" content="https://jueee.github.io/2021/02/2021-02-09-Java%E4%BD%BF%E7%94%A8neo4j-java-driver%E6%93%8D%E4%BD%9CNeo4j/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="引入依赖&lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;org.neo4j.driver&#x2F;neo4j-java-driver --&gt; &lt;dependency&gt;    &lt;groupId&gt;org.neo4j.driver&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;neo4j-java-driver&lt;&#x2F;artifactId&gt;">
+<meta property="og:description" content="引入依赖&lt;!-- https:&#x2F;&#x2F;mvnrepository.com&#x2F;artifact&#x2F;org.neo4j.driver&#x2F;neo4j-java-driver --&gt; &lt;dependency&gt;    &lt;groupId&gt;org.neo4j.driver&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;neo4j-java-driver&amp;lt">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-02-08T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-02-08T08:22:39.218Z">
+<meta property="article:published_time" content="2021-02-09T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-02-08T08:36:52.727Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Neo4j">
@@ -237,7 +237,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">1.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">使用步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90-Driver-Session"><span class="nav-number">3.</span> <span class="nav-text">生成 Driver Session</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-%E5%BC%95%E5%85%A5"><span class="nav-number">3.1.</span> <span class="nav-text">Java 引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SpringBoot-%E5%BC%95%E5%85%A5"><span class="nav-number">3.2.</span> <span class="nav-text">SpringBoot 引入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.1.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">3.2.2.</span> <span class="nav-text">配置类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%95%E5%85%A5-Session"><span class="nav-number">3.2.3.</span> <span class="nav-text">引入 Session</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CSQL"><span class="nav-number">4.</span> <span class="nav-text">执行 SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E7%BB%9F%E8%AE%A1"><span class="nav-number">5.</span> <span class="nav-text">执行统计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%87%E6%80%BB%E8%8A%82%E7%82%B9%E6%95%B0%E9%87%8F"><span class="nav-number">5.1.</span> <span class="nav-text">汇总节点数量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%87%E6%80%BB%E5%85%B3%E7%B3%BB%E6%95%B0%E9%87%8F"><span class="nav-number">5.2.</span> <span class="nav-text">汇总关系数量</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">1.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">项目代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">使用步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90-Driver-Session"><span class="nav-number">4.</span> <span class="nav-text">生成 Driver Session</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-%E5%BC%95%E5%85%A5"><span class="nav-number">4.1.</span> <span class="nav-text">Java 引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SpringBoot-%E5%BC%95%E5%85%A5"><span class="nav-number">4.2.</span> <span class="nav-text">SpringBoot 引入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.1.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">4.2.2.</span> <span class="nav-text">配置类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%95%E5%85%A5-Session"><span class="nav-number">4.2.3.</span> <span class="nav-text">引入 Session</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8CSQL"><span class="nav-number">5.</span> <span class="nav-text">执行 SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E7%BB%9F%E8%AE%A1"><span class="nav-number">6.</span> <span class="nav-text">执行统计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%87%E6%80%BB%E8%8A%82%E7%82%B9%E6%95%B0%E9%87%8F"><span class="nav-number">6.1.</span> <span class="nav-text">汇总节点数量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B1%87%E6%80%BB%E5%85%B3%E7%B3%BB%E6%95%B0%E9%87%8F"><span class="nav-number">6.2.</span> <span class="nav-text">汇总关系数量</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -371,7 +371,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-08T00:00:00Z">2021-02-08</time>
+      <time title="创建时间：2021-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-09T00:00:00Z">2021-02-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -435,6 +435,7 @@
 
 <a id="more"></a>
 
+<h3 id="项目代码"><a href="#项目代码" class="headerlink" title="项目代码"></a>项目代码</h3><p>本文完整项目代码位于：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2Jsb2ctcHJvamVjdC90cmVlL21haW4vbmVvNGotZHJpdmVyLXNlc3Npb24=">https://github.com/Jueee/blog-project/tree/main/neo4j-driver-session<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h3><p>每个 Neo4j 驱动程序都有一个用于创建驱动程序的数据库对象。</p>
 <p>一般按照以下操作步骤：</p>
 <ol>
@@ -547,7 +548,7 @@ driver<span class="token punctuation">.</span><span class="token function">close
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\02\2021-02-08-Springboot集成Neo4j示例\" rel="bookmark">Springboot集成Neo4j示例</a></div>
+      <div class="popular-posts-title"><a href="\2021\02\2021-02-08-Springboot集成Neo4j示例\" rel="bookmark">Springboot 集成 Neo4j 示例</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
@@ -575,14 +576,11 @@ driver<span class="token punctuation">.</span><span class="token function">close
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/02/2021-02-07-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchRestTemplate%E7%A4%BA%E4%BE%8B/" rel="prev" title="ElasticSearch 集成 Spring 之 ElasticsearchRestTemplate 示例">
-                  <i class="fa fa-chevron-left"></i> ElasticSearch 集成 Spring 之 ElasticsearchRestTemplate 示例
+                <a href="/2021/02/2021-02-08-Springboot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/" rel="prev" title="Springboot 集成 Neo4j 示例">
+                  <i class="fa fa-chevron-left"></i> Springboot 集成 Neo4j 示例
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/02/2021-02-08-Springboot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/" rel="next" title="Springboot 集成 Neo4j 示例">
-                  Springboot 集成 Neo4j 示例 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
