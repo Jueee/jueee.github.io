@@ -28,27 +28,16 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="Arthas之各模块简介。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Arthas 之各模块简介">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="小决的专栏">
 <meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-02-Arthas%E4%B9%8B%E5%90%84%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="Arthas之各模块简介。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596679506644.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596698216827.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596616373228.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596710846489.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596700025625.png">
-<meta property="og:image" content="https://jueee.github.io/images/2020/08/1596701687793.png">
-<meta property="article:published_time" content="2020-08-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-21T01:36:13.783Z">
+<meta property="article:published_time" content="2020-08-07T06:45:12.190Z">
+<meta property="article:modified_time" content="2021-03-04T10:41:28.677Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="Java诊断">
-<meta property="article:tag" content="Arthas">
+<meta property="article:tag" content="Hexo, NexT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jueee.github.io/images/2020/08/1596679506644.png">
 
 
 <link rel="canonical" href="https://jueee.github.io/2020/08/2020-08-02-Arthas%E4%B9%8B%E5%90%84%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B/">
@@ -64,7 +53,7 @@
   };
 </script>
 
-  <title>Arthas 之各模块简介 | 小决的专栏</title>
+  <title> | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -170,7 +159,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">161</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">164</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -180,7 +169,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">80</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">81</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -232,7 +221,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -244,7 +233,6 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arthas"><span class="nav-number">1.</span> <span class="nav-text">Arthas</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">项目代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%85%E5%90%AB%E6%A8%A1%E5%9D%97"><span class="nav-number">1.2.</span> <span class="nav-text">包含模块</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">模块简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="nav-number">3.</span> <span class="nav-text">主要功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%85%B3%E7%B3%BB"><span class="nav-number">4.</span> <span class="nav-text">模块关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%B1%BB%E6%8F%8F%E8%BF%B0"><span class="nav-number">5.</span> <span class="nav-text">核心类描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB"><span class="nav-number">6.</span> <span class="nav-text">常用命令汇总</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -260,7 +248,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-count">164</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -273,7 +261,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-count">81</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -367,7 +355,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Arthas 之各模块简介
+          
         </h1>
 
         <div class="post-meta-container">
@@ -378,20 +366,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-08-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-02T00:00:00Z">2020-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/Arthas/" itemprop="url" rel="index"><span itemprop="name">Arthas</span></a>
-        </span>
+      <time title="创建时间：2020-08-07 06:45:12" itemprop="dateCreated datePublished" datetime="2020-08-07T06:45:12Z">2020-08-07</time>
     </span>
 
   
@@ -418,7 +393,6 @@
   
 </div>
 
-            <div class="post-description">Arthas之各模块简介。</div>
         </div>
       </header>
 
@@ -426,104 +400,28 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="Arthas"><a href="#Arthas" class="headerlink" title="Arthas"></a>Arthas</h3><h4 id="项目代码"><a href="#项目代码" class="headerlink" title="项目代码"></a>项目代码</h4><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFz">GitHub Code by arthas<i class="fa fa-external-link-alt"></i></span></p>
-<h4 id="包含模块"><a href="#包含模块" class="headerlink" title="包含模块"></a>包含模块</h4><p><img src="/images/2020/08/1596679506644.png" alt="1596679506644" loading="lazy"></p>
-<h3 id="模块简介"><a href="#模块简介" class="headerlink" title="模块简介"></a>模块简介</h3><ul>
-<li>arthas-agent：基于 JavaAgent 技术的代理</li>
-<li> bin：一些启动脚本</li>
-<li> arthas-boot：Java 版本的一键安装启动脚本</li>
-<li> arthas-client：telnet client 代码</li>
-<li> arthas-common：一些共用的工具类和枚举类</li>
-<li> arthas-core：核心库，各种 arthas 命令的交互和实现</li>
-<li> arthas-demo：示例代码</li>
-<li> arthas-memorycompiler：内存编绎器代码</li>
-<li> arthas-packaging：maven 打包相关的</li>
-<li> arthas-site：arthas 站点</li>
-<li> arthas-spy：编织到目标类中的各个切面</li>
-<li> static：静态资源</li>
-<li> arthas-testcase：测试</li>
-</ul>
-<h3 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h3><p>Arthas 提供的功能主要可以分为以下三个方面：</p>
-<ol>
-<li>信息监控<ul>
-<li>进程运行基本信息包括：内存、CPU 占用、线程信息、线程堆栈、线程数统计、环境变量信息。</li>
-<li>对象信息：类对象静态属性、 Mbean 的属性信息、已加载类信息、类加载器、类方法信息。</li>
-</ul>
-</li>
-<li>方法调用<ul>
-<li>方法调用入参、返回值查看。</li>
-<li>方法被调用的调用路径、调用耗时、方法调用次数、成功次数、失败次数等统计。</li>
-<li>记录和重做方法调用。</li>
-</ul>
-</li>
-<li>类文件处理<ul>
-<li> dump 已加载类的字节码、字节码反编译、类编译、类重新热加载。</li>
-</ul>
-</li>
-</ol>
-<h3 id="模块关系"><a href="#模块关系" class="headerlink" title="模块关系"></a>模块关系</h3><p>模块关系说明：</p>
-<ol>
-<li>arthas-boot.jar 和 as.sh 模块功能类似，分别使用 java 和 shell 脚本，下载对应的 jar 包，并生成服务端和客户端的启动命令，然后启动客户端和服务端。</li>
-<li>arthas-core.jar 是服务端程序的启动入口类，会调用 <code>virtualMachine#attach</code> 到目标进程，并加载 arthas-agent.jar 作为 agent jar 包。</li>
-<li>arthas-agent.jar 既可以使用 premain 方式（在目标进程启动之前，通过 - agent 参数静态指定），也可以通过 agentmain 方式（在进程启动之后 attach 上去）。arthas-agent 会使用自定义的 classloader (<code>ArthasClassLoader</code>) 加载 arthas-core.jar 里面的 <code>com.taobao.arthas.core.config.Configure</code> 类以及 <code>com.taobao.arthas.core.server.ArthasBootstrap</code>。 同时程序运行的时候会使用 arthas-spy.jar。</li>
-<li>arthas-spy.jar 里面只包含 Spy 类，目的是为了将 Spy 类使用 <code>BootstrapClassLoader</code> 来加载，从而使目标进程的 java 应用可以访问 Spy 类。通过 ASM 修改字节码，可以将 Spy 类的方法 <code>ON_BEFORE_METHOD</code>， <code>ON_RETURN_METHOD</code> 等编织到目标类里面。Spy 类你可以简单理解为类似 spring aop 的 Advice，有前置方法，后置方法等。</li>
-<li>arthas-client.jar 是客户端程序，用来连接 arthas-core.jar 启动的服务端代码，使用 telnet 方式。一般由 arthas-boot.jar 和 as.sh 来负责启动。</li>
-</ol>
-<p>整体宏观模块调用图：</p>
-<p><img src="/images/2020/08/1596698216827.png" alt="1596698216827" loading="lazy"></p>
-<p>模块描述：</p>
-<p><img src="/images/2020/08/1596616373228.png" alt="1596616373228" loading="lazy"></p>
-<h3 id="核心类描述"><a href="#核心类描述" class="headerlink" title="核心类描述"></a>核心类描述</h3><p>核心类描述：</p>
-<p><img src="/images/2020/08/1596710846489.png" alt="1596710846489" loading="lazy"></p>
-<p>核心类描述（精简版）</p>
-<p><img src="/images/2020/08/1596700025625.png" alt="1596700025625" loading="lazy"></p>
-<h3 id="常用命令汇总"><a href="#常用命令汇总" class="headerlink" title="常用命令汇总"></a>常用命令汇总</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2lzc3Vlcy8xMDAz">Arthas 常用命令汇总<i class="fa fa-external-link-alt"></i></span></p>
-<p><img src="/images/2020/08/1596701687793.png" alt="1596701687793" loading="lazy"></p>
-
+        
     </div>
 
     
     
     
       
-  <div class="popular-posts-header">相关文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas 之源码简要分析</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas 之 jad 反编译原理</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-14-Arthas之定位方法调用问题\" rel="bookmark">Arthas 之定位方法调用问题</a></div>
-    </li>
-  </ul>
 
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/Java%E8%AF%8A%E6%96%AD/" rel="tag"># Java诊断</a>
-              <a href="/tags/Arthas/" rel="tag"># Arthas</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/07/2020-07-31-%E8%BF%81%E7%A7%BBVMware%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%87%B3%E5%BE%AE%E8%BD%AFHyper-V/" rel="prev" title="迁移 VMware 虚拟机至微软 Hyper-V">
-                  <i class="fa fa-chevron-left"></i> 迁移 VMware 虚拟机至微软 Hyper-V
+                <a href="/2020/08/2020-08-07-%E6%90%AD%E5%BB%BAhexo+github+next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/" rel="prev" title="搭建 hexo+github+next 主题博客">
+                  <i class="fa fa-chevron-left"></i> 搭建 hexo+github+next 主题博客
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/08/2020-08-03-Arthas%E4%B9%8B%E6%BA%90%E7%A0%81%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90/" rel="next" title="Arthas 之源码简要分析">
-                  Arthas 之源码简要分析 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/08/2020-08-08-hexo%E5%8D%9A%E5%AE%A2%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE/" rel="next" title="hexo 博客个性化设置">
+                  hexo 博客个性化设置 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
