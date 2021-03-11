@@ -36,7 +36,7 @@
 <meta property="og:description" content="目标类型 List转 ListList&lt;String&gt; list1 &#x3D; Lists.newArrayList(); List&lt;String&gt; list2 &#x3D; list1.stream().map(string -&gt; { 	return &quot;stream().map()处理之后：&quot; + string; }).collect(Collectors.toList());">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-24T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-02T11:03:38.282Z">
+<meta property="article:modified_time" content="2021-03-11T10:39:40.656Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="JavaClass">
 <meta property="article:tag" content="Java">
@@ -162,17 +162,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">164</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">167</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">40</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">41</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">81</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">82</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -236,7 +236,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E7%B1%BB%E5%9E%8B-List"><span class="nav-number">1.</span> <span class="nav-text">目标类型 List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC-List"><span class="nav-number">1.1.</span> <span class="nav-text">转 List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC-Map"><span class="nav-number">1.2.</span> <span class="nav-text">转 Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC-Map-lt-String-List-gt"><span class="nav-number">1.3.</span> <span class="nav-text">转 Map&lt;String, List&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E5%87%BA%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="nav-number">1.4.</span> <span class="nav-text">过滤出一个元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E7%B1%BB%E5%9E%8B-Map"><span class="nav-number">2.</span> <span class="nav-text">目标类型 Map</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E7%B1%BB%E5%9E%8B-List"><span class="nav-number">1.</span> <span class="nav-text">目标类型 List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC-List"><span class="nav-number">1.1.</span> <span class="nav-text">转 List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC-Map"><span class="nav-number">1.2.</span> <span class="nav-text">转 Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC-Map-lt-String-List-gt"><span class="nav-number">1.3.</span> <span class="nav-text">转 Map&lt;String, List&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E6%95%B0%E7%BB%84-Integer"><span class="nav-number">1.4.</span> <span class="nav-text">转数组 Integer []</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E6%95%B0%E7%BB%84-int"><span class="nav-number">1.5.</span> <span class="nav-text">转数组 int []</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E5%87%BA%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="nav-number">1.6.</span> <span class="nav-text">过滤出一个元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E7%B1%BB%E5%9E%8B-Map"><span class="nav-number">2.</span> <span class="nav-text">目标类型 Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87%E7%B1%BB%E5%9E%8B%E6%95%B0%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">目标类型数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%AA%E5%8F%96%E6%95%B0%E7%BB%84"><span class="nav-number">3.1.</span> <span class="nav-text">截取数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC-List-1"><span class="nav-number">3.2.</span> <span class="nav-text">转 List</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E5%8C%85%E8%A3%85%E7%B1%BB%E6%95%B0%E7%BB%84"><span class="nav-number">3.3.</span> <span class="nav-text">转包装类数组</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -252,20 +252,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">164</span>
+          <span class="site-state-item-count">167</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">41</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-count">82</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -444,10 +444,52 @@
 <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">SystemTabMenu</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> map <span class="token operator">=</span> allList<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
 	<span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">groupingBy</span><span class="token punctuation">(</span>e <span class="token operator">-&gt;</span> e<span class="token punctuation">.</span><span class="token function">getParentid</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
+<h4 id="转数组-Integer"><a href="#转数组-Integer" class="headerlink" title="转数组 Integer[]"></a>转数组 Integer []</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Integer</span><span class="token punctuation">[</span><span class="token punctuation">]</span> integers <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h4 id="转数组-int"><a href="#转数组-int" class="headerlink" title="转数组 int[]"></a>转数组 int []</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> arr1 <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">mapToInt</span><span class="token punctuation">(</span><span class="token class-name">Integer</span><span class="token operator">::</span><span class="token function">valueOf</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<ol>
+<li><p>想要转换成 int [] 类型，就得先转成 IntStream。</p>
+</li>
+<li><p>通过 mapToInt () 把 <code>Stream&lt;Integer&gt;</code> 调用 Integer::valueOf 来转成 IntStream</p>
+</li>
+<li><p>通过 IntStream 中默认 toArray () 转成 int []。</p>
+</li>
+</ol>
 <h4 id="过滤出一个元素"><a href="#过滤出一个元素" class="headerlink" title="过滤出一个元素"></a>过滤出一个元素</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">&gt;</span></span> users <span class="token operator">=</span> <span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">User</span> match <span class="token operator">=</span> users<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> user<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">findAny</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
-<h3 id="目标类型-Map"><a href="#目标类型-Map" class="headerlink" title="目标类型 Map"></a>目标类型 Map</h3>
+<h3 id="目标类型-Map"><a href="#目标类型-Map" class="headerlink" title="目标类型 Map"></a>目标类型 Map</h3><h3 id="目标类型数组"><a href="#目标类型数组" class="headerlink" title="目标类型数组"></a>目标类型数组</h3><h4 id="截取数组"><a href="#截取数组" class="headerlink" title="截取数组"></a>截取数组</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">,</span> <span class="token number">3</span> <span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">,</span> <span class="token number">6</span> <span class="token punctuation">,</span> <span class="token number">7</span> <span class="token punctuation">,</span> <span class="token number">8</span> <span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> newData <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">copyOfRange</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// {2,3,4,5,6}</span></code></pre>
+
+<h4 id="转-List-1"><a href="#转-List-1" class="headerlink" title="转 List"></a>转 List</h4><p>Integer [] 转 <code>List&lt;Integer&gt;</code>：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>integers1<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>int [] 转 <code>List&lt;Integer&gt;</code></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">,</span> <span class="token number">3</span> <span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">,</span> <span class="token number">6</span> <span class="token punctuation">,</span> <span class="token number">7</span> <span class="token punctuation">,</span> <span class="token number">8</span> <span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">boxed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></code></pre>
+
+<p>Arrays.stream (arr) 可以替换成 IntStream.of (arr)。</p>
+<ol>
+<li>使用 Arrays.stream 将 int [] 转换成 IntStream。</li>
+<li>使用 IntStream 中的 boxed () 装箱。将 IntStream 转换成 <code>Stream&lt;Integer&gt;</code>。</li>
+<li>使用 Stream 的 collect ()，将 <code>Stream&lt;T&gt;</code> 转换成 <code>List&lt;T&gt;</code>，因此正是 <code>List&lt;Integer&gt;</code>。          </li>
+</ol>
+<h4 id="转包装类数组"><a href="#转包装类数组" class="headerlink" title="转包装类数组"></a>转包装类数组</h4><p>int [] 转 Integer []</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">,</span> <span class="token number">3</span> <span class="token punctuation">,</span> <span class="token number">4</span> <span class="token punctuation">,</span> <span class="token number">5</span> <span class="token punctuation">,</span> <span class="token number">6</span> <span class="token punctuation">,</span> <span class="token number">7</span> <span class="token punctuation">,</span> <span class="token number">8</span> <span class="token punctuation">,</span> <span class="token number">9</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token class-name">Integer</span><span class="token punctuation">[</span><span class="token punctuation">]</span> integers1 <span class="token operator">=</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">boxed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token class-name">Integer</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">::</span><span class="token keyword">new</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// {0, 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 }</span></code></pre>
+
+<p>Arrays.stream (arr) 可以替换成 IntStream.of (arr)。</p>
+<ol>
+<li>使用 Arrays.stream 将 int [] 转换成 IntStream。</li>
+<li>使用 IntStream 中的 boxed () 装箱。将 IntStream 转换成 <code>Stream&lt;Integer&gt;</code>。</li>
+<li>使用 Stream 的 toArray，传入 IntFunction&lt;A []&gt; generator。这样就可以返回 Integer 数组。不然默认是 Object []。</li>
+</ol>
+
     </div>
 
     
