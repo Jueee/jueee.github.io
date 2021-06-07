@@ -1,5 +1,6 @@
 import os,re,shutil,sys
 import fileinput
+import datetime
 
 def getBlogAddress():
     blogs = []
@@ -38,7 +39,7 @@ def replaceBolgs(blogs):
 
 def moveImages():
     if not os.path.exists(NEW_IMAGES_PATH):
-        os.mkdir(NEW_IMAGES_PATH)
+        os.makedirs(NEW_IMAGES_PATH)
         print("new mkdir:"+NEW_IMAGES_PATH)
     for image in getImages(OLD_IMAGES_PATH):
         full_path = OLD_IMAGES_PATH+image
@@ -50,7 +51,8 @@ def moveImages():
         print('rmdir:'+OLD_IMAGES_PATH)
 
 if __name__ == '__main__':
-    THIS_MONTH="2020-08"
+    today = datetime.datetime.today()
+    THIS_MONTH=today.strftime( '%Y-%m' )
     if len(sys.argv) > 1:
         monthParam = sys.argv[1]
         if monthParam is not None:

@@ -28,18 +28,23 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="获取内网 IP 地址function getIpAddress() {     window.RTCPeerConnection &#x3D; window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;     var pc &#x3D; new RTCPeerConnection({">
+  <meta name="description" content="获取内网IP地址function getIpAddress() &amp;#123;     window.RTCPeerConnection &#x3D; window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;     var pc &#x3D; new RTCPeerConnection(&amp;#12">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS 获取内网 IP 地址（兼容谷歌浏览器）">
 <meta property="og:url" content="https://jueee.github.io/2021/03/2021-03-01-JS%E8%8E%B7%E5%8F%96%E5%86%85%E7%BD%91IP%E5%9C%B0%E5%9D%80%EF%BC%88%E5%85%BC%E5%AE%B9%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%89/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="获取内网 IP 地址function getIpAddress() {     window.RTCPeerConnection &#x3D; window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;     var pc &#x3D; new RTCPeerConnection({">
+<meta property="og:description" content="获取内网IP地址function getIpAddress() &amp;#123;     window.RTCPeerConnection &#x3D; window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;     var pc &#x3D; new RTCPeerConnection(&amp;#12">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210301103332557.png">
 <meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210304094911768.png">
 <meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210304095024850.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210526143322700.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210526143449205.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210526143645999.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210526143827731.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210526143941700.png">
 <meta property="article:published_time" content="2021-03-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-04T08:46:29.073Z">
+<meta property="article:modified_time" content="2021-05-26T07:16:50.240Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -165,17 +170,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">185</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">192</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">45</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">47</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">88</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">89</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -239,7 +244,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%86%85%E7%BD%91IP%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">获取内网 IP 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">谷歌浏览器设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%81%AB%E7%8B%90%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">火狐浏览器设置</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%86%85%E7%BD%91IP%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">获取内网 IP 地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">谷歌浏览器设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%81%AB%E7%8B%90%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">火狐浏览器设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Chrome-91-%E4%B9%8B%E5%90%8E%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">Chrome 91 之后的设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E"><span class="nav-number">4.1.</span> <span class="nav-text">配置说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%B6%88%E6%81%AF"><span class="nav-number">4.2.</span> <span class="nav-text">参考消息</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -255,20 +260,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">185</span>
+          <span class="site-state-item-count">192</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-count">89</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -437,7 +442,7 @@
 
 <a id="more"></a>
 
-<h3 id="谷歌浏览器设置"><a href="#谷歌浏览器设置" class="headerlink" title="谷歌浏览器设置"></a>谷歌浏览器设置</h3><p>针对谷歌浏览器的设置，才能显出出 IP：</p>
+<h3 id="谷歌浏览器设置"><a href="#谷歌浏览器设置" class="headerlink" title="谷歌浏览器设置"></a>谷歌浏览器设置</h3><p>针对谷歌浏览器的设置，才能显出出 IP：（Chrome 91 版本之后，取消了该配置）</p>
 <ol>
 <li>在 chrome 浏览器地址栏中输入：chrome://flags/</li>
 <li> 搜索 #enable-webrtc-hide-local-ips-with-mdns 该配置 并将属性改为 disabled</li>
@@ -453,6 +458,39 @@
 </ol>
 <p><img src="/images/2021/03/image-20210304094911768.png" alt="image-20210304094911768" loading="lazy"></p>
 <p><img src="/images/2021/03/image-20210304095024850.png" alt="image-20210304095024850" loading="lazy"></p>
+<h3 id="Chrome-91-之后的设置"><a href="#Chrome-91-之后的设置" class="headerlink" title="Chrome 91 之后的设置"></a>Chrome 91 之后的设置</h3><h4 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h4><ol>
+<li><p>下载 <span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vY2hyb21lL2EvYW5zd2VyLzE4NzIwMj9obD1lbg==">Chrome 官方的组策略文件<i class="fa fa-external-link-alt"></i></span> <code>chrome.adm</code></p>
+<pre class="language-none"><code class="language-none">policy_templates\windows\adm\zh-CN\chrome.adm</code></pre>
+</li>
+<li><p>搜索本地计算机的组策略配置，并打开。</p>
+</li>
+<li><p>在 管理模板 中，右键选择 “添加 / 删除模板”，选择并导入步骤 1 的模板 <code>chrome.adm</code></p>
+<p>选择管理模板：</p>
+<p><img src="/images/2021/03/image-20210526143322700.png" alt="image-20210526143322700" loading="lazy"></p>
+<p>添加模板：</p>
+<p><img src="/images/2021/03/image-20210526143449205.png" alt="image-20210526143449205" loading="lazy"></p>
+<p>添加完成后，会出现如上图所示的 <strong>经典管理模板（ADM）</strong></p>
+</li>
+<li><p>选择 配置项：<strong>在 WebRTC ICE 候选路径中显示本地 IP 的网址</strong>，位置如下所示：</p>
+<p><img src="/images/2021/03/image-20210526143645999.png" alt="image-20210526143645999" loading="lazy"></p>
+</li>
+<li><p>双击打开，选择 <strong>已启用</strong>并选择 <strong>显示</strong>：</p>
+<p><img src="/images/2021/03/image-20210526143827731.png" alt="image-20210526143827731" loading="lazy"></p>
+<p>可以看到 帮助描述中，此配置是替换原先的 chrome://flags/#enable-webrtc-hide-local-ips-with-mdns 配置。</p>
+</li>
+<li><p>在显示配置中，添加白名单域名 <code>*domain.com*</code>，注意，域名前后需要加 【*】号。</p>
+<p>如下图所示：</p>
+<p><img src="/images/2021/03/image-20210526143941700.png" alt="image-20210526143941700" loading="lazy"></p>
+</li>
+<li><p>重启 Chrome 浏览器，就可以获取到内网 IP 的显示！</p>
+</li>
+</ol>
+<h4 id="参考消息"><a href="#参考消息" class="headerlink" title="参考消息"></a>参考消息</h4><ul>
+<li>参考资料：<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmltcGVyb3NvZnR3YXJlLmNvbS9zdXBwb3J0L3NvbHV0aW9ucy9hcnRpY2xlcy80NDAwMTc5MDA2NS1nb29nbGUtY2hyb21lLWFub255bWl6ZS1sb2NhbC1pcHMtZXhwb3NlZC1ieS13ZWJydGMtcHJldmVudHMtbGl2ZS12aWV3LWluLWNsb3VkLWNvbnNvbGU=">https://support.imperosoftware.com/support/solutions/articles/44001790065-google-chrome-anonymize-local-ips-exposed-by-webrtc-prevents-live-view-in-cloud-console<i class="fa fa-external-link-alt"></i></span></li>
+<li>下载模板：<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vY2hyb21lL2EvYW5zd2VyLzE4NzIwMj9obD1lbg==">https://support.google.com/chrome/a/answer/187202?hl=en<i class="fa fa-external-link-alt"></i></span></li>
+<li>配置说明：<span class="exturl" data-url="aHR0cHM6Ly9hZG14LmhlbHAvP0NhdGVnb3J5PUNocm9tZSZhbXA7UG9saWN5PUdvb2dsZS5Qb2xpY2llcy5DaHJvbWU6OldlYlJ0Y0xvY2FsSXBzQWxsb3dlZFVybHMj">https://admx.help/?Category=Chrome&amp;Policy=Google.Policies.Chrome::WebRtcLocalIpsAllowedUrls#<i class="fa fa-external-link-alt"></i></span></li>
+<li>官方说明：<span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC5nb29nbGUuY29tL2RvY3MvY2hyb21lLWVudGVycHJpc2UvcG9saWNpZXMvP3BvbGljeT1XZWJSdGNMb2NhbElwc0FsbG93ZWRVcmxz">https://cloud.google.com/docs/chrome-enterprise/policies/?policy=WebRtcLocalIpsAllowedUrls<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
 
     </div>
 
