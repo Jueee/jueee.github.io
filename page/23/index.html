@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">192</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">197</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">192</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -331,6 +331,635 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-11-Apache%E9%9B%86%E5%90%88%E5%B7%A5%E5%85%B7commons-collections4%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/2020-10-11-Apache%E9%9B%86%E5%90%88%E5%B7%A5%E5%85%B7commons-collections4%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Apache 集合工具 commons-collections4 的使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-11T00:00:00Z">2020-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/Commons/" itemprop="url" rel="index"><span itemprop="name">Commons</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/2020-10-11-Apache%E9%9B%86%E5%90%88%E5%B7%A5%E5%85%B7commons-collections4%E7%9A%84%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-11-Apache%E9%9B%86%E5%90%88%E5%B7%A5%E5%85%B7commons-collections4%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Jar引入"><a href="#Jar引入" class="headerlink" title="Jar引入"></a>Jar 引入</h3><p>官网：<a target="_blank" rel="noopener" href="http://commons.apache.org/proper/commons-collections/">http://commons.apache.org/proper/commons-collections/</a></p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.commons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>commons-collections4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<h3 id="Jar介绍"><a href="#Jar介绍" class="headerlink" title="Jar介绍"></a>Jar 介绍</h3><p>Commons Collections 增强了 Java 集合框架。 它提供了几个功能来简化收集处理。 它提供了许多新的接口，实现和实用程序。 </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/2020-10-11-Apache%E9%9B%86%E5%90%88%E5%B7%A5%E5%85%B7commons-collections4%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/" class="post-title-link" itemprop="url">Python 转化文件编码为 UTF8</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-10 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-10T00:00:00Z">2020-10-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>使用编译器若遇到文件编码问题，当文件中有中文时，则会出现乱码，会因为编码问题导致各种错误。</p>
+<p>所以写了个 python 脚本来检测原文件编码并转换为目标编码，以下代码以目标编码为 utf-8 为例：</p>
+<p>需要安装 chardet，详情：<a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/chardet">https://pypi.python.org/pypi/chardet</a> </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/2020-10-10-Python%E8%BD%AC%E5%8C%96%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81%E4%B8%BAUTF8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/" class="post-title-link" itemprop="url">Hexo 博客添加 Live2D 看板娘</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-09T00:00:00Z">2020-10-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="资料汇总"><a href="#资料汇总" class="headerlink" title="资料汇总"></a>资料汇总</h3><ul>
+<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/EYHN/hexo-helper-live2d">https://github.com/EYHN/hexo-helper-live2d</a></li>
+<li> 配置说明：<a target="_blank" rel="noopener" href="https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html">https://l2dwidget.js.org/docs/class/src/index.js~L2Dwidget.html</a></li>
+<li> 模型仓库：<a target="_blank" rel="noopener" href="https://github.com/xiazeyu/live2d-widget-models">https://github.com/xiazeyu/live2d-widget-models</a></li>
+<li> 模型预览：<a target="_blank" rel="noopener" href="https://huaji8.top/post/live2d-plugin-2.0/">https://huaji8.top/post/live2d-plugin-2.0/</a></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/2020-10-09-Hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0Live2D%E7%9C%8B%E6%9D%BF%E5%A8%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Neo4j 的安装和基本使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-10-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-10-08T00:00:00Z">2020-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/Neo4j/" itemprop="url" rel="index"><span itemprop="name">Neo4j</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Neo4j-介绍"><a href="#Neo4j-介绍" class="headerlink" title="Neo4j 介绍"></a>Neo4j 介绍</h3><p>Neo4j 是一个世界领先的开源图形数据库。 </p>
+<p>图形数据库是以图形结构的形式存储数据的数据库。 它以节点，关系和属性的形式存储应用程序的数据。 正如 RDBMS 以表的 “行，列” 的形式存储数据，GDBMS 以 “图形” 的形式存储数据。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://neo4j.com/">https://neo4j.com/</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/10/2020-10-08-Neo4j%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/" class="post-title-link" itemprop="url">FastDFS 容器化安装实践</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-24 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-24T00:00:00Z">2020-09-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-24-FastDFS%E5%AE%B9%E5%99%A8%E5%8C%96%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="FastDFS-容器化安装"><a href="#FastDFS-容器化安装" class="headerlink" title="FastDFS 容器化安装"></a>FastDFS 容器化安装</h3><h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><p>新增 .env 文件如下：</p>
+<pre class="language-none"><code class="language-none">HOSTNAME_COMMAND=xxx.xxx.xxx.xxx</code></pre>
+
+<p>其中，<code>xxx.xxx.xxx.xxx </code>为 服务器 IP 地址。</p>
+<h4 id="nginx-conf-配置"><a href="#nginx-conf-配置" class="headerlink" title="nginx.conf 配置"></a>nginx.conf 配置</h4><p><code>nginx.conf</code> 文件增加配置如下：</p>
+<pre class="language-none"><code class="language-none">location /group1/M00 {
+	root /fastdfs/storage/data;
+	ngx_fastdfs_module;
+}</code></pre>
+
+<h4 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h4><p><code>docker-compose.yml</code> 文件如下：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'2'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+    <span class="token key atrule">fastdfs-tracker</span><span class="token punctuation">:</span>
+        <span class="token key atrule">hostname</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>tracker
+        <span class="token key atrule">container_name</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>tracker
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> season/fastdfs<span class="token punctuation">:</span><span class="token number">1.2</span>
+        <span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"host"</span>
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> tracker
+        <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> ./data/tracker_data<span class="token punctuation">:</span>/fastdfs/tracker/data
+    <span class="token key atrule">fastdfs-storage</span><span class="token punctuation">:</span>
+        <span class="token key atrule">hostname</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>storage
+        <span class="token key atrule">container_name</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>storage
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> season/fastdfs<span class="token punctuation">:</span><span class="token number">1.2</span>
+        <span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"host"</span>
+        <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> ./data/storage_data<span class="token punctuation">:</span>/fastdfs/storage/data
+          <span class="token punctuation">-</span> ./data/store_path<span class="token punctuation">:</span>/fastdfs/store_path
+        <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> TRACKER_SERVER=$<span class="token punctuation">{</span>HOSTNAME_COMMAND<span class="token punctuation">}</span><span class="token punctuation">:</span><span class="token number">22122</span>
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> storage
+        <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> fastdfs<span class="token punctuation">-</span>tracker
+    <span class="token key atrule">fastdfs-nginx</span><span class="token punctuation">:</span>
+        <span class="token key atrule">hostname</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>nginx
+        <span class="token key atrule">container_name</span><span class="token punctuation">:</span> fastdfs<span class="token punctuation">-</span>nginx
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> season/fastdfs<span class="token punctuation">:</span><span class="token number">1.2</span>
+        <span class="token key atrule">network_mode</span><span class="token punctuation">:</span> <span class="token string">"host"</span>
+        <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> ./nginx.conf<span class="token punctuation">:</span>/etc/nginx/conf/nginx.conf
+          <span class="token punctuation">-</span> ./data/store_path<span class="token punctuation">:</span>/fastdfs/store_path
+        <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> TRACKER_SERVER=$<span class="token punctuation">{</span>HOSTNAME_COMMAND<span class="token punctuation">}</span><span class="token punctuation">:</span><span class="token number">22122</span>
+        <span class="token key atrule">command</span><span class="token punctuation">:</span> nginx</code></pre>
+
+<p>需要注意：</p>
+<ul>
+<li>network_mode 必须是 host, 原因是当上传文件时，tracker 会把 storage 的 IP 和端口发给 client，如果是 bridge 模式，则发送的是内网 IP，client 无法访问到。</li>
+<li>image 采用 season/fastdfs:1.2 ，不要用 lastest, 因为 lastest 不包含 nginx 服务，其他 fasdfs 镜像均没有 season 的精简。</li>
+</ul>
+<h3 id="测试-FastDFS"><a href="#测试-FastDFS" class="headerlink" title="测试 FastDFS"></a>测试 FastDFS</h3><p>命令行测试上传</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ fdfs_upload_file /etc/fdfs/client.conf /home/ant/test 
+group1/M00/00/00/CqD3YF3kwS-ACYbMAAAAHDDhFHI6820520</code></pre>
+
+<p>命令行测试下载：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ fdfs_download_file /etc/fdfs/client.conf group1/M00/00/00/CqD3YF3kwS-ACYbMAAAAHDDhFHI6820520</code></pre>
+
+<p>http 测试下载：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> http://xxx.xxx.xxx.xxx/group1/M00/00/00/CmmIP19sbZ6ABzkBAAAXTnaiWqo2684096?filename<span class="token operator">=</span>testfile</code></pre>
+
+<h3 id="访问-FastDFS"><a href="#访问-FastDFS" class="headerlink" title="访问 FastDFS"></a>访问 FastDFS</h3><p>其他容器如需按照域名访问 FastDFS，可增加配置：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">web-admin</span><span class="token punctuation">:</span>
+   <span class="token key atrule">container_name</span><span class="token punctuation">:</span> web<span class="token punctuation">-</span>admin
+   <span class="token key atrule">extra_hosts</span><span class="token punctuation">:</span>
+       <span class="token punctuation">-</span> <span class="token string">"fastdfs.manti-infra.svc:${HOSTNAME_COMMAND}"</span></code></pre>
+
+<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><h4 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h4><p>报错问题：</p>
+<pre class="language-none"><code class="language-none">[error] 13#0: *1 open() "/etc/nginx/html/group1/M00/00/00/CmmIP19sbZ6ABzkBAAAXTnaiWqo2684096" failed (2: No such file or directory)</code></pre>
+
+<p>修复：修改 nginx.conf 中的 location 配置为：</p>
+<pre class="language-none"><code class="language-none">location/group1/M00/ {
+	alias /fastdfs/store_path/data;
+	ngx_fastdfs_module;
+}</code></pre>
+
+<h4 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h4><p>报错问题：</p>
+<pre class="language-none"><code class="language-none">ERROR - file: ../common/fdfs_global.c, line:52, the format of filename
+"group1/M00/00/00/wKgAA1cLh12AI0kfAAAADzbdjmQ50_big.html"is invalid</code></pre>
+
+
+<p>原因：nginx 的 fdfs 的 MOD 里面默认没有开启 url_have_group_name</p>
+<p>修复：开启 mod_fastdfs.conf 文件中的 url_have_group_name 选项，后重启 nginx</p>
+<h4 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h4><pre class="language-none"><code class="language-none">/usr/src/fastdfs-nginx-module/src/common.c:21:25:致命错误：fdfs_define.h：没有那个文件或目录
+#include "fdfs_define.h" 
+编译中断。</code></pre>
+
+
+<p>原因：编译安装 nginx 的 fastdfs 插件的头文件没有找到，由于编译 nginx 时候系统会到／usr/local/include，而编译安装 fastdfs-nginx-module 时则默认保存在了 /usr/include 目录。</p>
+<p>修复：ln -s /usr/include/fast* /usr/local/include/</p>
+<h4 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h4><p>Nginx 启动后 error.log 日志报错</p>
+<pre class="language-none"><code class="language-none">ERROR - file:../storage/trunk_mgr/trunk_shared.c, line: 177, "No such file ordirectory" can't be accessed, error info: /data/fastdfs</code></pre>
+
+<p>原因：nginx 的 fdfs 插件没有在 /etc/fdfs 目录中找到 http.conf 和 mime.types。</p>
+<p>修复：复制或者创建对应文件的软连接<br>cp/usr/local/FastDFS/conf/http.conf /etc/fdfs/<br>cp/usr/local/FastDFS/conf/mime.types /etc/fdfs/</p>
+<h4 id="问题五"><a href="#问题五" class="headerlink" title="问题五"></a>问题五</h4><p>页面访问动态缩略图返回 415</p>
+<p>原因：</p>
+<ul>
+<li>首先需要排除文件类型的问题，image_filter 只支持 jpg、git 和 png 三种格式的图片文件，调用其他格式的 图片文件 会返回 415。</li>
+<li>其次要确认设置的 image_filter 缓存是否小于上传的图片大小，如果小于同样会报 415 错误。</li>
+</ul>
+<p>如果排除以上两种可能性，那么出现的问题应该是没有在 Nginx 页面的 DocumentRoot 目录创建 FastDFS 数据存储的软连接。</p>
+<p>修复：执行下列命令创建软连接：</p>
+<pre class="language-none"><code class="language-none"># mkdir -pv/usr/local/nginx/html/group1
+# ln -s /data/fastdfs_store/data/usr/local/nginx/html/group1/M00</code></pre>
+
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20veWxvdmVkL3AvMTI2NDk1NjkuaHRtbA==">https://www.cnblogs.com/yloved/p/12649569.html<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kZXZlbG9wZXIuYWxpeXVuLmNvbS9hcnRpY2xlLzU0NTAxNg==">https://developer.aliyun.com/article/545016<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -434,567 +1063,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-21-%E5%9C%A8eclipse%E4%B8%AD%E5%AE%89%E8%A3%85lombok.jar/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-21-%E5%9C%A8eclipse%E4%B8%AD%E5%AE%89%E8%A3%85lombok.jar/" class="post-title-link" itemprop="url">在 eclipse 中安装 lombok.jar</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-21 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-21T00:00:00Z">2020-09-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/IDE/" itemprop="url" rel="index"><span itemprop="name">IDE</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-21-%E5%9C%A8eclipse%E4%B8%AD%E5%AE%89%E8%A3%85lombok.jar/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-21-%E5%9C%A8eclipse%E4%B8%AD%E5%AE%89%E8%A3%85lombok.jar/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><strong>下载 lombok.jar（一定要最新版）</strong></p>
-<p>下载地址：<a target="_blank" rel="noopener" href="https://projectlombok.org/download">https://projectlombok.org/download</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/2020-09-21-%E5%9C%A8eclipse%E4%B8%AD%E5%AE%89%E8%A3%85lombok.jar/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-15-%E4%BD%BF%E7%94%A8Python%E9%81%8D%E5%8E%86%E5%A4%87%E4%BB%BDdocker-compose%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-15-%E4%BD%BF%E7%94%A8Python%E9%81%8D%E5%8E%86%E5%A4%87%E4%BB%BDdocker-compose%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/" class="post-title-link" itemprop="url">使用 Python 遍历备份 docker-compose 文件中的镜像</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-15T00:00:00Z">2020-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-15-%E4%BD%BF%E7%94%A8Python%E9%81%8D%E5%8E%86%E5%A4%87%E4%BB%BDdocker-compose%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-15-%E4%BD%BF%E7%94%A8Python%E9%81%8D%E5%8E%86%E5%A4%87%E4%BB%BDdocker-compose%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Python 脚本如下：</p>
-<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> os
-
-<span class="token keyword">def</span> <span class="token function">get_images</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"docker-compose.yml"</span><span class="token punctuation">)</span> 
-    images <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-    <span class="token keyword">for</span> line <span class="token keyword">in</span> <span class="token builtin">file</span><span class="token punctuation">.</span>readlines<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  
-         line <span class="token operator">=</span> line<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>  
-         <span class="token keyword">if</span> <span class="token string">"image"</span> <span class="token keyword">in</span> line<span class="token punctuation">:</span>
-             image <span class="token operator">=</span> line<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"image:"</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
-             images<span class="token punctuation">.</span>append<span class="token punctuation">(</span>image<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> images
-
-<span class="token keyword">def</span> <span class="token function">pull_images</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    images <span class="token operator">=</span> get_images<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> image <span class="token keyword">in</span> images<span class="token punctuation">:</span>
-        pull_commond <span class="token operator">=</span> <span class="token string">"docker pull "</span> <span class="token operator">+</span> image
-        <span class="token keyword">print</span><span class="token punctuation">(</span>pull_commond<span class="token punctuation">)</span>
-        os<span class="token punctuation">.</span>system<span class="token punctuation">(</span>pull_commond<span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">save_imaegs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    images <span class="token operator">=</span> get_images<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> image <span class="token keyword">in</span> images<span class="token punctuation">:</span>
-        sub_name <span class="token operator">=</span> image<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">":"</span><span class="token punctuation">,</span><span class="token string">"_"</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">".tar"</span>
-        <span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>sub_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>sub_name<span class="token punctuation">,</span><span class="token string">'is exists!'</span><span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            save_commond <span class="token operator">=</span> <span class="token string">"docker save "</span> <span class="token operator">+</span> image <span class="token operator">+</span> <span class="token string">" -o "</span> <span class="token operator">+</span> sub_name
-            <span class="token keyword">print</span><span class="token punctuation">(</span>save_commond<span class="token punctuation">)</span>
-            os<span class="token punctuation">.</span>system<span class="token punctuation">(</span>save_commond<span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">load_images</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    files <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> files<span class="token punctuation">:</span>
-        <span class="token keyword">if</span> <span class="token string">".tar"</span> <span class="token keyword">in</span> <span class="token builtin">file</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span>
-            load_commond <span class="token operator">=</span> <span class="token string">"docker load -i "</span> <span class="token operator">+</span> <span class="token builtin">file</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span>load_commond<span class="token punctuation">)</span>
-            os<span class="token punctuation">.</span>system<span class="token punctuation">(</span>load_commond<span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">start_deal</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">if</span> num <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
-        pull_images<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">elif</span> num <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">:</span>
-        save_imaegs<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">elif</span> num <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">:</span>
-        load_images<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">"__main__"</span><span class="token punctuation">:</span>
-    start_deal<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-    </code></pre>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" class="post-title-link" itemprop="url">Linux 进行磁盘自动挂载</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-15T00:00:00Z">2020-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在给系统新增了磁盘以后，如果重启系统我们会发现找不到存储了；但是使用 fdisk -l 可以看到存储空间，说明存储还在。这是因为关机后，挂载已经自动卸载掉了。我们当然可以手动再次将其挂载，但如果每次重启都需要这样手动操作会很不方便；因此我们可以利用自动挂载，这样系统每次开机的时候就可以自动将磁盘挂载上去了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/2020-09-16-Linux%E8%BF%9B%E8%A1%8C%E7%A3%81%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">自动删除 ElasticSearch 索引</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-07T00:00:00Z">2020-09-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>索引文件保留在服务器中，大大减小服务器的性能，占用硬盘空间，<br>因此使用脚本自动删除 elk 中的历史索引以释放空间。</p>
-<h3 id="清理索引命令行"><a href="#清理索引命令行" class="headerlink" title="清理索引命令行"></a>清理索引命令行</h3><p>查看所有的索引文件：</p>
-<blockquote>
-<p>curl -XGET <a target="_blank" rel="noopener" href="http://localhost:9200/_cat/indices?v">http://localhost:9200/_cat/indices?v</a></p>
-</blockquote>
-<p>删除索引文件以释放空间：</p>
-<blockquote>
-<p>curl -XDELETE <a target="_blank" rel="noopener" href="http://localhost:9200/filebeat-2016.12.28">http://localhost:9200/filebeat-2016.12.28</a></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/" class="post-title-link" itemprop="url">k8s 在 tomcat 多副本时的 session 会话保持</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-05T00:00:00Z">2020-09-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/Kubernets/" itemprop="url" rel="index"><span itemprop="name">Kubernets</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><p>通过kubernetes部署了tomcat+mysql服务，设置tomcat多副本时发现首页登陆无法跳转的情况，经排查是由于session问题引起的。</p>
-<p>kubernetes 上可以多实例（pod）高负载运行，但是如果应用如果没有做session 同步的话，就会导致 session 不一致。<br>kubernetes 有session 亲和性的功能（每个client每次访问，都会匹配到对应session的后端）。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
