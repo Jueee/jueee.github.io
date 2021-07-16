@@ -157,17 +157,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">197</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">200</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">47</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">48</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">89</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">91</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -246,20 +246,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">200</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">89</span>
+        <span class="site-state-item-count">91</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -331,6 +331,323 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/07/2021-07-12-Shell%E9%80%9A%E8%BF%87%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%AD%90%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/2021-07-12-Shell%E9%80%9A%E8%BF%87%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%AD%90%E4%B8%B2/" class="post-title-link" itemprop="url">Shell 通过正则表达式提取子串</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-12T00:00:00Z">2021-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/07/2021-07-12-Shell%E9%80%9A%E8%BF%87%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%AD%90%E4%B8%B2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/2021-07-12-Shell%E9%80%9A%E8%BF%87%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%AD%90%E4%B8%B2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="通过-grep"><a href="#通过-grep" class="headerlink" title="通过 grep"></a>通过 grep</h3><p>grep 的 -o 选项，可以只打印匹配的部分，否则会打印整行。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">echo</span> <span class="token string">"libgcc-4.8.5-4.h5.x86_64.rpm"</span> <span class="token operator">|</span> <span class="token function">grep</span> -Eo <span class="token string">"[0-9]+\.[0-9]+.*x86_64"</span>
+<span class="token number">4.8</span>.5-4.h5.x86_64
+$ <span class="token builtin class-name">echo</span> <span class="token string">"libgcc-4.8.5-4.h5.x86_64.rpm"</span> <span class="token operator">|</span> <span class="token function">grep</span> -E <span class="token string">"[0-9]+\.[0-9]+.*x86_64"</span>
+libgcc-4.8.5-4.h5.x86_64.rpm</code></pre>
+
+<p>复制的字符串匹配，可以通过 grep 进行多次匹配：</p>
+<pre class="language-sh" data-language="sh"><code class="language-sh">resnum=`echo $result | grep -Eo "Corp.*?[0-9]+.*?！"|grep -Eo "[0-9]+"`
+if [[ $resnum -lt 300 ]];then
+  echo "start sms alarm:$resnum"
+fi</code></pre>
+
+<h3 id="通过-sed"><a href="#通过-sed" class="headerlink" title="通过 sed"></a>通过 sed</h3><p>sed 使用 \1 反向引用前面匹配的组。</p>
+<p>但是 sed 没有只显示匹配部分的功能，会显示整行，所以采用的思路是将整行替换为子串，比较麻烦。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">echo</span> <span class="token string">"libgcc-4.8.5-4.h5.x86_64.rpm"</span> <span class="token operator">|</span> <span class="token function">sed</span> -r <span class="token string">"s/libgcc-([0-9]+\.[0-9]+.*)\.rpm/<span class="token entity" title="\1">\1</span>/g"</span>
+<span class="token number">4.8</span>.5-4.h5.x86_64</code></pre>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/07/2021-07-11-windows10%E6%89%BE%E4%B8%8D%E5%88%B0gpedit.msc%E7%BB%84%E7%AD%96%E7%95%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/2021-07-11-windows10%E6%89%BE%E4%B8%8D%E5%88%B0gpedit.msc%E7%BB%84%E7%AD%96%E7%95%A5/" class="post-title-link" itemprop="url">Windows10 找不到 gpedit.msc 组策略</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-11 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-11T00:00:00Z">2021-07-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/07/2021-07-11-windows10%E6%89%BE%E4%B8%8D%E5%88%B0gpedit.msc%E7%BB%84%E7%AD%96%E7%95%A5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/2021-07-11-windows10%E6%89%BE%E4%B8%8D%E5%88%B0gpedit.msc%E7%BB%84%E7%AD%96%E7%95%A5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Windows 10 如果通过 <strong>gpedit.msc</strong> 无法找到组策略功能：</p>
+<p><img src="/images/2021/07/image-20210711223013489.png" alt="image-20210711223013489" loading="lazy"></p>
+<p>可以通过如下的批处理文件进行开启：</p>
+<pre class="language-bat" data-language="bat"><code class="language-bat">@echo off
+
+pushd "%~dp0"
+
+dir /b %systemroot%\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~3*.mum &gt;gp.txt
+
+dir /b  %systemroot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~3*.mum &gt;&gt;gp.txt
+
+for /f %%i in ('findstr /i . gp.txt 2^&gt;nul') do dism /online /norestart /add-package:"%systemroot%\servicing\Packages\%%i"
+
+pause</code></pre>
+
+<p>右键管理员方式运行。</p>
+<p><img src="/images/2021/07/image-20210711223155459.png" alt="image-20210711223155459" loading="lazy"></p>
+<p>再次运行 <strong>gpedit.msc</strong>，即可正常打开组策略编辑器：</p>
+<p><img src="/images/2021/07/image-20210711223243695.png" alt="image-20210711223243695" loading="lazy"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/" class="post-title-link" itemprop="url">罗技鼠标连接 Logitech Options</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-10T00:00:00Z">2021-07-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>经过多个版本测试，最新的只能到 7.12.43 版本完全没问题。往下的版就装完转圈黑，或者登录不上账号。<br>7.12.43 不需要任何的折腾。直接装好登录备份恢复。搞定。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -676,363 +993,10 @@ fileName <span class="token operator">=</span> fileName<span class="token punctu
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/06/2021-06-18-%E4%BD%BF%E7%94%A8Jsoup%E6%9B%BF%E6%8D%A2HTML%E6%AF%8F%E4%B8%AA%E6%A0%87%E7%AD%BE%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/2021-06-18-%E4%BD%BF%E7%94%A8Jsoup%E6%9B%BF%E6%8D%A2HTML%E6%AF%8F%E4%B8%AA%E6%A0%87%E7%AD%BE%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC/" class="post-title-link" itemprop="url">使用 Jsoup 替换 HTML 每个标签中的文本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-18T00:00:00Z">2021-06-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/HTML/" itemprop="url" rel="index"><span itemprop="name">HTML</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/2021-06-18-%E4%BD%BF%E7%94%A8Jsoup%E6%9B%BF%E6%8D%A2HTML%E6%AF%8F%E4%B8%AA%E6%A0%87%E7%AD%BE%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/2021-06-18-%E4%BD%BF%E7%94%A8Jsoup%E6%9B%BF%E6%8D%A2HTML%E6%AF%8F%E4%B8%AA%E6%A0%87%E7%AD%BE%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>为了对 HTML  进行文本翻译，需要提取 HTML 中每个标签中的文本。</p>
-<p>如果使用传统方式进行提取，可能会效率低下，而且由于 HTML 结构复杂，非常不便。</p>
-<p>在此介绍使用 Jsoup 替换 HTML 每个标签中的文本的方式。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/2021-06-18-%E4%BD%BF%E7%94%A8Jsoup%E6%9B%BF%E6%8D%A2HTML%E6%AF%8F%E4%B8%AA%E6%A0%87%E7%AD%BE%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/06/2021-06-08-%E4%BD%BF%E7%94%A8binlog2sql%E6%81%A2%E5%A4%8DMySQL%E6%95%B0%E6%8D%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/2021-06-08-%E4%BD%BF%E7%94%A8binlog2sql%E6%81%A2%E5%A4%8DMySQL%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">使用 binlog2sql 恢复 MySQL 数据</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-08T00:00:00Z">2021-06-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/2021-06-08-%E4%BD%BF%E7%94%A8binlog2sql%E6%81%A2%E5%A4%8DMySQL%E6%95%B0%E6%8D%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/2021-06-08-%E4%BD%BF%E7%94%A8binlog2sql%E6%81%A2%E5%A4%8DMySQL%E6%95%B0%E6%8D%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="binlog2sql"><a href="#binlog2sql" class="headerlink" title="binlog2sql"></a>binlog2sql</h3><p>从 MySQL binlog 解析出你要的 SQL。根据不同选项，你可以得到原始 SQL、回滚 SQL、去除主键的 INSERT SQL 等。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/danfengcao/binlog2sql">GitHub</a></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/06/2021-06-08-%E4%BD%BF%E7%94%A8binlog2sql%E6%81%A2%E5%A4%8DMySQL%E6%95%B0%E6%8D%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/06/2021-06-04-Linux%E5%AE%89%E8%A3%85MySQL7%E7%89%88%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/2021-06-04-Linux%E5%AE%89%E8%A3%85MySQL7%E7%89%88%E6%9C%AC/" class="post-title-link" itemprop="url">Linux 安装 MySQL7 版本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-06-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-04T00:00:00Z">2021-06-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/06/2021-06-04-Linux%E5%AE%89%E8%A3%85MySQL7%E7%89%88%E6%9C%AC/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/06/2021-06-04-Linux%E5%AE%89%E8%A3%85MySQL7%E7%89%88%E6%9C%AC/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="查看服务器版本"><a href="#查看服务器版本" class="headerlink" title="查看服务器版本"></a>查看服务器版本</h4><p>系统版本：</p>
-<pre class="language-none"><code class="language-none">$ lsb_release -cr
-Release:        9.12
-Codename:       stretch</code></pre>
-
-<p>内核版本：</p>
-<pre class="language-none"><code class="language-none">$ uname -r
-4.9.0-12-amd64</code></pre>
-
-<h4 id="下载-MySQL"><a href="#下载-MySQL" class="headerlink" title="下载 MySQL"></a>下载 MySQL</h4><p>根据服务器版本，下载 MySQL 安装包。</p>
-<p>下载地址：<span class="exturl" data-url="aHR0cHM6Ly9kb3dubG9hZHMubXlzcWwuY29tL2FyY2hpdmVzL2NvbW11bml0eS8=">https://downloads.mysql.com/archives/community/<i class="fa fa-external-link-alt"></i></span></p>
-<h4 id="安装-MySQL"><a href="#安装-MySQL" class="headerlink" title="安装 MySQL"></a>安装 MySQL</h4><p>以下载的 <code>mysql-server_5.7.18-1debian9_amd64.deb-bundle.tar</code> 为例进行说明。</p>
-<p>解压 tar：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">gzip</span> mysql-server_5.7.18-1debian9_amd64.deb-bundle.tar</code></pre>
-
-<p>解压 tar.gz：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">tar</span> -zxvf mysql-server_5.7.18-1debian9_amd64.deb-bundle.tar.gz</code></pre>
-
-<p>安装 deb 包：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">$ dpkg -i *.deb</code></pre>
-
-<h4 id="初始化-MySQL"><a href="#初始化-MySQL" class="headerlink" title="初始化 MySQL"></a>初始化 MySQL</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$ /usr/sbin/mysqld --defaults-file<span class="token operator">=</span>/home/ddb/mysql/my3306.cnf --user<span class="token operator">=</span>ddb --initialize</code></pre>
-
-<h4 id="启动-MySQL"><a href="#启动-MySQL" class="headerlink" title="启动 MySQL"></a>启动 MySQL</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$ mysqld_safe --defaults-file<span class="token operator">=</span>/home/ddb/mysql/my3306.cnf <span class="token operator">&amp;</span></code></pre>
-
-<h4 id="查看-root-密码"><a href="#查看-root-密码" class="headerlink" title="查看 root 密码"></a>查看 root 密码</h4><p>查看 MySQL 数据目录下的 <code>mysqld.log</code> 日志文件，如下图所示红框的地方即为 root 的初始密码。</p>
-<p><img src="/images/2021/06/image-20210604114352669.png" alt="image-20210604114352669" loading="lazy"></p>
-<h4 id="访问-root"><a href="#访问-root" class="headerlink" title="访问 root"></a>访问 root</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$ mysql  --defaults-file<span class="token operator">=</span>/home/ddb/mysql/my4336.cnf -uroot -p
-Enter password:
-
-mysql<span class="token operator">&gt;</span> show databases<span class="token punctuation">;</span>
-ERROR <span class="token number">1820</span> <span class="token punctuation">(</span>HY000<span class="token punctuation">)</span>: You must reset your password using ALTER <span class="token environment constant">USER</span> statement before executing this statement.</code></pre>
-
-<p>此时，必须修改 root 密码。</p>
-<h4 id="修改-root-密码"><a href="#修改-root-密码" class="headerlink" title="修改 root 密码"></a>修改 root 密码</h4><pre class="language-mysql" data-language="mysql"><code class="language-mysql">SET PASSWORD = PASSWORD('newpassword');
-ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;
-FLUSH PRIVILEGES;</code></pre>
-
-<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><h4 id="安装-deb-异常"><a href="#安装-deb-异常" class="headerlink" title="安装 deb 异常"></a>安装 deb 异常</h4><p>安装 deb 包时出现如下异常：</p>
-<pre class="language-none"><code class="language-none">dpkg: dependency problems prevent configuration of mysql-community-server:
- mysql-community-server depends on libaio1 (&gt;= 0.3.93); however:
-  Package libaio1 is not installed.
- mysql-community-server depends on libmecab2; however:
-  Package libmecab2 is not installed.
- mysql-community-server depends on libnuma1 (&gt;= 2.0.11); however:
-  Package libnuma1 is not installed.</code></pre>
-
-<p>解决方式：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">apt-get</span> <span class="token function">install</span> libaio1 libmecab2 libnuma1</code></pre>
-
-<h4 id="初始化异常"><a href="#初始化异常" class="headerlink" title="初始化异常"></a>初始化异常</h4><pre class="language-none"><code class="language-none">2021-06-04T11:13:04.485999+08:00 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
-2021-06-04T11:13:04.487043+08:00 0 [ERROR] --initialize specified but the data directory has files in it. Aborting.
-2021-06-04T11:13:04.487070+08:00 0 [ERROR] Aborting</code></pre>
-
-<p>这是由于初始化数据目录不为空，清空数据目录下的所有文件即可。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
