@@ -36,7 +36,7 @@
 <meta property="og:description" content="curlcurl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-25T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-16T11:06:58.321Z">
+<meta property="article:modified_time" content="2021-07-30T08:02:41.372Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="ElasticSearch">
 <meta property="article:tag" content="Database">
@@ -163,7 +163,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">200</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">204</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -253,7 +253,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">200</span>
+          <span class="site-state-item-count">204</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -450,6 +450,9 @@
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/index_name/mail/1e50baf1dea339f871f9272508bc7615
 <span class="token function">curl</span> http://127.0.0.1:9200/index_name/_doc/1e50baf1dea339f871f9272508bc7615（默认 <span class="token builtin class-name">type</span> 为 _doc）</code></pre>
 
+<p>查看索引配置：</p>
+<pre class="language-none"><code class="language-none">curl http://elastic:123456@127.0.0.1:9200/index_name/_settings</code></pre>
+
 <h3 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h3><p>修改参数（单个查询最大的桶数，默认 10000）：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -X PUT http://127.0.0.1:9200/_cluster/settings?flat_settings -H <span class="token string">'content-Type:application/json'</span> -d <span class="token string">'{"persistent":{"search":{"max_buckets":"2147483647"}}}'</span></code></pre>
 
@@ -460,6 +463,7 @@
 <p>修改索引副本数量：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -X PUT http://127.0.0.1:9200/index_name/_settings -H <span class="token string">'content-Type:application/json'</span> -d <span class="token string">'{"number_of_replicas": 2}'</span></code></pre>
 
+<p>若报异常：</p>
 <h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h3><p>删除某个索引：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -XDELETE <span class="token string">'http://127.0.0.1:9200/index_name'</span></code></pre>
 
