@@ -6,7 +6,7 @@
   <link href="https://jueee.github.io/atom.xml" rel="self"/>
   
   <link href="https://jueee.github.io/"/>
-  <updated>2021-08-06T10:45:25.046Z</updated>
+  <updated>2021-08-26T10:56:15.545Z</updated>
   <id>https://jueee.github.io/</id>
   
   <author>
@@ -15,6 +15,88 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Windows 根据端口查看并杀掉进程</title>
+    <link href="https://jueee.github.io/2021/08/2021-08-24-Windows%E6%A0%B9%E6%8D%AE%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%9D%80%E6%8E%89%E8%BF%9B%E7%A8%8B/"/>
+    <id>https://jueee.github.io/2021/08/2021-08-24-Windows%E6%A0%B9%E6%8D%AE%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%9D%80%E6%8E%89%E8%BF%9B%E7%A8%8B/</id>
+    <published>2021-08-24T00:00:00.000Z</published>
+    <updated>2021-08-26T10:56:15.545Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="查看进程号"><a href="#查看进程号" class="headerlink" title="查看进程号"></a>查看进程号</h3><p>用 <code>netstat -ano | find 端口号</code> 查出进程号：</p><pre class="language-shell" data-language="shell"><code class="language-shell">netstat -ano | findstr 8181  TCP    0.0.0.0:8181           0.0.0.0:0              LISTENING       18128  TCP    [::]:8181              [::]:0                 LISTENING       18128</code></pre><h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><p>takslist 查询当前的进程</p><pre class="language-shell" data-language="shell"><code class="language-shell">tasklist | grep 18128java.exe                     18128 Console                    1     63,036 K</code></pre><h3 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h3><p>通过 <code>tasklist /pid 进程号</code> 杀死进程。</p><pre class="language-none"><code class="language-none">taskkill /pid 18128成功: 已终止 PID 为 18128 的进程。</code></pre><p>也可以通过 <code>taskkill /f /t /im 进程号</code>&nbsp;杀死进程。</p><pre class="language-none"><code class="language-none">taskkill /f /t /im 18128成功: 已终止 PID 23064 (属于 PID 18128 子进程)的进程。成功: 已终止 PID 18128 (属于 PID 19508 子进程)的进程。</code></pre><h4 id="taskkill"><a href="#taskkill" class="headerlink" title="taskkill"></a>taskkill</h4><p>taskkill 是 Windows 命令行里终止指定程序 “进程” 的命令。</p><ul><li>/f 表示强制终止<br>/im 表示指定的进程名称，例如 “explor.exe"</li><li>/pid 表示指定的进程 ID 进程号</li></ul><h4 id="权限不足"><a href="#权限不足" class="headerlink" title="权限不足"></a>权限不足</h4><p>如果权限不够，用管理员权限运行 cmd，发现又报错了，说要强制执行才可以，则需要加上 - F 参数。</p><pre class="language-none"><code class="language-none">taskkill /pid 5384错误: 无法终止 PID 为 5384 的进程。原因: 只能强行终止这个进程(带 /F 选项)。taskkill -f /pid 5384成功: 已终止 PID 为 5384 的进程。</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;查看进程号&quot;&gt;&lt;a href=&quot;#查看进程号&quot; class=&quot;headerlink&quot; title=&quot;查看进程号&quot;&gt;&lt;/a&gt;查看进程号&lt;/h3&gt;&lt;p&gt;用 &lt;code&gt;netstat -ano | find 端口号&lt;/code&gt; 查出进程号：&lt;/p&gt;
+&lt;pre cla</summary>
+      
+    
+    
+    
+    <category term="OS" scheme="https://jueee.github.io/categories/OS/"/>
+    
+    <category term="Windows" scheme="https://jueee.github.io/categories/OS/Windows/"/>
+    
+    
+    <category term="Windows" scheme="https://jueee.github.io/tags/Windows/"/>
+    
+    <category term="OS" scheme="https://jueee.github.io/tags/OS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows 安装多窗口文件管理器 QTTabBar</title>
+    <link href="https://jueee.github.io/2021/08/2021-08-23-Windows%E5%AE%89%E8%A3%85%E5%A4%9A%E7%AA%97%E5%8F%A3%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8QTTabBar/"/>
+    <id>https://jueee.github.io/2021/08/2021-08-23-Windows%E5%AE%89%E8%A3%85%E5%A4%9A%E7%AA%97%E5%8F%A3%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8QTTabBar/</id>
+    <published>2021-08-23T00:00:00.000Z</published>
+    <updated>2021-08-26T10:56:15.533Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><span class="exturl" data-url="aHR0cDovL3F0dGFiYmFyLndpa2lkb3QuY29tLw==">http://qttabbar.wikidot.com/<i class="fa fa-external-link-alt"></i></span></p><h3 id="安装设置"><a href="#安装设置" class="headerlink" title="安装设置"></a>安装设置</h3><h4 id="安装语言"><a href="#安装语言" class="headerlink" title="安装语言"></a>安装语言</h4><p>下载语言包时，可能需要翻墙。</p><p><img src="/images/2021/08/image-20210823213305336.png" alt="image-20210823213305336" loading="lazy"></p><p><img src="/images/2021/08/image-20210823213200848.png" alt="image-20210823213200848" loading="lazy"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;下载地址&quot;&gt;&lt;a href=&quot;#下载地址&quot; class=&quot;headerlink&quot; title=&quot;下载地址&quot;&gt;&lt;/a&gt;下载地址&lt;/h3&gt;&lt;p&gt;&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cDovL3F0dGFiYmFyLndpa2lkb3Q</summary>
+      
+    
+    
+    
+    <category term="软件" scheme="https://jueee.github.io/categories/%E8%BD%AF%E4%BB%B6/"/>
+    
+    <category term="Windows" scheme="https://jueee.github.io/categories/%E8%BD%AF%E4%BB%B6/Windows/"/>
+    
+    
+    <category term="软件" scheme="https://jueee.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+    <category term="Windows" scheme="https://jueee.github.io/tags/Windows/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>idea 集成本地三方软件 —— 以 Typora 打开 Markdown 文件为例</title>
+    <link href="https://jueee.github.io/2021/08/2021-08-11-idea%E9%9B%86%E6%88%90%E6%9C%AC%E5%9C%B0%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6%E2%80%94%E2%80%94%E4%BB%A5Typora%E6%89%93%E5%BC%80Markdown%E6%96%87%E4%BB%B6%E4%B8%BA%E4%BE%8B/"/>
+    <id>https://jueee.github.io/2021/08/2021-08-11-idea%E9%9B%86%E6%88%90%E6%9C%AC%E5%9C%B0%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6%E2%80%94%E2%80%94%E4%BB%A5Typora%E6%89%93%E5%BC%80Markdown%E6%96%87%E4%BB%B6%E4%B8%BA%E4%BE%8B/</id>
+    <published>2021-08-11T00:00:00.000Z</published>
+    <updated>2021-08-26T10:56:15.515Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="官方教程"><a href="#官方教程" class="headerlink" title="官方教程"></a>官方教程</h3><blockquote><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9oZWxwL2lkZWEvY29uZmlndXJpbmctdGhpcmQtcGFydHktdG9vbHMuaHRtbA==">https://www.jetbrains.com/help/idea/configuring-third-party-tools.html<i class="fa fa-external-link-alt"></i></span></p></blockquote><h3 id="Idea配置"><a href="#Idea配置" class="headerlink" title="Idea配置"></a>Idea 配置</h3><h4 id="External-Tools"><a href="#External-Tools" class="headerlink" title="External Tools"></a>External Tools</h4><p>需要先进入到 Idea 设置界面。</p><p>路径如下：【Settings】——【Tools】——【External Tools】，之后再点击 + 号（如图所示）</p><p><img src="/images/2021/08/image-20210811100557832.png" alt="image-20210811100557832" loading="lazy"></p><p>关于 External Tools 界面各参数含义，可以参看如下内容：</p><ul><li>Name: 在 IntelliJ IDEA 界面中显示的工具名称</li><li> Group: 工具所属的组的名称。您可以选择一个现有组或新创建一个组</li><li> Description: 对本工具的描述</li><li> Program: 应用程序可执行文件的路径</li><li> Arguments: 传递给可执行文件的参数</li><li> Working directory: 执行工具的当前工作目录的路径。</li></ul><h4 id="Arguments参数"><a href="#Arguments参数" class="headerlink" title="Arguments参数"></a>Arguments 参数</h4><p>可以直接下拉选择。</p><p><strong>这里的参数，最好用英文格式的双引号 "" 包括起来，否则 Failed to load file</strong></p><p><img src="/images/2021/08/image-20210811101106765.png" alt="image-20210811101106765" loading="lazy"></p><p>上述内容填写安装之后，点击 OK 按钮。</p><h4 id="验证配置"><a href="#验证配置" class="headerlink" title="验证配置"></a>验证配置</h4><p>上述操作执行完毕之后，便可在 Idea 中打开 md 文件进行一系列操作</p><blockquote><p>在需要编辑的 md 文件上右键，选择 External Tools 下的 Typora 工具</p></blockquote><p><img src="/images/2021/08/image-20210811101459966.png" alt="image-20210811101459966" loading="lazy"></p><h3 id="快捷键设置"><a href="#快捷键设置" class="headerlink" title="快捷键设置"></a>快捷键设置</h3><p>通过在需要编辑的 md 文件上右键，选择 External Tools 下的 Typora 工具，有点麻烦，我们可以添加个快捷键。</p><p><img src="/images/2021/08/image-20210811101627137.png" alt="image-20210811101627137" loading="lazy"></p><p>设置快捷键：</p><p><img src="/images/2021/08/image-20210811101752608.png" alt="image-20210811101752608" loading="lazy"></p><p>如果出现 <strong>Failed to load file</strong> 异常， 则需要配置中，在 Arguments 中添加的参数，用英文格式的双引号 "" 包括起来。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;官方教程&quot;&gt;&lt;a href=&quot;#官方教程&quot; class=&quot;headerlink&quot; title=&quot;官方教程&quot;&gt;&lt;/a&gt;官方教程&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;span class=&quot;exturl&quot; data-url=&quot;aHR0cHM6Ly93d3cuam</summary>
+      
+    
+    
+    
+    <category term="Blog" scheme="https://jueee.github.io/categories/Blog/"/>
+    
+    
+    <category term="Blog" scheme="https://jueee.github.io/tags/Blog/"/>
+    
+  </entry>
   
   <entry>
     <title>二分法查找排序数组中的元素</title>
@@ -97,9 +179,9 @@
     <link href="https://jueee.github.io/2021/07/2021-07-23-MySQL%E5%AF%86%E7%A0%81%E8%BF%87%E6%9C%9F%E7%9A%84%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/"/>
     <id>https://jueee.github.io/2021/07/2021-07-23-MySQL%E5%AF%86%E7%A0%81%E8%BF%87%E6%9C%9F%E7%9A%84%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/</id>
     <published>2021-07-23T00:00:00.000Z</published>
-    <updated>2021-07-30T01:24:49.893Z</updated>
+    <updated>2021-08-20T08:28:41.901Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="密码失效"><a href="#密码失效" class="headerlink" title="密码失效"></a>密码失效</h4><p>查询 MySQL 异常：</p><pre class="language-none"><code class="language-none">mysql&gt; select host,user from mysql.user limit 1;ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.</code></pre><a id="more"></a><p>执行以下命令</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; mysql&gt; SET PASSWORD = PASSWORD('your new password');mysql&gt; ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;mysql&gt; flush privileges;</code></pre><h4 id="MySQL设置密码过期时间"><a href="#MySQL设置密码过期时间" class="headerlink" title="MySQL设置密码过期时间"></a>MySQL 设置密码过期时间</h4><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; SET GLOBAL default_password_lifetime = 90;mysql&gt; ALTER  USER 'root'@'localhost' PASSWORD  EXPIRE INTERVAL 90 DAY;</code></pre><h4 id="MySQL设置密码用不过期"><a href="#MySQL设置密码用不过期" class="headerlink" title="MySQL设置密码用不过期"></a>MySQL 设置密码用不过期</h4><p>设定密码的有效期为 0，即永不过期。</p><p>命令行修改：</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; set global default_password_lifetime=0;</code></pre><p>配置文件修改（改完后要重启服务才生效）：</p><pre class="language-ini" data-language="ini"><code class="language-ini"><span class="token selector">[mysqld]</span><span class="token constant">default_password_lifetime</span><span class="token attr-value"><span class="token punctuation">=</span>0</span></code></pre><h4 id="普通用户过期处理"><a href="#普通用户过期处理" class="headerlink" title="普通用户过期处理"></a>普通用户过期处理</h4><p>普通用户一旦过期了，root 用户哪怕修改了它的密码，但是无法触发到过期状态的改变。</p><p>而改变过期状态的方法有两种：</p><ol><li><p>使用普通用户登陆后，自己修改密码，也可以改回旧密码：</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; set password=password('12345678');Query OK, 0 rows affected, 1 warning (0.00 sec)</code></pre></li><li><p>使用 root 用户把过期的值改为 N；</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; update user set password_expired='N' where user='test';Query OK, 1 row affected (0.01 sec)Rows matched: 1 Changed: 1 Warnings: 0mysql&gt; flush privileges;Query OK, 0 rows affected (0.00 sec)</code></pre><p>root 用户改了状态，记录要 flush 权限不然用普通用户立刻登陆还是不生效的。</p></li></ol><h4 id="查看过期时间"><a href="#查看过期时间" class="headerlink" title="查看过期时间"></a>查看过期时间</h4><pre class="language-mysql" data-language="mysql"><code class="language-mysql">select host,user,password_expired,password_lifetime from mysql.user;+-----------+-----------+------------------+-------------------+| host      | user      | password_expired | password_lifetime |+-----------+-----------+------------------+-------------------+| localhost | root      | N                |                 0 || %         | test      | N                |                 0 || %         | root      | N                |              NULL || localhost | mysql.sys | N                |              NULL |+-----------+-----------+------------------+-------------------+4 rows in set (0.00 sec)</code></pre>]]></content>
+    <content type="html"><![CDATA[<h4 id="密码失效"><a href="#密码失效" class="headerlink" title="密码失效"></a>密码失效</h4><p>查询 MySQL 异常：</p><pre class="language-none"><code class="language-none">mysql&gt; select host,user from mysql.user limit 1;ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.</code></pre><a id="more"></a><p>执行以下命令</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; SET PASSWORD = PASSWORD('your new password');mysql&gt; ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;mysql&gt; flush privileges;</code></pre><h4 id="MySQL设置密码过期时间"><a href="#MySQL设置密码过期时间" class="headerlink" title="MySQL设置密码过期时间"></a>MySQL 设置密码过期时间</h4><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; SET GLOBAL default_password_lifetime = 90;mysql&gt; ALTER  USER 'root'@'localhost' PASSWORD  EXPIRE INTERVAL 90 DAY;</code></pre><h4 id="MySQL设置密码用不过期"><a href="#MySQL设置密码用不过期" class="headerlink" title="MySQL设置密码用不过期"></a>MySQL 设置密码用不过期</h4><p>设定密码的有效期为 0，即永不过期。</p><p>命令行修改：</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; set global default_password_lifetime=0;</code></pre><p>配置文件修改（改完后要重启服务才生效）：</p><pre class="language-ini" data-language="ini"><code class="language-ini"><span class="token selector">[mysqld]</span><span class="token constant">default_password_lifetime</span><span class="token attr-value"><span class="token punctuation">=</span>0</span></code></pre><p>查看系统参数：</p><pre class="language-none"><code class="language-none">mysql&gt; show global variables like 'default_password_lifetime';+---------------------------+-------+| Variable_name             | Value |+---------------------------+-------+| default_password_lifetime | 0     |+---------------------------+-------+1 row in set (0.01 sec)</code></pre><h4 id="普通用户过期处理"><a href="#普通用户过期处理" class="headerlink" title="普通用户过期处理"></a>普通用户过期处理</h4><p>普通用户一旦过期了，root 用户哪怕修改了它的密码，但是无法触发到过期状态的改变。</p><p>而改变过期状态的方法有两种：</p><ol><li><p>使用普通用户登陆后，自己修改密码，也可以改回旧密码：</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; set password=password('12345678');Query OK, 0 rows affected, 1 warning (0.00 sec)</code></pre></li><li><p>使用 root 用户把过期的值改为 N；</p><pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; update mysql.user set password_expired='N' where user='test';Query OK, 1 row affected (0.01 sec)Rows matched: 1 Changed: 1 Warnings: 0mysql&gt; flush privileges;Query OK, 0 rows affected (0.00 sec)</code></pre><p>root 用户改了状态，记录要 flush 权限不然用普通用户立刻登陆还是不生效的。</p></li></ol><h4 id="查看过期时间"><a href="#查看过期时间" class="headerlink" title="查看过期时间"></a>查看过期时间</h4><pre class="language-mysql" data-language="mysql"><code class="language-mysql">select host,user,password_expired,password_lifetime from mysql.user;+-----------+-----------+------------------+-------------------+| host      | user      | password_expired | password_lifetime |+-----------+-----------+------------------+-------------------+| localhost | root      | N                |                 0 || %         | test      | N                |                 0 || %         | root      | N                |              NULL || localhost | mysql.sys | N                |              NULL |+-----------+-----------+------------------+-------------------+4 rows in set (0.00 sec)</code></pre>]]></content>
     
     
     <summary type="html">&lt;h4 id=&quot;密码失效&quot;&gt;&lt;a href=&quot;#密码失效&quot; class=&quot;headerlink&quot; title=&quot;密码失效&quot;&gt;&lt;/a&gt;密码失效&lt;/h4&gt;&lt;p&gt;查询 MySQL 异常：&lt;/p&gt;
@@ -477,95 +559,6 @@ SLF4J: See also http:&amp;#x2F;&amp;#x2F;www.slf4j.org&amp;#x2F;codes.html#log4j
     <category term="Apache" scheme="https://jueee.github.io/tags/Apache/"/>
     
     <category term="Maven" scheme="https://jueee.github.io/tags/Maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 调用 Shell 脚本常用方法</title>
-    <link href="https://jueee.github.io/2021/05/2021-05-26-Python%E8%B0%83%E7%94%A8Shell%E8%84%9A%E6%9C%AC%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/"/>
-    <id>https://jueee.github.io/2021/05/2021-05-26-Python%E8%B0%83%E7%94%A8Shell%E8%84%9A%E6%9C%AC%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</id>
-    <published>2021-05-26T00:00:00.000Z</published>
-    <updated>2021-07-16T11:03:13.499Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="使用-os-system"><a href="#使用-os-system" class="headerlink" title="使用 os.system()"></a>使用 os.system ()</h3><p>Python 示例：</p><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> osval <span class="token operator">=</span> os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">'ls -al'</span><span class="token punctuation">)</span><span class="token keyword">print</span> val</code></pre><h4 id="返回的状态码"><a href="#返回的状态码" class="headerlink" title="返回的状态码"></a>返回的状态码</h4><p>正常输出的情况下，sh 返回的状态码是 0</p><pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ python test1<span class="token punctuation">.</span>pytotal 12drwxr<span class="token operator">-</span>xr<span class="token operator">-</span>x 2 jue root 4096 May 25 11:18 <span class="token punctuation">.</span>drwx-<span class="token operator">--</span>-<span class="token operator">--</span> 4 jue root 4096 May 25 11:18 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">-</span>rw<span class="token operator">-</span>r-<span class="token operator">-</span>r-<span class="token operator">-</span> 1 jue root   46 May 25 11:18 test1<span class="token punctuation">.</span>py0</code></pre><p>没有找到时，sh 返回的状态码是 1，而适用 Python 调用，返回的是：256</p><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> osval <span class="token operator">=</span> os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">'ls -al|grep jue'</span><span class="token punctuation">)</span><span class="token keyword">print</span> val</code></pre><p>调用 Python</p><pre class="language-bash" data-language="bash"><code class="language-bash">$ python test1.py<span class="token number">256</span></code></pre><h3 id="使用-os-popen"><a href="#使用-os-popen" class="headerlink" title="使用 os.popen()"></a>使用 os.popen ()</h3><h3 id="使用-commands-模块"><a href="#使用-commands-模块" class="headerlink" title="使用 commands 模块"></a>使用 commands 模块</h3><p>有三个方法可以使用：</p><ol><li>commands.getstatusoutput (cmd)，其以字符串的形式返回的是输出结果和状态码，即（status,output）。</li><li>commands.getoutput (cmd)，返回 cmd 的输出结果。</li><li>commands.getstatus (file)，返回 ls -l file 的执行结果字符串，调用了 getoutput，不建议使用此方法</li></ol><h3 id="使用-subprocess-模块"><a href="#使用-subprocess-模块" class="headerlink" title="使用 subprocess 模块"></a>使用 subprocess 模块</h3><p>subprocess 模块允许创建很多子进程，创建的时候能指定子进程和子进程的输入、输出、错误输出管道，执行后能获取输出结果和执行状态。</p><ol><li>subprocess.run ()：python3.5 中新增的函数， 执行指定的命令， 等待命令执行完成后返回一个包含执行结果的 CompletedProcess 类的实例。</li><li>subprocess.call ()：执行指定的命令， 返回命令执行状态， 功能类似 os.system（cmd）。</li><li>subprocess.check_call ()：python2.5 中新增的函数，执行指定的命令，如果执行成功则返回状态码， 否则抛出异常。</li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;使用-os-system&quot;&gt;&lt;a href=&quot;#使用-os-system&quot; class=&quot;headerlink&quot; title=&quot;使用 os.system()&quot;&gt;&lt;/a&gt;使用 os.system ()&lt;/h3&gt;&lt;p&gt;Python 示例：&lt;/p&gt;
-&lt;pre class</summary>
-      
-    
-    
-    
-    <category term="Python" scheme="https://jueee.github.io/categories/Python/"/>
-    
-    <category term="OS" scheme="https://jueee.github.io/categories/OS/"/>
-    
-    <category term="Shell" scheme="https://jueee.github.io/categories/OS/Shell/"/>
-    
-    
-    <category term="Python" scheme="https://jueee.github.io/tags/Python/"/>
-    
-    <category term="Shell" scheme="https://jueee.github.io/tags/Shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Shell 调用 Python 脚本常用方法</title>
-    <link href="https://jueee.github.io/2021/05/2021-05-25-Shell%E8%B0%83%E7%94%A8Python%E8%84%9A%E6%9C%AC%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/"/>
-    <id>https://jueee.github.io/2021/05/2021-05-25-Shell%E8%B0%83%E7%94%A8Python%E8%84%9A%E6%9C%AC%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</id>
-    <published>2021-05-25T00:00:00.000Z</published>
-    <updated>2021-07-16T11:03:04.313Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="普通调用"><a href="#普通调用" class="headerlink" title="普通调用"></a>普通调用</h3><h4 id="Python脚本示例"><a href="#Python脚本示例" class="headerlink" title="Python脚本示例"></a>Python 脚本示例</h4><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- coding: utf-8 -*-</span><span class="token keyword">import</span> datetime<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>    today <span class="token operator">=</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>today<span class="token punctuation">(</span><span class="token punctuation">)</span>    yesterday <span class="token operator">=</span> today <span class="token operator">-</span> datetime<span class="token punctuation">.</span>timedelta<span class="token punctuation">(</span>days<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>    keyWord <span class="token operator">=</span> yesterday<span class="token punctuation">.</span>strftime<span class="token punctuation">(</span> <span class="token string">'%Y-%m-%d'</span> <span class="token punctuation">)</span>    <span class="token keyword">print</span><span class="token punctuation">(</span>keyWord <span class="token operator">+</span><span class="token string">" 测试！"</span><span class="token punctuation">)</span></code></pre><h4 id="Shell-脚本示例"><a href="#Shell-脚本示例" class="headerlink" title="Shell 脚本示例"></a>Shell 脚本示例</h4><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#! /bin/bash</span><span class="token assign-left variable">thispath</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">dirname</span> <span class="token string">"<span class="token variable">$0</span>"</span><span class="token variable">)</span></span>"</span><span class="token punctuation">;</span> <span class="token builtin class-name">pwd</span><span class="token variable">)</span></span><span class="token assign-left variable">pyfile</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$thispath</span>/test.py"</span><span class="token assign-left variable">result</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span>python $pyfile<span class="token variable">`</span></span><span class="token builtin class-name">echo</span> <span class="token variable">$result</span> <span class="token operator">&gt;&gt;</span> <span class="token variable">$thispath</span>/out.log</code></pre><h4 id="调用结果"><a href="#调用结果" class="headerlink" title="调用结果"></a>调用结果</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$ ./runAlarm.sh<span class="token number">2021</span>-05-24 测试！</code></pre><h3 id="带参数调用"><a href="#带参数调用" class="headerlink" title="带参数调用"></a>带参数调用</h3><h4 id="Python-脚本示例"><a href="#Python-脚本示例" class="headerlink" title="Python 脚本示例"></a>Python 脚本示例</h4><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- coding: utf-8 -*-</span><span class="token keyword">import</span> sys<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"param one:"</span><span class="token operator">+</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"param two:"</span><span class="token operator">+</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre><p>运行脚本：</p><pre class="language-bash" data-language="bash"><code class="language-bash">$ python test0.py  a bparam one:aparam two:b</code></pre><h4 id="Shell-脚本示例-1"><a href="#Shell-脚本示例-1" class="headerlink" title="Shell 脚本示例"></a>Shell 脚本示例</h4><pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#! /bin/bash</span><span class="token assign-left variable">thispath</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">dirname</span> <span class="token string">"<span class="token variable">$0</span>"</span><span class="token variable">)</span></span>"</span><span class="token punctuation">;</span> <span class="token builtin class-name">pwd</span><span class="token variable">)</span></span><span class="token assign-left variable">pyfile</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$thispath</span>/test0.py"</span><span class="token assign-left variable">result</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span>python $pyfile ttt ccc<span class="token variable">`</span></span><span class="token builtin class-name">echo</span> <span class="token variable">$result</span></code></pre><p>运行结果：</p><pre class="language-none"><code class="language-none">param one:ttt param two:ccc</code></pre><p>向 Shell 脚本传递参数：</p><pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#! /bin/bash</span><span class="token assign-left variable">thispath</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">dirname</span> <span class="token string">"<span class="token variable">$0</span>"</span><span class="token variable">)</span></span>"</span><span class="token punctuation">;</span> <span class="token builtin class-name">pwd</span><span class="token variable">)</span></span><span class="token assign-left variable">pyfile</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$thispath</span>/test0.py"</span><span class="token assign-left variable">result</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span>python $pyfile $1 $2<span class="token variable">`</span></span><span class="token builtin class-name">echo</span> <span class="token variable">$result</span></code></pre><p>运行结果：</p><pre class="language-none"><code class="language-none">$ bash test0.sh aaa bbbparam one:aaa param two:bbb</code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;普通调用&quot;&gt;&lt;a href=&quot;#普通调用&quot; class=&quot;headerlink&quot; title=&quot;普通调用&quot;&gt;&lt;/a&gt;普通调用&lt;/h3&gt;&lt;h4 id=&quot;Python脚本示例&quot;&gt;&lt;a href=&quot;#Python脚本示例&quot; class=&quot;headerlink&quot; titl</summary>
-      
-    
-    
-    
-    <category term="Python" scheme="https://jueee.github.io/categories/Python/"/>
-    
-    <category term="OS" scheme="https://jueee.github.io/categories/OS/"/>
-    
-    <category term="Shell" scheme="https://jueee.github.io/categories/OS/Shell/"/>
-    
-    
-    <category term="Python" scheme="https://jueee.github.io/tags/Python/"/>
-    
-    <category term="Shell" scheme="https://jueee.github.io/tags/Shell/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ant 打包常用语法汇总</title>
-    <link href="https://jueee.github.io/2021/05/2021-05-21-Ant%E6%89%93%E5%8C%85%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/"/>
-    <id>https://jueee.github.io/2021/05/2021-05-21-Ant%E6%89%93%E5%8C%85%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/</id>
-    <published>2021-05-21T00:00:00.000Z</published>
-    <updated>2021-05-21T10:51:04.400Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="排除特定文件"><a href="#排除特定文件" class="headerlink" title="排除特定文件"></a>排除特定文件</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>copy</span> <span class="token attr-name">todir</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>${build.dir}<span class="token punctuation">"</span></span> <span class="token attr-name">overwrite</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fileset</span> <span class="token attr-name">dir</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>${src.dir}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>exclude</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>**/*.java<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span> <span class="token comment">&lt;!-- 排除所有java文件 --&gt;</span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>exclude</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>helloworld/<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span> <span class="token comment">&lt;!-- 排除根目录下整个helloworld文件夹 --&gt;</span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>exclude</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>**/test/<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span> <span class="token comment">&lt;!-- 排除test子目录本身及其子目录下的所有文件夹 --&gt;</span>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fileset</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>copy</span><span class="token punctuation">&gt;</span></span></code></pre>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;排除特定文件&quot;&gt;&lt;a href=&quot;#排除特定文件&quot; class=&quot;headerlink&quot; title=&quot;排除特定文件&quot;&gt;&lt;/a&gt;排除特定文件&lt;/h3&gt;&lt;pre class=&quot;language-xml&quot; data-language=&quot;xml&quot;&gt;&lt;code class</summary>
-      
-    
-    
-    
-    <category term="Apache" scheme="https://jueee.github.io/categories/Apache/"/>
-    
-    <category term="Ant" scheme="https://jueee.github.io/categories/Apache/Ant/"/>
-    
-    
-    <category term="Apache" scheme="https://jueee.github.io/tags/Apache/"/>
-    
-    <category term="Ant" scheme="https://jueee.github.io/tags/Ant/"/>
     
   </entry>
   

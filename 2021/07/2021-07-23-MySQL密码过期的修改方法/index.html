@@ -36,7 +36,7 @@
 <meta property="og:description" content="密码失效查询 MySQL 异常： mysql&gt; select host,user from mysql.user limit 1; ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-23T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-30T01:24:49.893Z">
+<meta property="article:modified_time" content="2021-08-20T08:28:41.901Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="Database">
@@ -162,7 +162,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">204</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">207</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -252,7 +252,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">204</span>
+          <span class="site-state-item-count">207</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -424,7 +424,7 @@ ERROR 1820 (HY000): You must reset your password using ALTER USER statement befo
 <a id="more"></a>
 
 <p>执行以下命令</p>
-<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; mysql&gt; SET PASSWORD = PASSWORD('your new password');
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; SET PASSWORD = PASSWORD('your new password');
 mysql&gt; ALTER USER 'root'@'localhost' PASSWORD EXPIRE NEVER;
 mysql&gt; flush privileges;</code></pre>
 
@@ -439,6 +439,15 @@ mysql&gt; ALTER  USER 'root'@'localhost' PASSWORD  EXPIRE INTERVAL 90 DAY;</code
 <pre class="language-ini" data-language="ini"><code class="language-ini"><span class="token selector">[mysqld]</span>
 <span class="token constant">default_password_lifetime</span><span class="token attr-value"><span class="token punctuation">=</span>0</span></code></pre>
 
+<p>查看系统参数：</p>
+<pre class="language-none"><code class="language-none">mysql&gt; show global variables like 'default_password_lifetime';
++---------------------------+-------+
+| Variable_name             | Value |
++---------------------------+-------+
+| default_password_lifetime | 0     |
++---------------------------+-------+
+1 row in set (0.01 sec)</code></pre>
+
 <h4 id="普通用户过期处理"><a href="#普通用户过期处理" class="headerlink" title="普通用户过期处理"></a>普通用户过期处理</h4><p>普通用户一旦过期了，root 用户哪怕修改了它的密码，但是无法触发到过期状态的改变。</p>
 <p>而改变过期状态的方法有两种：</p>
 <ol>
@@ -448,7 +457,7 @@ mysql&gt; ALTER  USER 'root'@'localhost' PASSWORD  EXPIRE INTERVAL 90 DAY;</code
 Query OK, 0 rows affected, 1 warning (0.00 sec)</code></pre>
 </li>
 <li><p>使用 root 用户把过期的值改为 N；</p>
-<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; update user set password_expired='N' where user='test';
+<pre class="language-mysql" data-language="mysql"><code class="language-mysql">mysql&gt; update mysql.user set password_expired='N' where user='test';
 
 Query OK, 1 row affected (0.01 sec)
 
