@@ -28,15 +28,15 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="Docker 容器在启动的时候开启单个进程。但我们经常需要在一个机器上开启多个服务，这可以有很多方法，最简单的就是把多个启动命令放到一个启动脚本里面，启动的时候直接启动这个脚本，另外就是安装进程管理工具。 本小节将使用进程管理工具 supervisor 来管理容器中的多个进程。使用Supervisor可以更好的控制、管理、重启我们希望运行的进程。">
+  <meta name="description" content="Docker 容器在启动的时候开启单个进程。但我们经常需要在一个机器上开启多个服务，这可以有很多方法，最简单的就是把多个启动命令放到一个启动脚本里面，启动的时候直接启动这个脚本，另外就是安装进程管理工具。 本文将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker 使用 Supervisor 来管理进程">
 <meta property="og:url" content="https://jueee.github.io/2020/11/2020-11-23-Docker%E4%BD%BF%E7%94%A8Supervisor%E6%9D%A5%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="Docker 容器在启动的时候开启单个进程。但我们经常需要在一个机器上开启多个服务，这可以有很多方法，最简单的就是把多个启动命令放到一个启动脚本里面，启动的时候直接启动这个脚本，另外就是安装进程管理工具。 本小节将使用进程管理工具 supervisor 来管理容器中的多个进程。使用Supervisor可以更好的控制、管理、重启我们希望运行的进程。">
+<meta property="og:description" content="Docker 容器在启动的时候开启单个进程。但我们经常需要在一个机器上开启多个服务，这可以有很多方法，最简单的就是把多个启动命令放到一个启动脚本里面，启动的时候直接启动这个脚本，另外就是安装进程管理工具。 本文将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-23T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-01-07T04:28:31.313Z">
+<meta property="article:modified_time" content="2021-09-07T06:30:50.981Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Supervisor">
@@ -162,17 +162,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">207</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">209</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">48</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">49</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">91</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">92</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -252,20 +252,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">207</span>
+          <span class="site-state-item-count">209</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">91</span>
+        <span class="site-state-item-count">92</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -418,7 +418,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <p><strong>Docker</strong> 容器在启动的时候开启单个进程。但我们经常需要在一个机器上开启多个服务，这可以有很多方法，最简单的就是把多个启动命令放到一个启动脚本里面，启动的时候直接启动这个脚本，另外就是安装进程管理工具。</p>
-<p>本小节将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。</p>
+<p>本文将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。</p>
 <a id="more"></a>
 
 <h3 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h3><h4 id="Dockerfile-配置"><a href="#Dockerfile-配置" class="headerlink" title="Dockerfile 配置"></a>Dockerfile 配置</h4><p>执行 apt 安装时注意加入 <code>-y --no-install-recommends</code>，并且在安装完成后执行 <code>rm -rf /var/lib/apt/lists/* &amp;&amp; apt-get clean</code> 命令，可以有效减小镜像的体积。</p>
@@ -463,16 +463,16 @@ env &gt;&gt; /etc/default/locale
 <li>第二段包含要控制的 2 个服务。每一段包含一个服务的目录和启动这个服务的命令。</li>
 </ul>
 <h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><p>创建镜像。</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> docker build -t test/supervisord <span class="token builtin class-name">.</span></code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ sudo docker build -t test/supervisord .</code></pre>
 
 <p>启动 supervisor 容器。</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">sudo</span> docker run -t -i test/supervisords
-<span class="token number">2020</span>-11-23 <span class="token number">13</span>:48:53,271 INFO Included extra <span class="token function">file</span> <span class="token string">"/etc/supervisor/conf.d/supervisord.conf"</span> during parsing
-<span class="token number">2020</span>-11-23 <span class="token number">13</span>:48:53,282 INFO RPC interface <span class="token string">'supervisor'</span> initialized
-<span class="token number">2020</span>-11-23 <span class="token number">13</span>:48:53,282 CRIT Server <span class="token string">'unix_http_server'</span> running without any HTTP authentication checking
-<span class="token number">2020</span>-11-23 <span class="token number">13</span>:48:53,282 INFO supervisord started with pid <span class="token number">1</span>
-<span class="token number">2020</span>-11-23 <span class="token number">13</span>:48:54,284 INFO spawned: <span class="token string">'cron'</span> with pid <span class="token number">8</span>
-<span class="token number">2020</span>-11-23 <span class="token number">13</span>:48:54,286 INFO spawned: <span class="token string">'javaapp'</span> with pid <span class="token number">9</span></code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ sudo docker run -t -i test/supervisords
+2020-11-23 13:48:53,271 INFO Included extra file "/etc/supervisor/conf.d/supervisord.conf" during parsing
+2020-11-23 13:48:53,282 INFO RPC interface 'supervisor' initialized
+2020-11-23 13:48:53,282 CRIT Server 'unix_http_server' running without any HTTP authentication checking
+2020-11-23 13:48:53,282 INFO supervisord started with pid 1
+2020-11-23 13:48:54,284 INFO spawned: 'cron' with pid 8
+2020-11-23 13:48:54,286 INFO spawned: 'javaapp' with pid 9</code></pre>
 
 
     </div>
