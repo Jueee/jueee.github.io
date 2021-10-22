@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="Gophish 是一个功能强大的开源网络钓鱼框架，可以轻松测试组织的网络钓鱼风险，专为企业和渗透测试人员设计。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络钓鱼框架 Gophish 使用介绍">
+<meta property="og:url" content="https://jueee.github.io/2021/09/2021-09-30-%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC%E6%A1%86%E6%9E%B6Gophish%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="Gophish 是一个功能强大的开源网络钓鱼框架，可以轻松测试组织的网络钓鱼风险，专为企业和渗透测试人员设计。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20210930105909701.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20210930110737582.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20210930110942868.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20210930140258214.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20210930141201445.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20210930142644442.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20210930160048250.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20210930164040033.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20211008191226045.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20211008191409867.png">
+<meta property="og:image" content="https://jueee.github.io/images/2021/09/image-20211008191558180.png">
+<meta property="article:published_time" content="2021-09-30T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-09T01:24:54.948Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jueee.github.io/images/2021/09/image-20210930105909701.png">
+
+
+<link rel="canonical" href="https://jueee.github.io/2021/09/2021-09-30-%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC%E6%A1%86%E6%9E%B6Gophish%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>网络钓鱼框架 Gophish 使用介绍 | 小决的专栏</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">小决的专栏</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">215</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">93</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gophish"><span class="nav-number">1.</span> <span class="nav-text">Gophish</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Gophish"><span class="nav-number">2.</span> <span class="nav-text">安装 Gophish</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C-Gophish"><span class="nav-number">3.</span> <span class="nav-text">运行 Gophish</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E4%BB%8B%E7%BB%8D"><span class="nav-number">4.</span> <span class="nav-text">功能介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sending-Profiles"><span class="nav-number">4.1.</span> <span class="nav-text">Sending Profiles</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Landing-Pages"><span class="nav-number">4.2.</span> <span class="nav-text">Landing Pages</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Email-Templates"><span class="nav-number">4.3.</span> <span class="nav-text">Email Templates</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Users-amp-Groups"><span class="nav-number">4.4.</span> <span class="nav-text">Users &amp; Groups</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Campaigns"><span class="nav-number">4.5.</span> <span class="nav-text">Campaigns</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dashboard"><span class="nav-number">4.6.</span> <span class="nav-text">Dashboard</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">测试使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">215</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/09/2021-09-30-%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC%E6%A1%86%E6%9E%B6Gophish%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络钓鱼框架 Gophish 使用介绍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-30T00:00:00Z">2021-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/2021-09-30-%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC%E6%A1%86%E6%9E%B6Gophish%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/2021-09-30-%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC%E6%A1%86%E6%9E%B6Gophish%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>Gophish 是一个功能强大的开源网络钓鱼框架，可以轻松测试组织的网络钓鱼风险，专为企业和渗透测试人员设计。</p>
+<a id="more"></a>
+
+<h3 id="Gophish"><a href="#Gophish" class="headerlink" title="Gophish"></a>Gophish</h3><ul>
+<li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvcGhpc2gvZ29waGlzaA==">https://github.com/gophish/gophish<i class="fa fa-external-link-alt"></i></span></li>
+<li> 官网地址：<span class="exturl" data-url="aHR0cHM6Ly9nZXRnb3BoaXNoLmNvbS8=">https://getgophish.com/<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h3 id="安装-Gophish"><a href="#安装-Gophish" class="headerlink" title="安装 Gophish"></a>安装 Gophish</h3><p>下载 Gophish 对应版本 ：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2dvcGhpc2gvZ29waGlzaC9yZWxlYXNlcyVFRiVCQyU4QyVFOCVBNyVBMyVFNSU4RSU4QiVFNSU4RCVCMyVFNSU4RiVBRiVFMyU4MCU4Mg==">https://github.com/gophish/gophish/releases，解压即可。<i class="fa fa-external-link-alt"></i></span></p>
+<p>配置信息：</p>
+<pre class="language-none"><code class="language-none">$ cat config.json
+{
+        "admin_server": {
+                "listen_url": "0.0.0.0:3333",
+                "use_tls": true,
+                "cert_path": "gophish_admin.crt",
+                "key_path": "gophish_admin.key"
+        },
+        "phish_server": {
+                "listen_url": "0.0.0.0:80",
+                "use_tls": false,
+                "cert_path": "example.crt",
+                "key_path": "example.key"
+        },
+        "db_name": "sqlite3",
+        "db_path": "gophish.db",
+        "migrations_prefix": "db/db_",
+        "contact_address": "",
+        "logging": {
+                "filename": "",
+                "level": ""
+        }
+}</code></pre>
+
+<p>注意事项：</p>
+<ul>
+<li>若需要远程访问后台管理界面，将 <code>listen_url</code> 修改为 <code>0.0.0.0:3333</code>，端口可自定义。</li>
+<li>如果仅通过本地访问，保持 <code>127.0.0.1:3333</code> 即可。</li>
+</ul>
+<h3 id="运行-Gophish"><a href="#运行-Gophish" class="headerlink" title="运行 Gophish"></a>运行 Gophish</h3><p>运行 Gophish  脚本：</p>
+<pre class="language-none"><code class="language-none">./gophish &amp;</code></pre>
+
+<p><strong>访问后台管理系统：</strong></p>
+<p>本地打开浏览器，访问 <code>https://ip:3333/</code> （注意使用 https 协议）<br>可能会提示证书不正确，依次点击 <code>高级</code> — <code>继续转到页面</code> ，输入默认账密进行登录：<code>admin/XXX</code></p>
+<p>初始化密码位于启动日志中：</p>
+<pre class="language-none"><code class="language-none">time="2021-09-28T17:52:08Z" level=info msg="Please login with the username admin and the password 4304d5255378177d"</code></pre>
+
+<h3 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h3><p>进入后台后，左边的栏目即代表各个功能，分别是：</p>
+<ul>
+<li>Dashboard 仪表板 </li>
+<li>Campaigns 钓鱼事件</li>
+<li> Users &amp; Groups 用户和组</li>
+<li> Email Templates 邮件模板</li>
+<li> Landing Pages 钓鱼页面</li>
+<li> Sending Profiles 发件策略</li>
+</ul>
+<p>如下图所示：</p>
+<p><img src="/images/2021/09/image-20210930105909701.png" alt="image-20210930105909701" loading="lazy"></p>
+<h4 id="Sending-Profiles"><a href="#Sending-Profiles" class="headerlink" title="Sending Profiles"></a>Sending Profiles</h4><p>Sending Profiles（发件策略）的主要作用是将用来发送钓鱼邮件的邮箱配置到 gophish。</p>
+<p>点击 <code>New Profile</code> 新建一个策略，依次来填写各个字段：</p>
+<p><img src="/images/2021/09/image-20210930110737582.png" alt="image-20210930110737582" loading="lazy"></p>
+<p>成功收到测试邮件：</p>
+<p><img src="/images/2021/09/image-20210930110942868.png" alt="image-20210930110942868" loading="lazy"></p>
+<p>至此，发件邮箱的配置已经完成。</p>
+<p>当然，在实际钓鱼中，不可能使用自己的私人邮箱去发送钓鱼邮件。</p>
+<p>因此，如果需要大批量去发送钓鱼邮件，最好的方式是使用自己的服务器，申请近似域名，搭建邮件服务器来发件。</p>
+<h4 id="Landing-Pages"><a href="#Landing-Pages" class="headerlink" title="Landing Pages"></a>Landing Pages</h4><p>Landing Pages（钓鱼页面）是设计由邮件中超链接指向的钓鱼网页。</p>
+<p>点击 <code>New Page</code> 新建页面：</p>
+<p><img src="/images/2021/09/image-20210930140258214.png" alt="image-20210930140258214" loading="lazy"></p>
+<h4 id="Email-Templates"><a href="#Email-Templates" class="headerlink" title="Email Templates"></a>Email Templates</h4><p>Email Templates（钓鱼邮件模板）用来编写钓鱼邮件的内容。</p>
+<p>点击 <code>New Template</code> 新建钓鱼邮件模板，依次介绍填写各个字段：</p>
+<p><img src="/images/2021/09/image-20210930141201445.png" alt="image-20210930141201445" loading="lazy"></p>
+<ul>
+<li>在发送的邮件中添加附件，一是可以添加相关文件提高邮件真实性，二是可以配合免杀木马诱导受害用户下载并打开。</li>
+</ul>
+<h4 id="Users-amp-Groups"><a href="#Users-amp-Groups" class="headerlink" title="Users &amp; Groups"></a>Users &amp; Groups</h4><p>Users &amp; Groups（用户和组）的作用是将钓鱼的目标邮箱导入系统中准备发送。</p>
+<p><img src="/images/2021/09/image-20210930142644442.png" alt="image-20210930142644442" loading="lazy"></p>
+<h4 id="Campaigns"><a href="#Campaigns" class="headerlink" title="Campaigns"></a>Campaigns</h4><p>Campaigns（钓鱼事件）的作用是将上述四个功能 <code>Sending Profiles</code> 、<code>Email Templates</code> 、<code>Landing Pages</code> 、<code>Users &amp; Groups</code> 联系起来，并创建钓鱼事件，发送钓鱼邮件。</p>
+<p>在 Campaigns 中，可以新建钓鱼事件，并选择编辑好的钓鱼邮件模板，钓鱼页面，通过配置好的发件邮箱，将钓鱼邮件发送给目标用户组内的所有用户</p>
+<p><img src="/images/2021/09/image-20210930160048250.png" alt="image-20210930160048250" loading="lazy"></p>
+<p>注意事项：</p>
+<ul>
+<li><p>Send Emails By 配合 Launch Date 使用，可以理解为当前钓鱼事件下所有钓鱼邮件发送完成的时间。</p>
+<p><code>Launch Date</code> 作为起始发件时间，<code>Send Emails By</code> 作为完成发件时间，而它们之间的时间将被所有邮件<code>以分钟为单位平分</code>。</p>
+</li>
+<li><p>这样的好处在于，当需要发送大量的钓鱼邮件，而发件邮箱服务器并未限制每分钟的发件数，那么通过该设定可以限制钓鱼邮件不受约束的发出，从而防止因短时间大量邮件抵达目标邮箱而导致的<strong>垃圾邮件检测</strong>，甚至<strong>发件邮箱服务器 IP 被目标邮箱服务器封禁</strong></p>
+</li>
+<li><p>如果未修改 <code>Launch Date</code>，则默认在创建钓鱼事件后就立即开始发送钓鱼邮件。</p>
+</li>
+</ul>
+<h4 id="Dashboard"><a href="#Dashboard" class="headerlink" title="Dashboard"></a>Dashboard</h4><p>Dashboard（仪表板）自动开始统计数据。</p>
+<p>统计的数据项包括：</p>
+<ul>
+<li>Email Sent：邮件发送成功的数量及比率</li>
+<li> Email Opened：邮件被打开的数量及比率</li>
+<li> Clicked Link：钓鱼链接被点击的数量及比率</li>
+<li> Submitted Data：账号密码数据被提交的数量和比率</li>
+<li> Email Reported：收到电子邮件报告的数量和比率</li>
+</ul>
+<p>另外，还有时间轴记录了每个行为发生的时间点。</p>
+<p>关于电子邮件报告，详情参考：</p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLmdldGdvcGhpc2guY29tL3VzZXItZ3VpZGUvZG9jdW1lbnRhdGlvbi9lbWFpbC1yZXBvcnRpbmc=">https://docs.getgophish.com/user-guide/documentation/email-reporting<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>Dashboard 统计的是 <strong>所有钓鱼事件</strong> 的数据，而非单个钓鱼事件的数据，如果仅需要查看单个钓鱼事件的统计数据，可以在 <code>Campaigns</code> 中找到该钓鱼事件，点击 <code>View Results</code> 按钮查看。</p>
+<p><img src="/images/2021/09/image-20210930164040033.png" alt="image-20210930164040033" loading="lazy"></p>
+<h3 id="测试使用"><a href="#测试使用" class="headerlink" title="测试使用"></a>测试使用</h3><ol>
+<li><p>在 Sending Profiles（发件策略）中，配置自己的个人邮箱地址。</p>
+</li>
+<li><p>在 Landing Pages（钓鱼页面）中，配置一个包含登录页的网站。比如 <code>https://email.163.com/</code>，进行加载后，保存页面。</p>
+</li>
+<li><p>在 Email Templates（钓鱼邮件模板）中，配置想要发送的邮件模块，如下所示：</p>
+<p><img src="/images/2021/09/image-20211008191226045.png" alt="image-20211008191226045" loading="lazy"></p>
+</li>
+<li><p>在 Users &amp; Groups（用户和组）中，配置收件人的地址列表。</p>
+</li>
+<li><p>在 Campaigns（钓鱼事件）中，关联上述配置。保存即可发送测试邮件。</p>
+</li>
+<li><p>在收件人邮箱中，即可查看钓鱼邮件。如下所示：</p>
+<p><img src="/images/2021/09/image-20211008191409867.png" alt="image-20211008191409867" loading="lazy"></p>
+</li>
+<li><p>点击超链接 <strong>163 邮箱</strong>，发现钓鱼网站与 163 邮箱的登录地址非常类似，但<strong>网址完全不一样</strong>！！！</p>
+<p><img src="/images/2021/09/image-20211008191558180.png" alt="image-20211008191558180" loading="lazy"></p>
+<p>当然，由于 163 邮箱的安全性做的极好，会在登录窗口进行提示：</p>
+<p><strong>无法登录，请开启浏览器 cookies 或更换浏览器后刷新重试。</strong></p>
+</li>
+</ol>
+<p><strong>注意：</strong></p>
+<ul>
+<li>最终钓鱼地址中的 <code>?rid=DYNJnZy</code> 具有唯一性，即唯一指向打开的这封钓鱼邮件，换句话说 <code>DYNJnZy</code> 是为这封邮件的收件人<code>唯一分配的</code>。<br>如果此次钓鱼的 Campaigns 选择的目标存在多个目标邮箱，则 gophish 会为每一封目标邮件分配一个唯一的 rid 值，以此来区别不同的收件人。</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTM5NTI3L2FydGljbGUvZGV0YWlscy8xMDc0ODUxMTY=">https://blog.csdn.net/qq_42939527/article/details/107485116<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建 Jekyll 环境</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为 Jekyll 博客系统增加百度统计</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加 Jekyll 博客访问量统计</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll 使用中文路径</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Blog/" rel="tag"># Blog</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/2021-09-28-Docker%E5%AE%B9%E5%99%A8%E6%97%A5%E5%BF%97%E5%8D%A0%E7%94%A8%E7%A9%BA%E9%97%B4%E8%BF%87%E5%A4%A7%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" rel="prev" title="Docker 容器日志占用空间过大解决办法">
+                  <i class="fa fa-chevron-left"></i> Docker 容器日志占用空间过大解决办法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/10/2021-10-11-MySQL%E6%B8%85%E7%90%86binlog%E6%97%A5%E5%BF%97%E7%9A%84%E6%96%B9%E6%B3%95/" rel="next" title="MySQL 清理 binlog 日志的方法">
+                  MySQL 清理 binlog 日志的方法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '042e2e3f4e4707727e5967af21784779',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2021/09/2021-09-30-%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC%E6%A1%86%E6%9E%B6Gophish%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

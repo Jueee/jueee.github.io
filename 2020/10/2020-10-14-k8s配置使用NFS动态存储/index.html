@@ -36,7 +36,7 @@
 <meta property="og:description" content="部署 nfs 服务1、主机安装 nfs 服务器 sudo apt-get install nfs-kernel-server sudo apt-get install nfs-common">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-14T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-16T10:54:43.068Z">
+<meta property="article:modified_time" content="2021-09-17T02:20:57.107Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="k8s">
 <meta property="article:tag" content="NFS">
@@ -162,17 +162,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">209</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">215</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">49</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">50</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">92</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">93</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -252,20 +252,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">209</span>
+          <span class="site-state-item-count">215</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">92</span>
+        <span class="site-state-item-count">93</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -434,7 +434,7 @@ sudo apt-get install nfs-common</code></pre>
 <p>2、主机共享 NFS 文件夹</p>
 <p>编辑  /etc/exports 文件</p>
 <p>sudo vi /etc/exports<br>在文件末尾添加（nfs 共享目录，它可以作为开发板的根文件系统通过 nfs 挂载。）：</p>
-<pre class="language-none"><code class="language-none">/home/vmuser/Share                *(insecure,rw,sync,no_root_squash)</code></pre>
+<pre class="language-none"><code class="language-none">/data1/k3snfs                *(insecure,rw,sync,no_root_squash)</code></pre>
 
 <p>修改完成后，保存。 </p>
 <p>该目录必须存在<br>然后启动或重启 NFS 服务。</p>
@@ -445,7 +445,7 @@ sudo apt-get install nfs-common</code></pre>
 <pre class="language-none"><code class="language-none">$ sudo /etc/init.d/nfs-kernel-server restart</code></pre>
 
 <p>3、其他设备挂载 NFS 服务器</p>
-<pre class="language-none"><code class="language-none">$ sudo mount -t nfs 192.168.12.123:/home/vmuser/Share    /mnt/nfsdata -o nolock  </code></pre>
+<pre class="language-none"><code class="language-none">$ sudo mount -t nfs 192.168.12.123:/data1/k3snfs    /mnt/nfsdata -o nolock  </code></pre>
 
 <h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
 <li><p>共享 NFS 文件夹权限必须为 777 ，<code>chmod 777 Share</code></p>
@@ -453,9 +453,15 @@ sudo apt-get install nfs-common</code></pre>
 <li><p>配置文件 /etc/exports，需要加入 insecure 选项。否则其他机器挂载失败。</p>
 <pre class="language-none"><code class="language-none">mount.nfs: access denied by server while mounting 10.110.10.10:/mnt/dfs/3/k8snfs</code></pre>
 
-
 </li>
 </ul>
+<p>若其他设备挂载 NFS 报错：</p>
+<pre class="language-none"><code class="language-none">mount -t nfs XXX:/data1/k3snfs    /data1/k3snfs -o nolock
+mount.nfs: access denied by server while mounting XXX:/data1/k3snfs</code></pre>
+
+<p>则可能需要重启 NFS 服务：</p>
+<pre class="language-none"><code class="language-none">sudo /etc/init.d/nfs-kernel-server restart</code></pre>
+
 <h3 id="新建-PV"><a href="#新建-PV" class="headerlink" title="新建 PV"></a>新建 PV</h3><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> PersistentVolume
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
