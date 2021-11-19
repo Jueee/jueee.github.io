@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="在实际的业务中，难免会跟第三方系统进行数据的交互与传递，那么如何保证数据在传输过程中的安全呢（防窃取）？ 除了 https 的协议之外，能不能加上通用的一套算法以及规范来保证传输的安全性呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API 接口设计之 token+sign 具体架构与实现">
+<meta property="og:url" content="https://jueee.github.io/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="在实际的业务中，难免会跟第三方系统进行数据的交互与传递，那么如何保证数据在传输过程中的安全呢（防窃取）？ 除了 https 的协议之外，能不能加上通用的一套算法以及规范来保证传输的安全性呢？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-09T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-11-19T09:46:44.049Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>API 接口设计之 token+sign 具体架构与实现 | 小决的专栏</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">小决的专栏</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">219</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">50</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">93</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">概念介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#token-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">token 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#timestamp-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">timestamp 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DoS"><span class="nav-number">1.2.1.</span> <span class="nav-text">DoS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sign-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.</span> <span class="nav-text">sign 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D%E6%8F%90%E4%BA%A4"><span class="nav-number">1.4.</span> <span class="nav-text">防止重复提交</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">使用流程</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">219</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          API 接口设计之 token+sign 具体架构与实现
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2021-11-09T00:00:00Z">2021-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在实际的业务中，难免会跟第三方系统进行数据的交互与传递，那么如何保证数据在传输过程中的安全呢（防窃取）？</p>
+<p>除了 https 的协议之外，能不能加上通用的一套算法以及规范来保证传输的安全性呢？</p>
+<a id="more"></a>
+
+<h3 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h3><h4 id="token-简介"><a href="#token-简介" class="headerlink" title="token 简介"></a>token 简介</h4><p>Token：访问令牌 access token, 用于接口中，用于标识接口调用者的身份、凭证，减少用户名和密码的传输次数。一般情况下客户端 (接口调用方) 需要先向服务器端申请一个接口调用的账号，服务器会给出一个 appId 和一个 key, key 用于参数签名使用，注意 key 保存到客户端，需要做一些安全处理，防止泄露。</p>
+<p>Token 的值一般是 UUID，服务端生成 Token 后需要将 token 做为 key，将一些和 token 关联的信息作为 value 保存到缓存服务器中 (redis)，当一个请求过来后，服务器就去缓存服务器中查询这个 Token 是否存在，存在则调用接口，不存在返回接口错误，一般通过拦截器或者过滤器来实现，Token 分为两种：</p>
+<ul>
+<li>API Token (接口令牌): 用于访问不需要用户登录的接口，如登录、注册、一些基本数据的获取等。 获取接口令牌需要拿 appId、timestamp 和 sign 来换，sign = 加密 (timestamp+key)</li>
+<li>USER Token (用户令牌): 用于访问需要用户登录之后的接口，如：获取我的基本信息、保存、修改、删除等操作。获取用户令牌需要拿用户名和密码来换</li>
+</ul>
+<p>关于 Token 的时效性：token 可以是一次性的、也可以在一段时间范围内是有效的，具体使用哪种看业务需要。</p>
+<p>一般情况下接口最好使用 https 协议，如果使用 http 协议，Token 机制只是一种减少被黑的可能性，其实只能防君子不能防小人。</p>
+<p>一般 token、timestamp 和 sign 三个参数会在接口中会同时作为参数传递，每个参数都有各自的用途。</p>
+<h4 id="timestamp-简介"><a href="#timestamp-简介" class="headerlink" title="timestamp 简介"></a>timestamp 简介</h4><p>timestamp: 时间戳，是客户端调用接口时对应的当前时间戳，时间戳用于防止 DoS 攻击。当黑客劫持了请求的 url 去 DoS 攻击，每次调用接口时接口都会判断服务器当前系统时间和接口中传的的 timestamp 的差值，如果这个差值超过某个设置的时间 (假如 5 分钟)，那么这个请求将被拦截掉，如果在设置的超时时间范围内，是不能阻止 DoS 攻击的。 timestamp 机制只能减轻 DoS 攻击的时间，缩短攻击时间。如果黑客修改了时间戳的值可通过 sign 签名机制来处理。</p>
+<h5 id="DoS"><a href="#DoS" class="headerlink" title="DoS"></a>DoS</h5><p>DoS 是 Denial of Service 的简称，即拒绝服务，造成 DoS 的攻击行为被称为 DoS 攻击，其目的是使计算机或网络无法提供正常的服务。最常见的 DoS 攻击有计算机网络带宽攻击和连通性攻击。</p>
+<p>DoS 攻击是指故意的攻击网络协议实现的缺陷或直接通过野蛮手段残忍地耗尽被攻击对象的资源，目的是让目标计算机或网络无法提供正常的服务或资源访问，使目标系统服务系统停止响应甚至崩溃，而在此攻击中并不包括侵入目标服务器或目标网络设备。这些服务资源包括网络带宽，文件系统空间容量，开放的进程或者允许的连接。这种攻击会导致资源的匮乏，无论计算机的处理速度多快、内存容量多大、网络带宽的速度多快都无法避免这种攻击带来的后果。</p>
+<ul>
+<li>Pingflood: 该攻击在短时间内向目的主机发送大量 ping 包，造成网络堵塞或主机资源耗尽。</li>
+<li>Synflood: 该攻击以多个随机的源主机地址向目的主机发送 SYN 包，而在收到目的主机的 SYN ACK 后并不回应，这样，目的主机就为这些源主机建立了大量的连接队列，而且由于没有收到 ACK 一直维护着这</li>
+</ul>
+<p>些队列，造成了资源的大量消耗而不能向正常请求提供服务。</p>
+<ul>
+<li>Smurf：该攻击向一个子网的广播地址发一个带有特定请求（如 ICMP 回应请求）的包，并且将源地址伪装成想要攻击的主机地址。子网上所有主机都回应广播包请求而向被攻击主机发包，使该主机受到攻击。</li>
+<li>Land-based：攻击者将一个包的源地址和目的地址都设置为目标主机的地址，然后将该包通过 IP 欺骗的方式发送给被攻击主机，这种包可以造成被攻击主机因试图与自己建立连接而陷入死循环，从而很大程度地降低了系统性能。</li>
+<li>Ping of Death：根据 TCP/IP 的规范，一个包的长度最大为 65536 字节。尽管一个包的长度不能超过 65536 字节，但是一个包分成的多个片段的叠加却能做到。当一个主机收到了长度大于 65536 字节的包时，就是受到了 Ping of Death 攻击，该攻击会造成主机的宕机。</li>
+<li>Teardrop：IP 数据包在网络传递时，数据包可以分成更小的片段。攻击者可以通过发送两段（或者更多）数据包来实现 TearDrop 攻击。第一个包的偏移量为 0，长度为 N，第二个包的偏移量小于 N。为了合并这些数据段，TCP/IP 堆栈会分配超乎寻常的巨大资源，从而造成系统资源的缺乏甚至机器的重新启动。</li>
+<li>PingSweep：使用 ICMP Echo 轮询多个主机。</li>
+</ul>
+<h4 id="sign-简介"><a href="#sign-简介" class="headerlink" title="sign 简介"></a>sign 简介</h4><p>nonce：随机值，是客户端随机生成的值，作为参数传递过来，随机值的目的是增加 sign 签名的多变性。随机值一般是数字和字母的组合，6 位长度，随机值的组成和长度没有固定规则。</p>
+<p>sign: 一般用于参数签名，防止参数被非法篡改，最常见的是修改金额等重要敏感参数， sign 的值一般是将所有非空参数按照升续排序然后 + token+key+timestamp+nonce (随机数) 拼接在一起，然后使用某种加密算法进行加密，作为接口中的一个参数 sign 来传递，也可以将 sign 放到请求头中。接口在网络传输过程中如果被黑客挟持，并修改其中的参数值，然后再继续调用接口，虽然参数的值被修改了，但是因为黑客不知道 sign 是如何计算出来的，不知道 sign 都有哪些值构成，不知道以怎样的顺序拼接在一起的，最重要的是不知道签名字符串中的 key 是什么，所以黑客可以篡改参数的值，但没法修改 sign 的值，当服务器调用接口前会按照 sign 的规则重新计算出 sign 的值然后和接口传递的 sign 参数的值做比较，如果相等表示参数值没有被篡改，如果不等，表示参数被非法篡改了，就不执行接口了。</p>
+<h4 id="防止重复提交"><a href="#防止重复提交" class="headerlink" title="防止重复提交"></a>防止重复提交</h4><p>对于一些重要的操作需要防止客户端重复提交的 (如非幂等性重要操作)，具体办法是当请求第一次提交时将 sign 作为 key 保存到 redis，并设置超时时间，超时时间和 Timestamp 中设置的差值相同。当同一个请求第二次访问时会先检测 redis 是否存在该 sign，如果存在则证明重复提交了，接口就不再继续调用了。如果 sign 在缓存服务器中因过期时间到了，而被删除了，此时当这个 url 再次请求服务器时，因 token 的过期时间和 sign 的过期时间一直，sign 过期也意味着 token 过期，那样同样的 url 再访问服务器会因 token 错误会被拦截掉，这就是为什么 sign 和 token 的过期时间要保持一致的原因。拒绝重复调用机制确保 URL 被别人截获了也无法使用（如抓取数据）。</p>
+<p>对于哪些接口需要防止重复提交可以自定义个注解来标记。</p>
+<p>注意：所有的安全措施都用上的话有时候难免太过复杂，在实际项目中需要根据自身情况作出裁剪，比如可以只使用签名机制就可以保证信息不会被篡改，或者定向提供服务的时候只用 Token 机制就可以了。如何裁剪，全看项目实际情况和对接口安全性的要求。</p>
+<h3 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h3><ol>
+<li>接口调用方 (客户端) 向接口提供方 (服务器) 申请接口调用账号，申请成功后，接口提供方会给接口调用方一个 appId 和一个 key 参数</li>
+<li>客户端携带参数 appId、timestamp、sign 去调用服务器端的 API token，其中 sign = 加密 (appId + timestamp + key)</li>
+<li> 客户端拿着 api_token 去访问不需要登录就能访问的接口</li>
+<li>当访问用户需要登录的接口时，客户端跳转到登录页面，通过用户名和密码调用登录接口，登录接口会返回一个 usertoken, 客户端拿着 usertoken 去访问需要登录才能访问的接口</li>
+</ol>
+<p>sign 的作用是防止参数被篡改，客户端调用服务端时需要传递 sign 参数，服务器响应客户端时也可以返回一个 sign 用于客户度校验返回的值是否被非法篡改了。客户端传的 sign 和服务器端响应的 sign 算法可能会不同。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas 之源码简要分析</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas 之 jad 反编译原理</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-15-Ognl表达式的基本使用方法\" rel="bookmark">Ognl 表达式的基本使用方法</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/2021-10-28-HTML%E8%A1%A8%E6%A0%BC%E5%8D%95%E5%85%83%E6%A0%BC%E5%A2%9E%E5%8A%A0%E5%8F%8C%E5%87%BB%E5%A4%8D%E5%88%B6%E5%8A%9F%E8%83%BD/" rel="prev" title="HTML 表格单元格增加双击复制功能">
+                  <i class="fa fa-chevron-left"></i> HTML 表格单元格增加双击复制功能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/11/2021-11-19-%E5%9B%A0%E4%B8%BA%E5%90%AF%E7%94%A8WSL%E5%AF%BC%E8%87%B4IDEA%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E8%A7%A3%E5%86%B3/" rel="next" title="因为启用 WSL 导致 IDEA 启动报错解决">
+                  因为启用 WSL 导致 IDEA 启动报错解决 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '1283a4a16be19c93e3d3ac878f7c78ab',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/",
+      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

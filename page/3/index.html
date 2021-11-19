@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">215</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">219</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">215</span>
+          <span class="site-state-item-count">219</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -331,6 +331,438 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/08/2021-08-24-Windows%E6%A0%B9%E6%8D%AE%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%9D%80%E6%8E%89%E8%BF%9B%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/2021-08-24-Windows%E6%A0%B9%E6%8D%AE%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%9D%80%E6%8E%89%E8%BF%9B%E7%A8%8B/" class="post-title-link" itemprop="url">Windows 根据端口查看并杀掉进程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-24 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-24T00:00:00Z">2021-08-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/2021-08-24-Windows%E6%A0%B9%E6%8D%AE%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%9D%80%E6%8E%89%E8%BF%9B%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/2021-08-24-Windows%E6%A0%B9%E6%8D%AE%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%9D%80%E6%8E%89%E8%BF%9B%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="查看进程号"><a href="#查看进程号" class="headerlink" title="查看进程号"></a>查看进程号</h3><p>用 <code>netstat -ano | find 端口号</code> 查出进程号：</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell">netstat -ano | findstr 8181
+  TCP    0.0.0.0:8181           0.0.0.0:0              LISTENING       18128
+  TCP    [::]:8181              [::]:0                 LISTENING       18128</code></pre>
+
+<h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><p>takslist 查询当前的进程</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell">tasklist | grep 18128
+java.exe                     18128 Console                    1     63,036 K</code></pre>
+
+<h3 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h3><p>通过 <code>tasklist /pid 进程号</code> 杀死进程。</p>
+<pre class="language-none"><code class="language-none">taskkill /pid 18128
+成功: 已终止 PID 为 18128 的进程。</code></pre>
+
+<p>也可以通过 <code>taskkill /f /t /im 进程号</code>&nbsp;杀死进程。</p>
+<pre class="language-none"><code class="language-none">taskkill /f /t /im 18128
+成功: 已终止 PID 23064 (属于 PID 18128 子进程)的进程。
+成功: 已终止 PID 18128 (属于 PID 19508 子进程)的进程。</code></pre>
+
+<h4 id="taskkill"><a href="#taskkill" class="headerlink" title="taskkill"></a>taskkill</h4><p>taskkill 是 Windows 命令行里终止指定程序 “进程” 的命令。</p>
+<ul>
+<li>/f 表示强制终止<br>/im 表示指定的进程名称，例如 “explor.exe"</li>
+<li>/pid 表示指定的进程 ID 进程号</li>
+</ul>
+<h4 id="权限不足"><a href="#权限不足" class="headerlink" title="权限不足"></a>权限不足</h4><p>如果权限不够，用管理员权限运行 cmd，发现又报错了，说要强制执行才可以，则需要加上 - F 参数。</p>
+<pre class="language-none"><code class="language-none">taskkill /pid 5384
+错误: 无法终止 PID 为 5384 的进程。
+原因: 只能强行终止这个进程(带 /F 选项)。
+
+taskkill -f /pid 5384
+成功: 已终止 PID 为 5384 的进程。</code></pre>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/08/2021-08-23-Windows%E5%AE%89%E8%A3%85%E5%A4%9A%E7%AA%97%E5%8F%A3%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8QTTabBar/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/2021-08-23-Windows%E5%AE%89%E8%A3%85%E5%A4%9A%E7%AA%97%E5%8F%A3%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8QTTabBar/" class="post-title-link" itemprop="url">Windows 安装多窗口文件管理器 QTTabBar</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-23T00:00:00Z">2021-08-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/2021-08-23-Windows%E5%AE%89%E8%A3%85%E5%A4%9A%E7%AA%97%E5%8F%A3%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8QTTabBar/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/2021-08-23-Windows%E5%AE%89%E8%A3%85%E5%A4%9A%E7%AA%97%E5%8F%A3%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8QTTabBar/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><span class="exturl" data-url="aHR0cDovL3F0dGFiYmFyLndpa2lkb3QuY29tLw==">http://qttabbar.wikidot.com/<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="安装设置"><a href="#安装设置" class="headerlink" title="安装设置"></a>安装设置</h3><h4 id="安装语言"><a href="#安装语言" class="headerlink" title="安装语言"></a>安装语言</h4><p>下载语言包时，可能需要翻墙。</p>
+<p><img src="/images/2021/08/image-20210823213305336.png" alt="image-20210823213305336" loading="lazy"></p>
+<p><img src="/images/2021/08/image-20210823213200848.png" alt="image-20210823213200848" loading="lazy"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/08/2021-08-11-idea%E9%9B%86%E6%88%90%E6%9C%AC%E5%9C%B0%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6%E2%80%94%E2%80%94%E4%BB%A5Typora%E6%89%93%E5%BC%80Markdown%E6%96%87%E4%BB%B6%E4%B8%BA%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/2021-08-11-idea%E9%9B%86%E6%88%90%E6%9C%AC%E5%9C%B0%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6%E2%80%94%E2%80%94%E4%BB%A5Typora%E6%89%93%E5%BC%80Markdown%E6%96%87%E4%BB%B6%E4%B8%BA%E4%BE%8B/" class="post-title-link" itemprop="url">idea 集成本地三方软件 —— 以 Typora 打开 Markdown 文件为例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-11T00:00:00Z">2021-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/2021-08-11-idea%E9%9B%86%E6%88%90%E6%9C%AC%E5%9C%B0%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6%E2%80%94%E2%80%94%E4%BB%A5Typora%E6%89%93%E5%BC%80Markdown%E6%96%87%E4%BB%B6%E4%B8%BA%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/2021-08-11-idea%E9%9B%86%E6%88%90%E6%9C%AC%E5%9C%B0%E4%B8%89%E6%96%B9%E8%BD%AF%E4%BB%B6%E2%80%94%E2%80%94%E4%BB%A5Typora%E6%89%93%E5%BC%80Markdown%E6%96%87%E4%BB%B6%E4%B8%BA%E4%BE%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="官方教程"><a href="#官方教程" class="headerlink" title="官方教程"></a>官方教程</h3><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamV0YnJhaW5zLmNvbS9oZWxwL2lkZWEvY29uZmlndXJpbmctdGhpcmQtcGFydHktdG9vbHMuaHRtbA==">https://www.jetbrains.com/help/idea/configuring-third-party-tools.html<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<h3 id="Idea配置"><a href="#Idea配置" class="headerlink" title="Idea配置"></a>Idea 配置</h3><h4 id="External-Tools"><a href="#External-Tools" class="headerlink" title="External Tools"></a>External Tools</h4><p>需要先进入到 Idea 设置界面。</p>
+<p>路径如下：【Settings】——【Tools】——【External Tools】，之后再点击 + 号（如图所示）</p>
+<p><img src="/images/2021/08/image-20210811100557832.png" alt="image-20210811100557832" loading="lazy"></p>
+<p>关于 External Tools 界面各参数含义，可以参看如下内容：</p>
+<ul>
+<li>Name: 在 IntelliJ IDEA 界面中显示的工具名称</li>
+<li> Group: 工具所属的组的名称。您可以选择一个现有组或新创建一个组</li>
+<li> Description: 对本工具的描述</li>
+<li> Program: 应用程序可执行文件的路径</li>
+<li> Arguments: 传递给可执行文件的参数</li>
+<li> Working directory: 执行工具的当前工作目录的路径。</li>
+</ul>
+<h4 id="Arguments参数"><a href="#Arguments参数" class="headerlink" title="Arguments参数"></a>Arguments 参数</h4><p>可以直接下拉选择。</p>
+<p><strong>这里的参数，最好用英文格式的双引号 "" 包括起来，否则 Failed to load file</strong></p>
+<p><img src="/images/2021/08/image-20210811101106765.png" alt="image-20210811101106765" loading="lazy"></p>
+<p>上述内容填写安装之后，点击 OK 按钮。</p>
+<h4 id="验证配置"><a href="#验证配置" class="headerlink" title="验证配置"></a>验证配置</h4><p>上述操作执行完毕之后，便可在 Idea 中打开 md 文件进行一系列操作</p>
+<blockquote>
+<p>在需要编辑的 md 文件上右键，选择 External Tools 下的 Typora 工具</p>
+</blockquote>
+<p><img src="/images/2021/08/image-20210811101459966.png" alt="image-20210811101459966" loading="lazy"></p>
+<h3 id="快捷键设置"><a href="#快捷键设置" class="headerlink" title="快捷键设置"></a>快捷键设置</h3><p>通过在需要编辑的 md 文件上右键，选择 External Tools 下的 Typora 工具，有点麻烦，我们可以添加个快捷键。</p>
+<p><img src="/images/2021/08/image-20210811101627137.png" alt="image-20210811101627137" loading="lazy"></p>
+<p>设置快捷键：</p>
+<p><img src="/images/2021/08/image-20210811101752608.png" alt="image-20210811101752608" loading="lazy"></p>
+<p>如果出现 <strong>Failed to load file</strong> 异常， 则需要配置中，在 Arguments 中添加的参数，用英文格式的双引号 "" 包括起来。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/08/2021-08-04-%E4%BA%8C%E5%88%86%E6%B3%95%E6%9F%A5%E6%89%BE%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/2021-08-04-%E4%BA%8C%E5%88%86%E6%B3%95%E6%9F%A5%E6%89%BE%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0/" class="post-title-link" itemprop="url">二分法查找排序数组中的元素</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-04T00:00:00Z">2021-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/08/2021-08-04-%E4%BA%8C%E5%88%86%E6%B3%95%E6%9F%A5%E6%89%BE%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/2021-08-04-%E4%BA%8C%E5%88%86%E6%B3%95%E6%9F%A5%E6%89%BE%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>二分法查找排序数组中的元素使用汇总。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/2021-08-04-%E4%BA%8C%E5%88%86%E6%B3%95%E6%9F%A5%E6%89%BE%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -530,428 +962,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/07/2021-07-23-MySQL%E5%AF%86%E7%A0%81%E8%BF%87%E6%9C%9F%E7%9A%84%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/2021-07-23-MySQL%E5%AF%86%E7%A0%81%E8%BF%87%E6%9C%9F%E7%9A%84%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">MySQL 密码过期的修改方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-23T00:00:00Z">2021-07-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/2021-07-23-MySQL%E5%AF%86%E7%A0%81%E8%BF%87%E6%9C%9F%E7%9A%84%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/2021-07-23-MySQL%E5%AF%86%E7%A0%81%E8%BF%87%E6%9C%9F%E7%9A%84%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="密码失效"><a href="#密码失效" class="headerlink" title="密码失效"></a>密码失效</h4><p>查询 MySQL 异常：</p>
-<pre class="language-none"><code class="language-none">mysql&gt; select host,user from mysql.user limit 1;
-ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/2021-07-23-MySQL%E5%AF%86%E7%A0%81%E8%BF%87%E6%9C%9F%E7%9A%84%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/07/2021-07-12-Shell%E9%80%9A%E8%BF%87%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%AD%90%E4%B8%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/2021-07-12-Shell%E9%80%9A%E8%BF%87%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%AD%90%E4%B8%B2/" class="post-title-link" itemprop="url">Shell 通过正则表达式提取子串</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-12T00:00:00Z">2021-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/2021-07-12-Shell%E9%80%9A%E8%BF%87%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%AD%90%E4%B8%B2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/2021-07-12-Shell%E9%80%9A%E8%BF%87%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8F%90%E5%8F%96%E5%AD%90%E4%B8%B2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="通过-grep"><a href="#通过-grep" class="headerlink" title="通过 grep"></a>通过 grep</h3><p>grep 的 -o 选项，可以只打印匹配的部分，否则会打印整行。</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">echo</span> <span class="token string">"libgcc-4.8.5-4.h5.x86_64.rpm"</span> <span class="token operator">|</span> <span class="token function">grep</span> -Eo <span class="token string">"[0-9]+\.[0-9]+.*x86_64"</span>
-<span class="token number">4.8</span>.5-4.h5.x86_64
-$ <span class="token builtin class-name">echo</span> <span class="token string">"libgcc-4.8.5-4.h5.x86_64.rpm"</span> <span class="token operator">|</span> <span class="token function">grep</span> -E <span class="token string">"[0-9]+\.[0-9]+.*x86_64"</span>
-libgcc-4.8.5-4.h5.x86_64.rpm</code></pre>
-
-<p>复制的字符串匹配，可以通过 grep 进行多次匹配：</p>
-<pre class="language-sh" data-language="sh"><code class="language-sh">resnum=`echo $result | grep -Eo "Corp.*?[0-9]+.*?！"|grep -Eo "[0-9]+"`
-if [[ $resnum -lt 300 ]];then
-  echo "start sms alarm:$resnum"
-fi</code></pre>
-
-<h3 id="通过-sed"><a href="#通过-sed" class="headerlink" title="通过 sed"></a>通过 sed</h3><p>sed 使用 \1 反向引用前面匹配的组。</p>
-<p>但是 sed 没有只显示匹配部分的功能，会显示整行，所以采用的思路是将整行替换为子串，比较麻烦。</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">echo</span> <span class="token string">"libgcc-4.8.5-4.h5.x86_64.rpm"</span> <span class="token operator">|</span> <span class="token function">sed</span> -r <span class="token string">"s/libgcc-([0-9]+\.[0-9]+.*)\.rpm/<span class="token entity" title="\1">\1</span>/g"</span>
-<span class="token number">4.8</span>.5-4.h5.x86_64</code></pre>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/07/2021-07-11-windows10%E6%89%BE%E4%B8%8D%E5%88%B0gpedit.msc%E7%BB%84%E7%AD%96%E7%95%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/2021-07-11-windows10%E6%89%BE%E4%B8%8D%E5%88%B0gpedit.msc%E7%BB%84%E7%AD%96%E7%95%A5/" class="post-title-link" itemprop="url">Windows10 找不到 gpedit.msc 组策略</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-11 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-11T00:00:00Z">2021-07-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/2021-07-11-windows10%E6%89%BE%E4%B8%8D%E5%88%B0gpedit.msc%E7%BB%84%E7%AD%96%E7%95%A5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/2021-07-11-windows10%E6%89%BE%E4%B8%8D%E5%88%B0gpedit.msc%E7%BB%84%E7%AD%96%E7%95%A5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Windows 10 如果通过 <strong>gpedit.msc</strong> 无法找到组策略功能：</p>
-<p><img src="/images/2021/07/image-20210711223013489.png" alt="image-20210711223013489" loading="lazy"></p>
-<p>可以通过如下的批处理文件进行开启：</p>
-<pre class="language-bat" data-language="bat"><code class="language-bat">@echo off
-
-pushd "%~dp0"
-
-dir /b %systemroot%\Windows\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientExtensions-Package~3*.mum &gt;gp.txt
-
-dir /b  %systemroot%\servicing\Packages\Microsoft-Windows-GroupPolicy-ClientTools-Package~3*.mum &gt;&gt;gp.txt
-
-for /f %%i in ('findstr /i . gp.txt 2^&gt;nul') do dism /online /norestart /add-package:"%systemroot%\servicing\Packages\%%i"
-
-pause</code></pre>
-
-<p>右键管理员方式运行。</p>
-<p><img src="/images/2021/07/image-20210711223155459.png" alt="image-20210711223155459" loading="lazy"></p>
-<p>再次运行 <strong>gpedit.msc</strong>，即可正常打开组策略编辑器：</p>
-<p><img src="/images/2021/07/image-20210711223243695.png" alt="image-20210711223243695" loading="lazy"></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/" class="post-title-link" itemprop="url">罗技鼠标连接 Logitech Options</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-07-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-10T00:00:00Z">2021-07-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>经过多个版本测试，最新的只能到 7.12.43 版本完全没问题。往下的版就装完转圈黑，或者登录不上账号。<br>7.12.43 不需要任何的折腾。直接装好登录备份恢复。搞定。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/2021-07-10-%E7%BD%97%E6%8A%80%E9%BC%A0%E6%A0%87%E8%BF%9E%E6%8E%A5Logitech%20Options/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
