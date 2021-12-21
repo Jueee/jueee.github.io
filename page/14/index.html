@@ -157,17 +157,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">219</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">228</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">50</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">51</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">93</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">97</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -246,20 +246,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">219</span>
+          <span class="site-state-item-count">228</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">93</span>
+        <span class="site-state-item-count">97</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -339,7 +339,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -353,7 +353,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/" class="post-title-link" itemprop="url">Swagger 设置全局 token</a>
+            <a href="/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/" class="post-title-link" itemprop="url">自定义 element-ui 的 table 表格数据样式</a>
         </h2>
 
         <div class="post-meta-container">
@@ -364,7 +364,102 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-01-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-04T00:00:00Z">2021-01-04</time>
+      <time title="创建时间：2021-01-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-25T00:00:00Z">2021-01-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>有需要根据不同状态来区分 table 数据样式的需求，比如更换不同的颜色。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">Java 实现 SM3 加密算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-21T00:00:00Z">2021-01-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -389,8 +484,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -404,11 +499,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>swagger 是一个很使用的工具，但正常使用时，我们的接口需要登陆才能访问的。即登陆时，要传一个登陆后的 token 才能访问的。 </p>
-<p>那这个怎么设置，才可以让所有接口都允许登陆后访问呢？</p>
+          <h3 id="SM3-介绍"><a href="#SM3-介绍" class="headerlink" title="SM3 介绍"></a>SM3 介绍</h3><p>SM3 是中华人民共和国政府采用的一种密码散列函数标准，由国家密码管理局于 2010 年 12 月 17 日发布。相关标准为 “GM/T 0004-2012 《SM3 密码杂凑算法》”。</p>
+<p>在商用密码体系中，SM3 主要用于数字签名及验证、消息认证码生成及验证、随机数生成等，其算法公开。</p>
+<p>据国家密码管理局表示，其安全性及效率与 SHA-256 相当。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/#more" rel="contents">
+              <a class="btn" href="/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -439,7 +535,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-20-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7EasyExcel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -453,7 +549,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/" class="post-title-link" itemprop="url">SpringBoot 用 AOP 切面实现权限校验</a>
+            <a href="/2021/01/2021-01-20-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7EasyExcel/" class="post-title-link" itemprop="url">Excel 文件导出工具 EasyExcel</a>
         </h2>
 
         <div class="post-meta-container">
@@ -464,7 +560,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-01-02 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-02T00:00:00Z">2021-01-02</time>
+      <time title="创建时间：2021-01-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-20T00:00:00Z">2021-01-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -476,11 +572,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
         </span>
     </span>
 
@@ -493,8 +585,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/01/2021-01-20-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7EasyExcel/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-20-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7EasyExcel/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -508,120 +600,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>使用 AOP，首先需要引入 <strong>AOP 的依赖</strong>。</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-aop<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">Spring 面向切面编程 AOP 介绍及注解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-01T00:00:00Z">2021-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h3><p><strong>AOP 即 Aspect Oriented Program 面向切面编程</strong>。</p>
-<p>首先，在面向切面编程的思想里面，把功能分为核心业务功能，和周边功能。</p>
+          <h3 id="EasyExcel"><a href="#EasyExcel" class="headerlink" title="EasyExcel"></a>EasyExcel</h3><p>EasyExcel 是阿里巴巴开源的一个 excel 处理框架，以使用简单、节省内存著称。</p>
 <ul>
-<li><strong>所谓的核心业务</strong>，比如登陆，增加数据，删除数据都叫核心业务</li>
-<li><strong>所谓的周边功能</strong>，比如性能统计，日志，事务管理等等</li>
+<li>使用说明：<a target="_blank" rel="noopener" href="https://www.yuque.com/easyexcel/doc/easyexcel">https://www.yuque.com/easyexcel/doc/easyexcel</a></li>
+<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/alibaba/easyexcel">https://github.com/alibaba/easyexcel</a></li>
 </ul>
-<p>周边功能在 Spring 的面向切面编程AOP思想里，即被定义为切面。</p>
-<p>在面向切面编程AOP的思想里面，核心业务功能和切面功能分别独立进行开发，然后把切面功能和核心业务功能 &quot;编织&quot; 在一起，这就叫AOP。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/#more" rel="contents">
+              <a class="btn" href="/2021/01/2021-01-20-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7EasyExcel/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -652,7 +638,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-15-MySQL%E6%8C%89%E5%A4%A9%E5%A4%87%E4%BB%BD%E8%A1%A8%E6%95%B0%E6%8D%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -666,7 +652,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/" class="post-title-link" itemprop="url">Spring 的 IOC 容器管理对象示例</a>
+            <a href="/2021/01/2021-01-15-MySQL%E6%8C%89%E5%A4%A9%E5%A4%87%E4%BB%BD%E8%A1%A8%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">MySQL 按天备份表数据</a>
         </h2>
 
         <div class="post-meta-container">
@@ -677,7 +663,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-31 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-31T00:00:00Z">2020-12-31</time>
+      <time title="创建时间：2021-01-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-15T00:00:00Z">2021-01-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -685,15 +671,19 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
+          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
         </span>
     </span>
 
@@ -706,8 +696,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/01/2021-01-15-MySQL%E6%8C%89%E5%A4%A9%E5%A4%87%E4%BB%BD%E8%A1%A8%E6%95%B0%E6%8D%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-15-MySQL%E6%8C%89%E5%A4%A9%E5%A4%87%E4%BB%BD%E8%A1%A8%E6%95%B0%E6%8D%AE/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -721,13 +711,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="IOC-控制反转"><a href="#IOC-控制反转" class="headerlink" title="IOC 控制反转"></a>IOC 控制反转</h3><p>IOC—Inversion of Control，即 “控制反转”，不是什么技术，而是一种设计思想。</p>
-<p>在 Java 开发中，IOC 意味着将你设计好的对象交给容器控制，而不是传统的在你的对象内部直接控制。</p>
-<p>所谓 IOC，对于 Spring 框架来说，就是由 Spring 来负责控制对象的生命周期和对象间的关系。</p>
-<p>Spring 所倡导的开发方式就是如此，所有的类都会在 Spring 容器中登记。所有的类的创建、销毁都由 Spring 来控制，也就是说控制对象生存周期的不再是引用它的对象，而是 Spring。对于某个具体的对象而言，以前是它控制其他对象，现在是所有对象都被 Spring 控制，所以这叫控制反转。</p>
+          <p>MySQL 按天备份表数据。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/#more" rel="contents">
+              <a class="btn" href="/2021/01/2021-01-15-MySQL%E6%8C%89%E5%A4%A9%E5%A4%87%E4%BB%BD%E8%A1%A8%E6%95%B0%E6%8D%AE/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -758,7 +745,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-14-%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -772,7 +759,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">Zeppelin 配置连接 MySQL 数据库</a>
+            <a href="/2021/01/2021-01-14-%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0/" class="post-title-link" itemprop="url">在 Vue 中使用 Echarts 进行数据动态刷新</a>
         </h2>
 
         <div class="post-meta-container">
@@ -783,7 +770,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-30 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-30T00:00:00Z">2020-12-30</time>
+      <time title="创建时间：2021-01-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-14T00:00:00Z">2021-01-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -795,15 +782,11 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Apache/Zeppelin/" itemprop="url" rel="index"><span itemprop="name">Zeppelin</span></a>
+          <a href="/categories/Apache/Echarts/" itemprop="url" rel="index"><span itemprop="name">Echarts</span></a>
         </span>
     </span>
 
@@ -816,8 +799,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/01/2021-01-14-%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-14-%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -831,12 +814,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Zeppelin 原生支持JDBC链接。 但是默认的设置是指向PostgreSQL。</p>
-<p>一种最简单的办法就是直接修改JDBC Interpreter里面的内容，指向你自己的MySQL实例即可。</p>
-<p>本文介绍如何创建 MySQL Interpreter 并连接。</p>
+          <h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><p>在 Vue 使用 Echarts 时，可能会遇到这样的问题，就是直接刷新浏览器，或者数据变化时，Echarts 不更新？</p>
+<p>这是因为 Echarts 是数据驱动的，这意味着只要我们重新设置数据，那么图表就会随之重新渲染，这是实现本需求的基础。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/#more" rel="contents">
+              <a class="btn" href="/2021/01/2021-01-14-%E5%9C%A8Vue%E4%B8%AD%E4%BD%BF%E7%94%A8Echarts%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E5%88%B7%E6%96%B0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -867,7 +849,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-12-axios%E5%8F%91%E9%80%81%E4%B8%A4%E6%AC%A1%E8%AF%B7%E6%B1%82%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -881,7 +863,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/" class="post-title-link" itemprop="url">Java 中使用 RSA 算法加密</a>
+            <a href="/2021/01/2021-01-12-axios%E5%8F%91%E9%80%81%E4%B8%A4%E6%AC%A1%E8%AF%B7%E6%B1%82%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">axios 发送两次请求原因及解决方法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -892,7 +874,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-29T00:00:00Z">2020-12-29</time>
+      <time title="创建时间：2021-01-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-12T00:00:00Z">2021-01-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -900,11 +882,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
+          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
         </span>
     </span>
 
@@ -917,8 +895,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/01/2021-01-12-axios%E5%8F%91%E9%80%81%E4%B8%A4%E6%AC%A1%E8%AF%B7%E6%B1%82%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-12-axios%E5%8F%91%E9%80%81%E4%B8%A4%E6%AC%A1%E8%AF%B7%E6%B1%82%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -932,16 +910,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="RSA-介绍"><a href="#RSA-介绍" class="headerlink" title="RSA 介绍"></a>RSA 介绍</h3><p><strong>RSA 加密算法</strong>是一种<strong>非对称加密算法</strong>。</p>
-<p>RSA 是一对密钥。分别是<strong>公钥</strong>和<strong>私钥</strong> , 这个公钥和私钥其实就是一组数字！其二进制位长度可以是 1024 位或者 2048 位。长度越长其加密强度越大，目前为止公之于众的能破解的最大长度为 768 位密钥，只要高于 768 位，相对就比较安全.</p>
-<h4 id="RSA加密的方式"><a href="#RSA加密的方式" class="headerlink" title="RSA加密的方式"></a>RSA 加密的方式</h4><ul>
-<li>使用<strong>公钥</strong>加密的数据，利用<strong>私钥</strong>进行解密</li>
-<li>使用<strong>私钥</strong>加密的数据，利用<strong>公钥</strong>进行解密</li>
-</ul>
-<h4 id="RSA加密的缺点"><a href="#RSA加密的缺点" class="headerlink" title="RSA加密的缺点"></a>RSA 加密的缺点</h4><p>由于 RSA 算法的原理都是大数计算，使得 RSA 最快的情况也比<strong>对称加密算法</strong>慢上好几倍。</p>
+          <h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><p>最近Vue项目中使用axios组件，在页面交互中发现axios会发送两次请求，一种请求方式为OPTIONS，另外一种为自己设置的（如 GET、POST 等等）。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/#more" rel="contents">
+              <a class="btn" href="/2021/01/2021-01-12-axios%E5%8F%91%E9%80%81%E4%B8%A4%E6%AC%A1%E8%AF%B7%E6%B1%82%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -967,7 +939,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
