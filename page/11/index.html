@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">228</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">230</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">228</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -331,6 +331,285 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-16-Java%E7%9A%84AES%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E5%8F%8A%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/2021-03-16-Java%E7%9A%84AES%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E5%8F%8A%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">Java 的 AES 加密实现及问题解决</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-16T00:00:00Z">2021-03-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/2021-03-16-Java%E7%9A%84AES%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E5%8F%8A%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-16-Java%E7%9A%84AES%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E5%8F%8A%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> CIPHER_ALGORITHM_CBC <span class="token operator">=</span> <span class="token string">"AES/CBC/PKCS5Padding"</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token class-name">String</span> ENCRYPTKEY <span class="token operator">=</span> <span class="token string">"0123456789abcdefghijklmnopqretuvwxyz"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">SecretKey</span> secretKey <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">initKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">try</span> <span class="token punctuation">{</span>
+		secretKey <span class="token operator">=</span> <span class="token function">generateKey</span><span class="token punctuation">(</span>ENCRYPTKEY<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">SecretKey</span> <span class="token function">generateKey</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> secretKey<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+	<span class="token class-name">SecureRandom</span> secureRandom <span class="token operator">=</span> <span class="token class-name">SecureRandom</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"SHA1PRNG"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	secureRandom<span class="token punctuation">.</span><span class="token function">setSeed</span><span class="token punctuation">(</span>secretKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">KeyGenerator</span> kg <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+	<span class="token keyword">try</span> <span class="token punctuation">{</span>
+		kg <span class="token operator">=</span> <span class="token class-name">KeyGenerator</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"AES"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		kg<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> secureRandom<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">SecretKey</span> skey <span class="token operator">=</span> kg<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> raw <span class="token operator">=</span> skey<span class="token punctuation">.</span><span class="token function">getEncoded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">SecretKeySpec</span> skeySpec <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecretKeySpec</span><span class="token punctuation">(</span>raw<span class="token punctuation">,</span> <span class="token string">"AES"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> skeySpec<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchAlgorithmException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="加密实现"><a href="#加密实现" class="headerlink" title="加密实现"></a>加密实现</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">encrypt</span><span class="token punctuation">(</span><span class="token class-name">String</span> input<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>secretKey <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">initKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token class-name">Cipher</span> cipher <span class="token operator">=</span> <span class="token class-name">Cipher</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>CIPHER_ALGORITHM_CBC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">Cipher</span><span class="token punctuation">.</span>ENCRYPT_MODE<span class="token punctuation">,</span> secretKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> iv <span class="token operator">=</span> cipher<span class="token punctuation">.</span><span class="token function">getIV</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> encrypt <span class="token operator">=</span> cipher<span class="token punctuation">.</span><span class="token function">doFinal</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> ret <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span>iv<span class="token punctuation">.</span>length <span class="token operator">+</span> encrypt<span class="token punctuation">.</span>length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>encrypt<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> ret<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> encrypt<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>iv<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> ret<span class="token punctuation">,</span> encrypt<span class="token punctuation">.</span>length<span class="token punctuation">,</span> iv<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token class-name">DatatypeConverter</span><span class="token punctuation">.</span><span class="token function">printBase64Binary</span><span class="token punctuation">(</span>ret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="解密实现"><a href="#解密实现" class="headerlink" title="解密实现"></a>解密实现</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">decrypt</span><span class="token punctuation">(</span><span class="token class-name">String</span> input<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>secretKey <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">initKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> inputBytes <span class="token operator">=</span> <span class="token class-name">DatatypeConverter</span><span class="token punctuation">.</span><span class="token function">parseBase64Binary</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> iv <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cipherBytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span>inputBytes<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>inputBytes<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> cipherBytes<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> cipherBytes<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>inputBytes<span class="token punctuation">,</span> cipherBytes<span class="token punctuation">.</span>length<span class="token punctuation">,</span> iv<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token class-name">Cipher</span> cipher <span class="token operator">=</span> <span class="token class-name">Cipher</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>CIPHER_ALGORITHM_CBC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">Cipher</span><span class="token punctuation">.</span>DECRYPT_MODE<span class="token punctuation">,</span> secretKey<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IvParameterSpec</span><span class="token punctuation">(</span>iv<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> decrypt <span class="token operator">=</span> cipher<span class="token punctuation">.</span><span class="token function">doFinal</span><span class="token punctuation">(</span>cipherBytes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>decrypt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>在使用 256 位加密时，控制台报错如下：</p>
+<pre class="language-none"><code class="language-none">java.security.InvalidKeyException: Illegal key size or default parameters
+        at javax.crypto.Cipher.checkCryptoPerm(Cipher.java:1026)
+        at javax.crypto.Cipher.implInit(Cipher.java:801)
+        at javax.crypto.Cipher.chooseProvider(Cipher.java:864)
+        at javax.crypto.Cipher.init(Cipher.java:1249)
+        at javax.crypto.Cipher.init(Cipher.java:1186)</code></pre>
+
+<p>这是由于 key 的变更（由原来的 128 位变更为 256 位），导致加密 / 解密的失败。</p>
+<div class="note info"><p>之所以会出现这种问题，我们就要了解一个新的东西 ——JCE。在 Java 的核心类库中有一个 JCE（Java Cryptography Extension），JCE 是一组包，它们提供用于加密、密钥生成和协商以及 Message Authentication Code（MAC）算法的框架和实现，所以这个是实现加密解密的重要类库。</p>
+</div>
+
+<h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><p>我们要做的就是更换 JCE 的库，该文件位置在你的 JDK/jre/lib/security 目录下面，该目录下我们可以看到两个 jar 包：local_policy.jar，US_export_policy.jar，这两个 jar 包是 jdk 自带的。我们需要下载支持 256 位密钥加密的 jar 包。</p>
+<ul>
+<li>JDK8：<br>其对应的 JCE <span class="exturl" data-url="aHR0cDovL3d3dy5vcmFjbGUuY29tL3RlY2huZXR3b3JrL2phdmEvamF2YXNlL2Rvd25sb2Fkcy9qY2U4LWRvd25sb2FkLTIxMzMxNjYuaHRtbA==">下载地址<i class="fa fa-external-link-alt"></i></span></li>
+<li> JDK7：<br>其对应的 JCE <span class="exturl" data-url="aHR0cDovL3d3dy5vcmFjbGUuY29tL3RlY2huZXR3b3JrL2phdmEvamF2YXNlL2Rvd25sb2Fkcy9qY2UtNy1kb3dubG9hZC00MzIxMjQuaHRtbA==">下载地址<i class="fa fa-external-link-alt"></i></span> </li>
+<li> JDK6：<br>其对应的 JCE <span class="exturl" data-url="aHR0cDovL3d3dy5vcmFjbGUuY29tL3RlY2huZXR3b3JrL2phdmEvamF2YXNlL2Rvd25sb2Fkcy9qY2UtNi1kb3dubG9hZC00MjkyNDMuaHRtbA==">下载地址<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p>下载完后，解压，将其中的 “local_policy.jar” 和 “US_export_policy.jar” 两个文件替换掉自己 % JAVE_HOME%\jre\lib\security 文件夹下对应的原文件（% JAVE_HOME% 是自己电脑的 Java 路径）。</p>
+<p>JDK1.8 以上的该目录下压根没有这两个 JAR 包。</p>
+<p>针对这种情况，我们的解决方式为：vim 命令打开 java.security 文件，将注释掉的如下配置打开，然后保存即可。</p>
+<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token comment">#crypto.policy=unlimited</span></code></pre>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">Java 中 Integer 的 equals 和 == 的区别</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-15T00:00:00Z">2021-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>近期在 <code>Map&lt;String,Integer&gt;</code> 进行计数比较时，发现 Integer 比较有问题，让我们进行下探究。</p>
+<p>如：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">Integer</span> a <span class="token operator">=</span> <span class="token number">281</span><span class="token punctuation">;</span>
+<span class="token class-name">Integer</span> b <span class="token operator">=</span> <span class="token number">281</span><span class="token punctuation">;</span>
+<span class="token function">assertFalse</span><span class="token punctuation">(</span>a<span class="token operator">==</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -740,209 +1019,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-05-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/2021-03-05-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">Java 按照树形结构打印二叉树</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-05 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-05T00:00:00Z">2021-03-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/03/2021-03-05-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-05-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在我们完成一棵树的构建之后，如果我们想要看这棵树的结构，不像数组或者 List 等数据结构，我们可以非常方便地用各种方式将其中的所有元素打印出来，对于树而言，这个过程要麻烦得多，我们可以用各种遍历方式得到这棵树的结构，但是终究还是不够直观。</p>
-<p>如果我们可以按照树的结构，将其打印出来就好了，那么本文就是一种实现这个目标的思路以供参考。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/2021-03-05-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-04-Java%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/2021-03-04-Java%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">Java 一维数组转换二叉树结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-04T00:00:00Z">2021-03-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/03/2021-03-04-Java%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-04-Java%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>最近在 LeetCode 刷题，发现遇到不少二叉树类型的题目，题目会定义好树节点 TreeNode 的数据结构。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/2021-03-04-Java%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%93%E6%9E%84/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -983,7 +1063,7 @@
 <div class="copyright">
   
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">228</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">230</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">228</span>
+          <span class="site-state-item-count">230</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -331,6 +331,221 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">自动删除 ElasticSearch 索引</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-07T00:00:00Z">2020-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>索引文件保留在服务器中，大大减小服务器的性能，占用硬盘空间，<br>因此使用脚本自动删除 elk 中的历史索引以释放空间。</p>
+<h3 id="清理索引命令行"><a href="#清理索引命令行" class="headerlink" title="清理索引命令行"></a>清理索引命令行</h3><p>查看所有的索引文件：</p>
+<blockquote>
+<p>curl -XGET <a target="_blank" rel="noopener" href="http://localhost:9200/_cat/indices?v">http://localhost:9200/_cat/indices?v</a></p>
+</blockquote>
+<p>删除索引文件以释放空间：</p>
+<blockquote>
+<p>curl -XDELETE <a target="_blank" rel="noopener" href="http://localhost:9200/filebeat-2016.12.28">http://localhost:9200/filebeat-2016.12.28</a></p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/2020-09-07-%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4%20ElasticSearch%20%E7%B4%A2%E5%BC%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/" class="post-title-link" itemprop="url">k8s 在 tomcat 多副本时的 session 会话保持</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-05T00:00:00Z">2020-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Kubernets/" itemprop="url" rel="index"><span itemprop="name">Kubernets</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><p>通过kubernetes部署了tomcat+mysql服务，设置tomcat多副本时发现首页登陆无法跳转的情况，经排查是由于session问题引起的。</p>
+<p>kubernetes 上可以多实例（pod）高负载运行，但是如果应用如果没有做session 同步的话，就会导致 session 不一致。<br>kubernetes 有session 亲和性的功能（每个client每次访问，都会匹配到对应session的后端）。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/2020-09-05-k8s%E5%9C%A8tomcat%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%97%B6%E7%9A%84session%E4%BC%9A%E8%AF%9D%E4%BF%9D%E6%8C%81/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -764,453 +979,10 @@ provisioner: ceph.com&#x2F;rbd</code></pre>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">k8s 静态 PV 集成 ceph 块设备存储</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-02T00:00:00Z">2020-09-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/Kubernets/" itemprop="url" rel="index"><span itemprop="name">Kubernets</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="静态-PV-使用步骤"><a href="#静态-PV-使用步骤" class="headerlink" title="静态 PV 使用步骤"></a>静态 PV 使用步骤</h3><ol>
-<li>创建存储池并启用 RBD 功能。</li>
-<li>创建 Ceph 用户，提供给k8s 使用。</li>
-<li>在k8s 上安装ceph-common客户端。</li>
-<li>复制<code>ceph.conf</code>以及admin用户的keyring文件到k8s节点（master and node）。</li>
-<li>创建 Secret 资源，以 keyring 的key 为 data。</li>
-<li>静态 PV 使用：<ol>
-<li>创建PV</li>
-<li>创建PVC</li>
-<li>在 Ceph 存储池里创建对应的 RBDImage</li>
-<li>创建 POD</li>
-</ol>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/2020-09-02-k8s%E9%9D%99%E6%80%81PV%E9%9B%86%E6%88%90ceph%E5%9D%97%E8%AE%BE%E5%A4%87%E5%AD%98%E5%82%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/09/2020-09-01-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%BF%A1%E6%81%AF%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/2020-09-01-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%BF%A1%E6%81%AF%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Arthas 之查看类加载信息的相关命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-01T00:00:00Z">2020-09-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/Arthas/" itemprop="url" rel="index"><span itemprop="name">Arthas</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/09/2020-09-01-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%BF%A1%E6%81%AF%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/09/2020-09-01-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E7%B1%BB%E5%8A%A0%E8%BD%BD%E4%BF%A1%E6%81%AF%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>通过 Arthas 中的 trace/monitor/watch/stack/tt 等命令，可以查看方法内部调用信息，从而定位定位方法调用问题。</p>
-<h3 id="sc（已加载的类信息）"><a href="#sc（已加载的类信息）" class="headerlink" title="sc（已加载的类信息）"></a>sc（已加载的类信息）</h3><h4 id="方法介绍"><a href="#方法介绍" class="headerlink" title="方法介绍"></a>方法介绍</h4><p>“Search-Class” 的简写，这个命令能搜索出所有已经加载到 JVM 中的 Class 信息。</p>
-<p>官方文档：</p>
-<blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly9hcnRoYXMuYWxpeXVuLmNvbS9kb2Mvc2MuaHRtbA==">https://arthas.aliyun.com/doc/sc.html<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><p>使用 <code>sc --help</code> 获取 sc 命令的帮助信息：</p>
-<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@32344]</span>$ <span class="token function">sc</span> <span class="token operator">-</span>help
- USAGE:
-   <span class="token function">sc</span> <span class="token punctuation">[</span><span class="token operator">-</span>c &lt;value&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>d<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>x &lt;value&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>f<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>h<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>E<span class="token punctuation">]</span> <span class="token keyword">class</span><span class="token operator">-</span>pattern
-
- SUMMARY:
-   Search all the classes loaded by JVM
-
- EXAMPLES:
-   <span class="token function">sc</span> <span class="token operator">-</span>d org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>StringUtils
-   <span class="token function">sc</span> <span class="token operator">-</span>d org<span class="token operator">/</span>apache<span class="token operator">/</span>commons<span class="token operator">/</span>lang<span class="token operator">/</span>StringUtils
-   <span class="token function">sc</span> <span class="token operator">-</span>d <span class="token operator">*</span>StringUtils
-   <span class="token function">sc</span> <span class="token operator">-</span>d <span class="token operator">-</span>f org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>StringUtils
-   <span class="token function">sc</span> <span class="token operator">-</span>E org\\<span class="token punctuation">.</span>apache\\<span class="token punctuation">.</span>commons\\<span class="token punctuation">.</span>lang\\<span class="token punctuation">.</span>StringUtils
-
- WIKI:
-   https:<span class="token operator">/</span><span class="token operator">/</span>alibaba<span class="token punctuation">.</span>github<span class="token punctuation">.</span>io<span class="token operator">/</span>arthas<span class="token operator">/</span><span class="token function">sc</span>
-
- OPTIONS:
- <span class="token operator">-</span>c<span class="token punctuation">,</span> <span class="token operator">--</span>classloader &lt;value&gt;               The hash code of the special <span class="token keyword">class</span><span class="token string">'s classLoader
- -d, --details                           Display the details of class
- -x, --expand &lt;value&gt;                    Expand level of object (0 by default)
- -f, --field                             Display all the member variables
- -h, --help                              this help
- -E, --regex                             Enable regular expression to match (wildcard matching by default)
- &lt;class-pattern&gt;                         Class name pattern, use either '</span><span class="token punctuation">.</span><span class="token string">' or '</span><span class="token operator">/</span>' as separator</code></pre>
-
-<p>主要参数说明如下：</p>
-<table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><em> class-pattern</em></td>
-<td> 类名表达式匹配</td>
-</tr>
-<tr>
-<td><em> method-pattern</em></td>
-<td> 方法名表达式匹配</td>
-</tr>
-<tr>
-<td> [d]</td>
-<td> 输出当前类的详细信息，包括这个类所加载的原始文件来源、类的声明、加载的 ClassLoader 等详细信息。 如果一个类被多个 ClassLoader 所加载，则会出现多次</td>
-</tr>
-<tr>
-<td> [E]</td>
-<td> 开启正则表达式匹配，默认为通配符匹配</td>
-</tr>
-<tr>
-<td> [f]</td>
-<td> 输出当前类的成员变量信息（需要配合参数 - d 一起使用）</td>
-</tr>
-<tr>
-<td>[x:]</td>
-<td> 指定输出静态变量时属性的遍历深度，默认为 0，即直接使用 <code>toString</code> 输出</td>
-</tr>
-<tr>
-<td><code>[c:]</code></td>
-<td>指定 class 的 ClassLoader 的 hashcode</td>
-</tr>
-<tr>
-<td><code>[classLoaderClass:]</code></td>
-<td>指定执行表达式的 ClassLoader 的 class name</td>
-</tr>
-<tr>
-<td><code>[n:]</code></td>
-<td>具有详细信息的匹配类的最大数量（默认为 100）</td>
-</tr>
-</tbody></table>
-<h4 id="查看已加载的类信息"><a href="#查看已加载的类信息" class="headerlink" title="查看已加载的类信息"></a>查看已加载的类信息</h4><p>模糊搜索：</p>
-<pre class="language-none"><code class="language-none">[arthas@32344]$ sc sample.*
-sample.demo.ServerDemoApplication
-sample.demo.ServerDemoApplication$$EnhancerBySpringCGLIB$$1a055512
-sample.demo.controller.UserController
-sample.demo.service.UserService
-Affect(row-cnt:4) cost in 7 ms.</code></pre>
-
-<p>打印类的详细信息：</p>
-<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@32344]</span>$ <span class="token function">sc</span> <span class="token operator">-</span>d sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController
- <span class="token keyword">class</span><span class="token operator">-</span>info        sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController
- code<span class="token operator">-</span>source       <span class="token operator">/</span>C:<span class="token operator">/</span>Codes<span class="token operator">/</span>JavaWorkSpace<span class="token operator">/</span>workspace48<span class="token operator">/</span>arthas<span class="token operator">-</span>demo<span class="token operator">/</span>target<span class="token operator">/</span>classes<span class="token operator">/</span>
- name              sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController
- isInterface       false
- isAnnotation      false
- isEnum            false
- isAnonymousClass  false
- isArray           false
- isLocalClass      false
- isMemberClass     false
- isPrimitive       false
- isSynthetic       false
- simple<span class="token operator">-</span>name       UserController
- modifier          public
- annotation        org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>scheduling<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>EnableScheduling<span class="token punctuation">,</span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>
-                   RestController
- interfaces
- super<span class="token operator">-</span><span class="token keyword">class</span>       <span class="token operator">+</span><span class="token operator">-</span>java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>Object
- <span class="token keyword">class</span><span class="token operator">-</span>loader      <span class="token operator">+</span><span class="token operator">-</span>sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$AppClassLoader</span>@73d16e93
-                     <span class="token operator">+</span><span class="token operator">-</span>sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$ExtClassLoader</span>@2752f6e2
- classLoaderHash   73d16e93
-
-Affect<span class="token punctuation">(</span>row<span class="token operator">-</span>cnt:1<span class="token punctuation">)</span> cost in 19 ms<span class="token punctuation">.</span></code></pre>
-
-<p>打印出类的 Field 信息：</p>
-<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@32344]</span>$ <span class="token function">sc</span> <span class="token operator">-</span>d <span class="token operator">-</span>f sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController
- <span class="token keyword">class</span><span class="token operator">-</span>info        sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController
- code<span class="token operator">-</span>source       <span class="token operator">/</span>C:<span class="token operator">/</span>Codes<span class="token operator">/</span>JavaWorkSpace<span class="token operator">/</span>workspace48<span class="token operator">/</span>arthas<span class="token operator">-</span>demo<span class="token operator">/</span>target<span class="token operator">/</span>classes<span class="token operator">/</span>
- name              sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController
- isInterface       false
- isAnnotation      false
- isEnum            false
- isAnonymousClass  false
- isArray           false
- isLocalClass      false
- isMemberClass     false
- isPrimitive       false
- isSynthetic       false
- simple<span class="token operator">-</span>name       UserController
- modifier          public
- annotation        org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>scheduling<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>EnableScheduling<span class="token punctuation">,</span>org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>
-                   RestController
- interfaces
- super<span class="token operator">-</span><span class="token keyword">class</span>       <span class="token operator">+</span><span class="token operator">-</span>java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>Object
- <span class="token keyword">class</span><span class="token operator">-</span>loader      <span class="token operator">+</span><span class="token operator">-</span>sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$AppClassLoader</span>@73d16e93
-                     <span class="token operator">+</span><span class="token operator">-</span>sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Launcher<span class="token variable">$ExtClassLoader</span>@2752f6e2
- classLoaderHash   73d16e93
- fields            name     log
-                   <span class="token function">type</span>     org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Logger
-                   modifier final<span class="token punctuation">,</span>private<span class="token punctuation">,</span>static
-                   value    Logger<span class="token namespace">[sample.demo.controller.UserController]</span>
-
-                   name       userService
-                   <span class="token function">type</span>       sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>service<span class="token punctuation">.</span>UserService
-                   modifier   private
-                   annotation org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>Autowired
-
-
-Affect<span class="token punctuation">(</span>row<span class="token operator">-</span>cnt:1<span class="token punctuation">)</span> cost in 6 ms<span class="token punctuation">.</span></code></pre>
-
-<h3 id="sm（已加载类的方法信息）"><a href="#sm（已加载类的方法信息）" class="headerlink" title="sm（已加载类的方法信息）"></a>sm（已加载类的方法信息）</h3><h4 id="方法介绍-1"><a href="#方法介绍-1" class="headerlink" title="方法介绍"></a>方法介绍</h4><p>“Search-Method” 的简写，这个命令能搜索出所有已经加载了 Class 信息的方法信息。</p>
-<p>官方文档：</p>
-<blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly9hcnRoYXMuYWxpeXVuLmNvbS9kb2Mvc20uaHRtbA==">https://arthas.aliyun.com/doc/sm.html<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h4 id="参数说明-1"><a href="#参数说明-1" class="headerlink" title="参数说明"></a>参数说明</h4><p>使用 <code>sm --help</code> 获取 thread 命令的帮助信息：</p>
-<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@32344]</span>$ sm <span class="token operator">--</span>help
- USAGE:
-   sm <span class="token punctuation">[</span><span class="token operator">-</span>c &lt;value&gt;<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>d<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>h<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token operator">-</span>E<span class="token punctuation">]</span> <span class="token keyword">class</span><span class="token operator">-</span>pattern <span class="token namespace">[method-pattern]</span>
-
- SUMMARY:
-   Search the method of classes loaded by JVM
-
- EXAMPLES:
-   sm java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>String
-   sm <span class="token operator">-</span>d org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>StringUtils
-   sm <span class="token operator">-</span>d org<span class="token operator">/</span>apache<span class="token operator">/</span>commons<span class="token operator">/</span>lang<span class="token operator">/</span>StringUtils
-   sm <span class="token operator">*</span>StringUtils <span class="token operator">*</span>
-   sm <span class="token operator">-</span>Ed org\\<span class="token punctuation">.</span>apache\\<span class="token punctuation">.</span>commons\\<span class="token punctuation">.</span>lang\<span class="token punctuation">.</span>StringUtils <span class="token punctuation">.</span><span class="token operator">*</span>
-
- WIKI:
-   https:<span class="token operator">/</span><span class="token operator">/</span>alibaba<span class="token punctuation">.</span>github<span class="token punctuation">.</span>io<span class="token operator">/</span>arthas<span class="token operator">/</span>sm
-
- OPTIONS:
- <span class="token operator">-</span>c<span class="token punctuation">,</span> <span class="token operator">--</span>classloader &lt;value&gt;               The hash code of the special <span class="token keyword">class</span><span class="token string">'s classLoader
- -d, --details                           Display the details of method
- -h, --help                              this help
- -E, --regex                             Enable regular expression to match (wildcard matching by default)
- &lt;class-pattern&gt;                         Class name pattern, use either '</span><span class="token punctuation">.</span><span class="token string">' or '</span><span class="token operator">/</span>' as separator
- &lt;method<span class="token operator">-</span>pattern&gt;                        Method name pattern</code></pre>
-
-<p>主要参数说明如下：</p>
-<table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>参数说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><em> class-pattern</em></td>
-<td> 类名表达式匹配</td>
-</tr>
-<tr>
-<td><em> method-pattern</em></td>
-<td> 方法名表达式匹配</td>
-</tr>
-<tr>
-<td> [d]</td>
-<td> 展示每个方法的详细信息</td>
-</tr>
-<tr>
-<td> [E]</td>
-<td> 开启正则表达式匹配，默认为通配符匹配</td>
-</tr>
-<tr>
-<td><code>[c:]</code></td>
-<td>指定 class 的 ClassLoader 的 hashcode</td>
-</tr>
-<tr>
-<td><code>[classLoaderClass:]</code></td>
-<td>指定执行表达式的 ClassLoader 的 class name</td>
-</tr>
-<tr>
-<td><code>[n:]</code></td>
-<td>具有详细信息的匹配类的最大数量（默认为 100）</td>
-</tr>
-</tbody></table>
-<h4 id="查看方法信息"><a href="#查看方法信息" class="headerlink" title="查看方法信息"></a>查看方法信息</h4><p>展示类的所有方法：</p>
-<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@32344]</span>$ sm  sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController
-sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController &lt;init&gt;<span class="token punctuation">(</span><span class="token punctuation">)</span>V
-sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController getUser<span class="token punctuation">(</span>Ljava<span class="token operator">/</span>lang<span class="token operator">/</span>Integer<span class="token punctuation">;</span><span class="token punctuation">)</span>Ljava<span class="token operator">/</span>util<span class="token operator">/</span>HashMap<span class="token punctuation">;</span>
-sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController sample<span class="token punctuation">(</span><span class="token punctuation">)</span>V
-Affect<span class="token punctuation">(</span>row<span class="token operator">-</span>cnt:3<span class="token punctuation">)</span> cost in 33 ms<span class="token punctuation">.</span></code></pre>
-
-<p>展示方法的详细信息：</p>
-<pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[arthas@32344]</span>$ sm <span class="token operator">-</span>d sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController getUser
- declaring<span class="token operator">-</span><span class="token keyword">class</span>  sample<span class="token punctuation">.</span>demo<span class="token punctuation">.</span>controller<span class="token punctuation">.</span>UserController
- method<span class="token operator">-</span>name      getUser
- modifier         public
- annotation       org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>GetMapping
- parameters       java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>Integer
- <span class="token keyword">return</span>           java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>HashMap
- exceptions       java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>Exception
- classLoaderHash  73d16e93
-
-Affect<span class="token punctuation">(</span>row<span class="token operator">-</span>cnt:1<span class="token punctuation">)</span> cost in 4 ms<span class="token punctuation">.</span></code></pre>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1251,7 +1023,7 @@ Affect<span class="token punctuation">(</span>row<span class="token operator">-<
 <div class="copyright">
   
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
