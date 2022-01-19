@@ -31,23 +31,23 @@
   <meta name="description" content="引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactId&gt;spring-boot-starter-data-neo4j&lt;&#x2F;artifactId&gt; &lt;&#x2F;dependency&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Springboot 集成 Neo4j 示例">
-<meta property="og:url" content="https://jueee.github.io/2021/02/2021-02-08-Springboot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/index.html">
+<meta property="og:url" content="https://jueee.github.io/2021/02/2021-02-08-SpringBoot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/index.html">
 <meta property="og:site_name" content="小决的专栏">
 <meta property="og:description" content="引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactId&gt;spring-boot-starter-data-neo4j&lt;&#x2F;artifactId&gt; &lt;&#x2F;dependency&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2021/02/image-20210208135415452.png">
 <meta property="article:published_time" content="2021-02-08T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-02-08T08:35:36.992Z">
+<meta property="article:modified_time" content="2022-01-19T08:47:13.219Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Neo4j">
+<meta property="article:tag" content="SpringBoot">
 <meta property="article:tag" content="Database">
-<meta property="article:tag" content="Springboot">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jueee.github.io/images/2021/02/image-20210208135415452.png">
 
 
-<link rel="canonical" href="https://jueee.github.io/2021/02/2021-02-08-Springboot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/">
+<link rel="canonical" href="https://jueee.github.io/2021/02/2021-02-08-SpringBoot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/">
 
 
 <script data-pjax class="page-configurations">
@@ -166,7 +166,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">230</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">233</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -256,7 +256,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -350,7 +350,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/02/2021-02-08-Springboot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/02/2021-02-08-SpringBoot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -390,11 +390,11 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/Neo4j/" itemprop="url" rel="index"><span itemprop="name">Neo4j</span></a>
+          <a href="/categories/Java/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/Springboot/" itemprop="url" rel="index"><span itemprop="name">Springboot</span></a>
+          <a href="/categories/Database/Neo4j/" itemprop="url" rel="index"><span itemprop="name">Neo4j</span></a>
         </span>
     </span>
 
@@ -414,8 +414,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/02/2021-02-08-Springboot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/2021-02-08-Springboot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/02/2021-02-08-SpringBoot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/2021-02-08-SpringBoot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -678,16 +678,16 @@ Love(id=1651113, startNode=Person(id=1263485, name=test1), endNode=Person(id=126
       <div class="popular-posts-title"><a href="\2021\02\2021-02-09-Java使用neo4j-java-driver操作Neo4j\" rel="bookmark">Java 使用 neo4j-java-driver 操作 Neo4j</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
+      <div class="popular-posts-title"><a href="\2020\11\2020-11-01-Spring Boot+Vue前后端分离开发实例\" rel="bookmark">Spring Boot+Vue 前后端分离开发实例</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas 之源码简要分析</a></div>
+      <div class="popular-posts-title"><a href="\2021\01\2021-01-06-SpringBoot实现API接口数据AES加密\" rel="bookmark">SpringBoot实现API接口数据AES加密</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas 之 jad 反编译原理</a></div>
+      <div class="popular-posts-title"><a href="\2021\01\2021-01-08-SpringBoot增加XSS跨站脚本攻击防护\" rel="bookmark">SpringBoot增加XSS跨站脚本攻击防护</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
+      <div class="popular-posts-title"><a href="\2021\02\2021-02-26-SpringBoot解决Web跨域访问的方法汇总\" rel="bookmark">SpringBoot 解决 Web 跨域访问的方法汇总</a></div>
     </li>
   </ul>
 
@@ -696,8 +696,8 @@ Love(id=1651113, startNode=Person(id=1263485, name=test1), endNode=Person(id=126
           <div class="post-tags">
               <a href="/tags/Java/" rel="tag"># Java</a>
               <a href="/tags/Neo4j/" rel="tag"># Neo4j</a>
+              <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
               <a href="/tags/Database/" rel="tag"># Database</a>
-              <a href="/tags/Springboot/" rel="tag"># Springboot</a>
           </div>
 
         
@@ -978,7 +978,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'jueee.github.io',
       owner       : 'jueee',
       admin       : ['jueee'],
-      id          : '25e06d1467cb3acd3ad8250ed02a4521',
+      id          : '69cad27ebeb6a0ec8727a1534f9a5f24',
         language: 'zh-CN',
       distractionFreeMode: true
     });
@@ -992,7 +992,7 @@ NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
     new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
       el: '#valine-comments',
-      path: "/2021/02/2021-02-08-Springboot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/",
+      path: "/2021/02/2021-02-08-SpringBoot%E9%9B%86%E6%88%90Neo4j%E7%A4%BA%E4%BE%8B/",
       serverURLs: "https://p5beawtt.api.lncldglobal.com"
     }));
   }, window.Valine);

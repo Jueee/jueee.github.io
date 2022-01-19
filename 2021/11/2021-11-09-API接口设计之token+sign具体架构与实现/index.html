@@ -36,9 +36,10 @@
 <meta property="og:description" content="在实际的业务中，难免会跟第三方系统进行数据的交互与传递，那么如何保证数据在传输过程中的安全呢（防窃取）？ 除了 https 的协议之外，能不能加上通用的一套算法以及规范来保证传输的安全性呢？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-09T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-19T09:46:44.049Z">
+<meta property="article:modified_time" content="2022-01-19T08:45:56.997Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
+<meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary">
 
 
@@ -161,7 +162,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">230</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">233</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -235,7 +236,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">概念介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#token-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">token 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#timestamp-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">timestamp 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DoS"><span class="nav-number">1.2.1.</span> <span class="nav-text">DoS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sign-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.</span> <span class="nav-text">sign 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D%E6%8F%90%E4%BA%A4"><span class="nav-number">1.4.</span> <span class="nav-text">防止重复提交</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">使用流程</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">概念介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#token-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">token 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#timestamp-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">timestamp 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DoS"><span class="nav-number">1.2.1.</span> <span class="nav-text">DoS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sign-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.</span> <span class="nav-text">sign 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D%E6%8F%90%E4%BA%A4"><span class="nav-number">1.4.</span> <span class="nav-text">防止重复提交</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">使用流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">示例代码</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -251,7 +252,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">230</span>
+          <span class="site-state-item-count">233</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -379,6 +380,10 @@
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
         </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
+        </span>
     </span>
 
   
@@ -452,6 +457,9 @@
 <li>当访问用户需要登录的接口时，客户端跳转到登录页面，通过用户名和密码调用登录接口，登录接口会返回一个 usertoken, 客户端拿着 usertoken 去访问需要登录才能访问的接口</li>
 </ol>
 <p>sign 的作用是防止参数被篡改，客户端调用服务端时需要传递 sign 参数，服务器响应客户端时也可以返回一个 sign 用于客户度校验返回的值是否被非法篡改了。客户端传的 sign 和服务器端响应的 sign 算法可能会不同。</p>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlL2Jsb2ctcHJvamVjdC90cmVlL21haW4vaHR0cC1pbnRlcmZhY2UtdG9rZW4=">https://github.com/Jueee/blog-project/tree/main/http-interface-token<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
 
     </div>
 
@@ -462,19 +470,19 @@
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\07\2020-07-16-使用Arthas热更新Java代码\" rel="bookmark">使用 Arthas 热更新 Java 代码</a></div>
+      <div class="popular-posts-title"><a href="\2020\11\2020-11-01-Spring Boot+Vue前后端分离开发实例\" rel="bookmark">Spring Boot+Vue 前后端分离开发实例</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-03-Arthas之源码简要分析\" rel="bookmark">Arthas 之源码简要分析</a></div>
+      <div class="popular-posts-title"><a href="\2021\01\2021-01-06-SpringBoot实现API接口数据AES加密\" rel="bookmark">SpringBoot实现API接口数据AES加密</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-04-Arthas之jad反编译原理\" rel="bookmark">Arthas 之 jad 反编译原理</a></div>
+      <div class="popular-posts-title"><a href="\2021\01\2021-01-08-SpringBoot增加XSS跨站脚本攻击防护\" rel="bookmark">SpringBoot增加XSS跨站脚本攻击防护</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Arthas之通过thread命令定位线程问题\" rel="bookmark">Arthas 之通过 thread 命令定位线程问题</a></div>
+      <div class="popular-posts-title"><a href="\2021\02\2021-02-26-SpringBoot解决Web跨域访问的方法汇总\" rel="bookmark">SpringBoot 解决 Web 跨域访问的方法汇总</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-15-Ognl表达式的基本使用方法\" rel="bookmark">Ognl 表达式的基本使用方法</a></div>
+      <div class="popular-posts-title"><a href="\2021\12\2021-12-17-Springboot启用https安全协议\" rel="bookmark">Springboot启用https安全协议</a></div>
     </li>
   </ul>
 
@@ -482,6 +490,7 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
           </div>
 
         
