@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">233</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">239</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -339,7 +339,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-05-AOP%E7%9A%84JoinPoint%E5%8F%82%E6%95%B0%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -353,7 +353,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/" class="post-title-link" itemprop="url">Java 中使用 RSA 算法加密</a>
+            <a href="/2021/01/2021-01-05-AOP%E7%9A%84JoinPoint%E5%8F%82%E6%95%B0%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">AOP 的 JoinPoint 参数方法详解</a>
         </h2>
 
         <div class="post-meta-container">
@@ -364,7 +364,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-29 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-29T00:00:00Z">2020-12-29</time>
+      <time title="创建时间：2021-01-05 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-05T00:00:00Z">2021-01-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -378,6 +378,10 @@
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
         </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
     </span>
 
   
@@ -389,8 +393,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/01/2021-01-05-AOP%E7%9A%84JoinPoint%E5%8F%82%E6%95%B0%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-05-AOP%E7%9A%84JoinPoint%E5%8F%82%E6%95%B0%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -404,21 +408,37 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="RSA-介绍"><a href="#RSA-介绍" class="headerlink" title="RSA 介绍"></a>RSA 介绍</h3><p><strong>RSA 加密算法</strong>是一种<strong>非对称加密算法</strong>。</p>
-<p>RSA 是一对密钥。分别是<strong>公钥</strong>和<strong>私钥</strong> , 这个公钥和私钥其实就是一组数字！其二进制位长度可以是 1024 位或者 2048 位。长度越长其加密强度越大，目前为止公之于众的能破解的最大长度为 768 位密钥，只要高于 768 位，相对就比较安全.</p>
-<h4 id="RSA加密的方式"><a href="#RSA加密的方式" class="headerlink" title="RSA加密的方式"></a>RSA 加密的方式</h4><ul>
-<li>使用<strong>公钥</strong>加密的数据，利用<strong>私钥</strong>进行解密</li>
-<li>使用<strong>私钥</strong>加密的数据，利用<strong>公钥</strong>进行解密</li>
-</ul>
-<h4 id="RSA加密的缺点"><a href="#RSA加密的缺点" class="headerlink" title="RSA加密的缺点"></a>RSA 加密的缺点</h4><p>由于 RSA 算法的原理都是大数计算，使得 RSA 最快的情况也比<strong>对称加密算法</strong>慢上好几倍。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h3 id="重要方法"><a href="#重要方法" class="headerlink" title="重要方法"></a>重要方法</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/*获取参数的值数组*/</span>
+<span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args <span class="token operator">=</span> point<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                                    <span class="token comment">//  [1] 参数的值</span>
+
+<span class="token comment">/*获取目标对象(被加强的对象)*/</span>
+<span class="token class-name">Object</span> target <span class="token operator">=</span> point<span class="token punctuation">.</span><span class="token function">getTarget</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*获取signature 该注解作用在方法上，强转为 MethodSignature*/</span>
+<span class="token class-name">MethodSignature</span> signature <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">MethodSignature</span><span class="token punctuation">)</span> point<span class="token punctuation">.</span><span class="token function">getSignature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*方法名*/</span>
+<span class="token class-name">String</span> signatureName <span class="token operator">=</span> signature<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                         <span class="token comment">//  findById</span>
+
+<span class="token comment">/*参数名称数组(与args参数值意义对应)*/</span>
+<span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> parameterNames <span class="token operator">=</span> signature<span class="token punctuation">.</span><span class="token function">getParameterNames</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">//  [i] 参数名称</span>
+
+<span class="token comment">/*获取执行的方法对应Method对象*/</span>
+<span class="token class-name">Method</span> method <span class="token operator">=</span> signature<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                              
+<span class="token comment">//  public void com.jueee.test.service.UserService.findById(int)</span>
+
+<span class="token comment">/*获取返回值类型*/</span>
+<span class="token class-name">Class</span> returnType <span class="token operator">=</span> signature<span class="token punctuation">.</span><span class="token function">getReturnType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                       <span class="token comment">//  void</span>
+
+<span class="token comment">/*获取方法上的注解*/</span>
+<span class="token class-name">OperationLog</span> operationLog <span class="token operator">=</span> method<span class="token punctuation">.</span><span class="token function">getDeclaredAnnotation</span><span class="token punctuation">(</span><span class="token class-name">OperationLog</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="request-response"><a href="#request-response" class="headerlink" title="request / response"></a>request / response</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 获取request/response(ThreadLocal模式)</span>
+<span class="token class-name">RequestAttributes</span> requestAttributes <span class="token operator">=</span> <span class="token class-name">RequestContextHolder</span><span class="token punctuation">.</span><span class="token function">getRequestAttributes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">ServletRequestAttributes</span> servletRequestAttributes <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">ServletRequestAttributes</span><span class="token punctuation">)</span> requestAttributes<span class="token punctuation">;</span>
+<span class="token class-name">HttpServletRequest</span> request <span class="token operator">=</span> servletRequestAttributes<span class="token punctuation">.</span><span class="token function">getRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">HttpServletResponse</span> response <span class="token operator">=</span> servletRequestAttributes<span class="token punctuation">.</span><span class="token function">getResponse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">HttpSession</span> session <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getSession</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
       
     </div>
 
@@ -444,7 +464,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -458,7 +478,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">SQL 语句拦截框架 P6Spy 的介绍使用</a>
+            <a href="/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/" class="post-title-link" itemprop="url">Swagger 设置全局 token</a>
         </h2>
 
         <div class="post-meta-container">
@@ -469,7 +489,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-28T00:00:00Z">2020-12-28</time>
+      <time title="创建时间：2021-01-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-04T00:00:00Z">2021-01-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -494,8 +514,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -509,15 +529,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="P6Spy-介绍"><a href="#P6Spy-介绍" class="headerlink" title="P6Spy 介绍"></a>P6Spy 介绍</h3><p>P6Spy 是一个可以用来在应用程序中拦截和修改数据操作语句的开源框架。 </p>
-<p>通过 P6Spy 我们可以对 SQL 语句进行拦截，相当于一个 SQL 语句的记录器，这样我们可以用它来作相关的分析，比如性能分析。</p>
-<ul>
-<li>文档：<a target="_blank" rel="noopener" href="https://p6spy.readthedocs.io/">https://p6spy.readthedocs.io/</a></li>
-<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/p6spy/p6spy">https://github.com/p6spy/p6spy</a></li>
-</ul>
+          <p>swagger 是一个很使用的工具，但正常使用时，我们的接口需要登陆才能访问的。即登陆时，要传一个登陆后的 token 才能访问的。 </p>
+<p>那这个怎么设置，才可以让所有接口都允许登陆后访问呢？</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/#more" rel="contents">
+              <a class="btn" href="/2021/01/2021-01-04-Swagger%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80token/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -548,7 +564,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -562,7 +578,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">Web 渗透工具 BurpSuite 的 Intruder 模块</a>
+            <a href="/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/" class="post-title-link" itemprop="url">SpringBoot 用 AOP 切面实现权限校验</a>
         </h2>
 
         <div class="post-meta-container">
@@ -573,314 +589,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-27T00:00:00Z">2020-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Burp-Intruder-介绍"><a href="#Burp-Intruder-介绍" class="headerlink" title="Burp Intruder 介绍"></a>Burp Intruder 介绍</h3><p>Burp Intruder 是一个强大的工具，用于自动对 Web 应用程序自定义的攻击，Burp Intruder 是高度可配置的，并被用来在广范围内进行自动化攻击。</p>
-<p>可以使用 Burp Intruder 方便地执行许多任务，包括枚举标识符，获取有用数据，漏洞模糊测试。</p>
-<p>合适的攻击类型取决于应用程序的情况，可能包括：缺陷测试：SQL 注入，跨站点脚本，缓冲区溢出，路径遍历；暴力攻击认证系统；枚举；操纵参数；拖出隐藏的内容和功能；会话令牌测序和会话劫持；数据挖掘；并发攻击；应用层的拒绝服务式攻击。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-26-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/2020-12-26-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Web 渗透工具 Burp Suite 安装配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-26 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-26T00:00:00Z">2020-12-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/12/2020-12-26-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-26-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Burp-Suite-介绍"><a href="#Burp-Suite-介绍" class="headerlink" title="Burp Suite 介绍"></a>Burp Suite 介绍</h3><p>Burp Suite 是用于攻击 web 应用程序的集成平台，包含了许多工具。</p>
-<p>Burp Suite 为这些工具设计了许多接口，以加快攻击应用程序的过程。所有工具都共享一个请求，并能处理对应的 HTTP 消息、持久性、认证、代理、日志、警报。</p>
-<ul>
-<li>下载：<a target="_blank" rel="noopener" href="https://portswigger.net/burp">https://portswigger.net/burp</a></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-26-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-25-curl%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BF%AE%E6%94%B9ElasticSearch%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/2020-12-25-curl%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BF%AE%E6%94%B9ElasticSearch%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">curl 命令行修改 ElasticSearch 配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-25 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-25T00:00:00Z">2020-12-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/12/2020-12-25-curl%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BF%AE%E6%94%B9ElasticSearch%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-25-curl%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BF%AE%E6%94%B9ElasticSearch%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><p>curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-25-curl%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BF%AE%E6%94%B9ElasticSearch%E9%85%8D%E7%BD%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-24-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90Tkmybatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/2020-12-24-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90Tkmybatis/" class="post-title-link" itemprop="url">SpringBoot 通过 Druid 集成 Tkmybatis</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-24 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-24T00:00:00Z">2020-12-24</time>
+      <time title="创建时间：2021-01-02 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-02T00:00:00Z">2021-01-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -889,15 +598,15 @@
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/Java/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
         </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
     </span>
 
   
@@ -909,8 +618,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/2020-12-24-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90Tkmybatis/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-24-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90Tkmybatis/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -924,16 +633,335 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="Tkmybatis-介绍"><a href="#Tkmybatis-介绍" class="headerlink" title="Tkmybatis 介绍"></a>Tkmybatis 介绍</h3><p>Tk mybatis 可以极大的方便开发人员。可以随意的按照自己的需要选择通用方法，还可以很方便的开发自己的通用方法。</p>
-<p>极其方便的使用 MyBatis 单表的增删改查。</p>
-<p>支持单表操作，不支持通用的多表联合查询。</p>
-<ul>
-<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/abel533/Mapper">https://github.com/abel533/Mapper</a></li>
-<li>JavaDoc：<a target="_blank" rel="noopener" href="https://apidoc.gitee.com/free/Mapper/">https://apidoc.gitee.com/free/Mapper/</a></li>
-</ul>
+          <p>使用 AOP，首先需要引入 <strong>AOP 的依赖</strong>。</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-aop<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></code></pre>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-24-SpringBoot%E9%80%9A%E8%BF%87Druid%E9%9B%86%E6%88%90Tkmybatis/#more" rel="contents">
+              <a class="btn" href="/2021/01/2021-01-02-SpringBoot%E7%94%A8AOP%E5%88%87%E9%9D%A2%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">Spring 面向切面编程 AOP 介绍及注解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-01T00:00:00Z">2021-01-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h3><p><strong>AOP 即 Aspect Oriented Program 面向切面编程</strong>。</p>
+<p>首先，在面向切面编程的思想里面，把功能分为核心业务功能，和周边功能。</p>
+<ul>
+<li><strong>所谓的核心业务</strong>，比如登陆，增加数据，删除数据都叫核心业务</li>
+<li><strong>所谓的周边功能</strong>，比如性能统计，日志，事务管理等等</li>
+</ul>
+<p>周边功能在 Spring 的面向切面编程AOP思想里，即被定义为切面。</p>
+<p>在面向切面编程AOP的思想里面，核心业务功能和切面功能分别独立进行开发，然后把切面功能和核心业务功能 &quot;编织&quot; 在一起，这就叫AOP。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/2021-01-01-Spring%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8BAOP%E4%BB%8B%E7%BB%8D%E5%8F%8A%E6%B3%A8%E8%A7%A3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/" class="post-title-link" itemprop="url">Spring 的 IOC 容器管理对象示例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-31 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-31T00:00:00Z">2020-12-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="IOC-控制反转"><a href="#IOC-控制反转" class="headerlink" title="IOC 控制反转"></a>IOC 控制反转</h3><p>IOC—Inversion of Control，即 “控制反转”，不是什么技术，而是一种设计思想。</p>
+<p>在 Java 开发中，IOC 意味着将你设计好的对象交给容器控制，而不是传统的在你的对象内部直接控制。</p>
+<p>所谓 IOC，对于 Spring 框架来说，就是由 Spring 来负责控制对象的生命周期和对象间的关系。</p>
+<p>Spring 所倡导的开发方式就是如此，所有的类都会在 Spring 容器中登记。所有的类的创建、销毁都由 Spring 来控制，也就是说控制对象生存周期的不再是引用它的对象，而是 Spring。对于某个具体的对象而言，以前是它控制其他对象，现在是所有对象都被 Spring 控制，所以这叫控制反转。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/2021-01-03-Spring%E7%9A%84IOC%E5%AE%B9%E5%99%A8%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1%E7%A4%BA%E4%BE%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">Zeppelin 配置连接 MySQL 数据库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-30 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-30T00:00:00Z">2020-12-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/Zeppelin/" itemprop="url" rel="index"><span itemprop="name">Zeppelin</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Zeppelin 原生支持JDBC链接。 但是默认的设置是指向PostgreSQL。</p>
+<p>一种最简单的办法就是直接修改JDBC Interpreter里面的内容，指向你自己的MySQL实例即可。</p>
+<p>本文介绍如何创建 MySQL Interpreter 并连接。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/2020-12-30-Zeppelin%E9%85%8D%E7%BD%AE%E8%BF%9E%E6%8E%A5MySQL%E6%95%B0%E6%8D%AE%E5%BA%93/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -959,7 +987,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/39/">39</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

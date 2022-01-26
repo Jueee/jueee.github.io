@@ -28,21 +28,21 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="实现纯前端的 Excel 导出 (支持多 sheet)。">
+  <meta name="description" content="实现纯前端的 Excel 导出 (支持多 sheet)。 SheetJS GitHub：https:&#x2F;&#x2F;github.com&#x2F;SheetJS&#x2F;sheetjs  官网：https:&#x2F;&#x2F;sheetjs.com&#x2F;  下载：https:&#x2F;&#x2F;www.cdnpkg.com&#x2F;xlsx&#x2F;file&#x2F;xlsx.core.min.js&#x2F;?id&#x3D;78603">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实现前端 Excel 导出 (支持多 Sheet)">
-<meta property="og:url" content="https://jueee.github.io/2021/12/2021-12-23-%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%20Excel%20%E5%AF%BC%E5%87%BA(%E6%94%AF%E6%8C%81%E5%A4%9ASheet)/index.html">
+<meta property="og:title" content="纯前端实现支持多 Sheet 的 Excel 导出">
+<meta property="og:url" content="https://jueee.github.io/2021/12/2021-12-23-%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81%E5%A4%9ASheet%20%E7%9A%84%20Excel%20%E5%AF%BC%E5%87%BA/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="实现纯前端的 Excel 导出 (支持多 sheet)。">
+<meta property="og:description" content="实现纯前端的 Excel 导出 (支持多 sheet)。 SheetJS GitHub：https:&#x2F;&#x2F;github.com&#x2F;SheetJS&#x2F;sheetjs  官网：https:&#x2F;&#x2F;sheetjs.com&#x2F;  下载：https:&#x2F;&#x2F;www.cdnpkg.com&#x2F;xlsx&#x2F;file&#x2F;xlsx.core.min.js&#x2F;?id&#x3D;78603">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-23T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-11T09:11:20.265Z">
+<meta property="article:modified_time" content="2022-01-25T07:19:31.756Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://jueee.github.io/2021/12/2021-12-23-%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%20Excel%20%E5%AF%BC%E5%87%BA(%E6%94%AF%E6%8C%81%E5%A4%9ASheet)/">
+<link rel="canonical" href="https://jueee.github.io/2021/12/2021-12-23-%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81%E5%A4%9ASheet%20%E7%9A%84%20Excel%20%E5%AF%BC%E5%87%BA/">
 
 
 <script data-pjax class="page-configurations">
@@ -55,7 +55,7 @@
   };
 </script>
 
-  <title>实现前端 Excel 导出 (支持多 Sheet) | 小决的专栏</title>
+  <title>纯前端实现支持多 Sheet 的 Excel 导出 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -161,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">233</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">239</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -235,7 +235,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-JS-%E5%AF%BC%E5%87%BA"><span class="nav-number">1.</span> <span class="nav-text">HTML+JS 导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-%E5%AF%BC%E5%87%BA"><span class="nav-number">2.</span> <span class="nav-text">Vue 导出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-number">2.1.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">2.2.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%87%BA%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">导出方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%87%BD%E6%95%B0"><span class="nav-number">2.4.</span> <span class="nav-text">其他函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#openDownloadDialog"><span class="nav-number">2.4.1.</span> <span class="nav-text">openDownloadDialog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#workbook2blob"><span class="nav-number">2.4.2.</span> <span class="nav-text">workbook2blob</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%AF%BC%E5%87%BA"><span class="nav-number">3.</span> <span class="nav-text">压缩包导出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96-1"><span class="nav-number">3.1.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E6%8C%89%E9%92%AE"><span class="nav-number">3.2.</span> <span class="nav-text">增加按钮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">下载方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.4.</span> <span class="nav-text"></span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#SheetJS"><span class="nav-number">1.</span> <span class="nav-text">SheetJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-JS-%E5%AF%BC%E5%87%BA"><span class="nav-number">2.</span> <span class="nav-text">HTML+JS 导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-%E5%AF%BC%E5%87%BA"><span class="nav-number">3.</span> <span class="nav-text">Vue 导出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-number">3.1.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">3.2.</span> <span class="nav-text">引入依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%87%BA%E6%96%B9%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">导出方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%87%BD%E6%95%B0"><span class="nav-number">3.4.</span> <span class="nav-text">其他函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#openDownloadDialog"><span class="nav-number">3.4.1.</span> <span class="nav-text">openDownloadDialog</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#workbook2blob"><span class="nav-number">3.4.2.</span> <span class="nav-text">workbook2blob</span></a></li></ol></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -251,7 +251,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">233</span>
+          <span class="site-state-item-count">239</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -345,7 +345,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/12/2021-12-23-%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%20Excel%20%E5%AF%BC%E5%87%BA(%E6%94%AF%E6%8C%81%E5%A4%9ASheet)/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/12/2021-12-23-%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81%E5%A4%9ASheet%20%E7%9A%84%20Excel%20%E5%AF%BC%E5%87%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -358,7 +358,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          实现前端 Excel 导出 (支持多 Sheet)
+          纯前端实现支持多 Sheet 的 Excel 导出
         </h1>
 
         <div class="post-meta-container">
@@ -397,8 +397,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/12/2021-12-23-%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%20Excel%20%E5%AF%BC%E5%87%BA(%E6%94%AF%E6%8C%81%E5%A4%9ASheet)/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/2021-12-23-%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%20Excel%20%E5%AF%BC%E5%87%BA(%E6%94%AF%E6%8C%81%E5%A4%9ASheet)/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/12/2021-12-23-%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81%E5%A4%9ASheet%20%E7%9A%84%20Excel%20%E5%AF%BC%E5%87%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/2021-12-23-%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81%E5%A4%9ASheet%20%E7%9A%84%20Excel%20%E5%AF%BC%E5%87%BA/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -413,6 +413,11 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>实现纯前端的 Excel 导出 (支持多 sheet)。</p>
+<h3 id="SheetJS"><a href="#SheetJS" class="headerlink" title="SheetJS"></a>SheetJS</h3><ul>
+<li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoZWV0SlMvc2hlZXRqcw==">https://github.com/SheetJS/sheetjs<i class="fa fa-external-link-alt"></i></span></li>
+<li> 官网：<span class="exturl" data-url="aHR0cHM6Ly9zaGVldGpzLmNvbS8=">https://sheetjs.com/<i class="fa fa-external-link-alt"></i></span></li>
+<li> 下载：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY2RucGtnLmNvbS94bHN4L2ZpbGUveGxzeC5jb3JlLm1pbi5qcy8/aWQ9Nzg2MDM=">https://www.cdnpkg.com/xlsx/file/xlsx.core.min.js/?id=78603<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
 <a id="more"></a>
 
 <h3 id="HTML-JS-导出"><a href="#HTML-JS-导出" class="headerlink" title="HTML+JS 导出"></a>HTML+JS 导出</h3><p>依赖：</p>
@@ -592,65 +597,9 @@
    <span class="token keyword">return</span> buf<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
 
-<h3 id="压缩包导出"><a href="#压缩包导出" class="headerlink" title="压缩包导出"></a>压缩包导出</h3><h4 id="安装依赖-1"><a href="#安装依赖-1" class="headerlink" title="安装依赖"></a>安装依赖</h4><pre class="language-shell" data-language="shell"><code class="language-shell">npm i jszip -S
-npm i file-saver -S </code></pre>
 
-<h4 id="增加按钮"><a href="#增加按钮" class="headerlink" title="增加按钮"></a>增加按钮</h4><p>实现多选非常简单：手动添加一个 <code>el-table-column</code>，设 <code>type</code> 属性为 <code>selection</code> 即可</p>
-<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-button</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>small<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>success<span class="token punctuation">"</span></span> <span class="token attr-name">icon</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>el-icon-circle-plus-outline<span class="token punctuation">"</span></span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>batchDownload<span class="token punctuation">"</span></span> <span class="token punctuation">&gt;</span></span>批量下载<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-button</span><span class="token punctuation">&gt;</span></span>
 
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table</span>
-          <span class="token attr-name">border</span>
-          <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>small<span class="token punctuation">"</span></span>
-          <span class="token attr-name">v-loading</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>loading<span class="token punctuation">"</span></span>
-          <span class="token attr-name">stripe</span>
-          <span class="token attr-name">:data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>analysisTaskData<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name">
-          <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span>
-          <span class="token attr-name">@selection-change</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>handleSelectionChange<span class="token punctuation">"</span></span>
-        <span class="token punctuation">&gt;</span></span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table-column</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>selection<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>50<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-table-column</span><span class="token punctuation">&gt;</span></span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table-column</span> <span class="token attr-name">prop</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ID<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>50<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-table-column</span><span class="token punctuation">&gt;</span></span>
-          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table-column</span> <span class="token attr-name">prop</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>type<span class="token punctuation">"</span></span> <span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>类型<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-table-column</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-table</span><span class="token punctuation">&gt;</span></span></code></pre>
 
-<p>对应方法</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">{</span>
-      multipleSelection<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  methods<span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token function">handleSelectionChange</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">this</span><span class="token punctuation">.</span>multipleSelection <span class="token operator">=</span> val<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token keyword">async</span> <span class="token function">batchDownload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>multipleSelection<span class="token punctuation">)</span>
-      <span class="token keyword">this</span><span class="token punctuation">.</span>$message<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">"批量下载成功！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-
-<h4 id="下载方法"><a href="#下载方法" class="headerlink" title="下载方法"></a>下载方法</h4><pre class="language-vue" data-language="vue"><code class="language-vue">import JSZip from 'jszip'
-import FileSaver from 'file-saver'</code></pre>
-
-<p>下载方法</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">async</span> <span class="token function">batchDownload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-  <span class="token keyword">const</span> zip <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JSZip</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>multipleSelection<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> id <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>multipleSelection<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>id
-    <span class="token keyword">const</span> wb <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">workbookData</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
-    <span class="token keyword">const</span> file_name <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>multipleSelection<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>content<span class="token operator">+</span><span class="token string">'-任务结果('</span><span class="token operator">+</span>id<span class="token operator">+</span><span class="token string">').xlsx'</span>
-    zip<span class="token punctuation">.</span><span class="token function">file</span><span class="token punctuation">(</span>file_name<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">workbook2blob</span><span class="token punctuation">(</span>wb<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> binary<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">let</span> zipName <span class="token operator">=</span> <span class="token string">'批量下载'</span>
-  zip<span class="token punctuation">.</span><span class="token function">generateAsync</span><span class="token punctuation">(</span><span class="token punctuation">{</span>type<span class="token operator">:</span><span class="token string">"blob"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">content</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> 
-    <span class="token comment">//生成zip文件包</span>
-    FileSaver<span class="token punctuation">.</span><span class="token function">saveAs</span><span class="token punctuation">(</span>content<span class="token punctuation">,</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>zipName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.zip</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>$message<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token string">"批量下载成功！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span></code></pre>
-
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4>
     </div>
 
     
@@ -691,8 +640,8 @@ import FileSaver from 'file-saver'</code></pre>
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/01/2022-01-11-Vue%E5%BC%80%E5%90%AFhttps%E8%AE%BF%E9%97%AE%E6%A8%A1%E5%BC%8F/" rel="next" title="Vue 开启 https 访问模式">
-                  Vue 开启 https 访问模式 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/12/2021-12-24-Logstash%E5%A4%9A%E5%AE%9E%E4%BE%8B%E5%B9%B6%E8%A1%8C%E6%B6%88%E8%B4%B9kafka/" rel="next" title="Logstash 多实例并行消费 kafka">
+                  Logstash 多实例并行消费 kafka <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -960,7 +909,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'jueee.github.io',
       owner       : 'jueee',
       admin       : ['jueee'],
-      id          : 'c3e2be1c87f2a6293d44719963580b39',
+      id          : '86525dbf0cc5ebcdad4b3524767c4656',
         language: 'zh-CN',
       distractionFreeMode: true
     });
@@ -974,7 +923,7 @@ NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
     new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
       el: '#valine-comments',
-      path: "/2021/12/2021-12-23-%E5%AE%9E%E7%8E%B0%E5%89%8D%E7%AB%AF%20Excel%20%E5%AF%BC%E5%87%BA(%E6%94%AF%E6%8C%81%E5%A4%9ASheet)/",
+      path: "/2021/12/2021-12-23-%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81%E5%A4%9ASheet%20%E7%9A%84%20Excel%20%E5%AF%BC%E5%87%BA/",
       serverURLs: "https://p5beawtt.api.lncldglobal.com"
     }));
   }, window.Valine);
