@@ -28,15 +28,15 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="ElasticsearchRestTemplateElasticsearchRestTemplate是spring-data-elasticsearch项目中的一个类，和其他spring项目中的template类似。 引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactI">
+  <meta name="description" content="ElasticsearchRestTemplateElasticsearchRestTemplate 是 spring-data-elasticsearch 项目中的一个类，和其他 spring 项目中的 template 类似。 引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ElasticSearch 集成 Spring 之 ElasticsearchRestTemplate 示例">
 <meta property="og:url" content="https://jueee.github.io/2021/02/2021-02-07-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchRestTemplate%E7%A4%BA%E4%BE%8B/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="ElasticsearchRestTemplateElasticsearchRestTemplate是spring-data-elasticsearch项目中的一个类，和其他spring项目中的template类似。 引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;     &lt;artifactI">
+<meta property="og:description" content="ElasticsearchRestTemplateElasticsearchRestTemplate 是 spring-data-elasticsearch 项目中的一个类，和其他 spring 项目中的 template 类似。 引入依赖&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-07T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-02-08T07:50:11.482Z">
+<meta property="article:modified_time" content="2022-04-19T08:20:50.191Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="ElasticSearch">
 <meta property="article:tag" content="Database">
@@ -162,7 +162,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">243</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">251</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -236,7 +236,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ElasticsearchRestTemplate"><span class="nav-number">1.</span> <span class="nav-text">ElasticsearchRestTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.</span> <span class="nav-text">引入依赖</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8ElasticsearchRest"><span class="nav-number">2.</span> <span class="nav-text">使用 ElasticsearchRest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">常用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9B%B8%E5%85%B3"><span class="nav-number">3.1.</span> <span class="nav-text">索引相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E6%95%B0%E6%8D%AE"><span class="nav-number">3.2.</span> <span class="nav-text">新增数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="nav-number">3.3.</span> <span class="nav-text">查询数据</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ElasticsearchRestTemplate"><span class="nav-number">1.</span> <span class="nav-text">ElasticsearchRestTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.</span> <span class="nav-text">引入依赖</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8ElasticsearchRest"><span class="nav-number">2.</span> <span class="nav-text">使用 ElasticsearchRest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">常用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9B%B8%E5%85%B3"><span class="nav-number">3.1.</span> <span class="nav-text">索引相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E6%95%B0%E6%8D%AE"><span class="nav-number">3.2.</span> <span class="nav-text">新增数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE"><span class="nav-number">3.3.</span> <span class="nav-text">查询数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AE"><span class="nav-number">3.4.</span> <span class="nav-text">聚合数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -252,7 +252,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">243</span>
+          <span class="site-state-item-count">251</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -483,6 +483,76 @@ elasticsearchTemplate<span class="token punctuation">.</span><span class="token 
 
 <h4 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">GetQuery</span> query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GetQuery</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">Person</span> info <span class="token operator">=</span> elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">queryForObject</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token class-name">Person</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h4 id="聚合数据"><a href="#聚合数据" class="headerlink" title="聚合数据"></a>聚合数据</h4><p>简化版：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">NativeSearchQuery</span> query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span><span class="token class-name">AggregationBuilders</span><span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span><span class="token string">"agg_count"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"module.keyword"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">SearchHits</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">PhishingLog</span><span class="token punctuation">&gt;</span></span> searchHits <span class="token operator">=</span> elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token class-name">PhishingLog</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//取出聚合结果</span>
+<span class="token class-name">Aggregations</span> aggregations <span class="token operator">=</span> searchHits<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Terms</span> terms <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Terms</span><span class="token punctuation">)</span> aggregations<span class="token punctuation">.</span><span class="token function">asMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"agg_count"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Terms</span><span class="token punctuation">.</span><span class="token class-name">Bucket</span> bucket <span class="token operator">:</span> terms<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">String</span> keyAsString <span class="token operator">=</span> bucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 聚合字段列的值</span>
+    <span class="token keyword">long</span> docCount <span class="token operator">=</span> bucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 聚合字段对应的数量</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>keyAsString <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> docCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p>详细版：</p>
+<p>需要格外注意类型转换，如 ParsedStringTerms、ParsedLongTerms 等。</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 关键词条件筛选</span>
+<span class="token class-name">BoolQueryBuilder</span> bool <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BoolQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bool<span class="token punctuation">.</span><span class="token function">must</span><span class="token punctuation">(</span><span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">rangeQuery</span><span class="token punctuation">(</span><span class="token string">"@timestamp"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>start<span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bool<span class="token punctuation">.</span><span class="token function">must</span><span class="token punctuation">(</span><span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">rangeQuery</span><span class="token punctuation">(</span><span class="token string">"@timestamp"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">to</span><span class="token punctuation">(</span>end<span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 分组。terms分组名称、field分组字段、size分组数量</span>
+<span class="token class-name">TermsAggregationBuilder</span> aggregationBuilderGroupBy <span class="token operator">=</span> <span class="token class-name">AggregationBuilders</span><span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span><span class="token string">"agg_count"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"module.keyword"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 组合查询</span>
+<span class="token class-name">NativeSearchQuery</span> searchQuery <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span>aggregationBuilderGroupBy<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">withQuery</span><span class="token punctuation">(</span>bool<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 查询。实体类上需要有Doucment注解</span>
+<span class="token class-name">SearchHits</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">PhishingLog</span><span class="token punctuation">&gt;</span></span> searchHits <span class="token operator">=</span> elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>searchQuery<span class="token punctuation">,</span> <span class="token class-name">PhishingLog</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 解析</span>
+<span class="token class-name">Aggregations</span> aggPage <span class="token operator">=</span> searchHits<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Aggregation</span> aggregation <span class="token operator">=</span> aggPage<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"agg_count"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 因为是利用String类型字段来进行的term聚合，所以结果要强转为 ParsedStringTerms 类型</span>
+<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Terms</span><span class="token punctuation">.</span><span class="token class-name">Bucket</span><span class="token punctuation">&gt;</span></span> buckets <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ParsedStringTerms</span><span class="token punctuation">)</span> aggregation<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> total <span class="token operator">=</span> buckets<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> index <span class="token operator">&lt;</span> total<span class="token punctuation">;</span> index<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Terms</span><span class="token punctuation">.</span><span class="token class-name">Bucket</span> bucket <span class="token operator">=</span> buckets<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ModuleDto</span> dto <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ModuleDto</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    dto<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span>bucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>searchLevel<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ParsedStringTerms</span> aggregationsTemp <span class="token operator">=</span> bucket<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"get_level"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ParsedLongTerms</span> aggregationsTemp2 <span class="token operator">=</span> bucket<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"get_time"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Terms</span><span class="token punctuation">.</span><span class="token class-name">Bucket</span> levelBucket <span class="token operator">:</span> aggregationsTemp<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>levelBucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 这个 getDocCount 是每组的数量</span>
+                dto<span class="token punctuation">.</span><span class="token function">setErrorNum</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>levelBucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"info"</span><span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>levelBucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                dto<span class="token punctuation">.</span><span class="token function">setInfoNum</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>levelBucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"debug"</span><span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span>levelBucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                dto<span class="token punctuation">.</span><span class="token function">setDebugNum</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>levelBucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Terms</span><span class="token punctuation">.</span><span class="token class-name">Bucket</span> levelBucket <span class="token operator">:</span> aggregationsTemp2<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            dto<span class="token punctuation">.</span><span class="token function">setUpdateTime</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">DateTime</span><span class="token punctuation">(</span>levelBucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>dto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1MDcxMTgwL2FydGljbGUvZGV0YWlscy8xMjI3MDI4MzA=">https://blog.csdn.net/qq_45071180/article/details/122702830<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
     </div>
 
     
@@ -501,10 +571,10 @@ elasticsearchTemplate<span class="token punctuation">.</span><span class="token 
       <div class="popular-posts-title"><a href="\2022\01\2022-01-18-SpringBoot 配置多个 Elasticsearch 集群\" rel="bookmark">SpringBoot 配置多个 Elasticsearch 集群</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-07-自动删除 ElasticSearch 索引\" rel="bookmark">自动删除 ElasticSearch 索引</a></div>
+      <div class="popular-posts-title"><a href="\2021\02\2021-02-06-ElasticsearchRestTemplate查询API示例\" rel="bookmark">ElasticsearchRestTemplate 查询 API 示例</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\11\2020-11-27-ElasticSearch集成Spring之ElasticsearchTemplate示例\" rel="bookmark">ElasticSearch 集成 Spring 之 ElasticsearchTemplate 示例</a></div>
+      <div class="popular-posts-title"><a href="\2022\04\2022-04-18-ElasticSearch设置用户名密码\" rel="bookmark">ElasticSearch 设置用户名密码</a></div>
     </li>
   </ul>
 
@@ -519,8 +589,8 @@ elasticsearchTemplate<span class="token punctuation">.</span><span class="token 
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/02/2021-02-04-Java%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%ABemoj%E8%A1%A8%E6%83%85%E5%8F%8A%E8%BF%87%E6%BB%A4/" rel="prev" title="Java 判断字符串中是否包含 emoj 表情及过滤">
-                  <i class="fa fa-chevron-left"></i> Java 判断字符串中是否包含 emoj 表情及过滤
+                <a href="/2021/02/2021-02-06-ElasticsearchRestTemplate%E6%9F%A5%E8%AF%A2API%E7%A4%BA%E4%BE%8B/" rel="prev" title="ElasticsearchRestTemplate 查询 API 示例">
+                  <i class="fa fa-chevron-left"></i> ElasticsearchRestTemplate 查询 API 示例
                 </a>
             </div>
             <div class="post-nav-item">
@@ -805,10 +875,10 @@ NexT.utils.loadComments('#gitalk-container', () => {
 <script>
 NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
-    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":null,"placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":"https://p5beawtt.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
       el: '#valine-comments',
       path: "/2021/02/2021-02-07-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchRestTemplate%E7%A4%BA%E4%BE%8B/",
-      serverURLs: "https://p5beawtt.api.lncldglobal.com"
+      serverURLs: "https://p5beawtt.lc-cn-n1-shared.com"
     }));
   }, window.Valine);
 });
