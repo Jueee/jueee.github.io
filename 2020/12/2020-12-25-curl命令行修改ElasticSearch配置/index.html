@@ -36,7 +36,7 @@
 <meta property="og:description" content="curlcurl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-25T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-12-06T08:36:08.382Z">
+<meta property="article:modified_time" content="2022-06-30T07:13:09.873Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="ElasticSearch">
 <meta property="article:tag" content="Database">
@@ -163,17 +163,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">251</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">257</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">51</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">54</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">97</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">100</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -253,20 +253,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">251</span>
+          <span class="site-state-item-count">257</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">54</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">97</span>
+        <span class="site-state-item-count">100</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -446,12 +446,22 @@
 <p>查看某个索引的 Mapping 配置：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/index_name/_mapping?pretty</code></pre>
 
-<p>查询某个索引下某条记录的具体数据：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/index_name/mail/1e50baf1dea339f871f9272508bc7615
-<span class="token function">curl</span> http://127.0.0.1:9200/index_name/_doc/1e50baf1dea339f871f9272508bc7615（默认 <span class="token builtin class-name">type</span> 为 _doc）</code></pre>
+<p>查看索引数据：</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token function">curl</span> http://elastic:123456@127.0.0.1:9200/index_name/_search
+// 查询
+<span class="token function">curl</span> http://127.0.0.1:9200/index_name/_search?pretty<span class="token operator">&amp;</span><span class="token assign-left variable">q</span><span class="token operator">=</span>column_name:column_value
+// 排序
+<span class="token function">curl</span> http://127.0.0.1:9200/index_name/_search?pretty<span class="token operator">&amp;</span><span class="token assign-left variable">sort</span><span class="token operator">=</span>@timestamp:asc<span class="token operator">&amp;</span><span class="token assign-left variable">q</span><span class="token operator">=</span>column_name:column_value</code></pre>
 
 <p>查看索引配置：</p>
 <pre class="language-none"><code class="language-none">curl http://elastic:123456@127.0.0.1:9200/index_name/_settings</code></pre>
+
+<p>查看索引总数：</p>
+<pre class="language-none"><code class="language-none">curl http://elastic:123456@127.0.0.1:9200/index_name/_count</code></pre>
+
+<p>查询某个索引下某条记录的具体数据：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/index_name/mail/1e50baf1dea339f871f9272508bc7615
+<span class="token function">curl</span> http://127.0.0.1:9200/index_name/_doc/1e50baf1dea339f871f9272508bc7615（默认 <span class="token builtin class-name">type</span> 为 _doc）</code></pre>
 
 <h3 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h3><p>修改参数（单个查询最大的桶数，默认 10000）：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -X PUT http://127.0.0.1:9200/_cluster/settings?flat_settings -H <span class="token string">'content-Type:application/json'</span> -d <span class="token string">'{"persistent":{"search":{"max_buckets":"2147483647"}}}'</span></code></pre>
