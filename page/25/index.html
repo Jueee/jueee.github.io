@@ -157,17 +157,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">257</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">261</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">54</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">55</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">100</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">101</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -246,20 +246,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">257</span>
+          <span class="site-state-item-count">261</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">54</span>
+        <span class="site-state-item-count">55</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">100</span>
+        <span class="site-state-item-count">101</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -331,6 +331,424 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-05-MyBatis-Plus%E7%9A%84%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8AutoGenerator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/2020-12-05-MyBatis-Plus%E7%9A%84%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8AutoGenerator/" class="post-title-link" itemprop="url">MyBatis-Plus 的代码生成器 AutoGenerator</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-05T00:00:00Z">2020-12-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-05-MyBatis-Plus%E7%9A%84%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8AutoGenerator/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-05-MyBatis-Plus%E7%9A%84%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8AutoGenerator/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="AutoGenerator-介绍"><a href="#AutoGenerator-介绍" class="headerlink" title="AutoGenerator 介绍"></a>AutoGenerator 介绍</h3><p>AutoGenerator 是 MyBatis-Plus 的代码生成器，通过 AutoGenerator 可以快速生成 Entity、Mapper、Mapper XML、Service、Controller 等各个模块的代码，极大的提升了开发效率。</p>
+<ul>
+<li>文档：<a target="_blank" rel="noopener" href="https://baomidou.com/guide/generator.html">https://baomidou.com/guide/generator.html</a></li>
+<li> 配置：<a target="_blank" rel="noopener" href="https://baomidou.com/config/generator-config.html">https://baomidou.com/config/generator-config.html</a></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/2020-12-05-MyBatis-Plus%E7%9A%84%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8AutoGenerator/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-04-JavaScript%E6%A0%A1%E9%AA%8C%E5%AF%86%E7%A0%81%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/2020-12-04-JavaScript%E6%A0%A1%E9%AA%8C%E5%AF%86%E7%A0%81%E5%A4%8D%E6%9D%82%E5%BA%A6/" class="post-title-link" itemprop="url">JavaScript 校验密码复杂度</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-04T00:00:00Z">2020-12-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-04-JavaScript%E6%A0%A1%E9%AA%8C%E5%AF%86%E7%A0%81%E5%A4%8D%E6%9D%82%E5%BA%A6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-04-JavaScript%E6%A0%A1%E9%AA%8C%E5%AF%86%E7%A0%81%E5%A4%8D%E6%9D%82%E5%BA%A6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>1、密码中必须包含大小字母、数字、特称字符，至少 8 个字符，最多 30 个字符。</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> regex <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">'(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{8,30}'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'123456@qq.com'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"密码中必须包含字母、数字、特殊字符，请重新设置！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p>2、密码中必须包含字母、数字、特称字符，至少 8 个字符，最多 30 个字符。</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> regex <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">'(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,30}'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'123456@qq.com'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"密码中必须包含字母、数字、特殊字符，请重新设置！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>3、密码中必须包含字母、数字，至少 8 个字符，最多 30 个字符。</p>
+<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">var</span> regex <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">'(?=.*[0-9])(?=.*[a-zA-Z]).{8,30}'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'123456@qq.com'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"密码中必须包含字母、数字，请重新设置！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-03-Mybatis%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E5%8C%85MyBatis-Plus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/2020-12-03-Mybatis%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E5%8C%85MyBatis-Plus/" class="post-title-link" itemprop="url">Mybatis 增强工具包 MyBatis-Plus</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-03T00:00:00Z">2020-12-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-03-Mybatis%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E5%8C%85MyBatis-Plus/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-03-Mybatis%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E5%8C%85MyBatis-Plus/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="MyBatis-Plus-介绍"><a href="#MyBatis-Plus-介绍" class="headerlink" title="MyBatis-Plus 介绍"></a>MyBatis-Plus 介绍</h3><p><a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus">MyBatis-Plus</a>（简称 MP）是一个 <a target="_blank" rel="noopener" href="http://www.mybatis.org/mybatis-3/">MyBatis</a> 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。</p>
+<ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://baomidou.com/">https://baomidou.com/</a></li>
+<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus">https://github.com/baomidou/mybatis-plus</a></li>
+</ul>
+<h4 id="依赖引入"><a href="#依赖引入" class="headerlink" title="依赖引入"></a>依赖引入</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.baomidou<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>mybatis-plus-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.4.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/2020-12-03-Mybatis%E5%A2%9E%E5%BC%BA%E5%B7%A5%E5%85%B7%E5%8C%85MyBatis-Plus/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-02-Potplayer%E7%94%BB%E8%B4%A8%E5%A2%9E%E5%BC%BA%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/2020-12-02-Potplayer%E7%94%BB%E8%B4%A8%E5%A2%9E%E5%BC%BA%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Potplayer 画质增强教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-02T00:00:00Z">2020-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-02-Potplayer%E7%94%BB%E8%B4%A8%E5%A2%9E%E5%BC%BA%E6%95%99%E7%A8%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-02-Potplayer%E7%94%BB%E8%B4%A8%E5%A2%9E%E5%BC%BA%E6%95%99%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="madVR-介绍"><a href="#madVR-介绍" class="headerlink" title="madVR 介绍"></a>madVR 介绍</h3><ul>
+<li><strong>madVR</strong> 是一款超强的视频插件，其配合高清播放软件，可以做到目前 <strong>PC</strong> 上播放高清视频的最强画质。</li>
+<li><strong>madVR</strong> 这款视频渲染器比市面上大多数播放器自带的渲染器有着更精确的颜色处理，更高质量的图像缩放缩放、以及更低的颜色错误率。这就使得它所渲染出来的视频在颜色上更趋于真实，在画质细节上也要强于其他渲染器。</li>
+<li><strong>madVR</strong> 支持各类显卡，包括 <strong>NVIDIA</strong> 和 <strong>AMD</strong> 的独显以及英特尔的核芯显卡。不过用户在使用 <strong>madVR</strong> 渲染视频时，会占用大量的 <strong>GPU</strong> 资源和 <strong>CPU</strong> 资源。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/2020-12-02-Potplayer%E7%94%BB%E8%B4%A8%E5%A2%9E%E5%BC%BA%E6%95%99%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -538,452 +956,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-29-Java%E8%8E%B7%E5%8F%96Kafka%E6%8C%87%E5%AE%9Atopic%E7%9A%84%E6%B6%88%E6%81%AF%E6%80%BB%E9%87%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/2020-11-29-Java%E8%8E%B7%E5%8F%96Kafka%E6%8C%87%E5%AE%9Atopic%E7%9A%84%E6%B6%88%E6%81%AF%E6%80%BB%E9%87%8F/" class="post-title-link" itemprop="url">Java 获取 Kafka 指定 topic 的消息总量</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-29 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-29T00:00:00Z">2020-11-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Apache/Kafka/" itemprop="url" rel="index"><span itemprop="name">Kafka</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/11/2020-11-29-Java%E8%8E%B7%E5%8F%96Kafka%E6%8C%87%E5%AE%9Atopic%E7%9A%84%E6%B6%88%E6%81%AF%E6%80%BB%E9%87%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-29-Java%E8%8E%B7%E5%8F%96Kafka%E6%8C%87%E5%AE%9Atopic%E7%9A%84%E6%B6%88%E6%81%AF%E6%80%BB%E9%87%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Kafka-Consumer-API"><a href="#Kafka-Consumer-API" class="headerlink" title="Kafka Consumer API"></a>Kafka Consumer API</h3><p>Kafka 提供了两套 API 给 Consumer</p>
-<ul>
-<li>The high-level Consumer API</li>
-<li>The SimpleConsumer API </li>
-</ul>
-<p>第一种高度抽象的 Consumer API，它使用起来简单、方便，但是对于某些特殊的需求我们可能要用到第二种更底层的 API。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-29-Java%E8%8E%B7%E5%8F%96Kafka%E6%8C%87%E5%AE%9Atopic%E7%9A%84%E6%B6%88%E6%81%AF%E6%80%BB%E9%87%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-27-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchTemplate%E7%A4%BA%E4%BE%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/2020-11-27-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchTemplate%E7%A4%BA%E4%BE%8B/" class="post-title-link" itemprop="url">ElasticSearch 集成 Spring 之 ElasticsearchTemplate 示例</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-27T00:00:00Z">2020-11-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/11/2020-11-27-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchTemplate%E7%A4%BA%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-27-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchTemplate%E7%A4%BA%E4%BE%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="ElasticsearchTemplate"><a href="#ElasticsearchTemplate" class="headerlink" title="ElasticsearchTemplate"></a>ElasticsearchTemplate</h3><p>ElasticsearchTemplate 是 Spring 对 ElasticSearch 的 Java api 进行的封装，提供了大量的相关的类来完成各种各样的查询。</p>
-<h4 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h4><p>Springboot 项目：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-data-elasticsearch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
-
-<p>普通项目：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-elasticsearch --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.data<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-data-elasticsearch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.2.1.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-27-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchTemplate%E7%A4%BA%E4%BE%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">RAID 管理工具 MegaCli 的安装使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-26T00:00:00Z">2020-11-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="MegaCli-介绍"><a href="#MegaCli-介绍" class="headerlink" title="MegaCli 介绍"></a>MegaCli 介绍</h3><p>MegaCli 是一款管理维护硬件 RAID 软件，可以通过它来了解当前 raid 卡的所有信息，包括 raid 卡的型号，raid 的阵列类型，raid 上各磁盘状态，等等。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-26-RAID%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7MegaCli%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-25-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7ExcelKit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/2020-11-25-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7ExcelKit/" class="post-title-link" itemprop="url">Excel 文件导出工具 ExcelKit</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-25T00:00:00Z">2020-11-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/11/2020-11-25-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7ExcelKit/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-25-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7ExcelKit/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="ExcelKit-介绍"><a href="#ExcelKit-介绍" class="headerlink" title="ExcelKit 介绍"></a>ExcelKit 介绍</h3><p>ExcelKit 是简单、好用且轻量级的海量 Excel 文件导入导出解决方案。</p>
-<ul>
-<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/wenzewoo/ExcelKit">https://github.com/wenzewoo/ExcelKit</a></li>
-<li>Gitee：<a target="_blank" rel="noopener" href="https://gitee.com/wuwenze/ExcelKit/">https://gitee.com/wuwenze/ExcelKit/</a></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-25-Excel%E6%96%87%E4%BB%B6%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E5%85%B7ExcelKit/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/24/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/26/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/24/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><a class="extend next" rel="next" href="/page/26/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
