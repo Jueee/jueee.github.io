@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="打开一直在用的 Markdown 编辑器 Typora，可是过期提示又来了。该怎么办呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows 解决 Typora 提示过期的方案">
+<meta property="og:url" content="https://jueee.github.io/2022/07/2022-07-15-Windows%E8%A7%A3%E5%86%B3Typora%E6%8F%90%E7%A4%BA%E8%BF%87%E6%9C%9F%E7%9A%84%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="打开一直在用的 Markdown 编辑器 Typora，可是过期提示又来了。该怎么办呢？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jueee.github.io/images/2022/07/5e631a95a7a76b8085251b945bd35592.png">
+<meta property="og:image" content="https://jueee.github.io/images/2022/07/45e420f7164690470f4d5c94b132f095.png">
+<meta property="og:image" content="https://jueee.github.io/images/2022/07/30185be8b5d3c04cf7f9483822971f73.png">
+<meta property="og:image" content="https://jueee.github.io/images/2022/07/b1d4ccb0189d8ff2a150a61414588921.png">
+<meta property="og:image" content="https://jueee.github.io/images/2022/07/image-20220725113941242.png">
+<meta property="og:image" content="https://jueee.github.io/images/2022/07/f0be3404ec1ad205e2b92a50bbdb2538.png">
+<meta property="og:image" content="https://jueee.github.io/images/2022/07/b8d0fd0878a84fbeb78be028773d524c.png">
+<meta property="article:published_time" content="2022-07-15T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-27T11:07:16.903Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jueee.github.io/images/2022/07/5e631a95a7a76b8085251b945bd35592.png">
+
+
+<link rel="canonical" href="https://jueee.github.io/2022/07/2022-07-15-Windows%E8%A7%A3%E5%86%B3Typora%E6%8F%90%E7%A4%BA%E8%BF%87%E6%9C%9F%E7%9A%84%E6%96%B9%E6%A1%88/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Windows 解决 Typora 提示过期的方案 | 小决的专栏</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">小决的专栏</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">281</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">102</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">281</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2022/07/2022-07-15-Windows%E8%A7%A3%E5%86%B3Typora%E6%8F%90%E7%A4%BA%E8%BF%87%E6%9C%9F%E7%9A%84%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows 解决 Typora 提示过期的方案
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-15 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-15T00:00:00Z">2022-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/07/2022-07-15-Windows%E8%A7%A3%E5%86%B3Typora%E6%8F%90%E7%A4%BA%E8%BF%87%E6%9C%9F%E7%9A%84%E6%96%B9%E6%A1%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/2022-07-15-Windows%E8%A7%A3%E5%86%B3Typora%E6%8F%90%E7%A4%BA%E8%BF%87%E6%9C%9F%E7%9A%84%E6%96%B9%E6%A1%88/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>打开一直在用的 Markdown 编辑器 Typora，可是过期提示又来了。该怎么办呢？</p>
+<p><img src="/images/2022/07/5e631a95a7a76b8085251b945bd35592.png" alt="img" loading="lazy"></p>
+<a id="more"></a>
+
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>根据大神的方案，结合我自己的实践，我把详细步骤一步步地贴出来，希望能够帮助一部分有这方面困惑的朋友，详细操作见下文。</p>
+<p>其实操作起来很简单，主要是利用 Windows 下的软件的 注册表权限，操作步骤如下：</p>
+<p>1）Windows 键 + R，弹出命令行输入框，输入 regedit</p>
+<p><img src="/images/2022/07/45e420f7164690470f4d5c94b132f095.png" alt="img" loading="lazy"></p>
+<p>当提示 你要允许此应用对你的设备进行修改吗？ 时，选 是。</p>
+<p>2）在注册表的输入框输入：计算机 \HKEY_CURRENT_USER\SOFTWARE\Typora ，然后按回车；</p>
+<p><img src="/images/2022/07/30185be8b5d3c04cf7f9483822971f73.png" alt="img" loading="lazy"></p>
+<p>3）找到 typora 这一项，然后点击 右键，选择 权限；</p>
+<p><img src="/images/2022/07/b1d4ccb0189d8ff2a150a61414588921.png" alt="img" loading="lazy"></p>
+<p>4）在 权限 里面把各个用户的权限，全部选择 拒绝；有人说，仅关闭当前使用的用户即可，但我觉得保险起见，还是把所有用户都拒绝掉吧。【最后别忘了 应用 + 确认】</p>
+<p><img src="/images/2022/07/image-20220725113941242.png" alt="image-20220725113941242" loading="lazy"></p>
+<p>随后，可能会收到一个提示框，直接选 是 即可。</p>
+<p><img src="/images/2022/07/f0be3404ec1ad205e2b92a50bbdb2538.png" alt="img" loading="lazy"></p>
+<p>5）测试下能不能打开 typora：</p>
+<img src="/images/2022/07/b8d0fd0878a84fbeb78be028773d524c.png" alt="img" style="zoom:50%;">
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-21-Windows录屏软件Bandicam\" rel="bookmark">Windows 录屏软件 Bandicam</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-23-启用Windows10下的Linux子系统\" rel="bookmark">启用Windows10下的Linux子系统</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-31-Windows环境搭建Vue开发环境\" rel="bookmark">Windows 环境搭建 Vue 开发环境</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\11\2020-11-02-跨平台桌面应用开发工具Electron使用入门\" rel="bookmark">跨平台桌面应用开发工具 Electron 使用入门</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\12\2020-12-02-Potplayer画质增强教程\" rel="bookmark">Potplayer 画质增强教程</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag"># 软件</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/2022-07-07-Java%E7%9A%84jmap%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" rel="prev" title="Java 的 jmap 命令使用总结">
+                  <i class="fa fa-chevron-left"></i> Java 的 jmap 命令使用总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/2022-07-18-%E5%B0%86%20Safari%20%E4%B9%A6%E7%AD%BE%E4%B8%8E%20Google%20Chrome%20%E5%90%8C%E6%AD%A5/" rel="next" title="将 Safari 书签与 Google Chrome 同步">
+                  将 Safari 书签与 Google Chrome 同步 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '12f9c551c5f01965b723a44be81f45ff',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":"https://p5beawtt.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2022/07/2022-07-15-Windows%E8%A7%A3%E5%86%B3Typora%E6%8F%90%E7%A4%BA%E8%BF%87%E6%9C%9F%E7%9A%84%E6%96%B9%E6%A1%88/",
+      serverURLs: "https://p5beawtt.lc-cn-n1-shared.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

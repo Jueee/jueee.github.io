@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import os,re,shutil,sys
 import fileinput
 import datetime
@@ -22,20 +25,22 @@ def getImages(path):
 
 def replaceFile(file,old_str,new_str):
     file_data = ""
-    with open(file, "r", encoding="utf-8") as f:
-        for line in f:
-            if old_str in line:
-                line = line.replace(old_str,new_str)
-            file_data += line
-    with open(file,"w",encoding="utf-8") as f:
-        f.write(file_data)
+    try:
+        with open(file, "r", encoding="UTF-8") as f:
+            for line in f:
+                if old_str in line:
+                    line = line.replace(old_str,new_str)
+                file_data += line
+        with open(file,"w",encoding="utf-8") as f:
+            f.write(file_data)
+    except Exception as e:
+        print('ERROR:'+file )
 
 def replaceBolgs(blogs):
     for blog in blogs:
         #replaceFile(blog,"/assets/images/","/images/")
         #replaceFile(blog,"mathjax: false","mathjax: false")
-        replaceFile(blog,"assets/1","/images/"+YEAR_NUM+"/"+MONTH_NUM+"/1")
-        replaceFile(blog,"assets/image-","/images/"+YEAR_NUM+"/"+MONTH_NUM+"/image-")
+        replaceFile(blog,"assets/","/images/"+YEAR_NUM+"/"+MONTH_NUM+"/")
 
 def moveImages():
     if not os.path.exists(NEW_IMAGES_PATH):

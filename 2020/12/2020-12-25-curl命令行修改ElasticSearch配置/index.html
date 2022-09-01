@@ -36,7 +36,7 @@
 <meta property="og:description" content="curlcurl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-25T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-05T02:37:15.547Z">
+<meta property="article:modified_time" content="2022-08-08T03:45:01.586Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="ElasticSearch">
 <meta property="article:tag" content="Database">
@@ -163,17 +163,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">261</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">281</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">55</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">58</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">101</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">102</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -237,7 +237,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#curl"><span class="nav-number">1.</span> <span class="nav-text">curl</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">常用参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4"><span class="nav-number">2.</span> <span class="nav-text">集群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%82%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">索引管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">索引配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95-Mapping"><span class="nav-number">6.</span> <span class="nav-text">索引 Mapping</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95-Mapping"><span class="nav-number">6.1.</span> <span class="nav-text">查看索引 Mapping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E7%B4%A2%E5%BC%95Mapping"><span class="nav-number">6.2.</span> <span class="nav-text">更新索引 Mapping</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%95%B0%E6%8D%AE"><span class="nav-number">7.</span> <span class="nav-text">索引数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%E6%95%B0%E6%8D%AE"><span class="nav-number">7.1.</span> <span class="nav-text">查看索引数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%E6%80%BB%E6%95%B0"><span class="nav-number">7.2.</span> <span class="nav-text">查看索引总数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%85%B7%E4%BD%93%E6%95%B0%E6%8D%AE"><span class="nav-number">7.3.</span> <span class="nav-text">查看具体数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%A8%A1%E6%9D%BF"><span class="nav-number">8.</span> <span class="nav-text">索引模板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%A8%A1%E6%9D%BF%E5%86%85%E5%AE%B9"><span class="nav-number">8.1.</span> <span class="nav-text">查看模板内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%A8%A1%E6%9D%BF%E5%86%85%E5%AE%B9"><span class="nav-number">8.2.</span> <span class="nav-text">更新模板内容</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#curl"><span class="nav-number">1.</span> <span class="nav-text">curl</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">常用参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4"><span class="nav-number">2.</span> <span class="nav-text">集群</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">修改系统参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E9%9B%86%E7%BE%A4%E5%88%86%E7%89%87%E6%95%B0%E9%87%8F"><span class="nav-number">2.2.</span> <span class="nav-text">修改集群分片数量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%82%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">索引管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">索引配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95-Mapping"><span class="nav-number">6.</span> <span class="nav-text">索引 Mapping</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95-Mapping"><span class="nav-number">6.1.</span> <span class="nav-text">查看索引 Mapping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E7%B4%A2%E5%BC%95Mapping"><span class="nav-number">6.2.</span> <span class="nav-text">更新索引 Mapping</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%95%B0%E6%8D%AE"><span class="nav-number">7.</span> <span class="nav-text">索引数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%E6%95%B0%E6%8D%AE"><span class="nav-number">7.1.</span> <span class="nav-text">查看索引数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%E6%80%BB%E6%95%B0"><span class="nav-number">7.2.</span> <span class="nav-text">查看索引总数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%85%B7%E4%BD%93%E6%95%B0%E6%8D%AE"><span class="nav-number">7.3.</span> <span class="nav-text">查看具体数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%A8%A1%E6%9D%BF"><span class="nav-number">8.</span> <span class="nav-text">索引模板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%A8%A1%E6%9D%BF%E5%86%85%E5%AE%B9"><span class="nav-number">8.1.</span> <span class="nav-text">查看模板内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%A8%A1%E6%9D%BF%E5%86%85%E5%AE%B9"><span class="nav-number">8.2.</span> <span class="nav-text">更新模板内容</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -253,20 +253,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">261</span>
+          <span class="site-state-item-count">281</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">101</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -437,6 +437,24 @@
 <h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><p>查看 es 集群状态：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/_cat/health?v</code></pre>
 
+<h4 id="修改系统参数"><a href="#修改系统参数" class="headerlink" title="修改系统参数"></a>修改系统参数</h4><p>修改参数（单个查询最大的桶数，默认 10000）：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -X PUT http://127.0.0.1:9200/_cluster/settings?flat_settings <span class="token punctuation">\</span>
+     -H <span class="token string">'content-Type:application/json'</span> <span class="token punctuation">\</span>
+     -d <span class="token string">'{"persistent":{"search":{"max_buckets":"2147483647"}}}'</span></code></pre>
+
+<p>如果不加 <code>-H 'content-Type:application/json'</code> 参数，可能会报错：</p>
+<blockquote>
+<p>{"error":"Content-Type header [application/x-www-form-urlencoded] is not supported","status":406}</p>
+</blockquote>
+<h4 id="修改集群分片数量"><a href="#修改集群分片数量" class="headerlink" title="修改集群分片数量"></a>修改集群分片数量</h4><p>新建索引时，出现报错：</p>
+<blockquote>
+<p>Validation Failed: 1: this action would add [10] shards, but this cluster currently has [996]/[1000] maximum normal shards open</p>
+</blockquote>
+<p>这是由于 ES7.x 默认分片只有 1000 个，目前已经用完了，导致已经没法创建新的索引了。需要提高 ES 的分片数量。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> --location --request PUT <span class="token string">'http://127.0.0.1:9200/_cluster/settings'</span> <span class="token punctuation">\</span>
+     --header <span class="token string">'Content-Type: application/json'</span> <span class="token punctuation">\</span>
+     --data <span class="token string">'{"persistent":{"cluster":{"max_shards_per_node":10000}}}'</span></code></pre>
+
 <h3 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h3><p>集群节点健康查看：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/_cat/nodes?v</code></pre>
 
@@ -449,13 +467,7 @@
 <h3 id="索引配置"><a href="#索引配置" class="headerlink" title="索引配置"></a>索引配置</h3><p>查看索引配置：</p>
 <pre class="language-none"><code class="language-none">curl http://elastic:123456@127.0.0.1:9200/index_name/_settings</code></pre>
 
-<p>修改参数（单个查询最大的桶数，默认 10000）：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -X PUT http://127.0.0.1:9200/_cluster/settings?flat_settings -H <span class="token string">'content-Type:application/json'</span> -d <span class="token string">'{"persistent":{"search":{"max_buckets":"2147483647"}}}'</span></code></pre>
 
-<p>如果不加 <code>-H 'content-Type:application/json'</code> 参数，可能会报错：</p>
-<blockquote>
-<p>{"error":"Content-Type header [application/x-www-form-urlencoded] is not supported","status":406}</p>
-</blockquote>
 <p>修改索引副本数量：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -X PUT http://127.0.0.1:9200/index_name/_settings -H <span class="token string">'content-Type:application/json'</span> -d <span class="token string">'{"number_of_replicas": 2}'</span></code></pre>
 

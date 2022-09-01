@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="对于 Docker 容器中的应用，我们希望通过监控日志的方式来检查运行状态。 如果日志一段时间不滚动，则进行应用的重启。 本文将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 使用 crontab 来监控进程日志">
+<meta property="og:url" content="https://jueee.github.io/2022/07/2022-07-21-Docker%20%E4%BD%BF%E7%94%A8%20crontab%20%E6%9D%A5%E7%9B%91%E6%8E%A7%E8%BF%9B%E7%A8%8B%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="小决的专栏">
+<meta property="og:description" content="对于 Docker 容器中的应用，我们希望通过监控日志的方式来检查运行状态。 如果日志一段时间不滚动，则进行应用的重启。 本文将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-21T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-27T11:07:16.982Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Supervisor">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2022/07/2022-07-21-Docker%20%E4%BD%BF%E7%94%A8%20crontab%20%E6%9D%A5%E7%9B%91%E6%8E%A7%E8%BF%9B%E7%A8%8B%E6%97%A5%E5%BF%97/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Docker 使用 crontab 来监控进程日志 | 小决的专栏</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">小决的专栏</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">281</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">58</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">102</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#supervisor%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">supervisor 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E8%AD%A6%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">报警文件配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sources-list-%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">sources.list 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dockerfile-%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">Dockerfile 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%A4%84%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">特殊处理</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">281</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2022/07/2022-07-21-Docker%20%E4%BD%BF%E7%94%A8%20crontab%20%E6%9D%A5%E7%9B%91%E6%8E%A7%E8%BF%9B%E7%A8%8B%E6%97%A5%E5%BF%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker 使用 crontab 来监控进程日志
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-21 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-21T00:00:00Z">2022-07-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/07/2022-07-21-Docker%20%E4%BD%BF%E7%94%A8%20crontab%20%E6%9D%A5%E7%9B%91%E6%8E%A7%E8%BF%9B%E7%A8%8B%E6%97%A5%E5%BF%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/2022-07-21-Docker%20%E4%BD%BF%E7%94%A8%20crontab%20%E6%9D%A5%E7%9B%91%E6%8E%A7%E8%BF%9B%E7%A8%8B%E6%97%A5%E5%BF%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>对于 Docker 容器中的应用，我们希望通过监控日志的方式来检查运行状态。</p>
+<p>如果日志一段时间不滚动，则进行应用的重启。</p>
+<p>本文将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。</p>
+<a id="more"></a>
+
+<h3 id="supervisor配置"><a href="#supervisor配置" class="headerlink" title="supervisor配置"></a>supervisor 配置</h3><p> 新增 supervisord.conf 文件，如下所示：</p>
+<pre class="language-conf" data-language="conf"><code class="language-conf">[supervisord]
+nodaemon=true
+[program:cron]
+command=/etc/init.d/cron start
+[program:javaapp]
+command=/bin/bash -c "/java-app-dir/appCtrl.sh start &amp;&amp; tail -f /dev/null"</code></pre>
+
+<p>配置文件包含目录和进程：</p>
+<ul>
+<li>第一段 supervsord 配置软件本身，使用 nodaemon 参数来运行。</li>
+<li>第二段包含要控制的 2 个服务。每一段包含一个服务的目录和启动这个服务的命令。</li>
+</ul>
+<p><code>/etc/init.d/cron start</code> 用于启动 crontab 服务，但这样启动的 crontab 服务中配置的定时命令是没有 Dockerfile 中设置的环境变量的。</p>
+<p>因此还需要在这之前执行 <code>env &gt;&gt; /etc/default/locale</code>，这样有 Dockerfile 中通过 <code>ENV</code> 设置的环境变量在 crontab 中就可以正常读取了。</p>
+<h3 id="报警文件配置"><a href="#报警文件配置" class="headerlink" title="报警文件配置"></a>报警文件配置</h3><p>新增 alarm_log.sh 文件，如下所示：</p>
+<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">tail</span> -n <span class="token number">1000</span> ./approot/logs/app.log<span class="token operator">|</span><span class="token function">grep</span> <span class="token number">202</span><span class="token operator">|</span><span class="token function">tail</span> -n <span class="token number">1</span><span class="token operator">|</span><span class="token function">cut</span> -c <span class="token number">1</span>-19<span class="token variable">`</span></span>
+<span class="token assign-left variable">timestamp</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%s -d<span class="token string">"<span class="token variable">${time}</span>"</span><span class="token variable">`</span></span>
+<span class="token assign-left variable">nowstamp</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%s<span class="token variable">`</span></span>
+<span class="token assign-left variable">alarmstamp</span><span class="token operator">=</span>$<span class="token punctuation">[</span><span class="token variable">${nowstamp}</span>-10*60<span class="token punctuation">]</span>
+<span class="token builtin class-name">echo</span> <span class="token variable"><span class="token variable">`</span><span class="token function">date</span><span class="token variable">`</span></span> <span class="token variable">${time}</span> <span class="token variable">${timestamp}</span> <span class="token variable">${nowstamp}</span> <span class="token variable">${alarmstamp}</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$alarmstamp</span>"</span> -gt <span class="token string">"<span class="token variable">$timestamp</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable"><span class="token variable">`</span><span class="token function">date</span><span class="token variable">`</span></span> restart "</span>
+<span class="token builtin class-name">cd</span> /java-app-dir <span class="token operator">&amp;&amp;</span> <span class="token function">bash</span> appCtrl.sh restart
+<span class="token keyword">fi</span></code></pre>
+
+<h3 id="sources-list-文件"><a href="#sources-list-文件" class="headerlink" title="sources.list 文件"></a>sources.list 文件</h3><pre class="language-livescript" data-language="livescript"><code class="language-livescript"><span class="token identifier">deb</span> <span class="token identifier">http</span><span class="token punctuation">:</span><span class="token regex">//repo.hz.netease.com/netease-stretch stretch main contrib non-free
+deb-src http://</span><span class="token identifier">repo</span><span class="token punctuation">.</span><span class="token identifier">hz</span><span class="token punctuation">.</span><span class="token identifier">netease</span><span class="token punctuation">.</span><span class="token identifier">com</span><span class="token operator">/</span><span class="token identifier">netease-stretch</span> <span class="token identifier">stretch</span> <span class="token identifier">main</span> <span class="token identifier">contrib</span> <span class="token identifier">non-free</span>
+
+<span class="token identifier">deb</span> <span class="token identifier">http</span><span class="token punctuation">:</span><span class="token regex">//debian.service.163.org/debian-current stretch-backports main contrib non-free
+deb-src http://</span><span class="token identifier">debian</span><span class="token punctuation">.</span><span class="token identifier">service</span><span class="token punctuation">.</span><span class="token number">163</span><span class="token punctuation">.</span><span class="token identifier">org</span><span class="token operator">/</span><span class="token identifier">debian-current</span> <span class="token identifier">stretch-backports</span> <span class="token identifier">main</span> <span class="token identifier">contrib</span> <span class="token identifier">non-free</span>
+
+
+<span class="token identifier">deb</span> <span class="token identifier">http</span><span class="token punctuation">:</span><span class="token regex">//debian.service.163.org/debian-current stretch main contrib non-free
+deb-src http://</span><span class="token identifier">debian</span><span class="token punctuation">.</span><span class="token identifier">service</span><span class="token punctuation">.</span><span class="token number">163</span><span class="token punctuation">.</span><span class="token identifier">org</span><span class="token operator">/</span><span class="token identifier">debian-current</span> <span class="token identifier">stretch</span> <span class="token identifier">main</span> <span class="token identifier">contrib</span> <span class="token identifier">non-free</span>
+
+
+<span class="token identifier">deb</span> <span class="token identifier">http</span><span class="token punctuation">:</span><span class="token regex">//debian.service.163.org/debian-security stretch/updates main contrib non-free
+deb-src http://</span><span class="token identifier">debian</span><span class="token punctuation">.</span><span class="token identifier">service</span><span class="token punctuation">.</span><span class="token number">163</span><span class="token punctuation">.</span><span class="token identifier">org</span><span class="token regex">/debian-security stretch/u</span><span class="token identifier">pdates</span> <span class="token identifier">main</span> <span class="token identifier">contrib</span> <span class="token identifier">non-free</span>
+
+<span class="token comment">## http://hwraid.le-vert.net/wiki/DebianPackages</span>
+<span class="token identifier">deb</span> <span class="token identifier">http</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token regex">/repo.hz.netease.com/</span><span class="token identifier">hwraid</span><span class="token operator">/</span><span class="token identifier">stretch</span> <span class="token identifier">stretch</span> <span class="token identifier">main</span></code></pre>
+
+<h3 id="Dockerfile-配置"><a href="#Dockerfile-配置" class="headerlink" title="Dockerfile 配置"></a>Dockerfile 配置</h3><pre class="language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM private-registry.yidun.internal/localmanti/yd-java-app:v1
+
+MAINTAINER jueee
+
+ENV XMX_CONFIG="4000"\
+    XMS_CONFIG="4000"\
+    MAX_PERM="256"\
+    RUN_CMD="com.xxx.xxx.xxx.xxx"
+
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone
+
+RUN env &gt;&gt; /etc/default/locale
+
+COPY sources.list /etc/apt/
+
+RUN apt-get update \
+  &amp;&amp; apt-get install -y --no-install-recommends cron supervisor\
+  &amp;&amp; rm -rf /var/lib/apt/lists/* \
+  &amp;&amp; apt-get clean \
+  &amp;&amp; echo "*/1 * * * * root  cd /java-app-dir &amp;&amp; /bin/bash alarm_log.sh &gt;&gt; /java-app-dir/alarm_log.log" &gt;&gt; /etc/crontab
+
+COPY alarm_log.sh /java-app-dir
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+CMD ["/usr/bin/supervisord"]</code></pre>
+
+<p>其中：</p>
+<ul>
+<li><code>env &gt;&gt; /etc/default/locale</code> 是为了保存环境变量，从而方便 crontab 调用。</li>
+<li>执行 apt 安装时注意加入 <code>-y --no-install-recommends</code>，并且在安装完成后执行 <code>rm -rf /var/lib/apt/lists/* &amp;&amp; apt-get clean</code> 命令，可以有效减小镜像的体积。</li>
+</ul>
+<h3 id="特殊处理"><a href="#特殊处理" class="headerlink" title="特殊处理"></a>特殊处理</h3><p>如果镜像重启的过程中，无法获取环境变量，导致重启失败，也需要通过 export 将环境变量取出来，然后请求的时候再带上。</p>
+<p>如：</p>
+<pre class="language-none"><code class="language-none">$ export
+declare -x APPNAME_CONFIG="xxx-xxx"
+declare -x FEATURE_MATCH_LIMIT="-1"
+declare -x HOME="/root"</code></pre>
+
+<p>保存进 tmp_env 文件中。</p>
+<p>重启请求时：</p>
+<pre class="language-none"><code class="language-none">source /java-app-dir/tmp_env &amp;&amp; cd /java-app-dir &amp;&amp; bash appCtrl.sh restart</code></pre>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\11\2020-11-23-Docker使用Supervisor来管理进程\" rel="bookmark">Docker 使用 Supervisor 来管理进程</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-15-使用Python遍历备份docker-compose文件中的镜像\" rel="bookmark">使用Python遍历备份docker-compose文件中的镜像</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-24-FastDFS容器化安装实践\" rel="bookmark">FastDFS 容器化安装实践</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-22-Docker容器日志管理最佳实践\" rel="bookmark">Docker容器日志管理最佳实践</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\03\2021-03-14-Docker启动Redis并添加密码\" rel="bookmark">Docker 启动 Redis 并添加密码</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/Supervisor/" rel="tag"># Supervisor</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/2022-07-18-%E5%B0%86%20Safari%20%E4%B9%A6%E7%AD%BE%E4%B8%8E%20Google%20Chrome%20%E5%90%8C%E6%AD%A5/" rel="prev" title="将 Safari 书签与 Google Chrome 同步">
+                  <i class="fa fa-chevron-left"></i> 将 Safari 书签与 Google Chrome 同步
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/2022-07-22-Mac%20%E7%89%B9%E6%AE%8A%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB/" rel="next" title="Mac 特殊操作汇总">
+                  Mac 特殊操作汇总 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: '23dafd8976002c89a46d97d426ea8e5a253dba40',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '51ebb86fb630f6f1e61266398fad9aca',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":"https://p5beawtt.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2022/07/2022-07-21-Docker%20%E4%BD%BF%E7%94%A8%20crontab%20%E6%9D%A5%E7%9B%91%E6%8E%A7%E8%BF%9B%E7%A8%8B%E6%97%A5%E5%BF%97/",
+      serverURLs: "https://p5beawtt.lc-cn-n1-shared.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
