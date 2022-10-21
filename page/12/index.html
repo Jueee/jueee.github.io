@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">281</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">284</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">281</span>
+          <span class="site-state-item-count">284</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -331,6 +331,300 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/10/2021-10-26-k8s%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/2021-10-26-k8s%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86/" class="post-title-link" itemprop="url">k8s 数据清理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-26T00:00:00Z">2021-10-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/10/2021-10-26-k8s%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/2021-10-26-k8s%E6%95%B0%E6%8D%AE%E6%B8%85%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>批量删除状态为 <code>Evicted</code> 的 pod：</p>
+<pre class="language-none"><code class="language-none">$ kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod</code></pre>
+
+<p>批量删除状态为 <code>Terminating</code> 的 pod：</p>
+<pre class="language-none"><code class="language-none">$ kubectl get pods | grep Terminating | awk '{print $1}' | xargs kubectl delete pod --grace-period=0 --force</code></pre>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/10/2021-10-19-Docker%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%B8%85%E7%90%86%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%8F%8A%E7%A3%81%E7%9B%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/2021-10-19-Docker%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%B8%85%E7%90%86%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%8F%8A%E7%A3%81%E7%9B%98/" class="post-title-link" itemprop="url">Docker 命令查看并清理数据卷及磁盘</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-19T00:00:00Z">2021-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/10/2021-10-19-Docker%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%B8%85%E7%90%86%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%8F%8A%E7%A3%81%E7%9B%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/2021-10-19-Docker%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%B8%85%E7%90%86%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%8F%8A%E7%A3%81%E7%9B%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Docker 在长时间使用的情况下，经常需要删除旧的容器并创建新的容器，长此以往，Docker 的数据卷 volumes 会产生了非常多的僵尸文件。</p>
+<p>以下介绍如何查看并清理这些僵尸文件。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/2021-10-19-Docker%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%B9%B6%E6%B8%85%E7%90%86%E6%95%B0%E6%8D%AE%E5%8D%B7%E5%8F%8A%E7%A3%81%E7%9B%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/10/2021-10-18-docker%E5%91%BD%E4%BB%A4%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E7%8A%B6%E6%80%81%E4%B8%BAExited%E7%9A%84%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/2021-10-18-docker%E5%91%BD%E4%BB%A4%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E7%8A%B6%E6%80%81%E4%B8%BAExited%E7%9A%84%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">docker 命令批量删除状态为 Exited 的容器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-18T00:00:00Z">2021-10-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/10/2021-10-18-docker%E5%91%BD%E4%BB%A4%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E7%8A%B6%E6%80%81%E4%B8%BAExited%E7%9A%84%E5%AE%B9%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/2021-10-18-docker%E5%91%BD%E4%BB%A4%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E7%8A%B6%E6%80%81%E4%B8%BAExited%E7%9A%84%E5%AE%B9%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>docker 启动的容器当中，经常有一些退出的容器，既然没有用了，就需要批量清理一下。</p>
+<p>命令：</p>
+<pre class="language-none"><code class="language-none">docker rm $(docker ps -q -f status=exited)</code></pre>
+
+<p>解释： 利用 docker ps -f 选项可以找到 exited 的容器 -q 只显示容器 id 。</p>
+<p>这样就可以批量删除了！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -625,388 +919,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/09/2021-09-17-Kubernetes%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7Kuboard%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/2021-09-17-Kubernetes%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7Kuboard%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Kubernetes 图形化管理工具 Kuboard 的安装使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-17 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-17T00:00:00Z">2021-09-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/Kubernetes/" itemprop="url" rel="index"><span itemprop="name">Kubernetes</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/2021-09-17-Kubernetes%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7Kuboard%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/2021-09-17-Kubernetes%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7Kuboard%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Kuboard-简介"><a href="#Kuboard-简介" class="headerlink" title="Kuboard 简介"></a>Kuboard 简介</h3><p>Kuboard，是一款免费的 Kubernetes 图形化管理工具，Kuboard 力图帮助用户快速在 Kubernetes 上落地微服务，Kubernetes 容器编排已越来越被大家关注，然而使用 Kubernetes 的门槛却依然很高，主要体现在这几个方面：</p>
-<ul>
-<li>集群的安装复杂，出错概率大</li>
-<li> Kubernetes 相较于容器化，引入了许多新的概念，学习难度高</li>
-<li>需要手工编写 YAML 文件，难以在多环境下管理</li>
-<li>缺少好的实战案例可以参考</li>
-</ul>
-<h4 id="Kuboard-特点"><a href="#Kuboard-特点" class="headerlink" title="Kuboard 特点"></a>Kuboard 特点</h4><ul>
-<li>无需编写 YAML</li>
-<li> 纯图形化环境</li>
-<li>多环境管理</li>
-</ul>
-<h4 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h4><ul>
-<li>官网：<span class="exturl" data-url="aHR0cHM6Ly93d3cua3Vib2FyZC5jbi8=">https://www.kuboard.cn/<i class="fa fa-external-link-alt"></i></span></li>
-<li> 安装文档：<span class="exturl" data-url="aHR0cHM6Ly93d3cua3Vib2FyZC5jbi9pbnN0YWxsL3YzL2luc3RhbGwuaHRtbA==">https://www.kuboard.cn/install/v3/install.html<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h3 id="安装工程"><a href="#安装工程" class="headerlink" title="安装工程"></a>安装工程</h3><p>在线安装：</p>
-<pre class="language-none"><code class="language-none">kubectl apply -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml</code></pre>
-
-<h3 id="访问-Kuboard"><a href="#访问-Kuboard" class="headerlink" title="访问 Kuboard"></a>访问 Kuboard</h3><ul>
-<li>在浏览器中打开链接 <code>http://your-node-ip-address:30080</code></li>
-<li>输入初始用户名和密码，并登录<ul>
-<li>用户名： <code>admin</code></li>
-<li>密码： <code>Kuboard123</code></li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/09/2021-09-15-%E7%A6%BB%E7%BA%BF%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2%E9%AB%98%E5%8F%AF%E7%94%A8k3s%E9%9B%86%E7%BE%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/2021-09-15-%E7%A6%BB%E7%BA%BF%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2%E9%AB%98%E5%8F%AF%E7%94%A8k3s%E9%9B%86%E7%BE%A4/" class="post-title-link" itemprop="url">离线搭建部署高可用 k3s 集群</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-15T00:00:00Z">2021-09-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/k3s/" itemprop="url" rel="index"><span itemprop="name">k3s</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/2021-09-15-%E7%A6%BB%E7%BA%BF%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2%E9%AB%98%E5%8F%AF%E7%94%A8k3s%E9%9B%86%E7%BE%A4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/2021-09-15-%E7%A6%BB%E7%BA%BF%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2%E9%AB%98%E5%8F%AF%E7%94%A8k3s%E9%9B%86%E7%BE%A4/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>k3s 是一个轻量级 Kubernetes，它易于安装，二进制文件包小于 40 mb，只需要 512MB RAM 即可运行。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/2021-09-15-%E7%A6%BB%E7%BA%BF%E6%90%AD%E5%BB%BA%E9%83%A8%E7%BD%B2%E9%AB%98%E5%8F%AF%E7%94%A8k3s%E9%9B%86%E7%BE%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/09/2021-09-14-Vue%E4%B8%AD%E7%9A%84JSON%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%B1%95%E7%A4%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/2021-09-14-Vue%E4%B8%AD%E7%9A%84JSON%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%B1%95%E7%A4%BA/" class="post-title-link" itemprop="url">Vue 中的 JSON 操作及展示</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-14T00:00:00Z">2021-09-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/2021-09-14-Vue%E4%B8%AD%E7%9A%84JSON%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%B1%95%E7%A4%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/2021-09-14-Vue%E4%B8%AD%E7%9A%84JSON%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%B1%95%E7%A4%BA/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="vue-json-viewer"><a href="#vue-json-viewer" class="headerlink" title="vue-json-viewer"></a>vue-json-viewer</h3><p> vue-json-viewer 主要用于 JSON 展示。</p>
-<h4 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h4><blockquote>
-<p><span class="exturl" data-url="aHR0cHM6Ly93d3cubnBtanMuY29tL3BhY2thZ2UvdnVlLWpzb24tdmlld2Vy">https://www.npmjs.com/package/vue-json-viewer<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="language-none"><code class="language-none">npm install vue-json-viewer --save</code></pre>
-
-<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><p>全局引用：</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> JsonViewer <span class="token keyword">from</span> <span class="token string">'vue-json-viewer'</span>
-Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>JsonViewer<span class="token punctuation">)</span></code></pre>
-
-<p>页面引用：</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> JsonViewer <span class="token keyword">from</span> <span class="token string">'vue-json-viewer'</span>
-
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  components<span class="token operator">:</span> <span class="token punctuation">{</span> JsonViewer <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>json-viewer</span> <span class="token attr-name">:value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>showtext<span class="token punctuation">"</span></span> <span class="token attr-name">:expand-depth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>4</span> <span class="token attr-name">copyable</span>  <span class="token attr-name">sort</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>json-viewer</span><span class="token punctuation">&gt;</span></span></code></pre>
-
-<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-<th>默认</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>value</code></td>
-<td>JSON 数据（可与 一起使用 <code>v-model</code>）</td>
-<td><strong>必需的</strong></td>
-</tr>
-<tr>
-<td><code>expand-depth</code></td>
-<td>在此深度下折叠块</td>
-<td><code>1</code></td>
-</tr>
-<tr>
-<td><code>copyable</code></td>
-<td>显示复制按钮，您可以自定义刚刚设置的复制文本 <code>{copyText: 'copy', copiedText: 'copied', timeout: 2000}</code> 或设置 <code>true</code> 使用默认复制文本</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>sort</code></td>
-<td>在显示之前对键进行排序</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>boxed</code></td>
-<td>为组件添加花哨的 “盒装” 样式</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>theme</code></td>
-<td>为主题添加自定义 CSS 类</td>
-<td><code>jv-light</code></td>
-</tr>
-<tr>
-<td><code>expanded</code></td>
-<td>默认展开视图</td>
-<td><code>false</code></td>
-</tr>
-<tr>
-<td><code>timeformat</code></td>
-<td>自定义时间格式功能</td>
-<td>时间 =&gt; time.toLocaleString ()</td>
-</tr>
-<tr>
-<td><code>preview-mode</code></td>
-<td>无扩展模式</td>
-<td><code>false</code></td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
