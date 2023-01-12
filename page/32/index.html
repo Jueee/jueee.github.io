@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">284</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">290</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">284</span>
+          <span class="site-state-item-count">290</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -339,7 +339,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-19-%E5%AE%89%E8%A3%85debian%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -353,7 +353,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/" class="post-title-link" itemprop="url">基于 Vue+ElementUI 的后台集成方案 vue-element-admin</a>
+            <a href="/2020/11/2020-11-19-%E5%AE%89%E8%A3%85debian%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="post-title-link" itemprop="url">安装 debian 无法启动的解决办法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -364,7 +364,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-09T00:00:00Z">2020-11-09</time>
+      <time title="创建时间：2020-11-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-19T00:00:00Z">2020-11-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -372,7 +372,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/Debian/" itemprop="url" rel="index"><span itemprop="name">Debian</span></a>
         </span>
     </span>
 
@@ -385,8 +389,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/11/2020-11-19-%E5%AE%89%E8%A3%85debian%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-19-%E5%AE%89%E8%A3%85debian%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -400,16 +404,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="vue-element-admin"><a href="#vue-element-admin" class="headerlink" title="vue-element-admin"></a>vue-element-admin</h3><p>vue-element-admin 是一个后台前端解决方案，它基于 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue">vue</a> 和 <a target="_blank" rel="noopener" href="https://github.com/ElemeFE/element">element-ui</a> 实现。</p>
-<p>它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/PanJiaChen/vue-element-admin">GitHub</a>，<a target="_blank" rel="noopener" href="https://panjiachen.github.io/vue-element-admin/">在线预览</a>，<a target="_blank" rel="noopener" href="https://github.com/PanJiaChen/vue-element-admin/wiki">Wiki</a></li>
-<li><a target="_blank" rel="noopener" href="https://gitee.com/panjiachen/vue-element-admin">Gitee</a>，<a target="_blank" rel="noopener" href="https://panjiachen.gitee.io/vue-element-admin/">在线预览</a>，<a target="_blank" rel="noopener" href="https://panjiachen.gitee.io/vue-element-admin-site/zh/guide/">使用文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.oschina.net/p/vue-element-admin">OSChina</a></li>
-</ul>
+          <p>安装了几次 debian，一直无法启动。一直闪烁光标。后来发现是默认的问题。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-09-%E5%9F%BA%E4%BA%8EVue+ElementUI%E7%9A%84%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88vue-element-admin/#more" rel="contents">
+              <a class="btn" href="/2020/11/2020-11-19-%E5%AE%89%E8%A3%85debian%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -440,7 +438,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-08-Java%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6ApacheShiro%E4%BB%8B%E7%BB%8D/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-18-MyBatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6PageHelper/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -454,7 +452,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/2020-11-08-Java%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6ApacheShiro%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">Java 安全框架 Apache Shiro 介绍</a>
+            <a href="/2020/11/2020-11-18-MyBatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6PageHelper/" class="post-title-link" itemprop="url">MyBatis 分页插件 PageHelper</a>
         </h2>
 
         <div class="post-meta-container">
@@ -465,119 +463,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-08T00:00:00Z">2020-11-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Apache/Shiro/" itemprop="url" rel="index"><span itemprop="name">Shiro</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/11/2020-11-08-Java%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6ApacheShiro%E4%BB%8B%E7%BB%8D/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-08-Java%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6ApacheShiro%E4%BB%8B%E7%BB%8D/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Apache-Shiro-介绍"><a href="#Apache-Shiro-介绍" class="headerlink" title="Apache Shiro 介绍"></a>Apache Shiro 介绍</h3><p>Apache Shiro 是一个强大灵活的开源安全框架。</p>
-<p>Apache Shiro 可以帮助我们完成：认证、授权、加密、会话管理、与 Web 集成、缓存等。</p>
-<ul>
-<li>官网：<a target="_blank" rel="noopener" href="https://shiro.apache.org/">https://shiro.apache.org/</a></li>
-<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/apache/shiro">https://github.com/apache/shiro</a></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-08-Java%E5%AE%89%E5%85%A8%E6%A1%86%E6%9E%B6ApacheShiro%E4%BB%8B%E7%BB%8D/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-07-Java%E7%9A%84JWT%E5%AE%9E%E7%8E%B0%E5%BA%93java-jwt%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/2020-11-07-Java%E7%9A%84JWT%E5%AE%9E%E7%8E%B0%E5%BA%93java-jwt%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">Java 的 JWT 实现库 java-jwt 介绍</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-07 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-07T00:00:00Z">2020-11-07</time>
+      <time title="创建时间：2020-11-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-18T00:00:00Z">2020-11-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -602,8 +488,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/11/2020-11-07-Java%E7%9A%84JWT%E5%AE%9E%E7%8E%B0%E5%BA%93java-jwt%E4%BB%8B%E7%BB%8D/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-07-Java%E7%9A%84JWT%E5%AE%9E%E7%8E%B0%E5%BA%93java-jwt%E4%BB%8B%E7%BB%8D/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/11/2020-11-18-MyBatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6PageHelper/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-18-MyBatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6PageHelper/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -617,117 +503,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="java-jwt-介绍"><a href="#java-jwt-介绍" class="headerlink" title="java-jwt 介绍"></a>java-jwt 介绍</h3><p>auth0 的 java-jwt 是一个 JSON WEB TOKEN（JWT）的一个实现。</p>
-<p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/auth0/java-jwt">https://github.com/auth0/java-jwt</a></p>
-<h4 id="依赖引入"><a href="#依赖引入" class="headerlink" title="依赖引入"></a>依赖引入</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/com.auth0/java-jwt --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.auth0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>java-jwt<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.11.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-07-Java%E7%9A%84JWT%E5%AE%9E%E7%8E%B0%E5%BA%93java-jwt%E4%BB%8B%E7%BB%8D/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-06-%E8%B7%A8%E5%9F%9F%E8%AE%A4%E8%AF%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88JWT%E4%BB%8B%E7%BB%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/2020-11-06-%E8%B7%A8%E5%9F%9F%E8%AE%A4%E8%AF%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88JWT%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">跨域认证解决方案 JWT 介绍</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-06T00:00:00Z">2020-11-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/11/2020-11-06-%E8%B7%A8%E5%9F%9F%E8%AE%A4%E8%AF%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88JWT%E4%BB%8B%E7%BB%8D/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-06-%E8%B7%A8%E5%9F%9F%E8%AE%A4%E8%AF%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88JWT%E4%BB%8B%E7%BB%8D/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="JWT-简介"><a href="#JWT-简介" class="headerlink" title="JWT 简介"></a>JWT 简介</h3><p>JSON Web Token（JWT）是目前最流行的跨域身份验证解决方案。是基于 Json 的一个公开规范，这个规范允许我们使用 JWT 在用户和服务器之间传递安全可靠的信息。</p>
-<p>JWT 的两大使用场景是：认证和数据交换。使用起来就是，由服务端根据规范生成一个令牌（token），并且发放给客户端。此时客户端请求服务端的时候就可以携带者令牌，以令牌来证明自己的身份信息。</p>
-<p><strong>作用</strong>：类似 session 保持登录状态 的办法，通过 token 来代表用户身份。</p>
+          <h3 id="PageHelper-介绍"><a href="#PageHelper-介绍" class="headerlink" title="PageHelper 介绍"></a>PageHelper 介绍</h3><p>PageHelper 是 Github 上开源的 MyBatis 分页插件，使用起来非常的简单，方便，并且支持任何复杂的单表、多表分页。</p>
 <ul>
-<li>官网：<a target="_blank" rel="noopener" href="https://jwt.io/">https://jwt.io/</a></li>
+<li>官网：<a target="_blank" rel="noopener" href="https://pagehelper.github.io/">https://pagehelper.github.io/</a></li>
+<li> 文档：<a target="_blank" rel="noopener" href="https://pagehelper.github.io/docs/howtouse/">https://pagehelper.github.io/docs/howtouse/</a></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-06-%E8%B7%A8%E5%9F%9F%E8%AE%A4%E8%AF%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88JWT%E4%BB%8B%E7%BB%8D/#more" rel="contents">
+              <a class="btn" href="/2020/11/2020-11-18-MyBatis%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6PageHelper/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -758,7 +541,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-05-Vue%E6%8B%BC%E5%9B%BE%E9%AA%8C%E8%AF%81%EF%BC%88vue-puzzle-vcode%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-13-%E5%9C%A8ElementUI%E4%B8%AD%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%A1%A8%E6%A0%BC%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -772,7 +555,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/2020-11-05-Vue%E6%8B%BC%E5%9B%BE%E9%AA%8C%E8%AF%81%EF%BC%88vue-puzzle-vcode%EF%BC%89/" class="post-title-link" itemprop="url">Vue 拼图验证（vue-puzzle-vcode）</a>
+            <a href="/2020/11/2020-11-13-%E5%9C%A8ElementUI%E4%B8%AD%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%A1%A8%E6%A0%BC%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" class="post-title-link" itemprop="url">在 ElementUI 中格式化表格中的时间</a>
         </h2>
 
         <div class="post-meta-container">
@@ -783,7 +566,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-05T00:00:00Z">2020-11-05</time>
+      <time title="创建时间：2020-11-13 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-13T00:00:00Z">2020-11-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -804,8 +587,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/11/2020-11-05-Vue%E6%8B%BC%E5%9B%BE%E9%AA%8C%E8%AF%81%EF%BC%88vue-puzzle-vcode%EF%BC%89/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-05-Vue%E6%8B%BC%E5%9B%BE%E9%AA%8C%E8%AF%81%EF%BC%88vue-puzzle-vcode%EF%BC%89/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/11/2020-11-13-%E5%9C%A8ElementUI%E4%B8%AD%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%A1%A8%E6%A0%BC%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-13-%E5%9C%A8ElementUI%E4%B8%AD%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%A1%A8%E6%A0%BC%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -819,14 +602,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="插件介绍"><a href="#插件介绍" class="headerlink" title="插件介绍"></a>插件介绍</h3><p>Vue 纯前端的拼图人机验证、右滑拼图验证。</p>
-<ul>
-<li>插件网站：<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vue-puzzle-vcode">https://www.npmjs.com/package/vue-puzzle-vcode</a></li>
-<li>Demo：<a target="_blank" rel="noopener" href="https://isluo.com/work/vue-puzzle-vcode/#/">https://isluo.com/work/vue-puzzle-vcode/#/</a></li>
-</ul>
+          <h3 id="ElementUI-基础表格"><a href="#ElementUI-基础表格" class="headerlink" title="ElementUI 基础表格"></a>ElementUI 基础表格</h3><pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table</span> <span class="token attr-name">:data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tableData<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span> 100%</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table-column</span> <span class="token attr-name">prop</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>date<span class="token punctuation">"</span></span> <span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>日期<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>180<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-table-column</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-table-column</span> <span class="token attr-name">prop</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span> <span class="token attr-name">label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>姓名<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>180<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-table-column</span><span class="token punctuation">&gt;</span></span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-table</span><span class="token punctuation">&gt;</span></span></code></pre>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-05-Vue%E6%8B%BC%E5%9B%BE%E9%AA%8C%E8%AF%81%EF%BC%88vue-puzzle-vcode%EF%BC%89/#more" rel="contents">
+              <a class="btn" href="/2020/11/2020-11-13-%E5%9C%A8ElementUI%E4%B8%AD%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%A1%A8%E6%A0%BC%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -857,7 +639,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-05-Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bkafka-topics.sh/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-12-vue-admin-template%E5%BC%80%E5%90%AF%E9%A1%B6%E9%83%A8%E5%AF%BC%E8%88%AA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -871,7 +653,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/2020-11-05-Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bkafka-topics.sh/" class="post-title-link" itemprop="url">Kafka 常用命令之 kafka-topics.sh</a>
+            <a href="/2020/11/2020-11-12-vue-admin-template%E5%BC%80%E5%90%AF%E9%A1%B6%E9%83%A8%E5%AF%BC%E8%88%AA/" class="post-title-link" itemprop="url">vue-admin-template 开启顶部导航</a>
         </h2>
 
         <div class="post-meta-container">
@@ -882,7 +664,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-05T00:00:00Z">2020-11-05</time>
+      <time title="创建时间：2020-11-12 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-12T00:00:00Z">2020-11-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -890,11 +672,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Apache/Kafka/" itemprop="url" rel="index"><span itemprop="name">Kafka</span></a>
+          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
         </span>
     </span>
 
@@ -907,8 +685,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/11/2020-11-05-Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bkafka-topics.sh/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-05-Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bkafka-topics.sh/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/11/2020-11-12-vue-admin-template%E5%BC%80%E5%90%AF%E9%A1%B6%E9%83%A8%E5%AF%BC%E8%88%AA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-12-vue-admin-template%E5%BC%80%E5%90%AF%E9%A1%B6%E9%83%A8%E5%AF%BC%E8%88%AA/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -922,10 +700,209 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>kafka-topics.sh 脚本主要负责 topic 相关的操作。它的具体实现是通过 kafka-run-class 来调用 <code>TopicCommand</code> 类，并根据参数执行指定的功能。</p>
+          <p>vue-admin-template 默认没有开启 <a target="_blank" rel="noopener" href="https://panjiachen.gitee.io/vue-element-admin-site/zh/guide/essentials/tags-view.html">顶部导航</a>，可通过如下步骤进行开启。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/11/2020-11-05-Kafka%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%B9%8Bkafka-topics.sh/#more" rel="contents">
+              <a class="btn" href="/2020/11/2020-11-12-vue-admin-template%E5%BC%80%E5%90%AF%E9%A1%B6%E9%83%A8%E5%AF%BC%E8%88%AA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-11-RESTful%E9%A3%8E%E6%A0%BC%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6Swagger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/2020-11-11-RESTful%E9%A3%8E%E6%A0%BC%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6Swagger/" class="post-title-link" itemprop="url">RESTful 风格的 Web 服务框架 Swagger</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-11T00:00:00Z">2020-11-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/11/2020-11-11-RESTful%E9%A3%8E%E6%A0%BC%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6Swagger/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-11-RESTful%E9%A3%8E%E6%A0%BC%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6Swagger/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Swagger-介绍"><a href="#Swagger-介绍" class="headerlink" title="Swagger 介绍"></a>Swagger 介绍</h3><p>Swagger 是一个规范和完整的框架，用于生成、描述、调用和可视化 RESTful 风格的 Web 服务。</p>
+<p>总体目标是使客户端和文件系统作为服务器以同样的速度来更新。文件的方法、参数和模型紧密集成到服务器端的代码，允许 API 来始终保持同步。</p>
+<ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://swagger.io/">https://swagger.io/</a></li>
+<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/swagger-api">https://github.com/swagger-api</a></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/2020-11-11-RESTful%E9%A3%8E%E6%A0%BC%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6Swagger/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">RESTful 架构的介绍和使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-10T00:00:00Z">2020-11-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h3><p>REST（Representational State Transfer）表象化状态转变（表述性状态转变），在 2000 年被提出，基于 HTTP、URI、XML、JSON 等标准和协议，支持轻量级、跨平台、跨语言的架构设计。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/2020-11-10-RESTful%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E4%BD%BF%E7%94%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -951,7 +928,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -992,7 +969,7 @@
 <div class="copyright">
   
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

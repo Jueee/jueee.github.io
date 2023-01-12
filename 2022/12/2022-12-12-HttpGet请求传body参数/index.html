@@ -28,22 +28,21 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="P6Spy 介绍P6Spy 是一个可以用来在应用程序中拦截和修改数据操作语句的开源框架。  通过 P6Spy 我们可以对 SQL 语句进行拦截，相当于一个 SQL 语句的记录器，这样我们可以用它来作相关的分析，比如性能分析。  文档：https:&#x2F;&#x2F;p6spy.readthedocs.io&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;p6spy&#x2F;p6spy">
+  <meta name="description" content="elastic search 的请求是一个 Get 请求，入参在 Body 中（Json 格式）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQL 语句拦截框架 P6Spy 的介绍使用">
-<meta property="og:url" content="https://jueee.github.io/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="HttpGet 请求传 body 参数">
+<meta property="og:url" content="https://jueee.github.io/2022/12/2022-12-12-HttpGet%E8%AF%B7%E6%B1%82%E4%BC%A0body%E5%8F%82%E6%95%B0/index.html">
 <meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="P6Spy 介绍P6Spy 是一个可以用来在应用程序中拦截和修改数据操作语句的开源框架。  通过 P6Spy 我们可以对 SQL 语句进行拦截，相当于一个 SQL 语句的记录器，这样我们可以用它来作相关的分析，比如性能分析。  文档：https:&#x2F;&#x2F;p6spy.readthedocs.io&#x2F; GitHub：https:&#x2F;&#x2F;github.com&#x2F;p6spy&#x2F;p6spy">
+<meta property="og:description" content="elastic search 的请求是一个 Get 请求，入参在 Body 中（Json 格式）。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-28T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-28T06:56:40.532Z">
+<meta property="article:published_time" content="2022-12-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-13T10:44:43.613Z">
 <meta property="article:author" content="小决">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="JavaJar">
+<meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://jueee.github.io/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/">
+<link rel="canonical" href="https://jueee.github.io/2022/12/2022-12-12-HttpGet%E8%AF%B7%E6%B1%82%E4%BC%A0body%E5%8F%82%E6%95%B0/">
 
 
 <script data-pjax class="page-configurations">
@@ -56,7 +55,7 @@
   };
 </script>
 
-  <title>SQL 语句拦截框架 P6Spy 的介绍使用 | 小决的专栏</title>
+  <title>HttpGet 请求传 body 参数 | 小决的专栏</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -162,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">284</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">290</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -236,7 +235,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#P6Spy-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">P6Spy 介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%BC%95%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">依赖引入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P6Spy-%E5%8F%82%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">P6Spy 参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#formatMessage-%E5%8F%82%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">formatMessage 参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-P6Spy"><span class="nav-number">3.</span> <span class="nav-text">使用 P6Spy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">自定义输出格式</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%85%A5httpclient-%E4%BE%9D%E8%B5%96"><span class="nav-number">1.1.</span> <span class="nav-text">引入 httpclient 依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AAHttpGet%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">定义一个 HttpGet 实体类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpGet%E8%AF%B7%E6%B1%82%E5%85%AC%E5%85%B1%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">HttpGet 请求公共方法</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -252,7 +251,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">284</span>
+          <span class="site-state-item-count">290</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -346,7 +345,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2022/12/2022-12-12-HttpGet%E8%AF%B7%E6%B1%82%E4%BC%A0body%E5%8F%82%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -359,7 +358,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          SQL 语句拦截框架 P6Spy 的介绍使用
+          HttpGet 请求传 body 参数
         </h1>
 
         <div class="post-meta-container">
@@ -370,7 +369,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-28T00:00:00Z">2020-12-28</time>
+      <time title="创建时间：2022-12-12 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-12T00:00:00Z">2022-12-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -378,11 +377,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
         </span>
     </span>
 
@@ -402,8 +397,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/12/2022-12-12-HttpGet%E8%AF%B7%E6%B1%82%E4%BC%A0body%E5%8F%82%E6%95%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/12/2022-12-12-HttpGet%E8%AF%B7%E6%B1%82%E4%BC%A0body%E5%8F%82%E6%95%B0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -417,98 +412,72 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="P6Spy-介绍"><a href="#P6Spy-介绍" class="headerlink" title="P6Spy 介绍"></a>P6Spy 介绍</h3><p>P6Spy 是一个可以用来在应用程序中拦截和修改数据操作语句的开源框架。 </p>
-<p>通过 P6Spy 我们可以对 SQL 语句进行拦截，相当于一个 SQL 语句的记录器，这样我们可以用它来作相关的分析，比如性能分析。</p>
-<ul>
-<li>文档：<span class="exturl" data-url="aHR0cHM6Ly9wNnNweS5yZWFkdGhlZG9jcy5pby8=">https://p6spy.readthedocs.io/<i class="fa fa-external-link-alt"></i></span></li>
-<li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3A2c3B5L3A2c3B5">https://github.com/p6spy/p6spy<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
+        <p>elastic search 的请求是一个 Get 请求，入参在 Body 中（Json 格式）。</p>
 <a id="more"></a>
 
-<h4 id="依赖引入"><a href="#依赖引入" class="headerlink" title="依赖引入"></a>依赖引入</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/p6spy/p6spy --&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>p6spy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>p6spy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.9.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
+<h3 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h3><h4 id="引入httpclient-依赖"><a href="#引入httpclient-依赖" class="headerlink" title="引入httpclient 依赖"></a>引入 httpclient 依赖</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient --&gt;</span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.httpcomponents<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>httpclient<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>4.5.6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 
-<h3 id="P6Spy-参数"><a href="#P6Spy-参数" class="headerlink" title="P6Spy 参数"></a>P6Spy 参数</h3><h4 id="formatMessage-参数"><a href="#formatMessage-参数" class="headerlink" title="formatMessage 参数"></a>formatMessage 参数</h4><ul>
-<li>connectionId：连接数据库的 ID</li>
-<li>now：当前 time 的毫秒数</li>
-<li> elapsed：操作完成所需的时间（以毫秒为单位）</li>
-<li>category：操作的类别</li>
-<li> prepared：将所有绑定变量替换为实际值的 SQL 语句</li>
-<li> SQL：执行的 sql 语句</li>
-<li> url：执行 sql 语句的数据库 URL</li>
-</ul>
-<h3 id="使用-P6Spy"><a href="#使用-P6Spy" class="headerlink" title="使用 P6Spy"></a>使用 P6Spy</h3><ol>
-<li><p>引入 P6Spy 的依赖。</p>
-</li>
-<li><p>更换数据库连接驱动。</p>
-<p>数据库驱动将 com.mysql.jdbc.Driver 替换为 com.p6spy.engine.spy.P6SpyDriver，然后在 url 中的按下面的格式加入 p6spy 即可。</p>
-<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 更换前</span>
-<span class="token attr-name">spring.datasource.second.driverClassName</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
-<span class="token attr-name">spring.datasource.second.jdbc-url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC</span>
-
-<span class="token comment"># 更换后</span>
-<span class="token attr-name">spring.datasource.second.driverClassName</span><span class="token punctuation">=</span><span class="token attr-value">com.p6spy.engine.spy.P6SpyDriver</span>
-<span class="token attr-name">spring.datasource.second.jdbc-url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:p6spy:mysql://127.0.0.1:3306/test?serverTimezone=UTC</span></code></pre>
-</li>
-<li><p>添加配置文件 <code>spy.properties</code>。</p>
-<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 单行日志</span>
-<span class="token attr-name">logMessageFormat</span><span class="token punctuation">=</span><span class="token attr-value">com.p6spy.engine.spy.appender.SingleLineFormat</span>
-<span class="token comment"># 使用Slf4J记录sql</span>
-<span class="token attr-name">appender</span><span class="token punctuation">=</span><span class="token attr-value">com.p6spy.engine.spy.appender.Slf4JLogger</span>
-<span class="token comment"># 是否开启慢SQL记录</span>
-<span class="token attr-name">outagedetection</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token comment"># 慢SQL记录标准，单位秒</span>
-<span class="token attr-name">outagedetectioninterval</span><span class="token punctuation">=</span><span class="token attr-value">2</span>
-<span class="token comment">#日期格式</span>
-<span class="token attr-name">dateformat</span><span class="token punctuation">=</span><span class="token attr-value">yyyy-MM-dd HH:mm:ss</span></code></pre>
-
-</li>
-</ol>
-<p>效果如下：</p>
-<p><code>com.p6spy.engine.spy.appender.SingleLineFormat</code> 单行日志：</p>
-<pre class="language-none"><code class="language-none">2020-12-28 14:17:44.493  INFO 87484 --- [           main] p6spy                                    : 2020-12-28 14:17:44|11|statement|connection 19|url jdbc:p6spy:mysql://127.0.0.1:3306/test?serverTimezone=UTC|SELECT  id,author,description,title  FROM book     WHERE (author &gt;= ?)|SELECT  id,author,description,title  FROM book     WHERE (author &gt;= 'author0')</code></pre>
-
-<p><code>com.p6spy.engine.spy.appender.MultiLineFormat</code> 多行日志：</p>
-<pre class="language-none"><code class="language-none">2020-12-28 14:24:00.087  INFO 42092 --- [           main] p6spy                                    : #2020-12-28 14:24:00 | took 11ms | statement | connection 19| url jdbc:p6spy:mysql://127.0.0.1:3306/test?serverTimezone=UTC
-SELECT  id,author,description,title  FROM book 
- 
- WHERE (author &gt;= ?)
-SELECT  id,author,description,title  FROM book 
- 
- WHERE (author &gt;= 'author0');</code></pre>
-
-<h3 id="自定义输出格式"><a href="#自定义输出格式" class="headerlink" title="自定义输出格式"></a>自定义输出格式</h3><p>在 <code>spy.properties</code> 配置文件中进行配置：</p>
-<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># 自定义输出格式</span>
-<span class="token attr-name">logMessageFormat</span><span class="token punctuation">=</span><span class="token attr-value">com.jueee.config.P6SpyLogger</span></code></pre>
-
-<p>其中，P6SpyLogger 类的实现如下：</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>p6spy<span class="token punctuation">.</span>engine<span class="token punctuation">.</span>spy<span class="token punctuation">.</span>appender<span class="token punctuation">.</span></span><span class="token class-name">MessageFormattingStrategy</span><span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>text<span class="token punctuation">.</span></span><span class="token class-name">SimpleDateFormat</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Date</span><span class="token punctuation">;</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">P6SpyLogger</span> <span class="token keyword">implements</span> <span class="token class-name">MessageFormattingStrategy</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">private</span> <span class="token class-name">SimpleDateFormat</span> format <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SimpleDateFormat</span><span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd HH:mm:ss:SSS"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h4 id="定义一个HttpGet实体类"><a href="#定义一个HttpGet实体类" class="headerlink" title="定义一个HttpGet实体类"></a>定义一个 HttpGet 实体类</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>http<span class="token punctuation">.</span>client<span class="token punctuation">.</span>methods<span class="token punctuation">.</span></span><span class="token class-name">HttpEntityEnclosingRequestBase</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span>URI<span class="token punctuation">;</span>
+<span class="token comment">/**
+ * @author xf
+ * @version 1.0.0
+ * @ClassName HttpGetWithEntity
+ * @Description TODO 定义一个带body的GET请求 继承 HttpEntityEnclosingRequestBase
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HttpGetWithEntity</span> <span class="token keyword">extends</span> <span class="token class-name">HttpEntityEnclosingRequestBase</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token class-name">String</span> METHOD_NAME <span class="token operator">=</span> <span class="token string">"GET"</span><span class="token punctuation">;</span>
 
     <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">formatMessage</span><span class="token punctuation">(</span><span class="token keyword">int</span> connectionId<span class="token punctuation">,</span> <span class="token class-name">String</span> now<span class="token punctuation">,</span> <span class="token keyword">long</span> elapsed<span class="token punctuation">,</span> <span class="token class-name">String</span> category<span class="token punctuation">,</span> <span class="token class-name">String</span> prepared<span class="token punctuation">,</span> <span class="token class-name">String</span> sql<span class="token punctuation">,</span> <span class="token class-name">String</span> url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token operator">!</span><span class="token string">""</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>sql<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>format<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" | took "</span> <span class="token operator">+</span> elapsed <span class="token operator">+</span> <span class="token string">"ms | "</span> <span class="token operator">+</span> category <span class="token operator">+</span> <span class="token string">" | connection "</span> <span class="token operator">+</span> connectionId <span class="token operator">+</span> <span class="token string">"\n "</span> <span class="token operator">+</span> sql <span class="token operator">+</span> <span class="token string">";"</span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> METHOD_NAME<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">HttpGetWithEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token class-name">HttpGetWithEntity</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">URI</span> uri<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setURI</span><span class="token punctuation">(</span>uri<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">HttpGetWithEntity</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">String</span> uri<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setURI</span><span class="token punctuation">(</span>URI<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>uri<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
 <span class="token punctuation">}</span></code></pre>
 
-<p>执行结果如下：</p>
-<pre class="language-none"><code class="language-none">2020-12-28 14:39:27.947  INFO 102272 --- [           main] p6spy                                    : 2020-12-28 14:39:27:947 | took 11ms | statement | connection 19
- SELECT  id,author,description,title  FROM book 
- 
- WHERE (author &gt;= 'author0');</code></pre>
-
-
-
+<h4 id="HttpGet请求公共方法"><a href="#HttpGet请求公共方法" class="headerlink" title="HttpGet请求公共方法"></a>HttpGet 请求公共方法</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+  * 发送get请求，参数为json
+  * @param url
+  * @param param
+  * @param encoding
+  * @return
+  * @throws Exception
+  */</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">sendJsonByGetReq</span><span class="token punctuation">(</span><span class="token class-name">String</span> url<span class="token punctuation">,</span> <span class="token class-name">String</span> param<span class="token punctuation">,</span> <span class="token class-name">String</span> encoding<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+    <span class="token class-name">String</span> body <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token comment">//创建httpclient对象</span>
+    <span class="token class-name">CloseableHttpClient</span> client <span class="token operator">=</span> <span class="token class-name">HttpClients</span><span class="token punctuation">.</span><span class="token function">createDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">HttpGetWithEntity</span> httpGetWithEntity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HttpGetWithEntity</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">HttpEntity</span> httpEntity <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringEntity</span><span class="token punctuation">(</span>param<span class="token punctuation">,</span> <span class="token class-name">ContentType</span><span class="token punctuation">.</span>APPLICATION_JSON<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    httpGetWithEntity<span class="token punctuation">.</span><span class="token function">setEntity</span><span class="token punctuation">(</span>httpEntity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//执行请求操作，并拿到结果（同步阻塞）</span>
+    <span class="token class-name">CloseableHttpResponse</span> response <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>httpGetWithEntity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//获取结果实体</span>
+    <span class="token class-name">HttpEntity</span> entity <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">getEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>entity <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">//按指定编码转换结果实体为String类型</span>
+        body <span class="token operator">=</span> <span class="token class-name">EntityUtils</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> encoding<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">//释放链接</span>
+    response<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> body<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
     </div>
 
@@ -519,40 +488,39 @@ SELECT  id,author,description,title  FROM book
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-27-Java字节码操纵框架ASM\" rel="bookmark">Java 字节码操纵框架 ASM</a></div>
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-17-搭建Jekyll环境\" rel="bookmark">搭建 Jekyll 环境</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\10\2020-10-11-Apache集合工具commons-collections4的使用\" rel="bookmark">Apache 集合工具 commons-collections4 的使用</a></div>
+      <div class="popular-posts-title"><a href="\2020\06\2020-06-19-为Jekyll博客系统增加百度统计\" rel="bookmark">为 Jekyll 博客系统增加百度统计</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\10\2020-10-12-Apache数据库工具commons-dbutils的使用\" rel="bookmark">Apache 数据库工具 commons-dbutils 的使用</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-01-为Jekyll博客系统增加来必力评论系统\" rel="bookmark">为 Jekyll 博客系统增加来必力评论系统</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\10\2020-10-27-作业调度框架Quartz的基本使用\" rel="bookmark">作业调度框架 Quartz 的基本使用</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-09-使用不蒜子增加Jekyll博客访问量统计\" rel="bookmark">使用不蒜子增加 Jekyll 博客访问量统计</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\10\2020-10-29-XML操作类库XStream的基本使用\" rel="bookmark">XML 操作类库 XStream 的基本使用</a></div>
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-08-jekyll使用中文路径\" rel="bookmark">jekyll 使用中文路径</a></div>
     </li>
   </ul>
 
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/JavaJar/" rel="tag"># JavaJar</a>
+              <a href="/tags/Blog/" rel="tag"># Blog</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/12/2020-12-27-Web%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7BurpSuite%E7%9A%84Intruder%E6%A8%A1%E5%9D%97/" rel="prev" title="Web 渗透工具 BurpSuite 的 Intruder 模块">
-                  <i class="fa fa-chevron-left"></i> Web 渗透工具 BurpSuite 的 Intruder 模块
+                <a href="/2022/11/2022-11-21-%E8%A7%A3%E5%86%B3group_concat%E9%BB%98%E8%AE%A4%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%E9%97%AE%E9%A2%98/" rel="prev" title="解决 group_concat 默认长度限制问题">
+                  <i class="fa fa-chevron-left"></i> 解决 group_concat 默认长度限制问题
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/12/2020-12-29-Java%E4%B8%AD%E4%BD%BF%E7%94%A8RSA%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86/" rel="next" title="Java 中使用 RSA 算法加密">
-                  Java 中使用 RSA 算法加密 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/12/2022-12-13-curl%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%9F%A5%E8%AF%A2ElasticSearch%E6%95%B0%E6%8D%AE/" rel="next" title="curl 命令行查询 ElasticSearch 数据">
+                  curl 命令行查询 ElasticSearch 数据 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -615,7 +583,7 @@ SELECT  id,author,description,title  FROM book
 <div class="copyright">
   
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -820,7 +788,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'jueee.github.io',
       owner       : 'jueee',
       admin       : ['jueee'],
-      id          : '4dbb7a6b4e968e5a972bd364f31e9071',
+      id          : '68293c8cad42ddc37a474b8ee4990cd2',
         language: 'zh-CN',
       distractionFreeMode: true
     });
@@ -834,7 +802,7 @@ NexT.utils.loadComments('#valine-comments', () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
     new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":"https://p5beawtt.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
       el: '#valine-comments',
-      path: "/2020/12/2020-12-28-SQL%E8%AF%AD%E5%8F%A5%E6%8B%A6%E6%88%AA%E6%A1%86%E6%9E%B6P6Spy%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%BD%BF%E7%94%A8/",
+      path: "/2022/12/2022-12-12-HttpGet%E8%AF%B7%E6%B1%82%E4%BC%A0body%E5%8F%82%E6%95%B0/",
       serverURLs: "https://p5beawtt.lc-cn-n1-shared.com"
     }));
   }, window.Valine);
