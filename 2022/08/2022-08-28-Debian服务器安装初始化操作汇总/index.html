@@ -36,7 +36,7 @@
 <meta property="og:description" content="整理一下 Debian 服务器安装初始化操作汇总。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-28T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-29T08:43:23.680Z">
+<meta property="article:modified_time" content="2023-01-13T02:23:38.861Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="Debian">
@@ -162,7 +162,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">290</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">293</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -252,7 +252,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">290</span>
+          <span class="site-state-item-count">293</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -429,6 +429,10 @@ Codename:       stretch</code></pre>
 <h3 id="初始化-vi-编辑器"><a href="#初始化-vi-编辑器" class="headerlink" title="初始化 vi 编辑器"></a>初始化 vi 编辑器</h3><p>执行以下命令再使用 vi 编辑器：</p>
 <pre class="language-none"><code class="language-none">cp /etc/vim/vimrc ~/.vimrc</code></pre>
 
+<p>Vi 编辑器在文本输入模式时，不能正确使用方向键和退格键，或者是输入内容无法正常的内容，解决方法：</p>
+<pre class="language-none"><code class="language-none">sudo sed -i '$a\set nocompatible' /etc/vim/vimrc.tiny
+sudo sed -i '$a\set backspace=2' /etc/vim/vimrc.tiny</code></pre>
+
 <h3 id="运行-dpkg-命令设置"><a href="#运行-dpkg-命令设置" class="headerlink" title="运行 dpkg 命令设置"></a>运行 dpkg 命令设置</h3><p>如果无法运行 dpkg 命令，提示：</p>
 <blockquote>
 <p>dpkg: warningL 'ldconfig' not found in PATH or not executable</p>
@@ -523,13 +527,13 @@ mount /dev/vdb /data1</code></pre>
       <div class="popular-posts-title"><a href="\2020\11\2020-11-20-Debian下配置网络的方法\" rel="bookmark">Debian 下配置网络的方法</a></div>
     </li>
     <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2023\01\2023-01-13-Windows的WSL2子系统安装Docker环境\" rel="bookmark">Windows 的 WSL2 子系统安装 Docker 环境</a></div>
+    </li>
+    <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2020\09\2020-09-16-Linux进行磁盘自动挂载\" rel="bookmark">Linux 进行磁盘自动挂载</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2021\04\2021-04-12-Linux清理日志文件汇总\" rel="bookmark">Linux 清理日志文件汇总</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\07\2021-07-11-windows10找不到gpedit.msc组策略\" rel="bookmark">Windows10 找不到 gpedit.msc 组策略</a></div>
     </li>
   </ul>
 
