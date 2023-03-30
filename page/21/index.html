@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">293</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">295</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">293</span>
+          <span class="site-state-item-count">295</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -331,6 +331,304 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-29-CSS%E5%AE%9E%E7%8E%B0%E6%8A%8A%E6%96%87%E5%AD%97%E5%86%99%E5%9C%A8%E8%BE%B9%E6%A1%86%E4%B8%8A%E6%95%88%E6%9E%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/2021-03-29-CSS%E5%AE%9E%E7%8E%B0%E6%8A%8A%E6%96%87%E5%AD%97%E5%86%99%E5%9C%A8%E8%BE%B9%E6%A1%86%E4%B8%8A%E6%95%88%E6%9E%9C/" class="post-title-link" itemprop="url">CSS 实现把文字写在边框上效果</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-29T00:00:00Z">2021-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/2021-03-29-CSS%E5%AE%9E%E7%8E%B0%E6%8A%8A%E6%96%87%E5%AD%97%E5%86%99%E5%9C%A8%E8%BE%B9%E6%A1%86%E4%B8%8A%E6%95%88%E6%9E%9C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-29-CSS%E5%AE%9E%E7%8E%B0%E6%8A%8A%E6%96%87%E5%AD%97%E5%86%99%E5%9C%A8%E8%BE%B9%E6%A1%86%E4%B8%8A%E6%95%88%E6%9E%9C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="fieldset-标签实现"><a href="#fieldset-标签实现" class="headerlink" title="fieldset 标签实现"></a>fieldset 标签实现</h3><h4 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h4><p>CSS 样式如下：</p>
+<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">fieldset.test</span> <span class="token punctuation">{</span>
+	<span class="token property">font-size</span><span class="token punctuation">:</span>12px<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span>10px<span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span>10px<span class="token punctuation">;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span>270px<span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span>#333<span class="token punctuation">;</span> 
+    <span class="token property">border</span><span class="token punctuation">:</span>#06c solid 1px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+<span class="token selector">legend</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span>#06c<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span>5px 10px<span class="token punctuation">;</span>
+    <span class="token property">font-weight</span><span class="token punctuation">:</span>800<span class="token punctuation">;</span> 
+    <span class="token property">background</span><span class="token punctuation">:</span>white<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><p>示例 HTML 如下：</p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fieldset</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>test<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> 
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>legend</span><span class="token punctuation">&gt;</span></span>文字标题<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>legend</span><span class="token punctuation">&gt;</span></span> 
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>文字内容<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fieldset</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<h4 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h4><p>加入上述 css 样式：</p>
+<p><img src="/images/2021/03/image-20210329145848708.png" alt="image-20210329145848708" loading="lazy"></p>
+<p>原生样式效果：</p>
+<p><img src="/images/2021/03/image-20210329150306772.png" alt="image-20210329150306772" loading="lazy"></p>
+<h3 id="bootstrap-引入冲突"><a href="#bootstrap-引入冲突" class="headerlink" title="bootstrap 引入冲突"></a>bootstrap 引入冲突</h3><h4 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h4><p>当页面引入 bootstrap 时，fieldset 效果消失，如下：</p>
+<p><img src="/images/2021/03/image-20210329150711376.png" alt="image-20210329150711376" loading="lazy"></p>
+<p>这是由于 bootstrap 重写了 <strong>fieldset</strong> 标签和其中的 <strong>legend</strong> 标签样式。</p>
+<h4 id="还原设置"><a href="#还原设置" class="headerlink" title="还原设置"></a>还原设置</h4><pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">fieldset</span> <span class="token punctuation">{</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> .35em .625em .75em<span class="token punctuation">;</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> 0 2px<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> 1px solid silver<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+
+<span class="token selector">legend</span> <span class="token punctuation">{</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> .5em<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+    <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 0px<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span></code></pre>
+
+<p>效果如下：</p>
+<p><img src="/images/2021/03/image-20210329150638185.png" alt="image-20210329150638185" loading="lazy"></p>
+<h3 id="纯CSS实现效果一"><a href="#纯CSS实现效果一" class="headerlink" title="纯CSS实现效果一"></a>纯 CSS 实现效果一</h3><p>在边框上添加文字。</p>
+<h4 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h4><p>CSS 样式如下：</p>
+<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">.wrap</span><span class="token punctuation">{</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> 100px auto<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 500px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* 方法实现 */</span>
+<span class="token selector">.method-fieldset</span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ccc<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.method-fieldset .title</span><span class="token punctuation">{</span>
+	<span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+	<span class="token property">top</span><span class="token punctuation">:</span> -13px<span class="token punctuation">;</span>
+	<span class="token property">left</span><span class="token punctuation">:</span> 10%<span class="token punctuation">;</span>
+	<span class="token property">line-height</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+	<span class="token property">padding</span><span class="token punctuation">:</span> 0 1em<span class="token punctuation">;</span>
+	<span class="token property">background-color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h4 id="HTML-1"><a href="#HTML-1" class="headerlink" title="HTML"></a>HTML</h4><p>示例 HTML 如下：</p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>method-fieldset wrap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>文字标题<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>文字内容<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<h4 id="实现效果-1"><a href="#实现效果-1" class="headerlink" title="实现效果"></a>实现效果</h4><p><img src="/images/2021/03/image-20210329144954417.png" alt="image-20210329144954417" loading="lazy"></p>
+<h3 id="纯CSS实现效果二"><a href="#纯CSS实现效果二" class="headerlink" title="纯CSS实现效果二"></a>纯 CSS 实现效果二</h3><p>文字 <code>.title:before</code>&nbsp;实现分隔效果，并通过 <code>z-index: -1;</code>&nbsp;置于底部。</p>
+<h4 id="CSS-2"><a href="#CSS-2" class="headerlink" title="CSS"></a>CSS</h4><p>CSS 样式如下：</p>
+<pre class="language-css" data-language="css"><code class="language-css"><span class="token selector">.wrap</span><span class="token punctuation">{</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> 100px auto<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 500px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.method-fieldset .title</span><span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.method-fieldset .title:before</span><span class="token punctuation">{</span>
+  <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+  <span class="token property">right</span><span class="token punctuation">:</span>0<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+  <span class="token property">border-top</span><span class="token punctuation">:</span> 1px solid #ccc<span class="token punctuation">;</span>
+  <span class="token property">z-index</span><span class="token punctuation">:</span> -1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.method-fieldset .title span</span><span class="token punctuation">{</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 0 1em<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.method-fieldset .content</span><span class="token punctuation">{</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span>20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h4 id="HTML-2"><a href="#HTML-2" class="headerlink" title="HTML"></a>HTML</h4><p>示例 HTML 如下：</p>
+<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>method-fieldset wrap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>文字标题<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>文字内容<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<h4 id="实现效果-2"><a href="#实现效果-2" class="headerlink" title="实现效果"></a>实现效果</h4><p><img src="/images/2021/03/image-20210329145357043.png" alt="image-20210329145357043" loading="lazy"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-20-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0N%E5%8F%89%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/2021-03-20-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0N%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">Java 按照树形结构打印 N 叉树</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-20T00:00:00Z">2021-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/2021-03-20-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0N%E5%8F%89%E6%A0%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-20-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0N%E5%8F%89%E6%A0%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在我们完成一棵树的构建之后，如果我们想要看这棵树的结构，不像数组或者 List 等数据结构，我们可以非常方便地用各种方式将其中的所有元素打印出来，对于树而言，这个过程要麻烦得多，我们可以用各种遍历方式得到这棵树的结构，但是终究还是不够直观。</p>
+<p>如果我们可以按照树的结构，将其打印出来就好了，那么本文就是一种实现这个目标的思路以供参考。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/2021-03-20-Java%E6%8C%89%E7%85%A7%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84%E6%89%93%E5%8D%B0N%E5%8F%89%E6%A0%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -819,210 +1117,10 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/" class="post-title-link" itemprop="url">Windows 下安装 Redis 并设置自启动</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-10T00:00:00Z">2021-03-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="下载Windows版本的Redis"><a href="#下载Windows版本的Redis" class="headerlink" title="下载Windows版本的Redis"></a>下载 Windows 版本的 Redis</h3><p>原来在官网上可以下载的 windows 版本的，现在官网以及没有下载地址，只能在 github 上下载，官网只提供 linux 版本的下载。</p>
-<p>官网下载地址：<a target="_blank" rel="noopener" href="http://redis.io/download">http://redis.io/download</a></p>
-<p>github 下载地址：<a target="_blank" rel="noopener" href="https://github.com/MSOpenTech/redis/tags">https://github.com/MSOpenTech/redis/tags</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/" class="post-title-link" itemprop="url">Windows 系统下的 MySQL 版本升级</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-10T00:00:00Z">2021-03-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>最近因原先的 MySQL 版本过低，所以希望将 Windows 下的 MySQL5.5 升级为 MySQL5.7。记录一下升级过程。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 

@@ -157,7 +157,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">293</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">295</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,7 +246,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">293</span>
+          <span class="site-state-item-count">295</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -331,6 +331,225 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-19-SpringBoot%E9%9B%86%E6%88%90Zookeeper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/2020-12-19-SpringBoot%E9%9B%86%E6%88%90Zookeeper/" class="post-title-link" itemprop="url">SpringBoot 集成 Zookeeper</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-19T00:00:00Z">2020-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apache/Zookeeper/" itemprop="url" rel="index"><span itemprop="name">Zookeeper</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-19-SpringBoot%E9%9B%86%E6%88%90Zookeeper/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-19-SpringBoot%E9%9B%86%E6%88%90Zookeeper/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><p>pom.xml 引入 Zookeeper 依赖</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.zookeeper<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>zookeeper<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.4.14<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/2020-12-19-SpringBoot%E9%9B%86%E6%88%90Zookeeper/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-18-%E4%BD%BF%E7%94%A8RSA%E5%9C%A8Web%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E4%BC%A0%E8%BE%93%E8%87%B3%E5%90%8E%E5%8F%B0%E8%A7%A3%E5%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/2020-12-18-%E4%BD%BF%E7%94%A8RSA%E5%9C%A8Web%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E4%BC%A0%E8%BE%93%E8%87%B3%E5%90%8E%E5%8F%B0%E8%A7%A3%E5%AF%86/" class="post-title-link" itemprop="url">使用 RSA 在 Web 前端加密传输至后台解密</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-18T00:00:00Z">2020-12-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/12/2020-12-18-%E4%BD%BF%E7%94%A8RSA%E5%9C%A8Web%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E4%BC%A0%E8%BE%93%E8%87%B3%E5%90%8E%E5%8F%B0%E8%A7%A3%E5%AF%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-18-%E4%BD%BF%E7%94%A8RSA%E5%9C%A8Web%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E4%BC%A0%E8%BE%93%E8%87%B3%E5%90%8E%E5%8F%B0%E8%A7%A3%E5%AF%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在自定义登录过程中，用户名和密码通常是作为 form 表单中的 input 控件进行输入，然后明文传输到服务端进行校验登录的。</p>
+<p>此时，可能会出现密码明文传输问题。如下图示例所示：</p>
+<p><img src="/images/2020/12/image-20201217163137695.png" alt="image-20201217163137695" loading="lazy"></p>
+<p>通常跟服务器的交互中，为保障数据传输的安全性，避免被人抓包篡改数据，除了 https 的应用，还需要对传输数据进行加解密。</p>
+<p>本文介绍一种 <strong>RSA加密web前端用户名密码加密传输至后台并解密</strong> 的方法。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/2020-12-18-%E4%BD%BF%E7%94%A8RSA%E5%9C%A8Web%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E4%BC%A0%E8%BE%93%E8%87%B3%E5%90%8E%E5%8F%B0%E8%A7%A3%E5%AF%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -762,230 +981,10 @@ java.io.IOException: Packet len5605464 is out of range!
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-14-MySQL%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%91%BD%E4%BB%A4Explain%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/2020-12-14-MySQL%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%91%BD%E4%BB%A4Explain%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">MySQL 性能优化命令 Explain 的使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-14T00:00:00Z">2020-12-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/12/2020-12-14-MySQL%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%91%BD%E4%BB%A4Explain%E7%9A%84%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-14-MySQL%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%91%BD%E4%BB%A4Explain%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>MySQL 提供了一个 Explain 命令，它可以对 <code>SELECT</code> 语句进行分析，并输出 <code>SELECT</code> 执行的详细信息，以供开发人员针对性优化.</p>
-<p>EXPLAIN 命令用法十分简单，在 SELECT 语句前加上 Explain 就可以了，例如:</p>
-<pre class="language-mysql" data-language="mysql"><code class="language-mysql">EXPLAIN SELECT * from user_info WHERE id &lt; 300;</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-14-MySQL%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%91%BD%E4%BB%A4Explain%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/12/2020-12-11-Java%E5%AE%9E%E7%8E%B0HTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/2020-12-11-Java%E5%AE%9E%E7%8E%B0HTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">Java 实现 HTTP 请求的三种方式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-12-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-11T00:00:00Z">2020-12-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Apache/" itemprop="url" rel="index"><span itemprop="name">Apache</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Apache/HttpComponents/" itemprop="url" rel="index"><span itemprop="name">HttpComponents</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/12/2020-12-11-Java%E5%AE%9E%E7%8E%B0HTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/2020-12-11-Java%E5%AE%9E%E7%8E%B0HTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>目前 JAVA 实现 HTTP 请求的方法用的最多的有两种：</p>
-<ul>
-<li><p>通过 HTTPClient 这种第三方的开源框架去实现。</p>
-<p>HTTPClient 对 HTTP 的封装性比较不错，通过它基本上能够满足我们大部分的需求。</p>
-<ul>
-<li>HttpClient3.1 是 org.apache.commons.httpclient 下操作远程 url 的工具包，虽然已不再更新，但实现工作中使用 httpClient3.1 的代码还是很多。</li>
-<li>HttpClient4.5 是 org.apache.http.client 下操作远程 url 的工具包，最新的。</li>
-</ul>
-</li>
-<li><p>通过 HttpURLConnection 去实现</p>
-<p>HttpURLConnection 是 JAVA 的标准类，是 JAVA 比较原生的一种实现方式。</p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/2020-12-11-Java%E5%AE%9E%E7%8E%B0HTTP%E8%AF%B7%E6%B1%82%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
