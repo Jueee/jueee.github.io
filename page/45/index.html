@@ -157,17 +157,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">295</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">304</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">57</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">58</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">101</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">102</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -246,20 +246,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">295</span>
+          <span class="site-state-item-count">304</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">58</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">101</span>
+        <span class="site-state-item-count">102</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -339,7 +339,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-13-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87thread%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-21-%E9%80%9A%E8%BF%87UnxUtils%E5%9C%A8Windows%E4%B8%8A%E4%BD%BF%E7%94%A8Unix%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -353,7 +353,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/2020-08-13-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87thread%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Arthas 之通过 thread 命令定位线程问题</a>
+            <a href="/2020/08/2020-08-21-%E9%80%9A%E8%BF%87UnxUtils%E5%9C%A8Windows%E4%B8%8A%E4%BD%BF%E7%94%A8Unix%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">通过 UnxUtils 在 Windows 上使用 Unix 命令</a>
         </h2>
 
         <div class="post-meta-container">
@@ -364,7 +364,102 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-08-13 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-13T00:00:00Z">2020-08-13</time>
+      <time title="创建时间：2020-08-21 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-21T00:00:00Z">2020-08-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/08/2020-08-21-%E9%80%9A%E8%BF%87UnxUtils%E5%9C%A8Windows%E4%B8%8A%E4%BD%BF%E7%94%A8Unix%E5%91%BD%E4%BB%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-21-%E9%80%9A%E8%BF%87UnxUtils%E5%9C%A8Windows%E4%B8%8A%E4%BD%BF%E7%94%A8Unix%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>UnxUtils 是一个可以支持<strong>在 Windows 下使用 linux 命令的工具</strong>，用习惯了 linux 之后，感觉 Windows 的 dos 命令实在是太难用了，发现了这个工具，非常的小，装了它之后，把路径加入到环境变量中就支持常用的 linux 命令了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/2020-08-21-%E9%80%9A%E8%BF%87UnxUtils%E5%9C%A8Windows%E4%B8%8A%E4%BD%BF%E7%94%A8Unix%E5%91%BD%E4%BB%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/" class="post-title-link" itemprop="url">Arthas 之查看和修改日志级别</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-20T00:00:00Z">2020-08-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -389,8 +484,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/2020-08-13-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87thread%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-13-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87thread%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -404,10 +499,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>通过Arthas中的thread命令，可以查看当前线程信息及线程的堆栈。从而可以定位线程问题。</p>
+          <p>介绍 Arthas 的 logger 命令的基本使用。并分别使用 logger 命令和ongl表达式，演示查看和修改日志级别的方法。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-13-Arthas%E4%B9%8B%E9%80%9A%E8%BF%87thread%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8D%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/">
+              <a class="btn" href="/2020/08/2020-08-20-Arthas%E4%B9%8B%E6%9F%A5%E7%9C%8B%E5%92%8C%E4%BF%AE%E6%94%B9%E6%97%A5%E5%BF%97%E7%BA%A7%E5%88%AB/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -438,7 +533,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-13-Git%E6%AF%8F%E6%AC%A1%E9%83%BD%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-19-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%96%B0%E5%A2%9E%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -452,7 +547,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/2020-08-13-Git%E6%AF%8F%E6%AC%A1%E9%83%BD%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">Git 每次都需要输入用户名密码的问题解决</a>
+            <a href="/2020/08/2020-08-19-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%96%B0%E5%A2%9E%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">为博客新增评论系统</a>
         </h2>
 
         <div class="post-meta-container">
@@ -463,7 +558,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-08-13 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-13T00:00:00Z">2020-08-13</time>
+      <time title="创建时间：2020-08-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-19T00:00:00Z">2020-08-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -471,7 +566,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
         </span>
     </span>
 
@@ -484,8 +579,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/2020-08-13-Git%E6%AF%8F%E6%AC%A1%E9%83%BD%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-13-Git%E6%AF%8F%E6%AC%A1%E9%83%BD%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/08/2020-08-19-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%96%B0%E5%A2%9E%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-19-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%96%B0%E5%A2%9E%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -499,10 +594,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>使用git提交文件到github,每次都要输入用户名和密码，操作起来很麻烦，以下方法可解决。</p>
+          <p>为博客系统新增 gitalk、valine 评论系统。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-13-Git%E6%AF%8F%E6%AC%A1%E9%83%BD%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
+              <a class="btn" href="/2020/08/2020-08-19-%E4%B8%BA%E5%8D%9A%E5%AE%A2%E6%96%B0%E5%A2%9E%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -533,7 +628,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-13-%E4%BD%BF%E7%94%A8Jrebel%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -547,7 +642,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/2020-08-13-%E4%BD%BF%E7%94%A8Jrebel%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">使用 Jrebel，实现热部署</a>
+            <a href="/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/" class="post-title-link" itemprop="url">Robots.txt 文件介绍及生成</a>
         </h2>
 
         <div class="post-meta-container">
@@ -558,7 +653,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-08-13 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-13T00:00:00Z">2020-08-13</time>
+      <time title="创建时间：2020-08-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-18T00:00:00Z">2020-08-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -566,11 +661,201 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Robots.txt 是存放在站点根目录下的一个纯文本文件。虽然它的设置很简单，但是作用却很强大。它可以指定搜索引擎蜘蛛只抓取指定的内容，或者是禁止搜索引擎蜘蛛抓取网站的部分或全部内容。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/2020-08-18-Robots.txt%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D%E5%8F%8A%E7%94%9F%E6%88%90/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-18-%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86%E5%91%98%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/2020-08-18-%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86%E5%91%98%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">博客网站管理员工具</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-18 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-18T00:00:00Z">2020-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Blog/" itemprop="url" rel="index"><span itemprop="name">Blog</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/08/2020-08-18-%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86%E5%91%98%E5%B7%A5%E5%85%B7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-18-%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86%E5%91%98%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>网站管理员工具需要对网站域名所有权进行验证，通常是通过上传指定文件、增加 META 或者修改网站 DNS 来验证管理员身份，通过验证后，网站管理员可以查询到自己网站的各类统计信息。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/2020-08-18-%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86%E5%91%98%E5%B7%A5%E5%85%B7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-17-Arthas%E4%B9%8B%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/2020-08-17-Arthas%E4%B9%8B%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%B1%BB/" class="post-title-link" itemprop="url">Arthas 之根据输入查找命令执行类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-08-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-17T00:00:00Z">2020-08-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/IDE/" itemprop="url" rel="index"><span itemprop="name">IDE</span></a>
+          <a href="/categories/Java/Arthas/" itemprop="url" rel="index"><span itemprop="name">Arthas</span></a>
         </span>
     </span>
 
@@ -583,8 +868,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/08/2020-08-13-%E4%BD%BF%E7%94%A8Jrebel%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-13-%E4%BD%BF%E7%94%A8Jrebel%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/08/2020-08-17-Arthas%E4%B9%8B%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-17-Arthas%E4%B9%8B%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%B1%BB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -598,303 +883,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>JRebel是一套JavaEE开发工具。JRebel允许开发团队在有限的时间内完成更多的任务修正更多的问题，发布更高质量的软件产品。</p>
+          <p>介绍 Arthas命令路由的整个过程，包括如何注册命令、如何读取客户端的输入、如何根据输入找到对应的命令执行类。最后以一个基础命令help为例，简要介绍命令执行类是如何执行，如何接收参数，以及如何向客户端返回数据的。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-13-%E4%BD%BF%E7%94%A8Jrebel%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-22-Git%20%E7%9A%84%20.gitconfig%20%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/2020-08-22-Git%20%E7%9A%84%20.gitconfig%20%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">Git 的 .gitconfig 文件配置汇总</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-13 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-13T00:00:00Z">2020-08-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/08/2020-08-22-Git%20%E7%9A%84%20.gitconfig%20%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%B1%87%E6%80%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-22-Git%20%E7%9A%84%20.gitconfig%20%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%B1%87%E6%80%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Git 的 .gitconfig 文件配置汇总</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-22-Git%20%E7%9A%84%20.gitconfig%20%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%B1%87%E6%80%BB/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/" class="post-title-link" itemprop="url">浏览器提速软件 SpeedyFox</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-12 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-12T00:00:00Z">2020-08-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%BD%AF%E4%BB%B6/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>SpeedyFox是一个超级简单的工具，一个单窗口，没有选项的工具来优化浏览器的性能。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-12-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E9%80%9F%E8%BD%AF%E4%BB%B6SpeedyFox/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2020/08/2020-08-11-MySQL%E4%B8%ADDBlink%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/2020-08-11-MySQL%E4%B8%ADDBlink%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">MySQL 中 DBlink 的使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-11T00:00:00Z">2020-08-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/08/2020-08-11-MySQL%E4%B8%ADDBlink%E7%9A%84%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/2020-08-11-MySQL%E4%B8%ADDBlink%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在实际工作中，我们可能会遇到需要操作其他数据库实例的部分表，但又不想系统连接多库。此时我们就需要用到数据表映射。如同Oracle中的DBlink一般，使用过Oracle DBlink数据库链接的人都知道可以跨实例来进行数据查询，同样的，Mysql自带的FEDERATED引擎完美的帮我们解决了该问题。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/2020-08-11-MySQL%E4%B8%ADDBlink%E7%9A%84%E4%BD%BF%E7%94%A8/">
+              <a class="btn" href="/2020/08/2020-08-17-Arthas%E4%B9%8B%E6%A0%B9%E6%8D%AE%E8%BE%93%E5%85%A5%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%B1%BB/">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -920,7 +912,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/44/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><span class="page-number current">45</span><a class="page-number" href="/page/46/">46</a><span class="space">&hellip;</span><a class="page-number" href="/page/50/">50</a><a class="extend next" rel="next" href="/page/46/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/44/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/44/">44</a><span class="page-number current">45</span><a class="page-number" href="/page/46/">46</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/46/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
