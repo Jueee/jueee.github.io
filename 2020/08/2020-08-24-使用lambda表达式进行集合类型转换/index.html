@@ -36,7 +36,7 @@
 <meta property="og:description" content="目标类型 List转 ListList&lt;String&gt; list1 &#x3D; Lists.newArrayList(); List&lt;String&gt; list2 &#x3D; list1.stream().map(string -&gt; { 	return &quot;stream().map()处理之后：&quot; + string; }).collect(Collectors.toList());">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-24T00:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-12T08:46:47.190Z">
+<meta property="article:modified_time" content="2024-05-23T09:01:45.557Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="JavaClass">
 <meta property="article:tag" content="Java">
@@ -162,7 +162,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">304</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">305</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -252,7 +252,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">304</span>
+          <span class="site-state-item-count">305</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -427,7 +427,13 @@
 <h4 id="转-Map"><a href="#转-Map" class="headerlink" title="转 Map"></a>转 Map</h4><p>转换属性 Map，值为属性</p>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SystemTabMenu</span><span class="token punctuation">&gt;</span></span> allList <span class="token operator">=</span> <span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> map <span class="token operator">=</span> allList<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
-	<span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span><span class="token class-name">SystemTabMenu</span><span class="token operator">::</span><span class="token function">getParentid</span><span class="token punctuation">,</span> <span class="token class-name">SystemTabMenu</span><span class="token operator">::</span><span class="token function">getParentid</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+	<span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span><span class="token class-name">SystemTabMenu</span><span class="token operator">::</span><span class="token function">getParentid</span><span class="token punctuation">,</span> <span class="token class-name">SystemTabMenu</span><span class="token operator">::</span><span class="token function">getParentid</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Collectors.toMap在遇到重复键时会抛出IllegalStateException异常</span>
+<span class="token comment">// 如果你希望在遇到重复键时保留最后一个值,可以使用Map::putIfAbsent作为BinaryOperator</span>
+<span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> map <span class="token operator">=</span> allList<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>
+	<span class="token function">collect</span><span class="token punctuation">(</span><span class="token class-name">Collectors</span><span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span><span class="token class-name">SystemTabMenu</span><span class="token operator">::</span><span class="token function">getParentid</span><span class="token punctuation">,</span> <span class="token class-name">SystemTabMenu</span><span class="token operator">::</span><span class="token function">getParentid</span><span class="token punctuation">,</span>
+                                  <span class="token punctuation">(</span>oldValue<span class="token punctuation">,</span> newValue<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> newValue<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
 <p>转换属性 Map，值为对象</p>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">SystemTabMenu</span><span class="token punctuation">&gt;</span></span> allList <span class="token operator">=</span> <span class="token class-name">Lists</span><span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -638,7 +644,7 @@ List&lt;Integer&gt; list = Arrays.stream(data).map(Integer::valueOf).collect(Col
 <div class="copyright">
   
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
