@@ -157,17 +157,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">305</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">322</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">58</span></a>
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">61</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">102</span></a>
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">105</span></a>
 
   </li>
         <li class="menu-item menu-item-nodes">
@@ -246,20 +246,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">305</span>
+          <span class="site-state-item-count">322</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">58</span>
+        <span class="site-state-item-count">61</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags">
           
-        <span class="site-state-item-count">102</span>
+        <span class="site-state-item-count">105</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -339,7 +339,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/02/2021-02-07-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchRestTemplate%E7%A4%BA%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-16-Java%E7%9A%84AES%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E5%8F%8A%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -353,7 +353,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/02/2021-02-07-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchRestTemplate%E7%A4%BA%E4%BE%8B/" class="post-title-link" itemprop="url">ElasticSearch 集成 Spring 之 ElasticsearchRestTemplate 示例</a>
+            <a href="/2021/03/2021-03-16-Java%E7%9A%84AES%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E5%8F%8A%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="post-title-link" itemprop="url">Java 的 AES 加密实现及问题解决</a>
         </h2>
 
         <div class="post-meta-container">
@@ -364,388 +364,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-02-07 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-07T00:00:00Z">2021-02-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/02/2021-02-07-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchRestTemplate%E7%A4%BA%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/2021-02-07-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchRestTemplate%E7%A4%BA%E4%BE%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="ElasticsearchRestTemplate"><a href="#ElasticsearchRestTemplate" class="headerlink" title="ElasticsearchRestTemplate"></a>ElasticsearchRestTemplate</h3><p>ElasticsearchRestTemplate 是 spring-data-elasticsearch 项目中的一个类，和其他 spring 项目中的 template 类似。</p>
-<h4 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-data-elasticsearch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/2021-02-07-ElasticSearch%E9%9B%86%E6%88%90Spring%E4%B9%8BElasticsearchRestTemplate%E7%A4%BA%E4%BE%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/02/2021-02-06-ElasticsearchRestTemplate%E6%9F%A5%E8%AF%A2API%E7%A4%BA%E4%BE%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/2021-02-06-ElasticsearchRestTemplate%E6%9F%A5%E8%AF%A2API%E7%A4%BA%E4%BE%8B/" class="post-title-link" itemprop="url">ElasticsearchRestTemplate 查询 API 示例</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-06T00:00:00Z">2021-02-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/02/2021-02-06-ElasticsearchRestTemplate%E6%9F%A5%E8%AF%A2API%E7%A4%BA%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/2021-02-06-ElasticsearchRestTemplate%E6%9F%A5%E8%AF%A2API%E7%A4%BA%E4%BE%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="ElasticsearchRestTemplate"><a href="#ElasticsearchRestTemplate" class="headerlink" title="ElasticsearchRestTemplate"></a>ElasticsearchRestTemplate</h3><p>ElasticsearchRestTemplate 是 spring-data-elasticsearch 项目中的一个类，和其他 spring 项目中的 template 类似。</p>
-<h4 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-data-elasticsearch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
-
-<h3 id="分页搜索"><a href="#分页搜索" class="headerlink" title="分页搜索"></a>分页搜索</h3><p><img src="/images/2021/02/image-20220419154906545.png" alt="image-20220419154906545" loading="lazy"></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
-<span class="token keyword">private</span> <span class="token class-name">ElasticsearchRestTemplate</span> elasticsearchRestTemplate<span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Test</span>
-<span class="token comment">/** 搜索全部数据 , 分页显示 ， 按 balance字段降序 排序 */</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// 构建查询条件(搜索全部)</span>
-    <span class="token class-name">MatchAllQueryBuilder</span> queryBuilder1 <span class="token operator">=</span> <span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">matchAllQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 分页</span>
-    <span class="token class-name">Pageable</span> pageable <span class="token operator">=</span> <span class="token class-name">PageRequest</span><span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 排序</span>
-    <span class="token class-name">FieldSortBuilder</span> balance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FieldSortBuilder</span><span class="token punctuation">(</span><span class="token string">"balance"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">order</span><span class="token punctuation">(</span><span class="token class-name">SortOrder</span><span class="token punctuation">.</span>DESC<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 执行查询</span>
-    <span class="token class-name">NativeSearchQuery</span> query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">withQuery</span><span class="token punctuation">(</span>queryBuilder1<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">withPageable</span><span class="token punctuation">(</span>pageable<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">withSort</span><span class="token punctuation">(</span>balance<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">SearchHits</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> searchHits <span class="token operator">=</span> elasticsearchRestTemplate<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token class-name">EsAccount</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">//封装page对象</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> accounts <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">SearchHit</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> hit <span class="token operator">:</span> searchHits<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        accounts<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>hit<span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token class-name">Page</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> page <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PageImpl</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>accounts<span class="token punctuation">,</span>pageable<span class="token punctuation">,</span>searchHits<span class="token punctuation">.</span><span class="token function">getTotalHits</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">//输出分页对象</span>
-    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getTotalPages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>page<span class="token punctuation">.</span><span class="token function">getTotalElements</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="条件搜索"><a href="#条件搜索" class="headerlink" title="条件搜索"></a>条件搜索</h3><p><img src="/images/2021/02/image-20220419155018041.png" alt="image-20220419155018041" loading="lazy"></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token comment">/** 条件搜索 */</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// 搜索出 account_number 为 20 的文档</span>
-    <span class="token class-name">TermQueryBuilder</span> builder <span class="token operator">=</span> <span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">termQuery</span><span class="token punctuation">(</span><span class="token string">"account_number"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 对于数值类型是精准匹配，对于文本类型是 模糊匹配,_score越高在前</span>
-    <span class="token class-name">TermQueryBuilder</span> builder1 <span class="token operator">=</span> <span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">termQuery</span><span class="token punctuation">(</span><span class="token string">"address"</span><span class="token punctuation">,</span> <span class="token string">"mill"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 搜索add字段同时包含 mill lane 的文档</span>
-    <span class="token class-name">TermQueryBuilder</span> builder2 <span class="token operator">=</span> <span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">termQuery</span><span class="token punctuation">(</span><span class="token string">"address"</span><span class="token punctuation">,</span> <span class="token string">"mill lane"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">NativeSearchQuery</span> query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">withQuery</span><span class="token punctuation">(</span>builder1<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">SearchHits</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> searchHits <span class="token operator">=</span> elasticsearchRestTemplate<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token class-name">EsAccount</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">SearchHit</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> hit <span class="token operator">:</span> searchHits<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hit<span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="组合搜索"><a href="#组合搜索" class="headerlink" title="组合搜索"></a>组合搜索</h3><p><img src="/images/2021/02/image-20220419155120015.png" alt="image-20220419155120015" loading="lazy"></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token comment">/** 组合搜索 bool*/</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token class-name">BoolQueryBuilder</span> boolQueryBuilder <span class="token operator">=</span> <span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">boolQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// must表示同时满足，should满足其中一个，must_not表示同时不满足</span>
-    boolQueryBuilder<span class="token punctuation">.</span><span class="token function">must</span><span class="token punctuation">(</span><span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">matchQuery</span><span class="token punctuation">(</span><span class="token string">"address"</span><span class="token punctuation">,</span> <span class="token string">"mill"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    boolQueryBuilder<span class="token punctuation">.</span><span class="token function">must</span><span class="token punctuation">(</span><span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">matchQuery</span><span class="token punctuation">(</span><span class="token string">"address"</span><span class="token punctuation">,</span> <span class="token string">"lane"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">NativeSearchQuery</span> query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">withQuery</span><span class="token punctuation">(</span>boolQueryBuilder<span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">SearchHits</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> searchHits <span class="token operator">=</span> elasticsearchRestTemplate<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token class-name">EsAccount</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">SearchHit</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> hit <span class="token operator">:</span> searchHits<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hit<span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="过滤搜索"><a href="#过滤搜索" class="headerlink" title="过滤搜索"></a>过滤搜索</h3><p>filter，过滤出 balance 字段在 2w~3w 的文档</p>
-<p><img src="/images/2021/02/image-20220419155209356.png" alt="image-20220419155209356" loading="lazy"></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token comment">/** 过滤搜索 */</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test4</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// 构建条件</span>
-    <span class="token class-name">BoolQueryBuilder</span> boolQueryBuilder <span class="token operator">=</span> <span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">boolQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">RangeQueryBuilder</span> balance <span class="token operator">=</span> <span class="token class-name">QueryBuilders</span><span class="token punctuation">.</span><span class="token function">rangeQuery</span><span class="token punctuation">(</span><span class="token string">"balance"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">gte</span><span class="token punctuation">(</span><span class="token number">20000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">lte</span><span class="token punctuation">(</span><span class="token number">30000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    boolQueryBuilder<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>balance<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">NativeSearchQuery</span> query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">withQuery</span><span class="token punctuation">(</span>boolQueryBuilder<span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">SearchHits</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> searchHits <span class="token operator">=</span> elasticsearchRestTemplate<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token class-name">EsAccount</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">SearchHit</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> hit <span class="token operator">:</span> searchHits<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>hit<span class="token punctuation">.</span><span class="token function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="聚合搜索"><a href="#聚合搜索" class="headerlink" title="聚合搜索"></a>聚合搜索</h3><p>聚合搜索，aggs，类似于 group by，对 state 字段进行聚合，</p>
-<p><img src="/images/2021/02/image-20220419155256939.png" alt="image-20220419155256939" loading="lazy"></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token comment">/** 聚合搜索 ，对state字段进行聚合*/</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test5</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-    <span class="token class-name">NativeSearchQuery</span> query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span><span class="token class-name">AggregationBuilders</span><span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span><span class="token string">"count"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"state.keyword"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">SearchHits</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> searchHits <span class="token operator">=</span> elasticsearchRestTemplate<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token class-name">EsAccount</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">//取出聚合结果</span>
-    <span class="token class-name">Aggregations</span> aggregations <span class="token operator">=</span> searchHits<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">Terms</span> terms <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Terms</span><span class="token punctuation">)</span> aggregations<span class="token punctuation">.</span><span class="token function">asMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"count"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Terms</span><span class="token punctuation">.</span><span class="token class-name">Bucket</span> bucket <span class="token operator">:</span> terms<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token class-name">String</span> keyAsString <span class="token operator">=</span> bucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 聚合字段列的值</span>
-        <span class="token keyword">long</span> docCount <span class="token operator">=</span> bucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 聚合字段对应的数量</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>keyAsString <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> docCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="嵌套聚合"><a href="#嵌套聚合" class="headerlink" title="嵌套聚合"></a>嵌套聚合</h3><p>统计出相同 state 的文档数量，再统计出 balance 的平均值，降序排序</p>
-<p><img src="/images/2021/02/image-20220419155341963.png" alt="image-20220419155341963" loading="lazy"></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token comment">/** 嵌套聚合，统计出相同state的文档数量，再统计出balance的平均值，降序排序 */</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test6</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// 创建聚合查询条件</span>
-    <span class="token class-name">TermsAggregationBuilder</span> stateAgg <span class="token operator">=</span> <span class="token class-name">AggregationBuilders</span><span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span><span class="token string">"count"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"state.keyword"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">AvgAggregationBuilder</span> balanceAgg <span class="token operator">=</span> <span class="token class-name">AggregationBuilders</span><span class="token punctuation">.</span><span class="token function">avg</span><span class="token punctuation">(</span><span class="token string">"avg_balance"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"balance"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 嵌套</span>
-    stateAgg<span class="token punctuation">.</span><span class="token function">subAggregation</span><span class="token punctuation">(</span>balanceAgg<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 按balance的平均值降序排序</span>
-    stateAgg<span class="token punctuation">.</span><span class="token function">order</span><span class="token punctuation">(</span><span class="token class-name">BucketOrder</span><span class="token punctuation">.</span><span class="token function">aggregation</span><span class="token punctuation">(</span><span class="token string">"avg_balance"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">NativeSearchQuery</span> build <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span>stateAgg<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">//执行查询</span>
-    <span class="token class-name">SearchHits</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> searchHits <span class="token operator">=</span> elasticsearchRestTemplate<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>build<span class="token punctuation">,</span> <span class="token class-name">EsAccount</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 取出聚合结果</span>
-    <span class="token class-name">Aggregations</span> aggregations <span class="token operator">=</span> searchHits<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">Terms</span> terms <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Terms</span><span class="token punctuation">)</span> aggregations<span class="token punctuation">.</span><span class="token function">asMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"count"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Terms</span><span class="token punctuation">.</span><span class="token class-name">Bucket</span> bucket <span class="token operator">:</span> terms<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">// state : count : avg</span>
-        <span class="token class-name">ParsedAvg</span> avg <span class="token operator">=</span> bucket<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"avg_balance"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>bucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> bucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> avg<span class="token punctuation">.</span><span class="token function">getValueAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h3 id="范围聚合"><a href="#范围聚合" class="headerlink" title="范围聚合"></a>范围聚合</h3><p>按字段的范围进行分段聚合，按 age 字段 [20,30],[30,40],[40,50], 之后按 gender 统计文档个数和 balance 的平均值</p>
-<p><img src="/images/2021/02/image-20220419155400590.png" alt="image-20220419155400590" loading="lazy"></p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
-<span class="token comment">/** 按字段的范围进行分段聚合，按age字段[20,30],[30,40],[40,50],之后按gender统计文档个数和balance的平均值 */</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test7</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token comment">// 创建聚合查询条件</span>
-    <span class="token class-name">RangeAggregationBuilder</span> group_by_age <span class="token operator">=</span>
-            <span class="token class-name">AggregationBuilders</span><span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token string">"group_by_age"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">)</span>
-                    <span class="token punctuation">.</span><span class="token function">addRange</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addRange</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addRange</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">TermsAggregationBuilder</span> count <span class="token operator">=</span> <span class="token class-name">AggregationBuilders</span><span class="token punctuation">.</span><span class="token function">terms</span><span class="token punctuation">(</span><span class="token string">"count"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"gender.keyword"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">AvgAggregationBuilder</span> balanceAgg <span class="token operator">=</span> <span class="token class-name">AggregationBuilders</span><span class="token punctuation">.</span><span class="token function">avg</span><span class="token punctuation">(</span><span class="token string">"avg_balance"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">field</span><span class="token punctuation">(</span><span class="token string">"balance"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">//嵌套</span>
-    group_by_age<span class="token punctuation">.</span><span class="token function">subAggregation</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    count<span class="token punctuation">.</span><span class="token function">subAggregation</span><span class="token punctuation">(</span>balanceAgg<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">NativeSearchQuery</span> query <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">NativeSearchQueryBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">addAggregation</span><span class="token punctuation">(</span>group_by_age<span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">SearchHits</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EsAccount</span><span class="token punctuation">&gt;</span></span> searchHits <span class="token operator">=</span> elasticsearchRestTemplate<span class="token punctuation">.</span><span class="token function">search</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token class-name">EsAccount</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token class-name">ParsedRange</span> parsedRange <span class="token operator">=</span> searchHits<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"group_by_age"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Range</span><span class="token punctuation">.</span><span class="token class-name">Bucket</span> bucket <span class="token operator">:</span> parsedRange<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment">// "key" : "20.0-30.0",  "doc_count" : 451,</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>bucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" ： "</span><span class="token operator">+</span>bucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token class-name">Terms</span> group_by_gender <span class="token operator">=</span> bucket<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"count"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Terms</span><span class="token punctuation">.</span><span class="token class-name">Bucket</span> genderBucket <span class="token operator">:</span> group_by_gender<span class="token punctuation">.</span><span class="token function">getBuckets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment">//  "key" : "M", "doc_count" : 232, "key" : "F", "doc_count" : 219,</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>genderBucket<span class="token punctuation">.</span><span class="token function">getKeyAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span><span class="token string">" ： "</span><span class="token operator">+</span> genderBucket<span class="token punctuation">.</span><span class="token function">getDocCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">ParsedAvg</span> balanceAvg <span class="token operator">=</span> genderBucket<span class="token punctuation">.</span><span class="token function">getAggregations</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"avg_balance"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>balanceAvg<span class="token punctuation">.</span><span class="token function">getValueAsString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"-----------\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/02/2021-02-04-Java%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%ABemoj%E8%A1%A8%E6%83%85%E5%8F%8A%E8%BF%87%E6%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/2021-02-04-Java%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%ABemoj%E8%A1%A8%E6%83%85%E5%8F%8A%E8%BF%87%E6%BB%A4/" class="post-title-link" itemprop="url">Java 判断字符串中是否包含 emoj 表情及过滤</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-02-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-04T00:00:00Z">2021-02-04</time>
+      <time title="创建时间：2021-03-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-16T00:00:00Z">2021-03-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -770,8 +389,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/02/2021-02-04-Java%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%ABemoj%E8%A1%A8%E6%83%85%E5%8F%8A%E8%BF%87%E6%BB%A4/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/02/2021-02-04-Java%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%ABemoj%E8%A1%A8%E6%83%85%E5%8F%8A%E8%BF%87%E6%BB%A4/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/03/2021-03-16-Java%E7%9A%84AES%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E5%8F%8A%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-16-Java%E7%9A%84AES%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E5%8F%8A%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -785,16 +404,92 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>最近遇到一个很麻烦的问题，用户如果在客户端输入表情可能会引起一些报错，在查了一些资料后发现很多坑人的代码，我在总结了之后给出了一个比较完美的版本。 </p>
-<p>亲测可以判断绝大多数表情。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/2021-02-04-Java%E5%88%A4%E6%96%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%8C%85%E5%90%ABemoj%E8%A1%A8%E6%83%85%E5%8F%8A%E8%BF%87%E6%BB%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> CIPHER_ALGORITHM_CBC <span class="token operator">=</span> <span class="token string">"AES/CBC/PKCS5Padding"</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">static</span> <span class="token class-name">String</span> ENCRYPTKEY <span class="token operator">=</span> <span class="token string">"0123456789abcdefghijklmnopqretuvwxyz"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">SecretKey</span> secretKey <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">initKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">try</span> <span class="token punctuation">{</span>
+		secretKey <span class="token operator">=</span> <span class="token function">generateKey</span><span class="token punctuation">(</span>ENCRYPTKEY<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">SecretKey</span> <span class="token function">generateKey</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> secretKey<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+	<span class="token class-name">SecureRandom</span> secureRandom <span class="token operator">=</span> <span class="token class-name">SecureRandom</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"SHA1PRNG"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	secureRandom<span class="token punctuation">.</span><span class="token function">setSeed</span><span class="token punctuation">(</span>secretKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">KeyGenerator</span> kg <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+	<span class="token keyword">try</span> <span class="token punctuation">{</span>
+		kg <span class="token operator">=</span> <span class="token class-name">KeyGenerator</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token string">"AES"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		kg<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">,</span> secureRandom<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">SecretKey</span> skey <span class="token operator">=</span> kg<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> raw <span class="token operator">=</span> skey<span class="token punctuation">.</span><span class="token function">getEncoded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">SecretKeySpec</span> skeySpec <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecretKeySpec</span><span class="token punctuation">(</span>raw<span class="token punctuation">,</span> <span class="token string">"AES"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> skeySpec<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">NoSuchAlgorithmException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="加密实现"><a href="#加密实现" class="headerlink" title="加密实现"></a>加密实现</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">encrypt</span><span class="token punctuation">(</span><span class="token class-name">String</span> input<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>secretKey <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">initKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token class-name">Cipher</span> cipher <span class="token operator">=</span> <span class="token class-name">Cipher</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>CIPHER_ALGORITHM_CBC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">Cipher</span><span class="token punctuation">.</span>ENCRYPT_MODE<span class="token punctuation">,</span> secretKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> iv <span class="token operator">=</span> cipher<span class="token punctuation">.</span><span class="token function">getIV</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> encrypt <span class="token operator">=</span> cipher<span class="token punctuation">.</span><span class="token function">doFinal</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> ret <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span>iv<span class="token punctuation">.</span>length <span class="token operator">+</span> encrypt<span class="token punctuation">.</span>length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>encrypt<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> ret<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> encrypt<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>iv<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> ret<span class="token punctuation">,</span> encrypt<span class="token punctuation">.</span>length<span class="token punctuation">,</span> iv<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token class-name">DatatypeConverter</span><span class="token punctuation">.</span><span class="token function">printBase64Binary</span><span class="token punctuation">(</span>ret<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="解密实现"><a href="#解密实现" class="headerlink" title="解密实现"></a>解密实现</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">decrypt</span><span class="token punctuation">(</span><span class="token class-name">String</span> input<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>secretKey <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">initKey</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> inputBytes <span class="token operator">=</span> <span class="token class-name">DatatypeConverter</span><span class="token punctuation">.</span><span class="token function">parseBase64Binary</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> iv <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cipherBytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span>inputBytes<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>inputBytes<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> cipherBytes<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> cipherBytes<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>inputBytes<span class="token punctuation">,</span> cipherBytes<span class="token punctuation">.</span>length<span class="token punctuation">,</span> iv<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token class-name">Cipher</span> cipher <span class="token operator">=</span> <span class="token class-name">Cipher</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span>CIPHER_ALGORITHM_CBC<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	cipher<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token class-name">Cipher</span><span class="token punctuation">.</span>DECRYPT_MODE<span class="token punctuation">,</span> secretKey<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">IvParameterSpec</span><span class="token punctuation">(</span>iv<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> decrypt <span class="token operator">=</span> cipher<span class="token punctuation">.</span><span class="token function">doFinal</span><span class="token punctuation">(</span>cipherBytes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>decrypt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="问题处理"><a href="#问题处理" class="headerlink" title="问题处理"></a>问题处理</h3><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>在使用 256 位加密时，控制台报错如下：</p>
+<pre class="language-none"><code class="language-none">java.security.InvalidKeyException: Illegal key size or default parameters
+        at javax.crypto.Cipher.checkCryptoPerm(Cipher.java:1026)
+        at javax.crypto.Cipher.implInit(Cipher.java:801)
+        at javax.crypto.Cipher.chooseProvider(Cipher.java:864)
+        at javax.crypto.Cipher.init(Cipher.java:1249)
+        at javax.crypto.Cipher.init(Cipher.java:1186)</code></pre>
+
+<p>这是由于 key 的变更（由原来的 128 位变更为 256 位），导致加密 / 解密的失败。</p>
+<div class="note info"><p>之所以会出现这种问题，我们就要了解一个新的东西 ——JCE。在 Java 的核心类库中有一个 JCE（Java Cryptography Extension），JCE 是一组包，它们提供用于加密、密钥生成和协商以及 Message Authentication Code（MAC）算法的框架和实现，所以这个是实现加密解密的重要类库。</p>
+</div>
+
+<h4 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h4><p>我们要做的就是更换 JCE 的库，该文件位置在你的 JDK/jre/lib/security 目录下面，该目录下我们可以看到两个 jar 包：local_policy.jar，US_export_policy.jar，这两个 jar 包是 jdk 自带的。我们需要下载支持 256 位密钥加密的 jar 包。</p>
+<ul>
+<li>JDK8：<br>其对应的 JCE <span class="exturl" data-url="aHR0cDovL3d3dy5vcmFjbGUuY29tL3RlY2huZXR3b3JrL2phdmEvamF2YXNlL2Rvd25sb2Fkcy9qY2U4LWRvd25sb2FkLTIxMzMxNjYuaHRtbA==">下载地址<i class="fa fa-external-link-alt"></i></span></li>
+<li> JDK7：<br>其对应的 JCE <span class="exturl" data-url="aHR0cDovL3d3dy5vcmFjbGUuY29tL3RlY2huZXR3b3JrL2phdmEvamF2YXNlL2Rvd25sb2Fkcy9qY2UtNy1kb3dubG9hZC00MzIxMjQuaHRtbA==">下载地址<i class="fa fa-external-link-alt"></i></span> </li>
+<li> JDK6：<br>其对应的 JCE <span class="exturl" data-url="aHR0cDovL3d3dy5vcmFjbGUuY29tL3RlY2huZXR3b3JrL2phdmEvamF2YXNlL2Rvd25sb2Fkcy9qY2UtNi1kb3dubG9hZC00MjkyNDMuaHRtbA==">下载地址<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<p>下载完后，解压，将其中的 “local_policy.jar” 和 “US_export_policy.jar” 两个文件替换掉自己 % JAVE_HOME%\jre\lib\security 文件夹下对应的原文件（% JAVE_HOME% 是自己电脑的 Java 路径）。</p>
+<p>JDK1.8 以上的该目录下压根没有这两个 JAR 包。</p>
+<p>针对这种情况，我们的解决方式为：vim 命令打开 java.security 文件，将注释掉的如下配置打开，然后保存即可。</p>
+<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token comment">#crypto.policy=unlimited</span></code></pre>
+
+
       
     </div>
 
@@ -820,7 +515,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-29-SpringAOP%E6%8B%A6%E6%88%AA%E6%B3%A8%E8%A7%A3%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%89%80%E6%9C%89%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -834,7 +529,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/2021-01-29-SpringAOP%E6%8B%A6%E6%88%AA%E6%B3%A8%E8%A7%A3%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%89%80%E6%9C%89%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Spring AOP 拦截注解接口的所有方法</a>
+            <a href="/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">Java 中 Integer 的 equals 和 == 的区别</a>
         </h2>
 
         <div class="post-meta-container">
@@ -845,7 +540,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-01-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-29T00:00:00Z">2021-01-29</time>
+      <time title="创建时间：2021-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-15T00:00:00Z">2021-03-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -857,7 +552,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
         </span>
     </span>
 
@@ -870,8 +565,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/01/2021-01-29-SpringAOP%E6%8B%A6%E6%88%AA%E6%B3%A8%E8%A7%A3%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%89%80%E6%9C%89%E6%96%B9%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-29-SpringAOP%E6%8B%A6%E6%88%AA%E6%B3%A8%E8%A7%A3%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%89%80%E6%9C%89%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -885,10 +580,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>MyBatis 多源数据库切换问题，希望通过注解标注 Dao 类的数据库源，但使用注解切点表达式，因实现类是 MyBatis 动态代理生成，无法在实现类上添加注解，而添加到接口上又无效，需要寻找替代方案。</p>
+          <p>近期在 <code>Map&lt;String,Integer&gt;</code> 进行计数比较时，发现 Integer 比较有问题，让我们进行下探究。</p>
+<p>如：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">Integer</span> a <span class="token operator">=</span> <span class="token number">281</span><span class="token punctuation">;</span>
+<span class="token class-name">Integer</span> b <span class="token operator">=</span> <span class="token number">281</span><span class="token punctuation">;</span>
+<span class="token function">assertFalse</span><span class="token punctuation">(</span>a<span class="token operator">==</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/01/2021-01-29-SpringAOP%E6%8B%A6%E6%88%AA%E6%B3%A8%E8%A7%A3%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%89%80%E6%9C%89%E6%96%B9%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/2021/03/2021-03-15-Java%E4%B8%ADInteger%E7%9A%84equals%E5%92%8C==%E7%9A%84%E5%8C%BA%E5%88%AB/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -919,7 +618,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-14-Docker%E5%90%AF%E5%8A%A8Redis%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%AF%86%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -933,7 +632,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/" class="post-title-link" itemprop="url">自定义 element-ui 的 table 表格数据样式</a>
+            <a href="/2021/03/2021-03-14-Docker%E5%90%AF%E5%8A%A8Redis%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%AF%86%E7%A0%81/" class="post-title-link" itemprop="url">Docker 启动 Redis 并添加密码</a>
         </h2>
 
         <div class="post-meta-container">
@@ -944,7 +643,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-01-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-25T00:00:00Z">2021-01-25</time>
+      <time title="创建时间：2021-03-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-14T00:00:00Z">2021-03-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -952,7 +651,19 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
         </span>
     </span>
 
@@ -965,8 +676,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/03/2021-03-14-Docker%E5%90%AF%E5%8A%A8Redis%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%AF%86%E7%A0%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-14-Docker%E5%90%AF%E5%8A%A8Redis%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%AF%86%E7%A0%81/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -980,10 +691,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>有需要根据不同状态来区分 table 数据样式的需求，比如更换不同的颜色。</p>
+          <p>可以使用密码启动 Redis 服务器。使用的命令是：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">redis-server --requirepass mypassword</code></pre>
+
+<p>本文介绍在容器中对 Redis 添加密码的方法。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/01/2021-01-25-%E8%87%AA%E5%AE%9A%E4%B9%89element-ui%E7%9A%84table%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E6%A0%B7%E5%BC%8F/#more" rel="contents">
+              <a class="btn" href="/2021/03/2021-03-14-Docker%E5%90%AF%E5%8A%A8Redis%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%AF%86%E7%A0%81/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1014,7 +728,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
@@ -1028,7 +742,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">Java 实现 SM3 加密算法</a>
+            <a href="/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/" class="post-title-link" itemprop="url">Windows 下安装 Redis 并设置自启动</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1039,7 +753,207 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-01-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-21T00:00:00Z">2021-01-21</time>
+      <time title="创建时间：2021-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-10T00:00:00Z">2021-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="下载Windows版本的Redis"><a href="#下载Windows版本的Redis" class="headerlink" title="下载Windows版本的Redis"></a>下载 Windows 版本的 Redis</h3><p>原来在官网上可以下载的 windows 版本的，现在官网以及没有下载地址，只能在 github 上下载，官网只提供 linux 版本的下载。</p>
+<p>官网下载地址：<a target="_blank" rel="noopener" href="http://redis.io/download">http://redis.io/download</a></p>
+<p>github 下载地址：<a target="_blank" rel="noopener" href="https://github.com/MSOpenTech/redis/tags">https://github.com/MSOpenTech/redis/tags</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/2021-03-09-Windows%E4%B8%8B%E5%AE%89%E8%A3%85Redis%E5%B9%B6%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%90%AF%E5%8A%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/" class="post-title-link" itemprop="url">Windows 系统下的 MySQL 版本升级</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-10T00:00:00Z">2021-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近因原先的 MySQL 版本过低，所以希望将 Windows 下的 MySQL5.5 升级为 MySQL5.7。记录一下升级过程。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/2021-03-10-Windows%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84MySQL%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2021/03/2021-03-06-Java%E4%B8%ADList%E9%9B%86%E5%90%88%E5%88%86%E6%89%B9%E5%A4%84%E7%90%86%E7%9A%84%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的专栏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/2021-03-06-Java%E4%B8%ADList%E9%9B%86%E5%90%88%E5%88%86%E6%89%B9%E5%A4%84%E7%90%86%E7%9A%84%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">Java 中 List 集合分批处理的方式汇总</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-06T00:00:00Z">2021-03-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1051,7 +965,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
         </span>
     </span>
 
@@ -1064,8 +978,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
+    <a title="valine" href="/2021/03/2021-03-06-Java%E4%B8%ADList%E9%9B%86%E5%90%88%E5%88%86%E6%89%B9%E5%A4%84%E7%90%86%E7%9A%84%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/03/2021-03-06-Java%E4%B8%ADList%E9%9B%86%E5%90%88%E5%88%86%E6%89%B9%E5%A4%84%E7%90%86%E7%9A%84%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1079,12 +993,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="SM3-介绍"><a href="#SM3-介绍" class="headerlink" title="SM3 介绍"></a>SM3 介绍</h3><p>SM3 是中华人民共和国政府采用的一种密码散列函数标准，由国家密码管理局于 2010 年 12 月 17 日发布。相关标准为 “GM/T 0004-2012 《SM3 密码杂凑算法》”。</p>
-<p>在商用密码体系中，SM3 主要用于数字签名及验证、消息认证码生成及验证、随机数生成等，其算法公开。</p>
-<p>据国家密码管理局表示，其安全性及效率与 SHA-256 相当。</p>
+          <p>在项目中存在 List 集合数据量过大，需要对这个 List 集合进行分批处理，以下总结几种方式。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/01/2021-01-21-Java%E5%AE%9E%E7%8E%B0SM3%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/2021/03/2021-03-06-Java%E4%B8%ADList%E9%9B%86%E5%90%88%E5%88%86%E6%89%B9%E5%A4%84%E7%90%86%E7%9A%84%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1110,7 +1022,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1151,7 +1063,7 @@
 <div class="copyright">
   
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
