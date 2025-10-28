@@ -28,18 +28,18 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="相关链接rook-ceph官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
+  <meta name="description" content="相关链接rook-ceph 官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github 项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 k8s 中使用 rook-ceph">
 <meta property="og:url" content="https://jueee.github.io/2020/08/2020-08-30-%E5%9C%A8k8s%E4%B8%AD%E4%BD%BF%E7%94%A8rook-ceph/index.html">
-<meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="相关链接rook-ceph官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
+<meta property="og:site_name" content="网易内推联系我哦">
+<meta property="og:description" content="相关链接rook-ceph 官方指导：  https:&#x2F;&#x2F;rook.io&#x2F;docs&#x2F;rook&#x2F;v1.1&#x2F;ceph-examples.html   github 项目地址：  https:&#x2F;&#x2F;github.com&#x2F;rook&#x2F;rook&#x2F;tree&#x2F;master&#x2F;cluster&#x2F;examples&#x2F;kubernetes&#x2F;ceph">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-30T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-01-07T04:32:06.951Z">
-<meta property="article:author" content="小决">
-<meta property="article:tag" content="Ceph">
+<meta property="article:modified_time" content="2021-05-21T10:50:57.714Z">
+<meta property="article:author" content="网易无偿内推">
 <meta property="article:tag" content="k8s">
+<meta property="article:tag" content="Ceph">
 <meta name="twitter:card" content="summary">
 
 
@@ -56,7 +56,7 @@
   };
 </script>
 
-  <title>在 k8s 中使用 rook-ceph | 小决的专栏</title>
+  <title>在 k8s 中使用 rook-ceph | 网易内推联系我哦</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -117,7 +117,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="网易内推联系我哦" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -138,10 +138,10 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h1 class="site-title">网易内推联系我哦</h1>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+      <p class="site-subtitle" itemprop="description">网易无偿内推，点击下方【首页】置顶帖查看说明</p>
   </div>
 
   <div class="site-nav-right">
@@ -162,7 +162,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">322</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">326</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -242,9 +242,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="小决"
+    <img class="site-author-image" itemprop="image" alt="网易无偿内推"
       src="/images/basic/logo.jpg">
-  <p class="site-author-name" itemprop="name">小决</p>
+  <p class="site-author-name" itemprop="name">网易无偿内推</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
@@ -252,7 +252,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">322</span>
+          <span class="site-state-item-count">326</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -350,12 +350,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
+      <meta itemprop="name" content="网易无偿内推">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
+      <meta itemprop="name" content="网易内推联系我哦">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -378,11 +378,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+          <a href="/categories/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -435,9 +435,9 @@
 <li><p>执行 toolbox.yaml，生成 rook-ceph-tools-xxxx pod</p>
 </li>
 <li><p>使用如下命令进入 ceph 的管理中：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl -n rook-ceph exec -it $(kubectl -n rook-ceph get pod -l "app=rook-ceph-tools" -o jsonpath='{.items[0].metadata.name}') bash</code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl -n rook-ceph <span class="token builtin class-name">exec</span> -it <span class="token variable"><span class="token variable">$(</span>kubectl -n rook-ceph get pod -l <span class="token string">"app=rook-ceph-tools"</span> -o <span class="token assign-left variable">jsonpath</span><span class="token operator">=</span><span class="token string">'{.items[0].metadata.name}'</span><span class="token variable">)</span></span> <span class="token function">bash</span></code></pre>
 
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl exec -it rook-ceph-tools-9c9d7744b-2tpwn bash -n rook-ceph</code></pre>
+<pre class="language-shell" data-language="shell"><code class="language-shell">$ kubectl <span class="token builtin class-name">exec</span> -it rook-ceph-tools-9c9d7744b-2tpwn <span class="token function">bash</span> -n rook-ceph</code></pre>
 </li>
 <li><p>ceph 常用命令</p>
 <pre class="language-none"><code class="language-none">ceph -s 查看集群状态
@@ -470,27 +470,27 @@ ceph osd pool set pool pgp_num 64 设置pgp数量，在集群规模较小，pg�
   <div class="popular-posts-header">相关文章</div>
   <ul class="popular-posts">
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s静态PV集成ceph块设备存储</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s 动态 PV 集成 ceph 块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s动态扩容Ceph持久卷</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-02-k8s静态PV集成ceph块设备存储\" rel="bookmark">k8s 静态 PV 集成 ceph 块设备存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\09\2020-09-03-k8s动态PV集成ceph块设备存储\" rel="bookmark">k8s动态PV集成ceph块设备存储</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-k8s动态扩容Ceph持久卷\" rel="bookmark">k8s 动态扩容 Ceph 持久卷</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-29-Ceph分布式存储系统介绍\" rel="bookmark">Ceph 分布式存储系统介绍</a></div>
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-14-k8s配置使用NFS动态存储\" rel="bookmark">k8s 配置使用 NFS 动态存储</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\08\2020-08-31-Ceph常用命令行汇总\" rel="bookmark">Ceph 常用命令行汇总</a></div>
+      <div class="popular-posts-title"><a href="\2020\09\2020-09-04-修改k8s的nodeport类型端口范围\" rel="bookmark">修改 k8s 的 nodeport 类型端口范围</a></div>
     </li>
   </ul>
 
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Ceph/" rel="tag"># Ceph</a>
               <a href="/tags/k8s/" rel="tag"># k8s</a>
+              <a href="/tags/Ceph/" rel="tag"># Ceph</a>
           </div>
 
         

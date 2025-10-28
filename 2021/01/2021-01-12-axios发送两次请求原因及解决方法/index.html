@@ -28,19 +28,19 @@
     var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="出现问题最近Vue项目中使用axios组件，在页面交互中发现axios会发送两次请求，一种请求方式为OPTIONS，另外一种为自己设置的（如 GET、POST 等等）。">
+  <meta name="description" content="出现问题最近 Vue 项目中使用 axios 组件，在页面交互中发现 axios 会发送两次请求，一种请求方式为 OPTIONS，另外一种为自己设置的（如 GET、POST 等等）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="axios 发送两次请求原因及解决方法">
 <meta property="og:url" content="https://jueee.github.io/2021/01/2021-01-12-axios%E5%8F%91%E9%80%81%E4%B8%A4%E6%AC%A1%E8%AF%B7%E6%B1%82%E5%8E%9F%E5%9B%A0%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
-<meta property="og:site_name" content="小决的专栏">
-<meta property="og:description" content="出现问题最近Vue项目中使用axios组件，在页面交互中发现axios会发送两次请求，一种请求方式为OPTIONS，另外一种为自己设置的（如 GET、POST 等等）。">
+<meta property="og:site_name" content="网易内推联系我哦">
+<meta property="og:description" content="出现问题最近 Vue 项目中使用 axios 组件，在页面交互中发现 axios 会发送两次请求，一种请求方式为 OPTIONS，另外一种为自己设置的（如 GET、POST 等等）。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2021/01/image-20210112152514664.png">
 <meta property="og:image" content="https://jueee.github.io/images/2021/01/image-20210112152255588.png">
 <meta property="og:image" content="https://jueee.github.io/images/2021/01/image-20210112152315002.png">
 <meta property="article:published_time" content="2021-01-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-01-12T07:35:35.157Z">
-<meta property="article:author" content="小决">
+<meta property="article:modified_time" content="2021-01-28T09:01:42.603Z">
+<meta property="article:author" content="网易无偿内推">
 <meta property="article:tag" content="Vue">
 <meta property="article:tag" content="axios">
 <meta name="twitter:card" content="summary">
@@ -60,7 +60,7 @@
   };
 </script>
 
-  <title>axios 发送两次请求原因及解决方法 | 小决的专栏</title>
+  <title>axios 发送两次请求原因及解决方法 | 网易内推联系我哦</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -121,7 +121,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="网易内推联系我哦" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -142,10 +142,10 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h1 class="site-title">网易内推联系我哦</h1>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+      <p class="site-subtitle" itemprop="description">网易无偿内推，点击下方【首页】置顶帖查看说明</p>
   </div>
 
   <div class="site-nav-right">
@@ -166,7 +166,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">322</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">326</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,9 +246,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="小决"
+    <img class="site-author-image" itemprop="image" alt="网易无偿内推"
       src="/images/basic/logo.jpg">
-  <p class="site-author-name" itemprop="name">小决</p>
+  <p class="site-author-name" itemprop="name">网易无偿内推</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
@@ -256,7 +256,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">322</span>
+          <span class="site-state-item-count">326</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -354,12 +354,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
+      <meta itemprop="name" content="网易无偿内推">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
+      <meta itemprop="name" content="网易内推联系我哦">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">

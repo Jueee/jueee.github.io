@@ -32,15 +32,15 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 操作 Json 数据相关使用总结">
 <meta property="og:url" content="https://jueee.github.io/2021/06/2021-06-02-MySQL%E6%93%8D%E4%BD%9CJson%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
-<meta property="og:site_name" content="小决的专栏">
+<meta property="og:site_name" content="网易内推联系我哦">
 <meta property="og:description" content="在项目中，有部分数据是以 JsonObject 和 JsonArray 的形式直接存储在 MySQL 中的。 如果想对 这部分数据进行查询 等操作，非常不便。 经查询，MySQL 5.7.8 新增了对 Json 数据的相关支持，MySQL 8.0.4 新增了 Json 表函数的功能。 通过使用 内置的 函数，可以非常方便的对以 JsonObject 和 JsonArray 的形式直接存储在 MyS">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2021/06/image-20210603174344730.png">
 <meta property="og:image" content="https://jueee.github.io/images/2021/06/image-20210603192327275.png">
 <meta property="og:image" content="https://jueee.github.io/images/2021/06/image-20210603192300147.png">
 <meta property="article:published_time" content="2021-06-02T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-06-07T11:12:13.124Z">
-<meta property="article:author" content="小决">
+<meta property="article:modified_time" content="2021-07-07T01:46:08.641Z">
+<meta property="article:author" content="网易无偿内推">
 <meta property="article:tag" content="MySQL">
 <meta property="article:tag" content="Database">
 <meta name="twitter:card" content="summary">
@@ -60,7 +60,7 @@
   };
 </script>
 
-  <title>MySQL 操作 Json 数据相关使用总结 | 小决的专栏</title>
+  <title>MySQL 操作 Json 数据相关使用总结 | 网易内推联系我哦</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
     <script data-pjax>
@@ -121,7 +121,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="小决的专栏" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="网易内推联系我哦" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -142,10 +142,10 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">小决的专栏</h1>
+      <h1 class="site-title">网易内推联系我哦</h1>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">进一寸有一寸的欢喜</p>
+      <p class="site-subtitle" itemprop="description">网易无偿内推，点击下方【首页】置顶帖查看说明</p>
   </div>
 
   <div class="site-nav-right">
@@ -166,7 +166,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">322</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">326</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -246,9 +246,9 @@
 
       <section class="site-overview-wrap sidebar-panel">
         <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="小决"
+    <img class="site-author-image" itemprop="image" alt="网易无偿内推"
       src="/images/basic/logo.jpg">
-  <p class="site-author-name" itemprop="name">小决</p>
+  <p class="site-author-name" itemprop="name">网易无偿内推</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
@@ -256,7 +256,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">322</span>
+          <span class="site-state-item-count">326</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -354,12 +354,12 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/basic/logo.jpg">
-      <meta itemprop="name" content="小决">
+      <meta itemprop="name" content="网易无偿内推">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小决的专栏">
+      <meta itemprop="name" content="网易内推联系我哦">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -457,117 +457,117 @@
 <tbody><tr>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tY3JlYXRpb24tZnVuY3Rpb25zLmh0bWw=">创建 json<i class="fa fa-external-link-alt"></i></span></td>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tY3JlYXRpb24tZnVuY3Rpb25zLmh0bWwjZnVuY3Rpb25fanNvbi1hcnJheQ==">JSON_ARRAY<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">创建 json 数组</td>
+<td align="left"> 创建 json 数组 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tY3JlYXRpb24tZnVuY3Rpb25zLmh0bWwjZnVuY3Rpb25fanNvbi1vYmplY3Q="> JSON_OBJECT<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">创建 json 对象</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tY3JlYXRpb24tZnVuY3Rpb25zLmh0bWwjZnVuY3Rpb25fanNvbi1vYmplY3Q=">JSON_OBJECT<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 创建 json 对象 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tY3JlYXRpb24tZnVuY3Rpb25zLmh0bWwjZnVuY3Rpb25fanNvbi1xdW90ZQ=="> JSON_QUOTE<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">将 json 转成 json 字符串类型</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tY3JlYXRpb24tZnVuY3Rpb25zLmh0bWwjZnVuY3Rpb25fanNvbi1xdW90ZQ==">JSON_QUOTE<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 将 json 转成 json 字符串类型</td>
 </tr>
 <tr>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1s">查询 json<i class="fa fa-external-link-alt"></i></span></td>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tY29udGFpbnM=">JSON_CONTAINS<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">判断是否包含某个 json 值</td>
+<td align="left"> 判断是否包含某个 json 值 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tY29udGFpbnMtcGF0aA=="> JSON_CONTAINS_PATH<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">判断某个路径下是否包含 json 值</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tY29udGFpbnMtcGF0aA==">JSON_CONTAINS_PATH<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 判断某个路径下是否包含 json 值 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tZXh0cmFjdA=="> JSON_EXTRACT<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">提取 json 值</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tZXh0cmFjdA==">JSON_EXTRACT<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 提取 json 值 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI29wZXJhdG9yX2pzb24tY29sdW1uLXBhdGg="> column-&gt;path<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">JSON_EXTRACT 的简洁写法，MySQL 5.7.9 开始支持</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI29wZXJhdG9yX2pzb24tY29sdW1uLXBhdGg=">column-&gt;path<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left">JSON_EXTRACT 的简洁写法，MySQL 5.7.9 开始支持 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI29wZXJhdG9yX2pzb24taW5saW5lLXBhdGg="> column-&gt;&gt;path<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">JSON_UNQUOTE (column -&gt; path) 的简洁写法</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI29wZXJhdG9yX2pzb24taW5saW5lLXBhdGg=">column-&gt;&gt;path<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left">JSON_UNQUOTE (column -&gt; path) 的简洁写法 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24ta2V5cw=="> JSON_KEYS<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">提取 json 中的键值为 json 数组</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24ta2V5cw==">JSON_KEYS<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 提取 json 中的键值为 json 数组 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tc2VhcmNo"> JSON_SEARCH<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">按给定字符串关键字搜索 json，返回匹配的路径</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tc2VhcmNoLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tc2VhcmNo">JSON_SEARCH<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 按给定字符串关键字搜索 json，返回匹配的路径</td>
 </tr>
 <tr>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1s">修改 json<i class="fa fa-external-link-alt"></i></span></td>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tYXBwZW5k">JSON_APPEND<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">废弃，MySQL 5.7.9 开始改名为 json_array_append</td>
+<td align="left"> 废弃，MySQL 5.7.9 开始改名为 json_array_append</td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tYXJyYXktYXBwZW5k">JSON_ARRAY_APPEND<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">末尾添加数组元素</td>
+<td align="left"> 末尾添加数组元素 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tYXJyYXktaW5zZXJ0"> JSON_ARRAY_INSERT<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">插入数组元素</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tYXJyYXktaW5zZXJ0">JSON_ARRAY_INSERT<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 插入数组元素 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24taW5zZXJ0"> JSON_INSERT<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">插入值（插入新值，但不替换已经存在的旧值）</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24taW5zZXJ0">JSON_INSERT<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 插入值（插入新值，但不替换已经存在的旧值）</td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tbWVyZ2U=">JSON_MERGE<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">合并 json 数组或对象</td>
+<td align="left"> 合并 json 数组或对象 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tcmVtb3Zl"> JSON_REMOVE<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">删除 json 数据</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tcmVtb3Zl">JSON_REMOVE<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 删除 json 数据 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tcmVwbGFjZQ=="> JSON_REPLACE<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">替换值（只替换已经存在的旧值）</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tcmVwbGFjZQ==">JSON_REPLACE<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 替换值（只替换已经存在的旧值）</td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tc2V0">JSON_SET<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">设置值（替换旧值，并插入不存在的新值）</td>
+<td align="left"> 设置值（替换旧值，并插入不存在的新值）</td>
 </tr>
 <tr>
 <td align="left"></td>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tbW9kaWZpY2F0aW9uLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tdW5xdW90ZQ==">JSON_UNQUOTE<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">去除 json 字符串的引号，将值转成 string 类型</td>
+<td align="left"> 去除 json 字符串的引号，将值转成 string 类型</td>
 </tr>
 <tr>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tYXR0cmlidXRlLWZ1bmN0aW9ucy5odG1s">返回 json 属性<i class="fa fa-external-link-alt"></i></span></td>
 <td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tYXR0cmlidXRlLWZ1bmN0aW9ucy5odG1sI2Z1bmN0aW9uX2pzb24tZGVwdGg=">JSON_DEPTH<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">返回 json 文档的最大深度</td>
+<td align="left"> 返回 json 文档的最大深度 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tYXR0cmlidXRlLWZ1bmN0aW9ucy5odG1sJTIzZnVuY3Rpb25fanNvbi1sZW5ndGg="> JSON_LENGTH<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">返回 json 文档的长度</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tYXR0cmlidXRlLWZ1bmN0aW9ucy5odG1sJTIzZnVuY3Rpb25fanNvbi1sZW5ndGg=">JSON_LENGTH<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 返回 json 文档的长度 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tYXR0cmlidXRlLWZ1bmN0aW9ucy5odG1sJTIzZnVuY3Rpb25fanNvbi10eXBl"> JSON_TYPE<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">返回 json 值得类型</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tYXR0cmlidXRlLWZ1bmN0aW9ucy5odG1sJTIzZnVuY3Rpb25fanNvbi10eXBl">JSON_TYPE<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 返回 json 值得类型 </td>
 </tr>
 <tr>
 <td align="left"></td>
-<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tYXR0cmlidXRlLWZ1bmN0aW9ucy5odG1sJTIzZnVuY3Rpb25fanNvbi12YWxpZA=="> JSON_VALID<i class="fa fa-external-link-alt"></i></span></td>
-<td align="left">判断是否为合法 json 文档</td>
+<td align="left"><span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2RvYy9yZWZtYW4vNS43L2VuL2pzb24tYXR0cmlidXRlLWZ1bmN0aW9ucy5odG1sJTIzZnVuY3Rpb25fanNvbi12YWxpZA==">JSON_VALID<i class="fa fa-external-link-alt"></i></span></td>
+<td align="left"> 判断是否为合法 json 文档</td>
 </tr>
 </tbody></table>
 <h3 id="创建-JSON"><a href="#创建-JSON" class="headerlink" title="创建 JSON"></a>创建 JSON</h3><p>如想插入如下所示的 Json 对中：</p>
@@ -956,10 +956,10 @@ update employee set json_data=JSON_SET(json_data, '$.name', 'Bassam') where id=2
       <div class="popular-posts-title"><a href="\2021\03\2021-03-10-Windows系统下的MySQL版本升级\" rel="bookmark">Windows 系统下的 MySQL 版本升级</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\06\2021-06-04-Linux安装MySQL7版本\" rel="bookmark">Linux安装MySQL7版本</a></div>
+      <div class="popular-posts-title"><a href="\2021\06\2021-06-03-Windows安装MySQL8版本\" rel="bookmark">Windows 安装 MySQL8 版本</a></div>
     </li>
     <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2021\06\2021-06-03-Windows安装MySQL8版本\" rel="bookmark">Windows 安装 MySQL8 版本</a></div>
+      <div class="popular-posts-title"><a href="\2021\06\2021-06-04-Linux安装MySQL7版本\" rel="bookmark">Linux 安装 MySQL7 版本</a></div>
     </li>
     <li class="popular-posts-item">
       <div class="popular-posts-title"><a href="\2021\06\2021-06-08-使用binlog2sql恢复MySQL数据\" rel="bookmark">使用 binlog2sql 恢复 MySQL 数据</a></div>
