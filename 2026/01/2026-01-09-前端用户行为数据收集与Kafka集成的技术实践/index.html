@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="在现代 Web 应用中，用户行为数据收集是产品优化和业务分析的重要环节。 本文将详细介绍如何在前端收集用户操作数据，并通过后端 API 安全地发送到 Kafka 消息队列中，实现实时数据流处理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端用户行为数据收集与 Kafka 集成的技术实践">
+<meta property="og:url" content="https://jueee.github.io/2026/01/2026-01-09-%E5%89%8D%E7%AB%AF%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B8%8EKafka%E9%9B%86%E6%88%90%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="网易内推联系我哦">
+<meta property="og:description" content="在现代 Web 应用中，用户行为数据收集是产品优化和业务分析的重要环节。 本文将详细介绍如何在前端收集用户操作数据，并通过后端 API 安全地发送到 Kafka 消息队列中，实现实时数据流处理。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-09T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-21T01:52:07.420Z">
+<meta property="article:author" content="网易无偿内推">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JavaClass">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/01/2026-01-09-%E5%89%8D%E7%AB%AF%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B8%8EKafka%E9%9B%86%E6%88%90%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>前端用户行为数据收集与 Kafka 集成的技术实践 | 网易内推联系我哦</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="网易内推联系我哦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">网易内推联系我哦</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">网易无偿内推，点击下方【首页】置顶帖查看说明</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">332</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">64</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">109</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">技术背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%9C%A8%E5%89%8D%E7%AB%AF%E7%9B%B4%E6%8E%A5%E8%BF%9E%E6%8E%A5Kafka%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">为什么不能在前端直接连接 Kafka？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 安全性问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E9%99%90%E5%88%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 网络架构限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%80%A7%E8%83%BD%E5%92%8C%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 性能和可靠性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E6%9E%B6%E6%9E%84%EF%BC%9A%E5%89%8D%E7%AB%AF-%E2%86%92-API-Gateway-%E2%86%92-Kafka"><span class="nav-number">1.2.</span> <span class="nav-text">推荐架构：前端 → API Gateway → Kafka</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">前端实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">1. 创建数据收集工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9C%A8Vue%E7%BB%84%E4%BB%B6%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">2. 在 Vue 组件中使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%B7%AF%E7%94%B1%E7%BA%A7%E5%88%AB%E7%9A%84%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86"><span class="nav-number">2.3.</span> <span class="nav-text">3. 路由级别的数据收集</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">后端实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text">1. 数据同步控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B6%88%E6%81%AF%E7%94%9F%E4%BA%A7%E8%80%85%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.2.</span> <span class="nav-text">2. 消息生产者服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">4.</span> <span class="nav-text">最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E7%AD%96%E7%95%A5"><span class="nav-number">4.1.</span> <span class="nav-text">1. 错误处理策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">4.2.</span> <span class="nav-text">2. 性能优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE%E8%84%B1%E6%95%8F"><span class="nav-number">4.3.</span> <span class="nav-text">3. 数据脱敏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%91%E6%8E%A7%E5%92%8C%E6%97%A5%E5%BF%97"><span class="nav-number">5.</span> <span class="nav-text">监控和日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E7%9B%91%E6%8E%A7"><span class="nav-number">5.1.</span> <span class="nav-text">前端监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E7%9B%91%E6%8E%A7"><span class="nav-number">5.2.</span> <span class="nav-text">后端监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="网易无偿内推"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">网易无偿内推</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">332</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">109</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/01/2026-01-09-%E5%89%8D%E7%AB%AF%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B8%8EKafka%E9%9B%86%E6%88%90%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="网易无偿内推">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网易内推联系我哦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端用户行为数据收集与 Kafka 集成的技术实践
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-01-09 00:00:00" itemprop="dateCreated datePublished" datetime="2026-01-09T00:00:00Z">2026-01-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaClass/" itemprop="url" rel="index"><span itemprop="name">JavaClass</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2026/01/2026-01-09-%E5%89%8D%E7%AB%AF%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B8%8EKafka%E9%9B%86%E6%88%90%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2026/01/2026-01-09-%E5%89%8D%E7%AB%AF%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B8%8EKafka%E9%9B%86%E6%88%90%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在现代 Web 应用中，用户行为数据收集是产品优化和业务分析的重要环节。</p>
+<p>本文将详细介绍如何在前端收集用户操作数据，并通过后端 API 安全地发送到 Kafka 消息队列中，实现实时数据流处理。</p>
+<a id="more"></a>
+
+<h2 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h2><h3 id="为什么不能在前端直接连接Kafka？"><a href="#为什么不能在前端直接连接Kafka？" class="headerlink" title="为什么不能在前端直接连接Kafka？"></a>为什么不能在前端直接连接 Kafka？</h3><p>很多开发者可能会问：既然要发送数据到 Kafka，为什么不在前端直接连接 Kafka 呢？</p>
+<p>这主要有以下几个重要原因：</p>
+<h4 id="1-安全性问题"><a href="#1-安全性问题" class="headerlink" title="1. 安全性问题"></a>1. 安全性问题</h4><ul>
+<li><strong>凭据暴露风险</strong>：Kafka 连接需要 broker 地址、认证信息等敏感配置，这些信息在前端代码中完全暴露</li>
+<li><strong>无法进行访问控制</strong>：前端无法实现细粒度的权限控制和数据验证</li>
+<li><strong>跨域限制</strong>：浏览器的 CORS 策略会阻止直接连接到 Kafka 集群</li>
+</ul>
+<h4 id="2-网络架构限制"><a href="#2-网络架构限制" class="headerlink" title="2. 网络架构限制"></a>2. 网络架构限制</h4><ul>
+<li><strong>防火墙和网络隔离</strong>：生产环境中 Kafka 集群通常在内网，前端无法直接访问</li>
+<li><strong>负载均衡复杂性</strong>：Kafka 集群的负载均衡机制不适合直接暴露给前端</li>
+</ul>
+<h4 id="3-性能和可靠性"><a href="#3-性能和可靠性" class="headerlink" title="3. 性能和可靠性"></a>3. 性能和可靠性</h4><ul>
+<li><strong>连接管理</strong>：每个用户都直连 Kafka 会产生大量连接，影响集群性能</li>
+<li><strong>数据一致性</strong>：缺少服务端验证和数据清洗环节</li>
+<li><strong>错误处理</strong>：前端无法处理复杂的重试和容错逻辑</li>
+</ul>
+<h3 id="推荐架构：前端-→-API-Gateway-→-Kafka"><a href="#推荐架构：前端-→-API-Gateway-→-Kafka" class="headerlink" title="推荐架构：前端 → API Gateway → Kafka"></a>推荐架构：前端 → API Gateway → Kafka</h3><pre class="language-none"><code class="language-none">前端应用 → 后端API → Kafka集群 → 数据处理服务</code></pre>
+
+<p>这种架构的优势：</p>
+<ul>
+<li>✅ 安全：敏感配置保存在服务端</li>
+<li>✅ 可控：统一的数据验证和格式化</li>
+<li>✅ 高效：连接复用和批量处理</li>
+<li>✅ 可维护：集中的错误处理和监控</li>
+</ul>
+<h2 id="前端实现"><a href="#前端实现" class="headerlink" title="前端实现"></a>前端实现</h2><h3 id="1-创建数据收集工具类"><a href="#1-创建数据收集工具类" class="headerlink" title="1. 创建数据收集工具类"></a>1. 创建数据收集工具类</h3><p>首先创建一个专门的工具类来处理用户行为数据的收集和发送：</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// src/utils/userDataCollector.js</span>
+<span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * 用户数据收集工具类
+ * 通过后端API发送用户行为数据到消息队列
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name">UserDataCollector</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 前端通过API调用，无需消息队列配置</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 通用的数据发送方法
+   * @param {string} topic - 数据主题
+   * @param {Object|string} data - 要发送的数据
+   * @param {string} key - 数据标识（可选）
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">sendData</span><span class="token punctuation">(</span><span class="token parameter">topic<span class="token punctuation">,</span> data<span class="token punctuation">,</span> key <span class="token operator">=</span> <span class="token keyword">null</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> dataString <span class="token operator">=</span> <span class="token keyword">typeof</span> data <span class="token operator">===</span> <span class="token string">'string'</span> <span class="token operator">?</span> data <span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendViaAPI</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        topic<span class="token operator">:</span> topic<span class="token punctuation">,</span>
+        message<span class="token operator">:</span> dataString<span class="token punctuation">,</span>
+        key<span class="token operator">:</span> key
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'development'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">数据已发送到主题[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>topic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">]:</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      
+      <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">发送数据到主题[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>topic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">]失败:</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// 发送失败不影响主要业务流程</span>
+      <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 发送用户操作数据
+   * @param {Object} actionInfo - 操作信息对象
+   * @param {string} actionInfo.actionId - 操作ID
+   * @param {string} actionInfo.module - 模块名称
+   * @param {string} actionInfo.userId - 用户ID
+   * @param {number} actionInfo.timestamp - 时间戳
+   * @param {string} topic - 自定义主题（可选）
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">sendUserAction</span><span class="token punctuation">(</span>actionInfo<span class="token punctuation">,</span> topic <span class="token operator">=</span> <span class="token string">'user-behavior'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token punctuation">{</span>
+      actionId<span class="token operator">:</span> actionInfo<span class="token punctuation">.</span>actionId<span class="token punctuation">,</span>
+      module<span class="token operator">:</span> actionInfo<span class="token punctuation">.</span>module<span class="token punctuation">,</span>
+      userId<span class="token operator">:</span> actionInfo<span class="token punctuation">.</span>userId<span class="token punctuation">,</span>
+      timestamp<span class="token operator">:</span> actionInfo<span class="token punctuation">.</span>timestamp<span class="token punctuation">,</span>
+      eventType<span class="token operator">:</span> <span class="token string">'user_action'</span><span class="token punctuation">,</span>
+      source<span class="token operator">:</span> <span class="token string">'web_frontend'</span><span class="token punctuation">,</span>
+      sessionId<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getSessionId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      userAgent<span class="token operator">:</span> navigator<span class="token punctuation">.</span>userAgent
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendData</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> message<span class="token punctuation">,</span> actionInfo<span class="token punctuation">.</span>userId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 通过后端API发送数据
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">sendViaAPI</span><span class="token punctuation">(</span><span class="token parameter">payload</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/api/datasync/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>payload<span class="token punctuation">.</span>topic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> payload<span class="token punctuation">.</span>message<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string">'Content-Type'</span><span class="token operator">:</span> <span class="token string">'application/json'</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">NODE_ENV</span> <span class="token operator">===</span> <span class="token string">'development'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">数据发送接口暂不可用，主题: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>payload<span class="token punctuation">.</span>topic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, 数据:</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> payload<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 获取会话ID
+   */</span>
+  <span class="token function">getSessionId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> sessionId <span class="token operator">=</span> sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'sessionId'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>sessionId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      sessionId <span class="token operator">=</span> <span class="token string">'session_'</span> <span class="token operator">+</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'_'</span> <span class="token operator">+</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">36</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'sessionId'</span><span class="token punctuation">,</span> sessionId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> sessionId<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">/**
+   * 批量发送数据
+   */</span>
+  <span class="token keyword">async</span> <span class="token function">sendBatchData</span><span class="token punctuation">(</span><span class="token parameter">topic<span class="token punctuation">,</span> dataList<span class="token punctuation">,</span> keyExtractor <span class="token operator">=</span> <span class="token keyword">null</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> promises <span class="token operator">=</span> dataList<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> key <span class="token operator">=</span> keyExtractor <span class="token operator">?</span> <span class="token function">keyExtractor</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendData</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> data<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">allSettled</span><span class="token punctuation">(</span>promises<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 导出单例实例</span>
+<span class="token keyword">let</span> instance <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">getUserDataCollector</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>instance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UserDataCollector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  getUserDataCollector
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="2-在Vue组件中使用"><a href="#2-在Vue组件中使用" class="headerlink" title="2. 在Vue组件中使用"></a>2. 在 Vue 组件中使用</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// src/App.vue</span>
+<span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"app"</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 应用内容 <span class="token operator">--</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getUserDataCollector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/userDataCollector'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'App'</span><span class="token punctuation">,</span>
+  <span class="token keyword">async</span> <span class="token function">created</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 应用启动时发送用户访问数据</span>
+    <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendUserVisitInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token keyword">async</span> <span class="token function">sendUserVisitInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> collector <span class="token operator">=</span> <span class="token function">getUserDataCollector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      <span class="token comment">// 从路由获取页面信息</span>
+      <span class="token keyword">const</span> pageInfo <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>page <span class="token operator">||</span> <span class="token string">'dashboard'</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> moduleInfo <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>module <span class="token operator">||</span> <span class="token string">'main'</span><span class="token punctuation">;</span>
+      
+      <span class="token comment">// 从状态管理获取用户信息</span>
+      <span class="token keyword">const</span> userInfo <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>user <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+      
+      <span class="token comment">// 构建用户访问数据</span>
+      <span class="token keyword">const</span> visitData <span class="token operator">=</span> <span class="token punctuation">{</span>
+        actionId<span class="token operator">:</span> pageInfo<span class="token punctuation">,</span>
+        module<span class="token operator">:</span> moduleInfo<span class="token punctuation">,</span>
+        userId<span class="token operator">:</span> userInfo<span class="token punctuation">.</span>id <span class="token operator">||</span> <span class="token string">'anonymous'</span><span class="token punctuation">,</span>
+        timestamp<span class="token operator">:</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">await</span> collector<span class="token punctuation">.</span><span class="token function">sendUserAction</span><span class="token punctuation">(</span>visitData<span class="token punctuation">,</span> <span class="token string">'page-visit-log'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'用户访问信息已记录'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'发送用户访问信息失败:'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span></code></pre>
+
+<h3 id="3-路由级别的数据收集"><a href="#3-路由级别的数据收集" class="headerlink" title="3. 路由级别的数据收集"></a>3. 路由级别的数据收集</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// src/router/index.js</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> getUserDataCollector <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/userDataCollector'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  routes<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token comment">// 路由配置</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 路由守卫中收集页面访问数据</span>
+router<span class="token punctuation">.</span><span class="token function">afterEach</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> <span class="token keyword">from</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> collector <span class="token operator">=</span> <span class="token function">getUserDataCollector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">const</span> navigationData <span class="token operator">=</span> <span class="token punctuation">{</span>
+    actionId<span class="token operator">:</span> to<span class="token punctuation">.</span>name <span class="token operator">||</span> to<span class="token punctuation">.</span>path<span class="token punctuation">,</span>
+    module<span class="token operator">:</span> to<span class="token punctuation">.</span>meta<span class="token operator">?.</span>module <span class="token operator">||</span> <span class="token string">'unknown'</span><span class="token punctuation">,</span>
+    userId<span class="token operator">:</span> store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>user<span class="token operator">?.</span>id <span class="token operator">||</span> <span class="token string">'anonymous'</span><span class="token punctuation">,</span>
+    timestamp<span class="token operator">:</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    fromPage<span class="token operator">:</span> <span class="token keyword">from</span><span class="token punctuation">.</span>name <span class="token operator">||</span> <span class="token keyword">from</span><span class="token punctuation">.</span>path<span class="token punctuation">,</span>
+    toPage<span class="token operator">:</span> to<span class="token punctuation">.</span>name <span class="token operator">||</span> to<span class="token punctuation">.</span>path
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">await</span> collector<span class="token punctuation">.</span><span class="token function">sendUserAction</span><span class="token punctuation">(</span>navigationData<span class="token punctuation">,</span> <span class="token string">'navigation-log'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router<span class="token punctuation">;</span></code></pre>
+
+<h2 id="后端实现"><a href="#后端实现" class="headerlink" title="后端实现"></a>后端实现</h2><h3 id="1-数据同步控制器"><a href="#1-数据同步控制器" class="headerlink" title="1. 数据同步控制器"></a>1. 数据同步控制器</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>api<span class="token punctuation">.</span>controller</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>system<span class="token punctuation">.</span>bean<span class="token punctuation">.</span></span><span class="token class-name">ResponseBean</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>service<span class="token punctuation">.</span></span><span class="token class-name">MessageProducer</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">RequiredArgsConstructor</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>web<span class="token punctuation">.</span>bind<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span>UUID<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequiredArgsConstructor</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DataSyncController</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">MessageProducer</span> messageProducer<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/api/datasync/{topicName}"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseBean</span> <span class="token function">syncData</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> topicName<span class="token punctuation">,</span> 
+                                <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">String</span> dataJson<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"接收数据同步请求 - 主题:{}, 数据:{}"</span><span class="token punctuation">,</span> topicName<span class="token punctuation">,</span> dataJson<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 数据验证</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isValidTopic</span><span class="token punctuation">(</span>topicName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token class-name">ResponseBean</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"无效的数据主题"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isValidJson</span><span class="token punctuation">(</span>dataJson<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token class-name">ResponseBean</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"数据格式错误"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            
+            <span class="token comment">// 发送到消息队列</span>
+            <span class="token class-name">String</span> messageKey <span class="token operator">=</span> UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            messageProducer<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>topicName<span class="token punctuation">,</span> messageKey<span class="token punctuation">,</span> dataJson<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token comment">// 记录统计信息</span>
+            <span class="token function">recordMetrics</span><span class="token punctuation">(</span>topicName<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token keyword">return</span> <span class="token class-name">ResponseBean</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"数据同步失败 - 主题:{}, 错误:{}"</span><span class="token punctuation">,</span> topicName<span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">recordMetrics</span><span class="token punctuation">(</span>topicName<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token class-name">ResponseBean</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"数据同步失败"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">isValidTopic</span><span class="token punctuation">(</span><span class="token class-name">String</span> topicName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 验证主题名称是否在允许列表中</span>
+        <span class="token keyword">return</span> topicName<span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token string">"^[a-zA-Z0-9\\-_]+$"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> 
+               topicName<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">50</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">isValidJson</span><span class="token punctuation">(</span><span class="token class-name">String</span> json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 验证JSON格式</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 可以使用Jackson或其他JSON库进行验证</span>
+            <span class="token keyword">return</span> json <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>json<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">recordMetrics</span><span class="token punctuation">(</span><span class="token class-name">String</span> topicName<span class="token punctuation">,</span> <span class="token keyword">boolean</span> success<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 记录监控指标</span>
+        <span class="token comment">// 例如：成功/失败次数、响应时间等</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="2-消息生产者服务"><a href="#2-消息生产者服务" class="headerlink" title="2. 消息生产者服务"></a>2. 消息生产者服务</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>example<span class="token punctuation">.</span>service</span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token namespace">lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Slf4j</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Service</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MessageProducer</span> <span class="token punctuation">{</span>
+    
+    <span class="token comment">// 注入Kafka生产者或其他消息队列客户端</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">send</span><span class="token punctuation">(</span><span class="token class-name">String</span> topic<span class="token punctuation">,</span> <span class="token class-name">String</span> key<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 发送到消息队列的具体实现</span>
+            <span class="token comment">// kafkaTemplate.send(topic, key, message);</span>
+            log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"消息已发送 - 主题:{}, 键:{}"</span><span class="token punctuation">,</span> topic<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"发送消息失败 - 主题:{}, 错误:{}"</span><span class="token punctuation">,</span> topic<span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="1-错误处理策略"><a href="#1-错误处理策略" class="headerlink" title="1. 错误处理策略"></a>1. 错误处理策略</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 前端错误处理</span>
+<span class="token keyword">class</span> <span class="token class-name">UserDataCollector</span> <span class="token punctuation">{</span>
+  <span class="token keyword">async</span> <span class="token function">sendData</span><span class="token punctuation">(</span><span class="token parameter">topic<span class="token punctuation">,</span> data<span class="token punctuation">,</span> key <span class="token operator">=</span> <span class="token keyword">null</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendViaAPI</span><span class="token punctuation">(</span><span class="token punctuation">{</span>topic<span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> key<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 静默失败，不影响用户体验</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleError</span><span class="token punctuation">(</span>error<span class="token punctuation">,</span> topic<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token function">handleError</span><span class="token punctuation">(</span><span class="token parameter">error<span class="token punctuation">,</span> topic<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 本地存储失败的数据，后续重试</span>
+    <span class="token keyword">const</span> failedData <span class="token operator">=</span> <span class="token punctuation">{</span>
+      topic<span class="token punctuation">,</span>
+      data<span class="token punctuation">,</span>
+      timestamp<span class="token operator">:</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      error<span class="token operator">:</span> error<span class="token punctuation">.</span>message
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">const</span> failures <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'failed_data'</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">'[]'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    failures<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>failedData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'failed_data'</span><span class="token punctuation">,</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>failures<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 定期重试逻辑</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">scheduleRetry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="2-性能优化"><a href="#2-性能优化" class="headerlink" title="2. 性能优化"></a>2. 性能优化</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 批量发送和防抖</span>
+<span class="token keyword">class</span> <span class="token class-name">UserDataCollector</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>buffer <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>batchSize <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>flushInterval <span class="token operator">=</span> <span class="token number">5000</span><span class="token punctuation">;</span> <span class="token comment">// 5秒</span>
+    
+    <span class="token comment">// 定期刷新缓冲区</span>
+    <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>flushInterval<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">async</span> <span class="token function">sendData</span><span class="token punctuation">(</span><span class="token parameter">topic<span class="token punctuation">,</span> data<span class="token punctuation">,</span> key <span class="token operator">=</span> <span class="token keyword">null</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 添加到缓冲区</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>buffer<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>topic<span class="token punctuation">,</span> data<span class="token punctuation">,</span> key<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 达到批次大小时立即发送</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>buffer<span class="token punctuation">.</span>length <span class="token operator">&gt;=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>batchSize<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token keyword">async</span> <span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>buffer<span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">const</span> batch <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>buffer<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sendBatch</span><span class="token punctuation">(</span>batch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 批次发送失败，重新加入缓冲区</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>buffer<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token operator">...</span>batch<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="3-数据脱敏"><a href="#3-数据脱敏" class="headerlink" title="3. 数据脱敏"></a>3. 数据脱敏</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 敏感数据处理</span>
+<span class="token keyword">class</span> <span class="token class-name">UserDataCollector</span> <span class="token punctuation">{</span>
+  <span class="token function">sanitizeData</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> sanitized <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span>data<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 移除敏感字段</span>
+    <span class="token keyword">delete</span> sanitized<span class="token punctuation">.</span>password<span class="token punctuation">;</span>
+    <span class="token keyword">delete</span> sanitized<span class="token punctuation">.</span>token<span class="token punctuation">;</span>
+    
+    <span class="token comment">// 脱敏处理</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>sanitized<span class="token punctuation">.</span>email<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      sanitized<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">maskEmail</span><span class="token punctuation">(</span>sanitized<span class="token punctuation">.</span>email<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>sanitized<span class="token punctuation">.</span>phone<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      sanitized<span class="token punctuation">.</span>phone <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">maskPhone</span><span class="token punctuation">(</span>sanitized<span class="token punctuation">.</span>phone<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">return</span> sanitized<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token function">maskEmail</span><span class="token punctuation">(</span><span class="token parameter">email</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">[</span>name<span class="token punctuation">,</span> domain<span class="token punctuation">]</span> <span class="token operator">=</span> email<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'@'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> maskedName <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'***'</span> <span class="token operator">+</span> name<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>maskedName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">@</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>domain<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h2 id="监控和日志"><a href="#监控和日志" class="headerlink" title="监控和日志"></a>监控和日志</h2><h3 id="前端监控"><a href="#前端监控" class="headerlink" title="前端监控"></a>前端监控</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 添加性能监控</span>
+<span class="token keyword">class</span> <span class="token class-name">UserDataCollector</span> <span class="token punctuation">{</span>
+  <span class="token keyword">async</span> <span class="token function">sendViaAPI</span><span class="token punctuation">(</span><span class="token parameter">payload</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> startTime <span class="token operator">=</span> performance<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/api/datasync/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>payload<span class="token punctuation">.</span>topic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> payload<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      <span class="token comment">// 记录成功指标</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">recordMetric</span><span class="token punctuation">(</span><span class="token string">'api_call_success'</span><span class="token punctuation">,</span> performance<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> startTime<span class="token punctuation">,</span> payload<span class="token punctuation">.</span>topic<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 记录失败指标</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">recordMetric</span><span class="token punctuation">(</span><span class="token string">'api_call_failure'</span><span class="token punctuation">,</span> performance<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> startTime<span class="token punctuation">,</span> payload<span class="token punctuation">.</span>topic<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">throw</span> error<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token function">recordMetric</span><span class="token punctuation">(</span><span class="token parameter">type<span class="token punctuation">,</span> duration<span class="token punctuation">,</span> topic</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 发送到监控系统</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>performance <span class="token operator">&amp;&amp;</span> window<span class="token punctuation">.</span>performance<span class="token punctuation">.</span>mark<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      window<span class="token punctuation">.</span>performance<span class="token punctuation">.</span><span class="token function">mark</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>type<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">_</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>topic<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">_</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="后端监控"><a href="#后端监控" class="headerlink" title="后端监控"></a>后端监控</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/api/datasync/{topicName}"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">ResponseBean</span> <span class="token function">syncData</span><span class="token punctuation">(</span><span class="token annotation punctuation">@PathVariable</span> <span class="token class-name">String</span> topicName<span class="token punctuation">,</span> <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">String</span> dataJson<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">long</span> startTime <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 业务逻辑</span>
+        messageProducer<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>topicName<span class="token punctuation">,</span> UUID<span class="token punctuation">.</span><span class="token function">randomUUID</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> dataJson<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// 记录成功指标</span>
+        <span class="token function">recordMetrics</span><span class="token punctuation">(</span><span class="token string">"sync_success"</span><span class="token punctuation">,</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> startTime<span class="token punctuation">,</span> topicName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">return</span> <span class="token class-name">ResponseBean</span><span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 记录失败指标</span>
+        <span class="token function">recordMetrics</span><span class="token punctuation">(</span><span class="token string">"sync_failure"</span><span class="token punctuation">,</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> startTime<span class="token punctuation">,</span> topicName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过前后端协作的方式收集用户行为数据有以下优势：</p>
+<ol>
+<li><strong>安全可控</strong>：敏感配置和认证信息保存在服务端</li>
+<li><strong>性能优化</strong>：批量处理和连接复用</li>
+<li><strong>数据质量</strong>：统一的验证和格式化</li>
+<li><strong>可扩展性</strong>：易于添加新的数据处理逻辑</li>
+<li><strong>监控完善</strong>：全链路的监控和告警</li>
+</ol>
+<p>这种架构模式在实际项目中得到了广泛应用，能够有效支撑大规模用户行为数据的收集和处理需求。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\02\2021-02-04-Java判断字符串中是否包含emoj表情及过滤\" rel="bookmark">Java 判断字符串中是否包含 emoj 表情及过滤</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\02\2021-02-25-Java不区分大小写的高亮替换\" rel="bookmark">Java 不区分大小写的高亮替换</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\03\2021-03-03-Java一维数组转换链表结构\" rel="bookmark">Java 一维数组转换链表结构</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\03\2021-03-04-Java一维数组转换二叉树结构\" rel="bookmark">Java 一维数组转换二叉树结构</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\03\2021-03-05-Java按照树形结构打印二叉树\" rel="bookmark">Java 按照树形结构打印二叉树</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/JavaClass/" rel="tag"># JavaClass</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/01/2026-01-08-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%B8%8B%E7%9A%84%E7%86%94%E6%96%AD%E5%99%A8%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E4%B8%8E%E5%BA%94%E7%94%A8/" rel="prev" title="微服务架构下的熔断器模式实现与应用">
+                  <i class="fa fa-chevron-left"></i> 微服务架构下的熔断器模式实现与应用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/01/2026-01-20-%E4%BB%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%88%B0%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E7%9A%84%E5%AE%8C%E7%BE%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="next" title="从本地仓库到私有仓库的完美解决方案">
+                  从本地仓库到私有仓库的完美解决方案 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: 'f531cb8372b3c90357ec963d19c7cc918bbf488b',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '4b69a41d749d67d3a6eb625f0d81d3e6',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":"https://p5beawtt.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2026/01/2026-01-09-%E5%89%8D%E7%AB%AF%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%95%B0%E6%8D%AE%E6%94%B6%E9%9B%86%E4%B8%8EKafka%E9%9B%86%E6%88%90%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AE%9E%E8%B7%B5/",
+      serverURLs: "https://p5beawtt.lc-cn-n1-shared.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
