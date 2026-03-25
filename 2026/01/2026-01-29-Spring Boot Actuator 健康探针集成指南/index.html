@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="一、背景1.1 什么是健康探针？在云原生和微服务架构中，健康探针（Health Probes） 是容器编排平台（如 Kubernetes）用来监控应用程序运行状态的重要机制。通过定期调用应用暴露的健康检查端点，平台可以判断应用是否正常运行，并据此做出相应的调度决策。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot Actuator 健康探针集成指南">
+<meta property="og:url" content="https://jueee.github.io/2026/01/2026-01-29-Spring%20Boot%20Actuator%20%E5%81%A5%E5%BA%B7%E6%8E%A2%E9%92%88%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="网易内推联系我哦">
+<meta property="og:description" content="一、背景1.1 什么是健康探针？在云原生和微服务架构中，健康探针（Health Probes） 是容器编排平台（如 Kubernetes）用来监控应用程序运行状态的重要机制。通过定期调用应用暴露的健康检查端点，平台可以判断应用是否正常运行，并据此做出相应的调度决策。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-29T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-01-29T05:47:40.874Z">
+<meta property="article:author" content="网易无偿内推">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JavaJar">
+<meta property="article:tag" content="Kubernets">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/01/2026-01-29-Spring%20Boot%20Actuator%20%E5%81%A5%E5%BA%B7%E6%8E%A2%E9%92%88%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Spring Boot Actuator 健康探针集成指南 | 网易内推联系我哦</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="网易内推联系我哦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">网易内推联系我哦</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">网易无偿内推，点击下方【首页】置顶帖查看说明</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">337</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">64</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">110</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">一、背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%81%A5%E5%BA%B7%E6%8E%A2%E9%92%88%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 什么是健康探针？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%81%A5%E5%BA%B7%E6%8E%A2%E9%92%88%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 为什么需要健康探针？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 技术选型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">二、项目集成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%B7%BB%E5%8A%A0-Maven-%E4%BE%9D%E8%B5%96"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 添加 Maven 依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E9%85%8D%E7%BD%AE-application-yml"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 配置 application.yml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">三、配置详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E7%AB%AF%E7%82%B9%E6%9A%B4%E9%9C%B2%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 端点暴露配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%81%A5%E5%BA%B7%E7%AB%AF%E7%82%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 健康端点配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%81%A5%E5%BA%B7%E7%8A%B6%E6%80%81%E6%8C%87%E7%A4%BA%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 健康状态指示器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-Liveness-vs-Readiness-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 Liveness vs Readiness 设计原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">四、部署流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%8F%91%E5%B8%83-Java-%E5%BA%94%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 第一步：发布 Java 应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E9%85%8D%E7%BD%AE-Kubernetes-%E6%8E%A2%E9%92%88"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 第二步：配置 Kubernetes 探针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%85%88%E5%8F%91%E5%B8%83%E5%BA%94%E7%94%A8%E5%86%8D%E9%85%8D%E7%BD%AE%E6%8E%A2%E9%92%88%EF%BC%9F"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 为什么要先发布应用再配置探针？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%BF%9B%E9%98%B6%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">五、进阶配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5%E5%99%A8"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 自定义健康检查器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E5%B0%86%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A3%80%E6%9F%A5%E5%99%A8%E5%8A%A0%E5%85%A5-Readiness-%E6%8E%A2%E9%92%88"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 将自定义检查器加入 Readiness 探针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 安全配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">六、常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Q1-%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E5%90%8E%E7%AB%8B%E5%8D%B3%E6%94%B6%E5%88%B0-Liveness-%E6%8E%A2%E6%B5%8B%E5%A4%B1%E8%B4%A5%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%AE%B9%E5%99%A8%E9%87%8D%E5%90%AF"><span class="nav-number">6.1.</span> <span class="nav-text">Q1: 应用启动后立即收到 Liveness 探测失败，导致容器重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q2-Readiness-%E6%8E%A2%E6%B5%8B%E5%81%B6%E5%8F%91%E5%A4%B1%E8%B4%A5"><span class="nav-number">6.2.</span> <span class="nav-text">Q2: Readiness 探测偶发失败</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Q3-%E5%81%A5%E5%BA%B7%E7%AB%AF%E7%82%B9%E8%BF%94%E5%9B%9E-DOWN-%E4%BD%86%E5%BA%94%E7%94%A8%E5%AE%9E%E9%99%85%E6%AD%A3%E5%B8%B8"><span class="nav-number">6.3.</span> <span class="nav-text">Q3: 健康端点返回 DOWN 但应用实际正常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">7.</span> <span class="nav-text">七、总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="网易无偿内推"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">网易无偿内推</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">337</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">110</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/01/2026-01-29-Spring%20Boot%20Actuator%20%E5%81%A5%E5%BA%B7%E6%8E%A2%E9%92%88%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="网易无偿内推">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网易内推联系我哦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring Boot Actuator 健康探针集成指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-01-29 00:00:00" itemprop="dateCreated datePublished" datetime="2026-01-29T00:00:00Z">2026-01-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/" itemprop="url" rel="index"><span itemprop="name">Container</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Container/Kubernets/" itemprop="url" rel="index"><span itemprop="name">Kubernets</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2026/01/2026-01-29-Spring%20Boot%20Actuator%20%E5%81%A5%E5%BA%B7%E6%8E%A2%E9%92%88%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2026/01/2026-01-29-Spring%20Boot%20Actuator%20%E5%81%A5%E5%BA%B7%E6%8E%A2%E9%92%88%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><h3 id="1-1-什么是健康探针？"><a href="#1-1-什么是健康探针？" class="headerlink" title="1.1 什么是健康探针？"></a>1.1 什么是健康探针？</h3><p>在云原生和微服务架构中，<strong>健康探针（Health Probes）</strong> 是容器编排平台（如 Kubernetes）用来监控应用程序运行状态的重要机制。通过定期调用应用暴露的健康检查端点，平台可以判断应用是否正常运行，并据此做出相应的调度决策。</p>
+<a id="more"></a>
+
+<p>Kubernetes 支持三种类型的探针：</p>
+<table>
+<thead>
+<tr>
+<th>探针类型</th>
+<th>作用</th>
+<th>失败后果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong> Liveness Probe（存活探针）</strong></td>
+<td>检测应用是否存活</td>
+<td>重启容器</td>
+</tr>
+<tr>
+<td><strong> Readiness Probe（就绪探针）</strong></td>
+<td>检测应用是否准备好接收流量</td>
+<td>从 Service 端点移除</td>
+</tr>
+<tr>
+<td><strong> Startup Probe（启动探针）</strong></td>
+<td>检测应用是否完成启动</td>
+<td>阻止其他探针直到启动成功</td>
+</tr>
+</tbody></table>
+<h3 id="1-2-为什么需要健康探针？"><a href="#1-2-为什么需要健康探针？" class="headerlink" title="1.2 为什么需要健康探针？"></a>1.2 为什么需要健康探针？</h3><p>在生产环境中，应用可能会遇到各种异常情况：</p>
+<ul>
+<li><strong>死锁</strong>：应用进程存在，但无法处理请求</li>
+<li><strong>内存泄漏</strong>：应用响应越来越慢，最终无法服务</li>
+<li><strong>依赖服务故障</strong>：数据库连接断开、下游服务不可用</li>
+<li><strong>启动缓慢</strong>：应用需要较长时间初始化</li>
+</ul>
+<p>如果没有健康探针，Kubernetes 只能通过进程是否存在来判断应用状态，无法感知这些 "僵尸" 状态。引入健康探针后，平台可以：</p>
+<ol>
+<li>自动重启异常容器（Liveness 失败）</li>
+<li>避免将流量发送到未就绪的实例（Readiness 失败）</li>
+<li>实现零停机滚动更新</li>
+</ol>
+<h3 id="1-3-技术选型"><a href="#1-3-技术选型" class="headerlink" title="1.3 技术选型"></a>1.3 技术选型</h3><p>对于 Spring Boot 项目，官方提供了 <strong>Spring Boot Actuator</strong> 模块，内置了完善的健康检查机制，并原生支持 Kubernetes 探针。相比自己实现 <code>/health</code> 接口，使用 Actuator 具有以下优势：</p>
+<ul>
+<li>✅ 开箱即用，配置简单</li>
+<li>✅ 自动集成数据库、Redis、MQ 等组件的健康检查</li>
+<li>✅ 原生支持 Kubernetes Liveness/Readiness 探针</li>
+<li>✅ 可扩展，支持自定义健康检查器</li>
+<li>✅ 与 Spring Boot 版本同步更新，稳定可靠</li>
+</ul>
+<hr>
+<h2 id="二、项目集成"><a href="#二、项目集成" class="headerlink" title="二、项目集成"></a>二、项目集成</h2><h3 id="2-1-添加-Maven-依赖"><a href="#2-1-添加-Maven-依赖" class="headerlink" title="2.1 添加 Maven 依赖"></a>2.1 添加 Maven 依赖</h3><p>在 <code>pom.xml</code> 文件的 <code>&lt;dependencies&gt;</code> 节点中添加 Actuator 依赖：</p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- Spring Boot Actuator for health probes --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-actuator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<blockquote>
+<p><strong>说明</strong>：由于项目已继承 <code>spring-boot-starter-parent</code>（版本 2.3.5.RELEASE），无需显式指定版本号，Maven 会自动使用与父 POM 一致的版本。</p>
+</blockquote>
+<h3 id="2-2-配置-application-yml"><a href="#2-2-配置-application-yml" class="headerlink" title="2.2 配置 application.yml"></a>2.2 配置 application.yml</h3><p>在 <code>src/main/resources/application.yml</code> 中添加以下配置：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># Actuator 健康探针配置</span>
+<span class="token key atrule">management</span><span class="token punctuation">:</span>
+  <span class="token key atrule">endpoints</span><span class="token punctuation">:</span>
+    <span class="token key atrule">web</span><span class="token punctuation">:</span>
+      <span class="token key atrule">exposure</span><span class="token punctuation">:</span>
+        <span class="token key atrule">include</span><span class="token punctuation">:</span> health<span class="token punctuation">,</span>info
+      <span class="token key atrule">base-path</span><span class="token punctuation">:</span> /actuator
+  <span class="token key atrule">endpoint</span><span class="token punctuation">:</span>
+    <span class="token key atrule">health</span><span class="token punctuation">:</span>
+      <span class="token key atrule">probes</span><span class="token punctuation">:</span>
+        <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+      <span class="token key atrule">show-details</span><span class="token punctuation">:</span> always
+      <span class="token key atrule">group</span><span class="token punctuation">:</span>
+        <span class="token key atrule">liveness</span><span class="token punctuation">:</span>
+          <span class="token key atrule">include</span><span class="token punctuation">:</span> livenessState
+        <span class="token key atrule">readiness</span><span class="token punctuation">:</span>
+          <span class="token key atrule">include</span><span class="token punctuation">:</span> readinessState<span class="token punctuation">,</span>db
+  <span class="token key atrule">health</span><span class="token punctuation">:</span>
+    <span class="token key atrule">livenessstate</span><span class="token punctuation">:</span>
+      <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">readinessstate</span><span class="token punctuation">:</span>
+      <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+
+<hr>
+<h2 id="三、配置详解"><a href="#三、配置详解" class="headerlink" title="三、配置详解"></a>三、配置详解</h2><h3 id="3-1-端点暴露配置"><a href="#3-1-端点暴露配置" class="headerlink" title="3.1 端点暴露配置"></a>3.1 端点暴露配置</h3><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">management</span><span class="token punctuation">:</span>
+  <span class="token key atrule">endpoints</span><span class="token punctuation">:</span>
+    <span class="token key atrule">web</span><span class="token punctuation">:</span>
+      <span class="token key atrule">exposure</span><span class="token punctuation">:</span>
+        <span class="token key atrule">include</span><span class="token punctuation">:</span> health<span class="token punctuation">,</span>info
+      <span class="token key atrule">base-path</span><span class="token punctuation">:</span> /actuator</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>exposure.include</code></td>
+<td>指定通过 HTTP 暴露的端点，默认只有 <code>health</code> 和 <code>info</code>。出于安全考虑，不建议暴露 <code>*</code>（所有端点）</td>
+</tr>
+<tr>
+<td><code>base-path</code></td>
+<td>端点的基础路径，默认为 <code>/actuator</code>，可根据需要修改</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-健康端点配置"><a href="#3-2-健康端点配置" class="headerlink" title="3.2 健康端点配置"></a>3.2 健康端点配置</h3><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">endpoint</span><span class="token punctuation">:</span>
+  <span class="token key atrule">health</span><span class="token punctuation">:</span>
+    <span class="token key atrule">probes</span><span class="token punctuation">:</span>
+      <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+    <span class="token key atrule">show-details</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">group</span><span class="token punctuation">:</span>
+      <span class="token key atrule">liveness</span><span class="token punctuation">:</span>
+        <span class="token key atrule">include</span><span class="token punctuation">:</span> livenessState
+      <span class="token key atrule">readiness</span><span class="token punctuation">:</span>
+        <span class="token key atrule">include</span><span class="token punctuation">:</span> readinessState<span class="token punctuation">,</span>db</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>probes.enabled</code></td>
+<td>启用 Kubernetes 探针支持，会自动暴露 <code>/actuator/health/liveness</code> 和 <code>/actuator/health/readiness</code> 端点</td>
+</tr>
+<tr>
+<td><code>show-details</code></td>
+<td>健康详情显示级别：<code>never</code>（从不）、<code>when-authorized</code>（授权后）、<code>always</code>（始终）。生产环境建议使用 <code>when-authorized</code></td>
+</tr>
+<tr>
+<td><code>group.liveness.include</code></td>
+<td>存活探针包含的检查项，<code>livenessState</code> 表示只检查应用本身是否存活</td>
+</tr>
+<tr>
+<td><code>group.readiness.include</code></td>
+<td>就绪探针包含的检查项，<code>readinessState</code> + <code>db</code> 表示检查应用就绪状态和数据库连接</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-健康状态指示器配置"><a href="#3-3-健康状态指示器配置" class="headerlink" title="3.3 健康状态指示器配置"></a>3.3 健康状态指示器配置</h3><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">health</span><span class="token punctuation">:</span>
+  <span class="token key atrule">livenessstate</span><span class="token punctuation">:</span>
+    <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">readinessstate</span><span class="token punctuation">:</span>
+    <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span></code></pre>
+
+<p>这两个配置启用了 Spring Boot 内置的存活状态和就绪状态指示器。当应用运行在非 Kubernetes 环境时，需要显式启用这些指示器才能使用 <code>/health/liveness</code> 和 <code>/health/readiness</code> 端点。</p>
+<h3 id="3-4-Liveness-vs-Readiness-设计原则"><a href="#3-4-Liveness-vs-Readiness-设计原则" class="headerlink" title="3.4 Liveness vs Readiness 设计原则"></a>3.4 Liveness vs Readiness 设计原则</h3><p>正确区分两种探针的检查内容至关重要：</p>
+<table>
+<thead>
+<tr>
+<th>探针</th>
+<th>应该检查</th>
+<th>不应该检查</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong> Liveness</strong></td>
+<td> 应用本身是否陷入不可恢复的状态（如死锁）</td>
+<td>外部依赖（数据库、下游服务）</td>
+</tr>
+<tr>
+<td><strong>Readiness</strong></td>
+<td> 应用是否能够处理请求、依赖服务是否可用</td>
+<td> -</td>
+</tr>
+</tbody></table>
+<p><strong>为什么 Liveness 不应检查外部依赖？</strong></p>
+<p>假设 Liveness 探针包含数据库检查，当数据库短暂故障时：</p>
+<ol>
+<li>所有 Pod 的 Liveness 检查失败</li>
+<li> Kubernetes 重启所有 Pod</li>
+<li>Pod 重启后数据库仍不可用，继续失败</li>
+<li>形成重启风暴，加剧系统不稳定</li>
+</ol>
+<p>正确做法是：Liveness 只检查应用本身，Readiness 检查依赖。数据库故障时，Pod 被从 Service 移除，但不会重启，一旦数据库恢复，流量自动恢复。</p>
+<hr>
+<h2 id="四、部署流程"><a href="#四、部署流程" class="headerlink" title="四、部署流程"></a>四、部署流程</h2><h3 id="4-1-第一步：发布-Java-应用"><a href="#4-1-第一步：发布-Java-应用" class="headerlink" title="4.1 第一步：发布 Java 应用"></a>4.1 第一步：发布 Java 应用</h3><ol>
+<li><p><strong>更新依赖</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">mvn clean <span class="token function">install</span></code></pre>
+</li>
+<li><p><strong>本地验证</strong><br>启动应用后，访问以下端点确认配置生效：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 综合健康检查</span>
+<span class="token function">curl</span> http://localhost:8080/actuator/health
+
+<span class="token comment"># 存活探针</span>
+<span class="token function">curl</span> http://localhost:8080/actuator/health/liveness
+
+<span class="token comment"># 就绪探针</span>
+<span class="token function">curl</span> http://localhost:8080/actuator/health/readiness</code></pre>
+</li>
+<li><p><strong>预期响应</strong></p>
+<p><code>/actuator/health/liveness</code> 响应示例：</p>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"UP"</span><span class="token punctuation">,</span>
+  <span class="token property">"components"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"livenessState"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"UP"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p><code>/actuator/health/readiness</code> 响应示例：</p>
+<pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"UP"</span><span class="token punctuation">,</span>
+  <span class="token property">"components"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"db"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"UP"</span><span class="token punctuation">,</span>
+      <span class="token property">"details"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"database"</span><span class="token operator">:</span> <span class="token string">"MySQL"</span><span class="token punctuation">,</span>
+        <span class="token property">"validationQuery"</span><span class="token operator">:</span> <span class="token string">"isValid()"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"readinessState"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"UP"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
+<li><p><strong>构建并推送镜像</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 打包</span>
+mvn package -DskipTests
+
+<span class="token comment"># 构建 Docker 镜像</span>
+docker build -t your-registry/xxx-xxxxx-xxxxxx:v1.1.0 <span class="token builtin class-name">.</span>
+
+<span class="token comment"># 推送到镜像仓库</span>
+docker push your-registry/xxx-xxxxx-xxxxxx:v1.1.0</code></pre>
+</li>
+<li><p><strong>部署到 Kubernetes</strong><br>更新 Deployment 使用新镜像，确保应用正常运行且健康端点可访问。</p>
+</li>
+</ol>
+<h3 id="4-2-第二步：配置-Kubernetes-探针"><a href="#4-2-第二步：配置-Kubernetes-探针" class="headerlink" title="4.2 第二步：配置 Kubernetes 探针"></a>4.2 第二步：配置 Kubernetes 探针</h3><p><strong>在确认 Java 应用已成功部署并验证健康端点可用后</strong>，修改 Kubernetes Deployment 配置，添加探针：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> sms<span class="token punctuation">-</span>alert<span class="token punctuation">-</span>center
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> sms<span class="token punctuation">-</span>alert<span class="token punctuation">-</span>center
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> sms<span class="token punctuation">-</span>alert<span class="token punctuation">-</span>center
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> sms<span class="token punctuation">-</span>alert<span class="token punctuation">-</span>center
+        <span class="token key atrule">image</span><span class="token punctuation">:</span> your<span class="token punctuation">-</span>registry/xxx<span class="token punctuation">-</span>xxxxx<span class="token punctuation">-</span>xxxxxx<span class="token punctuation">:</span>v1.1.0
+        <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+        
+        <span class="token comment"># 存活探针</span>
+        <span class="token key atrule">livenessProbe</span><span class="token punctuation">:</span>
+          <span class="token key atrule">httpGet</span><span class="token punctuation">:</span>
+            <span class="token key atrule">path</span><span class="token punctuation">:</span> /actuator/health/liveness
+            <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+          <span class="token key atrule">initialDelaySeconds</span><span class="token punctuation">:</span> <span class="token number">60</span>      <span class="token comment"># 容器启动后等待 60 秒开始探测</span>
+          <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">10</span>            <span class="token comment"># 每 10 秒探测一次</span>
+          <span class="token key atrule">timeoutSeconds</span><span class="token punctuation">:</span> <span class="token number">5</span>            <span class="token comment"># 探测超时时间</span>
+          <span class="token key atrule">failureThreshold</span><span class="token punctuation">:</span> <span class="token number">3</span>          <span class="token comment"># 连续失败 3 次后重启容器</span>
+          
+        <span class="token comment"># 就绪探针</span>
+        <span class="token key atrule">readinessProbe</span><span class="token punctuation">:</span>
+          <span class="token key atrule">httpGet</span><span class="token punctuation">:</span>
+            <span class="token key atrule">path</span><span class="token punctuation">:</span> /actuator/health/readiness
+            <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8080</span>
+          <span class="token key atrule">initialDelaySeconds</span><span class="token punctuation">:</span> <span class="token number">30</span>      <span class="token comment"># 容器启动后等待 30 秒开始探测</span>
+          <span class="token key atrule">periodSeconds</span><span class="token punctuation">:</span> <span class="token number">10</span>            <span class="token comment"># 每 10 秒探测一次</span>
+          <span class="token key atrule">timeoutSeconds</span><span class="token punctuation">:</span> <span class="token number">5</span>            <span class="token comment"># 探测超时时间</span>
+          <span class="token key atrule">failureThreshold</span><span class="token punctuation">:</span> <span class="token number">3</span>          <span class="token comment"># 连续失败 3 次后从 Service 移除</span>
+          <span class="token key atrule">successThreshold</span><span class="token punctuation">:</span> <span class="token number">1</span>          <span class="token comment"># 成功 1 次后标记为就绪</span></code></pre>
+
+<p><strong>探针参数说明</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>建议值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>initialDelaySeconds</code></td>
+<td>首次探测前的等待时间，应大于应用启动时间</td>
+<td> Liveness: 60s, Readiness: 30s</td>
+</tr>
+<tr>
+<td><code>periodSeconds</code></td>
+<td>探测间隔</td>
+<td> 10s</td>
+</tr>
+<tr>
+<td><code>timeoutSeconds</code></td>
+<td>单次探测超时时间</td>
+<td> 5s</td>
+</tr>
+<tr>
+<td><code>failureThreshold</code></td>
+<td>连续失败多少次后触发动作</td>
+<td> 3</td>
+</tr>
+<tr>
+<td><code>successThreshold</code></td>
+<td>连续成功多少次后标记为健康（仅 Readiness 有效）</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<h3 id="4-3-为什么要先发布应用再配置探针？"><a href="#4-3-为什么要先发布应用再配置探针？" class="headerlink" title="4.3 为什么要先发布应用再配置探针？"></a>4.3 为什么要先发布应用再配置探针？</h3><p>这是一个重要的最佳实践，原因如下：</p>
+<ol>
+<li><p><strong>避免部署失败</strong>：如果在应用不支持健康端点时就配置了探针，Pod 将无法通过健康检查，导致持续重启或无法就绪。</p>
+</li>
+<li><p><strong>便于回滚</strong>：分步部署可以更容易定位问题。如果应用发布后出现问题，可以确定是代码变更导致的；如果探针配置后出现问题，可以确定是探针参数不合理。</p>
+</li>
+<li><p><strong>渐进式验证</strong>：先确保应用的健康端点在集群内可访问，再让 Kubernetes 依赖这些端点。</p>
+</li>
+</ol>
+<hr>
+<h2 id="五、进阶配置"><a href="#五、进阶配置" class="headerlink" title="五、进阶配置"></a>五、进阶配置</h2><h3 id="5-1-自定义健康检查器"><a href="#5-1-自定义健康检查器" class="headerlink" title="5.1 自定义健康检查器"></a>5.1 自定义健康检查器</h3><p>如果需要添加自定义的健康检查逻辑，可以实现 <code>HealthIndicator</code> 接口：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>actuate<span class="token punctuation">.</span>health<span class="token punctuation">.</span></span><span class="token class-name">Health</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>actuate<span class="token punctuation">.</span>health<span class="token punctuation">.</span></span><span class="token class-name">HealthIndicator</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Component</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AlertServiceHealthIndicator</span> <span class="token keyword">implements</span> <span class="token class-name">HealthIndicator</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">Health</span> <span class="token function">health</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 自定义检查逻辑</span>
+        <span class="token keyword">boolean</span> alertServiceHealthy <span class="token operator">=</span> <span class="token function">checkAlertService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>alertServiceHealthy<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">Health</span><span class="token punctuation">.</span><span class="token function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">withDetail</span><span class="token punctuation">(</span><span class="token string">"alertService"</span><span class="token punctuation">,</span> <span class="token string">"Available"</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token class-name">Health</span><span class="token punctuation">.</span><span class="token function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">withDetail</span><span class="token punctuation">(</span><span class="token string">"alertService"</span><span class="token punctuation">,</span> <span class="token string">"Unavailable"</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">withDetail</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">,</span> <span class="token string">"Cannot connect to alert service"</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">checkAlertService</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 实现具体的检查逻辑</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="5-2-将自定义检查器加入-Readiness-探针"><a href="#5-2-将自定义检查器加入-Readiness-探针" class="headerlink" title="5.2 将自定义检查器加入 Readiness 探针"></a>5.2 将自定义检查器加入 Readiness 探针</h3><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">management</span><span class="token punctuation">:</span>
+  <span class="token key atrule">endpoint</span><span class="token punctuation">:</span>
+    <span class="token key atrule">health</span><span class="token punctuation">:</span>
+      <span class="token key atrule">group</span><span class="token punctuation">:</span>
+        <span class="token key atrule">readiness</span><span class="token punctuation">:</span>
+          <span class="token key atrule">include</span><span class="token punctuation">:</span> readinessState<span class="token punctuation">,</span>db<span class="token punctuation">,</span>alertService</code></pre>
+
+<h3 id="5-3-安全配置"><a href="#5-3-安全配置" class="headerlink" title="5.3 安全配置"></a>5.3 安全配置</h3><p>生产环境建议限制健康端点的访问：</p>
+<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">management</span><span class="token punctuation">:</span>
+  <span class="token key atrule">endpoints</span><span class="token punctuation">:</span>
+    <span class="token key atrule">web</span><span class="token punctuation">:</span>
+      <span class="token key atrule">exposure</span><span class="token punctuation">:</span>
+        <span class="token key atrule">include</span><span class="token punctuation">:</span> health<span class="token punctuation">,</span>info
+  <span class="token key atrule">endpoint</span><span class="token punctuation">:</span>
+    <span class="token key atrule">health</span><span class="token punctuation">:</span>
+      <span class="token key atrule">show-details</span><span class="token punctuation">:</span> when<span class="token punctuation">-</span>authorized  <span class="token comment"># 仅授权用户可见详情</span>
+  <span class="token key atrule">server</span><span class="token punctuation">:</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">8081</span>  <span class="token comment"># 使用独立端口暴露管理端点</span></code></pre>
+
+<hr>
+<h2 id="六、常见问题"><a href="#六、常见问题" class="headerlink" title="六、常见问题"></a>六、常见问题</h2><h3 id="Q1-应用启动后立即收到-Liveness-探测失败，导致容器重启"><a href="#Q1-应用启动后立即收到-Liveness-探测失败，导致容器重启" class="headerlink" title="Q1: 应用启动后立即收到 Liveness 探测失败，导致容器重启"></a>Q1: 应用启动后立即收到 Liveness 探测失败，导致容器重启</h3><p><strong>原因</strong>：<code>initialDelaySeconds</code> 设置过短，应用还未完成初始化。</p>
+<p><strong>解决</strong>：</p>
+<ul>
+<li>增加 <code>initialDelaySeconds</code>，确保大于应用启动时间</li>
+<li>考虑使用 <code>startupProbe</code>（Kubernetes 1.16+）</li>
+</ul>
+<h3 id="Q2-Readiness-探测偶发失败"><a href="#Q2-Readiness-探测偶发失败" class="headerlink" title="Q2: Readiness 探测偶发失败"></a>Q2: Readiness 探测偶发失败</h3><p><strong>原因</strong>：可能是依赖服务短暂不可用，或超时时间设置过短。</p>
+<p><strong>解决</strong>：</p>
+<ul>
+<li>适当增加 <code>timeoutSeconds</code></li>
+<li>增加 <code>failureThreshold</code>，避免偶发故障导致频繁切流</li>
+</ul>
+<h3 id="Q3-健康端点返回-DOWN-但应用实际正常"><a href="#Q3-健康端点返回-DOWN-但应用实际正常" class="headerlink" title="Q3: 健康端点返回 DOWN 但应用实际正常"></a>Q3: 健康端点返回 DOWN 但应用实际正常</h3><p><strong>原因</strong>：某个自动配置的 HealthIndicator 检测失败。</p>
+<p><strong>解决</strong>：</p>
+<ul>
+<li>查看 <code>/actuator/health</code> 详情，定位具体哪个组件 DOWN</li>
+<li> 如果是不需要的检查项，可以禁用：<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">management</span><span class="token punctuation">:</span>
+  <span class="token key atrule">health</span><span class="token punctuation">:</span>
+    <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+      <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
+
+</li>
+</ul>
+<hr>
+<h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>通过集成 Spring Boot Actuator，我们为 sms-alert-center 项目添加了 Kubernetes 原生支持的健康探针能力。这一改进带来以下收益：</p>
+<ol>
+<li><strong>提高可用性</strong>：异常实例会被自动重启或从负载均衡中移除</li>
+<li><strong>零停机部署</strong>：滚动更新时，只有通过就绪检查的 Pod 才会接收流量</li>
+<li><strong>快速故障恢复</strong>：依赖服务恢复后，应用自动恢复服务能力</li>
+<li><strong>运维可观测性</strong>：通过健康端点实时了解应用状态</li>
+</ol>
+<p>记住部署的最佳实践：<strong>先发布应用，验证健康端点可用，再配置 Kubernetes 探针</strong>。这样可以确保平稳过渡，避免部署风险。</p>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNwcmluZy5pby9zcHJpbmctYm9vdC9kb2NzLzIuMy41LlJFTEVBU0UvcmVmZXJlbmNlL2h0bWwvcHJvZHVjdGlvbi1yZWFkeS1mZWF0dXJlcy5odG1s">Spring Boot Actuator 官方文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9rdWJlcm5ldGVzLmlvL2RvY3MvdGFza3MvY29uZmlndXJlLXBvZC1jb250YWluZXIvY29uZmlndXJlLWxpdmVuZXNzLXJlYWRpbmVzcy1zdGFydHVwLXByb2Jlcy8=">Kubernetes Liveness, Readiness and Startup Probes<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNwcmluZy5pby9zcHJpbmctYm9vdC9kb2NzLzIuMy41LlJFTEVBU0UvcmVmZXJlbmNlL2h0bWwvcHJvZHVjdGlvbi1yZWFkeS1mZWF0dXJlcy5odG1sI3Byb2R1Y3Rpb24tcmVhZHkta3ViZXJuZXRlcy1wcm9iZXM=">Spring Boot Kubernetes 探针支持<i class="fa fa-external-link-alt"></i></span> </li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\01\2021-01-04-Swagger设置全局token\" rel="bookmark">Swagger 设置全局 token</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\01\2021-01-20-Excel文件导出工具EasyExcel\" rel="bookmark">Excel 文件导出工具 EasyExcel</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\01\2021-01-21-Java实现SM3加密算法\" rel="bookmark">Java 实现 SM3 加密算法</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\05\2021-05-18-fastjson常用汇总\" rel="bookmark">fastjson 常用汇总</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2021\06\2021-06-18-使用Jsoup替换HTML每个标签中的文本\" rel="bookmark">使用 Jsoup 替换 HTML 每个标签中的文本</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/JavaJar/" rel="tag"># JavaJar</a>
+              <a href="/tags/Kubernets/" rel="tag"># Kubernets</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/01/2026-01-22-Vue%E4%B8%AD%E5%AE%9E%E7%8E%B0%E9%9A%90%E8%97%8F%E5%AD%97%E7%AC%A6%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%A4%8D%E5%88%B6%E7%BB%84%E4%BB%B6/" rel="prev" title="Vue 中实现隐藏字符检测与复制组件">
+                  <i class="fa fa-chevron-left"></i> Vue 中实现隐藏字符检测与复制组件
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/02/2026-02-05-AI%E9%85%8D%E7%BD%AEMCP%E7%BD%91%E7%BB%9C%E8%8E%B7%E5%8F%96%E8%83%BD%E5%8A%9B/" rel="next" title="你的 AI 联网了么？为你的 AI 配置 MCP 网络获取能力吧！">
+                  你的 AI 联网了么？为你的 AI 配置 MCP 网络获取能力吧！ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: 'f531cb8372b3c90357ec963d19c7cc918bbf488b',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '9bfee5dabd9764db7e7a7c04b5379f10',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":"https://p5beawtt.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2026/01/2026-01-29-Spring%20Boot%20Actuator%20%E5%81%A5%E5%BA%B7%E6%8E%A2%E9%92%88%E9%9B%86%E6%88%90%E6%8C%87%E5%8D%97/",
+      serverURLs: "https://p5beawtt.lc-cn-n1-shared.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
