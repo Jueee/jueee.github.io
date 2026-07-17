@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="在 SpringBoot 项目中，集成测试（Integration Test）依赖真实数据库、外部服务或网络资源。一旦引入 CI 流水线，这类测试极容易因环境不具备而导致构建失败。 常见的两种处理手段是：用 @Disabled 直接禁用，或用 @Tag 分组后在 CI 中排除。两者看起来都能解决问题，但背后的设计理念截然不同，适用场景也有明显差异。 本文从实际使用角度出发，系统梳理两种方案的用法、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JUnit5 集成测试治理：@Tag 与 @Disabled 如何取舍">
+<meta property="og:url" content="https://jueee.github.io/2026/04/2026-04-27-JUnit5%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E6%B2%BB%E7%90%86%EF%BC%9A@Tag%E4%B8%8E@Disabled%E5%A6%82%E4%BD%95%E5%8F%96%E8%88%8D/index.html">
+<meta property="og:site_name" content="网易内推联系我哦">
+<meta property="og:description" content="在 SpringBoot 项目中，集成测试（Integration Test）依赖真实数据库、外部服务或网络资源。一旦引入 CI 流水线，这类测试极容易因环境不具备而导致构建失败。 常见的两种处理手段是：用 @Disabled 直接禁用，或用 @Tag 分组后在 CI 中排除。两者看起来都能解决问题，但背后的设计理念截然不同，适用场景也有明显差异。 本文从实际使用角度出发，系统梳理两种方案的用法、">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-27T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-27T08:51:13.372Z">
+<meta property="article:author" content="网易无偿内推">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JavaJar">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/04/2026-04-27-JUnit5%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E6%B2%BB%E7%90%86%EF%BC%9A@Tag%E4%B8%8E@Disabled%E5%A6%82%E4%BD%95%E5%8F%96%E8%88%8D/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JUnit5 集成测试治理：@Tag 与 @Disabled 如何取舍 | 网易内推联系我哦</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="网易内推联系我哦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">网易内推联系我哦</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">网易无偿内推，点击下方【首页】置顶帖查看说明</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">344</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">65</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">113</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81-Disabled%EF%BC%9A%E7%AE%80%E5%8D%95%E7%B2%97%E6%9A%B4%E7%9A%84%E3%80%8C%E5%85%B3%E9%97%A8%E3%80%8D%E5%A4%A7%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">一、@Disabled：简单粗暴的「关门」大法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">1.2.</span> <span class="nav-text">执行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.3.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-Tag%EF%BC%9A%E7%B2%BE%E5%87%86%E5%88%86%E7%BB%84%E7%9A%84%E3%80%8C%E5%88%86%E6%B5%81%E3%80%8D%E7%AD%96%E7%95%A5"><span class="nav-number">2.</span> <span class="nav-text">二、@Tag：精准分组的「分流」策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95-1"><span class="nav-number">2.2.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E5%90%88-Maven-Surefire-%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">配合 Maven Surefire 插件使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E5%90%88-Gradle-%E4%BD%BF%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">配合 Gradle 使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%A0%87%E7%AD%BE%E7%BB%84%E5%90%88"><span class="nav-number">2.5.</span> <span class="nav-text">多标签组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-1"><span class="nav-number">2.6.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="nav-number">2.7.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%A1%88%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text">三、两种方案横向对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%A6%82%E4%BD%95%E5%8F%96%E8%88%8D%EF%BC%9A%E5%9C%BA%E6%99%AF%E5%86%B3%E5%AE%9A%E9%80%89%E6%8B%A9"><span class="nav-number">4.</span> <span class="nav-text">四、如何取舍：场景决定选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89-Disabled-%E7%9A%84%E5%90%88%E7%90%86%E5%9C%BA%E6%99%AF"><span class="nav-number">4.1.</span> <span class="nav-text">选 @Disabled 的合理场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89-Tag-%E7%9A%84%E5%90%88%E7%90%86%E5%9C%BA%E6%99%AF"><span class="nav-number">4.2.</span> <span class="nav-text">选 @Tag 的合理场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%AE%9E%E7%94%A8%E5%8E%9F%E5%88%99"><span class="nav-number">4.3.</span> <span class="nav-text">一个实用原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%BF%9B%E9%98%B6%EF%BC%9A-Tag-%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E5%BB%BA%E8%AE%AE"><span class="nav-number">5.</span> <span class="nav-text">五、进阶：@Tag 的最佳实践建议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E7%BB%9F%E4%B8%80%E7%9A%84%E6%A0%87%E7%AD%BE%E8%A7%84%E8%8C%83"><span class="nav-number">5.1.</span> <span class="nav-text">建立统一的标签规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%AD%E9%85%8D-TestMethodOrder-%E4%BD%BF%E7%94%A8"><span class="nav-number">5.2.</span> <span class="nav-text">搭配 @TestMethodOrder 使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CI-%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%88%86%E5%B1%82%E7%A4%BA%E4%BE%8B"><span class="nav-number">5.3.</span> <span class="nav-text">CI 流水线分层示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">六、总结</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="网易无偿内推"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">网易无偿内推</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">344</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/04/2026-04-27-JUnit5%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E6%B2%BB%E7%90%86%EF%BC%9A@Tag%E4%B8%8E@Disabled%E5%A6%82%E4%BD%95%E5%8F%96%E8%88%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="网易无偿内推">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网易内推联系我哦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JUnit5 集成测试治理：@Tag 与 @Disabled 如何取舍
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-27T00:00:00Z">2026-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/JavaJar/" itemprop="url" rel="index"><span itemprop="name">JavaJar</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2026/04/2026-04-27-JUnit5%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E6%B2%BB%E7%90%86%EF%BC%9A@Tag%E4%B8%8E@Disabled%E5%A6%82%E4%BD%95%E5%8F%96%E8%88%8D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2026/04/2026-04-27-JUnit5%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E6%B2%BB%E7%90%86%EF%BC%9A@Tag%E4%B8%8E@Disabled%E5%A6%82%E4%BD%95%E5%8F%96%E8%88%8D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在 SpringBoot 项目中，集成测试（Integration Test）依赖真实数据库、外部服务或网络资源。一旦引入 CI 流水线，这类测试极容易因环境不具备而导致构建失败。</p>
+<p>常见的两种处理手段是：用 <code>@Disabled</code> 直接禁用，或用 <code>@Tag</code> 分组后在 CI 中排除。两者看起来都能解决问题，但背后的设计理念截然不同，适用场景也有明显差异。</p>
+<p>本文从实际使用角度出发，系统梳理两种方案的用法、优劣以及如何根据项目情况做出合理取舍。</p>
+<hr>
+<h2 id="一、-Disabled：简单粗暴的「关门」大法"><a href="#一、-Disabled：简单粗暴的「关门」大法" class="headerlink" title="一、@Disabled：简单粗暴的「关门」大法"></a>一、@Disabled：简单粗暴的「关门」大法</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p><code>@Disabled</code> 是 JUnit 5 提供的注解，标注后该测试类或测试方法将被跳过，不会执行。</p>
+<p><strong>禁用整个测试类：</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span><span class="token class-name">Disabled</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>test<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">SpringBootTest</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Disabled</span><span class="token punctuation">(</span><span class="token string">"依赖真实数据库，CI 环境无法运行"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword">class</span> <span class="token class-name">UserServiceIntegrationTest</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">void</span> <span class="token function">testQueryUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 不会执行</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p><strong>禁用单个测试方法：</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword">class</span> <span class="token class-name">OrderServiceTest</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">void</span> <span class="token function">testCreateOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 正常运行</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Disabled</span><span class="token punctuation">(</span><span class="token string">"依赖外部支付接口，暂时禁用"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">void</span> <span class="token function">testPayOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 不会执行</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h3><p>被 <code>@Disabled</code> 标注的测试在报告中会显示为 <strong>SKIPPED</strong>，不算失败，构建不会中断。</p>
+<pre class="language-none"><code class="language-none">[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 1</code></pre>
+
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><strong>零门槛</strong>：不需要任何额外配置，加一个注解立竿见影。</li>
+<li><strong>粒度灵活</strong>：可以精确到某个方法，也可以作用于整个类。</li>
+<li><strong>原因可记录</strong>：<code>@Disabled("原因说明")</code> 支持附带说明文字，方便代码审查时理解意图。</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><strong>测试永久失效</strong>：一旦加上去，测试就不再被执行。如果没有人主动去掉它，这段测试代码等同于死代码。</li>
+<li><strong>本地运行也受影响</strong>：即使本地环境完全具备条件，<code>@Disabled</code> 的测试也不会自动运行，需要手动移除注解。</li>
+<li><strong>掩盖质量问题</strong>：禁用测试不等于解决了问题，随着时间推移，被禁用的测试代码可能和主代码逻辑渐渐脱节，最终变成无法维护的「幽灵代码」。</li>
+<li><strong>语义模糊</strong>：<code>@Disabled</code> 只传达「跳过」的意思，并不表达这个测试属于哪一类、为什么需要特殊处理。</li>
+</ul>
+<hr>
+<h2 id="二、-Tag：精准分组的「分流」策略"><a href="#二、-Tag：精准分组的「分流」策略" class="headerlink" title="二、@Tag：精准分组的「分流」策略"></a>二、@Tag：精准分组的「分流」策略</h2><h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p><code>@Tag</code> 的思路不是「禁用」，而是「分组」。给测试打上标签，在不同场景下选择运行哪些分组，本质上是一种<strong>测试分类管理</strong>机制。</p>
+<p>集成测试依然存在、依然有效，只是在 CI 环境中被选择性跳过。</p>
+<h3 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h3><p><strong>给测试类打标签：</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span><span class="token class-name">Tag</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>jupiter<span class="token punctuation">.</span>api<span class="token punctuation">.</span></span><span class="token class-name">Test</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>test<span class="token punctuation">.</span>context<span class="token punctuation">.</span></span><span class="token class-name">SpringBootTest</span><span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Tag</span><span class="token punctuation">(</span><span class="token string">"integration"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword">class</span> <span class="token class-name">UserServiceIntegrationTest</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">void</span> <span class="token function">testQueryUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>userService<span class="token punctuation">.</span><span class="token function">findById</span><span class="token punctuation">(</span><span class="token number">1L</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p><strong>给单个方法打标签：</strong></p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword">class</span> <span class="token class-name">OrderServiceTest</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">void</span> <span class="token function">testCreateOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 单元级别，不需要标签</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Tag</span><span class="token punctuation">(</span><span class="token string">"integration"</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">void</span> <span class="token function">testPayOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 依赖外部接口，标记为集成测试</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="配合-Maven-Surefire-插件使用"><a href="#配合-Maven-Surefire-插件使用" class="headerlink" title="配合 Maven Surefire 插件使用"></a>配合 Maven Surefire 插件使用</h3><p>仅有注解本身没有意义，需要在构建工具中配置如何响应标签。</p>
+<p><strong>在 <code>pom.xml</code> 中默认排除 integration 标签（CI 环境安全运行）：</strong></p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.maven.plugins<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>maven-surefire-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">&gt;</span></span>
+        <span class="token comment">&lt;!-- 默认构建跳过集成测试 --&gt;</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>excludedGroups</span><span class="token punctuation">&gt;</span></span>integration<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>excludedGroups</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<p><strong>添加 profile，支持本地按需运行集成测试：</strong></p>
+<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>profiles</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>profile</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">&gt;</span></span>integration-test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.maven.plugins<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>maven-surefire-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token comment">&lt;!-- 清除默认排除规则，只跑 integration 标签 --&gt;</span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>excludedGroups</span><span class="token punctuation">/&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groups</span><span class="token punctuation">&gt;</span></span>integration<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groups</span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>profile</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>profiles</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<p><strong>不同场景对应的命令：</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># CI / 日常构建：跳过集成测试</span>
+mvn <span class="token builtin class-name">test</span>
+
+<span class="token comment"># 本地开发：只跑集成测试</span>
+mvn <span class="token builtin class-name">test</span> -P integration-test
+
+<span class="token comment"># 本地开发：运行所有测试（含集成测试）</span>
+mvn <span class="token builtin class-name">test</span> -Dgroups<span class="token operator">=</span>integration -DexcludedGroups<span class="token operator">=</span></code></pre>
+
+<h3 id="配合-Gradle-使用"><a href="#配合-Gradle-使用" class="headerlink" title="配合 Gradle 使用"></a>配合 Gradle 使用</h3><pre class="language-groovy" data-language="groovy"><code class="language-groovy"><span class="token comment">// build.gradle</span>
+test <span class="token punctuation">{</span>
+    <span class="token comment">// 默认排除 integration 标签</span>
+    useJUnitPlatform <span class="token punctuation">{</span>
+        excludeTags <span class="token string">'integration'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+task <span class="token function">integrationTest</span><span class="token punctuation">(</span>type<span class="token punctuation">:</span> Test<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    useJUnitPlatform <span class="token punctuation">{</span>
+        includeTags <span class="token string">'integration'</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="多标签组合"><a href="#多标签组合" class="headerlink" title="多标签组合"></a>多标签组合</h3><p><code>@Tag</code> 支持在一个类上打多个标签，实现更细粒度的分组：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Tag</span><span class="token punctuation">(</span><span class="token string">"integration"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Tag</span><span class="token punctuation">(</span><span class="token string">"slow"</span><span class="token punctuation">)</span>        <span class="token comment">// 标记为慢速测试，可在 PR 检查中也跳过</span>
+<span class="token annotation punctuation">@Tag</span><span class="token punctuation">(</span><span class="token string">"database"</span><span class="token punctuation">)</span>    <span class="token comment">// 标记依赖数据库，方便按资源类型过滤</span>
+<span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token keyword">class</span> <span class="token class-name">ReportServiceTest</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p>在 Maven 中可以按需组合：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 只跑数据库相关的集成测试</span>
+mvn <span class="token builtin class-name">test</span> -Dgroups<span class="token operator">=</span><span class="token string">"integration &amp; database"</span> -DexcludedGroups<span class="token operator">=</span>
+
+<span class="token comment"># 跳过慢速测试（包括集成测试）</span>
+mvn <span class="token builtin class-name">test</span> -DexcludedGroups<span class="token operator">=</span>slow</code></pre>
+
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><strong>测试保持可运行</strong>：集成测试在本地或专属环境中依然可以正常执行，不会因为 CI 的需要而永久失效。</li>
+<li><strong>语义清晰</strong>：<code>@Tag("integration")</code> 明确表达了测试的分类属性，代码自解释能力强。</li>
+<li><strong>灵活的执行策略</strong>：可以根据场景（快速验证、完整回归、数据库专项测试等）选择不同的测试集。</li>
+<li><strong>符合业界最佳实践</strong>：JUnit 5 设计 <code>@Tag</code> 的本意就是解决测试分类问题，这是官方推荐的做法。</li>
+<li><strong>IDE 友好</strong>：IntelliJ IDEA、VS Code 等主流 IDE 均支持按 Tag 过滤运行测试。</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><strong>需要构建配置配合</strong>：单独加 <code>@Tag</code> 注解没有效果，必须在 Maven 或 Gradle 中正确配置排除规则。</li>
+<li><strong>初始改造成本略高</strong>：已有大量集成测试的项目需要逐一添加标签，工作量较 <code>@Disabled</code> 大。</li>
+<li><strong>团队需要形成规范</strong>：新增集成测试时，需要团队成员主动遵守打标签的约定，否则分类就会失效。</li>
+</ul>
+<hr>
+<h2 id="三、两种方案横向对比"><a href="#三、两种方案横向对比" class="headerlink" title="三、两种方案横向对比"></a>三、两种方案横向对比</h2><table>
+<thead>
+<tr>
+<th>维度</th>
+<th><code>@Disabled</code></th>
+<th><code>@Tag("integration")</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>实现复杂度</strong></td>
+<td>极低，一个注解搞定</td>
+<td>中等，需要注解 + 构建配置</td>
+</tr>
+<tr>
+<td><strong>测试是否可运行</strong></td>
+<td>❌ 永久禁用</td>
+<td>✅ 本地 / 按需可运行</td>
+</tr>
+<tr>
+<td><strong> CI 构建安全</strong></td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>测试代码价值</strong></td>
+<td>❌ 等同死代码</td>
+<td>✅ 保持有效</td>
+</tr>
+<tr>
+<td><strong>语义表达能力</strong></td>
+<td>弱（只表达「跳过」）</td>
+<td>强（表达「分类」）</td>
+</tr>
+<tr>
+<td><strong>长期可维护性</strong></td>
+<td>差（容易被遗忘）</td>
+<td>好（标签系统可持续演进）</td>
+</tr>
+<tr>
+<td><strong>团队协作成本</strong></td>
+<td>低（不需要约定）</td>
+<td>中（需要团队统一规范）</td>
+</tr>
+<tr>
+<td><strong>适合场景</strong></td>
+<td>临时禁用、功能未完成</td>
+<td>环境依赖型测试的长期管理</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="四、如何取舍：场景决定选择"><a href="#四、如何取舍：场景决定选择" class="headerlink" title="四、如何取舍：场景决定选择"></a>四、如何取舍：场景决定选择</h2><h3 id="选-Disabled-的合理场景"><a href="#选-Disabled-的合理场景" class="headerlink" title="选 @Disabled 的合理场景"></a>选 @Disabled 的合理场景</h3><ol>
+<li><p><strong>测试代码本身有问题</strong>，需要暂时禁用等待修复，属于短暂的「技术债标记」。建议同时创建 Issue 或 TODO 注释，避免遗忘：</p>
+ <pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// TODO: ISSUE-1234 修复后移除 @Disabled</span>
+<span class="token annotation punctuation">@Disabled</span><span class="token punctuation">(</span><span class="token string">"等待依赖服务 API 变更，预计下个迭代修复"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Test</span>
+<span class="token keyword">void</span> <span class="token function">testExternalApiIntegration</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span></code></pre>
+</li>
+<li><p><strong>测试功能尚未实现</strong>，先写好测试框架占位，等实现完成后再启用。</p>
+</li>
+<li><p><strong>一次性探索性测试</strong>，本身没有长期维护价值，禁用比删除更保留上下文。</p>
+</li>
+</ol>
+<h3 id="选-Tag-的合理场景"><a href="#选-Tag-的合理场景" class="headerlink" title="选 @Tag 的合理场景"></a>选 @Tag 的合理场景</h3><ol>
+<li><p><strong>集成测试数量较多</strong>，且长期需要维护，希望区分「单元测试」和「集成测试」的执行策略。</p>
+</li>
+<li><p><strong>CI 流水线有分层需求</strong>：PR 提交时只跑轻量级单元测试，合并主干后再跑完整集成测试。</p>
+</li>
+<li><p><strong>团队有明确的测试分类规范</strong>，希望通过标签系统实现精细化的测试治理。</p>
+</li>
+<li><p><strong>项目质量要求较高</strong>，需要保证集成测试代码始终有效、随主代码同步更新。</p>
+</li>
+</ol>
+<h3 id="一个实用原则"><a href="#一个实用原则" class="headerlink" title="一个实用原则"></a>一个实用原则</h3><blockquote>
+<p><strong>临时的问题用 <code>@Disabled</code>，长期的分类用 <code>@Tag</code>。</strong></p>
+</blockquote>
+<p>如果你预期一个测试「以后还会运行」，就不应该用 <code>@Disabled</code>。如果你预期一个测试「在某些环境下不能运行」，就应该用 <code>@Tag</code> 配合构建配置来管理。</p>
+<hr>
+<h2 id="五、进阶：-Tag-的最佳实践建议"><a href="#五、进阶：-Tag-的最佳实践建议" class="headerlink" title="五、进阶：@Tag 的最佳实践建议"></a>五、进阶：@Tag 的最佳实践建议</h2><h3 id="建立统一的标签规范"><a href="#建立统一的标签规范" class="headerlink" title="建立统一的标签规范"></a>建立统一的标签规范</h3><p>推荐在团队内制定标签命名约定，例如：</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>integration</code></td>
+<td>依赖真实数据库或外部服务</td>
+</tr>
+<tr>
+<td><code>slow</code></td>
+<td>执行时间超过 1 秒的测试</td>
+</tr>
+<tr>
+<td><code>smoke</code></td>
+<td>冒烟测试，每次部署必须通过</td>
+</tr>
+<tr>
+<td><code>flaky</code></td>
+<td>不稳定测试，已知偶发失败</td>
+</tr>
+</tbody></table>
+<h3 id="搭配-TestMethodOrder-使用"><a href="#搭配-TestMethodOrder-使用" class="headerlink" title="搭配 @TestMethodOrder 使用"></a>搭配 @TestMethodOrder 使用</h3><p>对于需要按顺序执行的集成测试场景，可以结合 <code>@TestMethodOrder</code> 使用：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Tag</span><span class="token punctuation">(</span><span class="token string">"integration"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@SpringBootTest</span>
+<span class="token annotation punctuation">@TestMethodOrder</span><span class="token punctuation">(</span><span class="token class-name">MethodOrderer</span><span class="token punctuation">.</span><span class="token class-name">OrderAnnotation</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">UserFlowIntegrationTest</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token annotation punctuation">@Order</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">testRegister</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token annotation punctuation">@Order</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">testLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<h3 id="CI-流水线分层示例"><a href="#CI-流水线分层示例" class="headerlink" title="CI 流水线分层示例"></a>CI 流水线分层示例</h3><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># .github/workflows/ci.yml 示例</span>
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">unit-test</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> 单元测试（快速验证）
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">run</span><span class="token punctuation">:</span> mvn test   <span class="token comment"># excludedGroups=integration 已在 pom.xml 配置</span>
+
+  <span class="token key atrule">integration-test</span><span class="token punctuation">:</span>
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> 集成测试（合并主干后执行）
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">needs</span><span class="token punctuation">:</span> unit<span class="token punctuation">-</span>test
+    <span class="token key atrule">if</span><span class="token punctuation">:</span> github.ref == 'refs/heads/main'
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">run</span><span class="token punctuation">:</span> mvn test <span class="token punctuation">-</span>P integration<span class="token punctuation">-</span>test</code></pre>
+
+<hr>
+<h2 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h2><p><code>@Disabled</code> 和 <code>@Tag</code> 并不是非此即彼的关系，它们解决的是不同层面的问题：</p>
+<ul>
+<li><code>@Disabled</code> 是<strong>测试状态管理</strong>工具，用于标记暂时不可用的测试；</li>
+<li><code>@Tag</code> 是<strong>测试分类管理</strong>工具，用于建立可持续的测试分层体系。</li>
+</ul>
+<p>对于依赖真实数据库的 SpringBoot 集成测试，<code>@Tag("integration")</code> 配合 Maven Profile 是更符合工程实践的选择。它让测试代码保持活力，同时给 CI 环境提供安全屏障，是一种「有取有舍」而非「一刀切」的解决方案。</p>
+<p>最后，无论选择哪种方案，最重要的是<strong>团队内保持一致的约定</strong>，并在代码审查中严格执行。好的测试策略不是写在文档里的规范，而是体现在每一行代码注解里的默契。</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-27-Java字节码操纵框架ASM\" rel="bookmark">Java 字节码操纵框架 ASM</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-11-Apache集合工具commons-collections4的使用\" rel="bookmark">Apache 集合工具 commons-collections4 的使用</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-12-Apache数据库工具commons-dbutils的使用\" rel="bookmark">Apache 数据库工具 commons-dbutils 的使用</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-22-Google工具类Guava的基本使用\" rel="bookmark">Google 工具类 Guava 的基本使用</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-26-Google工具类Gson的基本使用\" rel="bookmark">Google 工具类 Gson 的基本使用</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/JavaJar/" rel="tag"># JavaJar</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/2026-03-23-OpenSpec%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9AAI%E6%97%B6%E4%BB%A3%E7%9A%84%E5%BC%80%E5%8F%91%E5%88%A9%E5%99%A8/" rel="prev" title="OpenSpec 完全指南：AI 时代的开发利器">
+                  <i class="fa fa-chevron-left"></i> OpenSpec 完全指南：AI 时代的开发利器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/04/2026-04-28-SpringBoot%E9%A1%B9%E7%9B%AEJDK8%E5%8D%87%E7%BA%A7JDK21%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" rel="next" title="Spring Boot 项目 JDK8 → JDK21 升级注意事项">
+                  Spring Boot 项目 JDK8 → JDK21 升级注意事项 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: 'f531cb8372b3c90357ec963d19c7cc918bbf488b',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '3e6393191bb5167a880fdbf2aaabb7ca',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":"https://p5beawtt.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2026/04/2026-04-27-JUnit5%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95%E6%B2%BB%E7%90%86%EF%BC%9A@Tag%E4%B8%8E@Disabled%E5%A6%82%E4%BD%95%E5%8F%96%E8%88%8D/",
+      serverURLs: "https://p5beawtt.lc-cn-n1-shared.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

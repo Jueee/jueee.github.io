@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css">
+  <script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jueee.github.io","root":"/","scheme":"Gemini","version":"8.0.1","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="背景：AI 辅助开发效率提升在 AI 辅助开发场景下，前端与后端往往需要同时查看和修改、联动调试。将前后端拆分为独立 Git 仓库，再通过子模块组合成一个父仓库，可以让 AI 工具（如 CodeMaker）在同一工作区同时感知前后端代码上下文，无需频繁切换目录，显著提升 AI 开发效率。 父仓库 &#x3D; 只包含 .gitmodules 和 openspec 配置，不存业务代码 子模块 &#x3D; 前端仓库 +">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 子模块相关功能和实用技巧">
+<meta property="og:url" content="https://jueee.github.io/2026/05/2026-05-26-Git%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9B%B8%E5%85%B3%E5%8A%9F%E8%83%BD%E5%92%8C%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="网易内推联系我哦">
+<meta property="og:description" content="背景：AI 辅助开发效率提升在 AI 辅助开发场景下，前端与后端往往需要同时查看和修改、联动调试。将前后端拆分为独立 Git 仓库，再通过子模块组合成一个父仓库，可以让 AI 工具（如 CodeMaker）在同一工作区同时感知前后端代码上下文，无需频繁切换目录，显著提升 AI 开发效率。 父仓库 &#x3D; 只包含 .gitmodules 和 openspec 配置，不存业务代码 子模块 &#x3D; 前端仓库 +">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-26T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-29T09:03:47.793Z">
+<meta property="article:author" content="网易无偿内推">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="AIGC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/05/2026-05-26-Git%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9B%B8%E5%85%B3%E5%8A%9F%E8%83%BD%E5%92%8C%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/">
+
+
+<script data-pjax class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Git 子模块相关功能和实用技巧 | 网易内推联系我哦</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+    <script data-pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-175024528-1');
+      }
+    </script>
+
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="网易内推联系我哦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">网易内推联系我哦</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">网易无偿内推，点击下方【首页】置顶帖查看说明</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">344</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">65</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">113</span></a>
+
+  </li>
+        <li class="menu-item menu-item-nodes">
+
+    <a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%EF%BC%9AAI-%E8%BE%85%E5%8A%A9%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87"><span class="nav-number">1.</span> <span class="nav-text">背景：AI 辅助开发效率提升</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E5%8F%82%E8%80%83%EF%BC%88xxx-all%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">本项目配置参考（xxx-all）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="nav-number">2.1.</span> <span class="nav-text">快速上手</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-Git-%E5%AD%90%E6%A8%A1%E5%9D%97"><span class="nav-number">3.</span> <span class="nav-text">一、什么是 Git 子模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">二、基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%B7%BB%E5%8A%A0%E5%AD%90%E6%A8%A1%E5%9D%97"><span class="nav-number">4.1.</span> <span class="nav-text">2.1 添加子模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%85%8B%E9%9A%86%E5%90%AB%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BB%93%E5%BA%93"><span class="nav-number">4.2.</span> <span class="nav-text">2.2 克隆含子模块的仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E6%9F%A5%E7%9C%8B%E5%AD%90%E6%A8%A1%E5%9D%97%E7%8A%B6%E6%80%81"><span class="nav-number">4.3.</span> <span class="nav-text">2.3 查看子模块状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%9B%B4%E6%96%B0%E4%B8%8E%E5%90%8C%E6%AD%A5"><span class="nav-number">5.</span> <span class="nav-text">三、更新与同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%8B%89%E5%8F%96%E5%AD%90%E6%A8%A1%E5%9D%97%E6%9C%80%E6%96%B0%E4%BB%A3%E7%A0%81"><span class="nav-number">5.1.</span> <span class="nav-text">3.1 拉取子模块最新代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E4%B8%BB%E4%BB%93%E5%BA%93%E6%8B%89%E5%8F%96%E5%90%8E%E5%90%8C%E6%AD%A5%E5%AD%90%E6%A8%A1%E5%9D%97"><span class="nav-number">5.2.</span> <span class="nav-text">3.2 主仓库拉取后同步子模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E6%89%B9%E9%87%8F-foreach-%E6%93%8D%E4%BD%9C"><span class="nav-number">5.3.</span> <span class="nav-text">3.3 批量 foreach 操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%AD%90%E6%A8%A1%E5%9D%97%E5%86%85%E5%BC%80%E5%8F%91"><span class="nav-number">6.</span> <span class="nav-text">四、子模块内开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E8%BF%9B%E5%85%A5%E5%AD%90%E6%A8%A1%E5%9D%97%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81"><span class="nav-number">6.1.</span> <span class="nav-text">4.1 进入子模块提交代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%9C%A8%E4%B8%BB%E4%BB%93%E5%BA%93%E6%9B%B4%E6%96%B0%E5%AD%90%E6%A8%A1%E5%9D%97%E5%BC%95%E7%94%A8"><span class="nav-number">6.2.</span> <span class="nav-text">4.2 在主仓库更新子模块引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%88%A0%E9%99%A4%E5%AD%90%E6%A8%A1%E5%9D%97"><span class="nav-number">7.</span> <span class="nav-text">五、删除子模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%B8%B8%E7%94%A8%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-number">8.</span> <span class="nav-text">六、常用实用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E5%90%8C%E6%AD%A5"><span class="nav-number">8.1.</span> <span class="nav-text">6.1 全局配置自动同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E6%B5%85%E5%85%8B%E9%9A%86%E5%AD%90%E6%A8%A1%E5%9D%97%EF%BC%88%E5%8A%A0%E9%80%9F%EF%BC%89"><span class="nav-number">8.2.</span> <span class="nav-text">6.2 浅克隆子模块（加速）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-%E6%8C%87%E5%AE%9A%E5%AD%90%E6%A8%A1%E5%9D%97%E8%B7%9F%E8%B8%AA%E5%88%86%E6%94%AF"><span class="nav-number">8.3.</span> <span class="nav-text">6.3 指定子模块跟踪分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-diff-%E6%98%BE%E7%A4%BA%E5%AD%90%E6%A8%A1%E5%9D%97%E5%8F%98%E6%9B%B4%E8%AF%A6%E6%83%85"><span class="nav-number">8.4.</span> <span class="nav-text">6.4 diff 显示子模块变更详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-%E5%8F%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E6%8C%87%E5%AE%9A%E5%AD%90%E6%A8%A1%E5%9D%97"><span class="nav-number">8.5.</span> <span class="nav-text">6.5 只初始化指定子模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="nav-number">9.</span> <span class="nav-text">七、常见问题排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E9%80%9F%E6%9F%A5%E5%8D%A1%E7%89%87"><span class="nav-number">10.</span> <span class="nav-text">八、速查卡片</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="网易无偿内推"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">网易无偿内推</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">344</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories">
+          
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      笔记总结
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+        </li>
+    </ul>
+  </div>
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="Fork me on GitHub" aria-label="Fork me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/05/2026-05-26-Git%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9B%B8%E5%85%B3%E5%8A%9F%E8%83%BD%E5%92%8C%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="网易无偿内推">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网易内推联系我哦">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git 子模块相关功能和实用技巧
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-05-26 00:00:00" itemprop="dateCreated datePublished" datetime="2026-05-26T00:00:00Z">2026-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AIGC/" itemprop="url" rel="index"><span itemprop="name">AIGC</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2026/05/2026-05-26-Git%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9B%B8%E5%85%B3%E5%8A%9F%E8%83%BD%E5%92%8C%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2026/05/2026-05-26-Git%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9B%B8%E5%85%B3%E5%8A%9F%E8%83%BD%E5%92%8C%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="背景：AI-辅助开发效率提升"><a href="#背景：AI-辅助开发效率提升" class="headerlink" title="背景：AI 辅助开发效率提升"></a>背景：AI 辅助开发效率提升</h2><p>在 AI 辅助开发场景下，前端与后端往往需要<strong>同时查看和修改</strong>、联动调试。将前后端拆分为独立 Git 仓库，再通过子模块组合成一个父仓库，可以让 AI 工具（如 CodeMaker）在<strong>同一工作区</strong>同时感知前后端代码上下文，无需频繁切换目录，显著提升 AI 开发效率。</p>
+<p><strong>父仓库</strong> = 只包含 <code>.gitmodules</code> 和 openspec 配置，不存业务代码</p>
+<p><strong>子模块</strong> = 前端仓库 + 后端仓库，各自独立 CI/CD 和权限管理</p>
+<p><strong>AI 工具</strong> 打开父仓库根目录，即可同时索引前后端代码，实现跨仓库联动分析和修改</p>
+<h2 id="本项目配置参考（xxx-all）"><a href="#本项目配置参考（xxx-all）" class="headerlink" title="本项目配置参考（xxx-all）"></a>本项目配置参考（xxx-all）</h2><p>以下是本项目的 <code>.gitmodules</code> 配置，包含前端和后端两个子模块，均追踪 <code>master</code> 分支：</p>
+<pre class="language-none"><code class="language-none">[submodule "xxx-platform"]
+    path = xxx-platform
+    url = ssh://git@git.com:10022/xxx/xxx/xxx-platform.git
+    branch = master
+[submodule "xxx-react"]
+    path = xxx-react
+    url = ssh://git@git.com:10022/xxx/xxx/xxx-react.git
+    branch = master</code></pre>
+
+<table>
+<thead>
+<tr>
+<th><strong>子模块</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td> xxx-platform</td>
+<td> 后端</td>
+<td> Spring Boot 多模块 Maven 项目</td>
+</tr>
+<tr>
+<td> xxx-react</td>
+<td> 前端</td>
+<td> React + TypeScript 项目</td>
+</tr>
+</tbody></table>
+<h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><pre class="language-none"><code class="language-none"># 首次克隆父仓库（同时拉取前后端子模块）
+git clone --recurse-submodules ssh://git@git.com:10022/xxx/xxx/xxx-all.git
+
+# 已克隆但子模块为空时
+git submodule update --init --recursive
+
+# 日常拉取（前后端一起更新）
+git submodule foreach git pull origin master
+
+# 添加子模块
+git submodule add ssh://git@git.com:10022/xx/xx/xx-xx.git</code></pre>
+
+<p>用 AI 工具打开 <code>xxx-all</code> 根目录，即可同时获得前端（<code>xxx-react/</code>）和后端（<code>xxx-platform/</code>）的完整代码上下文，实现前后端联动开发。</p>
+<h2 id="一、什么是-Git-子模块"><a href="#一、什么是-Git-子模块" class="headerlink" title="一、什么是 Git 子模块"></a>一、什么是 Git 子模块</h2><p>Git 子模块允许将一个 Git 仓库嵌套到另一个 Git 仓库中，作为其子目录存在。主仓库只记录子模块的<strong>仓库地址</strong>和<strong>特定 commit SHA</strong>，不追踪子模块的具体文件内容。</p>
+<p>适用场景：共享公共库、第三方依赖管理、多项目协同开发。</p>
+<h2 id="二、基础操作"><a href="#二、基础操作" class="headerlink" title="二、基础操作"></a>二、基础操作</h2><h3 id="2-1-添加子模块"><a href="#2-1-添加子模块" class="headerlink" title="2.1 添加子模块"></a>2.1 添加子模块</h3><pre class="language-none"><code class="language-none">git submodule add &lt;repo-url&gt; [本地路径]
+# 示例
+git submodule add https://github.com/example/lib.git libs/lib</code></pre>
+
+<p>执行后会生成 <code>.gitmodules</code> 文件，记录子模块配置。</p>
+<h3 id="2-2-克隆含子模块的仓库"><a href="#2-2-克隆含子模块的仓库" class="headerlink" title="2.2 克隆含子模块的仓库"></a>2.2 克隆含子模块的仓库</h3><pre class="language-none"><code class="language-none"># 一步完成（推荐）
+git clone --recurse-submodules &lt;repo-url&gt;
+
+# 已克隆但未拉取子模块时补救
+git submodule update --init --recursive</code></pre>
+
+<h3 id="2-3-查看子模块状态"><a href="#2-3-查看子模块状态" class="headerlink" title="2.3 查看子模块状态"></a>2.3 查看子模块状态</h3><pre class="language-none"><code class="language-none">git submodule status</code></pre>
+
+<p>输出格式：<code>[-/+/空格][SHA] 路径 (分支/标签)</code>，前缀含义：</p>
+<ul>
+<li><code>空格</code> — 已初始化且与主仓库记录一致</li>
+<li><code>-</code> — 尚未初始化</li>
+<li><code>+</code> — 子模块 HEAD 与主仓库记录的 commit 不同</li>
+</ul>
+<h2 id="三、更新与同步"><a href="#三、更新与同步" class="headerlink" title="三、更新与同步"></a>三、更新与同步</h2><h3 id="3-1-拉取子模块最新代码"><a href="#3-1-拉取子模块最新代码" class="headerlink" title="3.1 拉取子模块最新代码"></a>3.1 拉取子模块最新代码</h3><pre class="language-none"><code class="language-none"># 更新所有子模块到主仓库记录的 commit
+git submodule update --recursive
+
+# 拉取子模块远程最新（不受主仓库 commit 约束）
+git submodule update --remote --recursive</code></pre>
+
+<h3 id="3-2-主仓库拉取后同步子模块"><a href="#3-2-主仓库拉取后同步子模块" class="headerlink" title="3.2 主仓库拉取后同步子模块"></a>3.2 主仓库拉取后同步子模块</h3><pre class="language-none"><code class="language-none">git pull
+git submodule update --init --recursive</code></pre>
+
+<p>执行 <code>git pull</code> 后若子模块有变更，<strong>必须</strong>手动运行 <code>submodule update</code>，否则子模块仍停在旧 commit。</p>
+<h3 id="3-3-批量-foreach-操作"><a href="#3-3-批量-foreach-操作" class="headerlink" title="3.3 批量 foreach 操作"></a>3.3 批量 foreach 操作</h3><pre class="language-none"><code class="language-none"># 对所有子模块执行任意 git 命令
+git submodule foreach git pull origin main
+git submodule foreach git status</code></pre>
+
+<h2 id="四、子模块内开发"><a href="#四、子模块内开发" class="headerlink" title="四、子模块内开发"></a>四、子模块内开发</h2><h3 id="4-1-进入子模块提交代码"><a href="#4-1-进入子模块提交代码" class="headerlink" title="4.1 进入子模块提交代码"></a>4.1 进入子模块提交代码</h3><pre class="language-none"><code class="language-none">cd libs/lib
+git checkout main          # 子模块默认是 detached HEAD，先 checkout 分支
+# ... 修改代码 ...
+git add .
+git commit -m "feat: xxx"
+git push</code></pre>
+
+<h3 id="4-2-在主仓库更新子模块引用"><a href="#4-2-在主仓库更新子模块引用" class="headerlink" title="4.2 在主仓库更新子模块引用"></a>4.2 在主仓库更新子模块引用</h3><pre class="language-none"><code class="language-none">cd ../../                   # 回到主仓库根目录
+git add libs/lib
+git commit -m "chore: update submodule lib to latest"
+git push</code></pre>
+
+<p>子模块的 commit 必须先推送到远程，主仓库才能让其他人 checkout 到该 commit。<strong>先推子模块，再推主仓库。</strong></p>
+<h2 id="五、删除子模块"><a href="#五、删除子模块" class="headerlink" title="五、删除子模块"></a>五、删除子模块</h2><p>Git 没有一键删除命令，需要手动四步：</p>
+<ol>
+<li>从 <code>.gitmodules</code> 文件中删除对应配置段</li>
+<li>从 <code>.git/config</code> 文件中删除对应配置段</li>
+<li>删除子模块目录并取消追踪：<code>git rm --cached </code></li>
+<li>删除 <code>.git/modules/</code> 目录</li>
+</ol>
+<pre class="language-none"><code class="language-none"># 快捷脚本（以 libs/lib 为例）
+git submodule deinit -f libs/lib
+git rm -f libs/lib
+rm -rf .git/modules/libs/lib
+git commit -m "chore: remove submodule lib"</code></pre>
+
+<h2 id="六、常用实用技巧"><a href="#六、常用实用技巧" class="headerlink" title="六、常用实用技巧"></a>六、常用实用技巧</h2><h3 id="6-1-全局配置自动同步"><a href="#6-1-全局配置自动同步" class="headerlink" title="6.1 全局配置自动同步"></a>6.1 全局配置自动同步</h3><pre class="language-none"><code class="language-none"># 每次 git pull 自动更新子模块（Git 2.15+）
+git config --global submodule.recurse true</code></pre>
+
+<h3 id="6-2-浅克隆子模块（加速）"><a href="#6-2-浅克隆子模块（加速）" class="headerlink" title="6.2 浅克隆子模块（加速）"></a>6.2 浅克隆子模块（加速）</h3><pre class="language-none"><code class="language-none">git clone --recurse-submodules --shallow-submodules &lt;repo-url&gt;</code></pre>
+
+<p>只拉取子模块最新 1 个 commit，大幅减少 CI/CD 场景的拉取时间。</p>
+<h3 id="6-3-指定子模块跟踪分支"><a href="#6-3-指定子模块跟踪分支" class="headerlink" title="6.3 指定子模块跟踪分支"></a>6.3 指定子模块跟踪分支</h3><pre class="language-none"><code class="language-none"># 在 .gitmodules 中设置追踪分支
+git submodule set-branch --branch main libs/lib
+git submodule update --remote libs/lib</code></pre>
+
+<h3 id="6-4-diff-显示子模块变更详情"><a href="#6-4-diff-显示子模块变更详情" class="headerlink" title="6.4 diff 显示子模块变更详情"></a>6.4 diff 显示子模块变更详情</h3><pre class="language-none"><code class="language-none">git diff --submodule=diff</code></pre>
+
+<p>默认 <code>git diff</code> 只显示 commit SHA 变化，加 <code>--submodule=diff</code> 可展示子模块内的文件级变更。</p>
+<h3 id="6-5-只初始化指定子模块"><a href="#6-5-只初始化指定子模块" class="headerlink" title="6.5 只初始化指定子模块"></a>6.5 只初始化指定子模块</h3><pre class="language-none"><code class="language-none">git submodule update --init libs/lib</code></pre>
+
+<h2 id="七、常见问题排查"><a href="#七、常见问题排查" class="headerlink" title="七、常见问题排查"></a>七、常见问题排查</h2><table>
+<thead>
+<tr>
+<th><strong>问题现象</strong></th>
+<th><strong>原因</strong></th>
+<th><strong>解决方案</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>子模块目录为空</td>
+<td>未执行 init/update</td>
+<td><code>git submodule update --init --recursive</code></td>
+</tr>
+<tr>
+<td>子模块处于 detached HEAD</td>
+<td>update 默认不 checkout 分支</td>
+<td>进入目录执行 <code>git checkout </code></td>
+</tr>
+<tr>
+<td>push 后别人拉不到子模块新 commit</td>
+<td> 子模块未先 push</td>
+<td> 先在子模块目录 push，再 push 主仓库</td>
+</tr>
+<tr>
+<td> clone 后子模块内容缺失</td>
+<td>未加 --recurse-submodules</td>
+<td> 执行 <code>git submodule update --init --recursive</code></td>
+</tr>
+<tr>
+<td>子模块 commit 冲突</td>
+<td>多人同时更新同一子模块引用</td>
+<td>像解决普通文件冲突一样，手动选择正确的 commit SHA</td>
+</tr>
+</tbody></table>
+<h2 id="八、速查卡片"><a href="#八、速查卡片" class="headerlink" title="八、速查卡片"></a>八、速查卡片</h2><p><strong>克隆</strong>：<code>git clone --recurse-submodules </code></p>
+<p><strong>补救初始化</strong>：<code>git submodule update --init --recursive</code></p>
+<p><strong>更新到主仓库记录版本</strong>：<code>git submodule update --recursive</code></p>
+<p><strong>拉取子模块最新</strong>：<code>git submodule update --remote --recursive</code></p>
+<p><strong>批量操作</strong>：<code>git submodule foreach &lt;命令&gt;</code></p>
+<p><strong>删除子模块</strong>：<code>git submodule deinit -f </code> → <code>git rm -f </code> → 删 <code>.git/modules/</code></p>
+<p><strong>自动同步配置</strong>：<code>git config --global submodule.recurse true</code></p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-13-Git每次都需要输入用户名密码的问题解决\" rel="bookmark">Git 每次都需要输入用户名密码的问题解决</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\08\2020-08-22-Git 的 .gitconfig 文件配置汇总\" rel="bookmark">Git 的 .gitconfig 文件配置汇总</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\07\2020-07-25-为GitLab代码库配置Specific Runner\" rel="bookmark">为 GitLab 代码库配置 Specific Runner</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\10\2020-10-19-github连接报ssh connect to host github.com port 22 Connection timed out错误\" rel="bookmark">github 连接报 “ssh connect to host github.com port 22 Connection timed out” 错误</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2026\02\2026-02-05-AI配置MCP网络获取能力\" rel="bookmark">你的 AI 联网了么？为你的 AI 配置 MCP 网络获取能力吧！</a></div>
+    </li>
+  </ul>
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+              <a href="/tags/AIGC/" rel="tag"># AIGC</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/04/2026-04-28-SpringBoot%E9%A1%B9%E7%9B%AEJDK8%E5%8D%87%E7%BA%A7JDK21%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" rel="prev" title="Spring Boot 项目 JDK8 → JDK21 升级注意事项">
+                  <i class="fa fa-chevron-left"></i> Spring Boot 项目 JDK8 → JDK21 升级注意事项
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/05/2026-05-27-%E4%BB%A3%E7%A0%81%E4%BB%93%E5%BA%93%E7%9A%84%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E5%B7%A5%E5%85%B7%20graphify%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" rel="next" title="代码仓库的知识图谱工具 graphify 使用指南">
+                  代码仓库的知识图谱工具 graphify 使用指南 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-gitalk">登录 GitHub 评论</a></li>
+            <li class="tab"><a href="#comment-valine">不登录进行评论</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@next-theme/pjax@0.4.0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '.page-configurations',
+    '.main-inner',
+    '.post-toc-wrap',
+    '.languages',
+    '.pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollRestoration: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+
+document.addEventListener('pjax:success', () => {
+  pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  const hasTOC = document.querySelector('.post-toc');
+  document.querySelector('.sidebar-inner').classList.toggle('sidebar-nav-active', hasTOC);
+  document.querySelector(hasTOC ? '.sidebar-nav-toc' : '.sidebar-nav-overview').click();
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  
+  <script data-pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+if (document.querySelectorAll('.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8.8.0/dist/mermaid.min.js', () => {
+    mermaid.init({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    }, '.mermaid');
+  }, window.mermaid);
+}
+</script>
+
+
+
+  <script>
+    NProgress.configure({
+      showSpinner: true
+    });
+    NProgress.start();
+    document.addEventListener('readystatechange', () => {
+      if (document.readyState === 'interactive') {
+        NProgress.inc(0.8);
+      }
+      if (document.readyState === 'complete') {
+        NProgress.done();
+      }
+    });
+    document.addEventListener('pjax:send', () => {
+      NProgress.start();
+    });
+    document.addEventListener('pjax:success', () => {
+      NProgress.done();
+    });
+  </script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+    <div class="pjax">
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'e61b622bb2d41a9820db',
+      clientSecret: 'f531cb8372b3c90357ec963d19c7cc918bbf488b',
+      repo        : 'jueee.github.io',
+      owner       : 'jueee',
+      admin       : ['jueee'],
+      id          : '43c83b4e418cad4abf749c1a49c929b7',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script>
+NexT.utils.loadComments('#valine-comments', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', () => {
+    new Valine(Object.assign({"enable":true,"appId":"p5BeaWTTwjpAjNFu85LdGhaE-gzGzoHsz","appKey":"UjjFeqPU2GMhIUJUYBh16SE0","serverURLs":"https://p5beawtt.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[]}, {
+      el: '#valine-comments',
+      path: "/2026/05/2026-05-26-Git%E5%AD%90%E6%A8%A1%E5%9D%97%E7%9B%B8%E5%85%B3%E5%8A%9F%E8%83%BD%E5%92%8C%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/",
+      serverURLs: "https://p5beawtt.lc-cn-n1-shared.com"
+    }));
+  }, window.Valine);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
