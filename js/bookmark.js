@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const scrollToMark = () => {
     let top = localStorage.getItem('bookmark' + location.pathname);
-    top = parseInt(top, 10);
+    top = Number(top);
     // If the page opens with a specific hash, just jump out
     if (!isNaN(top) && location.hash === '') {
       // Auto scroll to the position
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create a link element
     const link = document.querySelector('.book-mark-link');
     // Scroll event
-    window.addEventListener('scroll', () => link.classList.toggle('book-mark-link-fixed', window.scrollY === 0));
+    window.addEventListener('scroll', () => link.classList.toggle('book-mark-link-fixed', window.scrollY === 0), { passive: true });
     // Register beforeunload event when the trigger is auto
     if (trigger === 'auto') {
       // Register beforeunload event

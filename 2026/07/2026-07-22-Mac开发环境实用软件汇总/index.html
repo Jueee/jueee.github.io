@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jueee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-tomorrow","dark":"prism-tomorrow"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="开发类IntelliJ IDEAJava &#x2F; 多语言旗舰 IDE，对 Spring、Maven、Gradle 生态支持极好，智能补全和重构能力业界领先。 brew install --cask intellij-idea  实用技巧:  Cmd+Shift+A 万能搜索入口，直接输入动作名称即可直达； 安装 Key Promoter X 插件帮助你记忆快捷键。  Shell 配置 (~&#x2F;.zshr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac 开发环境实用软件汇总">
+<meta property="og:url" content="https://jueee.github.io/2026/07/2026-07-22-Mac%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="网易内推联系我哦">
+<meta property="og:description" content="开发类IntelliJ IDEAJava &#x2F; 多语言旗舰 IDE，对 Spring、Maven、Gradle 生态支持极好，智能补全和重构能力业界领先。 brew install --cask intellij-idea  实用技巧:  Cmd+Shift+A 万能搜索入口，直接输入动作名称即可直达； 安装 Key Promoter X 插件帮助你记忆快捷键。  Shell 配置 (~&#x2F;.zshr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-22T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-23T11:40:23.047Z">
+<meta property="article:author" content="网易无偿内推">
+<meta property="article:tag" content="MacOS">
+<meta property="article:tag" content="软件">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/07/2026-07-22-Mac%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jueee.github.io/2026/07/2026-07-22-Mac%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/","path":"2026/07/2026-07-22-Mac开发环境实用软件汇总/","title":"Mac 开发环境实用软件汇总"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Mac 开发环境实用软件汇总 | 网易内推联系我哦</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-175024528-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79"></script>
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="网易内推联系我哦" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">网易内推联系我哦</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">网易无偿内推，点击下方【首页】置顶帖查看说明</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">345</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">65</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">113</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">开发类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IntelliJ-IDEA"><span class="nav-number">1.1.</span> <span class="nav-text">IntelliJ IDEA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trae-CN"><span class="nav-number">1.2.</span> <span class="nav-text">Trae CN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sublime-Text"><span class="nav-number">1.3.</span> <span class="nav-text">Sublime Text</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CodeMaker-Hub"><span class="nav-number">1.4.</span> <span class="nav-text">CodeMaker Hub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iTerm2"><span class="nav-number">1.5.</span> <span class="nav-text">iTerm2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DBeaver"><span class="nav-number">1.6.</span> <span class="nav-text">DBeaver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQLWorkbench"><span class="nav-number">1.7.</span> <span class="nav-text">MySQLWorkbench</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ApiPost"><span class="nav-number">1.8.</span> <span class="nav-text">ApiPost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Podman-Desktop"><span class="nav-number">1.9.</span> <span class="nav-text">Podman Desktop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SwitchHosts"><span class="nav-number">1.10.</span> <span class="nav-text">SwitchHosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Typora"><span class="nav-number">1.11.</span> <span class="nav-text">Typora</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">命令行类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nvm-Node-Version-Manager"><span class="nav-number">2.1.</span> <span class="nav-text">nvm (Node Version Manager)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git"><span class="nav-number">2.2.</span> <span class="nav-text">git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bash"><span class="nav-number">2.3.</span> <span class="nav-text">bash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#podman"><span class="nav-number">2.4.</span> <span class="nav-text">podman</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql-8-4"><span class="nav-number">2.5.</span> <span class="nav-text">mysql@8.4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#putty"><span class="nav-number">2.6.</span> <span class="nav-text">putty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-3-14"><span class="nav-number">2.7.</span> <span class="nav-text">python@3.14</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Google-Chrome"><span class="nav-number">3.1.</span> <span class="nav-text">Google Chrome</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Foxmail"><span class="nav-number">3.2.</span> <span class="nav-text">Foxmail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MailMaster%EF%BC%88%E7%BD%91%E6%98%93%E9%82%AE%E7%AE%B1%E5%A4%A7%E5%B8%88%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">MailMaster（网易邮箱大师）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maccy"><span class="nav-number">3.4.</span> <span class="nav-text">Maccy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rectangle"><span class="nav-number">3.5.</span> <span class="nav-text">Rectangle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BetterAndBetter%EF%BC%88Bab%EF%BC%89"><span class="nav-number">3.6.</span> <span class="nav-text">BetterAndBetter（Bab）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LobsterAI%EF%BC%88%E6%9C%89%E9%81%93%E9%BE%99%E8%99%BE%EF%BC%89"><span class="nav-number">3.7.</span> <span class="nav-text">LobsterAI（有道龙虾）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tunnelblick"><span class="nav-number">3.8.</span> <span class="nav-text">Tunnelblick</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OpenVPN-Connect"><span class="nav-number">3.9.</span> <span class="nav-text">OpenVPN Connect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppCleaner"><span class="nav-number">3.10.</span> <span class="nav-text">AppCleaner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hidden-Bar"><span class="nav-number">3.11.</span> <span class="nav-text">Hidden Bar</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="网易无偿内推"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">网易无偿内推</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">345</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/07/2026-07-22-Mac%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%AE%9E%E7%94%A8%E8%BD%AF%E4%BB%B6%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="网易无偿内推">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="网易内推联系我哦">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Mac 开发环境实用软件汇总 | 网易内推联系我哦">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Mac 开发环境实用软件汇总
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2026-07-22T00:00:00Z">2026-07-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/MacOS/" itemprop="url" rel="index"><span itemprop="name">MacOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="开发类"><a href="#开发类" class="headerlink" title="开发类"></a>开发类</h2><h3 id="IntelliJ-IDEA"><a href="#IntelliJ-IDEA" class="headerlink" title="IntelliJ IDEA"></a>IntelliJ IDEA</h3><p>Java / 多语言旗舰 IDE，对 Spring、Maven、Gradle 生态支持极好，智能补全和重构能力业界领先。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask intellij-idea</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>Cmd+Shift+A</code> 万能搜索入口，直接输入动作名称即可直达；</li>
+<li>安装 Key Promoter X 插件帮助你记忆快捷键。</li>
+</ul>
+<p><strong>Shell 配置</strong> (<code>~/.zshrc</code>):</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># Maven 快捷构建命令</span></span><br><span class="line"><span class="built_in">alias</span> mvnci=<span class="string">'mvn clean install -Dmaven.test.skip=true'</span></span><br><span class="line"><span class="built_in">alias</span> mvncp=<span class="string">'mvn clean package -Dmaven.test.skip=true'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="Trae-CN"><a href="#Trae-CN" class="headerlink" title="Trae CN"></a>Trae CN</h3><p>字节跳动推出的 AI 原生 IDE，内置智能代码补全与对话式编程能力，适合前端和全栈快速开发。</p>
+<blockquote>
+<p>需从官网 <span class="exturl" data-url="aHR0cHM6Ly90cmFlLmFpLw==">trae.ai<i class="fa fa-external-link-alt"></i></span> 下载安装，暂无 Homebrew cask。</p>
+</blockquote>
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>Cmd+I</code> 唤起 AI 内联编辑，选中代码后直接描述需求即可让 AI 修改代码；</li>
+<li><code>Cmd+L</code> 打开 AI 对话面板，可针对当前文件进行多轮问答；</li>
+<li>内置预览功能，前端项目可直接在 IDE 内查看页面效果。</li>
+</ul>
+<hr>
+<h3 id="Sublime-Text"><a href="#Sublime-Text" class="headerlink" title="Sublime Text"></a>Sublime Text</h3><p>轻量级高性能文本编辑器，启动快、扩展丰富，适合大文件浏览和零碎文本编辑。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask sublime-text</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>Cmd+P</code> 模糊搜索文件，<code>Cmd+D</code> 连续选中相同单词进行批量编辑；</li>
+<li>安装 Package Control 后推荐 <code>A File Icon</code>、<code>Terminus</code>、<code>Alignment</code> 插件；</li>
+<li><code>Cmd+Shift+L</code> 将多行选中拆分为独立光标，适合批量操作。</li>
+</ul>
+<hr>
+<h3 id="CodeMaker-Hub"><a href="#CodeMaker-Hub" class="headerlink" title="CodeMaker Hub"></a>CodeMaker Hub</h3><p>网易内部 AI 编程助手客户端，集成 Claude、DeepSeek 等模型，支持终端命令行交互和代码生成。</p>
+<blockquote>
+<p>内部工具，通过 KM / 内部分发渠道安装。</p>
+</blockquote>
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>终端中通过 <code>codemaker</code> 命令启动对话；</li>
+<li>可在设置中切换不同模型以适配不同场景。</li>
+</ul>
+<p><strong>Shell 配置</strong> (<code>~/.zshrc</code>):</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># CodeMaker Hub 命令行入口</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$HOME</span>/.codemaker/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="built_in">alias</span> cm=<span class="string">'codemaker'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h3><p>macOS 最强终端替代方案，支持分屏、热键窗口、全局搜索、Shell 集成等。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask iterm2</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>Cmd+D</code> 垂直分屏，<code>Cmd+Shift+D</code> 水平分屏；</li>
+<li>安装 zsh 插件 <code>zsh-autosuggestions</code> 和 <code>zsh-syntax-highlighting</code> 提升效率；</li>
+<li>偏好设置 → Keys → Hotkey 设置全局热键（如 <code>Option+Space</code>）一键呼出终端。</li>
+</ul>
+<hr>
+<h3 id="DBeaver"><a href="#DBeaver" class="headerlink" title="DBeaver"></a>DBeaver</h3><p>开源通用数据库管理工具，支持 MySQL、PostgreSQL、Oracle、SQLite 等几乎所有主流数据库。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask dbeaver-community</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>表上右键 → View Diagram 生成 ER 图；</li>
+<li><code>Ctrl+Enter</code> 执行当前 SQL，无需全选手动运行；</li>
+<li>设置中开启「自动补全大小写跟随库表名」可避免手动调整大小写；</li>
+<li>驱动管理器支持从 Maven 仓库自动下载 JDBC 驱动。</li>
+</ul>
+<hr>
+<h3 id="MySQLWorkbench"><a href="#MySQLWorkbench" class="headerlink" title="MySQLWorkbench"></a>MySQLWorkbench</h3><p>MySQL 官方可视化管理工具，适合表结构设计、查询编写和服务器运维。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask mysqlworkbench</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>EER Diagram 做数据库建模，支持正向工程（生成建表 SQL）和逆向工程（从现有库生成 ER 图）；</li>
+<li>Server Status 面板可直观查看连接数、QPS 等运行指标；</li>
+<li>查询编辑器支持多标签页，每个标签保持独立的连接上下文。</li>
+</ul>
+<hr>
+<h3 id="ApiPost"><a href="#ApiPost" class="headerlink" title="ApiPost"></a>ApiPost</h3><p>国产 API 协作平台，集接口调试、文档生成、Mock 服务、自动化测试于一体，类 Postman 的替代品。</p>
+<blockquote>
+<p>从官网 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYXBpcG9zdC5jbi8=">apipost.cn<i class="fa fa-external-link-alt"></i></span> 下载安装，暂无 Homebrew cask。</p>
+</blockquote>
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>接口编辑页面右键 → 生成代码，支持多种语言 / 框架的请求代码一键导出；</li>
+<li>利用环境变量管理多套服务地址（开发/测试/生产），一键切换；</li>
+<li>团队协作中可直接将接口分享给成员，同步更新文档。</li>
+</ul>
+<hr>
+<h3 id="Podman-Desktop"><a href="#Podman-Desktop" class="headerlink" title="Podman Desktop"></a>Podman Desktop</h3><p>无守护进程的容器管理桌面端，Docker Desktop 的开源替代方案，兼容 Docker CLI。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask podman-desktop</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>初始化 podman machine 后即可运行容器，内置 Kubernetes 扩展可快速拉起本地 K8s 集群；</li>
+<li>镜像列表支持从 Docker Hub 等注册中心一键拉取；</li>
+<li>容器日志查看器内置搜索和高亮，调试体验良好。</li>
+</ul>
+<hr>
+<h3 id="SwitchHosts"><a href="#SwitchHosts" class="headerlink" title="SwitchHosts"></a>SwitchHosts</h3><p>Hosts 文件可视化切换管理工具，支持多方案一键切换、远程 Hosts 订阅。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask switchhosts</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>为开发/测试/生产环境分别配置 Hosts 方案，菜单栏一键切换；</li>
+<li>支持远程 URL 订阅 Hosts，团队共享配置后自动同步更新；</li>
+<li>配合浏览器刷新 DNS 缓存可即时生效。</li>
+</ul>
+<hr>
+<h3 id="Typora"><a href="#Typora" class="headerlink" title="Typora"></a>Typora</h3><p>所见即所得的 Markdown 编辑器，支持 LaTeX 数学公式、Mermaid 图表、代码高亮，写作体验流畅。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask typora</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>Cmd+/</code> 切换源码模式，方便调整 Markdown 语法细节；</li>
+<li>图片拖入后自动复制到本地目录，无需手动管理资源路径；</li>
+<li>偏好设置中开启「打字机模式」和「专注模式」提升写作沉浸感。</li>
+</ul>
+<hr>
+<h2 id="命令行类"><a href="#命令行类" class="headerlink" title="命令行类"></a>命令行类</h2><h3 id="nvm-Node-Version-Manager"><a href="#nvm-Node-Version-Manager" class="headerlink" title="nvm (Node Version Manager)"></a>nvm (Node Version Manager)</h3><p>Node.js 版本管理工具，支持安装、切换多个 Node 版本，前端开发必备。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># nvm 不推荐通过 brew 安装，使用官方脚本</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>nvm ls-remote --lts</code> 查看所有 LTS 版本；</li>
+<li>项目根目录创建 <code>.nvmrc</code> 文件写入版本号，进入目录后执行 <code>nvm use</code> 即可自动切换；</li>
+<li><code>nvm alias default 20</code> 设置全局默认 Node 版本。</li>
+</ul>
+<p><strong>Shell 配置</strong> (<code>~/.zshrc</code>):</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">"<span class="variable">$HOME</span>/.nvm"</span></span><br><span class="line">[ -s <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span> ] &amp;&amp; \. <span class="string">"<span class="variable">$NVM_DIR</span>/nvm.sh"</span></span><br><span class="line">[ -s <span class="string">"<span class="variable">$NVM_DIR</span>/bash_completion"</span> ] &amp;&amp; \. <span class="string">"<span class="variable">$NVM_DIR</span>/bash_completion"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><p>分布式版本控制系统，开发者最常用的协作工具。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>git log --oneline --graph --all</code> 可视化分支提交历史；</li>
+<li><code>git stash push -m "描述"</code> 暂存未提交改动，<code>git stash pop</code> 恢复；</li>
+<li><code>git rebase -i HEAD~3</code> 交互式整理最近三次提交。</li>
+</ul>
+<p><strong>配置参考</strong> (<code>~/.gitconfig</code>):</p>
+<figure class="highlight ini"><table><tbody><tr><td class="code"><pre><span class="line"><span class="section">[core]</span></span><br><span class="line">	<span class="attr">autocrlf</span> = input</span><br><span class="line"><span class="section">[user]</span></span><br><span class="line">	<span class="attr">name</span> = WYQ</span><br><span class="line">	<span class="attr">email</span> = wyq@xx.xxxx.com</span><br><span class="line"><span class="comment"># 按目录自动切换 Git 身份（个人开源项目使用独立账号）</span></span><br><span class="line"><span class="section">[includeIf "gitdir:~/Documents/codes/Jueee/"]</span></span><br><span class="line">	<span class="attr">path</span> = ~/.gitconfig-jueee</span><br></pre></td></tr></tbody></table></figure>
+
+<p>辅助文件 <code>~/.gitconfig-jueee</code>：</p>
+<figure class="highlight ini"><table><tbody><tr><td class="code"><pre><span class="line"><span class="section">[user]</span></span><br><span class="line">	<span class="attr">name</span> = Jue</span><br><span class="line">	<span class="attr">email</span> = xxx@xxx.com</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Shell 配置</strong> (<code>~/.zshrc</code>):</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># SSH 快捷登录（Teleport 堡垒机）</span></span><br><span class="line"><span class="built_in">alias</span> sshlogin=<span class="string">'tsh login --proxy=teleport-gy.xxx.com --auth=xxx'</span></span><br><span class="line"><span class="built_in">alias</span> sshjump=<span class="string">'tsh ssh -o "ForwardAgent yes" xxx@xxx-xxx.xx.xxx'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>~/.ssh/config</code> GitHub 代理配置（443 端口穿透防火墙）：</p>
+<figure class="highlight stylus"><table><tbody><tr><td class="code"><pre><span class="line">Host github<span class="selector-class">.com</span></span><br><span class="line">    User xxx@xxx<span class="selector-class">.com</span></span><br><span class="line">    Hostname ssh<span class="selector-class">.github</span><span class="selector-class">.com</span></span><br><span class="line">    PreferredAuthentications publickey</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line">    Port <span class="number">443</span></span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h3><p>Homebrew 安装的较新版本 Bash（macOS 自带版本较旧），支持更多特性。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install bash</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>安装后需在 <code>/etc/shells</code> 末尾添加 <code>/opt/homebrew/bin/bash</code>，然后执行 <code>chsh -s /opt/homebrew/bin/bash</code> 切换为默认 Shell；</li>
+<li>搭配 <code>brew install bash-completion@2</code> 获得更强补全能力；</li>
+<li>新版 Bash 对关联数组和 <code>shopt</code> 选项支持更完善，脚本兼容性更好。</li>
+</ul>
+<hr>
+<h3 id="podman"><a href="#podman" class="headerlink" title="podman"></a>podman</h3><p>Podman 命令行工具，无守护进程的容器引擎，完全兼容 Docker CLI。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install podman</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>podman machine init &amp;&amp; podman machine start</code> 初始化并启动虚拟机；</li>
+<li><code>podman-compose</code> 可替代 <code>docker-compose</code> 编排容器；</li>
+<li><code>podman image prune -a</code> 清理无用镜像释放磁盘空间。</li>
+</ul>
+<p><strong>Shell 配置</strong> (<code>~/.zshrc</code>):</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment"># podman 无缝替代 Docker 命令</span></span><br><span class="line"><span class="built_in">alias</span> docker=podman</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="mysql-8-4"><a href="#mysql-8-4" class="headerlink" title="mysql@8.4"></a><span class="exturl" data-url="bWFpbHRvOiYjMTA5OyYjeDc5OyYjeDczOyYjeDcxOyYjMTA4OyYjNjQ7JiN4Mzg7JiM0NjsmIzUyOw==">mysql@8.4<i class="fa fa-external-link-alt"></i></span></h3><p>MySQL 8.4 数据库服务端，可通过 brew 管理启停。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install mysql@8.4</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>brew services start mysql@8.4</code> 设为开机自启，<code>brew services stop mysql@8.4</code> 停止服务；</li>
+<li>首次启动后执行 <code>mysql_secure_installation</code> 配置安全选项（密码强度、匿名用户等）；</li>
+<li><code>brew services list</code> 查看所有 brew 管理的后台服务运行状态。</li>
+</ul>
+<p><strong>Shell 配置</strong> (<code>~/.zshrc</code>):</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/opt/homebrew/opt/mysql@8.4/bin:<span class="variable">$PATH</span>"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="putty"><a href="#putty" class="headerlink" title="putty"></a>putty</h3><p>经典的 SSH / Telnet / 串口命令行客户端，轻量且跨平台。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install putty</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>putty -ssh user@host -P 22</code> 快速连接远程服务器；</li>
+<li><code>pscp</code> 和 <code>psftp</code> 随 PuTTY 一起安装，分别用于 SCP 和 SFTP 文件传输；</li>
+<li>可通过 <code>putty -load 会话名</code> 加载已保存的会话配置。</li>
+</ul>
+<hr>
+<h3 id="python-3-14"><a href="#python-3-14" class="headerlink" title="python@3.14"></a><span class="exturl" data-url="bWFpbHRvOiYjMTEyOyYjeDc5OyYjMTE2OyYjMTA0OyYjMTExOyYjMTEwOyYjNjQ7JiN4MzM7JiN4MmU7JiN4MzE7JiN4MzQ7">python@3.14<i class="fa fa-external-link-alt"></i></span></h3><p>Python 3.14 运行环境，brew 安装的版本与系统 Python 隔离，更安全灵活。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install python@3.14</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>python3 -m venv .venv</code> 为每个项目创建独立虚拟环境，<code>source .venv/bin/activate</code> 激活；</li>
+<li><code>pip3 install --upgrade pip</code> 保持 pip 最新版本；</li>
+<li><code>brew info python@3.14</code> 查看版本详情和依赖关系。</li>
+</ul>
+<p><strong>Shell 配置</strong> (<code>~/.zshrc</code>):</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/opt/homebrew/opt/python@3.14/libexec/bin:<span class="variable">$PATH</span>"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h2><h3 id="Google-Chrome"><a href="#Google-Chrome" class="headerlink" title="Google Chrome"></a>Google Chrome</h3><p>主流浏览器，开发者工具强大，插件生态丰富。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask google-chrome</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>Cmd+Option+I</code> 打开 DevTools，<code>Cmd+Option+J</code> 直接跳到 Console 面板；</li>
+<li>Network 面板右键 → Save all as HAR 可存档完整请求记录，方便与后端联调；</li>
+<li>Chrome 多用户配置可隔离工作和个人环境，每个 Profile 独立的书签、插件和登录态。</li>
+</ul>
+<hr>
+<h3 id="Foxmail"><a href="#Foxmail" class="headerlink" title="Foxmail"></a>Foxmail</h3><p>腾讯出品的桌面邮件客户端，界面简洁，支持 Gmail、Exchange、IMAP 等多种协议。</p>
+<blockquote>
+<p>从官网 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZm94bWFpbC5jb20v">foxmail.com<i class="fa fa-external-link-alt"></i></span> 下载安装，暂无 Homebrew cask。</p>
+</blockquote>
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>「联系人分组」结合「邮件模板」可批量发送定制化邮件；</li>
+<li>设置中开启「会话模式」将往来邮件聚合成对话视图，便于追踪讨论线索；</li>
+<li>支持定时发送，适合在非工作时间预设邮件。</li>
+</ul>
+<hr>
+<h3 id="MailMaster（网易邮箱大师）"><a href="#MailMaster（网易邮箱大师）" class="headerlink" title="MailMaster（网易邮箱大师）"></a>MailMaster（网易邮箱大师）</h3><p>网易出品的全平台邮件客户端，支持所有主流邮箱协议，国内邮件服务兼容性好。</p>
+<blockquote>
+<p>从官网下载安装，暂无 Homebrew cask。</p>
+</blockquote>
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>智能过滤功能可将通知类邮件自动归入「通知」分类，保持收件箱清爽；</li>
+<li>绑定多个邮箱后使用「统一收件箱」一站式管理所有邮件账户；</li>
+<li>内置邮件翻译，阅读外文邮件无需切换到翻译工具。</li>
+</ul>
+<hr>
+<h3 id="Maccy"><a href="#Maccy" class="headerlink" title="Maccy"></a>Maccy</h3><p>轻量且快速的剪贴板历史管理工具，纯原生 macOS 实现，复制过的内容随时调取。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask maccy</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>设置中开启「搜索模式」后弹出窗口直接打字即可搜索历史剪贴板内容；</li>
+<li>可在忽略列表中排除 1Password 等密码管理器，防止敏感信息留存；</li>
+<li>支持固定常用片段，重启后不会清除。</li>
+</ul>
+<hr>
+<h3 id="Rectangle"><a href="#Rectangle" class="headerlink" title="Rectangle"></a>Rectangle</h3><p>免费开源的窗口管理工具，拖拽边缘或使用快捷键实现窗口快速分屏、排列。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask rectangle</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>Ctrl+Option+←/→</code> 左右半屏、<code>Ctrl+Option+F</code> 全屏、<code>Ctrl+Option+C</code> 居中窗口；</li>
+<li><code>Ctrl+Option+U/I</code> 分别将窗口置于左上 / 右上四分之一；</li>
+<li>偏好设置中可自定义每种布局的快捷键，支持多显示器独立配置。</li>
+</ul>
+<hr>
+<h3 id="BetterAndBetter（Bab）"><a href="#BetterAndBetter（Bab）" class="headerlink" title="BetterAndBetter（Bab）"></a>BetterAndBetter（Bab）</h3><p>Mac 鼠标/触控板/键盘手势增强工具，可精细定制各种手势触发的快捷操作。</p>
+<blockquote>
+<p>从官网 <span class="exturl" data-url="aHR0cHM6Ly93d3cuYmV0dGVyMzY1LmNuLw==">better365.cn<i class="fa fa-external-link-alt"></i></span> 下载安装，暂无 Homebrew cask。</p>
+</blockquote>
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>画 <code>⌘</code> 手势映射为 <code>Cmd+W</code> 关闭窗口；</li>
+<li>画 <code>L</code> 手势触发锁屏，离开工位时快速锁定；</li>
+<li>触控板四指下滑最小化当前窗口，四指上滑恢复。</li>
+</ul>
+<hr>
+<h3 id="LobsterAI（有道龙虾）"><a href="#LobsterAI（有道龙虾）" class="headerlink" title="LobsterAI（有道龙虾）"></a>LobsterAI（有道龙虾）</h3><p>有道推出的 AI 辅助工具，集成划词翻译、文本润色、AI 对话等能力。</p>
+<blockquote>
+<p>从官网下载安装，暂无 Homebrew cask。</p>
+</blockquote>
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>选中文本后按 <code>Option+D</code> 快速翻译，无需切换到浏览器；</li>
+<li>写作场景下可用 AI 润色功能优化文档表达；</li>
+<li>支持截图翻译，方便阅读论文和文档截图中的文字。</li>
+</ul>
+<hr>
+<h3 id="Tunnelblick"><a href="#Tunnelblick" class="headerlink" title="Tunnelblick"></a>Tunnelblick</h3><p>macOS 上最常用的免费开源 OpenVPN 客户端，配置文件放入后自动识别连接。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask tunnelblick</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li><code>.ovpn</code> 配置文件直接拖入菜单栏图标即可自动导入；</li>
+<li>偏好设置中勾选「连接时最小化」让 VPN 在后台静默工作；</li>
+<li>支持多个 VPN 配置同时接入，按需切换不同网络环境。</li>
+</ul>
+<hr>
+<h3 id="OpenVPN-Connect"><a href="#OpenVPN-Connect" class="headerlink" title="OpenVPN Connect"></a>OpenVPN Connect</h3><p>OpenVPN 官方客户端，界面现代化，支持 Profile 管理和一键连接。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask openvpn-connect</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>支持通过 URL 导入 Profile，团队共享 VPN 配置时一键添加；</li>
+<li>连接日志面板可实时查看握手过程和错误详情，便于排查问题；</li>
+<li>与 Tunnelblick 按需互补：前者适合标准场景，后者更适合复杂多配置环境。</li>
+</ul>
+<hr>
+<h3 id="AppCleaner"><a href="#AppCleaner" class="headerlink" title="AppCleaner"></a>AppCleaner</h3><p>轻量级应用卸载工具，拖拽目标软件即可扫描关联文件并彻底清理，比系统自带卸载更干净。</p>
+<blockquote>
+<p>从官网 <span class="exturl" data-url="aHR0cHM6Ly9mcmVlbWFjc29mdC5uZXQvYXBwY2xlYW5lcg==">freemacsoft.net/appcleaner<i class="fa fa-external-link-alt"></i></span> 下载安装，暂无 Homebrew cask。</p>
+</blockquote>
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>将需要卸载的应用拖入 AppCleaner 窗口，会自动扫描关联的配置文件、缓存、日志等残留文件；</li>
+<li>勾选 SmartDelete 自动监测：当将应用拖入废纸篓时自动弹出清理提示，无需手动启动 AppCleaner；</li>
+<li>列表视图可查看所有应用及其占用空间，方便批量清理不常用软件。</li>
+</ul>
+<p><strong>权限问题</strong>：首次运行时若提示 "没权限"，按以下步骤授权：</p>
+<ol>
+<li>打开 <strong>系统设置</strong> → <strong>隐私与安全性</strong> → <strong>完全磁盘访问权限</strong>；</li>
+<li>点击 <code>+</code> 添加 <code>/Applications/AppCleaner.app</code>，开启开关；</li>
+<li>如扫描某些 App 仍无结果，还需要在 <strong>辅助功能</strong>（Accessibility）中同样添加 AppCleaner；</li>
+<li>重新启动 AppCleaner 即可正常使用。</li>
+</ol>
+<hr>
+<h3 id="Hidden-Bar"><a href="#Hidden-Bar" class="headerlink" title="Hidden Bar"></a>Hidden Bar</h3><p>菜单栏图标管理工具，可将不常用的菜单栏图标折叠隐藏，保持菜单栏整洁。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">brew install --cask hiddenbar</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实用技巧</strong>:</p>
+<ul>
+<li>安装后在菜单栏会出现 <code>∣</code> 和 <code>&gt;</code> 两个分隔符图标，按住 <code>Cmd</code> 拖拽图标可自由排列位置；</li>
+<li>拖到 <code>∣</code> 左侧的图标始终显示（常用），拖到 <code>∣</code> 和 <code>&gt;</code> 之间的图标默认隐藏，点击 <code>&gt;</code> 可展开查看；</li>
+<li>偏好设置中勾选「自动隐藏」可设置延时，鼠标移开后自动收起，省去手动操作。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag"># 软件</a>
+              <a href="/tags/MacOS/" rel="tag"># MacOS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/2026-07-03-Poste.io%20%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/" rel="prev" title="Poste.io 邮件服务器完全指南">
+                  <i class="fa fa-angle-left"></i> Poste.io 邮件服务器完全指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"jueee","repo":"jueee.github.io","client_id":"e61b622bb2d41a9820db","client_secret":"f531cb8372b3c90357ec963d19c7cc918bbf488b","admin_user":"jueee","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"97105a9fbb6e29be6c6851aa2be679f0"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,5 +1,6 @@
 /* global CONFIG */
 
+// https://developers.google.com/calendar/api/v3/reference/events/list
 (function() {
   // Initialization
   const calendar = {
@@ -61,9 +62,7 @@
     return 'about ' + Math.round(elapsed / msPerYear) + ' years' + tense;
   }
 
-  function buildEventDOM(tense, event) {
-    const start = event.start.dateTime;
-    const end = event.end.dateTime;
+  function buildEventDOM(tense, event, start, end) {
     const durationFormat = {
       weekday: 'short',
       hour   : '2-digit',
@@ -93,13 +92,14 @@
     return eventContent;
   }
 
-  function fetchData() {
+  async function fetchData() {
     const eventList = document.querySelector('.event-list');
     if (!eventList) return;
 
-    fetch(request_url.href).then(response => {
-      return response.json();
-    }).then(data => {
+    try {
+      const response = await fetch(request_url.href);
+      const data = await response.json();
+
       if (data.items.length === 0) {
         eventList.innerHTML = '<hr>';
         return;
@@ -107,12 +107,12 @@
       // Clean the event list
       eventList.innerHTML = '';
       let prevEnd = 0; // used to decide where to insert an <hr>
+      const utc = new Date().getTimezoneOffset() * 60000;
 
       data.items.forEach(event => {
         // Parse data
-        const utc = new Date().getTimezoneOffset() * 60000;
-        const start = event.start.dateTime = new Date(event.start.dateTime || (new Date(event.start.date).getTime() + utc));
-        const end = event.end.dateTime = new Date(event.end.dateTime || (new Date(event.end.date).getTime() + utc));
+        const start = new Date(event.start.dateTime || (new Date(event.start.date).getTime() + utc));
+        const end = new Date(event.end.dateTime || (new Date(event.end.date).getTime() + utc));
 
         let tense = 'now';
         if (end < now) {
@@ -122,13 +122,16 @@
         }
 
         if (tense === 'future' && prevEnd < now) {
-          eventList.innerHTML += '<hr>';
+          eventList.insertAdjacentHTML('beforeend', '<hr>');
         }
 
-        eventList.innerHTML += buildEventDOM(tense, event);
+        eventList.insertAdjacentHTML('beforeend', buildEventDOM(tense, event, start, end));
         prevEnd = end;
       });
-    });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error fetching calendar data:', error);
+    }
   }
 
   fetchData();
