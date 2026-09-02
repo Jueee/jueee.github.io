@@ -131,8 +131,8 @@
     <author>
       <name>小决</name>
     </author>
-    <category term="Shell" scheme="https://jueee.github.io/categories/Shell/"/>
-    <category term="MacOS" scheme="https://jueee.github.io/categories/Shell/MacOS/"/>
+    <category term="OS" scheme="https://jueee.github.io/categories/OS/"/>
+    <category term="Shell" scheme="https://jueee.github.io/categories/OS/Shell/"/>
     <category term="Shell" scheme="https://jueee.github.io/tags/Shell/"/>
     <category term="OS" scheme="https://jueee.github.io/tags/OS/"/>
     <content>
@@ -143,7 +143,7 @@
     <published>2026-07-24T00:00:00.000Z</published>
     <summary>通过 Shell 脚本快速查找并终止占用指定端口的进程，并配置为全局别名一键使用。</summary>
     <title>Mac 根据端口杀掉对应的进程</title>
-    <updated>2026-08-06T05:37:02.359Z</updated>
+    <updated>2026-09-02T11:27:28.064Z</updated>
   </entry>
   <entry>
     <author>

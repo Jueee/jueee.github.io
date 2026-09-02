@@ -221,6 +221,16 @@ def match_categories(file_categories: Optional[str], search_categories: str) -> 
     if file_cat_normalized == search_normalized:
         return True
     
+    # 情况1b: 单行列表项格式 "- [xxx]"，去掉前缀后匹配
+    # 例如: categories: \n- [Database,Ceph] 提取后是 "- [Database,Ceph]"（单行）
+    if file_cat_normalized.startswith('-'):
+        stripped = file_cat_normalized[1:].strip()
+        if stripped == search_normalized:
+            return True
+        # 搜索不带方括号时，匹配 [单个值]
+        if not search_normalized.startswith('[') and stripped == f'[{search_normalized}]':
+            return True
+    
     # 情况2: 多行列表格式，匹配其中的任意一项（完整匹配）
     # 例如: categories:
     #       - [Ceph]
