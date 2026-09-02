@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jueee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-tomorrow","dark":"prism-tomorrow"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="SDKMAN 是一款用于管理多个 SDK 版本的命令行工具，支持 Java、Gradle、Maven 等数十种开发工具的安装、切换和管理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sdkman 的安装和常用操作汇总">
+<meta property="og:url" content="https://jueee.github.io/2026/08/2026-08-04-sdkman%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="小决的博客">
+<meta property="og:description" content="SDKMAN 是一款用于管理多个 SDK 版本的命令行工具，支持 Java、Gradle、Maven 等数十种开发工具的安装、切换和管理。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-04T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-05T01:49:41.480Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="SDK">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/08/2026-08-04-sdkman%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jueee.github.io/2026/08/2026-08-04-sdkman%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB/","path":"2026/08/2026-08-04-sdkman的安装和常用操作汇总/","title":"sdkman 的安装和常用操作汇总"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>sdkman 的安装和常用操作汇总 | 小决的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-175024528-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79"></script>
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="小决的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小决的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">没关系，进一寸有一寸的欢喜。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">73</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-SDKMAN"><span class="nav-number">1.</span> <span class="nav-text">什么是 SDKMAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-SDKMAN"><span class="nav-number">2.</span> <span class="nav-text">安装 SDKMAN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS-Linux-%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">macOS &#x2F; Linux 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows-%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.</span> <span class="nav-text">Windows 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%88%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.3.</span> <span class="nav-text">安装到自定义位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CI-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%8D%E4%BF%AE%E6%94%B9-Shell-%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">CI 环境安装（不修改 Shell 配置）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD-SDKMAN"><span class="nav-number">3.</span> <span class="nav-text">卸载 SDKMAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E7%9A%84-SDK-%E7%A7%8D%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">管理的 SDK 种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">常用操作命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%B8%8E%E6%90%9C%E7%B4%A2"><span class="nav-number">5.1.</span> <span class="nav-text">查看与搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD"><span class="nav-number">5.2.</span> <span class="nav-text">安装与卸载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E7%89%88%E6%9C%AC"><span class="nav-number">5.3.</span> <span class="nav-text">切换版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7%E4%B8%8E%E6%9B%B4%E6%96%B0"><span class="nav-number">5.4.</span> <span class="nav-text">升级与更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%BC%93%E5%AD%98%E6%B8%85%E7%90%86"><span class="nav-number">5.5.</span> <span class="nav-text">离线模式与缓存清理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BA%A7%E7%89%88%E6%9C%AC%E9%94%81%E5%AE%9A%EF%BC%88-sdkmanrc%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">项目级版本锁定（.sdkmanrc）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%EF%BC%88-sdkman-etc-config%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">常用配置（~&#x2F;.sdkman&#x2F;etc&#x2F;config）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">8.</span> <span class="nav-text">常见使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E5%A4%9A-Java-%E7%89%88%E6%9C%AC%E5%85%B1%E5%AD%98"><span class="nav-number">8.1.</span> <span class="nav-text">场景一：多 Java 版本共存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9A%E4%B8%8D%E5%90%8C%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%AC"><span class="nav-number">8.2.</span> <span class="nav-text">场景二：不同项目使用不同版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E4%B8%89%EF%BC%9A%E5%AE%89%E8%A3%85-Spring-Boot-CLI"><span class="nav-number">8.3.</span> <span class="nav-text">场景三：安装 Spring Boot CLI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">9.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/08/2026-08-04-sdkman%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="sdkman 的安装和常用操作汇总 | 小决的博客">
+      <meta itemprop="description" content="SDKMAN 是一款用于管理多个 SDK 版本的命令行工具，支持 Java、Gradle、Maven 等数十种开发工具的安装、切换和管理。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          sdkman 的安装和常用操作汇总
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-08-04 00:00:00" itemprop="dateCreated datePublished" datetime="2026-08-04T00:00:00Z">2026-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">SDKMAN 是一款用于管理多个 SDK 版本的命令行工具，支持 Java、Gradle、Maven 等数十种开发工具的安装、切换和管理。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="什么是-SDKMAN"><a href="#什么是-SDKMAN" class="headerlink" title="什么是 SDKMAN"></a>什么是 SDKMAN</h2><p>SDKMAN（Software Development Kit Manager）是一款运行在 Unix 系统上的 SDK 版本管理工具，以前称为 GVM（Groovy 环境管理器）。它提供了易用的命令行界面（CLI），可轻松管理多个软件开发工具包的不同版本，灵感来自 apt、pip、RVM、rbenv 等工具。</p>
+<p><strong>支持平台</strong>：macOS、Linux、Windows（需 WSL 或 Git Bash + MinGW）<br><strong>支持 Shell</strong>：Bash、ZSH</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="安装-SDKMAN"><a href="#安装-SDKMAN" class="headerlink" title="安装 SDKMAN"></a>安装 SDKMAN</h2><h3 id="macOS-Linux-安装"><a href="#macOS-Linux-安装" class="headerlink" title="macOS / Linux 安装"></a>macOS / Linux 安装</h3><p>在终端执行以下命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token string">"https://get.sdkman.io"</span> <span class="token operator">|</span> <span class="token function">bash</span></code></pre>
+
+<p>安装完成后，在当前 Shell 中激活：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> <span class="token string">"<span class="token environment constant">$HOME</span>/.sdkman/bin/sdkman-init.sh"</span></code></pre>
+
+<p>验证安装成功：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">sdk version</code></pre>
+
+<p>输出示例：</p>
+<pre class="language-none"><code class="language-none">SDKMAN!
+script: 5.18.2
+native: 0.4.6</code></pre>
+
+<h3 id="Windows-安装"><a href="#Windows-安装" class="headerlink" title="Windows 安装"></a>Windows 安装</h3><p>Windows 下有两种方式：</p>
+<ol>
+<li><strong>WSL 方式</strong>（推荐）：先安装适用于 Linux 的 Windows 子系统（WSL），再按 Linux 流程安装。</li>
+<li><strong>Git Bash 方式</strong>：使用 Git Bash 并安装 MinGW 补充工具集，大多数情况可用，存在少量兼容问题。</li>
+</ol>
+<blockquote>
+<p>注意：SDKMAN 需要 bash 环境，不支持原生 Windows CMD / PowerShell，不再支持 Cygwin。</p>
+</blockquote>
+<h3 id="安装到自定义位置"><a href="#安装到自定义位置" class="headerlink" title="安装到自定义位置"></a>安装到自定义位置</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">SDKMAN_DIR</span><span class="token operator">=</span><span class="token string">"/usr/local/sdkman"</span> <span class="token operator">&amp;&amp;</span> <span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token string">"https://get.sdkman.io"</span> <span class="token operator">|</span> <span class="token function">bash</span></code></pre>
+
+<h3 id="CI-环境安装（不修改-Shell-配置）"><a href="#CI-环境安装（不修改-Shell-配置）" class="headerlink" title="CI 环境安装（不修改 Shell 配置）"></a>CI 环境安装（不修改 Shell 配置）</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-s</span> <span class="token string">"https://get.sdkman.io?rcupdate=false"</span> <span class="token operator">|</span> <span class="token function">bash</span></code></pre>
+
+<hr>
+<h2 id="卸载-SDKMAN"><a href="#卸载-SDKMAN" class="headerlink" title="卸载 SDKMAN"></a>卸载 SDKMAN</h2><ol>
+<li><p>备份并删除安装目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> <span class="token parameter variable">-zcvf</span> ~/sdkman-backup.tar.gz <span class="token parameter variable">-C</span> ~/ .sdkman
+<span class="token function">rm</span> <span class="token parameter variable">-rf</span> ~/.sdkman</code></pre>
+</li>
+<li><p>从 Shell 配置文件（<code>~/.bashrc</code>、<code>~/.bash_profile</code>、<code>~/.zshrc</code>）中移除 SDKMAN 初始化代码片段。</p>
+</li>
+</ol>
+<hr>
+<h2 id="管理的-SDK-种类"><a href="#管理的-SDK-种类" class="headerlink" title="管理的 SDK 种类"></a>管理的 SDK 种类</h2><p>SDKMAN 不只管理 JDK，支持 <strong>30+ 种</strong>候选工具，覆盖 JVM 生态的主流开发工具：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Java 发行版</strong></td>
+<td>Temurin、Corretto、GraalVM、Zulu、Microsoft JDK、Liberica 等</td>
+</tr>
+<tr>
+<td><strong>构建工具</strong></td>
+<td>Maven、Gradle、Ant、SBT</td>
+</tr>
+<tr>
+<td><strong>JVM 语言</strong></td>
+<td>Groovy、Kotlin、Scala、Clojure</td>
+</tr>
+<tr>
+<td><strong>框架 CLI</strong></td>
+<td>Spring Boot CLI (<code>spring</code>)、Quarkus (<code>quarkus</code>)、Micronaut (<code>mn</code>)</td>
+</tr>
+<tr>
+<td><strong>其他工具</strong></td>
+<td>VisualVM、JMC、Spark 等</td>
+</tr>
+</tbody></table>
+<p>查看全部支持的候选工具：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">sdk list</code></pre>
+
+<hr>
+<h2 id="常用操作命令"><a href="#常用操作命令" class="headerlink" title="常用操作命令"></a>常用操作命令</h2><h3 id="查看与搜索"><a href="#查看与搜索" class="headerlink" title="查看与搜索"></a>查看与搜索</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 列出所有支持的候选工具</span>
+sdk list
+
+<span class="token comment"># 列出某个候选工具的所有可用版本（已安装的在 Status 列标注 installed，当前使用的标注 &gt;&gt;&gt;）</span>
+sdk list <span class="token function">java</span>
+
+<span class="token comment"># 查看当前使用的版本</span>
+sdk current <span class="token function">java</span>
+
+<span class="token comment"># 查看所有工具的当前版本</span>
+sdk current
+
+<span class="token comment"># 查看某个已安装版本的安装路径</span>
+sdk home <span class="token function">java</span> <span class="token number">21.0</span>.3-tem
+
+<span class="token comment"># 查看已安装的所有版本（列出 candidates 目录）</span>
+<span class="token function">ls</span> ~/.sdkman/candidates/java/</code></pre>
+
+<p><code>sdk list java</code> 输出示例（节选）：</p>
+<pre class="language-none"><code class="language-none">================================================================================
+Available Java Versions for macOS ARM 64bit
+================================================================================
+ Vendor        | Use | Version      | Dist    | Status     | Identifier
+--------------------------------------------------------------------------------
+ Temurin       | &gt;&gt;&gt; | 25.0.3       | tem     | installed  | 25.0.3-tem
+               |     | 21.0.11      | tem     | installed  | 21.0.11-tem
+               |     | 21.0.3       | tem     |            | 21.0.3-tem
+               |     | 17.0.11      | tem     |            | 17.0.11-tem</code></pre>
+
+<ul>
+<li><code>&gt;&gt;&gt;</code> 表示当前正在使用的版本</li>
+<li><code>installed</code> 表示已下载安装到本地</li>
+<li>空白 Status 表示远程可用、未安装</li>
+</ul>
+<p><strong>只查看已安装的版本</strong>，SDKMAN 没有专用命令，有两种方式：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 方式一：直接列出 candidates 目录（最直观）</span>
+<span class="token function">ls</span> ~/.sdkman/candidates/java/
+<span class="token comment"># 输出示例：21.0.11-tem  25.0.3-tem  8.0.492-zulu  current</span>
+
+<span class="token comment"># 方式二：在完整列表中过滤 installed 行</span>
+sdk list <span class="token function">java</span> <span class="token operator">|</span> <span class="token function">grep</span> installed</code></pre>
+
+<h3 id="安装与卸载"><a href="#安装与卸载" class="headerlink" title="安装与卸载"></a>安装与卸载</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装默认推荐版本</span>
+sdk <span class="token function">install</span> <span class="token function">java</span>
+
+<span class="token comment"># 安装指定版本</span>
+sdk <span class="token function">install</span> <span class="token function">java</span> <span class="token number">21.0</span>.3-tem
+
+<span class="token comment"># 安装 Gradle</span>
+sdk <span class="token function">install</span> gradle <span class="token number">8.7</span>
+
+<span class="token comment"># 挂载本地已有的 JDK（不从网络下载，给本地路径起一个别名）</span>
+sdk <span class="token function">install</span> <span class="token function">java</span> <span class="token number">11</span>-local /usr/lib/jvm/java-11-openjdk
+
+<span class="token comment"># 卸载指定版本</span>
+sdk uninstall <span class="token function">java</span> <span class="token number">17.0</span>.11-tem</code></pre>
+
+<blockquote>
+<p>本地版本挂载：当系统已通过其他方式安装了 JDK 时，可用 <code>sdk install java &lt;别名&gt; &lt;本地路径&gt;</code> 将其纳入 SDKMAN 管理，之后就能用 <code>sdk use</code> / <code>sdk default</code> 切换。</p>
+</blockquote>
+<h3 id="切换版本"><a href="#切换版本" class="headerlink" title="切换版本"></a>切换版本</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 设置全局默认版本（永久生效）</span>
+sdk default <span class="token function">java</span> <span class="token number">21.0</span>.3-tem
+
+<span class="token comment"># 仅在当前 Shell 会话中切换（临时）</span>
+sdk use <span class="token function">java</span> <span class="token number">17.0</span>.11-tem</code></pre>
+
+<blockquote>
+<p><code>sdk default</code> 和 <code>sdk use</code> 的区别：</p>
+<ul>
+<li><code>default</code>：修改全局配置，新开的 Shell 也生效</li>
+<li><code>use</code>：只对当前 Shell 窗口生效，关闭后恢复默认</li>
+</ul>
+</blockquote>
+<h3 id="升级与更新"><a href="#升级与更新" class="headerlink" title="升级与更新"></a>升级与更新</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 刷新候选工具的版本元数据（不安装，只更新本地可用版本列表）</span>
+sdk update
+
+<span class="token comment"># 查看哪些已安装工具有新版本可升级（会提示并确认是否安装）</span>
+sdk upgrade
+
+<span class="token comment"># 升级指定工具到最新版</span>
+sdk upgrade <span class="token function">java</span>
+
+<span class="token comment"># 更新 SDKMAN 自身脚本</span>
+sdk selfupdate
+
+<span class="token comment"># 强制更新（退出 Beta 频道时使用）</span>
+sdk selfupdate force</code></pre>
+
+<blockquote>
+<p><code>sdk update</code> 与 <code>sdk upgrade</code> 的区别：</p>
+<ul>
+<li><code>update</code>：只刷新远程版本元数据，不安装任何东西，类似 <code>apt update</code></li>
+<li><code>upgrade</code>：实际升级已安装的 SDK 到最新版，类似 <code>apt upgrade</code>，会触发交互确认</li>
+</ul>
+</blockquote>
+<h3 id="离线模式与缓存清理"><a href="#离线模式与缓存清理" class="headerlink" title="离线模式与缓存清理"></a>离线模式与缓存清理</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 开启离线模式（无网络时使用已安装版本）</span>
+sdk offline <span class="token builtin class-name">enable</span>
+
+<span class="token comment"># 关闭离线模式</span>
+sdk offline disable
+
+<span class="token comment"># 清理所有临时文件、元数据缓存和版本缓存</span>
+sdk flush
+
+<span class="token comment"># 只清理临时下载文件</span>
+sdk flush tmp
+
+<span class="token comment"># 只清理版本元数据缓存</span>
+sdk flush metadata
+
+<span class="token comment"># 只清理版本号缓存文件</span>
+sdk flush version</code></pre>
+
+<hr>
+<h2 id="项目级版本锁定（-sdkmanrc）"><a href="#项目级版本锁定（-sdkmanrc）" class="headerlink" title="项目级版本锁定（.sdkmanrc）"></a>项目级版本锁定（.sdkmanrc）</h2><p>SDKMAN 支持在项目根目录创建 <code>.sdkmanrc</code> 文件，实现类似 Node.js <code>.nvmrc</code> 的项目级版本锁定。</p>
+<p><strong>创建 <code>.sdkmanrc</code> 文件</strong>：</p>
+<p>手动创建，或使用命令自动生成（基于当前使用版本）：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在当前目录生成 .sdkmanrc（内容为当前所有已激活版本）</span>
+sdk <span class="token function">env</span> init</code></pre>
+
+<p>生成的文件示例：</p>
+<pre class="language-none"><code class="language-none">java=25.0.3-tem
+maven=3.9.16</code></pre>
+
+<p>也可手动编写，指定所需版本：</p>
+<pre class="language-none"><code class="language-none">java=21.0.3-tem
+gradle=8.7
+maven=3.9.6</code></pre>
+
+<p><strong>手动加载</strong>：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 切换到 .sdkmanrc 中声明的版本</span>
+sdk <span class="token function">env</span>
+
+<span class="token comment"># 安装 .sdkmanrc 中声明的所有版本（若本地未安装则自动下载）</span>
+sdk <span class="token function">env</span> <span class="token function">install</span>
+
+<span class="token comment"># 清除（恢复到全局默认版本）</span>
+sdk <span class="token function">env</span> <span class="token function">clear</span></code></pre>
+
+<p><strong>自动切换</strong>（推荐）：</p>
+<p>编辑 <code>~/.sdkman/etc/config</code>，开启自动加载：</p>
+<pre class="language-none"><code class="language-none">sdkman_auto_env=true</code></pre>
+
+<p>开启后，<code>cd</code> 进入含 <code>.sdkmanrc</code> 的目录时会自动切换版本，离开时自动恢复默认版本。</p>
+<hr>
+<h2 id="常用配置（-sdkman-etc-config）"><a href="#常用配置（-sdkman-etc-config）" class="headerlink" title="常用配置（~/.sdkman/etc/config）"></a>常用配置（~/.sdkman/etc/config）</h2><table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sdkman_auto_env</code></td>
+<td>进入目录自动切换版本</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>sdkman_auto_answer</code></td>
+<td>自动回答 yes（适合 CI）</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>sdkman_beta_channel</code></td>
+<td>是否加入 Beta 测试频道</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>sdkman_colour_enable</code></td>
+<td>开启彩色输出</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>sdkman_selfupdate_feature</code></td>
+<td>自动更新 SDKMAN 本身</td>
+<td><code>true</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="常见使用场景"><a href="#常见使用场景" class="headerlink" title="常见使用场景"></a>常见使用场景</h2><h3 id="场景一：多-Java-版本共存"><a href="#场景一：多-Java-版本共存" class="headerlink" title="场景一：多 Java 版本共存"></a>场景一：多 Java 版本共存</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装多个版本</span>
+sdk <span class="token function">install</span> <span class="token function">java</span> <span class="token number">8.0</span>.492-zulu
+sdk <span class="token function">install</span> <span class="token function">java</span> <span class="token number">11.0</span>.23-tem
+sdk <span class="token function">install</span> <span class="token function">java</span> <span class="token number">17.0</span>.11-tem
+sdk <span class="token function">install</span> <span class="token function">java</span> <span class="token number">21.0</span>.3-tem
+
+<span class="token comment"># 查看已安装的所有 Java 版本</span>
+<span class="token function">ls</span> ~/.sdkman/candidates/java/
+
+<span class="token comment"># 在完整列表中确认安装状态（Status 列标注 installed，当前使用标注 &gt;&gt;&gt;）</span>
+sdk list <span class="token function">java</span>
+
+<span class="token comment"># 查看当前激活的版本</span>
+sdk current <span class="token function">java</span>
+
+<span class="token comment"># 全局切换到 Java 21</span>
+sdk default <span class="token function">java</span> <span class="token number">21.0</span>.3-tem
+
+<span class="token comment"># 临时在当前终端使用 Java 8（例如运行旧项目）</span>
+sdk use <span class="token function">java</span> <span class="token number">8.0</span>.492-zulu</code></pre>
+
+<h3 id="场景二：不同项目使用不同版本"><a href="#场景二：不同项目使用不同版本" class="headerlink" title="场景二：不同项目使用不同版本"></a>场景二：不同项目使用不同版本</h3><p>项目 A（Java 11 + Gradle 7）：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在项目 A 根目录</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"java=11.0.23-tem"</span> <span class="token operator">&gt;</span> .sdkmanrc
+<span class="token builtin class-name">echo</span> <span class="token string">"gradle=7.6.4"</span> <span class="token operator">&gt;&gt;</span> .sdkmanrc</code></pre>
+
+<p>项目 B（Java 21 + Gradle 8）：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在项目 B 根目录</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"java=21.0.3-tem"</span> <span class="token operator">&gt;</span> .sdkmanrc
+<span class="token builtin class-name">echo</span> <span class="token string">"gradle=8.7"</span> <span class="token operator">&gt;&gt;</span> .sdkmanrc</code></pre>
+
+<p>开启 <code>sdkman_auto_env=true</code> 后，<code>cd</code> 切换项目目录即自动切换版本。</p>
+<h3 id="场景三：安装-Spring-Boot-CLI"><a href="#场景三：安装-Spring-Boot-CLI" class="headerlink" title="场景三：安装 Spring Boot CLI"></a>场景三：安装 Spring Boot CLI</h3><pre class="language-bash" data-language="bash"><code class="language-bash">sdk <span class="token function">install</span> springboot
+spring <span class="token parameter variable">--version</span>
+spring init <span class="token parameter variable">--dependencies</span><span class="token operator">=</span>web,data-jpa my-project</code></pre>
+
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zZGttYW4uaW8v">SDKMAN 官网<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zZGttYW4uaW8vdXNhZ2U=">SDKMAN 使用文档<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+              <a href="/tags/SDK/" rel="tag"># SDK</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/2026-07-30-OpenClaw%20%E5%AE%89%E8%A3%85%E5%85%A5%E9%97%A8%E5%8F%8A%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/" rel="prev" title="OpenClaw 安装入门及基础用法">
+                  <i class="fa fa-angle-left"></i> OpenClaw 安装入门及基础用法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/08/2026-08-05-%E4%BD%BF%E7%94%A8curl%E8%BF%9B%E8%A1%8C%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB/" rel="next" title="使用 curl 进行邮件发送操作汇总">
+                  使用 curl 进行邮件发送操作汇总 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"jueee","repo":"jueee.github.io","client_id":"e61b622bb2d41a9820db","client_secret":"f531cb8372b3c90357ec963d19c7cc918bbf488b","admin_user":"jueee","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"ac69322de9484cc91a3d8a4947faa3f8"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

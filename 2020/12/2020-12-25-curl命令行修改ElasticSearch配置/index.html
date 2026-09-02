@@ -32,7 +32,7 @@
 <meta property="og:description" content="curlcurl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-25T00:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-25T07:41:13.262Z">
+<meta property="article:modified_time" content="2026-09-02T10:28:27.170Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Database">
 <meta property="article:tag" content="ElasticSearch">
@@ -131,7 +131,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">347</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">67</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">113</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">73</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -197,18 +197,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">347</span>
+          <span class="site-state-item-count">352</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -315,19 +315,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
         </span>
     </span>
 
@@ -348,20 +340,20 @@
     
     
     <div class="post-body" itemprop="articleBody"><h3 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h3><p>curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h4 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h4><ul>
-<li><code>-d</code> 参数用于发送 POST 请求的数据体。</li>
-<li><code>-H</code> 参数添加 HTTP 请求的标头。</li>
-<li><code>-X</code> 参数指定 HTTP 请求的方法。</li>
+<li><code>-d</code>参数用于发送 POST 请求的数据体。</li>
+<li><code>-H</code>参数添加 HTTP 请求的标头。</li>
+<li><code>-X</code>参数指定 HTTP 请求的方法。</li>
 </ul>
 <h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><p>查看 es 集群状态：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/_cat/health?v</code></pre>
 
 <h4 id="修改系统参数"><a href="#修改系统参数" class="headerlink" title="修改系统参数"></a>修改系统参数</h4><p>修改参数（单个查询最大的桶数，默认 10000）：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -X PUT http://127.0.0.1:9200/_cluster/settings?flat_settings <span class="token punctuation">\</span>
-     -H <span class="token string">'content-Type:application/json'</span> <span class="token punctuation">\</span>
-     -d <span class="token string">'{"persistent":{"search":{"max_buckets":"2147483647"}}}'</span></code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-X</span> PUT http://127.0.0.1:9200/_cluster/settings?flat_settings <span class="token punctuation">\</span>
+     <span class="token parameter variable">-H</span> <span class="token string">'content-Type:application/json'</span> <span class="token punctuation">\</span>
+     <span class="token parameter variable">-d</span> <span class="token string">'{"persistent":{"search":{"max_buckets":"2147483647"}}}'</span></code></pre>
 
 <p>如果不加 <code>-H 'content-Type:application/json'</code> 参数，可能会报错：</p>
 <blockquote>
@@ -372,9 +364,9 @@
 <p>Validation Failed: 1: this action would add [10] shards, but this cluster currently has [996]/[1000] maximum normal shards open</p>
 </blockquote>
 <p>这是由于 ES7.x 默认分片只有 1000 个，目前已经用完了，导致已经没法创建新的索引了。需要提高 ES 的分片数量。</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> --location --request PUT <span class="token string">'http://127.0.0.1:9200/_cluster/settings'</span> <span class="token punctuation">\</span>
-     --header <span class="token string">'Content-Type: application/json'</span> <span class="token punctuation">\</span>
-     --data <span class="token string">'{"persistent":{"cluster":{"max_shards_per_node":10000}}}'</span></code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">--location</span> <span class="token parameter variable">--request</span> PUT <span class="token string">'http://127.0.0.1:9200/_cluster/settings'</span> <span class="token punctuation">\</span>
+     <span class="token parameter variable">--header</span> <span class="token string">'Content-Type: application/json'</span> <span class="token punctuation">\</span>
+     <span class="token parameter variable">--data</span> <span class="token string">'{"persistent":{"cluster":{"max_shards_per_node":10000}}}'</span></code></pre>
 
 <h3 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h3><p>集群节点健康查看：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/_cat/nodes?v</code></pre>
@@ -383,14 +375,14 @@
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/_cat/indices?v</code></pre>
 
 <p>删除某个索引：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -XDELETE <span class="token string">'http://127.0.0.1:9200/index_name'</span></code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-XDELETE</span> <span class="token string">'http://127.0.0.1:9200/index_name'</span></code></pre>
 
 <h3 id="索引配置"><a href="#索引配置" class="headerlink" title="索引配置"></a>索引配置</h3><p>查看索引配置：</p>
 <pre class="language-none"><code class="language-none">curl http://elastic:123456@127.0.0.1:9200/index_name/_settings</code></pre>
 
 
 <p>修改索引副本数量：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -X PUT http://127.0.0.1:9200/index_name/_settings -H <span class="token string">'content-Type:application/json'</span> -d <span class="token string">'{"number_of_replicas": 2}'</span></code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-X</span> PUT http://127.0.0.1:9200/index_name/_settings <span class="token parameter variable">-H</span> <span class="token string">'content-Type:application/json'</span> <span class="token parameter variable">-d</span> <span class="token string">'{"number_of_replicas": 2}'</span></code></pre>
 
 <p>更新索引配置：</p>
 <pre class="language-none"><code class="language-none">curl -X PUT 127.0.0.1:30103/_cluster/settings -H 'content-Type:application/json' -d '{
@@ -402,7 +394,7 @@
 
 <h3 id="索引-Mapping"><a href="#索引-Mapping" class="headerlink" title="索引 Mapping"></a>索引 Mapping</h3><h4 id="查看索引-Mapping"><a href="#查看索引-Mapping" class="headerlink" title="查看索引 Mapping"></a>查看索引 Mapping</h4><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://127.0.0.1:9200/index_name/_mapping?pretty</code></pre>
 
-<h4 id="更新索引Mapping"><a href="#更新索引Mapping" class="headerlink" title="更新索引Mapping"></a>更新索引 Mapping</h4><pre class="language-shell" data-language="shell"><code class="language-shell">PUT userreport-2022-07-03/_mapping 
+<h4 id="更新索引Mapping"><a href="#更新索引Mapping" class="headerlink" title="更新索引Mapping"></a>更新索引 Mapping</h4><pre class="language-bash" data-language="bash"><code class="language-bash">PUT userreport-2022-07-03/_mapping 
 <span class="token punctuation">{</span> <span class="token string">"properties"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span> 
 	<span class="token string">"clusterIgnores"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
 	  <span class="token string">"type"</span> <span class="token builtin class-name">:</span> <span class="token string">"nested"</span>,
@@ -418,7 +410,7 @@
   <span class="token punctuation">}</span> 
 <span class="token punctuation">}</span></code></pre>
 
-<pre class="language-shell" data-language="shell"><code class="language-shell">PUT sample--000013/_mapping 
+<pre class="language-bash" data-language="bash"><code class="language-bash">PUT sample--000013/_mapping 
 <span class="token punctuation">{</span>
     <span class="token string">"properties"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
         <span class="token string">"sendTime"</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
@@ -435,7 +427,7 @@
 
 
 
-<h3 id="索引数据"><a href="#索引数据" class="headerlink" title="索引数据"></a>索引数据</h3><h4 id="查看索引数据"><a href="#查看索引数据" class="headerlink" title="查看索引数据"></a>查看索引数据</h4><pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token function">curl</span> http://elastic:123456@127.0.0.1:9200/index_name/_search
+<h3 id="索引数据"><a href="#索引数据" class="headerlink" title="索引数据"></a>索引数据</h3><h4 id="查看索引数据"><a href="#查看索引数据" class="headerlink" title="查看索引数据"></a>查看索引数据</h4><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> http://elastic:123456@127.0.0.1:9200/index_name/_search
 // 查询
 <span class="token function">curl</span> http://127.0.0.1:9200/index_name/_search?pretty<span class="token operator">&amp;</span><span class="token assign-left variable">q</span><span class="token operator">=</span>column_name:column_value
 // 排序
@@ -462,7 +454,7 @@
 <h3 id="测试分词效果"><a href="#测试分词效果" class="headerlink" title="测试分词效果"></a>测试分词效果</h3><pre class="language-none"><code class="language-none">curl -X POST  127.0.0.1:9200/_analyze -H 'content-Type:application/json' -d '{   "tokenizer": "ngram",  "text": "Quick Fox"}'</code></pre>
 
 <p>Dev Tools：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">POST _analyze
+<pre class="language-bash" data-language="bash"><code class="language-bash">POST _analyze
 <span class="token punctuation">{</span>
   <span class="token string">"analyzer"</span><span class="token builtin class-name">:</span> <span class="token string">"smartcn"</span>,
   <span class="token string">"text"</span><span class="token builtin class-name">:</span> <span class="token string">""</span>

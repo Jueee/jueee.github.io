@@ -32,7 +32,7 @@
 <meta property="og:description" content="块设备相关文档http:&#x2F;&#x2F;docs.ceph.org.cn&#x2F;rbd&#x2F;rbd&#x2F; rbd 命令创建 rbd $ rbd create --size 10240 kcha&#x2F;mysqldata  查看 rbd $ rbd list kcha mysqldata  调整块设备映像大小： $ rbd resize --size 10240 kcha&#x2F;mysqldata Resizing image: 100">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-25T09:23:50.509Z">
+<meta property="article:modified_time" content="2026-09-02T10:27:01.726Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Ceph">
 <meta name="twitter:card" content="summary">
@@ -129,7 +129,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">347</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">67</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">113</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">73</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -195,18 +195,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">347</span>
+          <span class="site-state-item-count">352</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -313,11 +313,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/Ceph/" itemprop="url" rel="index"><span itemprop="name">Ceph</span></a>
         </span>
     </span>
 
@@ -339,53 +339,53 @@
     
     <div class="post-body" itemprop="articleBody"><h3 id="块设备相关文档"><a href="#块设备相关文档" class="headerlink" title="块设备相关文档"></a>块设备相关文档</h3><p><span class="exturl" data-url="aHR0cDovL2RvY3MuY2VwaC5vcmcuY24vcmJkL3JiZC8=">http://docs.ceph.org.cn/rbd/rbd/<i class="fa fa-external-link-alt"></i></span></p>
 <h3 id="rbd-命令"><a href="#rbd-命令" class="headerlink" title="rbd 命令"></a>rbd 命令</h3><p>创建 rbd</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd create --size <span class="token number">10240</span> kcha/mysqldata</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ rbd create <span class="token parameter variable">--size</span> <span class="token number">10240</span> kcha/mysqldata</code></pre>
 
 <p>查看 rbd</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd list kcha
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ rbd list kcha
 mysqldata</code></pre>
 
 <p>调整块设备映像大小：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd resize --size <span class="token number">10240</span> kcha/mysqldata
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ rbd resize <span class="token parameter variable">--size</span> <span class="token number">10240</span> kcha/mysqldata
 Resizing image: <span class="token number">100</span>% complete<span class="token punctuation">..</span>.done.</code></pre>
 
 <p>查看信息：</p>
-<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ rbd info kcha<span class="token operator">/</span>mysqldata
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ rbd info kcha/mysqldata
 rbd image <span class="token string">'mysqldata'</span>:
         size 10240 MB in 2560 objects
         order 22 <span class="token punctuation">(</span>4096 kB objects<span class="token punctuation">)</span>
         block_name_prefix: rbd_data<span class="token punctuation">.</span>b21066b8b4567
         format: 2
-        features: layering<span class="token punctuation">,</span> exclusive<span class="token operator">-</span>lock<span class="token punctuation">,</span> object<span class="token operator">-</span>map<span class="token punctuation">,</span> fast<span class="token operator">-</span><span class="token function">diff</span><span class="token punctuation">,</span> deep<span class="token operator">-</span>flatten
+        features: layering<span class="token punctuation">,</span> exclusive-lock<span class="token punctuation">,</span> object-map<span class="token punctuation">,</span> fast-<span class="token function">diff</span><span class="token punctuation">,</span> deep-flatten
         flags:</code></pre>
 
 <p>移除 features</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd feature disable kcha/mysqldata exclusive-lock, object-map, fast-diff, deep-flatten</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ rbd feature disable kcha/mysqldata exclusive-lock, object-map, fast-diff, deep-flatten</code></pre>
 
 <h4 id="rbd-占用"><a href="#rbd-占用" class="headerlink" title="rbd 占用"></a>rbd 占用</h4><p>查看 rbd 实际占用：</p>
-<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ rbd <span class="token function">diff</span> kcha<span class="token operator">/</span>mysqldata <span class="token punctuation">|</span> awk <span class="token string">'{ SUM += $2 } END { print SUM/1024/1024 " MB" }'</span>
+<pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ rbd <span class="token function">diff</span> kcha/mysqldata <span class="token punctuation">|</span> awk <span class="token string">'{ SUM += $2 } END { print SUM/1024/1024 " MB" }'</span>
 860<span class="token punctuation">.</span>449 MB
-$ rbd <span class="token function">diff</span> kcha<span class="token operator">/</span>mysqldata <span class="token punctuation">|</span> awk <span class="token string">'{ SUM += $2 } END { print SUM/1024/1024/1024 " GB" }'</span>
+$ rbd <span class="token function">diff</span> kcha/mysqldata <span class="token punctuation">|</span> awk <span class="token string">'{ SUM += $2 } END { print SUM/1024/1024/1024 " GB" }'</span>
 0<span class="token punctuation">.</span>840282 GB</code></pre>
 
 <h4 id="删除-rbd"><a href="#删除-rbd" class="headerlink" title="删除 rbd"></a>删除 rbd</h4><p>直接删除：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ rbd <span class="token function">rm</span> kcha/mysqldata
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ rbd <span class="token function">rm</span> kcha/mysqldata
 Removing image: <span class="token number">100</span>% complete<span class="token punctuation">..</span>.done.</code></pre>
 
 <p>若 rbd 被占用，则需要先将占用加入黑名单，后再删除。</p>
 <pre class="language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 加入黑名单</span>
-$ ceph osd blacklist add 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968
-blacklisting 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968 <span class="token keyword">until</span> 2020<span class="token operator">-</span>09<span class="token operator">-</span>01T10:46:28<span class="token punctuation">.</span>920245<span class="token operator">+</span>0000 <span class="token punctuation">(</span>3600 sec<span class="token punctuation">)</span>
+$ ceph osd blacklist add 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0/1081512968
+blacklisting 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0/1081512968 <span class="token keyword">until</span> 2020-09-01T10:46:28<span class="token punctuation">.</span>920245+0000 <span class="token punctuation">(</span>3600 sec<span class="token punctuation">)</span>
 <span class="token comment"># 删除</span>
-$ rbd <span class="token function">rm</span> kcha<span class="token operator">/</span>mysqldata
-Removing image: 100<span class="token operator">%</span> complete<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>done<span class="token punctuation">.</span>
+$ rbd <span class="token function">rm</span> kcha/mysqldata
+Removing image: 100% complete<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>done<span class="token punctuation">.</span>
 <span class="token comment"># 查看黑名单</span>
 $ ceph osd blacklist <span class="token function">ls</span>
 listed 1 entries
-10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968 2020<span class="token operator">-</span>09<span class="token operator">-</span>01T10:46:28<span class="token punctuation">.</span>920245<span class="token operator">+</span>0000
+10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0/1081512968 2020-09-01T10:46:28<span class="token punctuation">.</span>920245+0000
 <span class="token comment"># 移除黑名单</span>
-$ ceph osd blacklist <span class="token function">rm</span> 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968
-un<span class="token operator">-</span>blacklisting 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0<span class="token operator">/</span>1081512968</code></pre>
+$ ceph osd blacklist <span class="token function">rm</span> 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0/1081512968
+un-blacklisting 10<span class="token punctuation">.</span>105<span class="token punctuation">.</span>136<span class="token punctuation">.</span>63:0/1081512968</code></pre>
 
 <h4 id="导入导出"><a href="#导入导出" class="headerlink" title="导入导出"></a>导入导出</h4><pre class="language-none"><code class="language-none">$ rbd export kcha/mysqldata ~/mysqldata
 Exporting image: 100% complete...done.</code></pre>
@@ -403,42 +403,42 @@ Importing image: 100% complete...done.</code></pre>
 <tr>
 <th>属性</th>
 <th>功能</th>
-<th> BIT 码</th>
+<th>BIT 码</th>
 </tr>
 </thead>
 <tbody><tr>
-<td> layering</td>
-<td> 支持分层</td>
-<td> 1</td>
+<td>layering</td>
+<td>支持分层</td>
+<td>1</td>
 </tr>
 <tr>
 <td>striping</td>
-<td> 支持条带化 v2</td>
+<td>支持条带化 v2</td>
 <td>2</td>
 </tr>
 <tr>
 <td>exclusive-lock</td>
-<td> 支持独占锁</td>
-<td> 4</td>
+<td>支持独占锁</td>
+<td>4</td>
 </tr>
 <tr>
 <td>object-map</td>
-<td> 支持对象映射（依赖 exclusive-lock ）</td>
+<td>支持对象映射（依赖 exclusive-lock ）</td>
 <td>8</td>
 </tr>
 <tr>
 <td>fast-diff</td>
-<td> 快速计算差异（依赖 object-map ）</td>
+<td>快速计算差异（依赖 object-map ）</td>
 <td>16</td>
 </tr>
 <tr>
 <td>deep-flatten</td>
-<td> 支持快照扁平化操作</td>
-<td> 32</td>
+<td>支持快照扁平化操作</td>
+<td>32</td>
 </tr>
 <tr>
 <td>journaling</td>
-<td> 支持记录 IO 操作（依赖独占锁）</td>
+<td>支持记录 IO 操作（依赖独占锁）</td>
 <td>64</td>
 </tr>
 </tbody></table>

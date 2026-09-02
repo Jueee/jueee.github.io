@@ -33,7 +33,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jueee.github.io/images/2021/06/image-20210604114352669.png">
 <meta property="article:published_time" content="2021-06-04T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-07T01:46:08.668Z">
+<meta property="article:modified_time" content="2026-09-02T10:28:55.654Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Database">
 <meta property="article:tag" content="MySQL">
@@ -132,7 +132,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">347</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">67</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">113</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">73</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -198,18 +198,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">347</span>
+          <span class="site-state-item-count">352</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -316,11 +316,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
         </span>
     </span>
 
@@ -356,18 +356,18 @@ Codename:       stretch</code></pre>
 <pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">gzip</span> mysql-server_5.7.18-1debian9_amd64.deb-bundle.tar</code></pre>
 
 <p>解压 tar.gz：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">tar</span> -zxvf mysql-server_5.7.18-1debian9_amd64.deb-bundle.tar.gz</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">tar</span> <span class="token parameter variable">-zxvf</span> mysql-server_5.7.18-1debian9_amd64.deb-bundle.tar.gz</code></pre>
 
 <p>安装 deb 包：</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash">$ dpkg -i *.deb</code></pre>
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ dpkg <span class="token parameter variable">-i</span> *.deb</code></pre>
 
-<h4 id="初始化-MySQL"><a href="#初始化-MySQL" class="headerlink" title="初始化 MySQL"></a>初始化 MySQL</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$ /usr/sbin/mysqld --defaults-file<span class="token operator">=</span>/home/ddb/mysql/my3306.cnf --user<span class="token operator">=</span>ddb --initialize</code></pre>
+<h4 id="初始化-MySQL"><a href="#初始化-MySQL" class="headerlink" title="初始化 MySQL"></a>初始化 MySQL</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$ /usr/sbin/mysqld --defaults-file<span class="token operator">=</span>/home/ddb/mysql/my3306.cnf <span class="token parameter variable">--user</span><span class="token operator">=</span>ddb <span class="token parameter variable">--initialize</span></code></pre>
 
 <h4 id="启动-MySQL"><a href="#启动-MySQL" class="headerlink" title="启动 MySQL"></a>启动 MySQL</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$ mysqld_safe --defaults-file<span class="token operator">=</span>/home/ddb/mysql/my3306.cnf <span class="token operator">&amp;</span></code></pre>
 
 <h4 id="查看-root-密码"><a href="#查看-root-密码" class="headerlink" title="查看 root 密码"></a>查看 root 密码</h4><p>查看 MySQL 数据目录下的 <code>mysqld.log</code> 日志文件，如下图所示红框的地方即为 root 的初始密码。</p>
 <p><img src="/images/2021/06/image-20210604114352669.png" alt="image-20210604114352669" loading="lazy"></p>
-<h4 id="访问-root"><a href="#访问-root" class="headerlink" title="访问 root"></a>访问 root</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$ mysql  --defaults-file<span class="token operator">=</span>/home/ddb/mysql/my4336.cnf -uroot -p
+<h4 id="访问-root"><a href="#访问-root" class="headerlink" title="访问 root"></a>访问 root</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$ mysql  --defaults-file<span class="token operator">=</span>/home/ddb/mysql/my4336.cnf <span class="token parameter variable">-uroot</span> <span class="token parameter variable">-p</span>
 Enter password:
 
 mysql<span class="token operator">&gt;</span> show databases<span class="token punctuation">;</span>

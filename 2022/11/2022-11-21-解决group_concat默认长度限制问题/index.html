@@ -32,7 +32,7 @@
 <meta property="og:description" content="GROUP_CONCAT 有个最大长度的限制，超过最大长度就会被截断掉">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-21T00:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-15T07:28:02.372Z">
+<meta property="article:modified_time" content="2026-09-02T10:28:55.656Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Database">
 <meta property="article:tag" content="MySQL">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">347</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">67</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">113</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">73</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,18 +196,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">347</span>
+          <span class="site-state-item-count">352</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -314,11 +314,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
         </span>
     </span>
 
@@ -339,7 +339,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>GROUP_CONCAT 有个最大长度的限制，超过最大长度就会被截断掉</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="获取长度"><a href="#获取长度" class="headerlink" title="获取长度"></a>获取长度</h3><p>可以通过下面的语句获得长度：</p>
 <pre class="language-mysql" data-language="mysql"><code class="language-mysql">SELECT @@global.group_concat_max_len;
@@ -350,8 +350,8 @@ show variables like 'group_concat_max_len';</code></pre>
 SET SESSION group_concat_max_len=102400;</code></pre>
 
 <h3 id="配置设置"><a href="#配置设置" class="headerlink" title="配置设置"></a>配置设置</h3><p>在 MySQL 配置文件中 my.conf 或 my.ini 中添加:</p>
-<pre class="language-ini" data-language="ini"><code class="language-ini"><span class="token selector">[mysqld]</span>
-　　group_concat_max_len<span class="token attr-value"><span class="token punctuation">=</span>102400</span></code></pre>
+<pre class="language-ini" data-language="ini"><code class="language-ini"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">mysqld</span><span class="token punctuation">]</span></span>
+<span class="token key attr-name">　　group_concat_max_len</span><span class="token punctuation">=</span><span class="token value attr-value">102400</span></code></pre>
 
 <p>重启 MySQL 服务。</p>
 

@@ -32,7 +32,7 @@
 <meta property="og:description" content="当使用 spring-data 插入日期类型的 Elasticsearch 文档时，我无法获得正确的日期格式，日期格式始终为 Long。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-02-19T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-04-19T08:20:50.198Z">
+<meta property="article:modified_time" content="2026-09-02T10:28:27.173Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Database">
 <meta property="article:tag" content="ElasticSearch">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">347</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">67</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">113</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">73</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,18 +196,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">347</span>
+          <span class="site-state-item-count">352</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -314,11 +314,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/ElasticSearch/" itemprop="url" rel="index"><span itemprop="name">ElasticSearch</span></a>
         </span>
     </span>
 
@@ -339,7 +339,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>当使用 spring-data 插入日期类型的 Elasticsearch 文档时，我无法获得正确的日期格式，日期格式始终为 Long。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="普通格式"><a href="#普通格式" class="headerlink" title="普通格式"></a>普通格式</h3><h4 id="格式化类"><a href="#格式化类" class="headerlink" title="格式化类"></a>格式化类</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Data</span>
 <span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span>indexName <span class="token operator">=</span> <span class="token string">"person"</span><span class="token punctuation">)</span>
@@ -349,7 +349,7 @@
     <span class="token keyword">private</span> <span class="token class-name">String</span> user_name<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name">String</span> user_password<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token class-name">String</span> user_email<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>store <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">FieldType</span><span class="token punctuation">.</span><span class="token class-name">Date</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>store <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">FieldType<span class="token punctuation">.</span>Date</span><span class="token punctuation">)</span>
     <span class="token keyword">private</span> <span class="token class-name">Date</span> insert_time<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
@@ -368,8 +368,8 @@
 <span class="token comment">// insert_time=Fri Feb 19 14:38:32 CST 2021</span></code></pre>
 
 <h3 id="DateFormat"><a href="#DateFormat" class="headerlink" title="DateFormat"></a>DateFormat</h3><p>如果在写入数据时不加时区信息，ElasticSearch 默认按 UTC 时区写入，默认是 0 时区，但是当我们查看的时候，kibana 会读取我们当地的时间，即东八区，进行转换，所以我们看到的时间会晚 8 小时。</p>
-<h4 id="格式化字段"><a href="#格式化字段" class="headerlink" title="格式化字段"></a>格式化字段</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>store <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">FieldType</span><span class="token punctuation">.</span><span class="token class-name">Date</span><span class="token punctuation">,</span>format <span class="token operator">=</span> <span class="token class-name">DateFormat</span><span class="token punctuation">.</span>custom<span class="token punctuation">,</span> pattern <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>shape <span class="token operator">=</span> <span class="token class-name">JsonFormat</span><span class="token punctuation">.</span><span class="token class-name">Shape</span><span class="token punctuation">.</span>STRING<span class="token punctuation">,</span> pattern <span class="token operator">=</span><span class="token string">"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"</span><span class="token punctuation">)</span>
+<h4 id="格式化字段"><a href="#格式化字段" class="headerlink" title="格式化字段"></a>格式化字段</h4><pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>store <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">FieldType<span class="token punctuation">.</span>Date</span><span class="token punctuation">,</span>format <span class="token operator">=</span> <span class="token class-name">DateFormat</span><span class="token punctuation">.</span>custom<span class="token punctuation">,</span> pattern <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>shape <span class="token operator">=</span> <span class="token class-name">JsonFormat<span class="token punctuation">.</span>Shape</span><span class="token punctuation">.</span><span class="token constant">STRING</span><span class="token punctuation">,</span> pattern <span class="token operator">=</span><span class="token string">"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"</span><span class="token punctuation">)</span>
 <span class="token keyword">private</span> <span class="token class-name">Date</span> insert_time<span class="token punctuation">;</span></code></pre>
 
 <h4 id="Mapping-效果-1"><a href="#Mapping-效果-1" class="headerlink" title="Mapping 效果"></a>Mapping 效果</h4><pre class="language-json" data-language="json"><code class="language-json"><span class="token property">"insert_time"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"type"</span><span class="token operator">:</span><span class="token string">"date"</span><span class="token punctuation">}</span></code></pre>
@@ -384,8 +384,8 @@
 <span class="token comment">// insert_time=Fri Feb 19 15:32:27 CST 2021</span></code></pre>
 
 <h3 id="自定义时区"><a href="#自定义时区" class="headerlink" title="自定义时区"></a>自定义时区</h3><h4 id="格式化字段-1"><a href="#格式化字段-1" class="headerlink" title="格式化字段"></a>格式化字段</h4><p>自定义东八区：</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>store <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">FieldType</span><span class="token punctuation">.</span><span class="token class-name">Date</span><span class="token punctuation">,</span>format <span class="token operator">=</span> <span class="token class-name">DateFormat</span><span class="token punctuation">.</span>custom<span class="token punctuation">,</span> pattern <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd'T'HH:mm:ss.SSS'+0800'"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>shape <span class="token operator">=</span> <span class="token class-name">JsonFormat</span><span class="token punctuation">.</span><span class="token class-name">Shape</span><span class="token punctuation">.</span>STRING<span class="token punctuation">,</span> pattern <span class="token operator">=</span><span class="token string">"yyyy-MM-dd'T'HH:mm:ss.SSS'+0800'"</span><span class="token punctuation">)</span>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>store <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> type <span class="token operator">=</span> <span class="token class-name">FieldType<span class="token punctuation">.</span>Date</span><span class="token punctuation">,</span>format <span class="token operator">=</span> <span class="token class-name">DateFormat</span><span class="token punctuation">.</span>custom<span class="token punctuation">,</span> pattern <span class="token operator">=</span> <span class="token string">"yyyy-MM-dd'T'HH:mm:ss.SSS'+0800'"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>shape <span class="token operator">=</span> <span class="token class-name">JsonFormat<span class="token punctuation">.</span>Shape</span><span class="token punctuation">.</span><span class="token constant">STRING</span><span class="token punctuation">,</span> pattern <span class="token operator">=</span><span class="token string">"yyyy-MM-dd'T'HH:mm:ss.SSS'+0800'"</span><span class="token punctuation">)</span>
 <span class="token keyword">private</span> <span class="token class-name">Date</span> insert_time<span class="token punctuation">;</span></code></pre>
 
 <h4 id="Mapping-效果-2"><a href="#Mapping-效果-2" class="headerlink" title="Mapping 效果"></a>Mapping 效果</h4><pre class="language-json" data-language="json"><code class="language-json"><span class="token property">"insert_time"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"type"</span><span class="token operator">:</span><span class="token string">"date"</span><span class="token punctuation">}</span></code></pre>

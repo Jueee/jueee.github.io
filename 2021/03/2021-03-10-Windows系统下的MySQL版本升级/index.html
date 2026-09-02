@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210310145649486.png">
 <meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210310151140637.png">
 <meta property="article:published_time" content="2021-03-10T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-26T07:16:50.324Z">
+<meta property="article:modified_time" content="2026-09-02T10:28:55.652Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Database">
 <meta property="article:tag" content="MySQL">
@@ -136,7 +136,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">347</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">67</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">113</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">73</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -202,18 +202,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">347</span>
+          <span class="site-state-item-count">352</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories">
-        <span class="site-state-item-count">67</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">113</span>
+        <span class="site-state-item-count">119</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -320,11 +320,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Database/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
         </span>
     </span>
 
@@ -345,7 +345,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>最近因原先的 MySQL 版本过低，所以希望将 Windows 下的 MySQL5.5 升级为 MySQL5.7。记录一下升级过程。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="下载MySQL"><a href="#下载MySQL" class="headerlink" title="下载MySQL"></a>下载 MySQL</h3><ul>
 <li>MySQL 下载地址：<span class="exturl" data-url="aHR0cHM6Ly9kZXYubXlzcWwuY29tL2Rvd25sb2Fkcy9teXNxbC8=">https://dev.mysql.com/downloads/mysql/<i class="fa fa-external-link-alt"></i></span></li>
@@ -373,17 +373,17 @@ Service successfully removed<span class="token punctuation">.</span></code></pre
 </ol>
 <p>my.ini 配置后如下：</p>
 <pre class="language-ini" data-language="ini"><code class="language-ini"><span class="token comment">#Path to installation directory. All paths are usually resolved relative to this.</span>
-<span class="token constant">basedir</span><span class="token attr-value"><span class="token punctuation">=</span>"C:/Program Files (x86)/MySQL/mysql-5.7.33-win32/"</span>
+<span class="token key attr-name">basedir</span><span class="token punctuation">=</span><span class="token value attr-value">"<span class="token inner-value">C:/Program Files (x86)/MySQL/mysql-5.7.33-win32/</span>"</span>
 <span class="token comment">#Path to the database root</span>
-<span class="token constant">datadir</span><span class="token attr-value"><span class="token punctuation">=</span>"C:/ProgramData/MySQL/mysql-5.7.33-win32/Data/"</span></code></pre>
+<span class="token key attr-name">datadir</span><span class="token punctuation">=</span><span class="token value attr-value">"<span class="token inner-value">C:/ProgramData/MySQL/mysql-5.7.33-win32/Data/</span>"</span></code></pre>
 
-<h3 id="添加新MySQL"><a href="#添加新MySQL" class="headerlink" title="添加新MySQL"></a>添加新 MySQL</h3><pre class="language-bash" data-language="bash"><code class="language-bash">mysqld.exe --install MySQL</code></pre>
+<h3 id="添加新MySQL"><a href="#添加新MySQL" class="headerlink" title="添加新MySQL"></a>添加新 MySQL</h3><pre class="language-bash" data-language="bash"><code class="language-bash">mysqld.exe <span class="token parameter variable">--install</span> MySQL</code></pre>
 
 <p>启动 MySQL：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash">net start MySQL</code></pre>
 
 <p><img src="/images/2021/03/image-20210310150046355.png" alt="image-20210310150046355" loading="lazy"></p>
-<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><pre class="language-bash" data-language="bash"><code class="language-bash">mysqld --console</code></pre>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><pre class="language-bash" data-language="bash"><code class="language-bash">mysqld <span class="token parameter variable">--console</span></code></pre>
 
 <p>打印如下：</p>
 <pre class="language-none"><code class="language-none">[ERROR] unknown variable 'table_cache=256'
@@ -394,7 +394,7 @@ Service successfully removed<span class="token punctuation">.</span></code></pre
 [ERROR] Aborting</code></pre>
 
 <p>去除 my.ini 文件中的 innodb_additional_mem_pool_size 属性配置。</p>
-<h3 id="升级-MySQL"><a href="#升级-MySQL" class="headerlink" title="升级 MySQL"></a>升级 MySQL</h3><pre class="language-bash" data-language="bash"><code class="language-bash">mysql_upgrade -uroot -p</code></pre>
+<h3 id="升级-MySQL"><a href="#升级-MySQL" class="headerlink" title="升级 MySQL"></a>升级 MySQL</h3><pre class="language-bash" data-language="bash"><code class="language-bash">mysql_upgrade <span class="token parameter variable">-uroot</span> <span class="token parameter variable">-p</span></code></pre>
 
 <p><img src="/images/2021/03/image-20210310145814403.png" alt="image-20210310145814403" loading="lazy"></p>
 <p>重新启动 MySQL 服务：</p>
