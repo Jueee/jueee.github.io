@@ -32,7 +32,7 @@
 <meta property="og:description" content="Mailpit 是一款轻量级、跨平台的本地 SMTP 服务器和邮件测试工具，用 Go 编写，单二进制部署，专为开发和测试场景设计。它能拦截应用发送的邮件，提供 Web UI 实时预览邮件内容，避免误发到真实邮箱。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-18T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-06-18T06:24:30.344Z">
+<meta property="article:modified_time" content="2026-09-15T10:02:58.945Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="开源项目">
 <meta property="article:tag" content="软件">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -339,12 +339,12 @@
     
     
     <div class="post-body" itemprop="articleBody"><p><strong>Mailpit</strong> 是一款轻量级、跨平台的本地 SMTP 服务器和邮件测试工具，用 Go 编写，单二进制部署，专为开发和测试场景设计。它能拦截应用发送的邮件，提供 Web UI 实时预览邮件内容，避免误发到真实邮箱。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h1 id="一、核心功能"><a href="#一、核心功能" class="headerlink" title="一、核心功能"></a>一、核心功能</h1><ul>
 <li><strong>SMTP 服务器</strong>：监听 1025 端口，接收任意应用发出的邮件，无需真实账号密码</li>
-<li><strong> Web UI 邮件预览</strong>：监听 8025 端口，浏览器实时查看收件箱、HTML / 纯文本 / 源码视图</li>
-<li><strong> HTML 兼容性检测</strong>：自动检查邮件 HTML 在主流邮件客户端的渲染兼容性</li>
+<li><strong>Web UI 邮件预览</strong>：监听 8025 端口，浏览器实时查看收件箱、HTML / 纯文本 / 源码视图</li>
+<li><strong>HTML 兼容性检测</strong>：自动检查邮件 HTML 在主流邮件客户端的渲染兼容性</li>
 <li><strong>链接和拼写检查</strong>：内置链接可达性检测、拼写检查（spamassassin 集成可选）</li>
 <li><strong>REST API</strong>：提供完整的 API 用于自动化测试场景（搜索、删除、发信）</li>
 <li><strong>WebSocket 实时推送</strong>：UI 收到新邮件即时刷新，无需手动重载</li>
@@ -410,7 +410,7 @@ echo '  SMTP: localhost:11025'</code></pre>
 <td>邮件存储数据库路径</td>
 </tr>
 </tbody></table>
-<h1 id="三、基本使用"><a href="#三、基本使用" class="headerlink" title="三、基本使用"></a>三、基本使用</h1><h2 id="3-1-Web-UI-访问"><a href="#3-1-Web-UI-访问" class="headerlink" title="3.1 Web UI 访问"></a>3.1 Web UI 访问</h2><p>启动成功后浏览器访问 <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDoxODAyNe+8jOWPr+eci+WIsOaUtuS7tueuseWIl+ihqOOAgeaQnOe0ouOAgUhUTUw=">http://localhost:18025，可看到收件箱列表、搜索、HTML<i class="fa fa-external-link-alt"></i></span> 预览、源码、附件等功能。</p>
+<h1 id="三、基本使用"><a href="#三、基本使用" class="headerlink" title="三、基本使用"></a>三、基本使用</h1><h2 id="3-1-Web-UI-访问"><a href="#3-1-Web-UI-访问" class="headerlink" title="3.1 Web UI 访问"></a>3.1 Web UI 访问</h2><p>启动成功后浏览器访问 <code>http://localhost:18025</code>，可看到收件箱列表、搜索、HTML 预览、源码、附件等功能。</p>
 <h2 id="3-2-应用接入（业务代码侧）"><a href="#3-2-应用接入（业务代码侧）" class="headerlink" title="3.2 应用接入（业务代码侧）"></a>3.2 应用接入（业务代码侧）</h2><p>把应用的 SMTP 配置改成 mailpit 的地址即可，无需账号密码：</p>
 <pre class="language-none"><code class="language-none">spring:
   mail:
@@ -452,7 +452,7 @@ EOF</code></pre>
 </tr>
 </thead>
 <tbody><tr>
-<td> GET</td>
+<td>GET</td>
 <td><code>/api/v1/messages</code></td>
 <td>获取邮件列表（支持分页）</td>
 </tr>
@@ -462,17 +462,17 @@ EOF</code></pre>
 <td>获取单封邮件详情</td>
 </tr>
 <tr>
-<td> GET</td>
+<td>GET</td>
 <td><code>/api/v1/search?query=...</code></td>
 <td>搜索邮件</td>
 </tr>
 <tr>
-<td> POST</td>
+<td>POST</td>
 <td><code>/api/v1/send</code></td>
 <td>通过 API 发信</td>
 </tr>
 <tr>
-<td> DELETE</td>
+<td>DELETE</td>
 <td><code>/api/v1/messages</code></td>
 <td>清空所有邮件（或按 ID 删除）</td>
 </tr>
@@ -480,13 +480,13 @@ EOF</code></pre>
 <h1 id="五、避坑指南（基于-WSL-实际部署）"><a href="#五、避坑指南（基于-WSL-实际部署）" class="headerlink" title="五、避坑指南（基于 WSL 实际部署）"></a>五、避坑指南（基于 WSL 实际部署）</h1><p><strong>WSL mirrored 网络模式下的注意事项</strong></p>
 <ol>
 <li>默认 8025/1025 端口可能与 Windows 侧 portproxy 或其他服务冲突，建议改成 18025/11025</li>
-<li> 公司 VPN（FSE/OpenVPN）会下发 <code>172.17.0.0/20</code> 路由，覆盖 Docker 默认 <code>docker0</code> 路由，导致容器网络不通；启动脚本里加 <code>ip route add 172.17.0.0/24 dev docker0</code> 修复</li>
+<li>公司 VPN（FSE / OpenVPN）会下发 <code>172.17.0.0/20</code> 路由，覆盖 Docker 默认 <code>docker0</code> 路由，导致容器网络不通；启动脚本里加 <code>ip route add 172.17.0.0/24 dev docker0</code> 修复</li>
 <li>使用 <code>--network=host</code> 模式可绕开 docker-proxy 路由问题</li>
 <li>每次 WSL 重启后路由会重置，建议把启动命令做成脚本，每次重启后执行一次</li>
 </ol>
 <h1 id="六、参考链接"><a href="#六、参考链接" class="headerlink" title="六、参考链接"></a>六、参考链接</h1><ul>
 <li>官方仓库：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2F4bGxlbnQvbWFpbHBpdA==">https://github.com/axllent/mailpit<i class="fa fa-external-link-alt"></i></span></li>
-<li> 官方文档：<span class="exturl" data-url="aHR0cHM6Ly9tYWlscGl0LmF4bGxlbnQub3JnL2RvY3Mv">https://mailpit.axllent.org/docs/<i class="fa fa-external-link-alt"></i></span></li>
+<li>官方文档：<span class="exturl" data-url="aHR0cHM6Ly9tYWlscGl0LmF4bGxlbnQub3JnL2RvY3Mv">https://mailpit.axllent.org/docs/<i class="fa fa-external-link-alt"></i></span></li>
 <li>Docker 镜像：<span class="exturl" data-url="aHR0cHM6Ly9odWIuZG9ja2VyLmNvbS9yL2F4bGxlbnQvbWFpbHBpdA==">https://hub.docker.com/r/axllent/mailpit<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 

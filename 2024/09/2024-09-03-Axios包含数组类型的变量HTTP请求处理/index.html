@@ -32,7 +32,7 @@
 <meta property="og:description" content="问题描述axios.request({     url: url,     method: &quot;post&quot;,     responseType: &quot;blob&quot;,     params: this.queryMap })  在使用 Axios 进行 HTTP 请求时，如果 params 包含数组类型的变量，默认情况下，Axios 会将数组参数转换成类似 param[]&#x3D;value1&amp;param">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-09-03T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-21T02:22:35.673Z">
+<meta property="article:modified_time" content="2026-01-21T02:22:36.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="axios">
 <meta property="article:tag" content="前端">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -338,17 +338,17 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><pre class="language-js" data-language="js"><code class="language-js">axios<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-    url<span class="token operator">:</span> url<span class="token punctuation">,</span>
-    method<span class="token operator">:</span> <span class="token string">"post"</span><span class="token punctuation">,</span>
-    responseType<span class="token operator">:</span> <span class="token string">"blob"</span><span class="token punctuation">,</span>
-    params<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap
+    <div class="post-body" itemprop="articleBody"><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript">axios<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">url</span><span class="token operator">:</span> url<span class="token punctuation">,</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">"post"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">responseType</span><span class="token operator">:</span> <span class="token string">"blob"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">params</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
 
 <p>在使用 Axios 进行 HTTP 请求时，如果 <code>params</code> 包含数组类型的变量，默认情况下，Axios 会将数组参数转换成类似 <code>param[]=value1&amp;param[]=value2</code> 的形式。</p>
 <p>然而，这种默认行为可能与服务器的预期格式不匹配，导致异常。</p>
 <p>如果你希望数组参数以其他格式传递，可以使用 <code>paramsSerializer</code> 来自定义序列化过程。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>下面是一个示例，展示如何使用 <code>qs</code> 库将数组参数序列化为所需的格式。</p>
 <h3 id="使用-qs-库进行自定义序列化"><a href="#使用-qs-库进行自定义序列化" class="headerlink" title="使用 qs 库进行自定义序列化"></a>使用 <code>qs</code> 库进行自定义序列化</h3><p>首先，确保你已经安装了 <code>qs</code> 库：</p>
@@ -368,17 +368,17 @@
 
 axios<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
 
-  url<span class="token operator">:</span> url<span class="token punctuation">,</span>
+  <span class="token literal-property property">url</span><span class="token operator">:</span> url<span class="token punctuation">,</span>
 
-  method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
 
-  responseType<span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">responseType</span><span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span>
 
-  params<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap<span class="token punctuation">,</span>
+  <span class="token literal-property property">params</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap<span class="token punctuation">,</span>
 
   <span class="token function-variable function">paramsSerializer</span><span class="token operator">:</span> <span class="token parameter">params</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
 
-​    <span class="token keyword">return</span> qs<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> <span class="token punctuation">{</span> arrayFormat<span class="token operator">:</span> <span class="token string">'repeat'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+​    <span class="token keyword">return</span> qs<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">arrayFormat</span><span class="token operator">:</span> <span class="token string">'repeat'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token punctuation">}</span>
 
@@ -396,7 +396,7 @@ axios<span class="token punctuation">.</span><span class="token function">reques
 <pre class="language-javascript" data-language="javascript"><code class="language-javascript">
 <span class="token function-variable function">paramsSerializer</span><span class="token operator">:</span> <span class="token parameter">params</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
 
-  <span class="token keyword">return</span> qs<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> <span class="token punctuation">{</span> arrayFormat<span class="token operator">:</span> <span class="token string">'brackets'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> qs<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">arrayFormat</span><span class="token operator">:</span> <span class="token string">'brackets'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token punctuation">}</span>
 </code></pre>
@@ -433,15 +433,15 @@ axios<span class="token punctuation">.</span><span class="token function">reques
 
 axios<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
 
-  url<span class="token operator">:</span> url<span class="token punctuation">,</span>
+  <span class="token literal-property property">url</span><span class="token operator">:</span> url<span class="token punctuation">,</span>
 
-  method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
 
-  responseType<span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">responseType</span><span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span>
 
-  params<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap<span class="token punctuation">,</span>
+  <span class="token literal-property property">params</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap<span class="token punctuation">,</span>
 
-  paramsSerializer<span class="token operator">:</span> customParamsSerializer
+  <span class="token literal-property property">paramsSerializer</span><span class="token operator">:</span> customParamsSerializer
 
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
@@ -457,17 +457,17 @@ axios<span class="token punctuation">.</span><span class="token function">reques
 
 axios<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
 
-  url<span class="token operator">:</span> url<span class="token punctuation">,</span>
+  <span class="token literal-property property">url</span><span class="token operator">:</span> url<span class="token punctuation">,</span>
 
-  method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
 
-  responseType<span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">responseType</span><span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span>
 
-  params<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap<span class="token punctuation">,</span>
+  <span class="token literal-property property">params</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap<span class="token punctuation">,</span>
 
   <span class="token function-variable function">paramsSerializer</span><span class="token operator">:</span> <span class="token parameter">params</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
 
-​    <span class="token keyword">return</span> qs<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> <span class="token punctuation">{</span> arrayFormat<span class="token operator">:</span> <span class="token string">'repeat'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+​    <span class="token keyword">return</span> qs<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>params<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">arrayFormat</span><span class="token operator">:</span> <span class="token string">'repeat'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
   <span class="token punctuation">}</span>
 
@@ -505,15 +505,15 @@ axios<span class="token punctuation">.</span><span class="token function">reques
 
 axios<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
 
-  url<span class="token operator">:</span> url<span class="token punctuation">,</span>
+  <span class="token literal-property property">url</span><span class="token operator">:</span> url<span class="token punctuation">,</span>
 
-  method<span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'post'</span><span class="token punctuation">,</span>
 
-  responseType<span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">responseType</span><span class="token operator">:</span> <span class="token string">'blob'</span><span class="token punctuation">,</span>
 
-  params<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap<span class="token punctuation">,</span>
+  <span class="token literal-property property">params</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>queryMap<span class="token punctuation">,</span>
 
-  paramsSerializer<span class="token operator">:</span> customParamsSerializer
+  <span class="token literal-property property">paramsSerializer</span><span class="token operator">:</span> customParamsSerializer
 
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>

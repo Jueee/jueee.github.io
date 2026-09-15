@@ -32,7 +32,7 @@
 <meta property="og:description" content="JWT 简介JSON Web Token（JWT）是目前最流行的跨域身份验证解决方案。是基于 Json 的一个公开规范，这个规范允许我们使用 JWT 在用户和服务器之间传递安全可靠的信息。 JWT 的两大使用场景是：认证和数据交换。使用起来就是，由服务端根据规范生成一个令牌（token），并且发放给客户端。此时客户端请求服务端的时候就可以携带者令牌，以令牌来证明自己的身份信息。 作用：类似 ses">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-06T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-21T01:57:07.546Z">
+<meta property="article:modified_time" content="2026-01-21T01:57:08.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="JWT">
 <meta property="article:tag" content="Json">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -344,7 +344,7 @@
 <ul>
 <li>官网：<span class="exturl" data-url="aHR0cHM6Ly9qd3QuaW8v">https://jwt.io/<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="跨域认证的问题"><a href="#跨域认证的问题" class="headerlink" title="跨域认证的问题"></a>跨域认证的问题</h3><p>互联网服务离不开用户认证。一般流程是下面这样。</p>
 <blockquote>
@@ -362,9 +362,9 @@
 </ul>
 <h3 id="JWT-的原理"><a href="#JWT-的原理" class="headerlink" title="JWT 的原理"></a>JWT 的原理</h3><p>JWT 的原理是，服务器认证以后，生成一个 JSON 对象，发回给用户，就像下面这样。</p>
 <pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">{</span>
-  <span class="token string">"姓名"</span><span class="token operator">:</span> <span class="token string">"张三"</span><span class="token punctuation">,</span>
-  <span class="token string">"角色"</span><span class="token operator">:</span> <span class="token string">"管理员"</span><span class="token punctuation">,</span>
-  <span class="token string">"到期时间"</span><span class="token operator">:</span> <span class="token string">"2018年7月1日0点0分"</span>
+  <span class="token string-property property">"姓名"</span><span class="token operator">:</span> <span class="token string">"张三"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"角色"</span><span class="token operator">:</span> <span class="token string">"管理员"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"到期时间"</span><span class="token operator">:</span> <span class="token string">"2018年7月1日0点0分"</span>
 <span class="token punctuation">}</span></code></pre>
 
 <p>以后，用户与服务端通信的时候，都要发回这个 JSON 对象。服务器完全只靠这个对象认定用户身份。</p>
@@ -373,8 +373,8 @@
 <h3 id="JWT-的数据结构"><a href="#JWT-的数据结构" class="headerlink" title="JWT 的数据结构"></a>JWT 的数据结构</h3><p>JSON Web Token 由三部分组成，它们之间用圆点 (.) 连接。这三部分分别是：</p>
 <ul>
 <li>Header：JWT 头</li>
-<li> Payload：有效载荷</li>
-<li> Signature：签名</li>
+<li>Payload：有效载荷</li>
+<li>Signature：签名</li>
 </ul>
 <p>因此，一个典型的 JWT 看起来是这个样子的：</p>
 <blockquote>
@@ -382,28 +382,28 @@
 </blockquote>
 <h4 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h4><p>Header 部分是一个 JSON 对象，描述 JWT 的元数据，通常是下面的样子。</p>
 <pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">{</span>
-  <span class="token string">"alg"</span><span class="token operator">:</span> <span class="token string">"HS256"</span><span class="token punctuation">,</span>
-  <span class="token string">"typ"</span><span class="token operator">:</span> <span class="token string">"JWT"</span>
+  <span class="token string-property property">"alg"</span><span class="token operator">:</span> <span class="token string">"HS256"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"typ"</span><span class="token operator">:</span> <span class="token string">"JWT"</span>
 <span class="token punctuation">}</span></code></pre>
 
-<p>上面代码中，<code>alg</code> 属性表示签名的算法（algorithm），默认是 HMAC SHA256（写成 HS256）；<code>typ</code> 属性表示这个令牌（token）的类型（type），JWT 令牌统一写为 <code>JWT</code>。</p>
+<p>上面代码中，<code>alg</code>属性表示签名的算法（algorithm），默认是 HMAC SHA256（写成 HS256）；<code>typ</code>属性表示这个令牌（token）的类型（type），JWT 令牌统一写为<code>JWT</code>。</p>
 <p>最后，将上面的 JSON 对象使用 Base64URL 算法转成字符串。</p>
 <h4 id="Payload"><a href="#Payload" class="headerlink" title="Payload"></a>Payload</h4><p>Payload 部分也是一个 JSON 对象，用来存放实际需要传递的数据。</p>
 <p>JWT 规定了 7 个官方字段，供选用。</p>
 <ul>
 <li>iss (issuer)：签发人</li>
-<li> exp (expiration time)：过期时间</li>
-<li> sub (subject)：主题</li>
-<li> aud (audience)：受众</li>
-<li> nbf (Not Before)：生效时间</li>
-<li> iat (Issued At)：签发时间</li>
-<li> jti (JWT ID)：编号</li>
+<li>exp (expiration time)：过期时间</li>
+<li>sub (subject)：主题</li>
+<li>aud (audience)：受众</li>
+<li>nbf (Not Before)：生效时间</li>
+<li>iat (Issued At)：签发时间</li>
+<li>jti (JWT ID)：编号</li>
 </ul>
 <p>除了官方字段，你还可以在这个部分定义私有字段，下面就是一个例子。</p>
 <pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">{</span>
-  <span class="token string">"sub"</span><span class="token operator">:</span> <span class="token string">"1234567890"</span><span class="token punctuation">,</span>
-  <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">,</span>
-  <span class="token string">"admin"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token string-property property">"sub"</span><span class="token operator">:</span> <span class="token string">"1234567890"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"admin"</span><span class="token operator">:</span> <span class="token boolean">true</span>
 <span class="token punctuation">}</span></code></pre>
 
 <p>注意，JWT 默认是不加密的，任何人都可以读到，所以不要把秘密信息放在这个部分。</p>
@@ -417,13 +417,12 @@
 
 <p>算出签名以后，把 Header、Payload、Signature 三个部分拼成一个字符串，每个部分之间用 "点"（<code>.</code>）分隔，就可以返回给用户。</p>
 <h4 id="Base64URL"><a href="#Base64URL" class="headerlink" title="Base64URL"></a>Base64URL</h4><p>Header 和 Payload 串型化的算法是 Base64URL。这个算法跟 Base64 算法基本类似，但有一些小的不同。</p>
-<p>JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api.example.com/?token=xxx）。</p>
-<p>Base64 有三个字符 <code>+</code>、<code>/</code> 和 <code>=</code>，在 URL 里面有特殊含义，所以要被替换掉：<code>=</code> 被省略、<code>+</code> 替换成 <code>-</code>，<code>/</code> 替换成<code>_</code> 。这就是 Base64URL 算法。</p>
+<p>JWT 作为一个令牌（token），有些场合可能会放到 URL（比如 api.example.com/?token = xxx）。</p>
+<p>Base64 有三个字符<code>+</code>、<code>/</code>和<code>=</code>，在 URL 里面有特殊含义，所以要被替换掉：<code>=</code>被省略、<code>+</code>替换成<code>-</code>，<code>/</code>替换成<code>_</code> 。这就是 Base64URL 算法。</p>
 <h3 id="JWT-的使用方式"><a href="#JWT-的使用方式" class="headerlink" title="JWT 的使用方式"></a>JWT 的使用方式</h3><p>客户端收到服务器返回的 JWT，可以储存在 Cookie 里面，也可以储存在 localStorage。</p>
-<p>此后，客户端每次与服务器通信，都要带上这个 JWT。你可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求的头信息 <code>Authorization</code> 字段里面。</p>
+<p>此后，客户端每次与服务器通信，都要带上这个 JWT。你可以把它放在 Cookie 里面自动发送，但是这样不能跨域，所以更好的做法是放在 HTTP 请求的头信息<code>Authorization</code>字段里面。</p>
 <blockquote>
-<pre class="language-javascript" data-language="javascript"><code class="language-javascript">Authorization<span class="token operator">:</span> Bearer <span class="token operator">&lt;</span>token<span class="token operator">&gt;</span></code></pre>
-</blockquote>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">Authorization</span><span class="token operator">:</span> Bearer <span class="token operator">&lt;</span>token<span class="token operator">&gt;</span></code></pre></blockquote>
 <p>另一种做法是，跨域的时候，JWT 就放在 POST 请求的数据体里面。</p>
 <h3 id="JWT-的几个特点"><a href="#JWT-的几个特点" class="headerlink" title="JWT 的几个特点"></a>JWT 的几个特点</h3><ol>
 <li>JWT 默认是不加密，但也是可以加密的。生成原始 Token 以后，可以用密钥再加密一次。</li>
@@ -447,8 +446,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Json/" rel="tag"># Json</a>
               <a href="/tags/JWT/" rel="tag"># JWT</a>
+              <a href="/tags/Json/" rel="tag"># Json</a>
           </div>
 
         

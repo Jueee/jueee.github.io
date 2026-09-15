@@ -32,7 +32,7 @@
 <meta property="og:description" content="问题docker 容器日志导致主机磁盘空间满了。 docker logs -f container_name 噼里啪啦一大堆，很占用空间，不用的日志可以清理掉了。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-28T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-08T11:23:00.090Z">
+<meta property="article:modified_time" content="2021-10-08T11:23:02.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Container">
 <meta property="article:tag" content="Docker">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -340,22 +340,22 @@
     
     <div class="post-body" itemprop="articleBody"><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>docker 容器日志导致主机磁盘空间满了。</p>
 <p>docker logs -f container_name 噼里啪啦一大堆，很占用空间，不用的日志可以清理掉了。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>找出 Docker 容器日志<br>在 linux 上，容器日志一般存放在 <code>/var/lib/docker/containers/container_id/</code> 下面。</p>
 <p>查看各个日志文件大小的脚本 docker_log_size.sh，内容如下：</p>
-<pre class="language-sh" data-language="sh"><code class="language-sh">#!/bin/sh 
-echo "======== docker containers logs file size ========"  
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh </span>
+<span class="token builtin class-name">echo</span> <span class="token string">"======== docker containers logs file size ========"</span>  
 
-logs=$(find /var/lib/docker/containers/ -name *-json.log)  
+<span class="token assign-left variable">logs</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> /var/lib/docker/containers/ <span class="token parameter variable">-name</span> *-json.log<span class="token variable">)</span></span>  
 
-for log in $logs  
-do  
-    ls -lh $log   
-done</code></pre>
+<span class="token keyword">for</span> <span class="token for-or-select variable">log</span> <span class="token keyword">in</span> <span class="token variable">$logs</span>  
+<span class="token keyword">do</span>  
+    <span class="token function">ls</span> <span class="token parameter variable">-lh</span> <span class="token variable">$log</span>   
+<span class="token keyword">done</span></code></pre>
 
 <p>执行脚本：</p>
-<pre class="language-sh" data-language="sh"><code class="language-sh">chmod +x docker_log_size.sh
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x docker_log_size.sh
 
 ./docker_log_size.sh</code></pre>
 
@@ -404,7 +404,7 @@ echo "======== end clean docker containers logs ========"
   "log-opts": {"max-size":"500m", "max-file":"3"}
 }</code></pre>
 
-<p>max-size=500m，意味着一个容器日志大小上限是 500M，<br>max-file=3，意味着一个容器有三个日志，分别是 id+.json、id+1.json、id+2.json。</p>
+<p>max-size=500m，意味着一个容器日志大小上限是 500M，<br>max-file=3，意味着一个容器有三个日志，分别是 id+.json、id + 1.json、id + 2.json。</p>
 <pre class="language-none"><code class="language-none">// 重启docker守护进程
 systemctl daemon-reload
 systemctl restart docker</code></pre>

@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210526143827731.png">
 <meta property="og:image" content="https://jueee.github.io/images/2021/03/image-20210526143941700.png">
 <meta property="article:published_time" content="2021-03-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-25T09:22:52.669Z">
+<meta property="article:modified_time" content="2026-03-25T09:22:54.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -138,7 +138,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -204,7 +204,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -215,7 +215,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -349,14 +349,14 @@
     <div class="post-body" itemprop="articleBody"><h3 id="获取内网IP地址"><a href="#获取内网IP地址" class="headerlink" title="获取内网IP地址"></a>获取内网 IP 地址</h3><pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">getIpAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     window<span class="token punctuation">.</span>RTCPeerConnection <span class="token operator">=</span> window<span class="token punctuation">.</span>RTCPeerConnection <span class="token operator">||</span> window<span class="token punctuation">.</span>mozRTCPeerConnection <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitRTCPeerConnection<span class="token punctuation">;</span>
     <span class="token keyword">var</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-        iceServers<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token literal-property property">iceServers</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     <span class="token function-variable function">noop</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
     pc<span class="token punctuation">.</span><span class="token function">createDataChannel</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//create a bogus data channel </span>
     pc<span class="token punctuation">.</span><span class="token function">createOffer</span><span class="token punctuation">(</span>pc<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>pc<span class="token punctuation">)</span><span class="token punctuation">,</span> noop<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// create offer andsetlocaldescription</span>
     pc<span class="token punctuation">.</span><span class="token function-variable function">onicecandidate</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">ice</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>ice <span class="token operator">&amp;&amp;</span> ice<span class="token punctuation">.</span>candidate <span class="token operator">&amp;&amp;</span> ice<span class="token punctuation">.</span>candidate<span class="token punctuation">.</span>candidate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">var</span> myIP <span class="token operator">=</span> <span class="token regex">/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>ice<span class="token punctuation">.</span>candidate<span class="token punctuation">.</span>candidate<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">var</span> myIP <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>ice<span class="token punctuation">.</span>candidate<span class="token punctuation">.</span>candidate<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
             console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'my IP: '</span><span class="token punctuation">,</span> myIP<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//【注：Chrome浏览器下ice.candidate.address也可以拿到值，火狐浏览器不可以】</span>
             pc<span class="token punctuation">.</span>onicecandidate <span class="token operator">=</span> noop<span class="token punctuation">;</span>
 			<span class="token keyword">return</span> myIP<span class="token punctuation">;</span>
@@ -365,21 +365,21 @@
 	<span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="谷歌浏览器设置"><a href="#谷歌浏览器设置" class="headerlink" title="谷歌浏览器设置"></a>谷歌浏览器设置</h3><p>针对谷歌浏览器的设置，才能显出出 IP：（Chrome 91 版本之后，取消了该配置）</p>
 <ol>
 <li>在 chrome 浏览器地址栏中输入：chrome://flags/</li>
-<li> 搜索 #enable-webrtc-hide-local-ips-with-mdns 该配置 并将属性改为 disabled</li>
-<li> 点击页面下方的 relaunch ，重启浏览器即可查看到本机的内网 IP 地址。</li>
+<li>搜索 #enable-webrtc-hide-local-ips-with-mdns 该配置 并将属性改为 disabled</li>
+<li>点击页面下方的 relaunch ，重启浏览器即可查看到本机的内网 IP 地址。</li>
 </ol>
 <p>如下图所示：</p>
 <p><img src="/images/2021/03/image-20210301103332557.png" alt="image-20210301103332557" loading="lazy"></p>
 <h3 id="火狐浏览器设置"><a href="#火狐浏览器设置" class="headerlink" title="火狐浏览器设置"></a>火狐浏览器设置</h3><p>针对火狐浏览器的设置，才能显出出 IP：</p>
 <ol>
-<li>搜索 <code>about:config</code></li>
+<li>搜索<code>about:config</code></li>
 <li>点击接受风险并继续。</li>
-<li>将 <code>media.peerconnection.ice.obfuscate_host_addresses</code> 置为 false</li>
+<li>将<code>media.peerconnection.ice.obfuscate_host_addresses</code>置为 false</li>
 </ol>
 <p><img src="/images/2021/03/image-20210304094911768.png" alt="image-20210304094911768" loading="lazy"></p>
 <p><img src="/images/2021/03/image-20210304095024850.png" alt="image-20210304095024850" loading="lazy"></p>
@@ -412,8 +412,8 @@
 </ol>
 <h4 id="参考消息"><a href="#参考消息" class="headerlink" title="参考消息"></a>参考消息</h4><ul>
 <li>参考资料：<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LmltcGVyb3NvZnR3YXJlLmNvbS9zdXBwb3J0L3NvbHV0aW9ucy9hcnRpY2xlcy80NDAwMTc5MDA2NS1nb29nbGUtY2hyb21lLWFub255bWl6ZS1sb2NhbC1pcHMtZXhwb3NlZC1ieS13ZWJydGMtcHJldmVudHMtbGl2ZS12aWV3LWluLWNsb3VkLWNvbnNvbGU=">https://support.imperosoftware.com/support/solutions/articles/44001790065-google-chrome-anonymize-local-ips-exposed-by-webrtc-prevents-live-view-in-cloud-console<i class="fa fa-external-link-alt"></i></span></li>
-<li> 下载模板：<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vY2hyb21lL2EvYW5zd2VyLzE4NzIwMj9obD1lbg==">https://support.google.com/chrome/a/answer/187202?hl=en<i class="fa fa-external-link-alt"></i></span></li>
-<li> 配置说明：<span class="exturl" data-url="aHR0cHM6Ly9hZG14LmhlbHAvP0NhdGVnb3J5PUNocm9tZSZhbXA7UG9saWN5PUdvb2dsZS5Qb2xpY2llcy5DaHJvbWU6OldlYlJ0Y0xvY2FsSXBzQWxsb3dlZFVybHMj">https://admx.help/?Category=Chrome&amp;Policy=Google.Policies.Chrome::WebRtcLocalIpsAllowedUrls#<i class="fa fa-external-link-alt"></i></span></li>
+<li>下载模板：<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vY2hyb21lL2EvYW5zd2VyLzE4NzIwMj9obD1lbg==">https://support.google.com/chrome/a/answer/187202?hl=en<i class="fa fa-external-link-alt"></i></span></li>
+<li>配置说明：<span class="exturl" data-url="aHR0cHM6Ly9hZG14LmhlbHAvP0NhdGVnb3J5PUNocm9tZSZQb2xpY3k9R29vZ2xlLlBvbGljaWVzLkNocm9tZTo6V2ViUnRjTG9jYWxJcHNBbGxvd2VkVXJscyM=">https://admx.help/?Category=Chrome&amp;Policy=Google.Policies.Chrome::WebRtcLocalIpsAllowedUrls#<i class="fa fa-external-link-alt"></i></span></li>
 <li>官方说明：<span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC5nb29nbGUuY29tL2RvY3MvY2hyb21lLWVudGVycHJpc2UvcG9saWNpZXMvP3BvbGljeT1XZWJSdGNMb2NhbElwc0FsbG93ZWRVcmxz">https://cloud.google.com/docs/chrome-enterprise/policies/?policy=WebRtcLocalIpsAllowedUrls<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 

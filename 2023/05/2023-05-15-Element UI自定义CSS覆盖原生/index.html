@@ -31,15 +31,15 @@
 <meta property="og:site_name" content="小决的博客">
 <meta property="og:description" content="在使用 Element UI 时，发现有时候可以在控制台利用内置的类来改变节点元素样式，但是当数据一多就无法利用了（即，无效利用），并且，在无效后在其上添加会发现，添加的样式处于所需要绑定的上层，故又无效。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jueee.github.io/2023/05/2023-05-15-Element%20UI%E8%87%AA%E5%AE%9A%E4%B9%89CSS%E8%A6%86%E7%9B%96%E5%8E%9F%E7%94%9F/assets/image-20230515101528210.png">
+<meta property="og:image" content="https://jueee.github.io/assets/image-20230515101528210.png">
 <meta property="article:published_time" content="2023-05-15T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-21T02:23:11.379Z">
+<meta property="article:modified_time" content="2026-01-21T02:23:12.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Element">
 <meta property="article:tag" content="Vue">
 <meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jueee.github.io/2023/05/2023-05-15-Element%20UI%E8%87%AA%E5%AE%9A%E4%B9%89CSS%E8%A6%86%E7%9B%96%E5%8E%9F%E7%94%9F/assets/image-20230515101528210.png">
+<meta name="twitter:image" content="https://jueee.github.io/assets/image-20230515101528210.png">
 
 
 <link rel="canonical" href="https://jueee.github.io/2023/05/2023-05-15-Element%20UI%E8%87%AA%E5%AE%9A%E4%B9%89CSS%E8%A6%86%E7%9B%96%E5%8E%9F%E7%94%9F/">
@@ -133,7 +133,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -199,7 +199,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -210,7 +210,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -342,7 +342,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>在使用 Element UI 时，发现有时候可以在控制台利用内置的类来改变节点元素样式，但是当数据一多就无法利用了（即，无效利用），并且，在无效后在其上添加会发现，添加的样式处于所需要绑定的上层，故又无效。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="出现问题"><a href="#出现问题" class="headerlink" title="出现问题"></a>出现问题</h3><p>自定义样式，无法覆盖原生样式：</p>
 <pre class="language-none"><code class="language-none">&lt;style scoped&gt;
@@ -353,13 +353,13 @@
 
 <h3 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h3><p>style 样式的优先度 &gt; 类的优先度，故无法绑定所需，只能赋予其上层样式。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>在局部样式中，利用 element-ui 中内置样式设置自定义样式前加上  <code>/deep/</code></p>
-<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
 <span class="token selector">/deep/ .el-collapse-item__content</span> <span class="token punctuation">{</span>
   <span class="token property">padding-bottom</span><span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span></code></pre>
 
-<p><img src="assets/image-20230515101528210.png" alt="image-20230515101528210" loading="lazy"></p>
+<p><img src="/assets/image-20230515101528210.png" alt="image-20230515101528210" loading="lazy"></p>
 <p> 将原有内置样式替换自定义样式，搞定 ！</p>
 
     </div>

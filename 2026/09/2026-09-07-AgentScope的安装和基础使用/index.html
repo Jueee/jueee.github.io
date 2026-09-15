@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jueee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-tomorrow","dark":"prism-tomorrow"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="AgentScope 是阿里巴巴开源的多智能体（Multi-Agent）框架，本文介绍其安装方式与基础使用，包括 Agent 创建、模型配置、多 Agent 对话等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AgentScope 的安装和基础使用">
+<meta property="og:url" content="https://jueee.github.io/2026/09/2026-09-07-AgentScope%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="小决的博客">
+<meta property="og:description" content="AgentScope 是阿里巴巴开源的多智能体（Multi-Agent）框架，本文介绍其安装方式与基础使用，包括 Agent 创建、模型配置、多 Agent 对话等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-07T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-15T09:55:19.365Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AgentScope">
+<meta property="article:tag" content="MultiAgent">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/09/2026-09-07-AgentScope%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jueee.github.io/2026/09/2026-09-07-AgentScope%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/","path":"2026/09/2026-09-07-AgentScope的安装和基础使用/","title":"AgentScope 的安装和基础使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AgentScope 的安装和基础使用 | 小决的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-175024528-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79"></script>
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="小决的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小决的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">没关系，进一寸有一寸的欢喜。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AgentScope-%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">AgentScope 简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">核心特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text">环境要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-uv-%E5%AE%89%E8%A3%85%EF%BC%88%E5%AE%98%E6%96%B9%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">使用 uv 安装（官方推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-pip-%E5%AE%89%E8%A3%85"><span class="nav-number">2.3.</span> <span class="nav-text">使用 pip 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85"><span class="nav-number">2.4.</span> <span class="nav-text">从源码安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%A2%9D%E5%A4%96%E4%BE%9D%E8%B5%96"><span class="nav-number">2.5.</span> <span class="nav-text">安装额外依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E5%AE%89%E8%A3%85"><span class="nav-number">2.6.</span> <span class="nav-text">验证安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">3.</span> <span class="nav-text">核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Message%EF%BC%88%E6%B6%88%E6%81%AF%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">Message（消息）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Agent%EF%BC%88%E6%99%BA%E8%83%BD%E4%BD%93%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">Agent（智能体）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Toolkit%EF%BC%88%E5%B7%A5%E5%85%B7%E9%9B%86%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">Toolkit（工具集）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">基础使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.1.</span> <span class="nav-text">配置模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DashScope%EF%BC%88%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE%EF%BC%89"><span class="nav-number">4.1.1.</span> <span class="nav-text">DashScope（通义千问）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenAI"><span class="nav-number">4.1.2.</span> <span class="nav-text">OpenAI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ollama%EF%BC%88%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">4.1.3.</span> <span class="nav-text">Ollama（本地模型）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-ReAct-Agent"><span class="nav-number">4.2.</span> <span class="nav-text">创建 ReAct Agent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%AD%E4%B8%8E-Agent-%E4%BA%A4%E4%BA%92%EF%BC%882-0-%E6%96%B0-API%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">在控制台中与 Agent 交互（2.0 新 API）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-Agent"><span class="nav-number">4.4.</span> <span class="nav-text">自定义 Agent</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A-Agent-%E5%AF%B9%E8%AF%9D"><span class="nav-number">5.</span> <span class="nav-text">多 Agent 对话</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MsgHub-%E5%B9%BF%E6%92%AD"><span class="nav-number">5.1.</span> <span class="nav-text">MsgHub 广播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E5%BC%8F%E8%BE%93%E5%87%BA"><span class="nav-number">5.2.</span> <span class="nav-text">流式输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%8F%90%E4%BE%9B%E5%95%86%E4%B8%80%E8%A7%88"><span class="nav-number">6.</span> <span class="nav-text">模型提供商一览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">357</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/09/2026-09-07-AgentScope%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AgentScope 的安装和基础使用 | 小决的博客">
+      <meta itemprop="description" content="AgentScope 是阿里巴巴开源的多智能体（Multi-Agent）框架，本文介绍其安装方式与基础使用，包括 Agent 创建、模型配置、多 Agent 对话等。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AgentScope 的安装和基础使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-09-07 00:00:00" itemprop="dateCreated datePublished" datetime="2026-09-07T00:00:00Z">2026-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/AI-Agent/" itemprop="url" rel="index"><span itemprop="name">AI Agent</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">AgentScope 是阿里巴巴开源的多智能体（Multi-Agent）框架，本文介绍其安装方式与基础使用，包括 Agent 创建、模型配置、多 Agent 对话等。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="AgentScope-简介"><a href="#AgentScope-简介" class="headerlink" title="AgentScope 简介"></a>AgentScope 简介</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FnZW50c2NvcGUtYWkvYWdlbnRzY29wZQ==">AgentScope<i class="fa fa-external-link-alt"></i></span> 是阿里巴巴开源的多智能体（Multi-Agent）框架，当前版本为 <strong>2.0</strong>，在 GitHub 上已获得约 30k stars。</p>
+<p>官方定位：</p>
+<blockquote>
+<p>Build and run agents you can see, understand and trust.（构建并运行你「看得见、理解得了、可信任」的智能体）</p>
+</blockquote>
+<h3 id="核心特性"><a href="#核心特性" class="headerlink" title="核心特性"></a>核心特性</h3><ul>
+<li><strong>ReAct 智能体</strong>：结构化输出、实时中断与恢复、串行 / 并发批量工具调用</li>
+<li><strong>Toolkit</strong>：统一管理 Python 函数、MCP 服务器、Skill，内置编码、文件、搜索等工具</li>
+<li><strong>多模型支持</strong>：OpenAI、Anthropic、DashScope（通义千问）、Gemini、DeepSeek、Ollama 等主流提供商</li>
+<li><strong>上下文管理</strong>：自动压缩、工具结果卸载、RAG 与记忆注入中间件</li>
+<li><strong>事件系统</strong>：统一事件总线，支持流式推理、工具调用、多模态内容（文本/图片/音频）</li>
+<li><strong>权限与 HITL</strong>：细粒度工具 / 资源控制，支持确认模式与 bypass 模式</li>
+<li><strong>长期记忆</strong>：Agent 自主记忆，可切换后端（ReMe、Mem0）</li>
+<li><strong>Workspace/Sandbox</strong>：隔离代码执行环境（本地、Docker、E2B、K8s 等）</li>
+<li><strong>Agent Service</strong>：内置 FastAPI 后端 + Web UI，支持多租户、多会话、IM 通道（飞书、钉钉、Discord）</li>
+</ul>
+<span id="more"></span>
+
+<hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><ul>
+<li>Python <strong>3.10+</strong>（推荐 3.11+）</li>
+<li>建议在虚拟环境中安装</li>
+</ul>
+<h3 id="使用-uv-安装（官方推荐）"><a href="#使用-uv-安装（官方推荐）" class="headerlink" title="使用 uv 安装（官方推荐）"></a>使用 uv 安装（官方推荐）</h3><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FzdHJhbC1zaC91dg==">uv<i class="fa fa-external-link-alt"></i></span> 是极速的 Python 包管理工具，安装速度远快于 pip。</p>
+<p><strong>第一步：安装 uv</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># macOS / Linux</span>
+<span class="token function">curl</span> <span class="token parameter variable">-LsSf</span> https://astral.sh/uv/install.sh <span class="token operator">|</span> <span class="token function">sh</span>
+
+<span class="token comment"># Windows (PowerShell)</span>
+powershell <span class="token parameter variable">-ExecutionPolicy</span> ByPass <span class="token parameter variable">-c</span> <span class="token string">"irm https://astral.sh/uv/install.ps1 | iex"</span></code></pre>
+
+<p><strong>第二步：创建虚拟环境</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">uv venv ~/.venvs/agentscope
+<span class="token builtin class-name">source</span> ~/.venvs/agentscope/bin/activate   <span class="token comment"># macOS / Linux</span>
+<span class="token comment"># .venvs\agentscope\Scripts\activate      # Windows</span></code></pre>
+
+<p><strong>第三步：安装 AgentScope</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">uv pip <span class="token function">install</span> agentscope</code></pre>
+
+<h3 id="使用-pip-安装"><a href="#使用-pip-安装" class="headerlink" title="使用 pip 安装"></a>使用 pip 安装</h3><pre class="language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> agentscope</code></pre>
+
+<h3 id="从源码安装"><a href="#从源码安装" class="headerlink" title="从源码安装"></a>从源码安装</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token parameter variable">-b</span> main https://github.com/agentscope-ai/agentscope
+<span class="token builtin class-name">cd</span> agentscope
+pip <span class="token function">install</span> <span class="token parameter variable">-e</span> <span class="token builtin class-name">.</span></code></pre>
+
+<h3 id="安装额外依赖"><a href="#安装额外依赖" class="headerlink" title="安装额外依赖"></a>安装额外依赖</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># macOS / Linux</span>
+pip <span class="token function">install</span> agentscope<span class="token punctuation">\</span><span class="token punctuation">[</span>full<span class="token punctuation">\</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Windows</span>
+pip <span class="token function">install</span> agentscope<span class="token punctuation">[</span>full<span class="token punctuation">]</span></code></pre>
+
+<h3 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> agentscope
+<span class="token keyword">print</span><span class="token punctuation">(</span>agentscope<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span>
+<span class="token comment"># 2.0.7.post1</span></code></pre>
+
+<hr>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="Message（消息）"><a href="#Message（消息）" class="headerlink" title="Message（消息）"></a>Message（消息）</h3><p><code>Msg</code> 是最基础的数据结构，用于智能体间信息交换、UI 展示与 memory 存储。</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>消息发送者名字 / 身份</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td><code>"system"</code> / <code>"assistant"</code> / <code>"user"</code></td>
+<td>发送者角色</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td><code>str | list[ContentBlock]</code></td>
+<td>消息内容</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td><code>dict | None</code></td>
+<td>附加元数据，常用于结构化输出</td>
+</tr>
+</tbody></table>
+<p>支持的内容块类型：<code>TextBlock</code>、<code>ThinkingBlock</code>、<code>ImageBlock</code>、<code>AudioBlock</code>、<code>VideoBlock</code>、<code>ToolUseBlock</code>、<code>ToolResultBlock</code>。</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>message <span class="token keyword">import</span> Msg<span class="token punctuation">,</span> TextBlock<span class="token punctuation">,</span> ImageBlock
+
+<span class="token comment"># 纯文本消息</span>
+msg <span class="token operator">=</span> Msg<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"Jarvis"</span><span class="token punctuation">,</span> role<span class="token operator">=</span><span class="token string">"assistant"</span><span class="token punctuation">,</span> content<span class="token operator">=</span><span class="token string">"Hi! How can I help you?"</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 多模态消息</span>
+msg <span class="token operator">=</span> Msg<span class="token punctuation">(</span>
+    name<span class="token operator">=</span><span class="token string">"Jarvis"</span><span class="token punctuation">,</span>
+    role<span class="token operator">=</span><span class="token string">"assistant"</span><span class="token punctuation">,</span>
+    content<span class="token operator">=</span><span class="token punctuation">[</span>
+        TextBlock<span class="token punctuation">(</span><span class="token builtin">type</span><span class="token operator">=</span><span class="token string">"text"</span><span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"Here is an image."</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        ImageBlock<span class="token punctuation">(</span><span class="token builtin">type</span><span class="token operator">=</span><span class="token string">"image"</span><span class="token punctuation">,</span> url<span class="token operator">=</span><span class="token string">"https://example.com/img.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># 工具方法</span>
+msg<span class="token punctuation">.</span>get_text_content<span class="token punctuation">(</span><span class="token punctuation">)</span>                   <span class="token comment"># 汇总所有 TextBlock 为字符串</span>
+msg<span class="token punctuation">.</span>get_content_blocks<span class="token punctuation">(</span>block_type<span class="token operator">=</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>   <span class="token comment"># 获取指定类型 block</span>
+msg<span class="token punctuation">.</span>has_content_blocks<span class="token punctuation">(</span>block_type<span class="token operator">=</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>   <span class="token comment"># 检查是否包含指定类型 block</span></code></pre>
+
+<h3 id="Agent（智能体）"><a href="#Agent（智能体）" class="headerlink" title="Agent（智能体）"></a>Agent（智能体）</h3><p><code>AgentBase</code> 将智能体行为抽象为三个核心方法：</p>
+<ul>
+<li><strong><code>reply</code></strong>：处理传入消息并生成响应</li>
+<li><strong><code>observe</code></strong>：接收消息（不返回响应）</li>
+<li><strong><code>handle_interrupt</code></strong>：处理实时中断</li>
+</ul>
+<p><code>ReActAgent</code> 在此基础上将 reply 拆分为两阶段：<strong>推理（reasoning）</strong> 和 <strong>执行（acting）</strong>。</p>
+<h3 id="Toolkit（工具集）"><a href="#Toolkit（工具集）" class="headerlink" title="Toolkit（工具集）"></a>Toolkit（工具集）</h3><p>任何可调用对象均可作为工具（同步 / 异步函数、方法、类均可）：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>tool <span class="token keyword">import</span> Toolkit<span class="token punctuation">,</span> Bash<span class="token punctuation">,</span> Grep<span class="token punctuation">,</span> Glob<span class="token punctuation">,</span> Read<span class="token punctuation">,</span> Write<span class="token punctuation">,</span> Edit<span class="token punctuation">,</span> execute_python_code
+
+<span class="token comment"># 内置工具</span>
+toolkit <span class="token operator">=</span> Toolkit<span class="token punctuation">(</span>tools<span class="token operator">=</span><span class="token punctuation">[</span>Bash<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Grep<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Glob<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Write<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Edit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 注册自定义函数</span>
+toolkit<span class="token punctuation">.</span>register_tool_function<span class="token punctuation">(</span>execute_python_code<span class="token punctuation">)</span></code></pre>
+
+<hr>
+<h2 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h2><h3 id="配置模型"><a href="#配置模型" class="headerlink" title="配置模型"></a>配置模型</h3><h4 id="DashScope（通义千问）"><a href="#DashScope（通义千问）" class="headerlink" title="DashScope（通义千问）"></a>DashScope（通义千问）</h4><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>model <span class="token keyword">import</span> DashScopeChatModel
+
+model <span class="token operator">=</span> DashScopeChatModel<span class="token punctuation">(</span>
+    model_name<span class="token operator">=</span><span class="token string">"qwen-max"</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"DASHSCOPE_API_KEY"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    stream<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span></code></pre>
+
+<h4 id="OpenAI"><a href="#OpenAI" class="headerlink" title="OpenAI"></a>OpenAI</h4><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>model <span class="token keyword">import</span> OpenAIChatModel
+
+<span class="token comment"># 原生 OpenAI</span>
+model <span class="token operator">=</span> OpenAIChatModel<span class="token punctuation">(</span>
+    model_name<span class="token operator">=</span><span class="token string">"gpt-4o"</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    stream<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment"># OpenAI 兼容接口（vLLM、DeepSeek 等）</span>
+model <span class="token operator">=</span> OpenAIChatModel<span class="token punctuation">(</span>
+    model_name<span class="token operator">=</span><span class="token string">"deepseek-chat"</span><span class="token punctuation">,</span>
+    client_kwargs<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"base_url"</span><span class="token punctuation">:</span> <span class="token string">"https://api.deepseek.com/v1"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"DEEPSEEK_API_KEY"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span></code></pre>
+
+<h4 id="Ollama（本地模型）"><a href="#Ollama（本地模型）" class="headerlink" title="Ollama（本地模型）"></a>Ollama（本地模型）</h4><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>model <span class="token keyword">import</span> OllamaChatModel
+
+model <span class="token operator">=</span> OllamaChatModel<span class="token punctuation">(</span>
+    model_name<span class="token operator">=</span><span class="token string">"llama3"</span><span class="token punctuation">,</span>
+    client_kwargs<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"host"</span><span class="token punctuation">:</span> <span class="token string">"http://localhost:11434"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span></code></pre>
+
+<h3 id="创建-ReAct-Agent"><a href="#创建-ReAct-Agent" class="headerlink" title="创建 ReAct Agent"></a>创建 ReAct Agent</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+<span class="token keyword">import</span> os
+
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>agent <span class="token keyword">import</span> ReActAgent
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>formatter <span class="token keyword">import</span> DashScopeChatFormatter
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>memory <span class="token keyword">import</span> InMemoryMemory
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>message <span class="token keyword">import</span> Msg
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>model <span class="token keyword">import</span> DashScopeChatModel
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>tool <span class="token keyword">import</span> Toolkit<span class="token punctuation">,</span> execute_python_code
+
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+    toolkit <span class="token operator">=</span> Toolkit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    toolkit<span class="token punctuation">.</span>register_tool_function<span class="token punctuation">(</span>execute_python_code<span class="token punctuation">)</span>
+
+    jarvis <span class="token operator">=</span> ReActAgent<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">"Jarvis"</span><span class="token punctuation">,</span>
+        sys_prompt<span class="token operator">=</span><span class="token string">"You're a helpful assistant named Jarvis."</span><span class="token punctuation">,</span>
+        model<span class="token operator">=</span>DashScopeChatModel<span class="token punctuation">(</span>
+            model_name<span class="token operator">=</span><span class="token string">"qwen-max"</span><span class="token punctuation">,</span>
+            api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"DASHSCOPE_API_KEY"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            stream<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        formatter<span class="token operator">=</span>DashScopeChatFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        toolkit<span class="token operator">=</span>toolkit<span class="token punctuation">,</span>
+        memory<span class="token operator">=</span>InMemoryMemory<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    msg <span class="token operator">=</span> Msg<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">"user"</span><span class="token punctuation">,</span>
+        content<span class="token operator">=</span><span class="token string">"Hi! Jarvis, run Hello World in Python."</span><span class="token punctuation">,</span>
+        role<span class="token operator">=</span><span class="token string">"user"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">await</span> jarvis<span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<h3 id="在控制台中与-Agent-交互（2-0-新-API）"><a href="#在控制台中与-Agent-交互（2-0-新-API）" class="headerlink" title="在控制台中与 Agent 交互（2.0 新 API）"></a>在控制台中与 Agent 交互（2.0 新 API）</h3><p>AgentScope 2.0 提供了 <code>launch_console</code>，可在终端中与智能体进行流式对话，内置工具调用确认和 Ctrl + C 中断。</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+<span class="token keyword">import</span> os
+
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>agent <span class="token keyword">import</span> Agent
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>console <span class="token keyword">import</span> launch_console
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>credential <span class="token keyword">import</span> DashScopeCredential
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>model <span class="token keyword">import</span> DashScopeChatModel
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>tool <span class="token keyword">import</span> Toolkit<span class="token punctuation">,</span> Bash<span class="token punctuation">,</span> Grep<span class="token punctuation">,</span> Glob<span class="token punctuation">,</span> Read<span class="token punctuation">,</span> Write<span class="token punctuation">,</span> Edit
+
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+    agent <span class="token operator">=</span> Agent<span class="token punctuation">(</span>
+        name<span class="token operator">=</span><span class="token string">"Friday"</span><span class="token punctuation">,</span>
+        system_prompt<span class="token operator">=</span><span class="token string">"You're a helpful assistant named Friday."</span><span class="token punctuation">,</span>
+        model<span class="token operator">=</span>DashScopeChatModel<span class="token punctuation">(</span>
+            credential<span class="token operator">=</span>DashScopeCredential<span class="token punctuation">(</span>
+                api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"DASHSCOPE_API_KEY"</span><span class="token punctuation">]</span>
+            <span class="token punctuation">)</span><span class="token punctuation">,</span>
+            model<span class="token operator">=</span><span class="token string">"qwen3.6-plus"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        toolkit<span class="token operator">=</span>Toolkit<span class="token punctuation">(</span>
+            tools<span class="token operator">=</span><span class="token punctuation">[</span>Bash<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Grep<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Glob<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Write<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> Edit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    <span class="token keyword">await</span> launch_console<span class="token punctuation">(</span>agent<span class="token punctuation">)</span>
+
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<h3 id="自定义-Agent"><a href="#自定义-Agent" class="headerlink" title="自定义 Agent"></a>自定义 Agent</h3><p>通过继承 <code>AgentBase</code> 可以完全自定义 Agent 的行为：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> os
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>agent <span class="token keyword">import</span> AgentBase
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>formatter <span class="token keyword">import</span> DashScopeChatFormatter
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>memory <span class="token keyword">import</span> InMemoryMemory
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>message <span class="token keyword">import</span> Msg
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>model <span class="token keyword">import</span> DashScopeChatModel
+
+
+<span class="token keyword">class</span> <span class="token class-name">MyAgent</span><span class="token punctuation">(</span>AgentBase<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"Friday"</span>
+        self<span class="token punctuation">.</span>sys_prompt <span class="token operator">=</span> <span class="token string">"You're a helpful assistant named Friday."</span>
+        self<span class="token punctuation">.</span>model <span class="token operator">=</span> DashScopeChatModel<span class="token punctuation">(</span>
+            model_name<span class="token operator">=</span><span class="token string">"qwen-max"</span><span class="token punctuation">,</span>
+            api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"DASHSCOPE_API_KEY"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            stream<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>formatter <span class="token operator">=</span> DashScopeChatFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>memory <span class="token operator">=</span> InMemoryMemory<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">reply</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> msg<span class="token punctuation">:</span> Msg <span class="token operator">|</span> <span class="token builtin">list</span><span class="token punctuation">[</span>Msg<span class="token punctuation">]</span> <span class="token operator">|</span> <span class="token boolean">None</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> Msg<span class="token punctuation">:</span>
+        <span class="token keyword">await</span> self<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>add<span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+        prompt <span class="token operator">=</span> <span class="token keyword">await</span> self<span class="token punctuation">.</span>formatter<span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>
+            <span class="token punctuation">[</span>
+                Msg<span class="token punctuation">(</span><span class="token string">"system"</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>sys_prompt<span class="token punctuation">,</span> <span class="token string">"system"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <span class="token operator">*</span><span class="token keyword">await</span> self<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>get_memory<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+        response <span class="token operator">=</span> <span class="token keyword">await</span> self<span class="token punctuation">.</span>model<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+        reply_msg <span class="token operator">=</span> Msg<span class="token punctuation">(</span>name<span class="token operator">=</span>self<span class="token punctuation">.</span>name<span class="token punctuation">,</span> content<span class="token operator">=</span>response<span class="token punctuation">.</span>content<span class="token punctuation">,</span> role<span class="token operator">=</span><span class="token string">"assistant"</span><span class="token punctuation">)</span>
+        <span class="token keyword">await</span> self<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>add<span class="token punctuation">(</span>reply_msg<span class="token punctuation">)</span>
+        <span class="token keyword">await</span> self<span class="token punctuation">.</span><span class="token keyword">print</span><span class="token punctuation">(</span>reply_msg<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> reply_msg
+
+    <span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">observe</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> msg<span class="token punctuation">:</span> Msg <span class="token operator">|</span> <span class="token builtin">list</span><span class="token punctuation">[</span>Msg<span class="token punctuation">]</span> <span class="token operator">|</span> <span class="token boolean">None</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+        <span class="token keyword">await</span> self<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>add<span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+
+    <span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">handle_interrupt</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> Msg<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> Msg<span class="token punctuation">(</span>
+            name<span class="token operator">=</span>self<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+            content<span class="token operator">=</span><span class="token string">"I noticed you interrupted me, how can I help you?"</span><span class="token punctuation">,</span>
+            role<span class="token operator">=</span><span class="token string">"assistant"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span></code></pre>
+
+<hr>
+<h2 id="多-Agent-对话"><a href="#多-Agent-对话" class="headerlink" title="多 Agent 对话"></a>多 Agent 对话</h2><h3 id="MsgHub-广播"><a href="#MsgHub-广播" class="headerlink" title="MsgHub 广播"></a>MsgHub 广播</h3><p><code>MsgHub</code> 是异步上下文管理器，同一 hub 内的 Agent 会自动广播彼此的消息：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+<span class="token keyword">import</span> os
+
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>agent <span class="token keyword">import</span> ReActAgent
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>formatter <span class="token keyword">import</span> DashScopeMultiAgentFormatter
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>memory <span class="token keyword">import</span> InMemoryMemory
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>message <span class="token keyword">import</span> Msg
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>model <span class="token keyword">import</span> DashScopeChatModel
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>pipeline <span class="token keyword">import</span> MsgHub
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>tool <span class="token keyword">import</span> Toolkit
+
+
+<span class="token keyword">def</span> <span class="token function">create_agent</span><span class="token punctuation">(</span>name<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span> model<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> ReActAgent<span class="token punctuation">:</span>
+    <span class="token keyword">return</span> ReActAgent<span class="token punctuation">(</span>
+        name<span class="token operator">=</span>name<span class="token punctuation">,</span>
+        sys_prompt<span class="token operator">=</span><span class="token string-interpolation"><span class="token string">f"You're a student named </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">."</span></span><span class="token punctuation">,</span>
+        model<span class="token operator">=</span>model<span class="token punctuation">,</span>
+        formatter<span class="token operator">=</span>DashScopeMultiAgentFormatter<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        toolkit<span class="token operator">=</span>Toolkit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        memory<span class="token operator">=</span>InMemoryMemory<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> DashScopeChatModel<span class="token punctuation">(</span>
+        model_name<span class="token operator">=</span><span class="token string">"qwen-max"</span><span class="token punctuation">,</span>
+        api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"DASHSCOPE_API_KEY"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    alice <span class="token operator">=</span> create_agent<span class="token punctuation">(</span><span class="token string">"Alice"</span><span class="token punctuation">,</span> model<span class="token punctuation">)</span>
+    bob <span class="token operator">=</span> create_agent<span class="token punctuation">(</span><span class="token string">"Bob"</span><span class="token punctuation">,</span> model<span class="token punctuation">)</span>
+    charlie <span class="token operator">=</span> create_agent<span class="token punctuation">(</span><span class="token string">"Charlie"</span><span class="token punctuation">,</span> model<span class="token punctuation">)</span>
+
+    <span class="token keyword">async</span> <span class="token keyword">with</span> MsgHub<span class="token punctuation">(</span>
+        <span class="token punctuation">[</span>alice<span class="token punctuation">,</span> bob<span class="token punctuation">,</span> charlie<span class="token punctuation">]</span><span class="token punctuation">,</span>
+        announcement<span class="token operator">=</span>Msg<span class="token punctuation">(</span>
+            <span class="token string">"system"</span><span class="token punctuation">,</span>
+            <span class="token string">"Now you meet each other, please give a brief self-introduction."</span><span class="token punctuation">,</span>
+            <span class="token string">"system"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">await</span> alice<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">await</span> bob<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">await</span> charlie<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<h3 id="流式输出"><a href="#流式输出" class="headerlink" title="流式输出"></a>流式输出</h3><pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> asyncio
+<span class="token keyword">import</span> os
+<span class="token keyword">from</span> agentscope<span class="token punctuation">.</span>model <span class="token keyword">import</span> DashScopeChatModel
+
+
+<span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token boolean">None</span><span class="token punctuation">:</span>
+    model <span class="token operator">=</span> DashScopeChatModel<span class="token punctuation">(</span>
+        model_name<span class="token operator">=</span><span class="token string">"qwen-max"</span><span class="token punctuation">,</span>
+        api_key<span class="token operator">=</span>os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">"DASHSCOPE_API_KEY"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        stream<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    generator <span class="token operator">=</span> <span class="token keyword">await</span> model<span class="token punctuation">(</span>
+        messages<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"Count from 1 to 10."</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+    <span class="token keyword">async</span> <span class="token keyword">for</span> chunk <span class="token keyword">in</span> generator<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>chunk<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">,</span> flush<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+
+asyncio<span class="token punctuation">.</span>run<span class="token punctuation">(</span>main<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<hr>
+<h2 id="模型提供商一览"><a href="#模型提供商一览" class="headerlink" title="模型提供商一览"></a>模型提供商一览</h2><table>
+<thead>
+<tr>
+<th>模型提供商</th>
+<th>类名</th>
+<th align="center">流式</th>
+<th align="center">工具调用</th>
+<th align="center">视觉</th>
+<th align="center">推理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OpenAI</td>
+<td><code>OpenAIChatModel</code></td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>DashScope（通义）</td>
+<td><code>DashScopeChatModel</code></td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Anthropic（Claude）</td>
+<td><code>AnthropicChatModel</code></td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Google Gemini</td>
+<td><code>GeminiChatModel</code></td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>Ollama（本地）</td>
+<td><code>OllamaChatModel</code></td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td>vLLM（OpenAI 兼容）</td>
+<td><code>OpenAIChatModel</code></td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td>DeepSeek（OpenAI 兼容）</td>
+<td><code>OpenAIChatModel</code></td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">-</td>
+<td align="center">✅</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FnZW50c2NvcGUtYWkvYWdlbnRzY29wZQ==">AgentScope GitHub<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2MuYWdlbnRzY29wZS5pby8=">AgentScope 官方文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FzdHJhbC1zaC91dg==">uv 包管理工具<i class="fa fa-external-link-alt"></i></span></li>
+<li>论文：<span class="exturl" data-url="aHR0cHM6Ly9hcnhpdi5vcmcvYWJzLzI0MDIuMTQwMzQ=">AgentScope: A Flexible yet Robust Multi-Agent Platform<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/AgentScope/" rel="tag"># AgentScope</a>
+              <a href="/tags/MultiAgent/" rel="tag"># MultiAgent</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/2026-09-04-ripgrep%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" rel="prev" title="ripgrep（rg）使用指南">
+                  <i class="fa fa-angle-left"></i> ripgrep（rg）使用指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/09/2026-09-08-Java%E8%B0%83%E7%94%A8AgentScope%E7%A4%BA%E4%BE%8B/" rel="next" title="Java 调用 AgentScope 示例">
+                  Java 调用 AgentScope 示例 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"jueee","repo":"jueee.github.io","client_id":"e61b622bb2d41a9820db","client_secret":"f531cb8372b3c90357ec963d19c7cc918bbf488b","admin_user":"jueee","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"ad766bbc983288a0dfe924f612d0f9ce"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

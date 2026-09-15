@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1597404218381.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1597404320236.png">
 <meta property="article:published_time" content="2020-08-14T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-21T10:50:57.653Z">
+<meta property="article:modified_time" content="2021-05-21T10:50:58.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Arthas">
 <meta property="article:tag" content="Java">
@@ -148,7 +148,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -214,7 +214,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -225,7 +225,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -450,20 +450,20 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><em> class-pattern</em></td>
-<td> 类名表达式匹配</td>
+<td><em>class-pattern</em></td>
+<td>类名表达式匹配</td>
 </tr>
 <tr>
-<td><em> method-pattern</em></td>
-<td> 方法名表达式匹配</td>
+<td><em>method-pattern</em></td>
+<td>方法名表达式匹配</td>
 </tr>
 <tr>
-<td><em> condition-express</em></td>
-<td> 条件表达式</td>
+<td><em>condition-express</em></td>
+<td>条件表达式</td>
 </tr>
 <tr>
-<td> [E]</td>
-<td> 开启正则表达式匹配，默认为通配符匹配</td>
+<td>[E]</td>
+<td>开启正则表达式匹配，默认为通配符匹配</td>
 </tr>
 <tr>
 <td><code>[n:]</code></td>
@@ -484,8 +484,8 @@
 
 <p>结果如下：</p>
 <p><img src="/images/2020/08/1597402247630.png" alt="1597402247630" loading="lazy"></p>
-<p>很清楚的看到是 <code>TraceService</code> 的 <code>mysql</code> 方法耗时是最高的。</p>
-<h3 id="monitor（方法调用监控）"><a href="#monitor（方法调用监控）" class="headerlink" title="monitor（方法调用监控）"></a>monitor（方法调用监控）</h3><h4 id="方法介绍-1"><a href="#方法介绍-1" class="headerlink" title="方法介绍"></a>方法介绍</h4><p>monitor 命令可以对匹配 <code>class-pattern</code>／<code>method-pattern</code> 的类、方法的调用进行监控。</p>
+<p>很清楚的看到是 <code>TraceService</code>的 <code>mysql</code>方法耗时是最高的。</p>
+<h3 id="monitor（方法调用监控）"><a href="#monitor（方法调用监控）" class="headerlink" title="monitor（方法调用监控）"></a>monitor（方法调用监控）</h3><h4 id="方法介绍-1"><a href="#方法介绍-1" class="headerlink" title="方法介绍"></a>方法介绍</h4><p>monitor 命令可以对匹配 <code>class-pattern</code>／<code>method-pattern</code>的类、方法的调用进行监控。</p>
 <p>官方文档：</p>
 <blockquote>
 <p><span class="exturl" data-url="aHR0cHM6Ly9hbGliYWJhLmdpdGh1Yi5pby9hcnRoYXMvbW9uaXRvci5odG1s">https://alibaba.github.io/arthas/monitor.html<i class="fa fa-external-link-alt"></i></span></p>
@@ -501,16 +501,16 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><em> class-pattern</em></td>
-<td> 类名表达式匹配</td>
+<td><em>class-pattern</em></td>
+<td>类名表达式匹配</td>
 </tr>
 <tr>
-<td><em> method-pattern</em></td>
-<td> 方法名表达式匹配</td>
+<td><em>method-pattern</em></td>
+<td>方法名表达式匹配</td>
 </tr>
 <tr>
-<td> [E]</td>
-<td> 开启正则表达式匹配，默认为通配符匹配</td>
+<td>[E]</td>
+<td>开启正则表达式匹配，默认为通配符匹配</td>
 </tr>
 <tr>
 <td><code>[c:]</code></td>
@@ -525,36 +525,36 @@
 </tr>
 </thead>
 <tbody><tr>
-<td> timestamp</td>
-<td> 时间戳</td>
+<td>timestamp</td>
+<td>时间戳</td>
 </tr>
 <tr>
-<td> class</td>
+<td>class</td>
 <td>Java 类</td>
 </tr>
 <tr>
-<td> method</td>
-<td> 方法（构造方法、普通方法）</td>
+<td>method</td>
+<td>方法（构造方法、普通方法）</td>
 </tr>
 <tr>
 <td>total</td>
-<td> 调用次数</td>
+<td>调用次数</td>
 </tr>
 <tr>
-<td> success</td>
-<td> 成功次数</td>
+<td>success</td>
+<td>成功次数</td>
 </tr>
 <tr>
-<td> fail</td>
-<td> 失败次数</td>
+<td>fail</td>
+<td>失败次数</td>
 </tr>
 <tr>
-<td> rt</td>
-<td> 平均 RT</td>
+<td>rt</td>
+<td>平均 RT</td>
 </tr>
 <tr>
 <td>fail-rate</td>
-<td> 失败率</td>
+<td>失败率</td>
 </tr>
 </tbody></table>
 <h4 id="统计方法耗时"><a href="#统计方法耗时" class="headerlink" title="统计方法耗时"></a>统计方法耗时</h4><p>使用 <strong>monitor</strong> 命令监控统计方法的执行情况。</p>
@@ -578,47 +578,47 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><em> class-pattern</em></td>
-<td> 类名表达式匹配</td>
+<td><em>class-pattern</em></td>
+<td>类名表达式匹配</td>
 </tr>
 <tr>
-<td><em> method-pattern</em></td>
-<td> 方法名表达式匹配</td>
+<td><em>method-pattern</em></td>
+<td>方法名表达式匹配</td>
 </tr>
 <tr>
-<td><em> express</em></td>
-<td> 观察表达式</td>
+<td><em>express</em></td>
+<td>观察表达式</td>
 </tr>
 <tr>
-<td><em> condition-express</em></td>
-<td> 条件表达式</td>
+<td><em>condition-express</em></td>
+<td>条件表达式</td>
 </tr>
 <tr>
-<td> [b]</td>
-<td> 在<strong>方法调用之前</strong>观察</td>
+<td>[b]</td>
+<td>在<strong>方法调用之前</strong>观察</td>
 </tr>
 <tr>
-<td> [e]</td>
-<td> 在<strong>方法异常之后</strong>观察</td>
+<td>[e]</td>
+<td>在<strong>方法异常之后</strong>观察</td>
 </tr>
 <tr>
-<td> [s]</td>
-<td> 在<strong>方法返回之后</strong>观察</td>
+<td>[s]</td>
+<td>在<strong>方法返回之后</strong>观察</td>
 </tr>
 <tr>
-<td> [f]</td>
-<td> 在<strong>方法结束之后</strong> (正常返回和异常返回) 观察【默认】</td>
+<td>[f]</td>
+<td>在<strong>方法结束之后</strong> (正常返回和异常返回) 观察【默认】</td>
 </tr>
 <tr>
 <td>[E]</td>
-<td> 开启正则表达式匹配，默认为通配符匹配</td>
+<td>开启正则表达式匹配，默认为通配符匹配</td>
 </tr>
 <tr>
-<td> [x:]</td>
-<td> 指定输出结果的属性遍历深度，默认为 1</td>
+<td>[x:]</td>
+<td>指定输出结果的属性遍历深度，默认为 1</td>
 </tr>
 </tbody></table>
-<h4 id="观察表达式"><a href="#观察表达式" class="headerlink" title="观察表达式"></a>观察表达式</h4><p>观察表达式的构成主要由 ognl 表达式组成，所以你可以这样写 <code>"{params,returnObj}"</code>，只要是一个合法的 ognl 表达式，都能被正常支持。</p>
+<h4 id="观察表达式"><a href="#观察表达式" class="headerlink" title="观察表达式"></a>观察表达式</h4><p>观察表达式的构成主要由 ognl 表达式组成，所以你可以这样写<code>"{params,returnObj}"</code>，只要是一个合法的 ognl 表达式，都能被正常支持。</p>
 <p>观察的维度也比较多，主要体现在参数 <code>advice</code> 的数据结构上。<code>Advice</code> 参数最主要是封装了通知节点的所有信息。请参考<span class="exturl" data-url="aHR0cHM6Ly9hbGliYWJhLmdpdGh1Yi5pby9hcnRoYXMvYWR2aWNlLWNsYXNzLmh0bWw=">表达式核心变量<i class="fa fa-external-link-alt"></i></span>中关于该节点的描述。</p>
 <ul>
 <li>特殊用法请参考：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvYXJ0aGFzL2lzc3Vlcy83MQ==">https://github.com/alibaba/arthas/issues/71<i class="fa fa-external-link-alt"></i></span></li>
@@ -626,7 +626,7 @@
 </ul>
 <h4 id="特别说明"><a href="#特别说明" class="headerlink" title="特别说明"></a><strong>特别说明</strong></h4><ul>
 <li>watch 命令定义了 4 个观察事件点，即 <code>-b</code> 方法调用前，<code>-e</code> 方法异常后，<code>-s</code> 方法返回后，<code>-f</code> 方法结束后</li>
-<li> 4 个观察事件点 <code>-b</code>、<code>-e</code>、<code>-s</code> 默认关闭，<code>-f</code> 默认打开，当指定观察点被打开后，在相应事件点会对观察表达式进行求值并输出</li>
+<li>4 个观察事件点 <code>-b</code>、<code>-e</code>、<code>-s</code> 默认关闭，<code>-f</code> 默认打开，当指定观察点被打开后，在相应事件点会对观察表达式进行求值并输出</li>
 <li>这里要注意<code>方法入参</code>和<code>方法出参</code>的区别，有可能在中间被修改导致前后不一致，除了 <code>-b</code> 事件点 <code>params</code> 代表方法入参外，其余事件都代表方法出参</li>
 <li>当使用 <code>-b</code> 时，由于观察事件点是在方法调用前，此时返回值或异常均不存在</li>
 </ul>
@@ -659,20 +659,20 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><em> class-pattern</em></td>
-<td> 类名表达式匹配</td>
+<td><em>class-pattern</em></td>
+<td>类名表达式匹配</td>
 </tr>
 <tr>
-<td><em> method-pattern</em></td>
-<td> 方法名表达式匹配</td>
+<td><em>method-pattern</em></td>
+<td>方法名表达式匹配</td>
 </tr>
 <tr>
-<td><em> condition-express</em></td>
-<td> 条件表达式</td>
+<td><em>condition-express</em></td>
+<td>条件表达式</td>
 </tr>
 <tr>
-<td> [E]</td>
-<td> 开启正则表达式匹配，默认为通配符匹配</td>
+<td>[E]</td>
+<td>开启正则表达式匹配，默认为通配符匹配</td>
 </tr>
 <tr>
 <td><code>[n:]</code></td>
@@ -701,36 +701,36 @@
 </tr>
 </thead>
 <tbody><tr>
-<td> INDEX</td>
-<td> 时间片段记录编号，每一个编号代表着一次调用，后续 tt 还有很多命令都是基于此编号指定记录操作，非常重要。</td>
+<td>INDEX</td>
+<td>时间片段记录编号，每一个编号代表着一次调用，后续 tt 还有很多命令都是基于此编号指定记录操作，非常重要。</td>
 </tr>
 <tr>
 <td>TIMESTAMP</td>
-<td> 方法执行的本机时间，记录了这个时间片段所发生的本机时间</td>
+<td>方法执行的本机时间，记录了这个时间片段所发生的本机时间</td>
 </tr>
 <tr>
-<td> COST(ms)</td>
-<td> 方法执行的耗时</td>
+<td>COST(ms)</td>
+<td>方法执行的耗时</td>
 </tr>
 <tr>
-<td> IS-RET</td>
-<td> 方法是否以正常返回的形式结束</td>
+<td>IS-RET</td>
+<td>方法是否以正常返回的形式结束</td>
 </tr>
 <tr>
-<td> IS-EXP</td>
-<td> 方法是否以抛异常的形式结束</td>
+<td>IS-EXP</td>
+<td>方法是否以抛异常的形式结束</td>
 </tr>
 <tr>
-<td> OBJECT</td>
-<td> 执行对象的 <code>hashCode()</code>，注意，曾经有人误认为是对象在 JVM 中的内存地址，但很遗憾他不是。但他能帮助你简单的标记当前执行方法的类实体</td>
+<td>OBJECT</td>
+<td>执行对象的<code>hashCode()</code>，注意，曾经有人误认为是对象在 JVM 中的内存地址，但很遗憾他不是。但他能帮助你简单的标记当前执行方法的类实体</td>
 </tr>
 <tr>
-<td> CLASS</td>
-<td> 执行的类名</td>
+<td>CLASS</td>
+<td>执行的类名</td>
 </tr>
 <tr>
-<td> METHOD</td>
-<td> 执行的方法名</td>
+<td>METHOD</td>
+<td>执行的方法名</td>
 </tr>
 </tbody></table>
 <h4 id="方法调用时空隧道"><a href="#方法调用时空隧道" class="headerlink" title="方法调用时空隧道"></a>方法调用时空隧道</h4><p><strong>记录方法调用信息</strong></p>

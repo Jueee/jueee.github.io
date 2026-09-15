@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jueee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-tomorrow","dark":"prism-tomorrow"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Homebrew 是 macOS 上最流行的包管理工具，本文汇总其安装、常用命令、软件包管理、服务管理、换源等核心使用方式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac 命令行 brew 的使用方式汇总">
+<meta property="og:url" content="https://jueee.github.io/2026/09/2026-09-14-Mac%E5%91%BD%E4%BB%A4%E8%A1%8Cbrew%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="小决的博客">
+<meta property="og:description" content="Homebrew 是 macOS 上最流行的包管理工具，本文汇总其安装、常用命令、软件包管理、服务管理、换源等核心使用方式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-14T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-14T10:16:47.778Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="Homebrew">
+<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/09/2026-09-14-Mac%E5%91%BD%E4%BB%A4%E8%A1%8Cbrew%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jueee.github.io/2026/09/2026-09-14-Mac%E5%91%BD%E4%BB%A4%E8%A1%8Cbrew%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB/","path":"2026/09/2026-09-14-Mac命令行brew的使用方式汇总/","title":"Mac 命令行 brew 的使用方式汇总"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Mac 命令行 brew 的使用方式汇总 | 小决的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-175024528-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79"></script>
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="小决的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小决的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">没关系，进一寸有一寸的欢喜。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Homebrew"><span class="nav-number">1.</span> <span class="nav-text">安装 Homebrew</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">官方安装方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%AE%89%E8%A3%85%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">国内镜像安装（推荐）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.3.</span> <span class="nav-text">验证安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">基本信息命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%EF%BC%88Formula%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">软件包管理（Formula）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">搜索软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%BD%AF%E4%BB%B6%E4%BF%A1%E6%81%AF"><span class="nav-number">3.2.</span> <span class="nav-text">查看软件信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.3.</span> <span class="nav-text">安装软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.4.</span> <span class="nav-text">卸载软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.5.</span> <span class="nav-text">更新软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%B7%B2%E5%AE%89%E8%A3%85%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.6.</span> <span class="nav-text">查看已安装的软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%85%E7%90%86%E6%97%A7%E7%89%88%E6%9C%AC"><span class="nav-number">3.7.</span> <span class="nav-text">清理旧版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cask%EF%BC%88GUI-%E5%BA%94%E7%94%A8%EF%BC%89%E7%AE%A1%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">Cask（GUI 应用）管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%EF%BC%88Services%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">服务管理（Services）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tap%EF%BC%88%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BB%93%E5%BA%93%EF%BC%89%E7%AE%A1%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">Tap（第三方仓库）管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%A2%E6%BA%90%EF%BC%88%E5%9B%BD%E5%86%85%E5%8A%A0%E9%80%9F%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">换源（国内加速）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%88%B0%E4%B8%AD%E7%A7%91%E5%A4%A7%E6%BA%90"><span class="nav-number">7.1.</span> <span class="nav-text">切换到中科大源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%88%B0%E6%B8%85%E5%8D%8E%E6%BA%90"><span class="nav-number">7.2.</span> <span class="nav-text">切换到清华源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%81%A2%E5%A4%8D%E5%AE%98%E6%96%B9%E6%BA%90"><span class="nav-number">7.3.</span> <span class="nav-text">恢复官方源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">8.</span> <span class="nav-text">常用环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">9.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98"><span class="nav-number">9.1.</span> <span class="nav-text">权限问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E8%BD%AF%E4%BB%B6%E5%AE%9E%E9%99%85%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AE"><span class="nav-number">9.2.</span> <span class="nav-text">查找软件实际安装位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A3%85%E6%9F%90%E4%B8%AA%E8%BD%AF%E4%BB%B6"><span class="nav-number">9.3.</span> <span class="nav-text">重装某个软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB"><span class="nav-number">9.4.</span> <span class="nav-text">查看依赖关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83"><span class="nav-number">10.</span> <span class="nav-text">快速参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">357</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/09/2026-09-14-Mac%E5%91%BD%E4%BB%A4%E8%A1%8Cbrew%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Mac 命令行 brew 的使用方式汇总 | 小决的博客">
+      <meta itemprop="description" content="Homebrew 是 macOS 上最流行的包管理工具，本文汇总其安装、常用命令、软件包管理、服务管理、换源等核心使用方式。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Mac 命令行 brew 的使用方式汇总
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2026-09-14T00:00:00Z">2026-09-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/MacOS/" itemprop="url" rel="index"><span itemprop="name">MacOS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BD%AF%E4%BB%B6/MacOS/" itemprop="url" rel="index"><span itemprop="name">MacOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">Homebrew 是 macOS 上最流行的包管理工具，本文汇总其安装、常用命令、软件包管理、服务管理、换源等核心使用方式。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Homebrew（简称 brew）是 macOS 上最流行的包管理工具，可以方便地安装、更新、卸载各种命令行工具和应用程序。</p>
+<span id="more"></span>
+
+<h2 id="安装-Homebrew"><a href="#安装-Homebrew" class="headerlink" title="安装 Homebrew"></a>安装 Homebrew</h2><h3 id="官方安装方式"><a href="#官方安装方式" class="headerlink" title="官方安装方式"></a>官方安装方式</h3><pre class="language-bash" data-language="bash"><code class="language-bash">/bin/bash <span class="token parameter variable">-c</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="token variable">)</span></span>"</span></code></pre>
+
+<h3 id="国内镜像安装（推荐）"><a href="#国内镜像安装（推荐）" class="headerlink" title="国内镜像安装（推荐）"></a>国内镜像安装（推荐）</h3><p>网络受限时可使用国内镜像脚本：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">/bin/bash <span class="token parameter variable">-c</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://gitee.com/ineo6/homebrew-install/raw/master/install.sh<span class="token variable">)</span></span>"</span></code></pre>
+
+<p>安装完成后，根据终端提示将 brew 加入 PATH（Apple Silicon Mac 需执行）：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'eval "$(/opt/homebrew/bin/brew shellenv)"'</span> <span class="token operator">&gt;&gt;</span> ~/.zprofile
+<span class="token builtin class-name">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>/opt/homebrew/bin/brew shellenv<span class="token variable">)</span></span>"</span></code></pre>
+
+<h3 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h3><pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token parameter variable">--version</span>
+<span class="token comment"># 输出示例：Homebrew 4.x.x</span></code></pre>
+
+<hr>
+<h2 id="基本信息命令"><a href="#基本信息命令" class="headerlink" title="基本信息命令"></a>基本信息命令</h2><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>brew --version</code></td>
+<td>查看 brew 版本</td>
+</tr>
+<tr>
+<td><code>brew --prefix</code></td>
+<td>查看 brew 安装路径</td>
+</tr>
+<tr>
+<td><code>brew config</code></td>
+<td>查看 brew 配置信息</td>
+</tr>
+<tr>
+<td><code>brew doctor</code></td>
+<td>检查 brew 环境问题</td>
+</tr>
+<tr>
+<td><code>brew help</code></td>
+<td>查看帮助</td>
+</tr>
+<tr>
+<td><code>brew help &lt;command&gt;</code></td>
+<td>查看指定命令帮助</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="软件包管理（Formula）"><a href="#软件包管理（Formula）" class="headerlink" title="软件包管理（Formula）"></a>软件包管理（Formula）</h2><h3 id="搜索软件"><a href="#搜索软件" class="headerlink" title="搜索软件"></a>搜索软件</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 搜索软件包</span>
+brew search <span class="token operator">&lt;</span>keyword<span class="token operator">&gt;</span>
+
+<span class="token comment"># 示例：搜索 git 相关包</span>
+brew search <span class="token function">git</span></code></pre>
+
+<h3 id="查看软件信息"><a href="#查看软件信息" class="headerlink" title="查看软件信息"></a>查看软件信息</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看软件包详情（版本、依赖、主页等）</span>
+brew info <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span>
+
+<span class="token comment"># 示例</span>
+brew info <span class="token function">wget</span></code></pre>
+
+<h3 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装软件包</span>
+brew <span class="token function">install</span> <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span>
+
+<span class="token comment"># 安装指定版本</span>
+brew <span class="token function">install</span> <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span>@<span class="token operator">&lt;</span>version<span class="token operator">&gt;</span>
+
+<span class="token comment"># 示例</span>
+brew <span class="token function">install</span> <span class="token function">wget</span>
+brew <span class="token function">install</span> node@18</code></pre>
+
+<h3 id="卸载软件"><a href="#卸载软件" class="headerlink" title="卸载软件"></a>卸载软件</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 卸载软件包</span>
+brew uninstall <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span>
+
+<span class="token comment"># 卸载并删除所有版本</span>
+brew uninstall <span class="token parameter variable">--force</span> <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span></code></pre>
+
+<h3 id="更新软件"><a href="#更新软件" class="headerlink" title="更新软件"></a>更新软件</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 更新 brew 本身及所有仓库索引</span>
+brew update
+
+<span class="token comment"># 升级所有已安装的软件包</span>
+brew upgrade
+
+<span class="token comment"># 升级指定软件包</span>
+brew upgrade <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span>
+
+<span class="token comment"># 锁定某个包，不随 upgrade 更新</span>
+brew pin <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span>
+
+<span class="token comment"># 解除锁定</span>
+brew unpin <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span></code></pre>
+
+<h3 id="查看已安装的软件"><a href="#查看已安装的软件" class="headerlink" title="查看已安装的软件"></a>查看已安装的软件</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 列出所有已安装的软件包</span>
+brew list
+
+<span class="token comment"># 列出顶层（非依赖）已安装的软件包</span>
+brew leaves
+
+<span class="token comment"># 查看已安装软件的版本信息</span>
+brew list <span class="token parameter variable">--versions</span>
+
+<span class="token comment"># 查看某个软件包的安装路径</span>
+brew <span class="token parameter variable">--cellar</span> <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span></code></pre>
+
+<h3 id="清理旧版本"><a href="#清理旧版本" class="headerlink" title="清理旧版本"></a>清理旧版本</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 清理所有软件包的旧版本和缓存</span>
+brew cleanup
+
+<span class="token comment"># 清理指定软件包的旧版本</span>
+brew cleanup <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span>
+
+<span class="token comment"># 查看可以清理的内容（不实际删除）</span>
+brew cleanup --dry-run
+
+<span class="token comment"># 清理下载缓存</span>
+brew cleanup <span class="token parameter variable">--prune</span><span class="token operator">=</span>all</code></pre>
+
+<hr>
+<h2 id="Cask（GUI-应用）管理"><a href="#Cask（GUI-应用）管理" class="headerlink" title="Cask（GUI 应用）管理"></a>Cask（GUI 应用）管理</h2><p>Cask 用于安装 macOS 图形界面应用（.app）。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 搜索 GUI 应用</span>
+brew search <span class="token parameter variable">--cask</span> <span class="token operator">&lt;</span>keyword<span class="token operator">&gt;</span>
+
+<span class="token comment"># 安装 GUI 应用</span>
+brew <span class="token function">install</span> <span class="token parameter variable">--cask</span> <span class="token operator">&lt;</span>cask<span class="token operator">&gt;</span>
+
+<span class="token comment"># 卸载 GUI 应用</span>
+brew uninstall <span class="token parameter variable">--cask</span> <span class="token operator">&lt;</span>cask<span class="token operator">&gt;</span>
+
+<span class="token comment"># 列出已安装的 GUI 应用</span>
+brew list <span class="token parameter variable">--cask</span>
+
+<span class="token comment"># 升级所有 Cask 应用</span>
+brew upgrade <span class="token parameter variable">--cask</span>
+
+<span class="token comment"># 查看 Cask 信息</span>
+brew info <span class="token parameter variable">--cask</span> <span class="token operator">&lt;</span>cask<span class="token operator">&gt;</span></code></pre>
+
+<p>常用 Cask 示例：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token parameter variable">--cask</span> google-chrome
+brew <span class="token function">install</span> <span class="token parameter variable">--cask</span> visual-studio-code
+brew <span class="token function">install</span> <span class="token parameter variable">--cask</span> iterm2
+brew <span class="token function">install</span> <span class="token parameter variable">--cask</span> <span class="token function">docker</span>
+brew <span class="token function">install</span> <span class="token parameter variable">--cask</span> rectangle</code></pre>
+
+<hr>
+<h2 id="服务管理（Services）"><a href="#服务管理（Services）" class="headerlink" title="服务管理（Services）"></a>服务管理（Services）</h2><p>brew services 用于管理通过 brew 安装的后台服务（如 MySQL、Redis、Nginx 等）。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 列出所有服务及其状态</span>
+brew services list
+
+<span class="token comment"># 启动服务</span>
+brew services start <span class="token operator">&lt;</span>service<span class="token operator">&gt;</span>
+
+<span class="token comment"># 停止服务</span>
+brew services stop <span class="token operator">&lt;</span>service<span class="token operator">&gt;</span>
+
+<span class="token comment"># 重启服务</span>
+brew services restart <span class="token operator">&lt;</span>service<span class="token operator">&gt;</span>
+
+<span class="token comment"># 设置开机自启并立即启动</span>
+brew services start <span class="token operator">&lt;</span>service<span class="token operator">&gt;</span>
+
+<span class="token comment"># 仅运行一次（不设置开机自启）</span>
+brew services run <span class="token operator">&lt;</span>service<span class="token operator">&gt;</span>
+
+<span class="token comment"># 清理已停止的服务</span>
+brew services cleanup</code></pre>
+
+<p>示例（以 MySQL 为例）：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> mysql
+brew services start mysql
+brew services list</code></pre>
+
+<hr>
+<h2 id="Tap（第三方仓库）管理"><a href="#Tap（第三方仓库）管理" class="headerlink" title="Tap（第三方仓库）管理"></a>Tap（第三方仓库）管理</h2><p>Tap 允许添加第三方软件仓库。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 添加第三方仓库</span>
+brew tap <span class="token operator">&lt;</span>user<span class="token operator">&gt;</span>/<span class="token operator">&lt;</span>repo<span class="token operator">&gt;</span>
+
+<span class="token comment"># 列出所有已添加的 tap</span>
+brew tap
+
+<span class="token comment"># 移除 tap</span>
+brew untap <span class="token operator">&lt;</span>user<span class="token operator">&gt;</span>/<span class="token operator">&lt;</span>repo<span class="token operator">&gt;</span></code></pre>
+
+<p>示例：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 添加 HashiCorp 官方仓库（安装 terraform、vault 等）</span>
+brew tap hashicorp/tap
+brew <span class="token function">install</span> hashicorp/tap/terraform</code></pre>
+
+<hr>
+<h2 id="换源（国内加速）"><a href="#换源（国内加速）" class="headerlink" title="换源（国内加速）"></a>换源（国内加速）</h2><p>由于网络原因，国内使用 brew 可能较慢，推荐切换到国内镜像源。</p>
+<h3 id="切换到中科大源"><a href="#切换到中科大源" class="headerlink" title="切换到中科大源"></a>切换到中科大源</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 替换 Homebrew 核心源</span>
+<span class="token function">git</span> <span class="token parameter variable">-C</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>"</span> remote set-url origin https://mirrors.ustc.edu.cn/brew.git
+
+<span class="token comment"># 替换 homebrew-core</span>
+<span class="token function">git</span> <span class="token parameter variable">-C</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span> homebrew/core<span class="token variable">)</span></span>"</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
+
+<span class="token comment"># 替换 homebrew-cask</span>
+<span class="token function">git</span> <span class="token parameter variable">-C</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span> homebrew/cask<span class="token variable">)</span></span>"</span> remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
+
+<span class="token comment"># 替换 bottles（二进制预编译包）下载源（zsh）</span>
+<span class="token builtin class-name">echo</span> <span class="token string">'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles'</span> <span class="token operator">&gt;&gt;</span> ~/.zshrc
+<span class="token builtin class-name">source</span> ~/.zshrc</code></pre>
+
+<h3 id="切换到清华源"><a href="#切换到清华源" class="headerlink" title="切换到清华源"></a>切换到清华源</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">-C</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>"</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+<span class="token function">git</span> <span class="token parameter variable">-C</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span> homebrew/core<span class="token variable">)</span></span>"</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+<span class="token function">git</span> <span class="token parameter variable">-C</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span> homebrew/cask<span class="token variable">)</span></span>"</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git
+
+<span class="token builtin class-name">echo</span> <span class="token string">'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles'</span> <span class="token operator">&gt;&gt;</span> ~/.zshrc
+<span class="token builtin class-name">source</span> ~/.zshrc</code></pre>
+
+<h3 id="恢复官方源"><a href="#恢复官方源" class="headerlink" title="恢复官方源"></a>恢复官方源</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">-C</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span><span class="token variable">)</span></span>"</span> remote set-url origin https://github.com/Homebrew/brew.git
+<span class="token function">git</span> <span class="token parameter variable">-C</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span> homebrew/core<span class="token variable">)</span></span>"</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git
+<span class="token function">git</span> <span class="token parameter variable">-C</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew <span class="token parameter variable">--repo</span> homebrew/cask<span class="token variable">)</span></span>"</span> remote set-url origin https://github.com/Homebrew/homebrew-cask.git</code></pre>
+
+<hr>
+<h2 id="常用环境变量"><a href="#常用环境变量" class="headerlink" title="常用环境变量"></a>常用环境变量</h2><p>可在 <code>~/.zshrc</code> 或 <code>~/.bash_profile</code> 中设置以下变量来定制 brew 行为：</p>
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HOMEBREW_BOTTLE_DOMAIN</code></td>
+<td>指定 bottles 下载镜像地址</td>
+</tr>
+<tr>
+<td><code>HOMEBREW_NO_AUTO_UPDATE=1</code></td>
+<td>禁止 brew 在安装前自动 update</td>
+</tr>
+<tr>
+<td><code>HOMEBREW_NO_ANALYTICS=1</code></td>
+<td>禁用 brew 使用数据收集</td>
+</tr>
+<tr>
+<td><code>HOMEBREW_NO_INSTALL_CLEANUP=1</code></td>
+<td>安装后不自动清理旧版本</td>
+</tr>
+<tr>
+<td><code>HOMEBREW_INSTALL_FROM_API=1</code></td>
+<td>直接从 API 获取包信息，加快速度</td>
+</tr>
+</tbody></table>
+<p>示例：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 禁止自动 update，手动控制更新时机</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">HOMEBREW_NO_AUTO_UPDATE</span><span class="token operator">=</span><span class="token number">1</span></code></pre>
+
+<hr>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="权限问题"><a href="#权限问题" class="headerlink" title="权限问题"></a>权限问题</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 修复 /usr/local 权限</span>
+<span class="token function">sudo</span> <span class="token function">chown</span> <span class="token parameter variable">-R</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">whoami</span><span class="token variable">)</span></span> /usr/local/bin /usr/local/lib /usr/local/sbin</code></pre>
+
+<h3 id="查找软件实际安装位置"><a href="#查找软件实际安装位置" class="headerlink" title="查找软件实际安装位置"></a>查找软件实际安装位置</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看命令所在路径</span>
+<span class="token function">which</span> <span class="token operator">&lt;</span>command<span class="token operator">&gt;</span>
+
+<span class="token comment"># 查看 brew 管理的软件安装路径</span>
+brew <span class="token parameter variable">--prefix</span> <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span></code></pre>
+
+<h3 id="重装某个软件"><a href="#重装某个软件" class="headerlink" title="重装某个软件"></a>重装某个软件</h3><pre class="language-bash" data-language="bash"><code class="language-bash">brew reinstall <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span></code></pre>
+
+<h3 id="查看依赖关系"><a href="#查看依赖关系" class="headerlink" title="查看依赖关系"></a>查看依赖关系</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看某个包的依赖</span>
+brew deps <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span>
+
+<span class="token comment"># 查看某个包被哪些包依赖</span>
+brew uses <span class="token parameter variable">--installed</span> <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span>
+
+<span class="token comment"># 以树形图显示依赖</span>
+brew deps <span class="token parameter variable">--tree</span> <span class="token operator">&lt;</span>formula<span class="token operator">&gt;</span></code></pre>
+
+<hr>
+<h2 id="快速参考"><a href="#快速参考" class="headerlink" title="快速参考"></a>快速参考</h2><pre class="language-none"><code class="language-none">brew install &lt;pkg&gt;          # 安装
+brew uninstall &lt;pkg&gt;        # 卸载
+brew upgrade [&lt;pkg&gt;]        # 升级
+brew search &lt;keyword&gt;       # 搜索
+brew info &lt;pkg&gt;             # 查看信息
+brew list                   # 列出已安装
+brew update                 # 更新索引
+brew cleanup                # 清理缓存
+brew doctor                 # 诊断问题
+brew services list          # 查看服务
+brew services start &lt;svc&gt;   # 启动服务
+brew services stop &lt;svc&gt;    # 停止服务</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+              <a href="/tags/Mac/" rel="tag"># Mac</a>
+              <a href="/tags/Homebrew/" rel="tag"># Homebrew</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/2026-09-10-HarnessAgent%20vs%20ReActAgent%20%E5%AF%B9%E6%AF%94/" rel="prev" title="HarnessAgent vs ReActAgent 对比">
+                  <i class="fa fa-angle-left"></i> HarnessAgent vs ReActAgent 对比
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"jueee","repo":"jueee.github.io","client_id":"e61b622bb2d41a9820db","client_secret":"f531cb8372b3c90357ec963d19c7cc918bbf488b","admin_user":"jueee","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"28bf008cfbd3e48a96c60a9d6fb9e725"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

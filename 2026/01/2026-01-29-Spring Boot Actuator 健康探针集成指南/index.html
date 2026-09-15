@@ -32,7 +32,7 @@
 <meta property="og:description" content="一、背景1.1 什么是健康探针？在云原生和微服务架构中，健康探针（Health Probes） 是容器编排平台（如 Kubernetes）用来监控应用程序运行状态的重要机制。通过定期调用应用暴露的健康检查端点，平台可以判断应用是否正常运行，并据此做出相应的调度决策。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-29T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-20T07:58:48.268Z">
+<meta property="article:modified_time" content="2026-04-20T07:58:50.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="JavaJar">
@@ -131,7 +131,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -197,7 +197,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -208,7 +208,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -348,7 +348,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><h3 id="1-1-什么是健康探针？"><a href="#1-1-什么是健康探针？" class="headerlink" title="1.1 什么是健康探针？"></a>1.1 什么是健康探针？</h3><p>在云原生和微服务架构中，<strong>健康探针（Health Probes）</strong> 是容器编排平台（如 Kubernetes）用来监控应用程序运行状态的重要机制。通过定期调用应用暴露的健康检查端点，平台可以判断应用是否正常运行，并据此做出相应的调度决策。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <p>Kubernetes 支持三种类型的探针：</p>
 <table>
@@ -360,17 +360,17 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong> Liveness Probe（存活探针）</strong></td>
+<td><strong>Liveness Probe（存活探针）</strong></td>
 <td>检测应用是否存活</td>
 <td>重启容器</td>
 </tr>
 <tr>
-<td><strong> Readiness Probe（就绪探针）</strong></td>
+<td><strong>Readiness Probe（就绪探针）</strong></td>
 <td>检测应用是否准备好接收流量</td>
 <td>从 Service 端点移除</td>
 </tr>
 <tr>
-<td><strong> Startup Probe（启动探针）</strong></td>
+<td><strong>Startup Probe（启动探针）</strong></td>
 <td>检测应用是否完成启动</td>
 <td>阻止其他探针直到启动成功</td>
 </tr>
@@ -392,13 +392,13 @@
 <ul>
 <li>✅ 开箱即用，配置简单</li>
 <li>✅ 自动集成数据库、Redis、MQ 等组件的健康检查</li>
-<li>✅ 原生支持 Kubernetes Liveness/Readiness 探针</li>
+<li>✅ 原生支持 Kubernetes Liveness / Readiness 探针</li>
 <li>✅ 可扩展，支持自定义健康检查器</li>
 <li>✅ 与 Spring Boot 版本同步更新，稳定可靠</li>
 </ul>
 <hr>
 <h2 id="二、项目集成"><a href="#二、项目集成" class="headerlink" title="二、项目集成"></a>二、项目集成</h2><h3 id="2-1-添加-Maven-依赖"><a href="#2-1-添加-Maven-依赖" class="headerlink" title="2.1 添加 Maven 依赖"></a>2.1 添加 Maven 依赖</h3><p>在 <code>pom.xml</code> 文件的 <code>&lt;dependencies&gt;</code> 节点中添加 Actuator 依赖：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- Spring Boot Actuator for health probes --&gt;</span>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- Spring Boot Actuator for health probes --&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-actuator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
@@ -435,15 +435,15 @@
 
 <p>对应的 properties 格式如下：</p>
 <pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># Actuator 健康探针配置</span>
-<span class="token attr-name">management.endpoints.web.exposure.include</span><span class="token punctuation">=</span><span class="token attr-value">health,info</span>
-<span class="token attr-name">management.endpoints.web.base-path</span><span class="token punctuation">=</span><span class="token attr-value">/actuator</span>
-<span class="token attr-name">management.endpoint.health.probes.enabled</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">management.endpoint.health.show-details</span><span class="token punctuation">=</span><span class="token attr-value">always</span>
-<span class="token attr-name">management.endpoint.health.group.liveness.include</span><span class="token punctuation">=</span><span class="token attr-value">livenessState</span>
-<span class="token attr-name">management.endpoint.health.group.readiness.include</span><span class="token punctuation">=</span><span class="token attr-value">readinessState,db</span>
-<span class="token attr-name">management.health.livenessstate.enabled</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">management.health.readinessstate.enabled</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">management.health.redis.enabled</span><span class="token punctuation">=</span><span class="token attr-value">false</span></code></pre>
+<span class="token key attr-name">management.endpoints.web.exposure.include</span><span class="token punctuation">=</span><span class="token value attr-value">health,info</span>
+<span class="token key attr-name">management.endpoints.web.base-path</span><span class="token punctuation">=</span><span class="token value attr-value">/actuator</span>
+<span class="token key attr-name">management.endpoint.health.probes.enabled</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
+<span class="token key attr-name">management.endpoint.health.show-details</span><span class="token punctuation">=</span><span class="token value attr-value">always</span>
+<span class="token key attr-name">management.endpoint.health.group.liveness.include</span><span class="token punctuation">=</span><span class="token value attr-value">livenessState</span>
+<span class="token key attr-name">management.endpoint.health.group.readiness.include</span><span class="token punctuation">=</span><span class="token value attr-value">readinessState,db</span>
+<span class="token key attr-name">management.health.livenessstate.enabled</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
+<span class="token key attr-name">management.health.readinessstate.enabled</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
+<span class="token key attr-name">management.health.redis.enabled</span><span class="token punctuation">=</span><span class="token value attr-value">false</span></code></pre>
 
 
 <h2 id="三、配置详解"><a href="#三、配置详解" class="headerlink" title="三、配置详解"></a>三、配置详解</h2><h3 id="3-1-端点暴露配置"><a href="#3-1-端点暴露配置" class="headerlink" title="3.1 端点暴露配置"></a>3.1 端点暴露配置</h3><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">management</span><span class="token punctuation">:</span>
@@ -522,21 +522,21 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong> Liveness</strong></td>
-<td> 应用本身是否陷入不可恢复的状态（如死锁）</td>
+<td><strong>Liveness</strong></td>
+<td>应用本身是否陷入不可恢复的状态（如死锁）</td>
 <td>外部依赖（数据库、下游服务）</td>
 </tr>
 <tr>
 <td><strong>Readiness</strong></td>
-<td> 应用是否能够处理请求、依赖服务是否可用</td>
-<td> -</td>
+<td>应用是否能够处理请求、依赖服务是否可用</td>
+<td>-</td>
 </tr>
 </tbody></table>
 <p><strong>为什么 Liveness 不应检查外部依赖？</strong></p>
 <p>假设 Liveness 探针包含数据库检查，当数据库短暂故障时：</p>
 <ol>
 <li>所有 Pod 的 Liveness 检查失败</li>
-<li> Kubernetes 重启所有 Pod</li>
+<li>Kubernetes 重启所有 Pod</li>
 <li>Pod 重启后数据库仍不可用，继续失败</li>
 <li>形成重启风暴，加剧系统不稳定</li>
 </ol>
@@ -586,13 +586,13 @@
 </li>
 <li><p><strong>构建并推送镜像</strong></p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 打包</span>
-mvn package -DskipTests
+mvn package <span class="token parameter variable">-DskipTests</span>
 
 <span class="token comment"># 构建 Docker 镜像</span>
-docker build -t your-registry/xxx-xxxxx-xxxxxx:v1.1.0 <span class="token builtin class-name">.</span>
+<span class="token function">docker</span> build <span class="token parameter variable">-t</span> your-registry/xxx-xxxxx-xxxxxx:v1.1.0 <span class="token builtin class-name">.</span>
 
 <span class="token comment"># 推送到镜像仓库</span>
-docker push your-registry/xxx-xxxxx-xxxxxx:v1.1.0</code></pre>
+<span class="token function">docker</span> push your-registry/xxx-xxxxx-xxxxxx:v1.1.0</code></pre>
 </li>
 <li><p><strong>部署到 Kubernetes</strong><br>更新 Deployment 使用新镜像，确保应用正常运行且健康端点可访问。</p>
 </li>
@@ -651,22 +651,22 @@ docker push your-registry/xxx-xxxxx-xxxxxx:v1.1.0</code></pre>
 <tbody><tr>
 <td><code>initialDelaySeconds</code></td>
 <td>首次探测前的等待时间，应大于应用启动时间</td>
-<td> Liveness: 60s, Readiness: 30s</td>
+<td>Liveness: 60s, Readiness: 30s</td>
 </tr>
 <tr>
 <td><code>periodSeconds</code></td>
 <td>探测间隔</td>
-<td> 10s</td>
+<td>10s</td>
 </tr>
 <tr>
 <td><code>timeoutSeconds</code></td>
 <td>单次探测超时时间</td>
-<td> 5s</td>
+<td>5s</td>
 </tr>
 <tr>
 <td><code>failureThreshold</code></td>
 <td>连续失败多少次后触发动作</td>
-<td> 3</td>
+<td>3</td>
 </tr>
 <tr>
 <td><code>successThreshold</code></td>
@@ -685,9 +685,9 @@ docker push your-registry/xxx-xxxxx-xxxxxx:v1.1.0</code></pre>
 </ol>
 <hr>
 <h2 id="五、进阶配置"><a href="#五、进阶配置" class="headerlink" title="五、进阶配置"></a>五、进阶配置</h2><h3 id="5-1-自定义健康检查器"><a href="#5-1-自定义健康检查器" class="headerlink" title="5.1 自定义健康检查器"></a>5.1 自定义健康检查器</h3><p>如果需要添加自定义的健康检查逻辑，可以实现 <code>HealthIndicator</code> 接口：</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>actuate<span class="token punctuation">.</span>health<span class="token punctuation">.</span></span><span class="token class-name">Health</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>actuate<span class="token punctuation">.</span>health<span class="token punctuation">.</span></span><span class="token class-name">HealthIndicator</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span><span class="token punctuation">;</span>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>actuate<span class="token punctuation">.</span>health<span class="token punctuation">.</span></span><span class="token class-name">Health</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>actuate<span class="token punctuation">.</span>health<span class="token punctuation">.</span></span><span class="token class-name">HealthIndicator</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Component</span></span><span class="token punctuation">;</span>
 
 <span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AlertServiceHealthIndicator</span> <span class="token keyword">implements</span> <span class="token class-name">HealthIndicator</span> <span class="token punctuation">{</span>
@@ -751,12 +751,10 @@ docker push your-registry/xxx-xxxxx-xxxxxx:v1.1.0</code></pre>
 <p><strong>解决</strong>：</p>
 <ul>
 <li>查看 <code>/actuator/health</code> 详情，定位具体哪个组件 DOWN</li>
-<li> 如果是不需要的检查项，可以禁用：<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">management</span><span class="token punctuation">:</span>
+<li>如果是不需要的检查项，可以禁用：<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">management</span><span class="token punctuation">:</span>
   <span class="token key atrule">health</span><span class="token punctuation">:</span>
     <span class="token key atrule">redis</span><span class="token punctuation">:</span>
-      <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre>
-
-</li>
+      <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span></code></pre></li>
 </ul>
 <hr>
 <h2 id="七、总结"><a href="#七、总结" class="headerlink" title="七、总结"></a>七、总结</h2><p>通过集成 Spring Boot Actuator，我们为 sms-alert-center 项目添加了 Kubernetes 原生支持的健康探针能力。这一改进带来以下收益：</p>
@@ -771,7 +769,7 @@ docker push your-registry/xxx-xxxxx-xxxxxx:v1.1.0</code></pre>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNwcmluZy5pby9zcHJpbmctYm9vdC9kb2NzLzIuMy41LlJFTEVBU0UvcmVmZXJlbmNlL2h0bWwvcHJvZHVjdGlvbi1yZWFkeS1mZWF0dXJlcy5odG1s">Spring Boot Actuator 官方文档<i class="fa fa-external-link-alt"></i></span></li>
 <li><span class="exturl" data-url="aHR0cHM6Ly9rdWJlcm5ldGVzLmlvL2RvY3MvdGFza3MvY29uZmlndXJlLXBvZC1jb250YWluZXIvY29uZmlndXJlLWxpdmVuZXNzLXJlYWRpbmVzcy1zdGFydHVwLXByb2Jlcy8=">Kubernetes Liveness, Readiness and Startup Probes<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNwcmluZy5pby9zcHJpbmctYm9vdC9kb2NzLzIuMy41LlJFTEVBU0UvcmVmZXJlbmNlL2h0bWwvcHJvZHVjdGlvbi1yZWFkeS1mZWF0dXJlcy5odG1sI3Byb2R1Y3Rpb24tcmVhZHkta3ViZXJuZXRlcy1wcm9iZXM=">Spring Boot Kubernetes 探针支持<i class="fa fa-external-link-alt"></i></span> </li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLnNwcmluZy5pby9zcHJpbmctYm9vdC9kb2NzLzIuMy41LlJFTEVBU0UvcmVmZXJlbmNlL2h0bWwvcHJvZHVjdGlvbi1yZWFkeS1mZWF0dXJlcy5odG1sI3Byb2R1Y3Rpb24tcmVhZHkta3ViZXJuZXRlcy1wcm9iZXM=">Spring Boot Kubernetes 探针支持<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
 
     </div>

@@ -32,7 +32,7 @@
 <meta property="og:description" content="FastDFS 容器化安装环境变量新增 .env 文件如下： HOSTNAME_COMMAND&#x3D;xxx.xxx.xxx.xxx  其中，xxx.xxx.xxx.xxx 为 服务器 IP 地址。 nginx.conf 配置nginx.conf 文件增加配置如下： location &#x2F;group1&#x2F;M00 { 	root &#x2F;fastdfs&#x2F;storage&#x2F;data; 	ngx_fastdfs_modu">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-24T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-16T10:58:32.501Z">
+<meta property="article:modified_time" content="2021-07-16T10:58:34.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="FastDFS">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -395,7 +395,7 @@
 <p>需要注意：</p>
 <ul>
 <li>network_mode 必须是 host, 原因是当上传文件时，tracker 会把 storage 的 IP 和端口发给 client，如果是 bridge 模式，则发送的是内网 IP，client 无法访问到。</li>
-<li>image 采用 season/fastdfs:1.2 ，不要用 lastest, 因为 lastest 不包含 nginx 服务，其他 fasdfs 镜像均没有 season 的精简。</li>
+<li>image 采用 season / fastdfs:1.2 ，不要用 lastest, 因为 lastest 不包含 nginx 服务，其他 fasdfs 镜像均没有 season 的精简。</li>
 </ul>
 <h3 id="测试-FastDFS"><a href="#测试-FastDFS" class="headerlink" title="测试 FastDFS"></a>测试 FastDFS</h3><p>命令行测试上传</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash">$ fdfs_upload_file /etc/fdfs/client.conf /home/ant/test 
@@ -434,7 +434,7 @@ group1/M00/00/00/CqD3YF3kwS-ACYbMAAAAHDDhFHI6820520</code></pre>
 编译中断。</code></pre>
 
 
-<p>原因：编译安装 nginx 的 fastdfs 插件的头文件没有找到，由于编译 nginx 时候系统会到／usr/local/include，而编译安装 fastdfs-nginx-module 时则默认保存在了 /usr/include 目录。</p>
+<p>原因：编译安装 nginx 的 fastdfs 插件的头文件没有找到，由于编译 nginx 时候系统会到／usr/local /include，而编译安装 fastdfs-nginx-module 时则默认保存在了 /usr/include 目录。</p>
 <p>修复：ln -s /usr/include/fast* /usr/local/include/</p>
 <h4 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h4><p>Nginx 启动后 error.log 日志报错</p>
 <pre class="language-none"><code class="language-none">ERROR - file:../storage/trunk_mgr/trunk_shared.c, line: 177, "No such file ordirectory" can't be accessed, error info: /data/fastdfs</code></pre>

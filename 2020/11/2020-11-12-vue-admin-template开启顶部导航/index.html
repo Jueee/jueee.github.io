@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/2020/11/image-20201111153454783.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/11/image-20201111153535548.png">
 <meta property="article:published_time" content="2020-11-12T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-25T09:21:46.299Z">
+<meta property="article:modified_time" content="2026-03-25T09:21:48.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Element">
 <meta property="article:tag" content="Vue">
@@ -136,7 +136,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -202,7 +202,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -213,7 +213,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -345,7 +345,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>vue-admin-template 默认没有开启 <span class="exturl" data-url="aHR0cHM6Ly9wYW5qaWFjaGVuLmdpdGVlLmlvL3Z1ZS1lbGVtZW50LWFkbWluLXNpdGUvemgvZ3VpZGUvZXNzZW50aWFscy90YWdzLXZpZXcuaHRtbA==">顶部导航<i class="fa fa-external-link-alt"></i></span>，可通过如下步骤进行开启。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="开启步骤"><a href="#开启步骤" class="headerlink" title="开启步骤"></a>开启步骤</h3><ol>
 <li><p>复制 vue-element-admin 必要组件，到 template 对应的目录下。</p>
@@ -353,7 +353,7 @@
 <p><code>@/store/modules/tagsView.js</code> 文件</p>
 </li>
 <li><p>添加标签<br>@/layout/components/AppMain.vue 添加：</p>
-<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app-main<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>transition</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>fade-transform<span class="token punctuation">"</span></span> <span class="token attr-name">mode</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>out-in<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>keep-alive</span> <span class="token attr-name">:include</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>cachedViews<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>   <span class="token comment">&lt;!-- 新增  --&gt;</span>
@@ -363,8 +363,8 @@
  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span></code></pre>
 </li>
-<li><p>修改 @store/index.js</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<li><p>修改 @store / index.js</p>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
 <span class="token keyword">import</span> Vuex <span class="token keyword">from</span> <span class="token string">'vuex'</span>
 <span class="token keyword">import</span> getters <span class="token keyword">from</span> <span class="token string">'./getters'</span>
 <span class="token keyword">import</span> app <span class="token keyword">from</span> <span class="token string">'./modules/app'</span>
@@ -375,7 +375,7 @@
 Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Vuex<span class="token punctuation">)</span>
 
 <span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vuex<span class="token punctuation">.</span>Store</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-  modules<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">modules</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     app<span class="token punctuation">,</span>
     settings<span class="token punctuation">,</span>
     user<span class="token punctuation">,</span>
@@ -387,7 +387,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token keyword">export</span> <span class="token keyword">default</span> store</code></pre>
 </li>
 <li><p>修改 /src/store/getters.js</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> getters <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> getters <span class="token operator">=</span> <span class="token punctuation">{</span>
   <span class="token function-variable function">sidebar</span><span class="token operator">:</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>app<span class="token punctuation">.</span>sidebar<span class="token punctuation">,</span>
   <span class="token function-variable function">device</span><span class="token operator">:</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>app<span class="token punctuation">.</span>device<span class="token punctuation">,</span>
   <span class="token function-variable function">token</span><span class="token operator">:</span> <span class="token parameter">state</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>user<span class="token punctuation">.</span>token<span class="token punctuation">,</span>
@@ -399,28 +399,28 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token keyword">export</span> <span class="token keyword">default</span> getters</code></pre>
 </li>
 <li><p>修改 /src/layout/components/index.js</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">export</span> <span class="token punctuation">{</span> <span class="token keyword">default</span> <span class="token keyword">as</span> Navbar <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./Navbar'</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token punctuation">{</span> <span class="token keyword">default</span> <span class="token keyword">as</span> Navbar <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./Navbar'</span>
 <span class="token keyword">export</span> <span class="token punctuation">{</span> <span class="token keyword">default</span> <span class="token keyword">as</span> Sidebar <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./Sidebar'</span>
 <span class="token keyword">export</span> <span class="token punctuation">{</span> <span class="token keyword">default</span> <span class="token keyword">as</span> AppMain <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./AppMain'</span>
 <span class="token keyword">export</span> <span class="token punctuation">{</span> <span class="token keyword">default</span> <span class="token keyword">as</span> TagsView <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./TagsView/index.vue'</span>   <span class="token comment">//新增</span></code></pre>
 </li>
 <li><p>修改 /src/store/modules/setting.js</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> showSettings<span class="token punctuation">,</span> tagsView<span class="token punctuation">,</span> fixedHeader<span class="token punctuation">,</span> sidebarLogo <span class="token punctuation">}</span> <span class="token operator">=</span> defaultSettings   <span class="token comment">//新增tagsView</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token punctuation">{</span> showSettings<span class="token punctuation">,</span> tagsView<span class="token punctuation">,</span> fixedHeader<span class="token punctuation">,</span> sidebarLogo <span class="token punctuation">}</span> <span class="token operator">=</span> defaultSettings   <span class="token comment">//新增tagsView</span>
 
 <span class="token keyword">const</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
-  tagsView<span class="token operator">:</span> tagsView<span class="token punctuation">,</span>   <span class="token comment">//新增</span>
-  showSettings<span class="token operator">:</span> showSettings<span class="token punctuation">,</span>
-  fixedHeader<span class="token operator">:</span> fixedHeader<span class="token punctuation">,</span>
-  sidebarLogo<span class="token operator">:</span> sidebarLogo
+  <span class="token literal-property property">tagsView</span><span class="token operator">:</span> tagsView<span class="token punctuation">,</span>   <span class="token comment">//新增</span>
+  <span class="token literal-property property">showSettings</span><span class="token operator">:</span> showSettings<span class="token punctuation">,</span>
+  <span class="token literal-property property">fixedHeader</span><span class="token operator">:</span> fixedHeader<span class="token punctuation">,</span>
+  <span class="token literal-property property">sidebarLogo</span><span class="token operator">:</span> sidebarLogo
 <span class="token punctuation">}</span></code></pre>
 </li>
 <li><p>修改 /src/layout/index.vue</p>
-<pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">:class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>classObj<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app-wrapper<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>device===<span class="token punctuation">'</span>mobile<span class="token punctuation">'</span>&amp;&amp;sidebar.opened<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>drawer-bg<span class="token punctuation">"</span></span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>handleClickOutside<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>device==='mobile'&amp;&amp;sidebar.opened<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>drawer-bg<span class="token punctuation">"</span></span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>handleClickOutside<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sidebar</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sidebar-container<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main-container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">:class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>{<span class="token punctuation">'</span>fixed-header<span class="token punctuation">'</span>:fixedHeader}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">:class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>{'fixed-header':fixedHeader}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>navbar</span> <span class="token punctuation">/&gt;</span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tags-view</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>needTagsView<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>   <span class="token comment">&lt;!-- 新增 --&gt;</span>
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
@@ -434,15 +434,15 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token keyword">import</span> ResizeMixin <span class="token keyword">from</span> <span class="token string">'./mixin/ResizeHandler'</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  name<span class="token operator">:</span> <span class="token string">'Layout'</span><span class="token punctuation">,</span>
-  components<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'Layout'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">components</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     Navbar<span class="token punctuation">,</span>
     Sidebar<span class="token punctuation">,</span>
     AppMain<span class="token punctuation">,</span>
     TagsView   <span class="token comment">//新增</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  mixins<span class="token operator">:</span> <span class="token punctuation">[</span>ResizeMixin<span class="token punctuation">]</span><span class="token punctuation">,</span>
-  computed<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">mixins</span><span class="token operator">:</span> <span class="token punctuation">[</span>ResizeMixin<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">computed</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token function">sidebar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>app<span class="token punctuation">.</span>sidebar
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -457,47 +457,45 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     <span class="token function">classObj</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token keyword">return</span> <span class="token punctuation">{</span>
-        hideSidebar<span class="token operator">:</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span>opened<span class="token punctuation">,</span>
-        openSidebar<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span>opened<span class="token punctuation">,</span>
-        withoutAnimation<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span>withoutAnimation<span class="token punctuation">,</span>
-        mobile<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>device <span class="token operator">===</span> <span class="token string">'mobile'</span>
+        <span class="token literal-property property">hideSidebar</span><span class="token operator">:</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span>opened<span class="token punctuation">,</span>
+        <span class="token literal-property property">openSidebar</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span>opened<span class="token punctuation">,</span>
+        <span class="token literal-property property">withoutAnimation</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sidebar<span class="token punctuation">.</span>withoutAnimation<span class="token punctuation">,</span>
+        <span class="token literal-property property">mobile</span><span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>device <span class="token operator">===</span> <span class="token string">'mobile'</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
-  methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{</span>
     <span class="token function">handleClickOutside</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">'app/closeSideBar'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> withoutAnimation<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>$store<span class="token punctuation">.</span><span class="token function">dispatch</span><span class="token punctuation">(</span><span class="token string">'app/closeSideBar'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">withoutAnimation</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></code></pre>
 </li>
 <li><p>修改 /src/setting.js</p>
-<pre class="language-js" data-language="js"><code class="language-js">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
 
-  title<span class="token operator">:</span> <span class="token string">'Vue Admin Template'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'Vue Admin Template'</span><span class="token punctuation">,</span>
 
   <span class="token comment">/**
    * @type {boolean} true | false
    * @description Whether fix the header
    */</span>
-  fixedHeader<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">fixedHeader</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
 
   <span class="token comment">/**
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */</span>
-  sidebarLogo<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">sidebarLogo</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
 
   <span class="token comment">/**
    * @type {boolean} true | false
    * @description Whether need tagsView
    */</span>
-  tagsView<span class="token operator">:</span> <span class="token boolean">true</span>   <span class="token comment">//新增</span>
+  <span class="token literal-property property">tagsView</span><span class="token operator">:</span> <span class="token boolean">true</span>   <span class="token comment">//新增</span>
 <span class="token punctuation">}</span>
-</code></pre>
-
-</li>
+</code></pre></li>
 </ol>
 <p>此时，配置完成。效果如下：</p>
 <p><img src="/images/2020/11/image-20201111152609312.png" alt="image-20201111152609312" loading="lazy">   </p>
@@ -506,7 +504,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <p>这是因为拷贝的 TagsView 组件默认开启了权限<br>/src/layout/components/TagsView/index.js</p>
 <p>修改如下，即可解决报错。</p>
 <p>   <img src="/images/2020/11/image-20201111152858682.png" alt="image-20201111152858682" loading="lazy"></p>
-<h3 id="Affix-固钉"><a href="#Affix-固钉" class="headerlink" title="Affix 固钉"></a>Affix 固钉</h3><p>当在声明路由上 添加了 Affix 属性，则当前 <code>tag</code> 会被固定在 <code>tags-view</code> 中（不可被删除）。</p>
+<h3 id="Affix-固钉"><a href="#Affix-固钉" class="headerlink" title="Affix 固钉"></a>Affix 固钉</h3><p>当在声明路由上 添加了 Affix 属性，则当前<code>tag</code>会被固定在 <code>tags-view</code>中（不可被删除）。</p>
 <p>修改文件：@src\router\index.js</p>
 <p><img src="/images/2020/11/image-20201111153454783.png" alt="image-20201111153454783" loading="lazy"></p>
 <p>效果如下：</p>

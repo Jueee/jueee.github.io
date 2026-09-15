@@ -32,7 +32,7 @@
 <meta property="og:description" content="vue-json-viewer vue-json-viewer 主要用于 JSON 展示。 官网 https:&#x2F;&#x2F;www.npmjs.com&#x2F;package&#x2F;vue-json-viewer  安装npm install vue-json-viewer --save  引用全局引用： import JsonViewer from &#39;vue-json-viewer&#39; Vue.use(JsonViewe">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-14T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-21T02:25:44.524Z">
+<meta property="article:modified_time" content="2026-01-21T02:25:46.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Vue">
 <meta property="article:tag" content="前端">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -345,18 +345,18 @@
 <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><pre class="language-none"><code class="language-none">npm install vue-json-viewer --save</code></pre>
 
 <h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><p>全局引用：</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> JsonViewer <span class="token keyword">from</span> <span class="token string">'vue-json-viewer'</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> JsonViewer <span class="token keyword">from</span> <span class="token string">'vue-json-viewer'</span>
 Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>JsonViewer<span class="token punctuation">)</span></code></pre>
 
 <p>页面引用：</p>
-<pre class="language-js" data-language="js"><code class="language-js"><span class="token keyword">import</span> JsonViewer <span class="token keyword">from</span> <span class="token string">'vue-json-viewer'</span>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> JsonViewer <span class="token keyword">from</span> <span class="token string">'vue-json-viewer'</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  components<span class="token operator">:</span> <span class="token punctuation">{</span> JsonViewer <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">components</span><span class="token operator">:</span> <span class="token punctuation">{</span> JsonViewer <span class="token punctuation">}</span><span class="token punctuation">,</span>
   <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
 
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><pre class="language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>json-viewer</span> <span class="token attr-name">:value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>showtext<span class="token punctuation">"</span></span> <span class="token attr-name">:expand-depth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>4</span> <span class="token attr-name">copyable</span>  <span class="token attr-name">sort</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>json-viewer</span><span class="token punctuation">&gt;</span></span></code></pre>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>json-viewer</span> <span class="token attr-name">:value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>showtext<span class="token punctuation">"</span></span> <span class="token attr-name">:expand-depth</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span>4</span> <span class="token attr-name">copyable</span>  <span class="token attr-name">sort</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>json-viewer</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 <h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><table>
 <thead>
@@ -368,7 +368,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 </thead>
 <tbody><tr>
 <td><code>value</code></td>
-<td>JSON 数据（可与 一起使用 <code>v-model</code>）</td>
+<td>JSON 数据（可与 一起使用<code>v-model</code>）</td>
 <td><strong>必需的</strong></td>
 </tr>
 <tr>
@@ -378,7 +378,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 </tr>
 <tr>
 <td><code>copyable</code></td>
-<td>显示复制按钮，您可以自定义刚刚设置的复制文本 <code>{copyText: 'copy', copiedText: 'copied', timeout: 2000}</code> 或设置 <code>true</code> 使用默认复制文本</td>
+<td>显示复制按钮，您可以自定义刚刚设置的复制文本<code>{copyText: 'copy', copiedText: 'copied', timeout: 2000}</code>或设置<code>true</code>使用默认复制文本</td>
 <td><code>false</code></td>
 </tr>
 <tr>
@@ -404,7 +404,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <tr>
 <td><code>timeformat</code></td>
 <td>自定义时间格式功能</td>
-<td>时间 =&gt; time.toLocaleString ()</td>
+<td>时间 =&gt; time.toLocaleString()</td>
 </tr>
 <tr>
 <td><code>preview-mode</code></td>

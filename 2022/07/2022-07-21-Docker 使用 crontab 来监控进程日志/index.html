@@ -32,7 +32,7 @@
 <meta property="og:description" content="对于 Docker 容器中的应用，我们希望通过监控日志的方式来检查运行状态。 如果日志一段时间不滚动，则进行应用的重启。 本文将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-21T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-27T11:07:16.982Z">
+<meta property="article:modified_time" content="2022-07-27T11:07:18.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Supervisor">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -341,7 +341,7 @@
     <div class="post-body" itemprop="articleBody"><p>对于 Docker 容器中的应用，我们希望通过监控日志的方式来检查运行状态。</p>
 <p>如果日志一段时间不滚动，则进行应用的重启。</p>
 <p>本文将使用进程管理工具 supervisor 来管理容器中的多个进程。使用 Supervisor 可以更好的控制、管理、重启我们希望运行的进程。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="supervisor配置"><a href="#supervisor配置" class="headerlink" title="supervisor配置"></a>supervisor 配置</h3><p> 新增 supervisord.conf 文件，如下所示：</p>
 <pre class="language-conf" data-language="conf"><code class="language-conf">[supervisord]
@@ -357,16 +357,16 @@ command=/bin/bash -c "/java-app-dir/appCtrl.sh start &amp;&amp; tail -f /dev/nul
 <li>第二段包含要控制的 2 个服务。每一段包含一个服务的目录和启动这个服务的命令。</li>
 </ul>
 <p><code>/etc/init.d/cron start</code> 用于启动 crontab 服务，但这样启动的 crontab 服务中配置的定时命令是没有 Dockerfile 中设置的环境变量的。</p>
-<p>因此还需要在这之前执行 <code>env &gt;&gt; /etc/default/locale</code>，这样有 Dockerfile 中通过 <code>ENV</code> 设置的环境变量在 crontab 中就可以正常读取了。</p>
+<p>因此还需要在这之前执行<code>env &gt;&gt; /etc/default/locale</code>，这样有 Dockerfile 中通过<code>ENV</code>设置的环境变量在 crontab 中就可以正常读取了。</p>
 <h3 id="报警文件配置"><a href="#报警文件配置" class="headerlink" title="报警文件配置"></a>报警文件配置</h3><p>新增 alarm_log.sh 文件，如下所示：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell"><span class="token shebang important">#!/bin/bash</span>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
 
-<span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">tail</span> -n <span class="token number">1000</span> ./approot/logs/app.log<span class="token operator">|</span><span class="token function">grep</span> <span class="token number">202</span><span class="token operator">|</span><span class="token function">tail</span> -n <span class="token number">1</span><span class="token operator">|</span><span class="token function">cut</span> -c <span class="token number">1</span>-19<span class="token variable">`</span></span>
+<span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">tail</span> <span class="token parameter variable">-n</span> <span class="token number">1000</span> ./approot/logs/app.log<span class="token operator">|</span><span class="token function">grep</span> <span class="token number">202</span><span class="token operator">|</span><span class="token function">tail</span> <span class="token parameter variable">-n</span> <span class="token number">1</span><span class="token operator">|</span><span class="token function">cut</span> <span class="token parameter variable">-c</span> <span class="token number">1</span>-19<span class="token variable">`</span></span>
 <span class="token assign-left variable">timestamp</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%s -d<span class="token string">"<span class="token variable">${time}</span>"</span><span class="token variable">`</span></span>
 <span class="token assign-left variable">nowstamp</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%s<span class="token variable">`</span></span>
 <span class="token assign-left variable">alarmstamp</span><span class="token operator">=</span>$<span class="token punctuation">[</span><span class="token variable">${nowstamp}</span>-10*60<span class="token punctuation">]</span>
 <span class="token builtin class-name">echo</span> <span class="token variable"><span class="token variable">`</span><span class="token function">date</span><span class="token variable">`</span></span> <span class="token variable">${time}</span> <span class="token variable">${timestamp}</span> <span class="token variable">${nowstamp}</span> <span class="token variable">${alarmstamp}</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$alarmstamp</span>"</span> -gt <span class="token string">"<span class="token variable">$timestamp</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$alarmstamp</span>"</span> <span class="token parameter variable">-gt</span> <span class="token string">"<span class="token variable">$timestamp</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
 <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable"><span class="token variable">`</span><span class="token function">date</span><span class="token variable">`</span></span> restart "</span>
 <span class="token builtin class-name">cd</span> /java-app-dir <span class="token operator">&amp;&amp;</span> <span class="token function">bash</span> appCtrl.sh restart
 <span class="token keyword">fi</span></code></pre>
@@ -388,36 +388,36 @@ deb-src http://</span><span class="token identifier">debian</span><span class="t
 <span class="token comment">## http://hwraid.le-vert.net/wiki/DebianPackages</span>
 <span class="token identifier">deb</span> <span class="token identifier">http</span><span class="token punctuation">:</span><span class="token operator">/</span><span class="token regex">/repo.hz.netease.com/</span><span class="token identifier">hwraid</span><span class="token operator">/</span><span class="token identifier">stretch</span> <span class="token identifier">stretch</span> <span class="token identifier">main</span></code></pre>
 
-<h3 id="Dockerfile-配置"><a href="#Dockerfile-配置" class="headerlink" title="Dockerfile 配置"></a>Dockerfile 配置</h3><pre class="language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM private-registry.yidun.internal/localmanti/yd-java-app:v1
+<h3 id="Dockerfile-配置"><a href="#Dockerfile-配置" class="headerlink" title="Dockerfile 配置"></a>Dockerfile 配置</h3><pre class="language-docker" data-language="docker"><code class="language-docker"><span class="token instruction"><span class="token keyword">FROM</span> private-registry.yidun.internal/localmanti/yd-java-app:v1</span>
 
-MAINTAINER jueee
+<span class="token instruction"><span class="token keyword">MAINTAINER</span> jueee</span>
 
-ENV XMX_CONFIG="4000"\
-    XMS_CONFIG="4000"\
-    MAX_PERM="256"\
-    RUN_CMD="com.xxx.xxx.xxx.xxx"
+<span class="token instruction"><span class="token keyword">ENV</span> XMX_CONFIG=<span class="token string">"4000"</span><span class="token operator">\</span>
+    XMS_CONFIG=<span class="token string">"4000"</span><span class="token operator">\</span>
+    MAX_PERM=<span class="token string">"256"</span><span class="token operator">\</span>
+    RUN_CMD=<span class="token string">"com.xxx.xxx.xxx.xxx"</span></span>
 
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone
+<span class="token instruction"><span class="token keyword">ENV</span> TZ=Asia/Shanghai</span>
+<span class="token instruction"><span class="token keyword">RUN</span> ln -snf /usr/share/zoneinfo/<span class="token variable">$TZ</span> /etc/localtime &amp;&amp; echo <span class="token variable">$TZ</span> &gt; /etc/timezone</span>
 
-RUN env &gt;&gt; /etc/default/locale
+<span class="token instruction"><span class="token keyword">RUN</span> env &gt;&gt; /etc/default/locale</span>
 
-COPY sources.list /etc/apt/
+<span class="token instruction"><span class="token keyword">COPY</span> sources.list /etc/apt/</span>
 
-RUN apt-get update \
-  &amp;&amp; apt-get install -y --no-install-recommends cron supervisor\
-  &amp;&amp; rm -rf /var/lib/apt/lists/* \
-  &amp;&amp; apt-get clean \
-  &amp;&amp; echo "*/1 * * * * root  cd /java-app-dir &amp;&amp; /bin/bash alarm_log.sh &gt;&gt; /java-app-dir/alarm_log.log" &gt;&gt; /etc/crontab
+<span class="token instruction"><span class="token keyword">RUN</span> apt-get update <span class="token operator">\</span>
+  &amp;&amp; apt-get install -y --no-install-recommends cron supervisor<span class="token operator">\</span>
+  &amp;&amp; rm -rf /var/lib/apt/lists/* <span class="token operator">\</span>
+  &amp;&amp; apt-get clean <span class="token operator">\</span>
+  &amp;&amp; echo <span class="token string">"*/1 * * * * root  cd /java-app-dir &amp;&amp; /bin/bash alarm_log.sh &gt;&gt; /java-app-dir/alarm_log.log"</span> &gt;&gt; /etc/crontab</span>
 
-COPY alarm_log.sh /java-app-dir
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-CMD ["/usr/bin/supervisord"]</code></pre>
+<span class="token instruction"><span class="token keyword">COPY</span> alarm_log.sh /java-app-dir</span>
+<span class="token instruction"><span class="token keyword">COPY</span> supervisord.conf /etc/supervisor/conf.d/supervisord.conf</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"/usr/bin/supervisord"</span>]</span></code></pre>
 
 <p>其中：</p>
 <ul>
 <li><code>env &gt;&gt; /etc/default/locale</code> 是为了保存环境变量，从而方便 crontab 调用。</li>
-<li>执行 apt 安装时注意加入 <code>-y --no-install-recommends</code>，并且在安装完成后执行 <code>rm -rf /var/lib/apt/lists/* &amp;&amp; apt-get clean</code> 命令，可以有效减小镜像的体积。</li>
+<li>执行 apt 安装时注意加入<code>-y --no-install-recommends</code>，并且在安装完成后执行<code>rm -rf /var/lib/apt/lists/* &amp;&amp; apt-get clean</code>命令，可以有效减小镜像的体积。</li>
 </ul>
 <h3 id="特殊处理"><a href="#特殊处理" class="headerlink" title="特殊处理"></a>特殊处理</h3><p>如果镜像重启的过程中，无法获取环境变量，导致重启失败，也需要通过 export 将环境变量取出来，然后请求的时候再带上。</p>
 <p>如：</p>

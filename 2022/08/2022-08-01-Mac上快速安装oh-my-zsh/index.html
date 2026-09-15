@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/2022/08/image-20220801211632073.png">
 <meta property="og:image" content="https://jueee.github.io/images/2022/08/image-20220801213206293.png">
 <meta property="article:published_time" content="2022-08-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-29T02:28:01.377Z">
+<meta property="article:modified_time" content="2022-08-29T02:28:02.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="MacOS">
 <meta property="article:tag" content="软件">
@@ -134,7 +134,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -200,7 +200,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -211,7 +211,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -345,10 +345,10 @@
     <div class="post-body" itemprop="articleBody"><h3 id="oh-my-zsh-介绍"><a href="#oh-my-zsh-介绍" class="headerlink" title="oh-my-zsh 介绍"></a>oh-my-zsh 介绍</h3><ul>
 <li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29obXl6c2gvb2hteXpzaA==">ohmyzsh-github<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="zsh安装设置"><a href="#zsh安装设置" class="headerlink" title="zsh安装设置"></a>zsh 安装设置</h3><p>mac 自带了 zsh，可以检测一下：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">cat</span> /etc/shells
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">cat</span> /etc/shells
 <span class="token comment"># List of acceptable shells for chpass(1).</span>
 <span class="token comment"># Ftpd will not allow users to connect who are not using</span>
 <span class="token comment"># one of these shells.</span>
@@ -362,7 +362,7 @@
 /bin/zsh</code></pre>
 
 <p>查看 zsh 版本：</p>
-<pre class="language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">zsh</span> --version
+<pre class="language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">zsh</span> <span class="token parameter variable">--version</span>
 <span class="token function">zsh</span> <span class="token number">5.8</span>.1 <span class="token punctuation">(</span>x86_64-apple-darwin21.0<span class="token punctuation">)</span></code></pre>
 
 <p>把 zsh 设置成默认 shell</p>
@@ -371,7 +371,7 @@ $ <span class="token builtin class-name">echo</span> <span class="token variable
 /bin/zsh
 
 <span class="token comment"># 设置</span>
-$ chsh -s <span class="token variable"><span class="token variable">$(</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">)</span></span>
+$ chsh <span class="token parameter variable">-s</span> <span class="token variable"><span class="token variable">$(</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">)</span></span>
 
 <span class="token comment"># 查检-需要关闭终端重新打开后生效</span>
 $ <span class="token builtin class-name">echo</span> <span class="token environment constant">$SHELL</span>

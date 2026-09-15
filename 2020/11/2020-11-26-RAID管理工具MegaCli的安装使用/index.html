@@ -32,7 +32,7 @@
 <meta property="og:description" content="MegaCli 介绍MegaCli 是一款管理维护硬件 RAID 软件，可以通过它来了解当前 raid 卡的所有信息，包括 raid 卡的型号，raid 的阵列类型，raid 上各磁盘状态，等等。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-26T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-16T10:50:53.914Z">
+<meta property="article:modified_time" content="2021-07-16T10:50:54.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="RAID">
@@ -131,7 +131,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -197,7 +197,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -208,7 +208,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -348,27 +348,27 @@
     
     
     <div class="post-body" itemprop="articleBody"><h3 id="MegaCli-介绍"><a href="#MegaCli-介绍" class="headerlink" title="MegaCli 介绍"></a>MegaCli 介绍</h3><p>MegaCli 是一款管理维护硬件 RAID 软件，可以通过它来了解当前 raid 卡的所有信息，包括 raid 卡的型号，raid 的阵列类型，raid 上各磁盘状态，等等。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="MegaCli-安装"><a href="#MegaCli-安装" class="headerlink" title="MegaCli 安装"></a>MegaCli 安装</h3><h4 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h4><p>方案一</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt-get</span> <span class="token function">install</span> alien
-<span class="token function">wget</span> --user<span class="token operator">=</span>hetzner --password<span class="token operator">=</span>download http://download.hetzner.de/tools/LSI/tools/MegaCLI/8.07.14_MegaCLI.zip
-<span class="token function">unzip</span> <span class="token number">8.07</span>.14_MegaCLI.zip -d megacli
+<span class="token function">wget</span> <span class="token parameter variable">--user</span><span class="token operator">=</span>hetzner <span class="token parameter variable">--password</span><span class="token operator">=</span>download http://download.hetzner.de/tools/LSI/tools/MegaCLI/8.07.14_MegaCLI.zip
+<span class="token function">unzip</span> <span class="token number">8.07</span>.14_MegaCLI.zip <span class="token parameter variable">-d</span> megacli
 <span class="token builtin class-name">cd</span> megacli/Linux
 <span class="token function">sudo</span> alien MegaCli-8.07.14-1.noarch.rpm
-<span class="token function">sudo</span> dpkg -i megacli_8.07.14-2_all.deb
-<span class="token function">ln</span> -s /opt/MegaRAID/MegaCli/MegaCli64 /usr/bin/megacli</code></pre>
+<span class="token function">sudo</span> dpkg <span class="token parameter variable">-i</span> megacli_8.07.14-2_all.deb
+<span class="token function">ln</span> <span class="token parameter variable">-s</span> /opt/MegaRAID/MegaCli/MegaCli64 /usr/bin/megacli</code></pre>
 
 <p>方案二</p>
-<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt-get</span> -y <span class="token function">install</span>  rpm2cpio libsysfs2 libsysfs-dev <span class="token function">unzip</span>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">apt-get</span> <span class="token parameter variable">-y</span> <span class="token function">install</span>  rpm2cpio libsysfs2 libsysfs-dev <span class="token function">unzip</span>
 <span class="token function">unzip</span> <span class="token number">8.00</span>.48_Linux_MegaCLI.zip
 <span class="token function">unzip</span> MegaCliLin.zip
-rpm2cpio Lib_Utils-1.00-09.noarch.rpm <span class="token operator">|</span> cpio -idmv
-rpm2cpio MegaCli-8.00.48-1.i386.rpm <span class="token operator">|</span> cpio -idmv
-<span class="token function">ln</span> -s opt/MegaRAID/MegaCli/MegaCli64 /usr/bin/megacli64
-<span class="token function">ln</span> -s opt/MegaRAID/MegaCli/MegaCli /usr/bin/megacli</code></pre>
+rpm2cpio Lib_Utils-1.00-09.noarch.rpm <span class="token operator">|</span> cpio <span class="token parameter variable">-idmv</span>
+rpm2cpio MegaCli-8.00.48-1.i386.rpm <span class="token operator">|</span> cpio <span class="token parameter variable">-idmv</span>
+<span class="token function">ln</span> <span class="token parameter variable">-s</span> opt/MegaRAID/MegaCli/MegaCli64 /usr/bin/megacli64
+<span class="token function">ln</span> <span class="token parameter variable">-s</span> opt/MegaRAID/MegaCli/MegaCli /usr/bin/megacli</code></pre>
 
-<h4 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$  megacli -v
+<h4 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h4><pre class="language-bash" data-language="bash"><code class="language-bash">$  megacli <span class="token parameter variable">-v</span>
       MegaCLI SAS RAID Management Tool  Ver <span class="token number">8.07</span>.14 Dec <span class="token number">16</span>, <span class="token number">2013</span>
     <span class="token punctuation">(</span>c<span class="token punctuation">)</span>Copyright <span class="token number">2013</span>, LSI Corporation, All Rights Reserved.
 Exit Code: 0x00</code></pre>
@@ -414,7 +414,7 @@ megacli: error <span class="token keyword">while</span> loading shared libraries
 <li><p>raid 卡个数</p>
 <p>megacli –adpCount</p>
 </li>
-<li><p>检测磁盘 ID 注意，该 ID 值用于标注磁盘</p>
+<li><p>检测磁盘 ID 注意, 该 ID 值用于标注磁盘</p>
 <p>megacli -PDlist -aALL | grep "ID" | uniq</p>
 </li>
 <li><p>显示所有逻辑磁盘组信息 (做了几组 raid，raid cache 的默认和当前策略，做好 raid 后的虚拟盘容量)</p>
@@ -429,11 +429,9 @@ megacli: error <span class="token keyword">while</span> loading shared libraries
 <li><p>查看充电状态</p>
 <p>megacli -AdpBbuCmd -GetBbuStatus -aALL |grep 'Charger Status'</p>
 </li>
-<li><p>显示 BBU 状态信息，比如电池是否，如果 issohgood 为 Yes 为正常，No 为异常</p>
+<li><p>显示 BBU 状态信息，比如电池是否, 如果 issohgood 为 Yes 为正常，No 为异常</p>
+<p>megacli -AdpBbuCmd -GetBbuStatus -aALL|grep -i issohgood</p>
 </li>
-</ul>
-<p>  megacli -AdpBbuCmd -GetBbuStatus -aALL|grep -i issohgood</p>
-<ul>
 <li><p>显示 BBU 状态信息</p>
 <p>megacli -AdpBbuCmd -GetBbuStatus -aALL</p>
 </li>
@@ -557,10 +555,10 @@ megacli: error <span class="token keyword">while</span> loading shared libraries
 <li><p>取 Enclosure Device ID</p>
 <p>uiqnum=<code> megacli -PDlist -aAL | grep "ID" | uniq |awk -F: '{print $2}' | awk '{print $1}'</code></p>
 </li>
-<li><p>取 Slot Number</p>
+<li><p> 取 Slot Number</p>
 <p>disknum=<code>megacli -PDList -aAL | grep -E "DISK GROUP|Slot Number|postion:|Firmware sta e:" | grep Slot | awk -F[: ] '{print $NF}'</code></p>
 </li>
-<li><p>算出总数</p>
+<li><p> 算出总数</p>
 <p>diskto al=<code>megacli -PDList -aAL | grep -E "DISK GROUP|Slot Number|postion:|Firmware sta e:" | grep Slot | awk -F[: ] '{print $NF}' | wc -l</code><br>ar ay=($disknum)</p>
 </li>
 <li><p>查看当前 raid 缓存状态，raid 缓存状态设置为 wb 的话要注意电池放电事宜，设置电池放电模式为自动学习模式</p>

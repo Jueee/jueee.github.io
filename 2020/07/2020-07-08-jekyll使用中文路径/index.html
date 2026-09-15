@@ -32,7 +32,7 @@
 <meta property="og:description" content="在使用 jekyll 在本地预览自己写的中文文件名博客无法正常打开，如何解决？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-07-08T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-08-24T01:35:54.577Z">
+<meta property="article:modified_time" content="2020-08-24T01:35:56.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Blog">
 <meta property="article:tag" content="Ruby">
@@ -131,7 +131,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -197,7 +197,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -208,7 +208,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -341,12 +341,12 @@
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>修改 安装目录 <code>Ruby26-x64\lib\ruby\2.6.0\webrick\httpservlet</code> 下的 <code>filehandler.rb</code> 文件，建议先备份。</p>
 <p>找到下列两处，添加一句（+ 的一行为添加部分）</p>
 <p>第 285 行： </p>
-<pre class="language-ruby" data-language="ruby"><code class="language-ruby">path <span class="token operator">=</span> req<span class="token punctuation">.</span>path_info<span class="token punctuation">.</span>dup<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token constant">Encoding</span><span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">"filesystem"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token operator">+</span> path<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment"># 加入编码</span>
+<pre class="language-ruby" data-language="ruby"><code class="language-ruby">path <span class="token operator">=</span> req<span class="token punctuation">.</span>path_info<span class="token punctuation">.</span>dup<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span>Encoding<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"filesystem"</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token operator">+</span> path<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"UTF-8"</span></span><span class="token punctuation">)</span> <span class="token comment"># 加入编码</span>
 <span class="token keyword">if</span> trailing_pathsep<span class="token operator">?</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>path_info<span class="token punctuation">)</span>       </code></pre>
 <p>第 333 行：</p>
-<pre class="language-ruby" data-language="ruby"><code class="language-ruby"><span class="token keyword">break</span> <span class="token keyword">if</span> base <span class="token operator">==</span> <span class="token string">"/"</span>
-<span class="token operator">+</span> base<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string">"UTF-8"</span><span class="token punctuation">)</span> <span class="token comment">#加入編碼</span>
+<pre class="language-ruby" data-language="ruby"><code class="language-ruby"><span class="token keyword">break</span> <span class="token keyword">if</span> base <span class="token operator">==</span> <span class="token string-literal"><span class="token string">"/"</span></span>
+<span class="token operator">+</span> base<span class="token punctuation">.</span>force_encoding<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"UTF-8"</span></span><span class="token punctuation">)</span> <span class="token comment">#加入編碼</span>
 <span class="token keyword">break</span> <span class="token keyword">unless</span> <span class="token builtin">File</span><span class="token punctuation">.</span>directory<span class="token operator">?</span><span class="token punctuation">(</span><span class="token builtin">File</span><span class="token punctuation">.</span>expand_path<span class="token punctuation">(</span>res<span class="token punctuation">.</span>filename <span class="token operator">+</span> base<span class="token punctuation">)</span><span class="token punctuation">)</span>  </code></pre>
 
 <p>修改完重新 jekyll serve 即可支持中文文件名。</p>
@@ -359,8 +359,8 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Ruby/" rel="tag"># Ruby</a>
               <a href="/tags/Blog/" rel="tag"># Blog</a>
+              <a href="/tags/Ruby/" rel="tag"># Ruby</a>
               <a href="/tags/jekyll/" rel="tag"># jekyll</a>
           </div>
 

@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/2020/10/image-20201030161817190.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/10/image-20201030161817190.png">
 <meta property="article:published_time" content="2020-10-30T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-15T09:24:47.295Z">
+<meta property="article:modified_time" content="2020-12-15T09:24:48.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Alibaba">
 <meta property="article:tag" content="Java">
@@ -135,7 +135,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -201,7 +201,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -212,7 +212,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -352,13 +352,13 @@
 <li>在 POM 中直接配置 druid-spring-boot-starter，不用写任何代码。</li>
 <li>配置 druid，写几行代码，可以加入。</li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="使用druid-spring-boot-starter"><a href="#使用druid-spring-boot-starter" class="headerlink" title="使用druid-spring-boot-starter"></a>使用 druid-spring-boot-starter</h3><p>Druid Spring Boot Starter 用于帮助你在 Spring Boot 项目中轻松集成 Druid 数据库连接池和监控。</p>
 <ul>
 <li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FsaWJhYmEvZHJ1aWQvdHJlZS9tYXN0ZXIvZHJ1aWQtc3ByaW5nLWJvb3Qtc3RhcnRlcg==">https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
-<h4 id="引入-Jar"><a href="#引入-Jar" class="headerlink" title="引入 Jar"></a>引入 Jar</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<h4 id="引入-Jar"><a href="#引入-Jar" class="headerlink" title="引入 Jar"></a>引入 Jar</h4><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>druid-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.2.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
@@ -366,98 +366,98 @@
 
 <h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>配置文件 application.properties。</p>
 <p>基础配置：</p>
-<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.driverClassName</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
-<span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</span>
-<span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
-<span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span></code></pre>
+<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token key attr-name">spring.datasource.driverClassName</span><span class="token punctuation">=</span><span class="token value attr-value">com.mysql.cj.jdbc.Driver</span>
+<span class="token key attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token value attr-value">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</span>
+<span class="token key attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token value attr-value">xxx</span>
+<span class="token key attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token value attr-value">xxx</span></code></pre>
 
 <p>信息配置：</p>
-<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</span>
-<span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
-<span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
-<span class="token attr-name">spring.datasource.driverClassName</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
+<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token key attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token value attr-value">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</span>
+<span class="token key attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token value attr-value">xxx</span>
+<span class="token key attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token value attr-value">xxx</span>
+<span class="token key attr-name">spring.datasource.driverClassName</span><span class="token punctuation">=</span><span class="token value attr-value">com.mysql.cj.jdbc.Driver</span>
 
 <span class="token comment">#config druid</span>
 <span class="token comment">#连接池的设置</span>
 <span class="token comment">#初始化时建立物理连接的个数</span>
-<span class="token attr-name">spring.datasource.druid.initial-size</span><span class="token punctuation">=</span><span class="token attr-value">5</span>
+<span class="token key attr-name">spring.datasource.druid.initial-size</span><span class="token punctuation">=</span><span class="token value attr-value">5</span>
 <span class="token comment">#最小连接池数量</span>
-<span class="token attr-name">spring.datasource.druid.min-idle</span><span class="token punctuation">=</span><span class="token attr-value">5</span>
+<span class="token key attr-name">spring.datasource.druid.min-idle</span><span class="token punctuation">=</span><span class="token value attr-value">5</span>
 <span class="token comment">#最大连接池数量 maxIdle已经不再使用</span>
-<span class="token attr-name">spring.datasource.druid.max-active</span><span class="token punctuation">=</span><span class="token attr-value">20</span>
+<span class="token key attr-name">spring.datasource.druid.max-active</span><span class="token punctuation">=</span><span class="token value attr-value">20</span>
 <span class="token comment">#获取连接时最大等待时间，单位毫秒</span>
-<span class="token attr-name">spring.datasource.druid.max-wait</span><span class="token punctuation">=</span><span class="token attr-value">60000</span>
+<span class="token key attr-name">spring.datasource.druid.max-wait</span><span class="token punctuation">=</span><span class="token value attr-value">60000</span>
 <span class="token comment">#申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。</span>
-<span class="token attr-name">spring.datasource.druid.test-while-idle</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token key attr-name">spring.datasource.druid.test-while-idle</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
 <span class="token comment">#既作为检测的间隔时间又作为testWhileIdel执行的依据</span>
-<span class="token attr-name">spring.datasource.druid.time-between-eviction-runs-millis</span><span class="token punctuation">=</span><span class="token attr-value">60000</span>
+<span class="token key attr-name">spring.datasource.druid.time-between-eviction-runs-millis</span><span class="token punctuation">=</span><span class="token value attr-value">60000</span>
 <span class="token comment">#销毁线程时检测当前连接的最后活动时间和当前时间差大于该值时，关闭当前连接</span>
-<span class="token attr-name">spring.datasource.druid.min-evictable-idle-time-millis</span><span class="token punctuation">=</span><span class="token attr-value">30000</span>
+<span class="token key attr-name">spring.datasource.druid.min-evictable-idle-time-millis</span><span class="token punctuation">=</span><span class="token value attr-value">30000</span>
 <span class="token comment">#用来检测连接是否有效的sql 必须是一个查询语句</span>
 <span class="token comment">#mysql中为 select 'x'</span>
 <span class="token comment">#oracle中为 select 1 from dual</span>
-<span class="token attr-name">spring.datasource.druid.validation-query</span><span class="token punctuation">=</span><span class="token attr-value">select 'x'</span>
+<span class="token key attr-name">spring.datasource.druid.validation-query</span><span class="token punctuation">=</span><span class="token value attr-value">select 'x'</span>
 <span class="token comment">#申请连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true</span>
-<span class="token attr-name">spring.datasource.druid.test-on-borrow</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token key attr-name">spring.datasource.druid.test-on-borrow</span><span class="token punctuation">=</span><span class="token value attr-value">false</span>
 <span class="token comment">#归还连接时会执行validationQuery检测连接是否有效,开启会降低性能,默认为true</span>
-<span class="token attr-name">spring.datasource.druid.test-on-return</span><span class="token punctuation">=</span><span class="token attr-value">false</span>
+<span class="token key attr-name">spring.datasource.druid.test-on-return</span><span class="token punctuation">=</span><span class="token value attr-value">false</span>
 <span class="token comment">#当数据库抛出不可恢复的异常时,抛弃该连接</span>
 <span class="token comment">#spring.datasource.druid.exception-sorter=true</span>
 <span class="token comment">#是否缓存preparedStatement,mysql5.5+建议开启</span>
 <span class="token comment">#spring.datasource.druid.pool-prepared-statements=true</span>
 <span class="token comment">#当值大于0时poolPreparedStatements会自动修改为true</span>
-<span class="token attr-name">spring.datasource.druid.max-pool-prepared-statement-per-connection-size</span><span class="token punctuation">=</span><span class="token attr-value">20</span>
+<span class="token key attr-name">spring.datasource.druid.max-pool-prepared-statement-per-connection-size</span><span class="token punctuation">=</span><span class="token value attr-value">20</span>
 <span class="token comment">#配置扩展插件</span>
-<span class="token attr-name">spring.datasource.druid.filters</span><span class="token punctuation">=</span><span class="token attr-value">stat,wall</span>
+<span class="token key attr-name">spring.datasource.druid.filters</span><span class="token punctuation">=</span><span class="token value attr-value">stat,wall</span>
 <span class="token comment">#通过connectProperties属性来打开mergeSql功能；慢SQL记录</span>
-<span class="token attr-name">spring.datasource.druid.connection-properties</span><span class="token punctuation">=</span><span class="token attr-value">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span>
+<span class="token key attr-name">spring.datasource.druid.connection-properties</span><span class="token punctuation">=</span><span class="token value attr-value">druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500</span>
 <span class="token comment">#合并多个DruidDataSource的监控数据</span>
-<span class="token attr-name">spring.datasource.druid.use-global-data-source-stat</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token key attr-name">spring.datasource.druid.use-global-data-source-stat</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
 
 <span class="token comment"># 加入如下配置，实现验证登录</span>
 <span class="token comment">## Druid WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter</span>
-<span class="token attr-name">spring.datasource.druid.web-stat-filter.enabled</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">spring.datasource.druid.web-stat-filter.url-pattern</span><span class="token punctuation">=</span><span class="token attr-value">/*</span>
-<span class="token attr-name">spring.datasource.druid.web-stat-filter.exclusions</span><span class="token punctuation">=</span><span class="token attr-value">*.gif,*.png,*.jpg,*.html,*.js,*.css,*.ico,/druid/*</span>
+<span class="token key attr-name">spring.datasource.druid.web-stat-filter.enabled</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
+<span class="token key attr-name">spring.datasource.druid.web-stat-filter.url-pattern</span><span class="token punctuation">=</span><span class="token value attr-value">/*</span>
+<span class="token key attr-name">spring.datasource.druid.web-stat-filter.exclusions</span><span class="token punctuation">=</span><span class="token value attr-value">*.gif,*.png,*.jpg,*.html,*.js,*.css,*.ico,/druid/*</span>
 <span class="token comment"># Druid StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置</span>
-<span class="token attr-name">spring.datasource.druid.stat-view-servlet.enabled</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
-<span class="token attr-name">spring.datasource.druid.stat-view-servlet.url-pattern</span><span class="token punctuation">=</span><span class="token attr-value">/druid/*</span>
-<span class="token attr-name">spring.datasource.druid.stat-view-servlet.reset-enable</span><span class="token punctuation">=</span><span class="token attr-value">true</span>
+<span class="token key attr-name">spring.datasource.druid.stat-view-servlet.enabled</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
+<span class="token key attr-name">spring.datasource.druid.stat-view-servlet.url-pattern</span><span class="token punctuation">=</span><span class="token value attr-value">/druid/*</span>
+<span class="token key attr-name">spring.datasource.druid.stat-view-servlet.reset-enable</span><span class="token punctuation">=</span><span class="token value attr-value">true</span>
 <span class="token comment">#设置访问druid监控页的账号和密码,默认没有</span>
-<span class="token attr-name">spring.datasource.druid.stat-view-servlet.login-username</span><span class="token punctuation">=</span><span class="token attr-value">admin</span>
-<span class="token attr-name">spring.datasource.druid.stat-view-servlet.login-password</span><span class="token punctuation">=</span><span class="token attr-value">admin</span>
-<span class="token attr-name">spring.datasource.druid.stat-view-servlet.allow</span><span class="token punctuation">=</span>
-<span class="token attr-name">spring.datasource.druid.stat-view-servlet.deny</span><span class="token punctuation">=</span></code></pre>
+<span class="token key attr-name">spring.datasource.druid.stat-view-servlet.login-username</span><span class="token punctuation">=</span><span class="token value attr-value">admin</span>
+<span class="token key attr-name">spring.datasource.druid.stat-view-servlet.login-password</span><span class="token punctuation">=</span><span class="token value attr-value">admin</span>
+<span class="token key attr-name">spring.datasource.druid.stat-view-servlet.allow</span><span class="token punctuation">=</span>
+<span class="token key attr-name">spring.datasource.druid.stat-view-servlet.deny</span><span class="token punctuation">=</span></code></pre>
 
 <h4 id="访问-druid"><a href="#访问-druid" class="headerlink" title="访问 druid"></a>访问 druid</h4><p>输入：<span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo4MDgwL2RydWlkLw==">http://localhost:8080/druid/<i class="fa fa-external-link-alt"></i></span>，查看 Druid 监控面板。</p>
 <p><img src="/images/2020/10/image-20201030161817190.png" alt="image-20201030161817190" loading="lazy"></p>
-<h3 id="配置druid"><a href="#配置druid" class="headerlink" title="配置druid"></a>配置 druid</h3><h4 id="引入-Jar-1"><a href="#引入-Jar-1" class="headerlink" title="引入 Jar"></a>引入 Jar</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<h3 id="配置druid"><a href="#配置druid" class="headerlink" title="配置druid"></a>配置 druid</h3><h4 id="引入-Jar-1"><a href="#引入-Jar-1" class="headerlink" title="引入 Jar"></a>引入 Jar</h4><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>druid<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.2.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 <h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4><p>配置文件 application.properties：</p>
-<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</span>
-<span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
-<span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">xxx</span>
-<span class="token attr-name">spring.datasource.driverClassName</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span></code></pre>
+<pre class="language-properties" data-language="properties"><code class="language-properties"><span class="token key attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token value attr-value">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</span>
+<span class="token key attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token value attr-value">xxx</span>
+<span class="token key attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token value attr-value">xxx</span>
+<span class="token key attr-name">spring.datasource.driverClassName</span><span class="token punctuation">=</span><span class="token value attr-value">com.mysql.cj.jdbc.Driver</span></code></pre>
 
 <h4 id="配置-druid"><a href="#配置-druid" class="headerlink" title="配置 druid"></a>配置 druid</h4><p>配置 druid 使其配置的参数生效。</p>
 <p>新建一个类：DruidConfig，注意包的引入：</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>druid<span class="token punctuation">.</span>pool<span class="token punctuation">.</span></span><span class="token class-name">DruidDataSource</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>druid<span class="token punctuation">.</span>support<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">StatViewServlet</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>druid<span class="token punctuation">.</span>support<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">WebStatFilter</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>context<span class="token punctuation">.</span>properties<span class="token punctuation">.</span></span><span class="token class-name">ConfigurationProperties</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">FilterRegistrationBean</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletRegistrationBean</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Bean</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Configuration</span><span class="token punctuation">;</span>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>druid<span class="token punctuation">.</span>pool<span class="token punctuation">.</span></span><span class="token class-name">DruidDataSource</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>druid<span class="token punctuation">.</span>support<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">StatViewServlet</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>druid<span class="token punctuation">.</span>support<span class="token punctuation">.</span>http<span class="token punctuation">.</span></span><span class="token class-name">WebStatFilter</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>context<span class="token punctuation">.</span>properties<span class="token punctuation">.</span></span><span class="token class-name">ConfigurationProperties</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">FilterRegistrationBean</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>boot<span class="token punctuation">.</span>web<span class="token punctuation">.</span>servlet<span class="token punctuation">.</span></span><span class="token class-name">ServletRegistrationBean</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Bean</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span></span><span class="token class-name">Configuration</span></span><span class="token punctuation">;</span>
 
-<span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>sql<span class="token punctuation">.</span></span><span class="token class-name">DataSource</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Arrays</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">HashMap</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">javax<span class="token punctuation">.</span>sql<span class="token punctuation">.</span></span><span class="token class-name">DataSource</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Arrays</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">HashMap</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Map</span></span><span class="token punctuation">;</span>
 
 <span class="token annotation punctuation">@Configuration</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DruidConfig</span> <span class="token punctuation">{</span>
@@ -520,8 +520,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/10/2020-10-31-MySQL%E8%BF%90%E7%BB%B4%E5%B7%A5%E5%85%B7percona-toolkit%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="MySQL 运维工具 percona-toolkit 的使用">
-                  MySQL 运维工具 percona-toolkit 的使用 <i class="fa fa-angle-right"></i>
+                <a href="/2020/10/2020-10-31-Windows%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BAVue%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" rel="next" title="Windows 环境搭建 Vue 开发环境">
+                  Windows 环境搭建 Vue 开发环境 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

@@ -32,7 +32,7 @@
 <meta property="og:description" content="Linux 的 base64 命令用于 编码 &#x2F; 解码文件或标准输入输出。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-06T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-27T11:07:16.801Z">
+<meta property="article:modified_time" content="2022-07-27T11:07:18.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="OS">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -339,7 +339,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>Linux 的 base64 命令用于 编码 / 解码文件或标准输入输出。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h3 id="base64-命令详解"><a href="#base64-命令详解" class="headerlink" title="base64 命令详解"></a>base64 命令详解</h3><pre class="language-none"><code class="language-none">$ base64 --help
 Usage: base64 [OPTION]... [FILE]
@@ -363,9 +363,9 @@ from any other non-alphabet bytes in the encoded stream.</code></pre>
 <ul>
 <li>-d, –decode 解码数据  </li>
 <li>-i, –ignore-garbag  解码时忽略非字母字符</li>
-<li> -w, –wrap = 字符数   在指定的字符数后自动换行 (默认为 76)，0 为禁用自动换行</li>
-<li> --help  显示此帮助信息并退出</li>
-<li> --version  显示版本信息并退出</li>
+<li>-w, –wrap = 字符数   在指定的字符数后自动换行 (默认为 76)，0 为禁用自动换行</li>
+<li>--help  显示此帮助信息并退出</li>
+<li>--version  显示版本信息并退出</li>
 </ul>
 <p>如果没有指定文件，或者文件为”-“，则从标准输入读取。</p>
 <p>数据以 RFC 3548 规定的 Base64 字母格式进行编码。 解码时，输入数据 (加密流) 可能包含一些非有效 Base64 字符的新行字符。可以尝试用 –ignore-garbage 选项来恢复加密流中任何非 base64 字符。</p>
@@ -388,21 +388,21 @@ dGVzdGJhc2U2NAo=
 $ cat testfile | base64
 dGVzdGJhc2U2NAo=</code></pre>
 
-<h3 id="标准输入加密"><a href="#标准输入加密" class="headerlink" title="标准输入加密"></a>标准输入加密</h3><p>输入 testbase64，回车，然后按 Ctrl+D 结束文件输入的。</p>
+<h3 id="标准输入加密"><a href="#标准输入加密" class="headerlink" title="标准输入加密"></a>标准输入加密</h3><p>输入 testbase64，回车，然后按 Ctrl + D 结束文件输入的。</p>
 <pre class="language-none"><code class="language-none">$ base64
 testbase64
 dGVzdGJhc2U2NAo=</code></pre>
 
-<p>如果输入 testbase64，不输入回车，连续输入两次 Ctrl+D，效果如下：</p>
+<p>如果输入 testbase64，不输入回车，连续输入两次 Ctrl + D，效果如下：</p>
 <pre class="language-none"><code class="language-none">$ base64
 testbase64dGVzdGJhc2U2NA==</code></pre>
 
-<p>可以发现，这个结果跟前面 <code>cat testfile</code> 和输入 <code>testbase64</code> 按回车再按 Ctrl+D 的情况是不一样的。</p>
+<p>可以发现，这个结果跟前面 <code>cat testfile</code> 和输入 <code>testbase64</code> 按回车再按 Ctrl + D 的情况是不一样的。</p>
 <p>echo -n 选项没有输出字符串结尾的 <code>\n</code>&nbsp;换行字符，因此字符串 <code>testbase64</code> 精确的 base64 编码是 <code>dGVzdGJhc2U2NA==</code></p>
 <pre class="language-none"><code class="language-none">$ echo -n testbase64 | base64
 dGVzdGJhc2U2NA==</code></pre>
 
-<h3 id="Java-验证"><a href="#Java-验证" class="headerlink" title="Java 验证"></a>Java 验证</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Base64</span><span class="token punctuation">;</span>
+<h3 id="Java-验证"><a href="#Java-验证" class="headerlink" title="Java 验证"></a>Java 验证</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">Base64</span></span><span class="token punctuation">;</span>
 
 <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">encoder</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token class-name">Base64</span><span class="token punctuation">.</span><span class="token function">getEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

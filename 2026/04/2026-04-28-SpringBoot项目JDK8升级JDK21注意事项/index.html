@@ -32,7 +32,7 @@
 <meta property="og:description" content="基于 ai-knowledge 项目实际升级经验整理，适用于团队其他 Spring Boot 项目参考。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-04-28T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-28T03:34:16.447Z">
+<meta property="article:modified_time" content="2026-09-15T09:58:49.736Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="AIGC">
 <meta name="twitter:card" content="summary">
@@ -129,7 +129,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -195,7 +195,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -313,7 +313,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AIGC/" itemprop="url" rel="index"><span itemprop="name">AIGC</span></a>
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
         </span>
     </span>
 
@@ -334,7 +334,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>基于 <code>ai-knowledge</code> 项目实际升级经验整理，适用于团队其他 Spring Boot 项目参考。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <hr>
 <h2 id="1-环境要求"><a href="#1-环境要求" class="headerlink" title="1. 环境要求"></a>1. 环境要求</h2><table>
@@ -347,10 +347,10 @@
 </tr>
 </thead>
 <tbody><tr>
-<td> JDK</td>
+<td>JDK</td>
 <td>21</td>
 <td>21.0.11 (Oracle)</td>
-<td> 本地路径 <code>E:\software\Java\jdk-21.0.11</code></td>
+<td>本地路径 <code>E:\software\Java\jdk-21.0.11</code></td>
 </tr>
 <tr>
 <td>Maven</td>
@@ -359,7 +359,7 @@
 <td>Spring Boot 3.x 管理的插件要求 Maven ≥ 3.6.3，<strong>3.3.9 不兼容</strong></td>
 </tr>
 <tr>
-<td> Spring Boot</td>
+<td>Spring Boot</td>
 <td>3.2.12</td>
 <td>3.2.12</td>
 <td>3.2.x 是首个官方支持 JDK21 LTS 的分支</td>
@@ -370,7 +370,7 @@
 </blockquote>
 <hr>
 <h2 id="2-核心依赖版本清单"><a href="#2-核心依赖版本清单" class="headerlink" title="2. 核心依赖版本清单"></a>2. 核心依赖版本清单</h2><p>以下是经过本项目验证的兼容版本，<strong>直接使用可避免踩坑</strong>。</p>
-<h3 id="2-1-Spring-Boot-父-POM"><a href="#2-1-Spring-Boot-父-POM" class="headerlink" title="2.1 Spring Boot 父 POM"></a>2.1 Spring Boot 父 POM</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">&gt;</span></span>
+<h3 id="2-1-Spring-Boot-父-POM"><a href="#2-1-Spring-Boot-父-POM" class="headerlink" title="2.1 Spring Boot 父 POM"></a>2.1 Spring Boot 父 POM</h3><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-parent<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.2.12<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
@@ -378,7 +378,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 <h3 id="2-2-需要在-dependencyManagement-中强制覆盖的版本"><a href="#2-2-需要在-dependencyManagement-中强制覆盖的版本" class="headerlink" title="2.2 需要在 dependencyManagement 中强制覆盖的版本"></a>2.2 需要在 <code>dependencyManagement</code> 中<strong>强制覆盖</strong>的版本</h3><p>Spring Boot 3.x 默认传递的某些依赖版本与 Spring 6.1 存在不兼容，<strong>必须在根 pom 中强制锁定</strong>：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencyManagement</span><span class="token punctuation">&gt;</span></span>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencyManagement</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
         <span class="token comment">&lt;!-- ✅ 强制锁定：mybatis-spring 2.1.x 与 Spring 6.1 的 MapperFactoryBean 不兼容
              症状：Invalid value type for attribute 'factoryBeanObjectType': java.lang.String
@@ -395,19 +395,19 @@
 <thead>
 <tr>
 <th>依赖 GroupId:ArtifactId</th>
-<th> 推荐版本</th>
+<th>推荐版本</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>org.projectlombok:lombok</code></td>
 <td><strong>1.18.34</strong></td>
-<td> 修复 JDK21 注解处理器问题，1.18.22 在 JDK21 下有警告</td>
+<td>修复 JDK21 注解处理器问题，1.18.22 在 JDK21 下有警告</td>
 </tr>
 <tr>
 <td><code>com.alibaba.fastjson2:fastjson2</code></td>
 <td><strong>2.0.53</strong></td>
-<td> 修复 JDK21 反射相关问题，2.0.43 有潜在兼容风险</td>
+<td>修复 JDK21 反射相关问题，2.0.43 有潜在兼容风险</td>
 </tr>
 <tr>
 <td><code>org.apache.commons:commons-lang3</code></td>
@@ -432,7 +432,7 @@
 <tr>
 <td><code>com.mysql:mysql-connector-j</code></td>
 <td><strong>8.3.0</strong></td>
-<td>⚠️ Spring Boot 3.x 起 groupId/artifactId 变更（见下文）</td>
+<td>⚠️ Spring Boot 3.x 起 groupId / artifactId 变更（见下文）</td>
 </tr>
 <tr>
 <td><code>com.alibaba:druid-spring-boot-3-starter</code></td>
@@ -451,14 +451,14 @@
 </tr>
 </tbody></table>
 <hr>
-<h2 id="3-根-pom-xml-改造"><a href="#3-根-pom-xml-改造" class="headerlink" title="3. 根 pom.xml 改造"></a>3. 根 pom.xml 改造</h2><h3 id="3-1-Java-版本属性"><a href="#3-1-Java-版本属性" class="headerlink" title="3.1 Java 版本属性"></a>3.1 Java 版本属性</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
+<h2 id="3-根-pom-xml-改造"><a href="#3-根-pom-xml-改造" class="headerlink" title="3. 根 pom.xml 改造"></a>3. 根 pom.xml 改造</h2><h3 id="3-1-Java-版本属性"><a href="#3-1-Java-版本属性" class="headerlink" title="3.1 Java 版本属性"></a>3.1 Java 版本属性</h3><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>21<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>21<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>java.version</span><span class="token punctuation">&gt;</span></span>21<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>java.version</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>UTF-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project.build.sourceEncoding</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span></code></pre>
 
-<h3 id="3-2-maven-compiler-plugin-配置"><a href="#3-2-maven-compiler-plugin-配置" class="headerlink" title="3.2 maven-compiler-plugin 配置"></a>3.2 maven-compiler-plugin 配置</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
+<h3 id="3-2-maven-compiler-plugin-配置"><a href="#3-2-maven-compiler-plugin-配置" class="headerlink" title="3.2 maven-compiler-plugin 配置"></a>3.2 maven-compiler-plugin 配置</h3><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.maven.plugins<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>maven-compiler-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">&gt;</span></span>
@@ -474,7 +474,7 @@
 <p><strong>说明</strong>：使用 <code>&lt;release&gt;21&lt;/release&gt;</code> 而非 <code>&lt;source&gt;/&lt;target&gt;</code>，<code>--release</code> 参数同时控制 source、target 和 bootstrap classpath，更严格安全。</p>
 </blockquote>
 <h3 id="3-3-移除子模块中的冗余-compiler-配置"><a href="#3-3-移除子模块中的冗余-compiler-配置" class="headerlink" title="3.3 移除子模块中的冗余 compiler 配置"></a>3.3 移除子模块中的冗余 compiler 配置</h3><p>子模块 pom.xml 中如有以下旧式配置，<strong>直接删除</strong>，由根 pom 统一管理：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 删除这段 --&gt;</span>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 删除这段 --&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.apache.maven.plugins<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>maven-compiler-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
@@ -485,7 +485,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">&gt;</span></span></code></pre>
 
 <hr>
-<h2 id="4-javax-→-jakarta-包名迁移"><a href="#4-javax-→-jakarta-包名迁移" class="headerlink" title="4. javax → jakarta 包名迁移"></a>4. javax → jakarta 包名迁移</h2><p>Spring Boot 3.x 基于 Jakarta EE 10，** 所有 <code>javax.*</code> 包已更名为 <code>jakarta.*</code>**。</p>
+<h2 id="4-javax-→-jakarta-包名迁移"><a href="#4-javax-→-jakarta-包名迁移" class="headerlink" title="4. javax → jakarta 包名迁移"></a>4. javax → jakarta 包名迁移</h2><p>Spring Boot 3.x 基于 Jakarta EE 10，<strong>所有 <code>javax.*</code> 包已更名为 <code>jakarta.*</code></strong>。</p>
 <h3 id="4-1-常见替换映射"><a href="#4-1-常见替换映射" class="headerlink" title="4.1 常见替换映射"></a>4.1 常见替换映射</h3><table>
 <thead>
 <tr>
@@ -536,7 +536,7 @@
 <pre class="language-none"><code class="language-none">找不到符号：PaginationInnerInterceptor
 位置：包 com.baomidou.mybatisplus.extension.plugins.inner</code></pre>
 
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 两个必须同时声明 --&gt;</span>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 两个必须同时声明 --&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.baomidou<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>mybatis-plus-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
@@ -556,7 +556,7 @@ Invalid value type for attribute 'factoryBeanObjectType': java.lang.String</code
 <p><strong>根本原因</strong>：<code>mybatis-spring 2.x</code> 的 <code>MapperFactoryBean.factoryBeanObjectType</code> 返回 <code>String</code> 类型，Spring 6.1 要求必须是 <code>Class</code> 类型。<code>mybatis-spring 3.0.x</code> 修复了此问题。</p>
 <hr>
 <h2 id="6-数据库相关依赖替换"><a href="#6-数据库相关依赖替换" class="headerlink" title="6. 数据库相关依赖替换"></a>6. 数据库相关依赖替换</h2><p>Spring Boot 3.x 对数据库相关依赖有以下<strong>必须替换</strong>的变更：</p>
-<h3 id="6-1-MySQL-Connector-更名"><a href="#6-1-MySQL-Connector-更名" class="headerlink" title="6.1 MySQL Connector 更名"></a>6.1 MySQL Connector 更名</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- ❌ 旧（Spring Boot 2.x） --&gt;</span>
+<h3 id="6-1-MySQL-Connector-更名"><a href="#6-1-MySQL-Connector-更名" class="headerlink" title="6.1 MySQL Connector 更名"></a>6.1 MySQL Connector 更名</h3><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- ❌ 旧（Spring Boot 2.x） --&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>mysql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>mysql-connector-java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
@@ -571,7 +571,7 @@ Invalid value type for attribute 'factoryBeanObjectType': java.lang.String</code
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>runtime<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 
-<h3 id="6-2-Druid-Spring-Boot-Starter-替换"><a href="#6-2-Druid-Spring-Boot-Starter-替换" class="headerlink" title="6.2 Druid Spring Boot Starter 替换"></a>6.2 Druid Spring Boot Starter 替换</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- ❌ 旧（不兼容 Spring Boot 3.x） --&gt;</span>
+<h3 id="6-2-Druid-Spring-Boot-Starter-替换"><a href="#6-2-Druid-Spring-Boot-Starter-替换" class="headerlink" title="6.2 Druid Spring Boot Starter 替换"></a>6.2 Druid Spring Boot Starter 替换</h3><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- ❌ 旧（不兼容 Spring Boot 3.x） --&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>druid-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
@@ -585,7 +585,7 @@ Invalid value type for attribute 'factoryBeanObjectType': java.lang.String</code
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>1.2.21<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></code></pre>
 
-<h3 id="6-3-Dynamic-Datasource-替换"><a href="#6-3-Dynamic-Datasource-替换" class="headerlink" title="6.3 Dynamic Datasource 替换"></a>6.3 Dynamic Datasource 替换</h3><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- ❌ 旧（不兼容 Spring Boot 3.x） --&gt;</span>
+<h3 id="6-3-Dynamic-Datasource-替换"><a href="#6-3-Dynamic-Datasource-替换" class="headerlink" title="6.3 Dynamic Datasource 替换"></a>6.3 Dynamic Datasource 替换</h3><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- ❌ 旧（不兼容 Spring Boot 3.x） --&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>com.baomidou<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>dynamic-datasource-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
@@ -602,8 +602,8 @@ Invalid value type for attribute 'factoryBeanObjectType': java.lang.String</code
 <hr>
 <h2 id="7-Maven-配置"><a href="#7-Maven-配置" class="headerlink" title="7. Maven 配置"></a>7. Maven 配置</h2><h3 id="7-1-升级-Maven-至-3-9-x"><a href="#7-1-升级-Maven-至-3-9-x" class="headerlink" title="7.1 升级 Maven 至 3.9.x"></a>7.1 升级 Maven 至 3.9.x</h3><p>Spring Boot 3.x 管理的 <code>maven-install-plugin:3.1.3</code>、<code>maven-deploy-plugin:3.1.3</code> 等要求 Maven ≥ 3.6.3。</p>
 <p>推荐下载：<span class="exturl" data-url="aHR0cHM6Ly9tYXZlbi5hcGFjaGUub3JnL2Rvd25sb2FkLmNnaQ==">Apache Maven 3.9.15<i class="fa fa-external-link-alt"></i></span>，解压到 <code>E:\code\Java\apache-maven-3.9.15</code>。</p>
-<h3 id="7-2-settings-xml-迁移到新版-Maven"><a href="#7-2-settings-xml-迁移到新版-Maven" class="headerlink" title="7.2 settings.xml 迁移到新版 Maven"></a>7.2 settings.xml 迁移到新版 Maven</h3><p>⚠️ <strong>Maven 3.9.x 默认添加 <code>maven-default-http-blocker</code>**，会拦截所有 HTTP（非 HTTPS）仓库请求。由于内网私服使用 HTTP，</strong>必须删除该 mirror 配置 **：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- ❌ Maven 3.9.x 默认配置，必须删除，否则内网 HTTP 仓库全部被拦截 --&gt;</span>
+<h3 id="7-2-settings-xml-迁移到新版-Maven"><a href="#7-2-settings-xml-迁移到新版-Maven" class="headerlink" title="7.2 settings.xml 迁移到新版 Maven"></a>7.2 settings.xml 迁移到新版 Maven</h3><p>⚠️ <strong>Maven 3.9.x 默认添加 <code>maven-default-http-blocker</code></strong>，会拦截所有 HTTP（非 HTTPS）仓库请求。由于内网私服使用 HTTP，<strong>必须删除该 mirror 配置</strong>：</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- ❌ Maven 3.9.x 默认配置，必须删除，否则内网 HTTP 仓库全部被拦截 --&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mirror</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">&gt;</span></span>maven-default-http-blocker<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mirrorOf</span><span class="token punctuation">&gt;</span></span>external:http:*<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mirrorOf</span><span class="token punctuation">&gt;</span></span>
@@ -625,10 +625,10 @@ mvn clean install -DskipTests</code></pre>
 <h2 id="8-Dockerfile-更新"><a href="#8-Dockerfile-更新" class="headerlink" title="8. Dockerfile 更新"></a>8. Dockerfile 更新</h2><h3 id="8-1-基础镜像"><a href="#8-1-基础镜像" class="headerlink" title="8.1 基础镜像"></a>8.1 基础镜像</h3><p>内部镜像 <code>harbor-qz.mail.netease.com/asrd/java-app:1.0.12</code> 需向运维确认是否有 JDK21 版本。</p>
 <h3 id="8-2-移除废弃的-JVM-GC-参数"><a href="#8-2-移除废弃的-JVM-GC-参数" class="headerlink" title="8.2 移除废弃的 JVM GC 参数"></a>8.2 移除废弃的 JVM GC 参数</h3><p>JDK9+ 已移除 CMS 垃圾收集器，以下参数在 JDK21 下会导致 JVM 启动失败或警告：</p>
 <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># ❌ 删除以下参数（JDK21 不支持 CMS GC）</span>
--XX:+UseConcMarkSweepGC
--XX:+UseParNewGC
--XX:ParallelCMSThreads<span class="token operator">=</span><span class="token number">8</span>
--XX:MaxTenuringThreshold<span class="token operator">=</span><span class="token number">10</span>
+<span class="token parameter variable">-XX:+UseConcMarkSweepGC</span>
+<span class="token parameter variable">-XX:+UseParNewGC</span>
+<span class="token parameter variable">-XX:ParallelCMSThreads</span><span class="token operator">=</span><span class="token number">8</span>
+<span class="token parameter variable">-XX:MaxTenuringThreshold</span><span class="token operator">=</span><span class="token number">10</span>
 
 <span class="token comment"># ✅ JDK21 默认使用 G1 GC，无需额外配置</span>
 <span class="token comment"># 可按需保留日志参数：-Xloggc:/path/to/gc.log</span></code></pre>
@@ -682,7 +682,7 @@ package javax.annotation does not exist</code></pre>
 [ ] 8. mvn test             — 单元测试全部通过（或已知失败项有说明）</code></pre>
 
 <hr>
-<h2 id="附：本项目实际升级的-pom-xml-关键变更速查"><a href="#附：本项目实际升级的-pom-xml-关键变更速查" class="headerlink" title="附：本项目实际升级的 pom.xml 关键变更速查"></a>附：本项目实际升级的 pom.xml 关键变更速查</h2><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- 根 pom.xml 核心变更 --&gt;</span>
+<h2 id="附：本项目实际升级的-pom-xml-关键变更速查"><a href="#附：本项目实际升级的-pom-xml-关键变更速查" class="headerlink" title="附：本项目实际升级的 pom.xml 关键变更速查"></a>附：本项目实际升级的 pom.xml 关键变更速查</h2><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 根 pom.xml 核心变更 --&gt;</span>
 
 <span class="token comment">&lt;!-- 1. Spring Boot 父版本 --&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.2.12<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>  <span class="token comment">&lt;!-- 原 2.7.13 --&gt;</span>

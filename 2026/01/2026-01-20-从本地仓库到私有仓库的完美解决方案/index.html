@@ -24,15 +24,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jueee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-tomorrow","dark":"prism-tomorrow"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="📖 背景介绍在 Java 开发过程中，我们经常需要将本地构建的 JAR 包部署到私有 Maven 仓库中，以便团队成员使用。 然而，手动部署过程繁琐且容易出错：  需要手动提取 JAR 包中的 Maven 元数据信息 需要记住复杂的 Maven 部署命令  Maven 默认禁止从本地仓库直接部署到远程仓库 中文环境下容易出现编码问题  为了解决这些痛点，我开发了一个自动化的批处理脚本，能够智能解">
+    <meta name="description" content="📖 背景介绍在 Java 开发过程中，我们经常需要将本地构建的 JAR 包部署到私有 Maven 仓库中，以便团队成员使用。 然而，手动部署过程繁琐且容易出错：  需要手动提取 JAR 包中的 Maven 元数据信息 需要记住复杂的 Maven 部署命令 Maven 默认禁止从本地仓库直接部署到远程仓库 中文环境下容易出现编码问题  为了解决这些痛点，我开发了一个自动化的批处理脚本，能够智能解析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从本地仓库到私有仓库的完美解决方案">
 <meta property="og:url" content="https://jueee.github.io/2026/01/2026-01-20-%E4%BB%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%88%B0%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E7%9A%84%E5%AE%8C%E7%BE%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="小决的博客">
-<meta property="og:description" content="📖 背景介绍在 Java 开发过程中，我们经常需要将本地构建的 JAR 包部署到私有 Maven 仓库中，以便团队成员使用。 然而，手动部署过程繁琐且容易出错：  需要手动提取 JAR 包中的 Maven 元数据信息 需要记住复杂的 Maven 部署命令  Maven 默认禁止从本地仓库直接部署到远程仓库 中文环境下容易出现编码问题  为了解决这些痛点，我开发了一个自动化的批处理脚本，能够智能解">
+<meta property="og:description" content="📖 背景介绍在 Java 开发过程中，我们经常需要将本地构建的 JAR 包部署到私有 Maven 仓库中，以便团队成员使用。 然而，手动部署过程繁琐且容易出错：  需要手动提取 JAR 包中的 Maven 元数据信息 需要记住复杂的 Maven 部署命令 Maven 默认禁止从本地仓库直接部署到远程仓库 中文环境下容易出现编码问题  为了解决这些痛点，我开发了一个自动化的批处理脚本，能够智能解析">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-20T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-01-21T01:49:22.522Z">
+<meta property="article:modified_time" content="2026-01-21T01:49:24.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="Shell">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -343,11 +343,11 @@
 <ul>
 <li>需要手动提取 JAR 包中的 Maven 元数据信息</li>
 <li>需要记住复杂的 Maven 部署命令</li>
-<li> Maven 默认禁止从本地仓库直接部署到远程仓库</li>
+<li>Maven 默认禁止从本地仓库直接部署到远程仓库</li>
 <li>中文环境下容易出现编码问题</li>
 </ul>
 <p>为了解决这些痛点，我开发了一个自动化的批处理脚本，能够智能解析 JAR 包信息并自动部署到多个 Maven 仓库。</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="🎯-解决方案概览"><a href="#🎯-解决方案概览" class="headerlink" title="🎯 解决方案概览"></a>🎯 解决方案概览</h2><p>该脚本主要实现以下功能：</p>
 <ol>
@@ -417,7 +417,7 @@
 <li><code>^</code>：批处理中的行继续符，用于多行命令</li>
 <li><code>System.IO.Compression.ZipFile</code>：.NET 的 ZIP 文件操作类</li>
 <li>正则表达式匹配：<code>META-INF/maven/.*/pom.properties$</code></li>
-<li><code>$zip.Dispose()</code>：正确释放 ZIP 文件资源（而不是 <code>Close()</code>）</li>
+<li><code>$zip.Dispose()</code>：正确释放 ZIP 文件资源（而不是<code>Close()</code>）</li>
 </ul>
 <h3 id="4-文件解析与变量处理"><a href="#4-文件解析与变量处理" class="headerlink" title="4. 文件解析与变量处理"></a>4. 文件解析与变量处理</h3><pre class="language-batch" data-language="batch"><code class="language-batch"><span class="token command"><span class="token keyword">set</span> <span class="token string">"groupId="</span></span>
 <span class="token command"><span class="token keyword">set</span> <span class="token string">"artifactId="</span></span>
@@ -436,7 +436,7 @@
 <li><code>usebackq</code>：允许使用引号括起文件名</li>
 <li><code>tokens=1,2</code>：分割每行为两个 token</li>
 <li><code>delims==</code>：使用等号作为分隔符</li>
-<li><code>%%a</code> 和 <code>%%b</code>：循环变量，分别代表键和值</li>
+<li><code>%%a</code>和<code>%%b</code>：循环变量，分别代表键和值</li>
 </ul>
 <h3 id="5-绕过Maven本地仓库限制"><a href="#5-绕过Maven本地仓库限制" class="headerlink" title="5. 绕过Maven本地仓库限制"></a>5. 绕过 Maven 本地仓库限制</h3><pre class="language-batch" data-language="batch"><code class="language-batch"><span class="token command"><span class="token keyword">set</span> <span class="token string">"tempUploadDir=%TEMP%\maven_upload_%RANDOM%"</span></span>
 <span class="token command"><span class="token keyword">mkdir</span> <span class="token string">"%tempUploadDir%"</span></span>
@@ -446,7 +446,7 @@
 
 <p><strong>技术原理</strong>：</p>
 <ul>
-<li>Maven 禁止直接从<code>.m2/repository</code> 目录部署文件到远程仓库</li>
+<li>Maven 禁止直接从<code>.m2/repository</code>目录部署文件到远程仓库</li>
 <li>通过创建临时目录并复制文件来绕过这个限制</li>
 <li><code>%RANDOM%</code>：生成随机数，确保临时目录名唯一</li>
 <li>文件重命名为标准格式：<code>artifactId-version.jar</code></li>
@@ -466,8 +466,8 @@
 
 <p><strong>实现逻辑</strong>：</p>
 <ul>
-<li><code>%filepath:.jar=.pom%</code>：字符串替换，将<code>.jar</code> 替换为<code>.pom</code></li>
-<li>延迟变量扩展：使用 <code>!tempPomPath!</code> 而不是 <code>%tempPomPath%</code></li>
+<li><code>%filepath:.jar=.pom%</code>：字符串替换，将<code>.jar</code>替换为<code>.pom</code></li>
+<li>延迟变量扩展：使用<code>!tempPomPath!</code>而不是<code>%tempPomPath%</code></li>
 <li>条件处理：根据 POM 文件存在与否采用不同的部署策略</li>
 </ul>
 <h3 id="7-条件化Maven部署命令"><a href="#7-条件化Maven部署命令" class="headerlink" title="7. 条件化Maven部署命令"></a>7. 条件化 Maven 部署命令</h3><pre class="language-batch" data-language="batch"><code class="language-batch"><span class="token command"><span class="token keyword">if</span> <span class="token string">"%pomFileExists%"</span><span class="token operator">==</span><span class="token string">"true"</span></span> <span class="token punctuation">(</span>
@@ -575,9 +575,9 @@
 <li><strong>错误处理</strong>：优雅处理各种异常情况</li>
 </ul>
 <h2 id="🎯-使用效果"><a href="#🎯-使用效果" class="headerlink" title="🎯 使用效果"></a>🎯 使用效果</h2><h3 id="使用前（手动操作）："><a href="#使用前（手动操作）：" class="headerlink" title="使用前（手动操作）："></a>使用前（手动操作）：</h3><ol>
-<li>手动解压 JAR 包查看 META-INF 信息</li>
+<li>手动解压 JAR 包查看 META - INF 信息</li>
 <li>记录 groupId、artifactId、version</li>
-<li> 构造复杂的 Maven 命令</li>
+<li>构造复杂的 Maven 命令</li>
 <li>分别执行多个部署命令</li>
 <li>手动处理编码问题</li>
 </ol>
@@ -609,14 +609,14 @@ SUCCESS: pom.properties found
 <li><strong>配置文件支持</strong>：将仓库地址提取到配置文件</li>
 <li><strong>日志记录</strong>：添加详细的操作日志</li>
 <li><strong>批量处理</strong>：支持一次处理多个 JAR 文件</li>
-<li><strong> GUI 界面</strong>：开发图形用户界面</li>
-<li><strong> Jenkins 集成</strong>：作为 CI/CD 流水线的一部分</li>
+<li><strong>GUI 界面</strong>：开发图形用户界面</li>
+<li><strong>Jenkins 集成</strong>：作为 CI / CD 流水线的一部分</li>
 </ol>
 <h2 id="📝-总结"><a href="#📝-总结" class="headerlink" title="📝 总结"></a>📝 总结</h2><p>这个自动化部署脚本通过巧妙结合批处理、PowerShell 等技术，完美解决了 Maven JAR 包部署过程中的各种痛点。它不仅提升了开发效率，还减少了人为错误，是 DevOps 自动化的一个优秀实践案例。</p>
 <p><strong>关键技术收获</strong>：</p>
 <ul>
 <li>批处理与 PowerShell 的混合编程技巧</li>
-<li> Maven 部署机制的深度理解</li>
+<li>Maven 部署机制的深度理解</li>
 <li>文件系统操作的安全实践</li>
 <li>用户体验设计的重要性</li>
 </ul>
@@ -630,8 +630,8 @@ SUCCESS: pom.properties found
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Shell/" rel="tag"># Shell</a>
               <a href="/tags/OS/" rel="tag"># OS</a>
+              <a href="/tags/Shell/" rel="tag"># Shell</a>
           </div>
 
         

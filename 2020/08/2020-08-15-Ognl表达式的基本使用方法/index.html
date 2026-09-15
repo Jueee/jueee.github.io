@@ -32,7 +32,7 @@
 <meta property="og:description" content="OGNL是Object-Graph Navigation Language的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-15T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-21T10:50:57.659Z">
+<meta property="article:modified_time" content="2021-05-21T10:50:58.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="Ognl">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -343,7 +343,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>OGNL 是 <code>Object-Graph Navigation Language</code>（<strong>对象导航图语言</strong>）的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据。</p>
+    <div class="post-body" itemprop="articleBody"><p>OGNL 是<code>Object-Graph Navigation Language</code>（<strong>对象导航图语言</strong>）的缩写，它是一种功能强大的表达式语言，通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。这样可以更好的取得数据。</p>
 <h3 id="Ognl-语言介绍"><a href="#Ognl-语言介绍" class="headerlink" title="Ognl 语言介绍"></a>Ognl 语言介绍</h3><p>OGNL 表达式官方指南：<span class="exturl" data-url="aHR0cHM6Ly9jb21tb25zLmFwYWNoZS5vcmcvcHJvcGVyL2NvbW1vbnMtb2dubC9sYW5ndWFnZS1ndWlkZS5odG1s">https://commons.apache.org/proper/commons-ognl/language-guide.html<i class="fa fa-external-link-alt"></i></span></p>
 <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Ognl 是一个功能强大的表达式语言，用来获取和设置 java 对象的属性 ，它旨在提供一个更高抽象度语法来对 java 对象图进行导航。</p>
 <p>另外，java 中很多可以做的事情，也可以使用 OGNL 来完成，例如：列表映射和选择。</p>
@@ -362,7 +362,7 @@
 </li>
 </ul>
 <h3 id="使用-Ognl"><a href="#使用-Ognl" class="headerlink" title="使用 Ognl"></a>使用 Ognl</h3><p>引入 Maven：</p>
-<pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>ognl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>ognl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>3.1.19<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
@@ -422,8 +422,8 @@ user<span class="token punctuation">.</span><span class="token function">setAddr
 	<span class="token keyword">return</span> <span class="token string">"this is demo2 method"</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
-<h4 id="对静态变量的访问"><a href="#对静态变量的访问" class="headerlink" title="对静态变量的访问"></a>对静态变量的访问</h4><p>在 OGNL 表达式当中也可以访问静态变量或者调用静态方法，格式如 @[class]@[field/method ()]。</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> ONE <span class="token operator">=</span> <span class="token string">"one"</span><span class="token punctuation">;</span>
+<h4 id="对静态变量的访问"><a href="#对静态变量的访问" class="headerlink" title="对静态变量的访问"></a>对静态变量的访问</h4><p>在 OGNL 表达式当中也可以访问静态变量或者调用静态方法，格式如 @[class]@[field / method ()]。</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token constant">ONE</span> <span class="token operator">=</span> <span class="token string">"one"</span><span class="token punctuation">;</span>
 <span class="token comment">// 对静态变量的访问（@[class]@[field/method()]）</span>
 <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">demo3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">OgnlException</span> <span class="token punctuation">{</span>
 	<span class="token class-name">Object</span> object1 <span class="token operator">=</span> <span class="token class-name">Ognl</span><span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token string">"@sample.ognl.OgnlDemo@ONE"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -463,11 +463,11 @@ context<span class="token punctuation">.</span><span class="token function">put<
 
 <p>从上面代码不仅看到了访问数组与集合的方式同时也可以看出来 OGNL 表达式当中支持操作符的简单运算。有如下所示：</p>
 <ul>
-<li>2 + 4 // 整数相加（同时也支持减法、乘法、除法、取余 [% /mod]、）</li>
-<li>"hell" + "lo" // 字符串相加</li>
-<li> i++ // 递增、递减</li>
-<li> i == j // 判断</li>
-<li> var in list // 是否在容器当中</li>
+<li>2 + 4 //整数相加（同时也支持减法、乘法、除法、取余 [% / mod]、）</li>
+<li>"hell" + "lo" //字符串相加</li>
+<li>i++ //递增、递减</li>
+<li>i == j //判断</li>
+<li>var in list //是否在容器当中</li>
 </ul>
 <h4 id="投影与选择"><a href="#投影与选择" class="headerlink" title="投影与选择"></a>投影与选择</h4><p>OGNL 支持类似数据库当中的选择与投影功能。</p>
 <ul>
@@ -477,8 +477,8 @@ context<span class="token punctuation">.</span><span class="token function">put<
 <p>选择操作符有 3 种：</p>
 <ul>
 <li>? ：选择满足条件的所有元素</li>
-<li> ^：选择满足条件的第一个元素</li>
-<li> $：选择满足条件的最后一个元素 </li>
+<li>^：选择满足条件的第一个元素</li>
+<li>$：选择满足条件的最后一个元素</li>
 </ul>
 </li>
 </ul>
@@ -506,9 +506,9 @@ context<span class="token punctuation">.</span><span class="token function">put<
 
 <h4 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h4><p>OGNL 支持直接使用表达式来创建对象。主要有三种情况：</p>
 <ul>
-<li>构造 List 对象：使用 {}, 中间使用 ',' 进行分割如 {"aa", "bb", "cc"}</li>
-<li> 构造 Map 对象：使用 #{}，中间使用 ', 进行分割键值对，键值对使用 ':' 区分，如 #{"key1" : "value1", "key2" : "value2"}</li>
-<li> 构造任意对象：直接使用已知的对象的构造方法进行构造。</li>
+<li>构造 List 对象：使用 {},中间使用 ',' 进行分割如 {"aa", "bb", "cc"}</li>
+<li>构造 Map 对象：使用 #{}，中间使用 ',进行分割键值对，键值对使用 ':' 区分，如 #{"key1" : "value1", "key2" : "value2"}</li>
+<li>构造任意对象：直接使用已知的对象的构造方法进行构造。</li>
 </ul>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Ognl</span><span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token string">"#{'key1':'value1'}"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// {key1=value1}</span>
 <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Ognl</span><span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token string">"{'key1','value1'}"</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>	<span class="token comment">// [key1, value1]</span>

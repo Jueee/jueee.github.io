@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/2020/11/image-20201111113642972.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/11/image-20201111140618878.png">
 <meta property="article:published_time" content="2020-11-11T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-11-24T11:10:58.950Z">
+<meta property="article:modified_time" content="2020-11-24T11:11:00.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="JavaJar">
@@ -136,7 +136,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -202,7 +202,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -213,7 +213,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -350,9 +350,9 @@
 <li>官网：<span class="exturl" data-url="aHR0cHM6Ly9zd2FnZ2VyLmlvLw==">https://swagger.io/<i class="fa fa-external-link-alt"></i></span></li>
 <li>GitHub：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N3YWdnZXItYXBp">https://github.com/swagger-api<i class="fa fa-external-link-alt"></i></span></li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 
-<h4 id="Swagger-依赖"><a href="#Swagger-依赖" class="headerlink" title="Swagger 依赖"></a>Swagger 依赖</h4><pre class="language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<h4 id="Swagger-依赖"><a href="#Swagger-依赖" class="headerlink" title="Swagger 依赖"></a>Swagger 依赖</h4><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.springfox<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>springfox-swagger2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>2.6.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
@@ -369,8 +369,8 @@
 </blockquote>
 <p>Swagger 布局分为四部分：</p>
 <ol>
-<li><strong>API 分组</strong>：如果没有配置分组默认是 default。通过 Swagger 实例 Docket 的 <code>groupName()</code> 方法即可配置分组。</li>
-<li><strong>基本描述</strong>：可以通过 Swagger 实例 Docket 的 <code>apiInfo()</code> 方法中的 ApiInfo 实例参数配置文档信息。</li>
+<li><strong>API 分组</strong>：如果没有配置分组默认是 default。通过 Swagger 实例 Docket 的<code>groupName()</code>方法即可配置分组。</li>
+<li><strong>基本描述</strong>：可以通过 Swagger 实例 Docket 的<code>apiInfo()</code>方法中的 ApiInfo 实例参数配置文档信息。</li>
 <li><strong>请求接口列表</strong>：在组范围内，只要被 Swagger2 扫描匹配到的请求都会在这里出现。</li>
 <li><strong>实体列表</strong>：只要实体在请求接口的返回值上（即使是泛型），都能映射到实体项中！</li>
 </ol>
@@ -386,8 +386,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td> @Api</td>
-<td> 对请求类的说明</td>
+<td>@Api</td>
+<td>对请求类的说明</td>
 </tr>
 </tbody></table>
 <p><strong>用于方法上面（说明参数的含义）：</strong></p>
@@ -399,12 +399,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td> @ApiOperation</td>
-<td> 方法的说明</td>
+<td>@ApiOperation</td>
+<td>方法的说明</td>
 </tr>
 <tr>
-<td> @ApiImplicitParams、@ApiImplicitParam</td>
-<td> 方法的参数的说明；@ApiImplicitParams 用于指定单个参数的说明</td>
+<td>@ApiImplicitParams、@ApiImplicitParam</td>
+<td>方法的参数的说明；@ApiImplicitParams 用于指定单个参数的说明</td>
 </tr>
 </tbody></table>
 <p><strong>用于方法上面（返回参数或对象的说明）：</strong></p>
@@ -416,8 +416,8 @@
 </tr>
 </thead>
 <tbody><tr>
-<td> @ApiResponses、@ApiResponse</td>
-<td> 方法返回值的说明 ；@ApiResponses 用于指定单个参数的说明</td>
+<td>@ApiResponses、@ApiResponse</td>
+<td>方法返回值的说明 ；@ApiResponses 用于指定单个参数的说明</td>
 </tr>
 </tbody></table>
 <p><strong>对象类：</strong></p>
@@ -429,12 +429,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td> @ApiModel</td>
-<td> 用在 JavaBean 类上，说明 JavaBean 的 用途</td>
+<td>@ApiModel</td>
+<td>用在 JavaBean 类上，说明 JavaBean 的 用途</td>
 </tr>
 <tr>
-<td> @ApiModelProperty</td>
-<td> 用在 JavaBean 类的属性上面，说明此属性的的含议</td>
+<td>@ApiModelProperty</td>
+<td>用在 JavaBean 类的属性上面，说明此属性的的含议</td>
 </tr>
 </tbody></table>
 <h4 id="Api"><a href="#Api" class="headerlink" title="@Api"></a>@Api</h4><p>@Api：请求类的说明</p>
@@ -451,44 +451,44 @@
 </tr>
 </thead>
 <tbody><tr>
-<td> value</td>
+<td>value</td>
 <td>url 的路径值</td>
 </tr>
 <tr>
-<td> tags</td>
-<td> 如果设置这个值、value 的值会被覆盖</td>
+<td>tags</td>
+<td>如果设置这个值、value 的值会被覆盖</td>
 </tr>
 <tr>
-<td> description</td>
-<td> 对 api 资源的描述</td>
+<td>description</td>
+<td>对 api 资源的描述</td>
 </tr>
 <tr>
-<td> basePath</td>
-<td> 基本路径</td>
+<td>basePath</td>
+<td>基本路径</td>
 </tr>
 <tr>
-<td> position</td>
-<td> 如果配置多个 Api 想改变显示的顺序位置</td>
+<td>position</td>
+<td>如果配置多个 Api 想改变显示的顺序位置</td>
 </tr>
 <tr>
-<td> produces</td>
-<td> 如，“application/json, application/xml”</td>
+<td>produces</td>
+<td>如, “application/json, application/xml”</td>
 </tr>
 <tr>
 <td>consumes</td>
-<td> 如，“application/json, application/xml”</td>
+<td>如, “application/json, application/xml”</td>
 </tr>
 <tr>
 <td>protocols</td>
-<td> 协议类型，如: http, https, ws, wss.</td>
+<td>协议类型，如: http, https, ws, wss.</td>
 </tr>
 <tr>
 <td>authorizations</td>
-<td> 高级特性认证时配置</td>
+<td>高级特性认证时配置</td>
 </tr>
 <tr>
-<td> hidden</td>
-<td> 配置为 true ，将在文档中隐藏</td>
+<td>hidden</td>
+<td>配置为 true ，将在文档中隐藏</td>
 </tr>
 </tbody></table>
 <h4 id="ApiOperation"><a href="#ApiOperation" class="headerlink" title="@ApiOperation"></a>@ApiOperation</h4><p>@ApiOperation：方法的说明</p>
@@ -519,7 +519,7 @@
 	    response：抛出异常的类</code></pre>
 
 <h4 id="ApiModel"><a href="#ApiModel" class="headerlink" title="@ApiModel"></a>@ApiModel</h4><p>@ApiModel：用于 JavaBean 上面，表示对 JavaBean 的功能描述</p>
-<p><code>@ApiModel</code> 的用途有 2 个：</p>
+<p><code>@ApiModel</code>的用途有 2 个：</p>
 <ol>
 <li>当请求数据描述，即 <code>@RequestBody</code> 时， 用于封装请求（包括数据的各种校验）数据；</li>
 <li>当响应值是对象时，即 <code>@ResponseBody</code> 时，用于返回值对象的描述。</li>
@@ -533,7 +533,7 @@
     <span class="token annotation punctuation">@Bean</span>
     <span class="token keyword">public</span> <span class="token class-name">Docket</span> <span class="token function">docket</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token comment">// 构造函数传入初始化规范，这是swagger2规范</span>
-        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span>SWAGGER_2<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span><span class="token class-name">DocumentationType</span><span class="token punctuation">.</span><span class="token constant">SWAGGER_2</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token function">apiInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//apiInfo： 添加api详情信息，参数为ApiInfo类型的参数</span>
                 <span class="token punctuation">.</span><span class="token function">groupName</span><span class="token punctuation">(</span><span class="token string">"System"</span><span class="token punctuation">)</span> <span class="token comment">// 配置分组</span>
                 <span class="token punctuation">.</span><span class="token function">enable</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment">// 配置是否启用Swagger，如果是false，在浏览器将无法访问，默认是true</span>
@@ -556,7 +556,7 @@
 
 <p>效果如下：</p>
 <p><img src="/images/2020/11/image-20201111113952683.png" alt="image-20201111113952683" loading="lazy"></p>
-<h5 id="配置API分组"><a href="#配置API分组" class="headerlink" title="配置API分组"></a>配置 API 分组</h5><p>通过 Swagger 实例 Docket 的 <code>groupName()</code> 方法即可配置分组，如果没有配置分组默认是 default，代码如下：</p>
+<h5 id="配置API分组"><a href="#配置API分组" class="headerlink" title="配置API分组"></a>配置 API 分组</h5><p>通过 Swagger 实例 Docket 的<code>groupName()</code>方法即可配置分组，如果没有配置分组默认是 default，代码如下：</p>
 <pre class="language-javascript" data-language="javascript"><code class="language-javascript">@Bean
 <span class="token keyword">public</span> Docket <span class="token function">docket2</span><span class="token punctuation">(</span><span class="token parameter">Environment environment</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Docket</span><span class="token punctuation">(</span>DocumentationType<span class="token punctuation">.</span><span class="token constant">SWAGGER_2</span><span class="token punctuation">)</span>

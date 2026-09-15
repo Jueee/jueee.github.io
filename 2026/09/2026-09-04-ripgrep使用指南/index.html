@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jueee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-tomorrow","dark":"prism-tomorrow"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="ripgrep 是一款速度极快的命令行搜索工具，兼容正则表达式，默认遵守 .gitignore 规则，是 grep 的现代化替代品。本文介绍其安装与常用用法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ripgrep（rg）使用指南">
+<meta property="og:url" content="https://jueee.github.io/2026/09/2026-09-04-ripgrep%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="小决的博客">
+<meta property="og:description" content="ripgrep 是一款速度极快的命令行搜索工具，兼容正则表达式，默认遵守 .gitignore 规则，是 grep 的现代化替代品。本文介绍其安装与常用用法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-04T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-10T09:37:28.895Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="Tools">
+<meta property="article:tag" content="ripgrep">
+<meta property="article:tag" content="搜索">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/09/2026-09-04-ripgrep%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jueee.github.io/2026/09/2026-09-04-ripgrep%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/","path":"2026/09/2026-09-04-ripgrep使用指南/","title":"ripgrep（rg）使用指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ripgrep（rg）使用指南 | 小决的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-175024528-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79"></script>
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="小决的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小决的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">没关系，进一寸有一寸的欢喜。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#macOS%EF%BC%88Homebrew%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">macOS（Homebrew）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%B9%B3%E5%8F%B0"><span class="nav-number">2.2.</span> <span class="nav-text">其他平台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="nav-number">4.</span> <span class="nav-text">快速上手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E9%80%89%E9%A1%B9"><span class="nav-number">5.</span> <span class="nav-text">常用选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E6%8E%A7%E5%88%B6"><span class="nav-number">5.1.</span> <span class="nav-text">大小写控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%8E%A7%E5%88%B6"><span class="nav-number">5.2.</span> <span class="nav-text">输出控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">5.3.</span> <span class="nav-text">上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%BC%8F"><span class="nav-number">5.4.</span> <span class="nav-text">匹配模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4"><span class="nav-number">5.5.</span> <span class="nav-text">文件过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E8%BE%93%E5%87%BA"><span class="nav-number">5.6.</span> <span class="nav-text">替换输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%85%E5%88%97%E5%87%BA%E6%96%87%E4%BB%B6"><span class="nav-number">5.7.</span> <span class="nav-text">仅列出文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">6.</span> <span class="nav-text">实用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E4%BB%A3%E7%A0%81"><span class="nav-number">6.1.</span> <span class="nav-text">搜索代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E5%90%88%E7%AE%A1%E9%81%93"><span class="nav-number">6.2.</span> <span class="nav-text">结合管道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%99%A4%E7%9B%AE%E5%BD%95"><span class="nav-number">6.3.</span> <span class="nav-text">排除目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%A4%9A%E4%B8%AA-pattern"><span class="nav-number">6.4.</span> <span class="nav-text">搜索多个 pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AA%E6%98%BE%E7%A4%BA%E5%8C%B9%E9%85%8D%E5%86%85%E5%AE%B9%EF%BC%88%E4%B8%8D%E5%90%AB%E6%96%87%E4%BB%B6%E5%90%8D-%E8%A1%8C%E5%8F%B7%EF%BC%89"><span class="nav-number">6.5.</span> <span class="nav-text">只显示匹配内容（不含文件名 &#x2F; 行号）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%EF%BC%88%E9%9C%80%E9%85%8D%E5%90%88-pre%EF%BC%89"><span class="nav-number">6.6.</span> <span class="nav-text">搜索压缩文件（需配合 --pre）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E-grep-ag-%E5%AF%B9%E6%AF%94"><span class="nav-number">8.</span> <span class="nav-text">与 grep &#x2F; ag 对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">9.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">357</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/09/2026-09-04-ripgrep%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ripgrep（rg）使用指南 | 小决的博客">
+      <meta itemprop="description" content="ripgrep 是一款速度极快的命令行搜索工具，兼容正则表达式，默认遵守 .gitignore 规则，是 grep 的现代化替代品。本文介绍其安装与常用用法。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ripgrep（rg）使用指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-09-04 00:00:00" itemprop="dateCreated datePublished" datetime="2026-09-04T00:00:00Z">2026-09-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OS/MacOS/" itemprop="url" rel="index"><span itemprop="name">MacOS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">ripgrep 是一款速度极快的命令行搜索工具，兼容正则表达式，默认遵守 .gitignore 规则，是 grep 的现代化替代品。本文介绍其安装与常用用法。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0J1cm50U3VzaGkvcmlwZ3JlcA==">ripgrep<i class="fa fa-external-link-alt"></i></span>（命令名 <code>rg</code>）是一款用 Rust 编写的跨平台命令行搜索工具，用于在目录中递归搜索匹配正则表达式的文本行。</p>
+<p>与传统 <code>grep</code> 相比，ripgrep 的主要优势：</p>
+<ul>
+<li><strong>速度极快</strong>：利用 Rust 的并行性和 SIMD 指令，通常比 grep、ag（The Silver Searcher）更快</li>
+<li><strong>默认遵守 <code>.gitignore</code></strong>：自动跳过 <code>.gitignore</code>、<code>.ignore</code>、<code>.rgignore</code> 中声明的文件</li>
+<li><strong>自动跳过隐藏文件和二进制文件</strong></li>
+<li><strong>支持 Unicode</strong>：默认对 Unicode 友好</li>
+<li><strong>支持 PCRE2</strong>：可使用 <code>-P</code> 启用 lookahead / lookbehind 等高级正则语法</li>
+<li><strong>彩色高亮输出</strong>：默认高亮匹配内容</li>
+</ul>
+<hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="macOS（Homebrew）"><a href="#macOS（Homebrew）" class="headerlink" title="macOS（Homebrew）"></a>macOS（Homebrew）</h3><pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> ripgrep</code></pre>
+
+<p>安装完成后验证：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">rg <span class="token parameter variable">--version</span>
+<span class="token comment"># ripgrep 15.2.0</span></code></pre>
+
+<h3 id="其他平台"><a href="#其他平台" class="headerlink" title="其他平台"></a>其他平台</h3><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ubuntu / Debian</td>
+<td><code>sudo apt install ripgrep</code></td>
+</tr>
+<tr>
+<td>Arch Linux</td>
+<td><code>sudo pacman -S ripgrep</code></td>
+</tr>
+<tr>
+<td>Windows (Scoop)</td>
+<td><code>scoop install ripgrep</code></td>
+</tr>
+<tr>
+<td>Windows (Winget)</td>
+<td><code>winget install BurntSushi.ripgrep.MSVC</code></td>
+</tr>
+<tr>
+<td>Cargo（Rust）</td>
+<td><code>cargo install ripgrep</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><pre class="language-none"><code class="language-none">rg [OPTIONS] PATTERN [PATH ...]</code></pre>
+
+<ul>
+<li><code>PATTERN</code>：正则表达式（默认区分大小写）</li>
+<li><code>PATH</code>：文件或目录，省略时默认搜索当前目录</li>
+</ul>
+<hr>
+<h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在当前目录递归搜索 "hello"</span>
+rg hello
+
+<span class="token comment"># 在指定文件中搜索</span>
+rg hello src/main.rs
+
+<span class="token comment"># 在指定目录中搜索</span>
+rg hello ./src</code></pre>
+
+<hr>
+<h2 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h2><h3 id="大小写控制"><a href="#大小写控制" class="headerlink" title="大小写控制"></a>大小写控制</h3><pre class="language-bash" data-language="bash"><code class="language-bash">rg <span class="token parameter variable">-i</span> hello          <span class="token comment"># 忽略大小写（--ignore-case）</span>
+rg <span class="token parameter variable">-s</span> hello          <span class="token comment"># 强制区分大小写（--case-sensitive）</span>
+rg <span class="token parameter variable">-S</span> hello          <span class="token comment"># 智能大小写：全小写时忽略大小写，含大写时区分（--smart-case）</span></code></pre>
+
+<h3 id="输出控制"><a href="#输出控制" class="headerlink" title="输出控制"></a>输出控制</h3><pre class="language-bash" data-language="bash"><code class="language-bash">rg <span class="token parameter variable">-n</span> hello          <span class="token comment"># 显示行号（默认已开启）</span>
+rg <span class="token parameter variable">-N</span> hello          <span class="token comment"># 不显示行号（--no-line-number）</span>
+rg <span class="token parameter variable">-l</span> hello          <span class="token comment"># 只列出匹配文件名（--files-with-matches）</span>
+rg <span class="token parameter variable">-L</span> hello          <span class="token comment"># 只列出不匹配的文件名（--files-without-match）</span>
+rg <span class="token parameter variable">-c</span> hello          <span class="token comment"># 只显示每个文件的匹配行数（--count）</span>
+rg --count-matches hello  <span class="token comment"># 显示每个文件的匹配次数（一行多处均计入）</span></code></pre>
+
+<h3 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h3><pre class="language-bash" data-language="bash"><code class="language-bash">rg <span class="token parameter variable">-A</span> <span class="token number">3</span> hello        <span class="token comment"># 显示匹配行后 3 行（--after-context）</span>
+rg <span class="token parameter variable">-B</span> <span class="token number">3</span> hello        <span class="token comment"># 显示匹配行前 3 行（--before-context）</span>
+rg <span class="token parameter variable">-C</span> <span class="token number">3</span> hello        <span class="token comment"># 显示匹配行前后各 3 行（--context）</span></code></pre>
+
+<h3 id="匹配模式"><a href="#匹配模式" class="headerlink" title="匹配模式"></a>匹配模式</h3><pre class="language-bash" data-language="bash"><code class="language-bash">rg <span class="token parameter variable">-w</span> hello          <span class="token comment"># 精确匹配整词（--word-regexp）</span>
+rg <span class="token parameter variable">-x</span> hello          <span class="token comment"># 精确匹配整行（--line-regexp）</span>
+rg <span class="token parameter variable">-v</span> hello          <span class="token comment"># 反向匹配：只显示不含 hello 的行（--invert-match）</span>
+rg <span class="token parameter variable">-F</span> <span class="token string">'hello.world'</span>  <span class="token comment"># 把 pattern 当作字面字符串（--fixed-strings，不做正则解析）</span>
+rg <span class="token parameter variable">-U</span> <span class="token string">'foo\nbar'</span>     <span class="token comment"># 多行模式（--multiline）</span>
+rg <span class="token parameter variable">-P</span> <span class="token string">'(?&lt;=foo)bar'</span>  <span class="token comment"># 使用 PCRE2 正则（支持 lookahead/lookbehind）</span></code></pre>
+
+<h3 id="文件过滤"><a href="#文件过滤" class="headerlink" title="文件过滤"></a>文件过滤</h3><pre class="language-bash" data-language="bash"><code class="language-bash">rg hello <span class="token parameter variable">-g</span> <span class="token string">'*.py'</span>           <span class="token comment"># 只搜索 .py 文件（--glob）</span>
+rg hello <span class="token parameter variable">-g</span> <span class="token string">'!*.log'</span>         <span class="token comment"># 排除 .log 文件</span>
+rg hello <span class="token parameter variable">--type</span> py           <span class="token comment"># 按文件类型过滤（--type）</span>
+rg hello --type-not py       <span class="token comment"># 排除某类型文件</span>
+rg hello <span class="token parameter variable">--hidden</span>             <span class="token comment"># 包含隐藏文件（--hidden）</span>
+rg hello --no-ignore          <span class="token comment"># 忽略 .gitignore 等规则</span>
+rg hello --no-ignore-vcs      <span class="token comment"># 只忽略 VCS ignore 规则</span>
+rg hello <span class="token parameter variable">-m</span> <span class="token number">5</span>                 <span class="token comment"># 每个文件最多输出 5 个匹配行（--max-count）</span></code></pre>
+
+<p>查看所有支持的文件类型：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">rg --type-list</code></pre>
+
+<h3 id="替换输出"><a href="#替换输出" class="headerlink" title="替换输出"></a>替换输出</h3><pre class="language-bash" data-language="bash"><code class="language-bash">rg hello <span class="token parameter variable">-r</span> <span class="token string">'HELLO'</span>          <span class="token comment"># 将输出中的 hello 替换为 HELLO（不修改文件，--replace）</span></code></pre>
+
+<h3 id="仅列出文件"><a href="#仅列出文件" class="headerlink" title="仅列出文件"></a>仅列出文件</h3><pre class="language-bash" data-language="bash"><code class="language-bash">rg <span class="token parameter variable">--files</span>                   <span class="token comment"># 列出所有将被搜索的文件（不做实际搜索）</span>
+rg <span class="token parameter variable">--files</span> <span class="token parameter variable">--glob</span> <span class="token string">'*.md'</span>     <span class="token comment"># 列出所有 .md 文件</span></code></pre>
+
+<hr>
+<h2 id="实用示例"><a href="#实用示例" class="headerlink" title="实用示例"></a>实用示例</h2><h3 id="搜索代码"><a href="#搜索代码" class="headerlink" title="搜索代码"></a>搜索代码</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 搜索 Python 文件中的 TODO</span>
+rg <span class="token string">'TODO'</span> <span class="token parameter variable">--type</span> py
+
+<span class="token comment"># 搜索函数定义</span>
+rg <span class="token string">'def\s+\w+'</span> <span class="token parameter variable">--type</span> py
+
+<span class="token comment"># 搜索 import 语句</span>
+rg <span class="token string">'^import|^from'</span> <span class="token parameter variable">--type</span> py</code></pre>
+
+<h3 id="结合管道"><a href="#结合管道" class="headerlink" title="结合管道"></a>结合管道</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 搜索并统计总匹配行数</span>
+rg hello <span class="token operator">|</span> <span class="token function">wc</span> <span class="token parameter variable">-l</span>
+
+<span class="token comment"># 搜索结果传给 less 分页</span>
+rg hello <span class="token operator">|</span> <span class="token function">less</span>
+
+<span class="token comment"># 从 stdin 中搜索</span>
+<span class="token function">cat</span> file.txt <span class="token operator">|</span> rg hello</code></pre>
+
+<h3 id="排除目录"><a href="#排除目录" class="headerlink" title="排除目录"></a>排除目录</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 排除 node_modules 目录</span>
+rg hello <span class="token parameter variable">-g</span> <span class="token string">'!node_modules/**'</span>
+
+<span class="token comment"># 排除多个目录</span>
+rg hello <span class="token parameter variable">-g</span> <span class="token string">'!{node_modules,dist,build}/**'</span></code></pre>
+
+<h3 id="搜索多个-pattern"><a href="#搜索多个-pattern" class="headerlink" title="搜索多个 pattern"></a>搜索多个 pattern</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 同时搜索多个 pattern（OR 关系）</span>
+rg <span class="token parameter variable">-e</span> <span class="token string">'hello'</span> <span class="token parameter variable">-e</span> <span class="token string">'world'</span>
+
+<span class="token comment"># 从文件读取 pattern 列表</span>
+rg <span class="token parameter variable">-f</span> patterns.txt</code></pre>
+
+<h3 id="只显示匹配内容（不含文件名-行号）"><a href="#只显示匹配内容（不含文件名-行号）" class="headerlink" title="只显示匹配内容（不含文件名/行号）"></a>只显示匹配内容（不含文件名 / 行号）</h3><pre class="language-bash" data-language="bash"><code class="language-bash">rg <span class="token parameter variable">-o</span> <span class="token string">'\d+'</span> file.txt         <span class="token comment"># 只输出匹配的数字（--only-matching）</span>
+rg --no-filename <span class="token parameter variable">-N</span> hello    <span class="token comment"># 不显示文件名和行号</span></code></pre>
+
+<h3 id="搜索压缩文件（需配合-pre）"><a href="#搜索压缩文件（需配合-pre）" class="headerlink" title="搜索压缩文件（需配合 --pre）"></a>搜索压缩文件（需配合 --pre）</h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 搜索 .gz 文件内容（需 zcat 可用）</span>
+rg <span class="token parameter variable">--pre</span> zcat hello archive.gz</code></pre>
+
+<hr>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>ripgrep 支持通过配置文件设置默认选项，避免每次都输入重复参数。</p>
+<p>创建配置文件：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> ~/.config/ripgrep
+<span class="token function">touch</span> ~/.config/ripgrep/rc</code></pre>
+
+<p>在 <code>~/.config/ripgrep/rc</code> 中写入选项（每行一个）：</p>
+<pre class="language-none"><code class="language-none"># 默认智能大小写
+--smart-case
+
+# 默认包含隐藏文件
+--hidden
+
+# 全局排除 .git 目录
+--glob=!.git/**</code></pre>
+
+<p>通过环境变量指定配置文件路径：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">RIPGREP_CONFIG_PATH</span><span class="token operator">=</span><span class="token string">"<span class="token environment constant">$HOME</span>/.config/ripgrep/rc"</span></code></pre>
+
+<hr>
+<h2 id="与-grep-ag-对比"><a href="#与-grep-ag-对比" class="headerlink" title="与 grep / ag 对比"></a>与 grep / ag 对比</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>grep</th>
+<th>ag</th>
+<th>rg</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>速度</td>
+<td>一般</td>
+<td>快</td>
+<td>极快</td>
+</tr>
+<tr>
+<td>.gitignore 支持</td>
+<td>无</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td>Unicode 支持</td>
+<td>有限</td>
+<td>有</td>
+<td>完整</td>
+</tr>
+<tr>
+<td>PCRE2</td>
+<td>需参数</td>
+<td>默认</td>
+<td>需 <code>-P</code></td>
+</tr>
+<tr>
+<td>多行搜索</td>
+<td>需参数</td>
+<td>有限</td>
+<td>有（<code>-U</code>）</td>
+</tr>
+<tr>
+<td>配置文件</td>
+<td>无</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td>维护状态</td>
+<td>活跃</td>
+<td>较少更新</td>
+<td>活跃</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0J1cm50U3VzaGkvcmlwZ3JlcA==">ripgrep GitHub 主页<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0J1cm50U3VzaGkvcmlwZ3JlcC9ibG9iL21hc3Rlci9HVUlERS5tZA==">ripgrep User Guide<i class="fa fa-external-link-alt"></i></span></li>
+<li><code>rg --help</code> 查看完整选项说明</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Mac/" rel="tag"># Mac</a>
+              <a href="/tags/Tools/" rel="tag"># Tools</a>
+              <a href="/tags/ripgrep/" rel="tag"># ripgrep</a>
+              <a href="/tags/%E6%90%9C%E7%B4%A2/" rel="tag"># 搜索</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/2026-09-02-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8E%88%E6%9D%83%E6%93%8D%E4%BD%9C%E6%B1%87%E6%80%BB/" rel="prev" title="MySQL 数据库授权操作汇总">
+                  <i class="fa fa-angle-left"></i> MySQL 数据库授权操作汇总
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/09/2026-09-07-AgentScope%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" rel="next" title="AgentScope 的安装和基础使用">
+                  AgentScope 的安装和基础使用 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"jueee","repo":"jueee.github.io","client_id":"e61b622bb2d41a9820db","client_secret":"f531cb8372b3c90357ec963d19c7cc918bbf488b","admin_user":"jueee","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"9bacf5469734ba08fab7c3376ccceccc"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

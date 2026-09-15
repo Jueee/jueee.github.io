@@ -24,15 +24,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"jueee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-tomorrow","dark":"prism-tomorrow"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="使用 os.system ()Python 示例： import os val &#x3D; os.system(&#39;ls -al&#39;) print val  返回的状态码正常输出的情况下，sh 返回的状态码是 0 $ python test1.py total 12 drwxr-xr-x 2 jue root 4096 May 25 11:18 . drwx------ 4 jue root 4096 May">
+    <meta name="description" content="使用 os.system()Python 示例： import os val &#x3D; os.system(&#39;ls -al&#39;) print val  返回的状态码正常输出的情况下，sh 返回的状态码是 0 $ python test1.py total 12 drwxr-xr-x 2 jue root 4096 May 25 11:18 . drwx------ 4 jue root 4096 May">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 调用 Shell 脚本常用方法">
 <meta property="og:url" content="https://jueee.github.io/2021/05/2021-05-26-Python%E8%B0%83%E7%94%A8Shell%E8%84%9A%E6%9C%AC%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="小决的博客">
-<meta property="og:description" content="使用 os.system ()Python 示例： import os val &#x3D; os.system(&#39;ls -al&#39;) print val  返回的状态码正常输出的情况下，sh 返回的状态码是 0 $ python test1.py total 12 drwxr-xr-x 2 jue root 4096 May 25 11:18 . drwx------ 4 jue root 4096 May">
+<meta property="og:description" content="使用 os.system()Python 示例： import os val &#x3D; os.system(&#39;ls -al&#39;) print val  返回的状态码正常输出的情况下，sh 返回的状态码是 0 $ python test1.py total 12 drwxr-xr-x 2 jue root 4096 May 25 11:18 . drwx------ 4 jue root 4096 May">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-26T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-16T11:03:13.499Z">
+<meta property="article:modified_time" content="2021-07-16T11:03:14.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Shell">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -181,7 +181,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-os-system"><span class="nav-number">1.</span> <span class="nav-text">使用 os.system ()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">返回的状态码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-os-popen"><span class="nav-number">2.</span> <span class="nav-text">使用 os.popen ()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-commands-%E6%A8%A1%E5%9D%97"><span class="nav-number">3.</span> <span class="nav-text">使用 commands 模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-subprocess-%E6%A8%A1%E5%9D%97"><span class="nav-number">4.</span> <span class="nav-text">使用 subprocess 模块</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-os-system"><span class="nav-number">1.</span> <span class="nav-text">使用 os.system()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">返回的状态码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-os-popen"><span class="nav-number">2.</span> <span class="nav-text">使用 os.popen()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-commands-%E6%A8%A1%E5%9D%97"><span class="nav-number">3.</span> <span class="nav-text">使用 commands 模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-subprocess-%E6%A8%A1%E5%9D%97"><span class="nav-number">4.</span> <span class="nav-text">使用 subprocess 模块</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -318,11 +318,11 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+          <a href="/categories/OS/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OS/Shell/" itemprop="url" rel="index"><span itemprop="name">Shell</span></a>
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
         </span>
     </span>
 
@@ -342,7 +342,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="使用-os-system"><a href="#使用-os-system" class="headerlink" title="使用 os.system()"></a>使用 os.system ()</h3><p>Python 示例：</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="使用-os-system"><a href="#使用-os-system" class="headerlink" title="使用 os.system()"></a>使用 os.system()</h3><p>Python 示例：</p>
 <pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> os
 val <span class="token operator">=</span> os<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token string">'ls -al'</span><span class="token punctuation">)</span>
 <span class="token keyword">print</span> val</code></pre>
@@ -350,9 +350,9 @@ val <span class="token operator">=</span> os<span class="token punctuation">.</s
 <h4 id="返回的状态码"><a href="#返回的状态码" class="headerlink" title="返回的状态码"></a>返回的状态码</h4><p>正常输出的情况下，sh 返回的状态码是 0</p>
 <pre class="language-powershell" data-language="powershell"><code class="language-powershell">$ python test1<span class="token punctuation">.</span>py
 total 12
-drwxr<span class="token operator">-</span>xr<span class="token operator">-</span>x 2 jue root 4096 May 25 11:18 <span class="token punctuation">.</span>
-drwx-<span class="token operator">--</span>-<span class="token operator">--</span> 4 jue root 4096 May 25 11:18 <span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token operator">-</span>rw<span class="token operator">-</span>r-<span class="token operator">-</span>r-<span class="token operator">-</span> 1 jue root   46 May 25 11:18 test1<span class="token punctuation">.</span>py
+drwxr-xr-x 2 jue root 4096 May 25 11:18 <span class="token punctuation">.</span>
+drwx-<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> 4 jue root 4096 May 25 11:18 <span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token operator">-</span>rw-r-<span class="token operator">-</span>r-<span class="token operator">-</span> 1 jue root   46 May 25 11:18 test1<span class="token punctuation">.</span>py
 0</code></pre>
 
 <p>没有找到时，sh 返回的状态码是 1，而适用 Python 调用，返回的是：256</p>
@@ -364,17 +364,17 @@ val <span class="token operator">=</span> os<span class="token punctuation">.</s
 <pre class="language-bash" data-language="bash"><code class="language-bash">$ python test1.py
 <span class="token number">256</span></code></pre>
 
-<h3 id="使用-os-popen"><a href="#使用-os-popen" class="headerlink" title="使用 os.popen()"></a>使用 os.popen ()</h3><h3 id="使用-commands-模块"><a href="#使用-commands-模块" class="headerlink" title="使用 commands 模块"></a>使用 commands 模块</h3><p>有三个方法可以使用：</p>
+<h3 id="使用-os-popen"><a href="#使用-os-popen" class="headerlink" title="使用 os.popen()"></a>使用 os.popen()</h3><h3 id="使用-commands-模块"><a href="#使用-commands-模块" class="headerlink" title="使用 commands 模块"></a>使用 commands 模块</h3><p>有三个方法可以使用：</p>
 <ol>
-<li>commands.getstatusoutput (cmd)，其以字符串的形式返回的是输出结果和状态码，即（status,output）。</li>
-<li>commands.getoutput (cmd)，返回 cmd 的输出结果。</li>
-<li>commands.getstatus (file)，返回 ls -l file 的执行结果字符串，调用了 getoutput，不建议使用此方法</li>
+<li>commands.getstatusoutput(cmd)，其以字符串的形式返回的是输出结果和状态码，即（status,output）。</li>
+<li>commands.getoutput(cmd)，返回 cmd 的输出结果。</li>
+<li>commands.getstatus(file)，返回 ls -l file 的执行结果字符串，调用了 getoutput，不建议使用此方法</li>
 </ol>
 <h3 id="使用-subprocess-模块"><a href="#使用-subprocess-模块" class="headerlink" title="使用 subprocess 模块"></a>使用 subprocess 模块</h3><p>subprocess 模块允许创建很多子进程，创建的时候能指定子进程和子进程的输入、输出、错误输出管道，执行后能获取输出结果和执行状态。</p>
 <ol>
-<li>subprocess.run ()：python3.5 中新增的函数， 执行指定的命令， 等待命令执行完成后返回一个包含执行结果的 CompletedProcess 类的实例。</li>
-<li>subprocess.call ()：执行指定的命令， 返回命令执行状态， 功能类似 os.system（cmd）。</li>
-<li>subprocess.check_call ()：python2.5 中新增的函数，执行指定的命令，如果执行成功则返回状态码， 否则抛出异常。</li>
+<li>subprocess.run()：python3.5 中新增的函数， 执行指定的命令， 等待命令执行完成后返回一个包含执行结果的 CompletedProcess 类的实例。</li>
+<li>subprocess.call()：执行指定的命令， 返回命令执行状态， 功能类似 os.system（cmd）。</li>
+<li>subprocess.check_call ()：python2.5 中新增的函数, 执行指定的命令, 如果执行成功则返回状态码， 否则抛出异常。</li>
 </ol>
 
     </div>
@@ -385,8 +385,8 @@ val <span class="token operator">=</span> os<span class="token punctuation">.</s
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"># Python</a>
               <a href="/tags/Shell/" rel="tag"># Shell</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
           </div>
 
         

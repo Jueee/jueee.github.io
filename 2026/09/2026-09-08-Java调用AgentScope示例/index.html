@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/basic/jue.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/basic/jue.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="EOcKnfaSWdV1p3pQylUZvIx2N977P3HKwO8tQCXWxUQ">
+  <meta name="msvalidate.01" content="8093694B5A8E701B8D5816675F84CFFB">
+  <meta name="yandex-verification" content="80b9fef9aaa59a29">
+  <meta name="baidu-site-verification" content="CKhNUxDRh21xsFP3">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"jueee.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":true,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism-tomorrow","dark":"prism-tomorrow"},"copy_button":{"enable":true,"style":"flat","show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"text":"登录 GitHub 评论","order":1},"valine":{"text":"不登录进行评论","order":2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="介绍如何使用 AgentScope Java SDK 2.0 在 Java 项目中调用 AI Agent，包括基础对话、流式输出、多轮会话、Skill 调用及 Think 过程打印等完整示例。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 调用 AgentScope 示例">
+<meta property="og:url" content="https://jueee.github.io/2026/09/2026-09-08-Java%E8%B0%83%E7%94%A8AgentScope%E7%A4%BA%E4%BE%8B/index.html">
+<meta property="og:site_name" content="小决的博客">
+<meta property="og:description" content="介绍如何使用 AgentScope Java SDK 2.0 在 Java 项目中调用 AI Agent，包括基础对话、流式输出、多轮会话、Skill 调用及 Think 过程打印等完整示例。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-08T00:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-15T09:55:19.365Z">
+<meta property="article:author" content="小决">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AgentScope">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="MultiAgent">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://jueee.github.io/2026/09/2026-09-08-Java%E8%B0%83%E7%94%A8AgentScope%E7%A4%BA%E4%BE%8B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jueee.github.io/2026/09/2026-09-08-Java%E8%B0%83%E7%94%A8AgentScope%E7%A4%BA%E4%BE%8B/","path":"2026/09/2026-09-08-Java调用AgentScope示例/","title":"Java 调用 AgentScope 示例"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java 调用 AgentScope 示例 | 小决的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-175024528-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?d11c8b9bc802239c2cc46ff39d3faf79"></script>
+
+
+
+
+
+
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="小决的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">小决的博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">没关系，进一寸有一寸的欢喜。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="nav-number">2.</span> <span class="nav-text">环境要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-%E4%BE%9D%E8%B5%96"><span class="nav-number">3.</span> <span class="nav-text">Maven 依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">模型配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo01%EF%BC%9A%E5%9F%BA%E7%A1%80%E5%AF%B9%E8%AF%9D"><span class="nav-number">5.</span> <span class="nav-text">Demo01：基础对话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo02%EF%BC%9A%E6%B5%81%E5%BC%8F%E8%BE%93%E5%87%BA"><span class="nav-number">6.</span> <span class="nav-text">Demo02：流式输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo03%EF%BC%9A%E5%A4%9A%E8%BD%AE%E5%AF%B9%E8%AF%9D%E4%B8%8E%E4%BC%9A%E8%AF%9D%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">7.</span> <span class="nav-text">Demo03：多轮对话与会话持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo04%EF%BC%9ASkill-%E8%B0%83%E7%94%A8"><span class="nav-number">8.</span> <span class="nav-text">Demo04：Skill 调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Skill-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">8.1.</span> <span class="nav-text">Skill 目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SKILL-md-%E6%A0%BC%E5%BC%8F"><span class="nav-number">8.2.</span> <span class="nav-text">SKILL.md 格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E5%B9%B6%E4%BD%BF%E7%94%A8-Skill"><span class="nav-number">8.3.</span> <span class="nav-text">加载并使用 Skill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%8D%B0-Think-%E8%BF%87%E7%A8%8B"><span class="nav-number">8.4.</span> <span class="nav-text">打印 Think 过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96-Skill-%E4%BB%93%E5%BA%93%E7%B1%BB%E5%9E%8B"><span class="nav-number">9.</span> <span class="nav-text">其他 Skill 仓库类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">10.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">11.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小决"
+      src="/images/basic/logo.jpg">
+  <p class="site-author-name" itemprop="name">小决</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">357</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories">
+        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags">
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jueee"><i class="fab fa-github fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmhlbGxvanVlQGZveG1haWwuY29t" title="E-Mail → mailto:hellojue@foxmail.com"><i class="fa fa-envelope fa-fw"></i></span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/docker-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;docker-doc&#x2F;">docker 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/kubernetes-doc/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;kubernetes-doc&#x2F;">kubernetes 相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/design-patterns/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;design-patterns&#x2F;">设计模式相关</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/effective-Java/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;effective-Java&#x2F;">Effective Java</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/ConcurrencyWithJava/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;ConcurrencyWithJava&#x2F;">Java 并发编程</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/JavaTestDrivenDev/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;JavaTestDrivenDev&#x2F;">Java 测试驱动开发</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://jueee.github.io/Java8Lambdas/" title="https:&#x2F;&#x2F;jueee.github.io&#x2F;Java8Lambdas&#x2F;">Java 8 函数式编程</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+        <div class="pjax">
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jueee.github.io/2026/09/2026-09-08-Java%E8%B0%83%E7%94%A8AgentScope%E7%A4%BA%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/basic/logo.jpg">
+      <meta itemprop="name" content="小决">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小决的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java 调用 AgentScope 示例 | 小决的博客">
+      <meta itemprop="description" content="介绍如何使用 AgentScope Java SDK 2.0 在 Java 项目中调用 AI Agent，包括基础对话、流式输出、多轮会话、Skill 调用及 Think 过程打印等完整示例。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java 调用 AgentScope 示例
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-09-08 00:00:00" itemprop="dateCreated datePublished" datetime="2026-09-08T00:00:00Z">2026-09-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/AI/AI-Agent/" itemprop="url" rel="index"><span itemprop="name">AI Agent</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">介绍如何使用 AgentScope Java SDK 2.0 在 Java 项目中调用 AI Agent，包括基础对话、流式输出、多轮会话、Skill 调用及 Think 过程打印等完整示例。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FnZW50c2NvcGUtYWkvYWdlbnRzY29wZS1qYXZh">AgentScope Java SDK<i class="fa fa-external-link-alt"></i></span> 是 AgentScope 多智能体框架的 Java 版本，当前版本为 <strong>2.0</strong>，支持在 Java 项目中直接构建和运行 AI Agent，无需调用外部 Python 服务。</p>
+<p>官方文档：<span class="exturl" data-url="aHR0cHM6Ly9qYXZhLmFnZW50c2NvcGUuaW8vdjIvemgvZG9jcy9pbmRleC5odG1s">https://java.agentscope.io/v2/zh/docs/index.html<i class="fa fa-external-link-alt"></i></span></p>
+<p>本文通过 4 个渐进式 Demo 演示核心用法：</p>
+<table>
+<thead>
+<tr>
+<th>Demo</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Demo01</td>
+<td>基础对话（非流式）</td>
+</tr>
+<tr>
+<td>Demo02</td>
+<td>流式输出（逐 token）</td>
+</tr>
+<tr>
+<td>Demo03</td>
+<td>多轮对话 + 会话持久化 + 用户隔离</td>
+</tr>
+<tr>
+<td>Demo04</td>
+<td>Skill 调用 + Think 过程打印</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<hr>
+<h2 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h2><ul>
+<li>JDK <strong>17+</strong></li>
+<li>Maven <strong>3.9+</strong></li>
+</ul>
+<hr>
+<h2 id="Maven-依赖"><a href="#Maven-依赖" class="headerlink" title="Maven 依赖"></a>Maven 依赖</h2><pre class="language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>agentscope.version</span><span class="token punctuation">&gt;</span></span>2.0.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>agentscope.version</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">&gt;</span></span>
+    <span class="token comment">&lt;!-- AgentScope Harness：HarnessAgent + 工作区 + 记忆管理 + 子 Agent --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.agentscope<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>agentscope-harness<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>${agentscope.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token comment">&lt;!-- OpenAI 兼容模型扩展（支持 DeepSeek、本地代理等） --&gt;</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>io.agentscope<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>agentscope-extensions-model-openai<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">&gt;</span></span>${agentscope.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">&gt;</span></span></code></pre>
+
+<p><code>agentscope-harness</code> 会自动引入 <code>agentscope-core</code>。其他模型提供商（DashScope、Anthropic、Gemini 等）有独立的 <code>agentscope-extensions-model-*</code> 扩展包。</p>
+<hr>
+<h2 id="模型配置"><a href="#模型配置" class="headerlink" title="模型配置"></a>模型配置</h2><p>Demo 中统一使用 OpenAI 兼容接口，配置示例（使用环境变量管理敏感信息）：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 从环境变量读取，避免硬编码</span>
+<span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">API_KEY</span>  <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">BASE_URL</span> <span class="token operator">=</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">"OPENAI_BASE_URL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 兼容接口时设置</span>
+<span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> <span class="token constant">MODEL</span>    <span class="token operator">=</span> <span class="token string">"deepseek-v4-flash"</span><span class="token punctuation">;</span>              <span class="token comment">// 替换为实际模型名</span></code></pre>
+
+<p>若使用 DashScope（通义千问），可改用 <code>agentscope-extensions-model-dashscope</code> 并设置 <code>DASHSCOPE_API_KEY</code>：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>extensions<span class="token punctuation">.</span>model<span class="token punctuation">.</span>dashscope<span class="token punctuation">.</span></span><span class="token class-name">DashScopeChatModel</span></span><span class="token punctuation">;</span>
+
+<span class="token class-name">DashScopeChatModel</span> model <span class="token operator">=</span> <span class="token class-name">DashScopeChatModel</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">apiKey</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">"DASHSCOPE_API_KEY"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">modelName</span><span class="token punctuation">(</span><span class="token string">"qwen-max"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<hr>
+<h2 id="Demo01：基础对话"><a href="#Demo01：基础对话" class="headerlink" title="Demo01：基础对话"></a>Demo01：基础对话</h2><p>最简单的用法：构建 <code>HarnessAgent</code> → 发送消息 → 获取回复。</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>core<span class="token punctuation">.</span>agent<span class="token punctuation">.</span></span><span class="token class-name">RuntimeContext</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>core<span class="token punctuation">.</span>message<span class="token punctuation">.</span></span><span class="token class-name">UserMessage</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>extensions<span class="token punctuation">.</span>model<span class="token punctuation">.</span>openai<span class="token punctuation">.</span></span><span class="token class-name">OpenAIChatModel</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>harness<span class="token punctuation">.</span>agent<span class="token punctuation">.</span></span><span class="token class-name">HarnessAgent</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>file<span class="token punctuation">.</span></span><span class="token class-name">Paths</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo01BasicChat</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 1. 构建模型（OpenAI 兼容）</span>
+        <span class="token class-name">OpenAIChatModel</span> model <span class="token operator">=</span> <span class="token class-name">OpenAIChatModel</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">apiKey</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">baseUrl</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">"OPENAI_BASE_URL"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token comment">// 兼容接口时设置</span>
+                <span class="token punctuation">.</span><span class="token function">modelName</span><span class="token punctuation">(</span><span class="token string">"deepseek-v4-flash"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 2. 构建 HarnessAgent</span>
+        <span class="token class-name">HarnessAgent</span> agent <span class="token operator">=</span> <span class="token class-name">HarnessAgent</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token string">"assistant"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">sysPrompt</span><span class="token punctuation">(</span><span class="token string">"你是一个乐于助人的 AI 助手，请用中文回答用户问题。"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span>model<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">workspace</span><span class="token punctuation">(</span><span class="token class-name">Paths</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/tmp/agentscope-demo/workspace"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">disableCompaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>       <span class="token comment">// demo 中关闭上下文压缩</span>
+                <span class="token punctuation">.</span><span class="token function">disableFilesystemTools</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// demo 中关闭文件系统工具</span>
+                <span class="token punctuation">.</span><span class="token function">disableShellTool</span><span class="token punctuation">(</span><span class="token punctuation">)</span>        <span class="token comment">// demo 中关闭 shell 工具</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 3. 构建运行上下文（sessionId 标识会话，userId 标识用户）</span>
+        <span class="token class-name">RuntimeContext</span> ctx <span class="token operator">=</span> <span class="token class-name">RuntimeContext</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">sessionId</span><span class="token punctuation">(</span><span class="token string">"demo01-session"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">userId</span><span class="token punctuation">(</span><span class="token string">"demo-user"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 4. 发送消息，call() 返回 Mono&lt;Msg&gt;，.block() 阻塞等待回复</span>
+        <span class="token keyword">var</span> reply1 <span class="token operator">=</span> agent<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>
+                <span class="token keyword">new</span> <span class="token class-name">UserMessage</span><span class="token punctuation">(</span><span class="token string">"你好！请用一句话介绍 AgentScope Java SDK。"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ctx
+        <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"助手："</span> <span class="token operator">+</span> <span class="token punctuation">(</span>reply1 <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> reply1<span class="token punctuation">.</span><span class="token function">getTextContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">var</span> reply2 <span class="token operator">=</span> agent<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>
+                <span class="token keyword">new</span> <span class="token class-name">UserMessage</span><span class="token punctuation">(</span><span class="token string">"Java 和 Python 哪个更适合做后端开发？"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ctx
+        <span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"助手："</span> <span class="token operator">+</span> <span class="token punctuation">(</span>reply2 <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> reply2<span class="token punctuation">.</span><span class="token function">getTextContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        agent<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p><strong>关键 API：</strong></p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HarnessAgent.builder()</code></td>
+<td>构建 Agent，包含工作区、记忆、会话持久化等工程能力</td>
+</tr>
+<tr>
+<td><code>RuntimeContext</code></td>
+<td>每次调用的上下文，携带 <code>sessionId</code>、<code>userId</code></td>
+</tr>
+<tr>
+<td><code>agent.call(msg, ctx)</code></td>
+<td>发送消息，返回 <code>Mono&lt;Msg&gt;</code>（响应式）</td>
+</tr>
+<tr>
+<td><code>reply.getTextContent()</code></td>
+<td>从回复中提取纯文本内容</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Demo02：流式输出"><a href="#Demo02：流式输出" class="headerlink" title="Demo02：流式输出"></a>Demo02：流式输出</h2><p>使用 <code>streamEvents()</code> 订阅事件流，实时打印每个 token。</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>core<span class="token punctuation">.</span>event<span class="token punctuation">.</span></span><span class="token class-name">AgentEventType</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>core<span class="token punctuation">.</span>event<span class="token punctuation">.</span></span><span class="token class-name">TextBlockDeltaEvent</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>core<span class="token punctuation">.</span>event<span class="token punctuation">.</span></span><span class="token class-name">ToolCallStartEvent</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">// 开启流式模式</span>
+<span class="token class-name">OpenAIChatModel</span> model <span class="token operator">=</span> <span class="token class-name">OpenAIChatModel</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">apiKey</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">baseUrl</span><span class="token punctuation">(</span><span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">getenv</span><span class="token punctuation">(</span><span class="token string">"OPENAI_BASE_URL"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">modelName</span><span class="token punctuation">(</span><span class="token string">"deepseek-v4-flash"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>   <span class="token comment">// 关键：开启流式</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">HarnessAgent</span> agent <span class="token operator">=</span> <span class="token class-name">HarnessAgent</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token string">"stream-assistant"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">sysPrompt</span><span class="token punctuation">(</span><span class="token string">"你是一个乐于助人的 AI 助手，请用中文回答用户问题。"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span>model<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">workspace</span><span class="token punctuation">(</span><span class="token class-name">Paths</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/tmp/agentscope-demo/workspace"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">disableCompaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">disableFilesystemTools</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">disableShellTool</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">RuntimeContext</span> ctx <span class="token operator">=</span> <span class="token class-name">RuntimeContext</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">sessionId</span><span class="token punctuation">(</span><span class="token string">"demo02-session"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">userId</span><span class="token punctuation">(</span><span class="token string">"demo-user"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// streamEvents 返回 Flux&lt;AgentEvent&gt;，逐事件处理</span>
+agent<span class="token punctuation">.</span><span class="token function">streamEvents</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UserMessage</span><span class="token punctuation">(</span><span class="token string">"请列出 Java 的 5 个核心特性，每条一行。"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ctx<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">doOnNext</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+            <span class="token class-name">AgentEventType</span> type <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token class-name">AgentEventType</span><span class="token punctuation">.</span><span class="token constant">TEXT_BLOCK_DELTA</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 文本增量：实时打印 token</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">TextBlockDeltaEvent</span><span class="token punctuation">)</span> event<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDelta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token class-name">AgentEventType</span><span class="token punctuation">.</span><span class="token constant">TOOL_CALL_START</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 工具调用开始</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\n[工具调用] "</span>
+                        <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ToolCallStartEvent</span><span class="token punctuation">)</span> event<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getToolCallName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token class-name">AgentEventType</span><span class="token punctuation">.</span><span class="token constant">AGENT_END</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\n[回复完成]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">blockLast</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 阻塞直到流结束</span></code></pre>
+
+<p><strong>常用 AgentEventType：</strong></p>
+<table>
+<thead>
+<tr>
+<th>事件类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TEXT_BLOCK_START</code> / <code>TEXT_BLOCK_DELTA</code> / <code>TEXT_BLOCK_END</code></td>
+<td>文本块开始/增量/结束</td>
+</tr>
+<tr>
+<td><code>THINKING_BLOCK_START</code> / <code>THINKING_BLOCK_DELTA</code> / <code>THINKING_BLOCK_END</code></td>
+<td>模型思考过程（Think）</td>
+</tr>
+<tr>
+<td><code>TOOL_CALL_START</code> / <code>TOOL_CALL_END</code></td>
+<td>工具调用开始 / 结束</td>
+</tr>
+<tr>
+<td><code>TOOL_RESULT_START</code> / <code>TOOL_RESULT_END</code></td>
+<td>工具结果开始 / 结束</td>
+</tr>
+<tr>
+<td><code>MODEL_CALL_START</code> / <code>MODEL_CALL_END</code></td>
+<td>模型调用开始 / 结束</td>
+</tr>
+<tr>
+<td><code>AGENT_START</code> / <code>AGENT_END</code> / <code>AGENT_RESULT</code></td>
+<td>Agent 级别事件</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Demo03：多轮对话与会话持久化"><a href="#Demo03：多轮对话与会话持久化" class="headerlink" title="Demo03：多轮对话与会话持久化"></a>Demo03：多轮对话与会话持久化</h2><p><code>HarnessAgent</code> 通过 <code>sessionId</code> 自动管理上下文，不同 <code>userId</code> 的会话完全隔离。</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>harness<span class="token punctuation">.</span>agent<span class="token punctuation">.</span>memory<span class="token punctuation">.</span>compaction<span class="token punctuation">.</span></span><span class="token class-name">CompactionConfig</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">// 开启压缩：超过 30 条消息时触发，保留最近 10 条</span>
+<span class="token class-name">HarnessAgent</span> agent <span class="token operator">=</span> <span class="token class-name">HarnessAgent</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token string">"chat-assistant"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">sysPrompt</span><span class="token punctuation">(</span><span class="token string">"你是一个乐于助人的 AI 助手，请用中文回答用户问题，回答简洁。"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span>model<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">workspace</span><span class="token punctuation">(</span><span class="token class-name">Paths</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/tmp/agentscope-demo/workspace"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">compaction</span><span class="token punctuation">(</span><span class="token class-name">CompactionConfig</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">triggerMessages</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">keepMessages</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">disableFilesystemTools</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">disableShellTool</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// ── 场景 1：Alice 的多轮对话（同一 session，Agent 记住上下文）──────</span>
+<span class="token class-name">RuntimeContext</span> aliceCtx <span class="token operator">=</span> <span class="token class-name">RuntimeContext</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">sessionId</span><span class="token punctuation">(</span><span class="token string">"alice-session-01"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">userId</span><span class="token punctuation">(</span><span class="token string">"alice"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+agent<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UserMessage</span><span class="token punctuation">(</span><span class="token string">"我叫 Alice，今天想学习 AgentScope。"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> aliceCtx<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+agent<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UserMessage</span><span class="token punctuation">(</span><span class="token string">"AgentScope 支持哪些模型？"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> aliceCtx<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Agent 记住了用户名字</span>
+<span class="token keyword">var</span> r3 <span class="token operator">=</span> agent<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UserMessage</span><span class="token punctuation">(</span><span class="token string">"你还记得我叫什么名字吗？"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> aliceCtx<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>r3<span class="token punctuation">.</span><span class="token function">getTextContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// → "你叫 Alice"</span>
+
+<span class="token comment">// ── 场景 2：Bob 的独立会话（不同 userId，完全隔离）──────────────────</span>
+<span class="token class-name">RuntimeContext</span> bobCtx <span class="token operator">=</span> <span class="token class-name">RuntimeContext</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">sessionId</span><span class="token punctuation">(</span><span class="token string">"bob-session-01"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">userId</span><span class="token punctuation">(</span><span class="token string">"bob"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Bob 不知道 Alice 的存在</span>
+<span class="token keyword">var</span> r4 <span class="token operator">=</span> agent<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UserMessage</span><span class="token punctuation">(</span><span class="token string">"你知道 Alice 是谁吗？"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> bobCtx<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>r4<span class="token punctuation">.</span><span class="token function">getTextContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// → "我不知道 Alice"</span>
+
+<span class="token comment">// ── 场景 3：Alice 恢复会话（相同 sessionId，跨进程持久化）────────────</span>
+<span class="token comment">// 进程重启后，相同 sessionId 依然能恢复上下文</span>
+<span class="token keyword">var</span> r5 <span class="token operator">=</span> agent<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UserMessage</span><span class="token punctuation">(</span><span class="token string">"我之前跟你说我在学什么？"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> aliceCtx<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">block</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>r5<span class="token punctuation">.</span><span class="token function">getTextContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// → "你说你在学 AgentScope"</span></code></pre>
+
+<p><strong>会话状态存储：</strong></p>
+<p>默认使用 <code>JsonFileAgentStateStore</code>，状态保存到 <code>~/.agentscope/state/&lt;agentId&gt;/&lt;userId&gt;/&lt;sessionId&gt;/agent_state.json</code>。生产环境可替换为 Redis 或 MySQL：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// Redis 状态存储（需引入 agentscope-extensions-redis）</span>
+<span class="token class-name">HarnessAgent</span> agent <span class="token operator">=</span> <span class="token class-name">HarnessAgent</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment">// ...</span>
+        <span class="token punctuation">.</span><span class="token function">stateStore</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RedisAgentStateStore</span><span class="token punctuation">(</span>redisClient<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<hr>
+<h2 id="Demo04：Skill-调用"><a href="#Demo04：Skill-调用" class="headerlink" title="Demo04：Skill 调用"></a>Demo04：Skill 调用</h2><p>Skill 是基于 Markdown 的<strong>指令包</strong>，无需写新工具代码即可扩展 Agent 能力。Agent 通过内置工具 <code>load_skill_through_path</code> 读取 <code>SKILL.md</code> 指令，再用已有工具按指令执行。</p>
+<h3 id="Skill-目录结构"><a href="#Skill-目录结构" class="headerlink" title="Skill 目录结构"></a>Skill 目录结构</h3><pre class="language-none"><code class="language-none">src/main/resources/skills/
+├── code-reviewer/
+│   ├── SKILL.md                   # 必需：frontmatter 元数据 + 指令
+│   └── references/
+│       └── java-style-guide.md    # 可选：参考资料，Agent 按需读取
+└── data-analyzer/
+    └── SKILL.md</code></pre>
+
+<h3 id="SKILL-md-格式"><a href="#SKILL-md-格式" class="headerlink" title="SKILL.md 格式"></a>SKILL.md 格式</h3><pre class="language-markdown" data-language="markdown"><code class="language-markdown"><span class="token front-matter-block"><span class="token punctuation">---</span>
+<span class="token front-matter yaml language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> code<span class="token punctuation">-</span>reviewer
+<span class="token key atrule">description</span><span class="token punctuation">:</span> 当用户需要代码评审、代码质量分析、风格检查或最佳实践建议时使用。</span>
+<span class="token punctuation">---</span></span>
+
+<span class="token title important"><span class="token punctuation">#</span> Code Reviewer Skill</span>
+
+你是一位专业的代码评审专家。当用户提交代码片段进行评审时，请按以下步骤执行：
+
+<span class="token title important"><span class="token punctuation">##</span> 评审维度</span>
+<span class="token list punctuation">1.</span> <span class="token bold"><span class="token punctuation">**</span><span class="token content">代码质量</span><span class="token punctuation">**</span></span>：检查代码逻辑是否正确、是否有潜在 bug
+<span class="token list punctuation">2.</span> <span class="token bold"><span class="token punctuation">**</span><span class="token content">安全性</span><span class="token punctuation">**</span></span>：是否存在安全漏洞（如 SQL 注入、空指针等）
+...
+
+参考规范请见 <span class="token code-snippet code keyword">`references/java-style-guide.md`</span></code></pre>
+
+<blockquote>
+<p><strong>注意</strong>：<code>description</code> 决定 Agent 是否使用这个 Skill，要写得具体（"当用户需要… 时使用"），而不是泛泛的功能描述。</p>
+</blockquote>
+<h3 id="加载并使用-Skill"><a href="#加载并使用-Skill" class="headerlink" title="加载并使用 Skill"></a>加载并使用 Skill</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>core<span class="token punctuation">.</span>skill<span class="token punctuation">.</span>repository<span class="token punctuation">.</span></span><span class="token class-name">ClasspathSkillRepository</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">// 1. 从 classpath 加载（对应 src/main/resources/skills/）</span>
+<span class="token class-name">ClasspathSkillRepository</span> skillRepo <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClasspathSkillRepository</span><span class="token punctuation">(</span><span class="token string">"skills"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 查看已加载的 skill</span>
+skillRepo<span class="token punctuation">.</span><span class="token function">getAllSkillNames</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>name <span class="token operator">-&gt;</span> <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"  - "</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 输出：</span>
+<span class="token comment">//   - code-reviewer</span>
+<span class="token comment">//   - data-analyzer</span>
+
+<span class="token comment">// 2. 构建带 skill 的 Agent（注意：不要 disableFilesystemTools/disableShellTool）</span>
+<span class="token class-name">HarnessAgent</span> agent <span class="token operator">=</span> <span class="token class-name">HarnessAgent</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token string">"skill-agent"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">sysPrompt</span><span class="token punctuation">(</span><span class="token string">"你是一个专业的技术助手，擅长代码评审和数据分析。\n"</span>
+                 <span class="token operator">+</span> <span class="token string">"当用户提出相关需求时，请主动使用合适的 skill 来完成任务。\n"</span>
+                 <span class="token operator">+</span> <span class="token string">"请用中文回复。"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">model</span><span class="token punctuation">(</span>model<span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">workspace</span><span class="token punctuation">(</span><span class="token class-name">Paths</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/tmp/agentscope-demo/skill-workspace"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">skillRepository</span><span class="token punctuation">(</span>skillRepo<span class="token punctuation">)</span>   <span class="token comment">// 注册 skill 仓库</span>
+        <span class="token punctuation">.</span><span class="token function">disableCompaction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 3. 每次使用唯一 sessionId，确保每次全新推理（避免 session 缓存影响 think 输出）</span>
+<span class="token class-name">RuntimeContext</span> ctx <span class="token operator">=</span> <span class="token class-name">RuntimeContext</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">sessionId</span><span class="token punctuation">(</span><span class="token string">"code-review-"</span> <span class="token operator">+</span> <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">userId</span><span class="token punctuation">(</span><span class="token string">"demo-user"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 4. 直接提问，Agent 会自动判断并加载对应 skill</span>
+<span class="token class-name">String</span> question <span class="token operator">=</span> <span class="token string">"请帮我评审以下代码：\n```java\nString sql = \"SELECT * FROM users WHERE id=\" + userId;\n```"</span><span class="token punctuation">;</span>
+<span class="token function">streamAndPrint</span><span class="token punctuation">(</span>agent<span class="token punctuation">,</span> question<span class="token punctuation">,</span> ctx<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<h3 id="打印-Think-过程"><a href="#打印-Think-过程" class="headerlink" title="打印 Think 过程"></a>打印 Think 过程</h3><p>支持思考型模型时，<code>THINKING_BLOCK_*</code> 事件携带模型的推理过程，可用于调试 Agent 决策逻辑：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">io<span class="token punctuation">.</span>agentscope<span class="token punctuation">.</span>core<span class="token punctuation">.</span>event<span class="token punctuation">.</span></span><span class="token class-name">ThinkingBlockDeltaEvent</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">streamAndPrint</span><span class="token punctuation">(</span><span class="token class-name">HarnessAgent</span> agent<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">,</span> <span class="token class-name">RuntimeContext</span> ctx<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    agent<span class="token punctuation">.</span><span class="token function">streamEvents</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">UserMessage</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">,</span> ctx<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">doOnNext</span><span class="token punctuation">(</span>event <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+                <span class="token class-name">AgentEventType</span> type <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token comment">// ── 思考过程（Think）──────────────────────────────────────────</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token class-name">AgentEventType</span><span class="token punctuation">.</span><span class="token constant">THINKING_BLOCK_START</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\n┌─ 💭 Think ─────────────────────────────"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token class-name">AgentEventType</span><span class="token punctuation">.</span><span class="token constant">THINKING_BLOCK_DELTA</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ThinkingBlockDeltaEvent</span><span class="token punctuation">)</span> event<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDelta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token class-name">AgentEventType</span><span class="token punctuation">.</span><span class="token constant">THINKING_BLOCK_END</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\n└────────────────────────────────────────\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token comment">// ── 正式回复文本 ──────────────────────────────────────────────</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token class-name">AgentEventType</span><span class="token punctuation">.</span><span class="token constant">TEXT_BLOCK_DELTA</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">TextBlockDeltaEvent</span><span class="token punctuation">)</span> event<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDelta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token comment">// ── 工具调用（含 Skill 加载）─────────────────────────────────</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token class-name">AgentEventType</span><span class="token punctuation">.</span><span class="token constant">TOOL_CALL_START</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">String</span> toolName <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ToolCallStartEvent</span><span class="token punctuation">)</span> event<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getToolCallName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>toolName<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"load_skill"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\n\n[&gt;&gt; 正在加载 Skill: "</span> <span class="token operator">+</span> toolName <span class="token operator">+</span> <span class="token string">" &lt;&lt;]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\n[工具调用] "</span> <span class="token operator">+</span> toolName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+
+                <span class="token comment">// ── 回复结束 ──────────────────────────────────────────────────</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">==</span> <span class="token class-name">AgentEventType</span><span class="token punctuation">.</span><span class="token constant">AGENT_END</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">blockLast</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+
+<p><strong>运行输出示例：</strong></p>
+<pre class="language-none"><code class="language-none">=== 已加载 Skills ===
+  - code-reviewer
+  - data-analyzer
+
+┌─ 💭 Think ─────────────────────────────
+用户要求评审一段 SQL 拼接代码。这是 SQL 注入漏洞的典型写法。
+有 code-reviewer 技能可用，我应该先加载它来提供专业评审。
+└────────────────────────────────────────
+
+[&gt;&gt; 正在加载 Skill: load_skill_through_path &lt;&lt;]
+
+## 代码评审报告
+
+### 总体评价
+**1 / 5** — 存在严重 SQL 注入漏洞，不可上生产...</code></pre>
+
+<blockquote>
+<p><strong>Think 不显示的原因</strong>：若 sessionId 复用，Agent 直接返回缓存的历史回复，不会重新推理，自然没有 think 事件。每次调用使用 <code>System.currentTimeMillis()</code> 生成唯一 sessionId 即可解决。</p>
+</blockquote>
+<hr>
+<h2 id="其他-Skill-仓库类型"><a href="#其他-Skill-仓库类型" class="headerlink" title="其他 Skill 仓库类型"></a>其他 Skill 仓库类型</h2><p>除 <code>ClasspathSkillRepository</code> 外，还支持多种来源：</p>
+<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">// 文件系统（本地目录）</span>
+<span class="token keyword">new</span> <span class="token class-name">FileSystemSkillRepository</span><span class="token punctuation">(</span><span class="token class-name">Paths</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/path/to/skills"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Git 仓库（需引入 agentscope-extensions-skill-git-repository）</span>
+<span class="token keyword">new</span> <span class="token class-name">GitSkillRepository</span><span class="token punctuation">(</span><span class="token string">"https://github.com/your-org/team-skills.git"</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 多仓库叠加（后注册的优先级更高，同名 skill 后者覆盖前者）</span>
+<span class="token class-name">HarnessAgent</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">skillRepository</span><span class="token punctuation">(</span>communitySkills<span class="token punctuation">)</span>   <span class="token comment">// 低优先级</span>
+    <span class="token punctuation">.</span><span class="token function">skillRepository</span><span class="token punctuation">(</span>teamSkills<span class="token punctuation">)</span>        <span class="token comment">// 高优先级</span>
+    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
+<hr>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><pre class="language-none"><code class="language-none">agentscope-java-demo/
+├── pom.xml
+└── src/main/
+    ├── java/com/example/demo/
+    │   ├── Demo01BasicChat.java      # 基础对话
+    │   ├── Demo02StreamOutput.java   # 流式输出
+    │   ├── Demo03MultiTurnChat.java  # 多轮对话 + 会话持久化
+    │   └── Demo04SkillDemo.java      # Skill 调用 + Think 打印
+    └── resources/skills/
+        ├── code-reviewer/
+        │   ├── SKILL.md
+        │   └── references/java-style-guide.md
+        └── data-analyzer/
+            └── SKILL.md</code></pre>
+
+<p><strong>编译运行：</strong></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">mvn package <span class="token parameter variable">-q</span> <span class="token parameter variable">-DskipTests</span>
+
+<span class="token function">java</span> <span class="token parameter variable">-cp</span> target/agentscope-java-demo-1.0-SNAPSHOT.jar com.example.demo.Demo01BasicChat
+<span class="token function">java</span> <span class="token parameter variable">-cp</span> target/agentscope-java-demo-1.0-SNAPSHOT.jar com.example.demo.Demo02StreamOutput
+<span class="token function">java</span> <span class="token parameter variable">-cp</span> target/agentscope-java-demo-1.0-SNAPSHOT.jar com.example.demo.Demo03MultiTurnChat
+<span class="token function">java</span> <span class="token parameter variable">-cp</span> target/agentscope-java-demo-1.0-SNAPSHOT.jar com.example.demo.Demo04SkillDemo</code></pre>
+
+<hr>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FnZW50c2NvcGUtYWkvYWdlbnRzY29wZS1qYXZh">AgentScope Java SDK GitHub<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9qYXZhLmFnZW50c2NvcGUuaW8vdjIvemgvZG9jcy9pbmRleC5odG1s">AgentScope Java 官方文档 v2<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9qYXZhLmFnZW50c2NvcGUuaW8vdjIvemgvZG9jcy9xdWlja3N0YXJ0Lmh0bWw=">快速开始<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9qYXZhLmFnZW50c2NvcGUuaW8vdjIvemgvZG9jcy9idWlsZGluZy1ibG9ja3MvdG9vbC5odG1s">Tool 与 Skill 文档<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9qYXZhLmFnZW50c2NvcGUuaW8vdjIvemgvZG9jcy9oYXJuZXNzL3NraWxsLmh0bWw=">Harness Skill 文档<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/AI/" rel="tag"># AI</a>
+              <a href="/tags/AgentScope/" rel="tag"># AgentScope</a>
+              <a href="/tags/MultiAgent/" rel="tag"># MultiAgent</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/2026-09-07-AgentScope%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/" rel="prev" title="AgentScope 的安装和基础使用">
+                  <i class="fa fa-angle-left"></i> AgentScope 的安装和基础使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/09/2026-09-10-HarnessAgent%20vs%20ReActAgent%20%E5%AF%B9%E6%AF%94/" rel="next" title="HarnessAgent vs ReActAgent 对比">
+                  HarnessAgent vs ReActAgent 对比 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Jueee/Yongqiang Wei</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><div class="footer-custom">
+  <div class="powered-by">由 <a href="https://github.com/next-theme/theme-next-docs" class="theme-link" rel="noopener" target="_blank">Hexo</a> v8.0.0 驱动</div>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL0p1ZWVlLw==" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"jueee","repo":"jueee.github.io","client_id":"e61b622bb2d41a9820db","client_secret":"f531cb8372b3c90357ec963d19c7cc918bbf488b","admin_user":"jueee","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"84a1cfc918b96f6e374958b5efd5ead7"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618},"display":{"superSample":2,"width":150,"height":300,"position":"left","hOffset":20,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacity":0.8},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1597314739701.png">
 <meta property="og:image" content="https://jueee.github.io/images/2020/08/1597314791433.png">
 <meta property="article:published_time" content="2020-08-13T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-21T10:50:57.641Z">
+<meta property="article:modified_time" content="2021-05-21T10:50:58.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Arthas">
 <meta property="article:tag" content="Java">
@@ -140,7 +140,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -206,7 +206,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -217,7 +217,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -365,40 +365,40 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><em> id</em></td>
-<td> 线程 id</td>
+<td><em>id</em></td>
+<td>线程 id</td>
 </tr>
 <tr>
 <td>[n:]</td>
-<td> 指定最忙的前 N 个线程并打印堆栈</td>
+<td>指定最忙的前 N 个线程并打印堆栈</td>
 </tr>
 <tr>
-<td> [b]</td>
-<td> 找出当前阻塞其他线程的线程</td>
+<td>[b]</td>
+<td>找出当前阻塞其他线程的线程</td>
 </tr>
 <tr>
-<td> [i <code>&lt;value&gt;</code>]</td>
-<td> 指定 cpu 占比统计的采样间隔，单位为毫秒</td>
+<td>[i <code>&lt;value&gt;</code>]</td>
+<td>指定 cpu 占比统计的采样间隔，单位为毫秒</td>
 </tr>
 </tbody></table>
 <h4 id="线程常见状态"><a href="#线程常见状态" class="headerlink" title="线程常见状态"></a>线程常见状态</h4><p>定位线程问题之前，先回顾一下线程的几种常见状态：</p>
 <ul>
 <li><p><strong>RUNNABLE</strong> 运行中</p>
 </li>
-<li><p><strong>TIMED_WAITIN</strong> 调用了以下方法的线程会进入 <strong>TIMED_WAITING</strong>：</p>
+<li><p><strong>TIMED_WAITIN</strong> 调用了以下方法的线程会进入<strong> TIMED_WAITING</strong>：</p>
 <ol>
 <li>Thread#sleep()</li>
 <li>Object#wait () 并加了超时参数</li>
-<li> Thread#join () 并加了超时参数</li>
-<li> LockSupport#parkNanos()</li>
+<li>Thread#join () 并加了超时参数</li>
+<li>LockSupport#parkNanos()</li>
 <li>LockSupport#parkUntil()</li>
 </ol>
 </li>
 <li><p><strong>WAITING</strong> 当线程调用以下方法时会进入 WAITING 状态：</p>
 <ol>
 <li>Object#wait () 而且不加超时参数</li>
-<li> Thread#join () 而且不加超时参数</li>
-<li> LockSupport#park()</li>
+<li>Thread#join () 而且不加超时参数</li>
+<li>LockSupport#park()</li>
 </ol>
 </li>
 <li><p><strong>BLOCKED</strong> 阻塞，等待锁</p>
@@ -406,13 +406,13 @@
 </ul>
 <h4 id="cpu占比的统计"><a href="#cpu占比的统计" class="headerlink" title="cpu占比的统计"></a>cpu 占比的统计</h4><blockquote>
 <p>这里的 cpu 统计的是，一段采样间隔内，当前 JVM 里各个线程所占用的 cpu 时间占总 cpu 时间的百分比。</p>
-<p>其计算方法为： 首先进行一次采样，获得所有线程的 cpu 的使用时间 (调用的是 <code>java.lang.management.ThreadMXBean#getThreadCpuTime</code> 这个接口)，然后睡眠一段时间，默认 100ms，可以通过 <code>-i</code> 参数指定，然后再采样一次，最后得出这段时间内各个线程消耗的 cpu 时间情况，最后算出百分比。</p>
+<p>其计算方法为： 首先进行一次采样，获得所有线程的 cpu 的使用时间 (调用的是<code>java.lang.management.ThreadMXBean#getThreadCpuTime</code>这个接口)，然后睡眠一段时间，默认 100ms，可以通过<code>-i</code>参数指定，然后再采样一次，最后得出这段时间内各个线程消耗的 cpu 时间情况，最后算出百分比。</p>
 </blockquote>
 <blockquote>
 <p>注意： 这个统计也会产生一定的开销（JDK 这个接口本身开销比较大），因此会看到 as 的线程占用一定的百分比，为了降低统计自身的开销带来的影响，可以把采样间隔拉长一些，比如 5000 毫秒。</p>
 </blockquote>
 <blockquote>
-<p>如果想看从 Java 进程启动开始到现在的 cpu 占比情况：可以使用 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29sZHJhdGxlZS91c2VmdWwtc2NyaXB0cy9ibG9iL21hc3Rlci9kb2NzL2phdmEubWQjLXNob3ctYnVzeS1qYXZhLXRocmVhZHM=">show-busy-java-threads<i class="fa fa-external-link-alt"></i></span> 这个脚本</p>
+<p>如果想看从 Java 进程启动开始到现在的 cpu 占比情况：可以使用<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL29sZHJhdGxlZS91c2VmdWwtc2NyaXB0cy9ibG9iL21hc3Rlci9kb2NzL2phdmEubWQjLXNob3ctYnVzeS1qYXZhLXRocmVhZHM="> show-busy-java-threads<i class="fa fa-external-link-alt"></i></span>这个脚本</p>
 </blockquote>
 <h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>首先编写一个有各种情况的测试类运行起来，再使用 <strong>Arthas</strong> 进行问题定位：</p>
 <pre class="language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Slf4j</span>
@@ -553,12 +553,12 @@
 <p><img src="/images/2020/08/1597314636547.png" alt="1597314636547" loading="lazy"></p>
 <p>定位到的 CPU 使用最高的方法：</p>
 <p><img src="/images/2020/08/1597314662083.png" alt="1597314662083" loading="lazy"></p>
-<h3 id="定位线程阻塞"><a href="#定位线程阻塞" class="headerlink" title="定位线程阻塞"></a>定位线程阻塞</h3><p>上面的模拟代码里，定义了线程池大小为 1 的线程池，然后在 <code>cpuHigh</code> 方法里提交了一个线程，在 <code>thread</code> 方法再次提交了一个线程，后面的这个线程因为线程池已满，会阻塞下来。</p>
+<h3 id="定位线程阻塞"><a href="#定位线程阻塞" class="headerlink" title="定位线程阻塞"></a>定位线程阻塞</h3><p>上面的模拟代码里，定义了线程池大小为 1 的线程池，然后在 <code>cpuHigh</code> 方法里提交了一个线程，在 <code>thread</code>方法再次提交了一个线程，后面的这个线程因为线程池已满，会阻塞下来。</p>
 <p>使用 <strong>thread | grep pool</strong> 命令查看线程池里线程信息。</p>
 <p><img src="/images/2020/08/1597314720720.png" alt="1597314720720" loading="lazy"></p>
 <p>可以看到线程池有 <strong>WAITING</strong> 的线程：</p>
 <p><img src="/images/2020/08/1597314739701.png" alt="1597314739701" loading="lazy"></p>
-<h3 id="定位线程死锁"><a href="#定位线程死锁" class="headerlink" title="定位线程死锁"></a>定位线程死锁</h3><p>上面的模拟代码里 <code>deadThread</code> 方法实现了一个死锁，使用 <strong>thread -b</strong> 命令查看直接定位到死锁信息。</p>
+<h3 id="定位线程死锁"><a href="#定位线程死锁" class="headerlink" title="定位线程死锁"></a>定位线程死锁</h3><p>上面的模拟代码里 <code>deadThread</code>方法实现了一个死锁，使用 <strong>thread -b</strong> 命令查看直接定位到死锁信息。</p>
 <p><img src="/images/2020/08/1597314791433.png" alt="1597314791433" loading="lazy"></p>
 
     </div>
@@ -578,8 +578,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/08/2020-08-13-Git%E6%AF%8F%E6%AC%A1%E9%83%BD%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" rel="prev" title="Git 每次都需要输入用户名密码的问题解决">
-                  <i class="fa fa-angle-left"></i> Git 每次都需要输入用户名密码的问题解决
+                <a href="/2020/08/2020-08-13-%E4%BD%BF%E7%94%A8Jrebel%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2/" rel="prev" title="使用 Jrebel，实现热部署">
+                  <i class="fa fa-angle-left"></i> 使用 Jrebel，实现热部署
                 </a>
             </div>
             <div class="post-nav-item">

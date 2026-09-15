@@ -26,13 +26,13 @@
 
     <meta name="description" content="在实际的业务中，难免会跟第三方系统进行数据的交互与传递，那么如何保证数据在传输过程中的安全呢（防窃取）？ 除了 https 的协议之外，能不能加上通用的一套算法以及规范来保证传输的安全性呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="API 接口设计之 token+sign 具体架构与实现">
+<meta property="og:title" content="API 接口设计之 token + sign 具体架构与实现">
 <meta property="og:url" content="https://jueee.github.io/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="小决的博客">
 <meta property="og:description" content="在实际的业务中，难免会跟第三方系统进行数据的交互与传递，那么如何保证数据在传输过程中的安全呢（防窃取）？ 除了 https 的协议之外，能不能加上通用的一套算法以及规范来保证传输的安全性呢？">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-09T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-19T08:45:56.997Z">
+<meta property="article:modified_time" content="2022-01-19T08:45:58.000Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="SpringBoot">
@@ -42,10 +42,10 @@
 <link rel="canonical" href="https://jueee.github.io/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jueee.github.io/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/","path":"2021/11/2021-11-09-API接口设计之token+sign具体架构与实现/","title":"API 接口设计之 token+sign 具体架构与实现"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://jueee.github.io/2021/11/2021-11-09-API%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1%E4%B9%8Btoken+sign%E5%85%B7%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%AE%9E%E7%8E%B0/","path":"2021/11/2021-11-09-API接口设计之token+sign具体架构与实现/","title":"API 接口设计之 token + sign 具体架构与实现"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>API 接口设计之 token+sign 具体架构与实现 | 小决的博客</title>
+<title>API 接口设计之 token + sign 具体架构与实现 | 小决的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175024528-1"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-175024528-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -290,12 +290,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="API 接口设计之 token+sign 具体架构与实现 | 小决的博客">
+      <meta itemprop="name" content="API 接口设计之 token + sign 具体架构与实现 | 小决的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          API 接口设计之 token+sign 具体架构与实现
+          API 接口设计之 token + sign 具体架构与实现
         </h1>
 
         <div class="post-meta-container">
@@ -340,12 +340,12 @@
     
     <div class="post-body" itemprop="articleBody"><p>在实际的业务中，难免会跟第三方系统进行数据的交互与传递，那么如何保证数据在传输过程中的安全呢（防窃取）？</p>
 <p>除了 https 的协议之外，能不能加上通用的一套算法以及规范来保证传输的安全性呢？</p>
-<a id="more"></a>
+<span id="more"></span>
 
-<h3 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h3><h4 id="token-简介"><a href="#token-简介" class="headerlink" title="token 简介"></a>token 简介</h4><p>Token：访问令牌 access token, 用于接口中，用于标识接口调用者的身份、凭证，减少用户名和密码的传输次数。一般情况下客户端 (接口调用方) 需要先向服务器端申请一个接口调用的账号，服务器会给出一个 appId 和一个 key, key 用于参数签名使用，注意 key 保存到客户端，需要做一些安全处理，防止泄露。</p>
+<h3 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h3><h4 id="token-简介"><a href="#token-简介" class="headerlink" title="token 简介"></a>token 简介</h4><p>Token：访问令牌 access token, 用于接口中, 用于标识接口调用者的身份、凭证，减少用户名和密码的传输次数。一般情况下客户端 (接口调用方) 需要先向服务器端申请一个接口调用的账号，服务器会给出一个 appId 和一个 key, key 用于参数签名使用，注意 key 保存到客户端，需要做一些安全处理，防止泄露。</p>
 <p>Token 的值一般是 UUID，服务端生成 Token 后需要将 token 做为 key，将一些和 token 关联的信息作为 value 保存到缓存服务器中 (redis)，当一个请求过来后，服务器就去缓存服务器中查询这个 Token 是否存在，存在则调用接口，不存在返回接口错误，一般通过拦截器或者过滤器来实现，Token 分为两种：</p>
 <ul>
-<li>API Token (接口令牌): 用于访问不需要用户登录的接口，如登录、注册、一些基本数据的获取等。 获取接口令牌需要拿 appId、timestamp 和 sign 来换，sign = 加密 (timestamp+key)</li>
+<li>API Token (接口令牌): 用于访问不需要用户登录的接口，如登录、注册、一些基本数据的获取等。 获取接口令牌需要拿 appId、timestamp 和 sign 来换，sign = 加密 (timestamp + key)</li>
 <li>USER Token (用户令牌): 用于访问需要用户登录之后的接口，如：获取我的基本信息、保存、修改、删除等操作。获取用户令牌需要拿用户名和密码来换</li>
 </ul>
 <p>关于 Token 的时效性：token 可以是一次性的、也可以在一段时间范围内是有效的，具体使用哪种看业务需要。</p>
@@ -362,19 +362,19 @@
 <ul>
 <li>Smurf：该攻击向一个子网的广播地址发一个带有特定请求（如 ICMP 回应请求）的包，并且将源地址伪装成想要攻击的主机地址。子网上所有主机都回应广播包请求而向被攻击主机发包，使该主机受到攻击。</li>
 <li>Land-based：攻击者将一个包的源地址和目的地址都设置为目标主机的地址，然后将该包通过 IP 欺骗的方式发送给被攻击主机，这种包可以造成被攻击主机因试图与自己建立连接而陷入死循环，从而很大程度地降低了系统性能。</li>
-<li>Ping of Death：根据 TCP/IP 的规范，一个包的长度最大为 65536 字节。尽管一个包的长度不能超过 65536 字节，但是一个包分成的多个片段的叠加却能做到。当一个主机收到了长度大于 65536 字节的包时，就是受到了 Ping of Death 攻击，该攻击会造成主机的宕机。</li>
-<li>Teardrop：IP 数据包在网络传递时，数据包可以分成更小的片段。攻击者可以通过发送两段（或者更多）数据包来实现 TearDrop 攻击。第一个包的偏移量为 0，长度为 N，第二个包的偏移量小于 N。为了合并这些数据段，TCP/IP 堆栈会分配超乎寻常的巨大资源，从而造成系统资源的缺乏甚至机器的重新启动。</li>
+<li>Ping of Death：根据 TCP / IP 的规范，一个包的长度最大为 65536 字节。尽管一个包的长度不能超过 65536 字节，但是一个包分成的多个片段的叠加却能做到。当一个主机收到了长度大于 65536 字节的包时，就是受到了 Ping of Death 攻击，该攻击会造成主机的宕机。</li>
+<li>Teardrop：IP 数据包在网络传递时，数据包可以分成更小的片段。攻击者可以通过发送两段（或者更多）数据包来实现 TearDrop 攻击。第一个包的偏移量为 0，长度为 N，第二个包的偏移量小于 N。为了合并这些数据段，TCP / IP 堆栈会分配超乎寻常的巨大资源，从而造成系统资源的缺乏甚至机器的重新启动。</li>
 <li>PingSweep：使用 ICMP Echo 轮询多个主机。</li>
 </ul>
 <h4 id="sign-简介"><a href="#sign-简介" class="headerlink" title="sign 简介"></a>sign 简介</h4><p>nonce：随机值，是客户端随机生成的值，作为参数传递过来，随机值的目的是增加 sign 签名的多变性。随机值一般是数字和字母的组合，6 位长度，随机值的组成和长度没有固定规则。</p>
-<p>sign: 一般用于参数签名，防止参数被非法篡改，最常见的是修改金额等重要敏感参数， sign 的值一般是将所有非空参数按照升续排序然后 + token+key+timestamp+nonce (随机数) 拼接在一起，然后使用某种加密算法进行加密，作为接口中的一个参数 sign 来传递，也可以将 sign 放到请求头中。接口在网络传输过程中如果被黑客挟持，并修改其中的参数值，然后再继续调用接口，虽然参数的值被修改了，但是因为黑客不知道 sign 是如何计算出来的，不知道 sign 都有哪些值构成，不知道以怎样的顺序拼接在一起的，最重要的是不知道签名字符串中的 key 是什么，所以黑客可以篡改参数的值，但没法修改 sign 的值，当服务器调用接口前会按照 sign 的规则重新计算出 sign 的值然后和接口传递的 sign 参数的值做比较，如果相等表示参数值没有被篡改，如果不等，表示参数被非法篡改了，就不执行接口了。</p>
+<p>sign: 一般用于参数签名，防止参数被非法篡改，最常见的是修改金额等重要敏感参数， sign 的值一般是将所有非空参数按照升续排序然后 + token + key + timestamp + nonce (随机数) 拼接在一起，然后使用某种加密算法进行加密，作为接口中的一个参数 sign 来传递，也可以将 sign 放到请求头中。接口在网络传输过程中如果被黑客挟持，并修改其中的参数值，然后再继续调用接口，虽然参数的值被修改了，但是因为黑客不知道 sign 是如何计算出来的，不知道 sign 都有哪些值构成，不知道以怎样的顺序拼接在一起的，最重要的是不知道签名字符串中的 key 是什么，所以黑客可以篡改参数的值，但没法修改 sign 的值，当服务器调用接口前会按照 sign 的规则重新计算出 sign 的值然后和接口传递的 sign 参数的值做比较，如果相等表示参数值没有被篡改，如果不等，表示参数被非法篡改了，就不执行接口了。</p>
 <h4 id="防止重复提交"><a href="#防止重复提交" class="headerlink" title="防止重复提交"></a>防止重复提交</h4><p>对于一些重要的操作需要防止客户端重复提交的 (如非幂等性重要操作)，具体办法是当请求第一次提交时将 sign 作为 key 保存到 redis，并设置超时时间，超时时间和 Timestamp 中设置的差值相同。当同一个请求第二次访问时会先检测 redis 是否存在该 sign，如果存在则证明重复提交了，接口就不再继续调用了。如果 sign 在缓存服务器中因过期时间到了，而被删除了，此时当这个 url 再次请求服务器时，因 token 的过期时间和 sign 的过期时间一直，sign 过期也意味着 token 过期，那样同样的 url 再访问服务器会因 token 错误会被拦截掉，这就是为什么 sign 和 token 的过期时间要保持一致的原因。拒绝重复调用机制确保 URL 被别人截获了也无法使用（如抓取数据）。</p>
 <p>对于哪些接口需要防止重复提交可以自定义个注解来标记。</p>
 <p>注意：所有的安全措施都用上的话有时候难免太过复杂，在实际项目中需要根据自身情况作出裁剪，比如可以只使用签名机制就可以保证信息不会被篡改，或者定向提供服务的时候只用 Token 机制就可以了。如何裁剪，全看项目实际情况和对接口安全性的要求。</p>
 <h3 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h3><ol>
 <li>接口调用方 (客户端) 向接口提供方 (服务器) 申请接口调用账号，申请成功后，接口提供方会给接口调用方一个 appId 和一个 key 参数</li>
 <li>客户端携带参数 appId、timestamp、sign 去调用服务器端的 API token，其中 sign = 加密 (appId + timestamp + key)</li>
-<li> 客户端拿着 api_token 去访问不需要登录就能访问的接口</li>
+<li>客户端拿着 api_token 去访问不需要登录就能访问的接口</li>
 <li>当访问用户需要登录的接口时，客户端跳转到登录页面，通过用户名和密码调用登录接口，登录接口会返回一个 usertoken, 客户端拿着 usertoken 去访问需要登录才能访问的接口</li>
 </ol>
 <p>sign 的作用是防止参数被篡改，客户端调用服务端时需要传递 sign 参数，服务器响应客户端时也可以返回一个 sign 用于客户度校验返回的值是否被非法篡改了。客户端传的 sign 和服务器端响应的 sign 算法可能会不同。</p>

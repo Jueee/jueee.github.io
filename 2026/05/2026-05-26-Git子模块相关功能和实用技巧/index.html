@@ -32,7 +32,7 @@
 <meta property="og:description" content="背景：AI 辅助开发效率提升在 AI 辅助开发场景下，前端与后端往往需要同时查看和修改、联动调试。将前后端拆分为独立 Git 仓库，再通过子模块组合成一个父仓库，可以让 AI 工具（如 CodeMaker）在同一工作区同时感知前后端代码上下文，无需频繁切换目录，显著提升 AI 开发效率。 父仓库 &#x3D; 只包含 .gitmodules 和 openspec 配置，不存业务代码 子模块 &#x3D; 前端仓库 +">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-05-26T00:00:00.000Z">
-<meta property="article:modified_time" content="2026-05-29T09:03:47.793Z">
+<meta property="article:modified_time" content="2026-09-15T09:58:55.527Z">
 <meta property="article:author" content="小决">
 <meta property="article:tag" content="AIGC">
 <meta property="article:tag" content="Git">
@@ -130,7 +130,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">352</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">119</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-bell fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客<span class="badge">357</span></a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="fa fa-fw fa-th fa-fw"></i>分类<span class="badge">68</span></a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="fa fa-fw fa-tags fa-fw"></i>标签<span class="badge">128</span></a></li><li class="menu-item menu-item-nodes"><a href="/nodes" rel="section"><i class="fa fa-object-group fa-fw"></i>笔记</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -196,7 +196,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">352</span>
+          <span class="site-state-item-count">357</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags">
-        <span class="site-state-item-count">119</span>
+        <span class="site-state-item-count">128</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -314,11 +314,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/AIGC/" itemprop="url" rel="index"><span itemprop="name">AIGC</span></a>
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+          <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
         </span>
     </span>
 
@@ -340,7 +340,7 @@
     
     <div class="post-body" itemprop="articleBody"><h2 id="背景：AI-辅助开发效率提升"><a href="#背景：AI-辅助开发效率提升" class="headerlink" title="背景：AI 辅助开发效率提升"></a>背景：AI 辅助开发效率提升</h2><p>在 AI 辅助开发场景下，前端与后端往往需要<strong>同时查看和修改</strong>、联动调试。将前后端拆分为独立 Git 仓库，再通过子模块组合成一个父仓库，可以让 AI 工具（如 CodeMaker）在<strong>同一工作区</strong>同时感知前后端代码上下文，无需频繁切换目录，显著提升 AI 开发效率。</p>
 <p><strong>父仓库</strong> = 只包含 <code>.gitmodules</code> 和 openspec 配置，不存业务代码</p>
-<p><strong>子模块</strong> = 前端仓库 + 后端仓库，各自独立 CI/CD 和权限管理</p>
+<p><strong>子模块</strong> = 前端仓库 + 后端仓库，各自独立 CI / CD 和权限管理</p>
 <p><strong>AI 工具</strong> 打开父仓库根目录，即可同时索引前后端代码，实现跨仓库联动分析和修改</p>
 <h2 id="本项目配置参考（xxx-all）"><a href="#本项目配置参考（xxx-all）" class="headerlink" title="本项目配置参考（xxx-all）"></a>本项目配置参考（xxx-all）</h2><p>以下是本项目的 <code>.gitmodules</code> 配置，包含前端和后端两个子模块，均追踪 <code>master</code> 分支：</p>
 <pre class="language-none"><code class="language-none">[submodule "xxx-platform"]
@@ -361,14 +361,14 @@
 </tr>
 </thead>
 <tbody><tr>
-<td> xxx-platform</td>
-<td> 后端</td>
-<td> Spring Boot 多模块 Maven 项目</td>
+<td>xxx-platform</td>
+<td>后端</td>
+<td>Spring Boot 多模块 Maven 项目</td>
 </tr>
 <tr>
-<td> xxx-react</td>
-<td> 前端</td>
-<td> React + TypeScript 项目</td>
+<td>xxx-react</td>
+<td>前端</td>
+<td>React + TypeScript 项目</td>
 </tr>
 </tbody></table>
 <h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><pre class="language-none"><code class="language-none"># 首次克隆父仓库（同时拉取前后端子模块）
@@ -450,7 +450,7 @@ git config --global submodule.recurse true</code></pre>
 
 <h3 id="6-2-浅克隆子模块（加速）"><a href="#6-2-浅克隆子模块（加速）" class="headerlink" title="6.2 浅克隆子模块（加速）"></a>6.2 浅克隆子模块（加速）</h3><pre class="language-none"><code class="language-none">git clone --recurse-submodules --shallow-submodules &lt;repo-url&gt;</code></pre>
 
-<p>只拉取子模块最新 1 个 commit，大幅减少 CI/CD 场景的拉取时间。</p>
+<p>只拉取子模块最新 1 个 commit，大幅减少 CI / CD 场景的拉取时间。</p>
 <h3 id="6-3-指定子模块跟踪分支"><a href="#6-3-指定子模块跟踪分支" class="headerlink" title="6.3 指定子模块跟踪分支"></a>6.3 指定子模块跟踪分支</h3><pre class="language-none"><code class="language-none"># 在 .gitmodules 中设置追踪分支
 git submodule set-branch --branch main libs/lib
 git submodule update --remote libs/lib</code></pre>
@@ -470,7 +470,7 @@ git submodule update --remote libs/lib</code></pre>
 </thead>
 <tbody><tr>
 <td>子模块目录为空</td>
-<td>未执行 init/update</td>
+<td>未执行 init / update</td>
 <td><code>git submodule update --init --recursive</code></td>
 </tr>
 <tr>
@@ -480,13 +480,13 @@ git submodule update --remote libs/lib</code></pre>
 </tr>
 <tr>
 <td>push 后别人拉不到子模块新 commit</td>
-<td> 子模块未先 push</td>
-<td> 先在子模块目录 push，再 push 主仓库</td>
+<td>子模块未先 push</td>
+<td>先在子模块目录 push，再 push 主仓库</td>
 </tr>
 <tr>
-<td> clone 后子模块内容缺失</td>
+<td>clone 后子模块内容缺失</td>
 <td>未加 --recurse-submodules</td>
-<td> 执行 <code>git submodule update --init --recursive</code></td>
+<td>执行 <code>git submodule update --init --recursive</code></td>
 </tr>
 <tr>
 <td>子模块 commit 冲突</td>
